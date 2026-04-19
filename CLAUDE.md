@@ -2,9 +2,11 @@
 
 ## Project
 
-Calculator Hub on webcaretakers.com (25-year-old legacy domain). Hundreds of hyper-specific calculators targeting long-tail SEO keywords. Revenue via programmatic ads (AdSense/Raptive) and affiliate lead-generation. Static hosting on AWS S3/CloudFront.
+Calculator Hub on webcaretakers.com (25-year-old legacy domain). Hundreds of hyper-specific calculators targeting long-tail SEO keywords. Revenue via programmatic ads (AdSense/Raptive) and affiliate lead-generation. Static hosting on AWS Amplify.
 
 ## Writing and style rules (non-negotiable)
+
+**Before writing or rewriting any user-facing copy on the site, read [tone.md](tone.md).** It defines the Andrew Laws voice the site is written in. The rules below are the hard minimums; tone.md is the fuller picture.
 
 - British English spelling throughout (organisation, colour, recognise, optimise, etc.)
 - Never use em dashes. Use a comma, colon, or rewrite the sentence.
@@ -35,8 +37,8 @@ STYLE RULES — apply to all output:
 ## AWS
 
 - Region: us-east-1
-- Static hosting: S3 + CloudFront
-- DNS: Route 53
+- Hosting: AWS Amplify (managed SSL, CloudFront under the hood)
+- DNS: Route 53 (apex A-Alias and www CNAME both point at the Amplify CloudFront distribution)
 - Hard blocker: No AWS Lambda or pay-per-use deployment without billing budgets documented.
 
 ## URL structure

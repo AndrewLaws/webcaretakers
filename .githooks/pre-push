@@ -9,6 +9,7 @@ Reference-file checklist before pushing:
   [ ] CHANGELOG.md  — notable changes in this push under [Unreleased]
   [ ] README.md     — user-facing features or setup changes
   [ ] FUNCTIONS.md  — new calculator functions, modules, or utilities
+  [ ] tone.md       — voice or style rule changes (rarely, but flag if so)
 
 If everything is covered, carry on. Push proceeding.
 

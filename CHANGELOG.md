@@ -20,6 +20,7 @@ All notable changes to this project will be documented in this file.
 - Git pre-commit hook at `.githooks/pre-commit` regenerates and auto-stages the three site index files on every commit
 - Git pre-push hook at `.githooks/pre-push` prints a reminder checklist for ROADMAP, CHANGELOG, README, FUNCTIONS
 - `npm test` now runs unit tests first, then Playwright; `npm run generate` runs the generator manually
+- `tone.md` voice and style guide for all user-facing copy, referenced from `CLAUDE.md`
 
 ### Infrastructure
 - AWS CLI configured (us-east-1, account 490734354255)

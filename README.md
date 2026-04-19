@@ -47,6 +47,7 @@ Each calculator is a directory with an `index.html` for clean URLs.
 | [FUNCTIONS.md](FUNCTIONS.md) | Calculator specs, shared utilities, HTML contract, ad slots |
 | [CHANGELOG.md](CHANGELOG.md) | What changed and when |
 | [CLAUDE.md](CLAUDE.md) | Coding standards, style rules, and project constraints |
+| [tone.md](tone.md) | Voice and style guide for all user-facing copy on the site |
 
 ## Development
 
