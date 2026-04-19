@@ -2,6 +2,10 @@
 
 Last updated: 2026-04-19
 
+## Primary target market
+
+US-first. SerpAPI and SEMrush set to `United States` / `us` database. The UK will follow naturally for generic terms. UK-specific calculators in the list below (e.g. the freelance tax one) need to be either renamed for the US market or reframed as country-optional with toggles.
+
 ## Overview
 
 220 calculators and tools across 20 categories, targeting long-tail SEO keywords in web, marketing, AI, SEO, and closely related tech niches. Built on the topical authority of a 25-year-old domain that historically covered web hosting, broadband, email marketing, and small business IT.
@@ -9,6 +13,24 @@ Last updated: 2026-04-19
 Source: Manus AI Wayback Machine analysis (688 snapshots, 2001-2010) plus internal ideation.
 
 ## Cross-cutting features
+
+### UK/US measurement switcher
+
+Site defaults to US units and currency (USD, miles, gallons, Fahrenheit, pounds for weight). A persistent toggle in the header or footer lets users switch to UK defaults (GBP, kilometres, litres, Celsius, kilograms). Preference stored in `localStorage` so it sticks across pages and sessions. Every calculator reads the current preference and re-renders labels and conversions on toggle without a page reload.
+
+**Considerations:**
+- Pre-filled example values and placeholder text need both variants
+- Conversions should be done client-side from a single canonical unit per calculator, so we don't maintain two sets of logic
+- URL should remain the same (no `?units=uk`) to keep SEO clean; preference is user-side only
+- Where a calculator is fundamentally country-specific (e.g. tax), the switcher swaps to a different calculator variant or hides inapplicable inputs
+
+**Status:** [ ] Not started
+
+### Footer disclaimer
+
+Implemented 2026-04-19 in `site/index.html`. Covers: informational use, not professional advice, no liability, recommendation to consult a qualified professional, and affiliate disclosure. Six Playwright tests assert its presence and content.
+
+**Status:** [x] Complete (homepage). Needs to propagate to every calculator page as they are built, ideally via a shared template include once we introduce a build step, or by base-template copy-paste until then.
 
 ### "Prove it" button
 

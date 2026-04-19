@@ -21,6 +21,9 @@ All notable changes to this project will be documented in this file.
 - Git pre-push hook at `.githooks/pre-push` prints a reminder checklist for ROADMAP, CHANGELOG, README, FUNCTIONS
 - `npm test` now runs unit tests first, then Playwright; `npm run generate` runs the generator manually
 - `tone.md` voice and style guide for all user-facing copy, referenced from `CLAUDE.md`
+- Footer disclaimer on homepage covering informational-use, no liability, professional-advice guidance, and affiliate disclosure (6 Playwright tests)
+- `.env.example` for SerpAPI and SEMrush keys, US market defaults
+- Roadmap entries for UK/US measurement switcher and upcoming research pipeline
 
 ### Infrastructure
 - AWS CLI configured (us-east-1, account 490734354255)

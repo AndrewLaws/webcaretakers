@@ -133,6 +133,43 @@ test.describe('Accessibility and SEO basics', () => {
   });
 });
 
+test.describe('Site disclaimer in footer', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto('/');
+  });
+
+  test('has a disclaimer block inside the footer', async ({ page }) => {
+    const disclaimer = page.locator('footer [data-disclaimer]');
+    await expect(disclaimer).toHaveCount(1);
+  });
+
+  test('disclaimer states results are informational, not professional advice', async ({ page }) => {
+    const text = await page.locator('[data-disclaimer]').innerText();
+    expect(text.toLowerCase()).toMatch(/informational|information only|general information/);
+    expect(text.toLowerCase()).toMatch(/not.*(professional|legal|financial|medical).*advice/);
+  });
+
+  test('disclaimer limits liability for decisions based on results', async ({ page }) => {
+    const text = await page.locator('[data-disclaimer]').innerText();
+    expect(text.toLowerCase()).toMatch(/no liability|not liable|no responsibility|not responsible/);
+  });
+
+  test('disclaimer recommends consulting a qualified professional', async ({ page }) => {
+    const text = await page.locator('[data-disclaimer]').innerText();
+    expect(text.toLowerCase()).toMatch(/qualified|professional|specialist/);
+  });
+
+  test('disclaimer discloses affiliate links', async ({ page }) => {
+    const text = await page.locator('[data-disclaimer]').innerText();
+    expect(text.toLowerCase()).toMatch(/affiliate|commission|earn/);
+  });
+
+  test('disclaimer is visible on the page (not hidden)', async ({ page }) => {
+    const disclaimer = page.locator('[data-disclaimer]');
+    await expect(disclaimer).toBeVisible();
+  });
+});
+
 test.describe('Responsive layout', () => {
   test('renders correctly at mobile width (375px)', async ({ page }) => {
     await page.setViewportSize({ width: 375, height: 667 });
