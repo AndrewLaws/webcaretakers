@@ -1,7 +1,7 @@
 const { test, expect } = require('@playwright/test');
 
 // GTM container ID placeholder - replace once container is created
-const GTM_ID = 'GTM-XXXXXXX';
+const GTM_ID = 'GTM-PBCD82L6';
 
 test.describe('Base template structure', () => {
   test.beforeEach(async ({ page }) => {
@@ -130,6 +130,82 @@ test.describe('Accessibility and SEO basics', () => {
     const jsonLd = page.locator('script[type="application/ld+json"]');
     const count = await jsonLd.count();
     expect(count).toBeGreaterThanOrEqual(1);
+  });
+});
+
+test.describe('Cookie consent (Consent Mode v2)', () => {
+  test('Consent Mode defaults deny analytics, ads, and user-data before GTM fires', async ({ page }) => {
+    await page.goto('/');
+
+    // The consent default must be pushed to dataLayer BEFORE GTM's 'gtm.js' start event,
+    // so that any configured tags respect the denied state from the first frame.
+    const ordering = await page.evaluate(() => {
+      const dl = window.dataLayer || [];
+      const consentIdx = dl.findIndex((e) => e && e[0] === 'consent' && e[1] === 'default');
+      const gtmStartIdx = dl.findIndex((e) => e && e.event === 'gtm.js');
+      return { consentIdx, gtmStartIdx, length: dl.length };
+    });
+    expect(ordering.consentIdx).toBeGreaterThanOrEqual(0);
+    expect(ordering.gtmStartIdx).toBeGreaterThanOrEqual(0);
+    expect(ordering.consentIdx).toBeLessThan(ordering.gtmStartIdx);
+
+    const consentDefaults = await page.evaluate(() => {
+      return window.dataLayer.find((e) => e && e[0] === 'consent' && e[1] === 'default');
+    });
+    expect(consentDefaults).toBeTruthy();
+    expect(consentDefaults[2].analytics_storage).toBe('denied');
+    expect(consentDefaults[2].ad_storage).toBe('denied');
+    expect(consentDefaults[2].ad_user_data).toBe('denied');
+    expect(consentDefaults[2].ad_personalization).toBe('denied');
+  });
+
+  test('banner is visible on first visit', async ({ page }) => {
+    await page.goto('/');
+    const banner = page.locator('[data-cookie-banner]');
+    await expect(banner).toBeVisible();
+  });
+
+  test('banner has Accept and Reject buttons with equal visibility', async ({ page }) => {
+    await page.goto('/');
+    const accept = page.locator('[data-cookie-accept]');
+    const reject = page.locator('[data-cookie-reject]');
+    await expect(accept).toBeVisible();
+    await expect(reject).toBeVisible();
+  });
+
+  test('banner has a privacy policy link', async ({ page }) => {
+    await page.goto('/');
+    const link = page.locator('[data-cookie-banner] a[href*="privacy"]');
+    await expect(link).toHaveCount(1);
+  });
+
+  test('clicking Reject hides the banner and records denied choice', async ({ page }) => {
+    await page.goto('/');
+    await page.locator('[data-cookie-reject]').click();
+    await expect(page.locator('[data-cookie-banner]')).toBeHidden();
+    const choice = await page.evaluate(() => localStorage.getItem('cookie-consent'));
+    expect(choice).toBe('denied');
+  });
+
+  test('clicking Accept hides the banner, records granted, and updates consent', async ({ page }) => {
+    await page.goto('/');
+    await page.locator('[data-cookie-accept]').click();
+    await expect(page.locator('[data-cookie-banner]')).toBeHidden();
+    const choice = await page.evaluate(() => localStorage.getItem('cookie-consent'));
+    expect(choice).toBe('granted');
+    const updateEvent = await page.evaluate(() => {
+      return window.dataLayer.find((e) => e[0] === 'consent' && e[1] === 'update');
+    });
+    expect(updateEvent).toBeTruthy();
+    expect(updateEvent[2].analytics_storage).toBe('granted');
+    expect(updateEvent[2].ad_storage).toBe('granted');
+  });
+
+  test('banner does not appear on subsequent visits once a choice is made', async ({ page, context }) => {
+    await page.goto('/');
+    await page.locator('[data-cookie-reject]').click();
+    await page.reload();
+    await expect(page.locator('[data-cookie-banner]')).toBeHidden();
   });
 });
 

@@ -28,9 +28,11 @@ Revisit later: switch to cookieless analytics (Plausible/Fathom) to remove the n
 
 **Status:** [ ] Not started
 
-### UK/US measurement switcher
+### US/UK region switcher (currency and units only)
 
-Site defaults to US units and currency (USD, miles, gallons, Fahrenheit, pounds for weight). A persistent toggle in the header or footer lets users switch to UK defaults (GBP, kilometres, litres, Celsius, kilograms). Preference stored in `localStorage` so it sticks across pages and sessions. Every calculator reads the current preference and re-renders labels and conversions on toggle without a page reload.
+Scope is deliberately narrow: **the switcher only changes currency (USD ↔ GBP) and units of measurement (imperial ↔ metric)**. It does not change language, spelling, voice, or tone. The Andrew Laws British voice stays for all users regardless of region.
+
+Site defaults to US (USD, miles, gallons, Fahrenheit, pounds for weight). A persistent toggle in the header or footer lets users switch to metric/GBP. Preference stored in `localStorage` so it sticks across pages and sessions. Every calculator reads the current preference and re-renders labels and conversions on toggle without a page reload.
 
 **Considerations:**
 - Pre-filled example values and placeholder text need both variants
@@ -61,6 +63,8 @@ Add a "Prove it" button to every calculator. When clicked, the button reveals a 
 - Decide whether workings are authored manually per calculator or generated dynamically from formula metadata
 - Manual is more work but produces better prose; dynamic is scalable but may read mechanically
 - Consider a hybrid: dynamic substitution steps with an optional hand-written plain-English summary
+
+**AI Overview citation pattern:** every Prove-it panel should not only show the math but also cite the underlying logic or authority (e.g. "This follows the 183-day tax residency rule used by most EU countries", "Based on FCC broadband minimums published in 2024"). Giving the reasoning a named source makes the page quotable by Gemini, ChatGPT, and Perplexity, which is how we earn AI Overview citations rather than just ranking.
 
 **Status:** [ ] Not started
 
@@ -392,3 +396,47 @@ These map directly to content that existed on webcaretakers.com between 2001-201
 - [ ] robots.txt Rule Tester
 - [ ] CSS Specificity Calculator
 - [ ] JSON to CSV Converter
+
+## 21. Digital Sustainability and Green Tech (4)
+
+Context: ESG reporting is becoming mandatory for many firms in 2025-2026, making "digital carbon" a high-intent B2B search area.
+
+- [ ] AI Inference Carbon Footprint Calculator (CO2 impact of LLM queries by model size and data centre region)
+- [ ] Website Carbon Benchmarker (emissions from data transfer, green hosting status, dark-mode savings)
+- [ ] Email Inbox Bloat Emission Estimator (annual carbon cost of unread newsletters and stored attachments across a company)
+- [ ] Cloud vs On-Prem Energy Efficiency Comparison (PUE benchmarks for major cloud providers vs typical SMB server rooms)
+
+## 22. Legal, Privacy and AI Compliance (4)
+
+Context: EU AI Act and evolving privacy laws create fear-based high-intent traffic. Users want a quick "am I in trouble?" assessment.
+
+- [ ] EU AI Act Risk Tiering Tool (Prohibited / High-Risk / Limited / Minimal based on 2026 enforcement guidelines)
+- [ ] AI Act Fine Estimator (up to €35m or 7% of global turnover based on violation and company size)
+- [ ] Privacy Policy Readability and Risk Score (time-to-read plus missing 2026-standard clauses like AI training opt-outs)
+- [ ] Digital Nomad Safe Harbor Tax Day Counter (183-day residency tracking across jurisdictions)
+
+## 23. Advanced Infrastructure and AI Unit Economics (4)
+
+Context: shift from "AI hype" to "AI operations" puts the cost of scaling front and centre.
+
+- [ ] GPU Unit Economics Build vs Rent (3-year TCO of buying H100/A100 cluster vs renting from Lambda, AWS, Azure)
+- [ ] Small Language Model Savings Estimator (ROI of switching from frontier to Mini/Flash models, 10-30x cheaper)
+- [ ] API Caching ROI Calculator (savings from 40-60% cache hit rate on search or LLM APIs, key for agentic workflows)
+- [ ] Cloud Egress Hidden Cost Estimator (1TB egress cost AWS/GCP vs Cloudflare/Akamai zero-egress)
+
+## 24. Tech Career and Human Capital (4)
+
+Context: highly shareable on LinkedIn and Reddit, drives natural pull traffic.
+
+- [ ] Remote Work Geo-Arbitrage Parity Calculator ($150k London salary valued in Lisbon, Bali, Austin, factoring local inflation and 2026 digital nomad visas)
+- [ ] The Meeting Tax Real-Time Burner (live running cost of a meeting based on attendees and hourly rates)
+- [ ] RSU and Stock Option Real Value Estimator (total compensation with vesting, strike prices, tax hits)
+- [ ] Tech Stack Obsolescence Timer (half-life of a developer's skills based on GitHub and job-market trends)
+
+## 25. High-Utility Quick-Fix Tools (3)
+
+Context: target zero-click AI Overviews by providing immediate, definitive answers.
+
+- [ ] Social Media Spam Probability Checker (predicts likelihood of a cold outreach being flagged by LinkedIn or Gmail)
+- [ ] Video Hook Retention Predictor (estimates first-3-seconds drop-off based on headline and thumbnail loudness)
+- [ ] API Health and Latency Impact Calculator (how a 200ms delay compounds across a multi-step journey and hits conversion)
