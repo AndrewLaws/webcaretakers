@@ -46,6 +46,7 @@ All notable changes to this project will be documented in this file.
 - "Save this calculator" bookmark nudge on the broadband calculator, platform-aware (⌘ D on Mac, Ctrl + D elsewhere)
 - `/terms/` page in site voice: who the terms are with, accuracy disclaimer, no-liability, acceptable use, IP, affiliate note, availability, governing law (England and Wales)
 - `/contact/` page with no form by design: two JS-assembled mailto addresses (hello@, privacy@), honest expectations, and a clear signpost that commercial enquiries go to yeseo.io instead
+- Automatic internal linking: `links.json` source of truth, `scripts/internal-links.js` sweeper (12 node:test tests) wired into the pre-commit hook to wrap the first safe occurrence of each phrase in an anchor (skips nav/header/footer/headings/existing anchors, one link per URL per page, longest phrase wins, idempotent, respects `excludeFromLinking`); `node-html-parser` added as a dev dep
 
 ### Infrastructure
 - AWS CLI configured (us-east-1, account 490734354255)

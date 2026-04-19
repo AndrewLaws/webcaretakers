@@ -1,0 +1,15 @@
+{
+  "description": "Internal linking source of truth. Each entry maps a phrase to the page it should link to. The pre-commit hook sweeps every HTML file and wraps the first occurrence of each phrase (if not already linked) in an anchor. Case-insensitive match, original casing preserved.",
+  "excludeFromLinking": [
+    "/privacy/",
+    "/terms/",
+    "/contact/"
+  ],
+  "links": [
+    { "phrase": "Broadband Bandwidth Calculator", "url": "/calculators/broadband/broadband-bandwidth-calculator/" },
+    { "phrase": "bandwidth calculator", "url": "/calculators/broadband/broadband-bandwidth-calculator/" },
+    { "phrase": "privacy policy", "url": "/privacy/" },
+    { "phrase": "terms of use", "url": "/terms/" },
+    { "phrase": "About page", "url": "/about/" }
+  ]
+}

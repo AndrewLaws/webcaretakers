@@ -1,6 +1,7 @@
 #!/bin/sh
-# Regenerate sitemap.xml, robots.txt, llms.txt before every commit
-# so they stay in sync with the site content.
+# Pre-commit: keep generated site files and internal links in sync.
+# Regenerate sitemap/robots/llms, sweep for internal-link opportunities,
+# auto-stage any changes so the commit captures them.
 set -e
 
 REPO_ROOT="$(git rev-parse --show-toplevel)"
@@ -8,3 +9,7 @@ cd "$REPO_ROOT"
 
 node scripts/generate-site-files.js
 git add site/sitemap.xml site/robots.txt site/llms.txt
+
+node scripts/internal-links.js
+# Stage any HTML updates the link sweeper produced
+git diff --name-only --diff-filter=M | grep -E '^site/.+\.html$' | xargs -I {} git add {} || true
