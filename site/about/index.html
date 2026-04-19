@@ -3,21 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Free Online Calculators | WebCaretakers</title>
-  <meta name="description" content="Free online calculators for finance, health, property and more. Get quick, accurate results with no sign-up required.">
-  <link rel="canonical" href="https://webcaretakers.com/">
-  <meta property="og:title" content="Free Online Calculators | WebCaretakers">
-  <meta property="og:description" content="Free online calculators for finance, health, property and more. Get quick, accurate results with no sign-up required.">
+  <title>About WebCaretakers | Andrew Laws</title>
+  <meta name="description" content="WebCaretakers is a free calculator hub built and maintained by Andrew Laws, an SEO and web practitioner since 1999. Here is who is behind it and why it exists.">
+  <link rel="canonical" href="https://webcaretakers.com/about/">
+  <meta property="og:title" content="About WebCaretakers">
+  <meta property="og:description" content="WebCaretakers is a free calculator hub built and maintained by Andrew Laws, an SEO and web practitioner since 1999.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://webcaretakers.com/">
+  <meta property="og:url" content="https://webcaretakers.com/about/">
+  <meta name="robots" content="index, follow">
   <link rel="stylesheet" href="/assets/css/main.css">
 
-  <!-- DataLayer and Consent Mode v2 defaults (must come before GTM) -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
-
-    // Respect an existing choice, otherwise default everything to denied.
     var _stored = null;
     try { _stored = localStorage.getItem('cookie-consent'); } catch (e) {}
     var _initial = _stored === 'granted' ? 'granted' : 'denied';
@@ -32,33 +30,37 @@
     });
   </script>
 
-  <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
   new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
   j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
   })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
-  <!-- End Google Tag Manager -->
 
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "WebCaretakers",
-    "url": "https://webcaretakers.com/",
-    "description": "Free online calculators for finance, health, property and more."
+    "@type": "Person",
+    "name": "Andrew Laws",
+    "jobTitle": "SEO and web practitioner",
+    "url": "https://webcaretakers.com/about/",
+    "sameAs": [
+      "https://yeseo.io/",
+      "https://webcaretakers.com/"
+    ],
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Andrew Laws Associates Ltd",
+      "url": "https://yeseo.io/"
+    }
   }
   </script>
 </head>
 <body>
-  <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-  <!-- End Google Tag Manager (noscript) -->
 
   <a href="#main-content" class="skip-link">Skip to main content</a>
 
-  <!-- Cookie consent banner -->
   <div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-banner-heading" aria-describedby="cookie-banner-text" hidden>
     <div class="cookie-banner__inner">
       <h2 id="cookie-banner-heading" class="cookie-banner__heading">A quick word about cookies</h2>
@@ -77,35 +79,25 @@
       var KEY = 'cookie-consent';
       var banner = document.querySelector('[data-cookie-banner]');
       if (!banner) return;
-
       var stored = null;
       try { stored = localStorage.getItem(KEY); } catch (e) {}
-      if (stored !== 'granted' && stored !== 'denied') {
-        banner.hidden = false;
-      }
-
+      if (stored !== 'granted' && stored !== 'denied') { banner.hidden = false; }
       function record(choice) {
         try { localStorage.setItem(KEY, choice); } catch (e) {}
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('consent', 'update', {
-          ad_storage: choice,
-          analytics_storage: choice,
-          ad_user_data: choice,
-          ad_personalization: choice
+          ad_storage: choice, analytics_storage: choice,
+          ad_user_data: choice, ad_personalization: choice
         });
         banner.hidden = true;
       }
-
       var accept = banner.querySelector('[data-cookie-accept]');
       var reject = banner.querySelector('[data-cookie-reject]');
       if (accept) accept.addEventListener('click', function () { record('granted'); });
       if (reject) reject.addEventListener('click', function () { record('denied'); });
     })();
   </script>
-
-  <!-- Header ad slot -->
-  <div class="ad-slot" data-ad-slot="header" aria-hidden="true"></div>
 
   <header class="site-header">
     <div class="container">
@@ -121,44 +113,45 @@
   <div class="page-layout">
     <main id="main-content">
       <div class="container">
-        <h1>Free Online Calculators</h1>
-        <p class="intro">Quick, accurate calculators for everyday decisions. No sign-up, no fuss.</p>
+        <nav aria-label="Breadcrumb" class="breadcrumbs">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li aria-current="page">About</li>
+          </ol>
+        </nav>
 
-        <!-- In-content ad slot -->
-        <div class="ad-slot" data-ad-slot="in-content" aria-hidden="true"></div>
+        <h1>About WebCaretakers</h1>
+        <p class="intro">A calculator hub built by a human, not a content farm. Here is who is behind it, why it exists, and where to find me if something on this site is wrong or could be better.</p>
 
-        <!-- Demo calculator -->
-        <section data-calculator class="calculator-card">
-          <h2>Percentage Calculator</h2>
-          <p>What is X% of Y?</p>
-          <form>
-            <div class="calculator-inputs">
-              <label for="calc-percentage">Percentage</label>
-              <input type="number" id="calc-percentage" name="percentage" placeholder="e.g. 15" step="any">
-              <label for="calc-value">of</label>
-              <input type="number" id="calc-value" name="value" placeholder="e.g. 200" step="any">
-            </div>
-            <button type="submit" data-calculate>Calculate</button>
-          </form>
-          <div data-calculator-results class="calculator-results">
-            <p class="result-display">Enter values above to see your result.</p>
-          </div>
+        <section class="long-form">
+          <h2>Who runs this site</h2>
+          <p>My name is Andrew Laws. I have been building, breaking, and fixing websites since 1999. Today I run <a href="https://yeseo.io/" rel="noopener">Yeseo</a>, an SEO and AI consultancy, and WebCaretakers is a personal project that grew out of a long-held soft spot for the kind of genuinely useful web that existed before every page became a funnel.</p>
+          <p>You can read more about my professional work, credentials, and client roster at <a href="https://yeseo.io/" rel="noopener">yeseo.io</a>. That is where anything formal lives. This site is where I make the kind of small, focused tools that used to live on every corner of the 2001-era web.</p>
+
+          <h2>Why this site exists</h2>
+          <p>The webcaretakers.com domain has been registered since 2001. For the best part of two decades it covered web hosting, broadband, email marketing and small business IT. Rather than let a domain with that much history collect cobwebs, it made more sense to rebuild it as something useful: a collection of free, honest calculators that help people make small decisions well.</p>
+          <p>The rules I set for myself at the start are still the rules:</p>
+          <ul>
+            <li><strong>No sign-up, ever.</strong> If a calculator needs an account, something has gone wrong in the design.</li>
+            <li><strong>Everything runs in your browser.</strong> The numbers you type do not leave your device. There is no server-side maths, no logging of inputs, no "we saw you looked at this".</li>
+            <li><strong>Show the workings.</strong> Every calculator has a "Prove it" button that explains how the number was arrived at. You should never have to take the result on faith.</li>
+            <li><strong>Plain English.</strong> If a tool cannot explain itself without jargon, it has failed.</li>
+          </ul>
+
+          <h2>How the site is funded</h2>
+          <p>Two ways. One, <strong>programmatic ads</strong> (Google AdSense, likely moving to a managed partner once traffic justifies it). Two, <strong>affiliate links</strong> on a small number of pages where it is genuinely useful to point people towards a service or product. Every affiliate link is disclosed in the footer of every page. No one pays to be recommended, and no calculator is designed to funnel you towards a specific partner. If the calculator says 50 Mbps is enough for your household, that is what it says, regardless of whether the partner we link to charges more for 150 Mbps.</p>
+
+          <h2>Who to contact</h2>
+          <p>If a calculator is giving you a wrong answer, or a page has a typo, or you have an idea for a tool that should exist, email <a href="mailto:hello@webcaretakers.com">hello@webcaretakers.com</a>. I read every message; I reply to most within a few days.</p>
+          <p>For privacy, data, or legal queries, use <a href="mailto:privacy@webcaretakers.com">privacy@webcaretakers.com</a>. Details are on the <a href="/privacy/">privacy policy</a>.</p>
+
+          <h2>The legal bit</h2>
+          <p>WebCaretakers is a trading name of <strong>Andrew Laws Associates Ltd</strong>, a company registered in England and Wales (company number 08602332, VAT GB166900204, ICO registration ZA726704). Registered address: 7 Bailey Close, Ipswich, Suffolk, IP2 0UD, United Kingdom.</p>
         </section>
-
-        <!-- Below-results ad slot -->
-        <div class="ad-slot" data-ad-slot="below-results" aria-hidden="true"></div>
-
-        <!-- Next step CTA -->
-        <div data-cta="next-step" class="cta-block">
-          <h3>Need more help?</h3>
-          <p>Find expert services tailored to your needs.</p>
-          <a href="#" class="cta-link">Explore your options</a>
-        </div>
       </div>
     </main>
 
     <aside class="sidebar">
-      <!-- Sidebar ad slot -->
       <div class="ad-slot" data-ad-slot="sidebar" aria-hidden="true"></div>
     </aside>
   </div>
@@ -187,7 +180,5 @@
       <p class="site-legal">WebCaretakers is a trading name of <a href="https://yeseo.io/" rel="noopener">Andrew Laws Associates Ltd</a>, registered in England and Wales (company no. 08602332). ICO registration ZA726704.</p>
     </div>
   </footer>
-
-  <script src="/assets/js/main.js"></script>
 </body>
 </html>

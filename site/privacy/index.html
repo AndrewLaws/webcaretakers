@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy | WebCaretakers</title>
+  <meta name="description" content="How WebCaretakers handles cookies, analytics, advertising and affiliate links. Plain-English privacy policy, not a generator template.">
+  <link rel="canonical" href="https://webcaretakers.com/privacy/">
+  <meta property="og:title" content="Privacy Policy | WebCaretakers">
+  <meta property="og:description" content="How WebCaretakers handles cookies, analytics, advertising and affiliate links.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webcaretakers.com/privacy/">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="/assets/css/main.css">
+
+  <!-- DataLayer and Consent Mode v2 defaults (must come before GTM) -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var _stored = null;
+    try { _stored = localStorage.getItem('cookie-consent'); } catch (e) {}
+    var _initial = _stored === 'granted' ? 'granted' : 'denied';
+    gtag('consent', 'default', {
+      ad_storage: _initial,
+      analytics_storage: _initial,
+      ad_user_data: _initial,
+      ad_personalization: _initial,
+      functionality_storage: 'granted',
+      security_storage: 'granted',
+      wait_for_update: 500
+    });
+  </script>
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
+  <!-- End Google Tag Manager -->
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-banner-heading" aria-describedby="cookie-banner-text" hidden>
+    <div class="cookie-banner__inner">
+      <h2 id="cookie-banner-heading" class="cookie-banner__heading">A quick word about cookies</h2>
+      <p id="cookie-banner-text" class="cookie-banner__text">
+        We use cookies for analytics, so we can see which calculators people actually use and which ones need work. Nothing creepy, nothing sold on. You can say yes, say no, or read the <a href="/privacy/">privacy policy</a> first. Your choice sticks.
+      </p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-reject>Reject</button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>Accept</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var KEY = 'cookie-consent';
+      var banner = document.querySelector('[data-cookie-banner]');
+      if (!banner) return;
+      var stored = null;
+      try { stored = localStorage.getItem(KEY); } catch (e) {}
+      if (stored !== 'granted' && stored !== 'denied') { banner.hidden = false; }
+      function record(choice) {
+        try { localStorage.setItem(KEY, choice); } catch (e) {}
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('consent', 'update', {
+          ad_storage: choice, analytics_storage: choice,
+          ad_user_data: choice, ad_personalization: choice
+        });
+        banner.hidden = true;
+      }
+      var accept = banner.querySelector('[data-cookie-accept]');
+      var reject = banner.querySelector('[data-cookie-reject]');
+      if (accept) accept.addEventListener('click', function () { record('granted'); });
+      if (reject) reject.addEventListener('click', function () { record('denied'); });
+    })();
+  </script>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">WebCaretakers</a>
+      <nav aria-label="Main navigation">
+        <ul>
+          <li><a href="/calculators/">All Calculators</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <main id="main-content">
+      <div class="container">
+        <nav aria-label="Breadcrumb" class="breadcrumbs">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li aria-current="page">Privacy policy</li>
+          </ol>
+        </nav>
+
+        <h1>Privacy policy</h1>
+        <p class="intro">Plain English, no dark patterns. We will tell you what we collect, why, and how to say no. Last updated 19 April 2026.</p>
+
+        <section class="long-form">
+          <h2>Who we are</h2>
+          <p>WebCaretakers is a trading name of Andrew Laws Associates Ltd, a company registered in England and Wales. The site is published from <a href="https://webcaretakers.com/">webcaretakers.com</a>. The person behind it is Andrew Laws, who has run SEO and web projects since 1999. You can read more about that on the <a href="/about/">About page</a> or at <a href="https://yeseo.io/" rel="noopener">yeseo.io</a>.</p>
+
+          <h3>Company details</h3>
+          <ul>
+            <li><strong>Legal entity:</strong> Andrew Laws Associates Ltd</li>
+            <li><strong>Trading as:</strong> WebCaretakers</li>
+            <li><strong>Registered address:</strong> 7 Bailey Close, Ipswich, Suffolk, IP2 0UD, United Kingdom</li>
+            <li><strong>Company number:</strong> 08602332</li>
+            <li><strong>VAT number:</strong> GB166900204</li>
+            <li><strong>ICO registration:</strong> ZA726704</li>
+          </ul>
+
+          <h2>What the calculators collect</h2>
+          <p>Nothing. The calculators on this site run entirely in your browser. The numbers you type never leave your device, are never sent to a server, and are not logged by us. When you press Calculate, the maths happens on your own computer or phone and the result is displayed. That is the whole transaction.</p>
+
+          <h2>What the site itself collects</h2>
+          <p>Separately from the calculators, the site uses Google Analytics 4 via Google Tag Manager to understand which pages and calculators are being used, from roughly where in the world, and on what kind of device. This runs only if you click Accept on the cookie banner.</p>
+          <p>What Google Analytics sees in that case:</p>
+          <ul>
+            <li>The pages you visit and how long you spend on them</li>
+            <li>The calculator inputs you change and whether you reach a result (as generic events like "calculator_result", not the values you entered)</li>
+            <li>A coarse location based on IP address, which Google anonymises</li>
+            <li>The type of device, browser, and operating system</li>
+            <li>The page you arrived from (referrer)</li>
+          </ul>
+          <p>We do not run a newsletter, do not have user accounts, and do not operate a comments section on this site. There are no forms that send your data to us.</p>
+
+          <h2>Cookies and similar storage</h2>
+          <p>Before you make a choice on the banner, the only thing stored on your device is the banner's own preference slot, waiting for your answer. Everything else (analytics, advertising) is denied by default using Google's Consent Mode v2.</p>
+          <p>If you click <strong>Accept</strong>, the following may be set:</p>
+          <ul>
+            <li><strong>Google Analytics (_ga, _ga_*):</strong> used to distinguish one visitor from another so a single person refreshing does not count as dozens. Expires after up to two years.</li>
+            <li><strong>Advertising cookies (set once ads go live):</strong> used to serve non-personalised or personalised ads depending on your consent choice, and to cap how often you see the same ad.</li>
+          </ul>
+          <p>Regardless of your choice, we store a single small value in your browser's localStorage called <code>cookie-consent</code> so we do not show you the banner every single visit. This is not a tracking cookie: it only remembers that you already answered.</p>
+
+          <h2>Third parties on this site</h2>
+          <ul>
+            <li><strong>Google (Analytics, Tag Manager, and, in future, AdSense or a managed ads partner):</strong> processes the analytics and advertising data described above. Google acts as an independent controller for its own purposes. See <a href="https://policies.google.com/privacy" rel="noopener">Google's privacy policy</a>.</li>
+            <li><strong>Affiliate partners:</strong> some outbound links on this site are affiliate links. Clicking one may set a cookie on the destination site so the partner can credit the referral. We do not receive personal data back from those clicks, only an aggregated commission report. The affiliate disclosure is in the footer of every page.</li>
+            <li><strong>AWS Amplify and CloudFront:</strong> the site is hosted on AWS. Standard web server logs (IP address, user agent, requested URL) are retained short-term for security and abuse protection. These logs are not joined with analytics.</li>
+          </ul>
+
+          <h2>Consent Mode v2</h2>
+          <p>We implement Google's Consent Mode v2. Until you click Accept, four signals are set to <em>denied</em>: <code>ad_storage</code>, <code>analytics_storage</code>, <code>ad_user_data</code>, and <code>ad_personalization</code>. That means Google's tags will not write cookies or send personally identifying data before you have agreed. If you click Reject, that denied state persists. If you click Accept, the signals are updated to <em>granted</em> and analytics/ads load normally.</p>
+
+          <h2>Changing your mind</h2>
+          <p>To change your choice, open your browser's developer tools, go to the storage panel for webcaretakers.com, and delete the item called <code>cookie-consent</code>. Reload the page and the banner will reappear. We will add an in-page preferences link once it is meaningfully useful; for now this is the honest instruction.</p>
+
+          <h2>Your rights</h2>
+          <p>Under UK GDPR you have the right to ask what personal data we hold about you, to have it corrected if it is wrong, to have it deleted, and to object to how it is processed. In practice, because we do not run accounts or forms, we usually hold nothing identifying about you beyond what Google Analytics holds for any site that uses it.</p>
+          <p>To exercise a right, email <a href="mailto:privacy@webcaretakers.com">privacy@webcaretakers.com</a>. We aim to respond within 30 days. If you are not happy with how we handle your request, you can complain to the Information Commissioner's Office at <a href="https://ico.org.uk/" rel="noopener">ico.org.uk</a>.</p>
+
+          <h2>Changes to this policy</h2>
+          <p>If we change anything material, such as turning ads on or adding a new third-party service, we will update this page and change the "last updated" date at the top. Minor wording tweaks will not get a banner.</p>
+        </section>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="ad-slot" data-ad-slot="sidebar" aria-hidden="true"></div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="site-footer-nav" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/calculators/">All calculators</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+
+      <section class="site-disclaimer" data-disclaimer aria-labelledby="disclaimer-heading">
+        <h2 id="disclaimer-heading">A quick, necessary word</h2>
+        <p>Every calculator on this site is built to give you a sensible, well-reasoned estimate. It is, however, exactly that: an estimate, for general information only. Nothing you see here is professional, legal, financial, medical, or tax advice, and it should not be treated as such.</p>
+        <p>Before you make a decision that actually matters, talk to a qualified professional who knows your specific situation: an accountant, a solicitor, a doctor, an IT consultant, whoever fits the question. They can factor in the bits a generic tool can't.</p>
+        <p>We take no liability and accept no responsibility for any loss, damage, or questionable life choice arising from acting on the numbers you see here. Use the results as a starting point for a better conversation, not as the final word.</p>
+        <p><strong>Affiliate disclosure:</strong> some links on this site are affiliate links. If you click through and buy or sign up for something, we may earn a small commission at no extra cost to you. It helps keep the calculators free and ad-light. We only recommend things we'd point a friend towards.</p>
+      </section>
+      <p class="site-copyright">&copy; 2026 WebCaretakers. All rights reserved.</p>
+      <p class="site-legal">WebCaretakers is a trading name of <a href="https://yeseo.io/" rel="noopener">Andrew Laws Associates Ltd</a>, registered in England and Wales (company no. 08602332). ICO registration ZA726704.</p>
+    </div>
+  </footer>
+</body>
+</html>

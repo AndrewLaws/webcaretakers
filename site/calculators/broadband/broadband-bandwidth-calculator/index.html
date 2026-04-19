@@ -248,6 +248,10 @@
 
           <div data-calculator-results class="calculator-results" aria-live="polite">
             <p class="result-display" data-result-placeholder>Fill in the form and press Calculate to see the speed we would recommend.</p>
+            <p class="bookmark-nudge" data-bookmark-nudge>
+              <strong>Save this calculator:</strong>
+              press <kbd data-bookmark-shortcut>Ctrl</kbd> + <kbd>D</kbd> to bookmark it in your browser.
+            </p>
             <div class="result-summary" hidden data-result-summary>
               <p>Recommended download: <strong data-result-download></strong></p>
               <p>Recommended upload: <strong data-result-upload></strong></p>
@@ -340,6 +344,7 @@
         <p><strong>Affiliate disclosure:</strong> some links on this site are affiliate links. If you click through and buy or sign up for something, we may earn a small commission at no extra cost to you. It helps keep the calculators free and ad-light. We only recommend things we'd point a friend towards.</p>
       </section>
       <p class="site-copyright">&copy; 2026 WebCaretakers. All rights reserved.</p>
+      <p class="site-legal">WebCaretakers is a trading name of <a href="https://yeseo.io/" rel="noopener">Andrew Laws Associates Ltd</a>, registered in England and Wales (company no. 08602332). ICO registration ZA726704.</p>
     </div>
   </footer>
 
@@ -424,6 +429,12 @@
           streaming: input.streaming
         });
       });
+
+      var shortcutEl = document.querySelector('[data-bookmark-shortcut]');
+      if (shortcutEl) {
+        var isMac = /Mac|iPhone|iPad|iPod/i.test(navigator.platform || navigator.userAgent);
+        shortcutEl.textContent = isMac ? '\u2318' : 'Ctrl';
+      }
 
       var ctaLink = document.querySelector('[data-cta-link]');
       if (ctaLink) {

@@ -40,6 +40,10 @@ All notable changes to this project will be documented in this file.
 - Calculator form layout: uniform `.calc-form` grid with label left, control right, dedicated checkbox row style, mobile stack at 540px
 - ELI5 block styling and roadmap entry as a cross-cutting feature (top-of-page, scope is "what this calculator does")
 - Roadmap: privacy policy page added as a prerequisite for switching GA4 on
+- `/privacy/` page written in site voice, adapted from Yeseo policy to cover GA4, Consent Mode v2, cookies, Google, affiliates, and the fact that calculator inputs never leave the browser
+- `/about/` page establishing Andrew Laws as the named author, linking to yeseo.io for E-E-A-T, with Person JSON-LD
+- Footer trading-name line on homepage, privacy, about, and broadband calculator: "WebCaretakers is a trading name of Andrew Laws Associates Ltd" with company number and ICO reg
+- "Save this calculator" bookmark nudge on the broadband calculator, platform-aware (⌘ D on Mac, Ctrl + D elsewhere)
 
 ### Infrastructure
 - AWS CLI configured (us-east-1, account 490734354255)

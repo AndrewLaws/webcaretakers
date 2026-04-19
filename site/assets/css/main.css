@@ -527,3 +527,55 @@ button[type="submit"]:hover {
   line-height: 1.5;
   color: #333;
 }
+
+/* Site legal line (trading-name notice) */
+.site-legal {
+  text-align: center;
+  margin: 0.5rem 0 0;
+  font-size: 0.75rem;
+  color: #888;
+  line-height: 1.4;
+}
+.site-legal a { color: #bbb; text-decoration: underline; }
+.site-legal a:hover { color: #fff; }
+
+/* Bookmark nudge */
+.bookmark-nudge {
+  margin: 0.75rem 0 0;
+  padding: 0.65rem 0.9rem;
+  font-size: 0.9rem;
+  color: #333;
+  background: #f5f9ff;
+  border: 1px dashed #c7d7f0;
+  border-radius: 4px;
+}
+.bookmark-nudge kbd {
+  display: inline-block;
+  padding: 0.1rem 0.45rem;
+  border: 1px solid #b0b8c4;
+  border-radius: 3px;
+  background: #fff;
+  box-shadow: 0 1px 0 #b0b8c4;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.85rem;
+  color: #222;
+  min-width: 1.4rem;
+  text-align: center;
+}
+
+/* Long-form lists on info pages */
+.long-form ul {
+  margin: 0.75rem 0 1rem 1.25rem;
+  padding: 0;
+}
+.long-form ul li { margin: 0.3rem 0; }
+.long-form h3 {
+  font-size: 1rem;
+  margin-top: 1.25rem;
+}
+.long-form code {
+  background: #f1f3f5;
+  padding: 0.1rem 0.35rem;
+  border-radius: 3px;
+  font-size: 0.9em;
+}
