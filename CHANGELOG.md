@@ -44,6 +44,8 @@ All notable changes to this project will be documented in this file.
 - `/about/` page establishing Andrew Laws as the named author, linking to yeseo.io for E-E-A-T, with Person JSON-LD
 - Footer trading-name line on homepage, privacy, about, and broadband calculator: "WebCaretakers is a trading name of Andrew Laws Associates Ltd" with company number and ICO reg
 - "Save this calculator" bookmark nudge on the broadband calculator, platform-aware (⌘ D on Mac, Ctrl + D elsewhere)
+- `/terms/` page in site voice: who the terms are with, accuracy disclaimer, no-liability, acceptable use, IP, affiliate note, availability, governing law (England and Wales)
+- `/contact/` page with no form by design: two JS-assembled mailto addresses (hello@, privacy@), honest expectations, and a clear signpost that commercial enquiries go to yeseo.io instead
 
 ### Infrastructure
 - AWS CLI configured (us-east-1, account 490734354255)
