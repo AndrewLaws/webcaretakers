@@ -1,13 +1,12 @@
 const { test, expect } = require('@playwright/test');
 
-// These tests define the contract for individual calculator pages.
-// They will run against a sample calculator once the first one is built.
-// For now they target the hub landing page which should include a
-// calculator preview/demo area.
+// These tests define the generic contract every calculator page must meet.
+// They run against the Percentage Calculator as the canonical example:
+// if this page passes, future calculators should follow the same pattern.
 
 test.describe('Calculator interaction and DataLayer events', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('/');
+    await page.goto('/calculators/math/percentage-calculator/');
   });
 
   test('has a calculator input area', async ({ page }) => {
@@ -71,7 +70,7 @@ test.describe('Calculator interaction and DataLayer events', () => {
 
 test.describe('Calculator SEO requirements', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('/');
+    await page.goto('/calculators/math/percentage-calculator/');
   });
 
   test('has Open Graph tags', async ({ page }) => {

@@ -99,7 +99,13 @@ Three-tier IA: **Home → Category hub → Calculator**. Primary nav shows categ
 - Sub-category grouping inside large category hubs (e.g. Broadband > Home, Broadband > Business)
 - Generator script that builds primary nav HTML from `categories.json` once the category count makes hand-maintenance error-prone
 
-**Status:** [x] v1 shipped (single-category dropdown, two hub pages, hand-maintained nav across all pages, 16 Playwright tests)
+**Status:** [x] v1 shipped (dropdown nav with Broadband and Math categories, three hub pages, hand-maintained nav across all pages, 16 Playwright tests, mobile-overflow fix at 375px)
+
+---
+
+## Outstanding per-calculator work
+
+- **Broadband Bandwidth Calculator:** add an affiliate link to a broadband provider comparison/switching service. Currently has the CTA block but no real affiliate partner wired in. Decide partner, add disclosed affiliate link, update JSON-LD / copy if needed.
 
 ---
 

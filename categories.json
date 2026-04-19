@@ -14,6 +14,18 @@
       ]
     },
     {
+      "slug": "math",
+      "name": "Math",
+      "tagline": "Everyday maths tools for quick, honest answers.",
+      "tools": [
+        {
+          "slug": "percentage-calculator",
+          "name": "Percentage Calculator",
+          "summary": "Work out a percentage of a number, what percentage one number is of another, or the percentage change between two values."
+        }
+      ]
+    },
+    {
       "slug": "finance",
       "name": "Finance",
       "tagline": "Sensible estimates for everyday money decisions.",

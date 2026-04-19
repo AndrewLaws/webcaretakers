@@ -8,6 +8,10 @@
   "links": [
     { "phrase": "Broadband Bandwidth Calculator", "url": "/calculators/broadband/broadband-bandwidth-calculator/" },
     { "phrase": "bandwidth calculator", "url": "/calculators/broadband/broadband-bandwidth-calculator/" },
+    { "phrase": "broadband calculators", "url": "/calculators/broadband/" },
+    { "phrase": "Percentage Calculator", "url": "/calculators/math/percentage-calculator/" },
+    { "phrase": "percentage calculator", "url": "/calculators/math/percentage-calculator/" },
+    { "phrase": "math calculators", "url": "/calculators/math/" },
     { "phrase": "privacy policy", "url": "/privacy/" },
     { "phrase": "terms of use", "url": "/terms/" },
     { "phrase": "About page", "url": "/about/" }

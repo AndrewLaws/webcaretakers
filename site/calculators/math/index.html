@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>All Calculators | WebCaretakers</title>
-  <meta name="description" content="Every calculator on WebCaretakers, grouped by category. Browse broadband, finance, health, property and more. No sign-up, browser-only, show the workings.">
-  <link rel="canonical" href="https://webcaretakers.com/calculators/">
-  <meta property="og:title" content="All Calculators | WebCaretakers">
-  <meta property="og:description" content="Every calculator on WebCaretakers, grouped by category.">
+  <title>Math Calculators | WebCaretakers</title>
+  <meta name="description" content="Everyday maths calculators in plain English. Percentages, ratios, and the numbers people actually need, with the workings shown.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/math/">
+  <meta property="og:title" content="Math Calculators | WebCaretakers">
+  <meta property="og:description" content="Everyday maths calculators in plain English.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://webcaretakers.com/calculators/">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/math/">
   <meta name="robots" content="index, follow">
   <link rel="stylesheet" href="/assets/css/main.css">
 
@@ -37,25 +37,25 @@
   {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    "name": "All Calculators",
-    "url": "https://webcaretakers.com/calculators/",
-    "description": "Every calculator on WebCaretakers, grouped by category.",
-    "hasPart": [
-      {
-        "@type": "SoftwareApplication",
-        "name": "Broadband Bandwidth Calculator",
-        "url": "https://webcaretakers.com/calculators/broadband/broadband-bandwidth-calculator/",
-        "applicationCategory": "UtilitiesApplication",
-        "operatingSystem": "Any"
-      },
-      {
-        "@type": "SoftwareApplication",
-        "name": "Percentage Calculator",
-        "url": "https://webcaretakers.com/calculators/math/percentage-calculator/",
-        "applicationCategory": "UtilitiesApplication",
-        "operatingSystem": "Any"
-      }
-    ]
+    "name": "Math Calculators",
+    "url": "https://webcaretakers.com/calculators/math/",
+    "description": "Everyday maths calculators in plain English.",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "WebCaretakers",
+      "url": "https://webcaretakers.com/"
+    },
+    "mainEntity": {
+      "@type": "ItemList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "url": "https://webcaretakers.com/calculators/math/percentage-calculator/",
+          "name": "Percentage Calculator"
+        }
+      ]
+    }
   }
   </script>
 </head>
@@ -128,52 +128,25 @@
         <nav aria-label="Breadcrumb" class="breadcrumbs">
           <ol>
             <li><a href="/">Home</a></li>
-            <li aria-current="page">All calculators</li>
+            <li><a href="/calculators/">Calculators</a></li>
+            <li aria-current="page">Math</li>
           </ol>
         </nav>
 
-        <h1>All calculators</h1>
-        <p class="intro hub-intro">Every calculator on the site, grouped by category. More are added as they are built. If a category looks empty, it is because we have not finished the first tool in it yet, not because we have forgotten.</p>
+        <h1>Math calculators</h1>
+        <p class="intro hub-intro">Plain-English tools for the kind of maths that comes up in everyday life: percentages, changes, ratios. Every tool shows its workings, so you can check the answer rather than take it on faith.</p>
 
-        <section class="category-section">
-          <h2>Broadband</h2>
-          <p class="category-section__tagline">Work out the speed, bandwidth, and plan that actually fits your household or office.</p>
-          <ul class="category-grid">
-            <li class="category-card">
-              <h3><a href="/calculators/broadband/broadband-bandwidth-calculator/">Broadband Bandwidth Calculator</a></h3>
-              <p>Estimate the download and upload speeds your household needs based on streaming, video calls, gaming, smart devices, and remote work.</p>
-            </li>
-          </ul>
-        </section>
+        <ul class="category-grid">
+          <li class="category-card">
+            <h2><a href="/calculators/math/percentage-calculator/">Percentage Calculator</a></h2>
+            <p>Work out a percentage of a number, what percentage one number is of another, or the percentage change between two values.</p>
+          </li>
+        </ul>
 
-        <section class="category-section">
-          <h2>Math</h2>
-          <p class="category-section__tagline">Everyday maths tools for quick, honest answers.</p>
-          <ul class="category-grid">
-            <li class="category-card">
-              <h3><a href="/calculators/math/percentage-calculator/">Percentage Calculator</a></h3>
-              <p>Work out a percentage of a number, what percent one number is of another, or the percentage change between two values.</p>
-            </li>
-          </ul>
-        </section>
-
-        <section class="category-section">
-          <h2>Coming soon</h2>
-          <p class="category-section__tagline">Categories with calculators in the pipeline but not yet published.</p>
-          <ul class="category-grid">
-            <li class="category-card category-card--empty">
-              <h3>Finance</h3>
-              <p>Sensible estimates for everyday money decisions.</p>
-            </li>
-            <li class="category-card category-card--empty">
-              <h3>Health</h3>
-              <p>Quick health and fitness numbers, with the caveats made plain.</p>
-            </li>
-            <li class="category-card category-card--empty">
-              <h3>Property</h3>
-              <p>Figures for buying, renting, moving, and maintaining a home.</p>
-            </li>
-          </ul>
+        <section class="long-form">
+          <h2>Why a percentage calculator is the most-used maths tool online</h2>
+          <p>Percentages are everywhere: tips, tax, sale prices, exam marks, interest rates, stock moves, tip splitting, body-fat readings, turnout figures, and anywhere a number is compared to a whole. They are also the single most common piece of maths people look up online, which tells you something about how confident most of us feel about them. That is fine. A quick tool that gives the right answer and shows the working is more useful than a reminder of year-seven lessons.</p>
+          <p>More tools are on the way in this category. The goal is the same across all of them: short, accurate, honest.</p>
         </section>
       </div>
     </main>

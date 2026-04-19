@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Percentage Calculator | WebCaretakers</title>
+  <meta name="description" content="Free percentage calculator. Work out a percentage of a number, what percent one number is of another, or the percentage change between two values. No sign-up, workings shown.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/math/percentage-calculator/">
+  <meta property="og:title" content="Percentage Calculator | WebCaretakers">
+  <meta property="og:description" content="Work out a percentage of a number, what percent one number is of another, or the percentage change between two values.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/math/percentage-calculator/">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="/assets/css/main.css">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var _stored = null;
+    try { _stored = localStorage.getItem('cookie-consent'); } catch (e) {}
+    var _initial = _stored === 'granted' ? 'granted' : 'denied';
+    gtag('consent', 'default', {
+      ad_storage: _initial, analytics_storage: _initial,
+      ad_user_data: _initial, ad_personalization: _initial,
+      functionality_storage: 'granted', security_storage: 'granted',
+      wait_for_update: 500
+    });
+  </script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Percentage Calculator",
+    "url": "https://webcaretakers.com/calculators/math/percentage-calculator/",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "author": {
+      "@type": "Person",
+      "name": "Andrew Laws",
+      "url": "https://yeseo.io/"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is 15% of 200?",
+        "acceptedAnswer": { "@type": "Answer", "text": "15% of 200 is 30. The calculation is (15 \u00f7 100) \u00d7 200 = 30." }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I work out what percentage one number is of another?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Divide the part by the whole, then multiply by 100. For example, 50 out of 200 is (50 \u00f7 200) \u00d7 100 = 25%." }
+      },
+      {
+        "@type": "Question",
+        "name": "How is percentage change calculated?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Subtract the starting value from the ending value, divide by the starting value, then multiply by 100. From 100 to 150, that is ((150 \u2212 100) \u00f7 100) \u00d7 100 = 50%." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-banner-heading" aria-describedby="cookie-banner-text" hidden>
+    <div class="cookie-banner__inner">
+      <h2 id="cookie-banner-heading" class="cookie-banner__heading">A quick word about cookies</h2>
+      <p id="cookie-banner-text" class="cookie-banner__text">
+        We use cookies for analytics, so we can see which calculators people actually use and which ones need work. Nothing creepy, nothing sold on. You can say yes, say no, or read the <a href="/privacy/">privacy policy</a> first. Your choice sticks.
+      </p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-reject>Reject</button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>Accept</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var KEY = 'cookie-consent';
+      var banner = document.querySelector('[data-cookie-banner]');
+      if (!banner) return;
+      var stored = null;
+      try { stored = localStorage.getItem(KEY); } catch (e) {}
+      if (stored !== 'granted' && stored !== 'denied') { banner.hidden = false; }
+      function record(choice) {
+        try { localStorage.setItem(KEY, choice); } catch (e) {}
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('consent', 'update', {
+          ad_storage: choice, analytics_storage: choice,
+          ad_user_data: choice, ad_personalization: choice
+        });
+        banner.hidden = true;
+      }
+      var accept = banner.querySelector('[data-cookie-accept]');
+      var reject = banner.querySelector('[data-cookie-reject]');
+      if (accept) accept.addEventListener('click', function () { record('granted'); });
+      if (reject) reject.addEventListener('click', function () { record('denied'); });
+    })();
+  </script>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">WebCaretakers</a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <ul class="primary-nav__list">
+          <li class="primary-nav__item primary-nav__item--has-menu">
+            <button type="button" class="primary-nav__link" data-menu-toggle aria-haspopup="true" aria-expanded="false">Calculators <span class="primary-nav__caret" aria-hidden="true">▾</span></button>
+            <ul class="primary-nav__submenu">
+              <li><a href="/calculators/broadband/">Broadband</a></li>
+              <li><a href="/calculators/math/">Math</a></li>
+              <li class="primary-nav__submenu-sep"><a href="/calculators/">See all calculators</a></li>
+            </ul>
+          </li>
+          <li class="primary-nav__item"><a href="/about/" class="primary-nav__link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <main id="main-content">
+      <div class="container">
+        <nav aria-label="Breadcrumb" class="breadcrumbs">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/calculators/">Calculators</a></li>
+            <li><a href="/calculators/math/">Math</a></li>
+            <li aria-current="page">Percentage Calculator</li>
+          </ol>
+        </nav>
+
+        <h1>Percentage Calculator</h1>
+        <p class="intro">Three of the most common percentage questions, one small tool. Pick the one you need, type your numbers, and see the answer along with the working.</p>
+
+        <section class="eli5" aria-label="Plain-English explanation">
+          <h2>Explain like I'm 5 (what even is this calculator?)</h2>
+          <p>It does three percentage sums for you. "What is 20% of 150?" gives you 30. "25 is what percent of 200?" gives you 12.5%. "What is the percentage change from 100 to 150?" gives you +50%. That is all. No sign-up, no catch.</p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="in-content" aria-hidden="true"></div>
+
+        <section data-calculator class="calculator-card">
+          <h2>Calculate</h2>
+          <form id="pct-form" class="calc-form" novalidate>
+            <div class="calc-row">
+              <label for="pct-mode">Which calculation?</label>
+              <select id="pct-mode" name="mode" data-mode>
+                <option value="percent-of">What is A% of B?</option>
+                <option value="what-percent">A is what % of B?</option>
+                <option value="change">Percentage change from A to B</option>
+              </select>
+            </div>
+            <div class="calc-row">
+              <label for="pct-a" data-label-a>A (percent)</label>
+              <input type="number" id="pct-a" name="a" step="any" value="15">
+            </div>
+            <div class="calc-row">
+              <label for="pct-b" data-label-b>B (of)</label>
+              <input type="number" id="pct-b" name="b" step="any" value="200">
+            </div>
+            <button type="submit" data-calculate>Calculate</button>
+          </form>
+
+          <div data-calculator-results class="calculator-results">
+            <div class="result-summary">
+              <p class="result-display" data-result>Enter values and press Calculate.</p>
+            </div>
+            <details class="prove-it" data-prove-it>
+              <summary>Prove it</summary>
+              <div data-prove-it-body></div>
+              <p class="prove-it-source">Definition: a percentage is a fraction of 100. 15% means 15 per 100, or 0.15 as a decimal.</p>
+            </details>
+          </div>
+
+          <p class="bookmark-nudge">
+            Useful? Save this calculator: press <kbd data-bookmark-shortcut>Ctrl</kbd> + <kbd>D</kbd> to bookmark it.
+          </p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="below-results" aria-hidden="true"></div>
+
+        <section class="long-form">
+          <h2>The three kinds of percentage question</h2>
+          <p>Almost every percentage sum falls into one of three shapes, and spotting which shape you are looking at is half the battle.</p>
+          <h3>1. What is A% of B?</h3>
+          <p>You have a percentage and a total; you want the part. A tip of 15% on a £62 bill, 20% off a £45 jumper, or 5% tax on an £800 laptop. The formula: (A ÷ 100) × B. 15% of 200 is (15 ÷ 100) × 200 = 30.</p>
+          <h3>2. A is what % of B?</h3>
+          <p>You have a part and a whole; you want the percentage. You scored 42 on a 60-mark paper and want to know the grade. 38 people replied to a survey of 150: what response rate is that? The formula: (A ÷ B) × 100. 50 out of 200 is (50 ÷ 200) × 100 = 25%.</p>
+          <h3>3. Percentage change from A to B</h3>
+          <p>You have a starting number and a new number; you want the move. A stock went from 80p to 100p, a house from £220,000 to £240,000, a weight from 90 kg to 83 kg. The formula: ((B − A) ÷ A) × 100. From 100 to 150 is ((150 − 100) ÷ 100) × 100 = +50%. From 200 to 100 is a −50% change, a halving.</p>
+
+          <h2>Common pitfalls</h2>
+          <p>A 50% loss is not undone by a 50% gain. Lose half of £100 and you have £50. Add 50% and you are at £75, not back to £100. It takes a 100% gain from £50 to return to £100. That asymmetry trips up a lot of headline-writing.</p>
+          <p>"Percentage points" and "percent" are not the same. If a poll rating moves from 40% to 44%, that is a rise of 4 percentage points, or a 10% increase. The two phrasings mean different things and get mixed up constantly.</p>
+        </section>
+
+        <section class="faq" aria-labelledby="faq-heading">
+          <h2 id="faq-heading">Frequently asked questions</h2>
+          <details>
+            <summary>What is 15% of 200?</summary>
+            <p>15% of 200 is 30. The calculation is (15 ÷ 100) × 200 = 30.</p>
+          </details>
+          <details>
+            <summary>How do I work out what percentage one number is of another?</summary>
+            <p>Divide the part by the whole, then multiply by 100. For example, 50 out of 200 is (50 ÷ 200) × 100 = 25%.</p>
+          </details>
+          <details>
+            <summary>How is percentage change calculated?</summary>
+            <p>Subtract the starting value from the ending value, divide by the starting value, then multiply by 100. From 100 to 150, that is ((150 − 100) ÷ 100) × 100 = 50%.</p>
+          </details>
+          <details>
+            <summary>Does this calculator send my numbers anywhere?</summary>
+            <p>No. Everything runs in your browser. The numbers you type never leave your device.</p>
+          </details>
+        </section>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="ad-slot" data-ad-slot="sidebar" aria-hidden="true"></div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="site-footer-nav" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/calculators/">All calculators</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+
+      <section class="site-disclaimer" data-disclaimer aria-labelledby="disclaimer-heading">
+        <h2 id="disclaimer-heading">A quick, necessary word</h2>
+        <p>Every calculator on this site is built to give you a sensible, well-reasoned estimate. It is, however, exactly that: an estimate, for general information only. Nothing you see here is professional, legal, financial, medical, or tax advice, and it should not be treated as such.</p>
+        <p>Before you make a decision that actually matters, talk to a qualified professional who knows your specific situation: an accountant, a solicitor, a doctor, an IT consultant, whoever fits the question. They can factor in the bits a generic tool can't.</p>
+        <p>We take no liability and accept no responsibility for any loss, damage, or questionable life choice arising from acting on the numbers you see here. Use the results as a starting point for a better conversation, not as the final word.</p>
+        <p><strong>Affiliate disclosure:</strong> some links on this site are affiliate links. If you click through and buy or sign up for something, we may earn a small commission at no extra cost to you. It helps keep the calculators free and ad-light. We only recommend things we'd point a friend towards.</p>
+      </section>
+      <p class="site-copyright">&copy; 2026 WebCaretakers. All rights reserved.</p>
+      <p class="site-legal">WebCaretakers is a trading name of <a href="https://yeseo.io/" rel="noopener">Andrew Laws Associates Ltd</a>, registered in England and Wales (company no. 08602332). ICO registration ZA726704.</p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/calculators/percentage.js"></script>
+  <script>
+    (function () {
+      'use strict';
+      var shortcutEl = document.querySelector('[data-bookmark-shortcut]');
+      if (shortcutEl) {
+        var isMac = /Mac|iPhone|iPad|iPod/i.test(navigator.platform || navigator.userAgent);
+        shortcutEl.textContent = isMac ? '\u2318' : 'Ctrl';
+      }
+
+      var form = document.getElementById('pct-form');
+      if (!form) return;
+      var mode = form.querySelector('[data-mode]');
+      var labelA = form.querySelector('[data-label-a]');
+      var labelB = form.querySelector('[data-label-b]');
+      var a = form.querySelector('[name="a"]');
+      var b = form.querySelector('[name="b"]');
+      var resultEl = document.querySelector('[data-result]');
+      var proveBody = document.querySelector('[data-prove-it-body]');
+
+      var LABELS = {
+        'percent-of':   { a: 'A (percent)', b: 'B (of)',  aDefault: 15,  bDefault: 200 },
+        'what-percent': { a: 'A (part)',    b: 'B (of)',  aDefault: 50,  bDefault: 200 },
+        'change':       { a: 'A (from)',    b: 'B (to)',  aDefault: 100, bDefault: 150 }
+      };
+
+      function updateLabels() {
+        var l = LABELS[mode.value];
+        labelA.textContent = l.a;
+        labelB.textContent = l.b;
+      }
+      mode.addEventListener('change', updateLabels);
+      updateLabels();
+
+      [mode, a, b].forEach(function (el) {
+        el.addEventListener('input', function () {
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: 'calculator_interaction',
+            calculator_name: 'Percentage Calculator',
+            field_name: el.name || el.id
+          });
+        });
+      });
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var m = mode.value;
+        var av = parseFloat(a.value);
+        var bv = parseFloat(b.value);
+        if (isNaN(av) || isNaN(bv)) {
+          resultEl.textContent = 'Enter two numbers to calculate.';
+          proveBody.innerHTML = '';
+          return;
+        }
+        try {
+          var result = window.PercentageCalc.calculate({ mode: m, a: av, b: bv });
+          var display, working;
+          if (m === 'percent-of') {
+            display = av + '% of ' + bv + ' is ' + result;
+            working = '(' + av + ' \u00f7 100) \u00d7 ' + bv + ' = ' + result;
+          } else if (m === 'what-percent') {
+            display = av + ' is ' + result + '% of ' + bv;
+            working = '(' + av + ' \u00f7 ' + bv + ') \u00d7 100 = ' + result + '%';
+          } else {
+            var sign = result >= 0 ? '+' : '';
+            display = 'Change from ' + av + ' to ' + bv + ' is ' + sign + result + '%';
+            working = '((' + bv + ' \u2212 ' + av + ') \u00f7 ' + av + ') \u00d7 100 = ' + result + '%';
+          }
+          resultEl.textContent = display;
+          proveBody.innerHTML = '<ul><li><span>Working</span><strong>' + working + '</strong></li></ul>';
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: 'calculator_result',
+            calculator_name: 'Percentage Calculator',
+            result_value: result,
+            calculator_mode: m
+          });
+        } catch (err) {
+          resultEl.textContent = err.message || 'Could not calculate.';
+          proveBody.innerHTML = '';
+        }
+      });
+    })();
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

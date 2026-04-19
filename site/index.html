@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Free Online Calculators | WebCaretakers</title>
-  <meta name="description" content="Free online calculators for finance, health, property and more. Get quick, accurate results with no sign-up required.">
+  <title>WebCaretakers | Free online calculators, no sign-up, workings shown</title>
+  <meta name="description" content="Small, focused online calculators for everyday decisions. Every tool runs in your browser, no sign-up, and every result shows its workings.">
   <link rel="canonical" href="https://webcaretakers.com/">
-  <meta property="og:title" content="Free Online Calculators | WebCaretakers">
-  <meta property="og:description" content="Free online calculators for finance, health, property and more. Get quick, accurate results with no sign-up required.">
+  <meta property="og:title" content="WebCaretakers | Free online calculators">
+  <meta property="og:description" content="Small, focused online calculators for everyday decisions. No sign-up, workings shown, browser-only.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://webcaretakers.com/">
   <link rel="stylesheet" href="/assets/css/main.css">
@@ -116,6 +116,7 @@
             <button type="button" class="primary-nav__link" data-menu-toggle aria-haspopup="true" aria-expanded="false">Calculators <span class="primary-nav__caret" aria-hidden="true">▾</span></button>
             <ul class="primary-nav__submenu">
               <li><a href="/calculators/broadband/">Broadband</a></li>
+              <li><a href="/calculators/math/">Math</a></li>
               <li class="primary-nav__submenu-sep"><a href="/calculators/">See all calculators</a></li>
             </ul>
           </li>
@@ -128,38 +129,45 @@
   <div class="page-layout">
     <main id="main-content">
       <div class="container">
-        <h1>Free Online Calculators</h1>
-        <p class="intro">Quick, accurate calculators for everyday decisions. No sign-up, no fuss.</p>
+        <h1>Free online calculators</h1>
+        <p class="intro">Small, focused tools that give you a sensible answer without making you sign up, sit through a tutorial, or download an app. Every calculator runs in your browser and shows its workings.</p>
 
-        <!-- In-content ad slot -->
         <div class="ad-slot" data-ad-slot="in-content" aria-hidden="true"></div>
 
-        <!-- Demo calculator -->
-        <section data-calculator class="calculator-card">
-          <h2>Percentage Calculator</h2>
-          <p>What is X% of Y?</p>
-          <form>
-            <div class="calculator-inputs">
-              <label for="calc-percentage">Percentage</label>
-              <input type="number" id="calc-percentage" name="percentage" placeholder="e.g. 15" step="any">
-              <label for="calc-value">of</label>
-              <input type="number" id="calc-value" name="value" placeholder="e.g. 200" step="any">
-            </div>
-            <button type="submit" data-calculate>Calculate</button>
-          </form>
-          <div data-calculator-results class="calculator-results">
-            <p class="result-display">Enter values above to see your result.</p>
-          </div>
+        <section class="long-form" aria-labelledby="featured-heading">
+          <h2 id="featured-heading">Featured calculators</h2>
+          <ul class="category-grid">
+            <li class="category-card">
+              <h3><a href="/calculators/broadband/broadband-bandwidth-calculator/">Broadband Bandwidth Calculator</a></h3>
+              <p>Estimate the download and upload speeds your household needs based on streaming, video calls, gaming, smart devices, and remote work.</p>
+              <span class="category-card__count">In <a href="/calculators/broadband/">Broadband</a></span>
+            </li>
+            <li class="category-card">
+              <h3><a href="/calculators/math/percentage-calculator/">Percentage Calculator</a></h3>
+              <p>Work out a percentage of a number, what percent one number is of another, or the percentage change between two values.</p>
+              <span class="category-card__count">In <a href="/calculators/math/">Math</a></span>
+            </li>
+          </ul>
+          <p><a href="/calculators/">See all calculators →</a></p>
         </section>
 
-        <!-- Below-results ad slot -->
+        <section class="long-form" aria-labelledby="rules-heading">
+          <h2 id="rules-heading">The rules of this site</h2>
+          <p>WebCaretakers is a small, independent calculator hub run by <a href="/about/">Andrew Laws</a>. The whole site is built on a short list of self-imposed rules:</p>
+          <ul>
+            <li><strong>No sign-up, ever.</strong> If a tool needs an account, something has gone wrong in the design.</li>
+            <li><strong>Everything runs in your browser.</strong> The numbers you type never leave your device. There is no server-side maths, no logging of inputs.</li>
+            <li><strong>Show the workings.</strong> Every calculator has a "Prove it" panel that explains how the number was arrived at. You should never have to take the result on faith.</li>
+            <li><strong>Plain English.</strong> If a tool cannot explain itself without jargon, it has failed.</li>
+          </ul>
+        </section>
+
         <div class="ad-slot" data-ad-slot="below-results" aria-hidden="true"></div>
 
-        <!-- Next step CTA -->
         <div data-cta="next-step" class="cta-block">
-          <h3>Need more help?</h3>
-          <p>Find expert services tailored to your needs.</p>
-          <a href="#" class="cta-link">Explore your options</a>
+          <h3>Can't find the calculator you need?</h3>
+          <p>More tools are being added every week. Drop a suggestion in and it might show up next.</p>
+          <a href="/contact/" class="cta-link">Suggest a calculator</a>
         </div>
       </div>
     </main>
