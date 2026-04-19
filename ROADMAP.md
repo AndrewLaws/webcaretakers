@@ -87,6 +87,20 @@ A proper `/privacy/` page is needed before we switch analytics on. The cookie ba
 
 **Status:** [ ] Not started
 
+### Site navigation and category hubs
+
+Three-tier IA: **Home → Category hub → Calculator**. Primary nav shows categories only (6–10 items max), with a dropdown listing the top calculators per category plus a "See all" link. Category hubs (`/calculators/{category}/`) are real pages with their own intro, grouped listings, and long-form SEO content, not thin redirects. The all-calculators index (`/calculators/`) is the A–Z fallback for users who don't know the category.
+
+**Source of truth:** [`categories.json`](categories.json). Only categories with at least one published tool appear in the primary nav.
+
+**Future work as the site scales:**
+- Client-side search over a generated index (Lunr or Pagefind) once we pass ~50 calculators
+- Mega-menu treatment (two-column dropdown) once any category has more than ~8 tools
+- Sub-category grouping inside large category hubs (e.g. Broadband > Home, Broadband > Business)
+- Generator script that builds primary nav HTML from `categories.json` once the category count makes hand-maintenance error-prone
+
+**Status:** [x] v1 shipped (single-category dropdown, two hub pages, hand-maintained nav across all pages, 16 Playwright tests)
+
 ---
 
 ## Build priority

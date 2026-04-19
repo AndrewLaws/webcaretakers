@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact | WebCaretakers</title>
-  <meta name="description" content="How to reach WebCaretakers. Two email addresses, honest expectations, and a signpost to Yeseo for consulting work.">
-  <link rel="canonical" href="https://webcaretakers.com/contact/">
-  <meta property="og:title" content="Contact | WebCaretakers">
-  <meta property="og:description" content="How to reach WebCaretakers. Two email addresses and honest expectations.">
+  <title>All Calculators | WebCaretakers</title>
+  <meta name="description" content="Every calculator on WebCaretakers, grouped by category. Browse broadband, finance, health, property and more. No sign-up, browser-only, show the workings.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/">
+  <meta property="og:title" content="All Calculators | WebCaretakers">
+  <meta property="og:description" content="Every calculator on WebCaretakers, grouped by category.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://webcaretakers.com/contact/">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/">
   <meta name="robots" content="index, follow">
   <link rel="stylesheet" href="/assets/css/main.css">
 
@@ -32,6 +32,25 @@
   j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
   })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "All Calculators",
+    "url": "https://webcaretakers.com/calculators/",
+    "description": "Every calculator on WebCaretakers, grouped by category.",
+    "hasPart": [
+      {
+        "@type": "SoftwareApplication",
+        "name": "Broadband Bandwidth Calculator",
+        "url": "https://webcaretakers.com/calculators/broadband/broadband-bandwidth-calculator/",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Any"
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
@@ -101,30 +120,41 @@
         <nav aria-label="Breadcrumb" class="breadcrumbs">
           <ol>
             <li><a href="/">Home</a></li>
-            <li aria-current="page">Contact</li>
+            <li aria-current="page">All calculators</li>
           </ol>
         </nav>
 
-        <h1>Contact</h1>
-        <p class="intro">A small site run by one person. There is no contact form on purpose: email works, it is what I check, and it does not lure spam bots with a helpful textarea. One address covers everything.</p>
+        <h1>All calculators</h1>
+        <p class="intro hub-intro">Every calculator on the site, grouped by category. More are added as they are built. If a category looks empty, it is because we have not finished the first tool in it yet, not because we have forgotten.</p>
 
-        <section class="long-form">
-          <h2>Email</h2>
-          <p>For everything (a wrong answer, a typo, a broken link, an idea for a tool, a privacy or data request), email <span data-email data-user="andrewslaws+webcaretakers" data-domain="gmail.com">[email protected]</span>.</p>
-          <p>Tell me which page (a URL is ideal), what you expected, and what you got. Screenshots help but are not required.</p>
-
-          <h2>A few honest expectations</h2>
-          <ul>
-            <li>I read everything. I reply to most. Timelines are days, not hours.</li>
-            <li>I cannot answer general SEO, web development, or "how do I fix my website" questions here. There are too many and I would never keep up. Your favourite search engine is a better first stop.</li>
-            <li>Unsolicited guest-post pitches, link-building outreach, and "we noticed your site ranks for X" emails go straight to the bin. Do not waste your own time.</li>
+        <section class="category-section">
+          <h2>Broadband</h2>
+          <p class="category-section__tagline">Work out the speed, bandwidth, and plan that actually fits your household or office.</p>
+          <ul class="category-grid">
+            <li class="category-card">
+              <h3><a href="/calculators/broadband/broadband-bandwidth-calculator/">Broadband Bandwidth Calculator</a></h3>
+              <p>Estimate the download and upload speeds your household needs based on streaming, video calls, gaming, smart devices, and remote work.</p>
+            </li>
           </ul>
+        </section>
 
-          <h2>Consulting, client work, or commercial enquiries</h2>
-          <p>This site is a personal project, not a commercial operation. If you want to hire me for SEO, AI strategy, or web consulting, please go to <a href="https://yeseo.io/" rel="noopener">yeseo.io</a>. That is where the professional work lives and where client conversations are set up properly. I will politely redirect commercial enquiries sent to WebCaretakers to the same place.</p>
-
-          <h2>Legal entity</h2>
-          <p>WebCaretakers is a trading name of Andrew Laws Associates Ltd. Full company details are on the <a href="/about/">About page</a>.</p>
+        <section class="category-section">
+          <h2>Coming soon</h2>
+          <p class="category-section__tagline">Categories with calculators in the pipeline but not yet published.</p>
+          <ul class="category-grid">
+            <li class="category-card category-card--empty">
+              <h3>Finance</h3>
+              <p>Sensible estimates for everyday money decisions.</p>
+            </li>
+            <li class="category-card category-card--empty">
+              <h3>Health</h3>
+              <p>Quick health and fitness numbers, with the caveats made plain.</p>
+            </li>
+            <li class="category-card category-card--empty">
+              <h3>Property</h3>
+              <p>Figures for buying, renting, moving, and maintaining a home.</p>
+            </li>
+          </ul>
         </section>
       </div>
     </main>
@@ -158,23 +188,6 @@
       <p class="site-legal">WebCaretakers is a trading name of <a href="https://yeseo.io/" rel="noopener">Andrew Laws Associates Ltd</a>, registered in England and Wales (company no. 08602332). ICO registration ZA726704.</p>
     </div>
   </footer>
-
-  <script>
-    // Unobfuscate mailto links only in the browser, so scrapers see no bare addresses in the HTML.
-    (function () {
-      var spans = document.querySelectorAll('[data-email]');
-      for (var i = 0; i < spans.length; i++) {
-        var s = spans[i];
-        var user = s.getAttribute('data-user');
-        var domain = s.getAttribute('data-domain');
-        if (!user || !domain) continue;
-        var addr = user + '@' + domain;
-        var a = document.createElement('a');
-        a.href = 'mailto:' + addr;
-        a.textContent = addr;
-        s.parentNode.replaceChild(a, s);
-      }
-    })();
-  </script>
+  <script src="/assets/js/main.js"></script>
 </body>
 </html>

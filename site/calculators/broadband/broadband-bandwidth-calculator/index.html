@@ -169,9 +169,16 @@
   <header class="site-header">
     <div class="container">
       <a href="/" class="site-logo">WebCaretakers</a>
-      <nav aria-label="Main navigation">
-        <ul>
-          <li><a href="/calculators/">All Calculators</a></li>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <ul class="primary-nav__list">
+          <li class="primary-nav__item primary-nav__item--has-menu">
+            <button type="button" class="primary-nav__link" data-menu-toggle aria-haspopup="true" aria-expanded="false">Calculators <span class="primary-nav__caret" aria-hidden="true">▾</span></button>
+            <ul class="primary-nav__submenu">
+              <li><a href="/calculators/broadband/">Broadband</a></li>
+              <li class="primary-nav__submenu-sep"><a href="/calculators/">See all calculators</a></li>
+            </ul>
+          </li>
+          <li class="primary-nav__item"><a href="/about/" class="primary-nav__link">About</a></li>
         </ul>
       </nav>
     </div>
@@ -184,7 +191,7 @@
           <ol>
             <li><a href="/">Home</a></li>
             <li><a href="/calculators/">Calculators</a></li>
-            <li><a href="/calculators/broadband/">Broadband and Internet</a></li>
+            <li><a href="/calculators/broadband/">Broadband</a></li>
             <li aria-current="page">Broadband Bandwidth</li>
           </ol>
         </nav>

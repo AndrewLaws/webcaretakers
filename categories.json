@@ -1,0 +1,35 @@
+{
+  "description": "Source of truth for calculator categories. Each category has a slug (URL segment), name (display), tagline (1-line intro), and tools array. The primary nav and /calculators/ hub render from this. Only categories with at least one tool should appear in the nav.",
+  "categories": [
+    {
+      "slug": "broadband",
+      "name": "Broadband",
+      "tagline": "Work out the speed, bandwidth, and plan that actually fits your household or office.",
+      "tools": [
+        {
+          "slug": "broadband-bandwidth-calculator",
+          "name": "Broadband Bandwidth Calculator",
+          "summary": "Estimate the download and upload speeds your household needs based on streaming, video calls, gaming, smart devices, and remote work."
+        }
+      ]
+    },
+    {
+      "slug": "finance",
+      "name": "Finance",
+      "tagline": "Sensible estimates for everyday money decisions.",
+      "tools": []
+    },
+    {
+      "slug": "health",
+      "name": "Health",
+      "tagline": "Quick health and fitness numbers, with the caveats made plain.",
+      "tools": []
+    },
+    {
+      "slug": "property",
+      "name": "Property",
+      "tagline": "Figures for buying, renting, moving, and maintaining a home.",
+      "tools": []
+    }
+  ]
+}

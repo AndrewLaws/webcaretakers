@@ -1,5 +1,36 @@
 // Calculator interaction and DataLayer event handling
 
+// Primary nav: click-to-toggle submenus (keyboard/mobile).
+// Hover and focus-within are handled in CSS, so this only adds click + Escape.
+(function () {
+  'use strict';
+  var toggles = document.querySelectorAll('[data-menu-toggle]');
+  if (!toggles.length) return;
+
+  function closeAll(except) {
+    toggles.forEach(function (t) {
+      if (t !== except) t.setAttribute('aria-expanded', 'false');
+    });
+  }
+
+  toggles.forEach(function (toggle) {
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.addEventListener('click', function (e) {
+      e.preventDefault();
+      var open = toggle.getAttribute('aria-expanded') === 'true';
+      closeAll(open ? null : toggle);
+      toggle.setAttribute('aria-expanded', open ? 'false' : 'true');
+    });
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeAll(null);
+  });
+  document.addEventListener('click', function (e) {
+    if (!e.target.closest('.primary-nav__item--has-menu')) closeAll(null);
+  });
+})();
+
 (function () {
   'use strict';
 

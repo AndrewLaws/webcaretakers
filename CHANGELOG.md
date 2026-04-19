@@ -47,6 +47,7 @@ All notable changes to this project will be documented in this file.
 - `/terms/` page in site voice: who the terms are with, accuracy disclaimer, no-liability, acceptable use, IP, affiliate note, availability, governing law (England and Wales)
 - `/contact/` page with no form by design: two JS-assembled mailto addresses (hello@, privacy@), honest expectations, and a clear signpost that commercial enquiries go to yeseo.io instead
 - Automatic internal linking: `links.json` source of truth, `scripts/internal-links.js` sweeper (12 node:test tests) wired into the pre-commit hook to wrap the first safe occurrence of each phrase in an anchor (skips nav/header/footer/headings/existing anchors, one link per URL per page, longest phrase wins, idempotent, respects `excludeFromLinking`); `node-html-parser` added as a dev dep
+- Three-tier navigation (Home → Category hub → Calculator): `categories.json` source of truth, new primary nav with CSS-driven dropdown and click/Escape keyboard toggling, `/calculators/` all-calculators hub (CollectionPage JSON-LD), `/calculators/broadband/` category hub (CollectionPage + ItemList JSON-LD), nav rolled out across home, about, privacy, terms, contact, and the Broadband Bandwidth Calculator. 16 new Playwright tests in `tests/nav-and-hubs.spec.js` cover nav on every page, dropdown toggle behaviour, breadcrumbs, and hub JSON-LD.
 
 ### Infrastructure
 - AWS CLI configured (us-east-1, account 490734354255)
