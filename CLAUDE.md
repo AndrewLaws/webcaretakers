@@ -25,6 +25,20 @@ STYLE RULES — apply to all output:
 - Use plain, direct language. No marketing fluff.
 ```
 
+## API usage policy (non-negotiable)
+
+All third-party API keys in `.env` (SerpAPI, SEMrush, Anthropic, Perplexity, Apify, Gemini) are **build-time and local-tooling only**. They must never be called from the live site at runtime. Acceptable uses:
+
+- Local research scripts run by the developer
+- Build-time generators that bake output into static HTML before deployment
+- One-off CLI tooling
+
+Unacceptable uses:
+- Any fetch from browser JavaScript
+- Any serverless endpoint the public site calls on demand
+
+Rationale: cost control and abuse protection. A popular calculator that triggers a paid API on every user interaction is a six-figure invoice waiting to happen.
+
 ## Code standards
 
 - Follow the James Kindred method: (1) Plan, (2) Failing tests, (3) Implementation.

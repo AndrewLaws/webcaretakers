@@ -14,6 +14,20 @@ Source: Manus AI Wayback Machine analysis (688 snapshots, 2001-2010) plus intern
 
 ## Cross-cutting features
 
+### Cookie consent banner (blocking, Consent Mode v2)
+
+Required before GTM/GA4 goes live. Must:
+- Default to deny all non-essential cookies (GA4, ads) on first page load
+- Block GTM tags from firing until the user clicks accept
+- Implement Google Consent Mode v2: `ad_storage`, `analytics_storage`, `ad_user_data`, `ad_personalization` all denied by default, updated via `gtag('consent', 'update', ...)` on acceptance
+- Persist choice in `localStorage` so the banner only appears once per user
+- Honest, non-dark-pattern language: "Accept" and "Reject" given equal visual weight
+- Written in the tone.md voice, not lawyer filler
+
+Revisit later: switch to cookieless analytics (Plausible/Fathom) to remove the need for the banner entirely.
+
+**Status:** [ ] Not started
+
 ### UK/US measurement switcher
 
 Site defaults to US units and currency (USD, miles, gallons, Fahrenheit, pounds for weight). A persistent toggle in the header or footer lets users switch to UK defaults (GBP, kilometres, litres, Celsius, kilograms). Preference stored in `localStorage` so it sticks across pages and sessions. Every calculator reads the current preference and re-renders labels and conversions on toggle without a page reload.
