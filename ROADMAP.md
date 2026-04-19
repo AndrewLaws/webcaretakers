@@ -68,6 +68,25 @@ Add a "Prove it" button to every calculator. When clicked, the button reveals a 
 
 **Status:** [ ] Not started
 
+### ELI5 block (Explain like I'm 5)
+
+Every calculator page gets a short "Explain like I'm 5" block at the top, directly under the h1 and intro paragraph, above the calculator itself. Scope is narrow: it explains what *this calculator* does in plain words, not the underlying concept or domain. The "Prove it" button remains the place for the deeper workings.
+
+**Approach:**
+- Placement: top of the page, above the calculator card
+- Format: short heading ("Explain like I'm 5 (what even is this calculator?)") plus 2-4 short sentences
+- Voice: plain, direct, no jargon, in Andrew Laws tone
+- Scope: what this tool does and when you would use it, not a mini-essay on the topic
+- Visual: subtle styling, not a massive coloured box; sits comfortably above the tool
+
+**Status:** [ ] Not started (pattern established on broadband bandwidth calculator)
+
+### Privacy policy page
+
+A proper `/privacy/` page is needed before we switch analytics on. The cookie banner already links to it, but the page itself does not exist yet. Must cover: what we collect (GA4), what we do not collect, consent mode, third parties (Google, any ad/affiliate networks once live), data retention, contact address for removal requests, and cookie-by-cookie listing. Should be plain English, in the site voice, not a copy-pasted generator template.
+
+**Status:** [ ] Not started
+
 ---
 
 ## Build priority

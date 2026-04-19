@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Broadband Bandwidth Calculator: How Much Speed Do You Really Need? | WebCaretakers</title>
+  <meta name="description" content="Work out how much broadband speed your household actually needs. Free calculator for streaming, gaming, video calls, smart home and working from home.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/broadband/broadband-bandwidth-calculator/">
+  <meta property="og:title" content="Broadband Bandwidth Calculator: How Much Speed Do You Really Need?">
+  <meta property="og:description" content="Work out how much broadband speed your household actually needs. Free calculator for streaming, gaming, video calls, smart home and working from home.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/broadband/broadband-bandwidth-calculator/">
+  <link rel="stylesheet" href="/assets/css/main.css">
+
+  <!-- DataLayer and Consent Mode v2 defaults (must come before GTM) -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+
+    var _stored = null;
+    try { _stored = localStorage.getItem('cookie-consent'); } catch (e) {}
+    var _initial = _stored === 'granted' ? 'granted' : 'denied';
+    gtag('consent', 'default', {
+      ad_storage: _initial,
+      analytics_storage: _initial,
+      ad_user_data: _initial,
+      ad_personalization: _initial,
+      functionality_storage: 'granted',
+      security_storage: 'granted',
+      wait_for_update: 500
+    });
+  </script>
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
+  <!-- End Google Tag Manager -->
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Broadband Bandwidth Calculator",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "Web",
+    "description": "Work out how much broadband speed your household actually needs based on streaming habits, video calls, gaming, smart home devices and working from home.",
+    "url": "https://webcaretakers.com/calculators/broadband/broadband-bandwidth-calculator/",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How much broadband speed does a family home need?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "For a household of three to four people streaming, gaming and working from home at the same time, a download speed of 100 to 200 Mbps is usually comfortable. If you are on full fibre, 150 Mbps is a reasonable baseline."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is 25 Mbps enough for home broadband?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "25 Mbps is fine for one or two light users, but it will struggle if several people are streaming HD video or on video calls at the same time. The FCC's current broadband benchmark is 100 Mbps download and 20 Mbps upload."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the difference between bandwidth and speed?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Speed is how fast data moves on a connection. Bandwidth is the maximum capacity of that connection. Think of bandwidth as the width of the pipe and speed as how fast the water flows through it."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How much bandwidth does a 4K stream use?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Netflix recommends around 15 to 25 Mbps for a single 4K (Ultra HD) stream. If several people in the household are watching 4K at the same time, multiply accordingly."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does working from home need faster broadband?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Email and web browsing need very little. Video calls use roughly 2 to 4 Mbps upload per call. Uploading large files to cloud storage can spike demand significantly, so upload speed matters as much as download for home workers."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What counts as a good broadband speed?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The FCC defines broadband as a minimum of 100 Mbps download and 20 Mbps upload. Most modern households with multiple users and smart devices are better served by 200 Mbps or above."
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Cookie consent banner -->
+  <div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-banner-heading" aria-describedby="cookie-banner-text" hidden>
+    <div class="cookie-banner__inner">
+      <h2 id="cookie-banner-heading" class="cookie-banner__heading">A quick word about cookies</h2>
+      <p id="cookie-banner-text" class="cookie-banner__text">
+        We use cookies for analytics, so we can see which calculators people actually use and which ones need work. Nothing creepy, nothing sold on. You can say yes, say no, or read the <a href="/privacy/">privacy policy</a> first. Your choice sticks.
+      </p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-reject>Reject</button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>Accept</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var KEY = 'cookie-consent';
+      var banner = document.querySelector('[data-cookie-banner]');
+      if (!banner) return;
+
+      var stored = null;
+      try { stored = localStorage.getItem(KEY); } catch (e) {}
+      if (stored !== 'granted' && stored !== 'denied') {
+        banner.hidden = false;
+      }
+
+      function record(choice) {
+        try { localStorage.setItem(KEY, choice); } catch (e) {}
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('consent', 'update', {
+          ad_storage: choice,
+          analytics_storage: choice,
+          ad_user_data: choice,
+          ad_personalization: choice
+        });
+        banner.hidden = true;
+      }
+
+      var accept = banner.querySelector('[data-cookie-accept]');
+      var reject = banner.querySelector('[data-cookie-reject]');
+      if (accept) accept.addEventListener('click', function () { record('granted'); });
+      if (reject) reject.addEventListener('click', function () { record('denied'); });
+    })();
+  </script>
+
+  <!-- Header ad slot -->
+  <div class="ad-slot" data-ad-slot="header" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">WebCaretakers</a>
+      <nav aria-label="Main navigation">
+        <ul>
+          <li><a href="/calculators/">All Calculators</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <main id="main-content">
+      <div class="container">
+        <nav aria-label="Breadcrumb" class="breadcrumbs">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/calculators/">Calculators</a></li>
+            <li><a href="/calculators/broadband/">Broadband and Internet</a></li>
+            <li aria-current="page">Broadband Bandwidth</li>
+          </ol>
+        </nav>
+
+        <h1>Broadband Bandwidth Calculator</h1>
+        <p class="intro">Work out how much internet speed your household actually needs. Tell it how you use the internet, and it gives you a sensible download and upload figure, not a number pulled out of an ISP marketing deck.</p>
+
+        <aside class="eli5" aria-labelledby="eli5-heading">
+          <h2 id="eli5-heading">Explain like I'm 5 (what even is this calculator?)</h2>
+          <p>Tell it how many people are in your house, what they like to watch, and whether anyone works from home or games. It adds up how much internet each of those things needs and gives you a single download and upload number to aim for when you shop for a broadband plan. That is it. No sign-up, no quiz, no sales pitch.</p>
+        </aside>
+
+        <!-- In-content ad slot -->
+        <div class="ad-slot" data-ad-slot="in-content" aria-hidden="true"></div>
+
+        <section data-calculator class="calculator-card" aria-labelledby="calc-heading">
+          <h2 id="calc-heading">Your household</h2>
+          <form id="bandwidth-form" novalidate>
+            <div class="calc-form">
+              <div class="calc-row">
+                <label for="inp-users">How many people use the internet at the same time?</label>
+                <input type="number" id="inp-users" name="users" min="1" max="20" value="2" step="1" required>
+              </div>
+
+              <div class="calc-row">
+                <label for="inp-streaming">Typical streaming quality</label>
+                <select id="inp-streaming" name="streaming" required>
+                  <option value="none">No streaming</option>
+                  <option value="sd">SD (standard definition)</option>
+                  <option value="hd" selected>HD (1080p)</option>
+                  <option value="4k">4K / Ultra HD</option>
+                </select>
+              </div>
+
+              <div class="calc-row">
+                <label for="inp-videoCalls">Video calls (Zoom, Teams, Meet)</label>
+                <select id="inp-videoCalls" name="videoCalls" required>
+                  <option value="none">None</option>
+                  <option value="occasional" selected>Occasional</option>
+                  <option value="daily">Daily / most days</option>
+                </select>
+              </div>
+
+              <div class="calc-row">
+                <label for="inp-smartDevices">Smart home devices (thermostats, cameras, speakers, TVs)</label>
+                <input type="number" id="inp-smartDevices" name="smartDevices" min="0" max="50" value="3" step="1">
+              </div>
+
+              <div class="calc-row calc-row--checkbox">
+                <label for="inp-gaming">Someone in the house plays online games</label>
+                <input type="checkbox" id="inp-gaming" name="gaming">
+              </div>
+
+              <div class="calc-row calc-row--checkbox">
+                <label for="inp-workFromHome">At least one person works from home</label>
+                <input type="checkbox" id="inp-workFromHome" name="workFromHome">
+              </div>
+            </div>
+            <button type="submit" data-calculate>Calculate</button>
+          </form>
+
+          <div data-calculator-results class="calculator-results" aria-live="polite">
+            <p class="result-display" data-result-placeholder>Fill in the form and press Calculate to see the speed we would recommend.</p>
+            <div class="result-summary" hidden data-result-summary>
+              <p>Recommended download: <strong data-result-download></strong></p>
+              <p>Recommended upload: <strong data-result-upload></strong></p>
+              <p>Suggested tier: <strong data-result-tier></strong></p>
+              <details class="prove-it">
+                <summary>Prove it</summary>
+                <div data-prove-it>
+                  <p>Here is how the figure is built. We take a realistic Mbps demand for each activity, add them up, then leave a 20% headroom buffer for the real world (other devices, updates, quality dips). Download is rounded up to the nearest 5 Mbps, upload to the nearest 1.</p>
+                  <ul data-breakdown></ul>
+                  <p class="prove-it-source">Benchmarks draw on Netflix's published 4K recommendation (15-25 Mbps), typical Zoom/Teams video call bandwidth (2-4 Mbps per direction) and the FCC's 2024 broadband definition (100 Mbps down, 20 Mbps up).</p>
+                </div>
+              </details>
+            </div>
+          </div>
+        </section>
+
+        <!-- Below-results ad slot -->
+        <div class="ad-slot" data-ad-slot="below-results" aria-hidden="true"></div>
+
+        <div data-cta="next-step" class="cta-block">
+          <h3>Ready to shop for a better deal?</h3>
+          <p>Compare broadband plans that actually hit the speed you need.</p>
+          <a href="#" class="cta-link" data-cta-link>Compare broadband plans</a>
+        </div>
+
+        <section class="long-form">
+          <h2>What this calculator actually does</h2>
+          <p>Most "how fast is fast enough" guides lean on one or two variables, usually streaming and video calls, and call it a day. This one accounts for the parts of modern life that quietly eat bandwidth: smart devices phoning home, a cloud backup mid-upload, a 4K film and a work video call overlapping. It gives you a number that holds up on a Tuesday evening, not just on a spec sheet.</p>
+
+          <h2>What bandwidth actually means</h2>
+          <p>Speed is how fast data moves. Bandwidth is how wide the pipe is. In practice, ISPs sell you bandwidth and you experience it as speed. The reason this matters: two people on a 50 Mbps connection do not each get 50 Mbps. They share the pipe. A calculator that does not account for simultaneous use is lying to you.</p>
+
+          <h2>Does upload actually matter?</h2>
+          <p>For a long time, no. Then working from home went mainstream and cloud backups became standard. If anyone in the house is on video calls, backing up to iCloud or Google Drive, or uploading photos and video, upload speed is no longer a rounding error. A connection with 200 Mbps down and 10 Mbps up will feel slower in daily use than 100 Mbps symmetrical. This calculator treats upload as a first-class figure, not an afterthought.</p>
+
+          <h2>What the tiers mean</h2>
+          <ul>
+            <li><strong>Entry-level broadband (up to 25 Mbps):</strong> one or two light users. Fine for email, web, some streaming. Not fine for a modern household.</li>
+            <li><strong>Standard broadband (25 to 100 Mbps):</strong> most ADSL and early fibre plans. Enough for a small household without heavy overlap.</li>
+            <li><strong>Fast fibre (100 to 200 Mbps):</strong> a typical fibre-to-the-cabinet or early full-fibre plan. Comfortable for most families.</li>
+            <li><strong>Full fibre / Ultrafast (200+ Mbps):</strong> full-fibre-to-the-premises territory. Headroom for heavy 4K use, multiple workers, smart homes.</li>
+          </ul>
+        </section>
+
+        <section class="faq">
+          <h2>Frequently asked questions</h2>
+          <details>
+            <summary>How much broadband speed does a family home need?</summary>
+            <p>For three to four people streaming, gaming and working from home at the same time, 100 to 200 Mbps download is usually comfortable.</p>
+          </details>
+          <details>
+            <summary>Is 25 Mbps enough?</summary>
+            <p>For one or two light users, yes. For a household with video calls and HD streaming overlapping, no. The FCC now defines broadband as 100 Mbps down and 20 Mbps up.</p>
+          </details>
+          <details>
+            <summary>How much bandwidth does a 4K stream use?</summary>
+            <p>Netflix recommends 15 to 25 Mbps for a single 4K stream. Multiply by the number of simultaneous 4K streams.</p>
+          </details>
+          <details>
+            <summary>Does working from home change the answer?</summary>
+            <p>Yes. Video calls pull 2 to 4 Mbps in each direction, and cloud backups can spike much higher. Upload speed matters as much as download.</p>
+          </details>
+        </section>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="ad-slot" data-ad-slot="sidebar" aria-hidden="true"></div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="site-footer-nav" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/calculators/">All calculators</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+
+      <section class="site-disclaimer" data-disclaimer aria-labelledby="disclaimer-heading">
+        <h2 id="disclaimer-heading">A quick, necessary word</h2>
+        <p>Every calculator on this site is built to give you a sensible, well-reasoned estimate. It is, however, exactly that: an estimate, for general information only. Nothing you see here is professional, legal, financial, medical, or tax advice, and it should not be treated as such.</p>
+        <p>Before you make a decision that actually matters, talk to a qualified professional who knows your specific situation: an accountant, a solicitor, a doctor, an IT consultant, whoever fits the question. They can factor in the bits a generic tool can't.</p>
+        <p>We take no liability and accept no responsibility for any loss, damage, or questionable life choice arising from acting on the numbers you see here. Use the results as a starting point for a better conversation, not as the final word.</p>
+        <p><strong>Affiliate disclosure:</strong> some links on this site are affiliate links. If you click through and buy or sign up for something, we may earn a small commission at no extra cost to you. It helps keep the calculators free and ad-light. We only recommend things we'd point a friend towards.</p>
+      </section>
+      <p class="site-copyright">&copy; 2026 WebCaretakers. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/calculators/broadband-bandwidth.js"></script>
+  <script>
+    (function () {
+      var form = document.getElementById('bandwidth-form');
+      if (!form) return;
+      var summary = document.querySelector('[data-result-summary]');
+      var placeholder = document.querySelector('[data-result-placeholder]');
+      var downEl = document.querySelector('[data-result-download]');
+      var upEl = document.querySelector('[data-result-upload]');
+      var tierEl = document.querySelector('[data-result-tier]');
+      var breakdownEl = document.querySelector('[data-breakdown]');
+
+      function pushInteraction(field, value) {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: 'calculator_interaction',
+          calculator: 'broadband-bandwidth',
+          field: field,
+          value: value
+        });
+      }
+
+      form.addEventListener('input', function (e) {
+        var t = e.target;
+        var val = t.type === 'checkbox' ? t.checked : t.value;
+        pushInteraction(t.name, val);
+      });
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var fd = new FormData(form);
+        var input = {
+          users: parseInt(fd.get('users'), 10) || 1,
+          streaming: fd.get('streaming'),
+          videoCalls: fd.get('videoCalls'),
+          gaming: form.querySelector('[name="gaming"]').checked,
+          smartDevices: parseInt(fd.get('smartDevices'), 10) || 0,
+          workFromHome: form.querySelector('[name="workFromHome"]').checked
+        };
+
+        try {
+          var r = BroadbandBandwidth.calculateBandwidth(input);
+        } catch (err) {
+          placeholder.textContent = 'Please check your inputs: ' + err.message;
+          return;
+        }
+
+        placeholder.hidden = true;
+        summary.hidden = false;
+        downEl.textContent = r.downloadMbps + ' Mbps';
+        upEl.textContent = r.uploadMbps + ' Mbps';
+        tierEl.textContent = r.tier;
+
+        if (breakdownEl) {
+          var b = r.breakdown;
+          var rows = [
+            ['Streaming (download)', b.streamingDown + ' Mbps'],
+            ['Video calls (download)', b.videoCallDown + ' Mbps'],
+            ['Video calls (upload)', b.videoCallUp + ' Mbps'],
+            ['Gaming (download)', b.gamingDown + ' Mbps'],
+            ['Smart home (download)', b.smartDevicesDown + ' Mbps'],
+            ['Working from home (download)', b.workFromHomeDown + ' Mbps'],
+            ['Working from home (upload)', b.workFromHomeUp + ' Mbps'],
+            ['Headroom multiplier', '×' + b.headroomMultiplier]
+          ];
+          breakdownEl.innerHTML = rows.map(function (row) {
+            return '<li><span>' + row[0] + '</span><strong>' + row[1] + '</strong></li>';
+          }).join('');
+        }
+
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: 'calculator_result',
+          calculator: 'broadband-bandwidth',
+          download_mbps: r.downloadMbps,
+          upload_mbps: r.uploadMbps,
+          tier: r.tier,
+          users: input.users,
+          streaming: input.streaming
+        });
+      });
+
+      var ctaLink = document.querySelector('[data-cta-link]');
+      if (ctaLink) {
+        ctaLink.addEventListener('click', function () {
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: 'cta_click',
+            calculator: 'broadband-bandwidth',
+            cta: 'compare-broadband-plans'
+          });
+        });
+      }
+    })();
+  </script>
+</body>
+</html>

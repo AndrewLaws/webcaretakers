@@ -35,6 +35,11 @@ All notable changes to this project will be documented in this file.
 - Cookie consent banner on homepage with Accept/Reject buttons, privacy policy link, localStorage persistence, and `gtag('consent', 'update', ...)` on choice (7 Playwright tests)
 - Cookie banner copy written in project voice (no corporate cookie waffle)
 - Research synthesis prompt updated to pin primary market as United States while keeping British voice as a deliberate differentiator
+- First calculator: Broadband Bandwidth Calculator at `/calculators/broadband/broadband-bandwidth-calculator/` with pure calc module (9 unit tests), Playwright page tests (9), SoftwareApplication + FAQPage JSON-LD, DataLayer events, Prove-it panel scaffold, ELI5 block
+- Footer: left-aligned disclaimer in a 60rem column plus site-footer-nav with Home / All calculators / About / Privacy / Terms / Contact
+- Calculator form layout: uniform `.calc-form` grid with label left, control right, dedicated checkbox row style, mobile stack at 540px
+- ELI5 block styling and roadmap entry as a cross-cutting feature (top-of-page, scope is "what this calculator does")
+- Roadmap: privacy policy page added as a prerequisite for switching GA4 on
 
 ### Infrastructure
 - AWS CLI configured (us-east-1, account 490734354255)
