@@ -1,12 +1,34 @@
 # Roadmap: WebCaretakers Calculator Hub
 
-Last updated: 2026-04-13
+Last updated: 2026-04-19
 
 ## Overview
 
 220 calculators and tools across 20 categories, targeting long-tail SEO keywords in web, marketing, AI, SEO, and closely related tech niches. Built on the topical authority of a 25-year-old domain that historically covered web hosting, broadband, email marketing, and small business IT.
 
 Source: Manus AI Wayback Machine analysis (688 snapshots, 2001-2010) plus internal ideation.
+
+## Cross-cutting features
+
+### "Prove it" button
+
+Add a "Prove it" button to every calculator. When clicked, the button reveals a step-by-step explanation of how the result was reached, written in plain English where the formula allows it. The goal is to build user trust and reduce bounce from sceptical visitors.
+
+**Approach:**
+- Each calculator exposes a `getWorkings()` function that returns an ordered array of plain-English steps
+- Steps are rendered in a collapsible panel beneath the result, toggled by the button
+- Where the formula is too technical for plain English, show labelled substitution steps (e.g. "Result = A / B = 500 / 12 = 41.7")
+- Button label: "Prove it" (collapsed) / "Hide working" (expanded)
+- Track toggle as a `calculator_interaction` DataLayer event with `action: 'prove_it'`
+
+**Open questions:**
+- Decide whether workings are authored manually per calculator or generated dynamically from formula metadata
+- Manual is more work but produces better prose; dynamic is scalable but may read mechanically
+- Consider a hybrid: dynamic substitution steps with an optional hand-written plain-English summary
+
+**Status:** [ ] Not started
+
+---
 
 ## Build priority
 

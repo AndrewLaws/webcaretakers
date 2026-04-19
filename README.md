@@ -10,20 +10,25 @@
 ## Tech stack
 
 - Static HTML, CSS, and vanilla JS (no frameworks)
-- AWS S3 + CloudFront for hosting (us-east-1)
+- AWS Amplify hosting with managed SSL (us-east-1)
 - Google Tag Manager for analytics and conversion tracking
 - GA4 event tracking via dataLayer
 
 ## Project structure
 
 ```
-site/                    Live site files (deployed to S3)
+site/                    Live site files (deployed to Amplify)
   index.html             Hub landing page
+  sitemap.xml            Generated on every commit
+  robots.txt             Generated on every commit
+  llms.txt               Generated on every commit
   assets/css/main.css    Shared styles
   assets/js/main.js      Shared calculator utilities and event tracking
   calculators/           Individual calculator pages
+scripts/                 Build and generator scripts (plus node:test unit tests)
 tests/                   Playwright test suite
-deploy.sh                S3 deployment script
+.githooks/               Git pre-commit and pre-push hooks
+deploy.sh                Deployment script
 ```
 
 ## URL structure
@@ -48,9 +53,13 @@ Each calculator is a directory with an `index.html` for clean URLs.
 Tests first (James Kindred method). Write failing tests, then implementation.
 
 ```bash
-npm test           # Run Playwright test suite
-npm run test:html  # Run HTML linting
+npm test           # Run unit tests (node:test) and Playwright suite
+npm run test:unit  # Unit tests only
+npm run test:html  # HTML linting
+npm run generate   # Regenerate sitemap.xml, robots.txt, llms.txt manually
 ```
+
+Git hooks are installed via `core.hooksPath = .githooks`. The pre-commit hook regenerates the three site index files and auto-stages them. The pre-push hook prints a reminder checklist for keeping reference docs in sync. If you clone fresh, run `git config core.hooksPath .githooks` once.
 
 ## Deployment
 

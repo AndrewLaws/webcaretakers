@@ -1,0 +1,10 @@
+#!/bin/sh
+# Regenerate sitemap.xml, robots.txt, llms.txt before every commit
+# so they stay in sync with the site content.
+set -e
+
+REPO_ROOT="$(git rev-parse --show-toplevel)"
+cd "$REPO_ROOT"
+
+node scripts/generate-site-files.js
+git add site/sitemap.xml site/robots.txt site/llms.txt

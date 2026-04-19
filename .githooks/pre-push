@@ -1,0 +1,17 @@
+#!/bin/sh
+# Advisory reminder to keep reference docs in sync with code changes.
+# Does not block the push.
+
+cat <<'EOF'
+
+Reference-file checklist before pushing:
+  [ ] ROADMAP.md    — status changes, new items added or completed
+  [ ] CHANGELOG.md  — notable changes in this push under [Unreleased]
+  [ ] README.md     — user-facing features or setup changes
+  [ ] FUNCTIONS.md  — new calculator functions, modules, or utilities
+
+If everything is covered, carry on. Push proceeding.
+
+EOF
+
+exit 0

@@ -4,8 +4,10 @@
   "description": "A collection of hyper-specific calculators hosted on webcaretakers.com, targeting long-tail SEO keywords.",
   "main": "index.js",
   "scripts": {
-    "test": "npx playwright test",
-    "test:html": "npx htmlhint site/**/*.html"
+    "test": "npm run test:unit && npx playwright test",
+    "test:unit": "node --test scripts/*.test.js",
+    "test:html": "npx htmlhint site/**/*.html",
+    "generate": "node scripts/generate-site-files.js"
   },
   "repository": {
     "type": "git",
