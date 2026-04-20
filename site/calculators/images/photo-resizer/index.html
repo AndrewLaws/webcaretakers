@@ -481,11 +481,13 @@
           var pctLabel = pct >= 0 ? pct + '% smaller' : Math.abs(pct) + '% larger';
           resultEl.textContent = 'Resized to ' + dims.width + '\u00d7' + dims.height + ' px (' + pctLabel + ').';
 
-          // Download
+          // Download. The filename carries a small WebCaretakers brand trail
+          // so every saved, emailed or re-shared file leaves a breadcrumb back
+          // to the tool that made it.
           var ext = format.replace('image/', '').replace('jpeg', 'jpg');
           var baseName = (original.file.name || 'image').replace(/\.[^.]+$/, '');
           downloadEl.href = lastBlobUrl;
-          downloadEl.setAttribute('download', baseName + '-resized.' + ext);
+          downloadEl.setAttribute('download', baseName + '-resized-webcaretakers.' + ext);
 
           proveBody.innerHTML = '<ul>' +
             '<li><span>Source</span><strong>' + original.image.naturalWidth + '\u00d7' + original.image.naturalHeight + ' px</strong></li>' +

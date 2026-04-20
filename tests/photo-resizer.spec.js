@@ -40,6 +40,15 @@ test.describe('Photo Resizer page', () => {
     const nav = page.locator('.primary-nav');
     await expect(nav.getByRole('link', { name: 'Images' })).toHaveAttribute('href', '/calculators/images/');
   });
+
+  test('download filename carries the webcaretakers brand trail', async ({ page }) => {
+    // We can't exercise the full resize flow without a real file upload
+    // (which is awkward in a headless browser run), so this test checks the
+    // page script contains the branded filename template. If someone strips
+    // it out, this fails loudly.
+    const source = await page.content();
+    expect(source).toContain('-resized-webcaretakers.');
+  });
 });
 
 test.describe('Images category hub', () => {

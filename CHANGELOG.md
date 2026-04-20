@@ -13,6 +13,9 @@ All notable changes to this project will be documented in this file.
 - `scripts/prioritise.js` + 9 unit tests: batch SEMrush scoring (volume × CPC × (1 − competition)), 30-day per-keyword cache, sorted markdown output. `research/candidates.txt` seeded with ~45 roadmap candidates. `npm run prioritise`
 - First prioritisation run confirms Finance + Health as the highest-value next categories to build
 
+### Changed
+- Photo Resizer download filename now includes a WebCaretakers brand trail: `<your-name>-resized-webcaretakers.<ext>`. Every saved, emailed or re-shared file carries a breadcrumb back to the tool that made it. Guarded by a Playwright test.
+
 ### Fixed
 - Photo Resizer form and dropzone no longer render broken on first load: added global `[hidden] { display: none !important }` so `.calc-form` flex layout stops overriding the `hidden` attribute, and `.resizer-dropzone` now `display: block` so the label occupies its full container
 - Photo Resizer now features on the homepage `Featured calculators` grid; the homepage test reads `categories.json` and asserts every live tool has a card so this cannot regress
