@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Photo Resizer | Free, browser-only image resizer | WebCaretakers</title>
+  <meta name="description" content="Resize and convert photos in your browser. Pick a width, a height, a format and a quality. Your image never leaves your device. No sign-up, no upload.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/images/photo-resizer/">
+  <meta property="og:title" content="Photo Resizer | WebCaretakers">
+  <meta property="og:description" content="Resize and convert photos in your browser. Your image never leaves your device.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/images/photo-resizer/">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="/assets/css/main.css">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var _stored = null;
+    try { _stored = localStorage.getItem('cookie-consent'); } catch (e) {}
+    var _initial = _stored === 'granted' ? 'granted' : 'denied';
+    gtag('consent', 'default', {
+      ad_storage: _initial, analytics_storage: _initial,
+      ad_user_data: _initial, ad_personalization: _initial,
+      functionality_storage: 'granted', security_storage: 'granted',
+      wait_for_update: 500
+    });
+  </script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Photo Resizer",
+    "url": "https://webcaretakers.com/calculators/images/photo-resizer/",
+    "applicationCategory": "MultimediaApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "author": {
+      "@type": "Person",
+      "name": "Andrew Laws",
+      "url": "https://yeseo.io/"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Does the Photo Resizer upload my image anywhere?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. The image is decoded, resized, and re-encoded entirely in your browser using an HTML canvas. Nothing is uploaded, stored, or logged. You could disconnect from the internet mid-resize and it would still work." }
+      },
+      {
+        "@type": "Question",
+        "name": "Which image formats does it support?",
+        "acceptedAnswer": { "@type": "Answer", "text": "JPEG, PNG, and WebP for both input and output. You can also convert between them: for example, a large PNG screenshot can be saved as a much smaller JPEG or WebP." }
+      },
+      {
+        "@type": "Question",
+        "name": "What does the quality slider do?",
+        "acceptedAnswer": { "@type": "Answer", "text": "For JPEG and WebP, quality controls how aggressively the image is compressed. Higher values produce bigger, sharper files. Lower values produce smaller files with more visible compression artefacts. Quality has no effect on PNG output because PNG is a lossless format." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the biggest image I can resize?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Whatever your browser and device can hold in memory. For most modern phones and laptops, up to around 100 megapixels is fine. Very large images may slow the browser tab down briefly while the canvas renders." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-banner-heading" aria-describedby="cookie-banner-text" hidden>
+    <div class="cookie-banner__inner">
+      <h2 id="cookie-banner-heading" class="cookie-banner__heading">A quick word about cookies</h2>
+      <p id="cookie-banner-text" class="cookie-banner__text">
+        We use cookies for analytics, so we can see which calculators people actually use and which ones need work. Nothing creepy, nothing sold on. You can say yes, say no, or read the <a href="/privacy/">privacy policy</a> first. Your choice sticks.
+      </p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-reject>Reject</button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>Accept</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var KEY = 'cookie-consent';
+      var banner = document.querySelector('[data-cookie-banner]');
+      if (!banner) return;
+      var stored = null;
+      try { stored = localStorage.getItem(KEY); } catch (e) {}
+      if (stored !== 'granted' && stored !== 'denied') { banner.hidden = false; }
+      function record(choice) {
+        try { localStorage.setItem(KEY, choice); } catch (e) {}
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('consent', 'update', {
+          ad_storage: choice, analytics_storage: choice,
+          ad_user_data: choice, ad_personalization: choice
+        });
+        banner.hidden = true;
+      }
+      var accept = banner.querySelector('[data-cookie-accept]');
+      var reject = banner.querySelector('[data-cookie-reject]');
+      if (accept) accept.addEventListener('click', function () { record('granted'); });
+      if (reject) reject.addEventListener('click', function () { record('denied'); });
+    })();
+  </script>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">WebCaretakers</a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <ul class="primary-nav__list">
+          <li class="primary-nav__item primary-nav__item--has-menu">
+            <button type="button" class="primary-nav__link" data-menu-toggle aria-haspopup="true" aria-expanded="false">Calculators <span class="primary-nav__caret" aria-hidden="true">▾</span></button>
+            <ul class="primary-nav__submenu">
+              <li><a href="/calculators/broadband/">Broadband</a></li>
+              <li><a href="/calculators/images/">Images</a></li>
+              <li><a href="/calculators/math/">Math</a></li>
+              <li class="primary-nav__submenu-sep"><a href="/calculators/">See all calculators</a></li>
+            </ul>
+          </li>
+          <li class="primary-nav__item"><a href="/about/" class="primary-nav__link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <main id="main-content">
+      <div class="container">
+        <nav aria-label="Breadcrumb" class="breadcrumbs">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/calculators/">Calculators</a></li>
+            <li><a href="/calculators/images/">Images</a></li>
+            <li aria-current="page">Photo Resizer</li>
+          </ol>
+        </nav>
+
+        <h1>Photo Resizer</h1>
+        <p class="intro">Resize and convert a photo in your browser. Pick a width, a height, a format and a quality; the tool does the work on your device without uploading anything.</p>
+
+        <section class="eli5" aria-label="Plain-English explanation">
+          <h2>Explain like I'm 5 (what even is this calculator?)</h2>
+          <p>You drop a photo in. You say how big you want it and what format. The tool makes a new, smaller version of that photo, right there in the page. You can save the new file. The original is untouched, and the file is never sent anywhere.</p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="in-content" aria-hidden="true"></div>
+
+        <section data-calculator class="calculator-card">
+          <h2>Resize</h2>
+
+          <label for="resizer-file" class="resizer-dropzone" data-dropzone>
+            <p><strong>Choose a photo</strong> or drag one here</p>
+            <p class="resizer-dropzone__hint">JPEG, PNG, or WebP. Up to roughly 100 megapixels on most devices.</p>
+            <input type="file" id="resizer-file" name="file" accept="image/jpeg,image/png,image/webp" data-file>
+          </label>
+
+          <div class="resizer-status" data-status hidden></div>
+
+          <form id="resizer-form" class="calc-form" novalidate hidden data-form>
+            <div class="calc-row">
+              <label for="resizer-width">Target width (px)</label>
+              <input type="number" id="resizer-width" name="width" min="1" step="1" data-width>
+            </div>
+            <div class="calc-row">
+              <label for="resizer-height">Target height (px)</label>
+              <input type="number" id="resizer-height" name="height" min="1" step="1" data-height>
+            </div>
+            <div class="calc-row calc-row--checkbox">
+              <label for="resizer-lock">Keep aspect ratio</label>
+              <input type="checkbox" id="resizer-lock" name="lock" checked data-lock>
+            </div>
+            <div class="calc-row">
+              <label for="resizer-format">Output format</label>
+              <select id="resizer-format" name="format" data-format>
+                <option value="image/jpeg">JPEG (smaller, lossy)</option>
+                <option value="image/webp">WebP (smallest, modern)</option>
+                <option value="image/png">PNG (lossless)</option>
+              </select>
+            </div>
+            <div class="calc-row resizer-quality" data-quality-row>
+              <label for="resizer-quality">Quality <output for="resizer-quality" data-quality-output>85</output></label>
+              <input type="range" id="resizer-quality" name="quality" min="10" max="100" step="5" value="85" data-quality>
+            </div>
+            <button type="submit" data-calculate>Resize</button>
+          </form>
+
+          <div data-calculator-results class="calculator-results" hidden data-results>
+            <div class="result-summary">
+              <p class="result-display" data-result></p>
+            </div>
+            <div class="resizer-preview" data-preview>
+              <figure data-preview-original></figure>
+              <figure data-preview-resized></figure>
+            </div>
+            <a class="resizer-download" data-download download>Download resized image</a>
+
+            <details class="prove-it" data-prove-it>
+              <summary>Prove it</summary>
+              <div data-prove-it-body></div>
+              <p class="prove-it-source">Resizing is done by drawing the source image onto an HTML5 canvas at the target dimensions, then calling canvas.toBlob() with the chosen format and quality. All in your browser, no network calls.</p>
+            </details>
+          </div>
+
+          <p class="bookmark-nudge">
+            Useful? Save this calculator: press <kbd data-bookmark-shortcut>Ctrl</kbd> + <kbd>D</kbd> to bookmark it.
+          </p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="below-results" aria-hidden="true"></div>
+
+        <section class="long-form">
+          <h2>How to choose sensible dimensions</h2>
+          <p>The right size for a photo depends entirely on where it is going to live. A profile picture on a social network does not need to be 4000 pixels wide. A hero image on a website rarely needs to be bigger than 2000 pixels on the long edge. Email attachments should almost never exceed 1600 pixels, or roughly 500 KB.</p>
+          <ul>
+            <li><strong>Profile pictures:</strong> 400&times;400 px is plenty. Most platforms will scale down to 200&times;200 anyway.</li>
+            <li><strong>Social posts and messaging:</strong> 1080&times;1080 for square, 1080&times;1350 for portrait. Anything larger gets re-compressed by the platform and looks worse, not better.</li>
+            <li><strong>Web banners and blog images:</strong> 1600&times;900 for standard landscape, 2400&times;1600 for high-DPI "retina" displays.</li>
+            <li><strong>Printing 6&times;4 inches at 300 DPI:</strong> 1800&times;1200 pixels.</li>
+            <li><strong>Email attachment:</strong> under 1600 pixels on the long edge, JPEG quality 70-80.</li>
+          </ul>
+
+          <h2>JPEG vs PNG vs WebP, briefly</h2>
+          <p><strong>JPEG</strong> is the oldest of the three. It uses lossy compression that is very good at photos, less good at line art, text and flat colours. For a holiday photo at quality 85, JPEG usually wins.</p>
+          <p><strong>PNG</strong> is lossless. The pixel values you put in are the pixel values you get out. That makes PNG ideal for screenshots, diagrams, logos, and anything with hard edges or text. The price is bigger files for photographic content.</p>
+          <p><strong>WebP</strong> is Google's modern format, supported in every current browser. It usually gives you JPEG-like quality at 25-35% smaller file sizes, or PNG-like lossless compression at noticeably smaller sizes. If you do not need to open the file in very old software, WebP is usually the best default for the web.</p>
+
+          <h2>Why a browser-only tool</h2>
+          <p>Every other "free online photo resizer" uploads your file to someone else's server. Maybe that is fine. Maybe the file is a pet photo. Maybe it is a passport scan, a child's face, or a confidential product shot. The safe default is to never send the image in the first place. That is all this tool does: the entire resize happens in your own browser tab, using the standard Canvas API. You can check with your browser's developer tools; there are no network requests when you press Resize.</p>
+        </section>
+
+        <section class="faq" aria-labelledby="faq-heading">
+          <h2 id="faq-heading">Frequently asked questions</h2>
+          <details>
+            <summary>Does the Photo Resizer upload my image anywhere?</summary>
+            <p>No. The image is decoded, resized, and re-encoded entirely in your browser using an HTML canvas. Nothing is uploaded, stored, or logged. You could disconnect from the internet mid-resize and it would still work.</p>
+          </details>
+          <details>
+            <summary>Which image formats does it support?</summary>
+            <p>JPEG, PNG, and WebP for both input and output. You can convert between them: for example, a large PNG screenshot can be saved as a much smaller JPEG or WebP.</p>
+          </details>
+          <details>
+            <summary>What does the quality slider do?</summary>
+            <p>For JPEG and WebP, quality controls how aggressively the image is compressed. Higher values produce bigger, sharper files. Lower values produce smaller files with more visible compression artefacts. Quality has no effect on PNG because PNG is a lossless format.</p>
+          </details>
+          <details>
+            <summary>What is the biggest image I can resize?</summary>
+            <p>Whatever your browser and device can hold in memory. For most modern phones and laptops, up to around 100 megapixels is fine. Very large images may slow the browser tab down briefly while the canvas renders.</p>
+          </details>
+          <details>
+            <summary>Does this work on phones?</summary>
+            <p>Yes. All modern mobile browsers (iOS Safari, Chrome, Firefox, Samsung Internet) support the Canvas API used here.</p>
+          </details>
+        </section>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="ad-slot" data-ad-slot="sidebar" aria-hidden="true"></div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="site-footer-nav" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/calculators/">All calculators</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+
+      <section class="site-disclaimer" data-disclaimer aria-labelledby="disclaimer-heading">
+        <h2 id="disclaimer-heading">A quick, necessary word</h2>
+        <p>Every calculator on this site is built to give you a sensible, well-reasoned estimate. It is, however, exactly that: an estimate, for general information only. Nothing you see here is professional, legal, financial, medical, or tax advice, and it should not be treated as such.</p>
+        <p>Before you make a decision that actually matters, talk to a qualified professional who knows your specific situation: an accountant, a solicitor, a doctor, an IT consultant, whoever fits the question. They can factor in the bits a generic tool can't.</p>
+        <p>We take no liability and accept no responsibility for any loss, damage, or questionable life choice arising from acting on the numbers you see here. Use the results as a starting point for a better conversation, not as the final word.</p>
+        <p><strong>Affiliate disclosure:</strong> some links on this site are affiliate links. If you click through and buy or sign up for something, we may earn a small commission at no extra cost to you. It helps keep the calculators free and ad-light. We only recommend things we'd point a friend towards.</p>
+      </section>
+      <p class="site-copyright">&copy; 2026 WebCaretakers. All rights reserved.</p>
+      <p class="site-legal">WebCaretakers is a trading name of <a href="https://yeseo.io/" rel="noopener">Andrew Laws Associates Ltd</a>, registered in England and Wales (company no. 08602332). ICO registration ZA726704.</p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/calculators/photo-resizer.js"></script>
+  <script>
+    (function () {
+      'use strict';
+      var shortcutEl = document.querySelector('[data-bookmark-shortcut]');
+      if (shortcutEl) {
+        var isMac = /Mac|iPhone|iPad|iPod/i.test(navigator.platform || navigator.userAgent);
+        shortcutEl.textContent = isMac ? '\u2318' : 'Ctrl';
+      }
+
+      var R = window.PhotoResizer;
+      var fileInput   = document.querySelector('[data-file]');
+      var dropzone    = document.querySelector('[data-dropzone]');
+      var form        = document.querySelector('[data-form]');
+      var widthIn     = document.querySelector('[data-width]');
+      var heightIn    = document.querySelector('[data-height]');
+      var lockIn      = document.querySelector('[data-lock]');
+      var formatIn    = document.querySelector('[data-format]');
+      var qualityIn   = document.querySelector('[data-quality]');
+      var qualityOut  = document.querySelector('[data-quality-output]');
+      var qualityRow  = document.querySelector('[data-quality-row]');
+      var statusEl    = document.querySelector('[data-status]');
+      var resultsEl   = document.querySelector('[data-results]');
+      var resultEl    = document.querySelector('[data-result]');
+      var origFig     = document.querySelector('[data-preview-original]');
+      var resizedFig  = document.querySelector('[data-preview-resized]');
+      var downloadEl  = document.querySelector('[data-download]');
+      var proveBody   = document.querySelector('[data-prove-it-body]');
+
+      var original = null; // { file, image, objectUrl }
+      var lastBlobUrl = null;
+
+      function setStatus(msg, isError) {
+        if (!msg) { statusEl.hidden = true; statusEl.textContent = ''; statusEl.classList.remove('resizer-status--error'); return; }
+        statusEl.hidden = false;
+        statusEl.textContent = msg;
+        statusEl.classList.toggle('resizer-status--error', !!isError);
+      }
+
+      function track(event, extras) {
+        window.dataLayer = window.dataLayer || [];
+        var payload = Object.assign({ event: event, calculator_name: 'Photo Resizer' }, extras || {});
+        window.dataLayer.push(payload);
+      }
+
+      function updateQualityRowVisibility() {
+        qualityRow.hidden = formatIn.value === 'image/png';
+      }
+      formatIn.addEventListener('change', updateQualityRowVisibility);
+      updateQualityRowVisibility();
+
+      qualityIn.addEventListener('input', function () {
+        qualityOut.textContent = qualityIn.value;
+      });
+
+      // Drag-and-drop
+      ['dragenter', 'dragover'].forEach(function (ev) {
+        dropzone.addEventListener(ev, function (e) {
+          e.preventDefault();
+          dropzone.classList.add('is-drag-over');
+        });
+      });
+      ['dragleave', 'drop'].forEach(function (ev) {
+        dropzone.addEventListener(ev, function (e) {
+          e.preventDefault();
+          dropzone.classList.remove('is-drag-over');
+        });
+      });
+      dropzone.addEventListener('drop', function (e) {
+        if (e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files.length) {
+          loadFile(e.dataTransfer.files[0]);
+        }
+      });
+      fileInput.addEventListener('change', function () {
+        if (fileInput.files && fileInput.files.length) loadFile(fileInput.files[0]);
+      });
+
+      function loadFile(file) {
+        if (!R.isSupportedImageType(file.type)) {
+          setStatus('That file type is not supported. Please choose a JPEG, PNG, or WebP image.', true);
+          return;
+        }
+        setStatus('');
+        track('calculator_interaction', { field_name: 'file_selected', file_type: file.type, file_size: file.size });
+
+        if (original && original.objectUrl) URL.revokeObjectURL(original.objectUrl);
+        var objectUrl = URL.createObjectURL(file);
+        var img = new Image();
+        img.onload = function () {
+          original = { file: file, image: img, objectUrl: objectUrl };
+          widthIn.value = img.naturalWidth;
+          heightIn.value = img.naturalHeight;
+          form.hidden = false;
+        };
+        img.onerror = function () {
+          setStatus('The image could not be decoded. It may be corrupt or in an unsupported variant.', true);
+          URL.revokeObjectURL(objectUrl);
+        };
+        img.src = objectUrl;
+      }
+
+      // Aspect-ratio coupling
+      function currentAspect() {
+        if (!original) return 1;
+        return original.image.naturalWidth / original.image.naturalHeight;
+      }
+      widthIn.addEventListener('input', function () {
+        if (!lockIn.checked || !original) return;
+        var w = parseInt(widthIn.value, 10);
+        if (w > 0) heightIn.value = Math.max(1, Math.round(w / currentAspect()));
+      });
+      heightIn.addEventListener('input', function () {
+        if (!lockIn.checked || !original) return;
+        var h = parseInt(heightIn.value, 10);
+        if (h > 0) widthIn.value = Math.max(1, Math.round(h * currentAspect()));
+      });
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (!original) return;
+
+        var dims = R.calculateResizedDimensions({
+          origWidth: original.image.naturalWidth,
+          origHeight: original.image.naturalHeight,
+          targetWidth: parseInt(widthIn.value, 10) || null,
+          targetHeight: parseInt(heightIn.value, 10) || null,
+          keepAspectRatio: lockIn.checked,
+        });
+
+        var canvas = document.createElement('canvas');
+        canvas.width = dims.width;
+        canvas.height = dims.height;
+        var ctx = canvas.getContext('2d');
+        ctx.imageSmoothingEnabled = true;
+        ctx.imageSmoothingQuality = 'high';
+        ctx.drawImage(original.image, 0, 0, dims.width, dims.height);
+
+        var format = formatIn.value;
+        var quality = format === 'image/png' ? undefined : (parseInt(qualityIn.value, 10) / 100);
+
+        canvas.toBlob(function (blob) {
+          if (!blob) {
+            setStatus('Resizing failed. Try a different format or a smaller target size.', true);
+            return;
+          }
+          if (lastBlobUrl) URL.revokeObjectURL(lastBlobUrl);
+          lastBlobUrl = URL.createObjectURL(blob);
+
+          // Original preview
+          origFig.innerHTML = '';
+          var origImg = document.createElement('img');
+          origImg.src = original.objectUrl;
+          origImg.alt = 'Original image preview';
+          var origCap = document.createElement('figcaption');
+          origCap.innerHTML = '<strong>Original</strong><br>' +
+            original.image.naturalWidth + '\u00d7' + original.image.naturalHeight + ' px, ' +
+            R.formatFileSize(original.file.size) + ', ' + original.file.type.replace('image/', '').toUpperCase();
+          origFig.appendChild(origImg);
+          origFig.appendChild(origCap);
+
+          // Resized preview
+          resizedFig.innerHTML = '';
+          var newImg = document.createElement('img');
+          newImg.src = lastBlobUrl;
+          newImg.alt = 'Resized image preview';
+          var newCap = document.createElement('figcaption');
+          newCap.innerHTML = '<strong>Resized</strong><br>' +
+            dims.width + '\u00d7' + dims.height + ' px, ' +
+            R.formatFileSize(blob.size) + ', ' + format.replace('image/', '').toUpperCase();
+          resizedFig.appendChild(newImg);
+          resizedFig.appendChild(newCap);
+
+          // Result line
+          var pct = Math.round((1 - blob.size / original.file.size) * 100);
+          var pctLabel = pct >= 0 ? pct + '% smaller' : Math.abs(pct) + '% larger';
+          resultEl.textContent = 'Resized to ' + dims.width + '\u00d7' + dims.height + ' px (' + pctLabel + ').';
+
+          // Download
+          var ext = format.replace('image/', '').replace('jpeg', 'jpg');
+          var baseName = (original.file.name || 'image').replace(/\.[^.]+$/, '');
+          downloadEl.href = lastBlobUrl;
+          downloadEl.setAttribute('download', baseName + '-resized.' + ext);
+
+          proveBody.innerHTML = '<ul>' +
+            '<li><span>Source</span><strong>' + original.image.naturalWidth + '\u00d7' + original.image.naturalHeight + ' px</strong></li>' +
+            '<li><span>Target</span><strong>' + dims.width + '\u00d7' + dims.height + ' px</strong></li>' +
+            '<li><span>Format</span><strong>' + format + (quality !== undefined ? ' @ q=' + Math.round(quality * 100) : '') + '</strong></li>' +
+            '<li><span>Output size</span><strong>' + R.formatFileSize(blob.size) + '</strong></li>' +
+            '</ul>';
+
+          resultsEl.hidden = false;
+          track('calculator_result', {
+            result_value: dims.width + 'x' + dims.height,
+            output_format: format,
+            output_size_bytes: blob.size,
+            original_size_bytes: original.file.size
+          });
+        }, format, quality);
+      });
+    })();
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

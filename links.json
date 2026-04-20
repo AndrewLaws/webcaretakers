@@ -12,6 +12,9 @@
     { "phrase": "Percentage Calculator", "url": "/calculators/math/percentage-calculator/" },
     { "phrase": "percentage calculator", "url": "/calculators/math/percentage-calculator/" },
     { "phrase": "math calculators", "url": "/calculators/math/" },
+    { "phrase": "Photo Resizer", "url": "/calculators/images/photo-resizer/" },
+    { "phrase": "photo resizer", "url": "/calculators/images/photo-resizer/" },
+    { "phrase": "image tools", "url": "/calculators/images/" },
     { "phrase": "privacy policy", "url": "/privacy/" },
     { "phrase": "terms of use", "url": "/terms/" },
     { "phrase": "About page", "url": "/about/" }

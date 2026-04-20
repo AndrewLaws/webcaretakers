@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 ### Added
+- Photo Resizer calculator at `/calculators/images/photo-resizer/`: client-side canvas resize with drag-and-drop, width/height with aspect-ratio lock, JPEG/WebP/PNG output, live quality slider, side-by-side original vs resized previews, blob download, ELI5, Prove-it, FAQ, long-form copy, SoftwareApplication + FAQPage JSON-LD, DataLayer events. Pure-logic module with 11 unit tests, Playwright page tests
+- New `Images` category with hub at `/calculators/images/` and entry in `categories.json`
+- Primary nav submenu extended to include Images across all pages
+- `/calculators/` all-calculators hub updated to list Images section and include Photo Resizer in `hasPart` JSON-LD
+- `links.json` entries for "Photo Resizer", "photo resizer", "image tools"
 - Project scaffolding: `.gitignore`, `CLAUDE.md`, `README.md`
 - Base HTML template with GTM placeholder, dataLayer events, ad slots, and CTA area
 - Demo percentage calculator on hub landing page

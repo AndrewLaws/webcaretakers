@@ -26,6 +26,18 @@
       ]
     },
     {
+      "slug": "images",
+      "name": "Images",
+      "tagline": "Resize, convert and inspect photos without uploading them anywhere.",
+      "tools": [
+        {
+          "slug": "photo-resizer",
+          "name": "Photo Resizer",
+          "summary": "Resize and convert photos in your browser. Pick a width, a height, a format and a quality. Your image never leaves your device."
+        }
+      ]
+    },
+    {
       "slug": "finance",
       "name": "Finance",
       "tagline": "Sensible estimates for everyday money decisions.",
