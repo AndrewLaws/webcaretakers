@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Compound Interest Calculator | WebCaretakers</title>
+  <meta name="description" content="Work out how much your savings or investments grow with compound interest, regular contributions and inflation. Year-by-year breakdown, currency toggle, browser-only.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/finance/compound-interest-calculator/">
+  <meta property="og:title" content="Compound Interest Calculator | WebCaretakers">
+  <meta property="og:description" content="Compound interest growth with contributions, inflation and a year-by-year breakdown.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/finance/compound-interest-calculator/">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="/assets/css/main.css">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var _stored = null;
+    try { _stored = localStorage.getItem('cookie-consent'); } catch (e) {}
+    var _initial = _stored === 'granted' ? 'granted' : 'denied';
+    gtag('consent', 'default', {
+      ad_storage: _initial, analytics_storage: _initial,
+      ad_user_data: _initial, ad_personalization: _initial,
+      functionality_storage: 'granted', security_storage: 'granted',
+      wait_for_update: 500
+    });
+  </script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Compound Interest Calculator",
+    "url": "https://webcaretakers.com/calculators/finance/compound-interest-calculator/",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0" },
+    "author": {
+      "@type": "Person",
+      "name": "Andrew Laws",
+      "url": "https://yeseo.io/"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is compound interest?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Compound interest is interest that is calculated on the original amount plus all the interest already added. Because the balance keeps growing, each period's interest is a little bigger than the last, so the total grows faster than simple interest over time." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does compounding frequency make a big difference?",
+        "acceptedAnswer": { "@type": "Answer", "text": "At typical rates the difference between monthly and daily compounding is small, often less than 1% over a decade. Moving from annual to monthly is the bigger jump. The calculator lets you toggle between annual, monthly and daily so you can see the gap for your own numbers." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why is the real balance smaller than the final balance?",
+        "acceptedAnswer": { "@type": "Answer", "text": "The final balance is the nominal pound, dollar or euro amount. The real balance adjusts for inflation, so it is what that future sum would be worth in today's money. If you enter an inflation rate above 0, the real balance is always lower." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does this calculator send my numbers anywhere?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. Everything runs in your browser. The numbers you type never leave your device." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-banner-heading" aria-describedby="cookie-banner-text" hidden>
+    <div class="cookie-banner__inner">
+      <h2 id="cookie-banner-heading" class="cookie-banner__heading">A quick word about cookies</h2>
+      <p id="cookie-banner-text" class="cookie-banner__text">
+        We use cookies for analytics, so we can see which calculators people actually use and which ones need work. Nothing creepy, nothing sold on. You can say yes, say no, or read the <a href="/privacy/">privacy policy</a> first. Your choice sticks.
+      </p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-reject>Reject</button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>Accept</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var KEY = 'cookie-consent';
+      var banner = document.querySelector('[data-cookie-banner]');
+      if (!banner) return;
+      var stored = null;
+      try { stored = localStorage.getItem(KEY); } catch (e) {}
+      if (stored !== 'granted' && stored !== 'denied') { banner.hidden = false; }
+      function record(choice) {
+        try { localStorage.setItem(KEY, choice); } catch (e) {}
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('consent', 'update', {
+          ad_storage: choice, analytics_storage: choice,
+          ad_user_data: choice, ad_personalization: choice
+        });
+        banner.hidden = true;
+      }
+      var accept = banner.querySelector('[data-cookie-accept]');
+      var reject = banner.querySelector('[data-cookie-reject]');
+      if (accept) accept.addEventListener('click', function () { record('granted'); });
+      if (reject) reject.addEventListener('click', function () { record('denied'); });
+    })();
+  </script>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">WebCaretakers</a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <ul class="primary-nav__list">
+          <li class="primary-nav__item primary-nav__item--has-menu">
+            <button type="button" class="primary-nav__link" data-menu-toggle aria-haspopup="true" aria-expanded="false">Calculators <span class="primary-nav__caret" aria-hidden="true">▾</span></button>
+            <ul class="primary-nav__submenu">
+              <li><a href="/calculators/broadband/">Broadband</a></li>
+              <li><a href="/calculators/finance/">Finance</a></li>
+              <li><a href="/calculators/health/">Health</a></li>
+              <li><a href="/calculators/images/">Images</a></li>
+              <li><a href="/calculators/math/">Math</a></li>
+              <li class="primary-nav__submenu-sep"><a href="/calculators/">See all calculators</a></li>
+            </ul>
+          </li>
+          <li class="primary-nav__item"><a href="/about/" class="primary-nav__link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <main id="main-content">
+      <div class="container">
+        <nav aria-label="Breadcrumb" class="breadcrumbs">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/calculators/">Calculators</a></li>
+            <li><a href="/calculators/finance/">Finance</a></li>
+            <li aria-current="page">Compound Interest Calculator</li>
+          </ol>
+        </nav>
+
+        <h1>Compound Interest Calculator</h1>
+        <p class="intro">See how a starting balance and regular contributions grow with compound interest. Pick how often the interest compounds, how often you pay in, and whether to adjust for inflation. The breakdown shows the first five years, then five-year jumps, and the final year of the term.</p>
+
+        <section class="eli5" aria-label="Plain-English explanation">
+          <h2>Explain like I'm 5 (what even is this calculator?)</h2>
+          <p>Put some money in a pot that pays interest. Each time the interest is added, the pot gets a bit bigger, so next time's interest is also a bit bigger. Over years, this snowballs. This tool shows you how big the pot gets, including any money you keep adding along the way.</p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="in-content" aria-hidden="true"></div>
+
+        <section data-calculator class="calculator-card">
+          <h2>Calculate</h2>
+          <form id="ci-form" class="calc-form" novalidate>
+            <div class="calc-row">
+              <label for="ci-currency">Currency</label>
+              <select id="ci-currency" data-currency aria-label="Currency">
+                <option value="GBP" selected>£ GBP</option>
+                <option value="USD">$ USD</option>
+                <option value="EUR">€ EUR</option>
+                <option value="CAD">CA$ CAD</option>
+                <option value="AUD">A$ AUD</option>
+              </select>
+            </div>
+
+            <div class="calc-row">
+              <label for="ci-principal">Starting balance (<span data-currency-symbol>£</span>)</label>
+              <input type="number" id="ci-principal" name="principal" min="0" step="any" value="10000" data-principal>
+            </div>
+
+            <div class="calc-row">
+              <label for="ci-rate">Annual interest rate (%)</label>
+              <input type="number" id="ci-rate" name="annualRatePercent" min="0" step="any" value="5" data-rate>
+            </div>
+
+            <div class="calc-row">
+              <label for="ci-years">Years</label>
+              <input type="number" id="ci-years" name="years" min="1" max="100" step="1" value="20" data-years>
+            </div>
+
+            <div class="calc-row">
+              <label for="ci-compounding">Compounding frequency</label>
+              <select id="ci-compounding" name="compoundingFrequency" data-compounding>
+                <option value="monthly" selected>Monthly</option>
+                <option value="annually">Annually</option>
+                <option value="daily">Daily</option>
+              </select>
+            </div>
+
+            <div class="calc-row">
+              <label for="ci-contribution">Regular contribution (<span data-currency-symbol>£</span>, optional)</label>
+              <input type="number" id="ci-contribution" name="contribution" min="0" step="any" value="200" data-contribution>
+            </div>
+
+            <div class="calc-row">
+              <label for="ci-contribution-freq">Contribution frequency</label>
+              <select id="ci-contribution-freq" name="contributionFrequency" data-contribution-freq>
+                <option value="monthly" selected>Monthly</option>
+                <option value="annually">Annually</option>
+              </select>
+            </div>
+
+            <div class="calc-row">
+              <label for="ci-timing">Contribution timing</label>
+              <select id="ci-timing" name="contributionTiming" data-timing>
+                <option value="end" selected>End of period</option>
+                <option value="start">Start of period</option>
+              </select>
+            </div>
+
+            <div class="calc-row">
+              <label for="ci-inflation">Inflation rate (%, optional)</label>
+              <input type="number" id="ci-inflation" name="inflationRatePercent" min="0" step="any" value="0" data-inflation>
+            </div>
+
+            <button type="submit" data-calculate>Calculate</button>
+          </form>
+
+          <div data-calculator-results class="calculator-results">
+            <div class="result-summary">
+              <p class="result-display" data-result>Enter your numbers, then press Calculate.</p>
+            </div>
+
+            <div class="mort-breakdown" data-breakdown hidden>
+              <h3>Summary</h3>
+              <ul>
+                <li><span>Final balance</span><strong data-line-final>—</strong></li>
+                <li><span>Total you'll have paid in</span><strong data-line-deposited>—</strong></li>
+                <li><span>Of which contributions</span><strong data-line-contributions>—</strong></li>
+                <li class="mort-breakdown__total"><span>Total interest earned</span><strong data-line-interest>—</strong></li>
+              </ul>
+              <div data-real-block hidden>
+                <h3>Adjusted for inflation</h3>
+                <ul>
+                  <li class="mort-breakdown__total"><span>Final balance in today's money</span><strong data-line-real>—</strong></li>
+                </ul>
+              </div>
+
+              <h3>Year-by-year</h3>
+              <table class="year-table" data-year-table>
+                <thead>
+                  <tr>
+                    <th scope="col">Year</th>
+                    <th scope="col">Balance</th>
+                    <th scope="col">Contributed to date</th>
+                    <th scope="col">Interest to date</th>
+                  </tr>
+                </thead>
+                <tbody data-year-rows></tbody>
+              </table>
+            </div>
+
+            <details class="prove-it" data-prove-it>
+              <summary>Prove it</summary>
+              <div data-prove-it-body></div>
+              <p class="prove-it-source">For monthly or daily compounding with monthly contributions, the calculator iterates month by month: each month the balance grows by the effective monthly rate, then the contribution is added (or, if you pick "start of period", the contribution is added first and then earns that month's interest too). For daily compounding we use the equivalent monthly rate (1 + r/365)<sup>365/12</sup> − 1 for speed; the answer matches a true daily simulation to within a pound over decades. For annual compounding with annual contributions, we iterate year by year using A = P(1 + r)<sup>t</sup>. The real balance divides the final balance by (1 + inflation)<sup>years</sup>.</p>
+            </details>
+          </div>
+
+          <p class="bookmark-nudge">
+            Useful? Save this calculator: press <kbd data-bookmark-shortcut>Ctrl</kbd> + <kbd>D</kbd> to bookmark it.
+          </p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="below-results" aria-hidden="true"></div>
+
+        <section class="long-form">
+          <h2>What compound interest actually is</h2>
+          <p>If you put £1,000 into an account paying 5% a year, at the end of year one you have £1,050. Simple interest would keep paying you £50 a year on the original £1,000. Compound interest pays 5% on the new balance, so year two earns £52.50, year three £55.13, and so on. The pot grows a little faster each year because each year's interest joins the balance that earns interest next year. Over a long enough horizon, that small effect stops being small.</p>
+          <p>This is the single most important idea in personal finance and the reason starting early matters more than paying in a lot. Ten years of small, consistent contributions usually beat five years of large ones, even if the total paid in is the same.</p>
+
+          <h2>Compounding frequency and what it really changes</h2>
+          <p>"Annual" compounding means interest is added once a year. "Monthly" means 12 times a year, "daily" means 365 times. At typical savings rates the difference between monthly and daily is marginal, measured in a few pounds per thousand over a decade. The bigger jump is from annual to monthly. If your product quotes an AER (Annual Equivalent Rate), the AER already bakes the compounding frequency in, so you can compare products on a like-for-like basis.</p>
+          <p>Use the compounding selector to see how much the frequency matters for your own numbers. For most real-world products, monthly is the sensible default.</p>
+
+          <h2>Regular contributions</h2>
+          <p>Most people are not starting with a lump sum, they are paying in a bit every month. The calculator handles that directly: pick a contribution amount, pick monthly or annual, and choose whether the contribution lands at the start or end of the period. "Start of period" means the money earns that period's interest too, which over decades is worth a surprising amount.</p>
+
+          <h2>Why inflation matters</h2>
+          <p>A pound in 20 years is not worth a pound today. The inflation toggle divides the final balance by the cumulative inflation over the term, giving you the "real" value in today's money. If your investment grows at 5% and inflation runs at 3%, your real return is closer to 2%. The nominal balance still goes up. The purchasing power grows more slowly.</p>
+          <p>Use 2% to 3% as a rough long-run assumption for the UK or US. Pick your own number if you think inflation will be higher or lower over your specific horizon.</p>
+
+          <h2>What this tool does not do</h2>
+          <p>It assumes a constant rate and constant contributions. It does not model variable-rate accounts, tax on interest (like basic-rate tax for UK savers outside an ISA), fund fees, withdrawal penalties, or market volatility. For a cash ISA or fixed-rate bond, the numbers are close to reality. For a stocks and shares ISA or a 401(k), the answer is a smoothed best-case; real returns bounce around year to year.</p>
+          <p>Nothing on this page is financial advice. For an investment decision that matters, talk to a qualified adviser who can factor in your full picture.</p>
+        </section>
+
+        <section class="faq" aria-labelledby="faq-heading">
+          <h2 id="faq-heading">Frequently asked questions</h2>
+          <details>
+            <summary>What is compound interest?</summary>
+            <p>Interest calculated on the original balance plus all the interest already earned. Because the balance keeps growing, each period's interest is slightly larger than the last. Over time the effect snowballs.</p>
+          </details>
+          <details>
+            <summary>Does compounding frequency make a big difference?</summary>
+            <p>Annual to monthly is the bigger jump. Monthly to daily is usually small, often less than a percent over a decade at typical rates. Use the selector on the calculator to see it for your own numbers.</p>
+          </details>
+          <details>
+            <summary>Why is the real balance lower than the final balance?</summary>
+            <p>Real balance adjusts for inflation. A pound in 2046 is worth less than a pound today because prices rise. The real balance tells you what the final amount is worth in today's money.</p>
+          </details>
+          <details>
+            <summary>Does this calculator send my numbers anywhere?</summary>
+            <p>No. Everything runs in your browser. The numbers you type never leave your device.</p>
+          </details>
+        </section>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="ad-slot" data-ad-slot="sidebar" aria-hidden="true"></div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="site-footer-nav" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/calculators/">All calculators</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+
+      <section class="site-disclaimer" data-disclaimer aria-labelledby="disclaimer-heading">
+        <h2 id="disclaimer-heading">A quick, necessary word</h2>
+        <p>Every calculator on this site is built to give you a sensible, well-reasoned estimate. It is, however, exactly that: an estimate, for general information only. Nothing you see here is professional, legal, financial, medical, or tax advice, and it should not be treated as such.</p>
+        <p>Before you make a decision that actually matters, talk to a qualified professional who knows your specific situation: an accountant, a solicitor, a doctor, an IT consultant, whoever fits the question. They can factor in the bits a generic tool can't.</p>
+        <p>We take no liability and accept no responsibility for any loss, damage, or questionable life choice arising from acting on the numbers you see here. Use the results as a starting point for a better conversation, not as the final word.</p>
+        <p><strong>Affiliate disclosure:</strong> some links on this site are affiliate links. If you click through and buy or sign up for something, we may earn a small commission at no extra cost to you. It helps keep the calculators free and ad-light. We only recommend things we'd point a friend towards.</p>
+      </section>
+      <p class="site-copyright">&copy; 2026 WebCaretakers. All rights reserved.</p>
+      <p class="site-legal">WebCaretakers is a trading name of <a href="https://yeseo.io/" rel="noopener">Andrew Laws Associates Ltd</a>, registered in England and Wales (company no. 08602332). ICO registration ZA726704.</p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/calculators/compound-interest.js"></script>
+  <script>
+    (function () {
+      'use strict';
+      var shortcutEl = document.querySelector('[data-bookmark-shortcut]');
+      if (shortcutEl) {
+        var isMac = /Mac|iPhone|iPad|iPod/i.test(navigator.platform || navigator.userAgent);
+        shortcutEl.textContent = isMac ? '\u2318' : 'Ctrl';
+      }
+
+      var form = document.getElementById('ci-form');
+      if (!form) return;
+
+      var currencyIn     = form.querySelector('[data-currency]');
+      var principalIn    = form.querySelector('[data-principal]');
+      var rateIn         = form.querySelector('[data-rate]');
+      var yearsIn        = form.querySelector('[data-years]');
+      var compoundIn     = form.querySelector('[data-compounding]');
+      var contributionIn = form.querySelector('[data-contribution]');
+      var contribFreqIn  = form.querySelector('[data-contribution-freq]');
+      var timingIn       = form.querySelector('[data-timing]');
+      var inflationIn    = form.querySelector('[data-inflation]');
+
+      var resultEl  = document.querySelector('[data-result]');
+      var breakdown = document.querySelector('[data-breakdown]');
+      var proveBody = document.querySelector('[data-prove-it-body]');
+
+      var lineFinal         = document.querySelector('[data-line-final]');
+      var lineDeposited     = document.querySelector('[data-line-deposited]');
+      var lineContributions = document.querySelector('[data-line-contributions]');
+      var lineInterest      = document.querySelector('[data-line-interest]');
+      var realBlock         = document.querySelector('[data-real-block]');
+      var lineReal          = document.querySelector('[data-line-real]');
+      var yearRows          = document.querySelector('[data-year-rows]');
+
+      var CURRENCY_META = {
+        GBP: { symbol: '\u00a3', locale: 'en-GB' },
+        USD: { symbol: '$',      locale: 'en-US' },
+        EUR: { symbol: '\u20ac', locale: 'en-IE' },
+        CAD: { symbol: 'CA$',    locale: 'en-CA' },
+        AUD: { symbol: 'A$',     locale: 'en-AU' },
+      };
+
+      function currentCurrency() {
+        return CURRENCY_META[currencyIn.value] || CURRENCY_META.GBP;
+      }
+
+      function updateSymbols() {
+        var sym = currentCurrency().symbol;
+        document.querySelectorAll('[data-currency-symbol]').forEach(function (el) {
+          el.textContent = sym;
+        });
+      }
+      updateSymbols();
+      currencyIn.addEventListener('change', updateSymbols);
+
+      function fmtMoney(n) {
+        if (typeof n !== 'number' || !isFinite(n)) return '\u2014';
+        var c = currentCurrency();
+        return c.symbol + n.toLocaleString(c.locale, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      }
+
+      function pickYears(yearByYear, totalYears) {
+        // First five years in full, then every five, plus the final year.
+        var picked = [];
+        var seen = {};
+        function add(y) {
+          if (y < 1 || y > totalYears) return;
+          if (seen[y]) return;
+          seen[y] = true;
+          picked.push(yearByYear[y - 1]);
+        }
+        for (var y = 1; y <= Math.min(5, totalYears); y++) add(y);
+        for (var y2 = 10; y2 <= totalYears; y2 += 5) add(y2);
+        add(totalYears);
+        picked.sort(function (a, b) { return a.year - b.year; });
+        return picked;
+      }
+
+      [currencyIn, principalIn, rateIn, yearsIn, compoundIn, contributionIn, contribFreqIn, timingIn, inflationIn].forEach(function (el) {
+        if (!el) return;
+        el.addEventListener('input', function () {
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: 'calculator_interaction',
+            calculator_name: 'Compound Interest Calculator',
+            field_name: el.name || el.id
+          });
+        });
+      });
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        var args = {
+          principal: parseFloat(principalIn.value) || 0,
+          annualRatePercent: parseFloat(rateIn.value) || 0,
+          years: parseInt(yearsIn.value, 10) || 0,
+          compoundingFrequency: compoundIn.value,
+          contribution: parseFloat(contributionIn.value) || 0,
+          contributionFrequency: contribFreqIn.value,
+          contributionTiming: timingIn.value,
+          inflationRatePercent: parseFloat(inflationIn.value) || 0,
+        };
+
+        try {
+          var r = window.CompoundInterestCalc.calculateCompoundInterest(args);
+
+          resultEl.textContent = 'Final balance after ' + args.years + (args.years === 1 ? ' year: ' : ' years: ') + fmtMoney(r.finalBalance);
+          breakdown.hidden = false;
+
+          lineFinal.textContent         = fmtMoney(r.finalBalance);
+          lineDeposited.textContent     = fmtMoney(r.totalDeposited);
+          lineContributions.textContent = fmtMoney(r.totalContributions);
+          lineInterest.textContent      = fmtMoney(r.totalInterest);
+
+          if (args.inflationRatePercent > 0) {
+            realBlock.hidden = false;
+            lineReal.textContent = fmtMoney(r.realBalance);
+          } else {
+            realBlock.hidden = true;
+          }
+
+          var rows = pickYears(r.yearByYear, args.years);
+          yearRows.innerHTML = rows.map(function (row) {
+            return '<tr>' +
+              '<th scope="row">' + row.year + '</th>' +
+              '<td>' + fmtMoney(row.balance) + '</td>' +
+              '<td>' + fmtMoney(row.contributions) + '</td>' +
+              '<td>' + fmtMoney(row.interest) + '</td>' +
+              '</tr>';
+          }).join('');
+
+          proveBody.innerHTML = '<ul>' +
+            '<li><span>Starting balance</span><strong>' + fmtMoney(r.principal) + '</strong></li>' +
+            '<li><span>Rate</span><strong>' + r.annualRatePercent + '% (' + args.compoundingFrequency + ')</strong></li>' +
+            '<li><span>Term</span><strong>' + r.years + (r.years === 1 ? ' year' : ' years') + '</strong></li>' +
+            '<li><span>Total contributions</span><strong>' + fmtMoney(r.totalContributions) + '</strong></li>' +
+            '<li><span>Total interest</span><strong>' + fmtMoney(r.totalInterest) + '</strong></li>' +
+            '<li><span>Final balance</span><strong>' + fmtMoney(r.finalBalance) + '</strong></li>' +
+            '</ul>';
+
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: 'calculator_result',
+            calculator_name: 'Compound Interest Calculator',
+            result_value: r.finalBalance,
+            principal: r.principal,
+            annual_rate_percent: r.annualRatePercent,
+            years: r.years,
+            compounding_frequency: args.compoundingFrequency,
+            has_contribution: args.contribution > 0,
+            has_inflation: args.inflationRatePercent > 0,
+            currency: currencyIn.value
+          });
+        } catch (err) {
+          resultEl.textContent = err.message || 'Could not calculate.';
+          breakdown.hidden = true;
+          proveBody.innerHTML = '';
+        }
+      });
+    })();
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

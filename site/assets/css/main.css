@@ -636,6 +636,25 @@ button[type="submit"]:hover {
 }
 .calc-row--checkbox label { cursor: pointer; }
 
+/* Fieldset wrapper for grouped calc rows (e.g. period: years + months) */
+.calc-fieldset {
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  padding: 0.5rem 0.75rem 0.25rem;
+  margin: 0.5rem 0;
+}
+.calc-fieldset legend {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #475569;
+  padding: 0 0.25rem;
+}
+/* Two-column inline row for short pairs (e.g. years + months) */
+.calc-row--inline {
+  grid-template-columns: auto 7rem auto 7rem;
+}
+.calc-row--inline input[type="number"] { width: 100%; }
+
 @media (max-width: 540px) {
   .calc-row {
     grid-template-columns: 1fr;
@@ -888,6 +907,33 @@ button[type="submit"]:hover {
 }
 .mort-breakdown__total span,
 .mort-breakdown__total strong { color: #0f172a; font-weight: 700; }
+
+/* Year-by-year table used by savings/compound calculators */
+.year-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0.5rem 0 1rem;
+  font-size: 0.95rem;
+}
+.year-table th,
+.year-table td {
+  text-align: left;
+  padding: 0.5rem 0.6rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+.year-table thead th {
+  font-weight: 600;
+  color: #0f172a;
+  background: #f8fafc;
+}
+.year-table tbody th {
+  font-weight: 600;
+  color: #0f172a;
+  width: 4rem;
+}
+.year-table tbody td { color: #0f172a; }
+.year-table tbody tr:last-child th,
+.year-table tbody tr:last-child td { border-bottom: none; }
 
 /* Country-variant switch link at the top of country-specific calculators */
 .country-switch {
