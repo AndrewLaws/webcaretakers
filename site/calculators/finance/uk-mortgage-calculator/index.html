@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UK Mortgage Calculator | WebCaretakers</title>
+  <meta name="description" content="UK mortgage calculator. Work out your monthly payment in pounds during the fixed-rate period and after it reverts to the lender's Standard Variable Rate, plus stamp duty and upfront costs.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/finance/uk-mortgage-calculator/">
+  <link rel="alternate" hreflang="en-GB" href="https://webcaretakers.com/calculators/finance/uk-mortgage-calculator/">
+  <link rel="alternate" hreflang="en-US" href="https://webcaretakers.com/calculators/finance/mortgage-calculator/">
+  <link rel="alternate" hreflang="x-default" href="https://webcaretakers.com/calculators/finance/mortgage-calculator/">
+  <meta property="og:title" content="UK Mortgage Calculator | WebCaretakers">
+  <meta property="og:description" content="Work out a UK monthly mortgage payment across the fixed-rate period and after it reverts to SVR, plus stamp duty and upfront costs.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/finance/uk-mortgage-calculator/">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="/assets/css/main.css">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var _stored = null;
+    try { _stored = localStorage.getItem('cookie-consent'); } catch (e) {}
+    var _initial = _stored === 'granted' ? 'granted' : 'denied';
+    gtag('consent', 'default', {
+      ad_storage: _initial, analytics_storage: _initial,
+      ad_user_data: _initial, ad_personalization: _initial,
+      functionality_storage: 'granted', security_storage: 'granted',
+      wait_for_update: 500
+    });
+  </script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "UK Mortgage Calculator",
+    "url": "https://webcaretakers.com/calculators/finance/uk-mortgage-calculator/",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any",
+    "inLanguage": "en-GB",
+    "countriesSupported": "GB",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "GBP" },
+    "author": {
+      "@type": "Person",
+      "name": "Andrew Laws",
+      "url": "https://yeseo.io/"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How does a UK fixed-rate mortgage work?",
+        "acceptedAnswer": { "@type": "Answer", "text": "A UK fixed-rate mortgage locks your interest rate for a set period, typically 2, 3, or 5 years (occasionally 10). During that period your monthly payment does not change. When the fix ends, the loan reverts to the lender's Standard Variable Rate (SVR), which is usually higher, so most borrowers remortgage to a new fix at that point." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is Stamp Duty Land Tax?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Stamp Duty Land Tax (SDLT) is a one-off tax paid on property purchases in England and Northern Ireland, calculated in bands on the price you pay. First-time buyers pay no SDLT on the first £300,000 of a property costing up to £500,000. Scotland uses Land and Buildings Transaction Tax (LBTT) and Wales uses Land Transaction Tax (LTT), both with different bands from SDLT." }
+      },
+      {
+        "@type": "Question",
+        "name": "Should I add the product fee to my loan?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Adding the arrangement fee to the loan spreads the cost across the term, which is easier on your cash flow at completion but means you pay interest on that fee for years. Paying the fee upfront costs more on day one but saves you money over the life of the loan. The calculator lets you compare both." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does this calculator send my numbers anywhere?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. Everything runs in your browser. The numbers you type never leave your device." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-banner-heading" aria-describedby="cookie-banner-text" hidden>
+    <div class="cookie-banner__inner">
+      <h2 id="cookie-banner-heading" class="cookie-banner__heading">A quick word about cookies</h2>
+      <p id="cookie-banner-text" class="cookie-banner__text">
+        We use cookies for analytics, so we can see which calculators people actually use and which ones need work. Nothing creepy, nothing sold on. You can say yes, say no, or read the <a href="/privacy/">privacy policy</a> first. Your choice sticks.
+      </p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-reject>Reject</button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>Accept</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var KEY = 'cookie-consent';
+      var banner = document.querySelector('[data-cookie-banner]');
+      if (!banner) return;
+      var stored = null;
+      try { stored = localStorage.getItem(KEY); } catch (e) {}
+      if (stored !== 'granted' && stored !== 'denied') { banner.hidden = false; }
+      function record(choice) {
+        try { localStorage.setItem(KEY, choice); } catch (e) {}
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('consent', 'update', {
+          ad_storage: choice, analytics_storage: choice,
+          ad_user_data: choice, ad_personalization: choice
+        });
+        banner.hidden = true;
+      }
+      var accept = banner.querySelector('[data-cookie-accept]');
+      var reject = banner.querySelector('[data-cookie-reject]');
+      if (accept) accept.addEventListener('click', function () { record('granted'); });
+      if (reject) reject.addEventListener('click', function () { record('denied'); });
+    })();
+  </script>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">WebCaretakers</a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <ul class="primary-nav__list">
+          <li class="primary-nav__item primary-nav__item--has-menu">
+            <button type="button" class="primary-nav__link" data-menu-toggle aria-haspopup="true" aria-expanded="false">Calculators <span class="primary-nav__caret" aria-hidden="true">▾</span></button>
+            <ul class="primary-nav__submenu">
+              <li><a href="/calculators/broadband/">Broadband</a></li>
+              <li><a href="/calculators/finance/">Finance</a></li>
+              <li><a href="/calculators/health/">Health</a></li>
+              <li><a href="/calculators/images/">Images</a></li>
+              <li><a href="/calculators/math/">Math</a></li>
+              <li class="primary-nav__submenu-sep"><a href="/calculators/">See all calculators</a></li>
+            </ul>
+          </li>
+          <li class="primary-nav__item"><a href="/about/" class="primary-nav__link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <main id="main-content">
+      <div class="container">
+        <nav aria-label="Breadcrumb" class="breadcrumbs">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/calculators/">Calculators</a></li>
+            <li><a href="/calculators/finance/">Finance</a></li>
+            <li aria-current="page">UK Mortgage Calculator</li>
+          </ol>
+        </nav>
+
+        <p class="country-switch"><a href="/calculators/finance/mortgage-calculator/">Looking for the US version? →</a></p>
+
+        <h1>UK Mortgage Calculator</h1>
+        <p class="intro">Work out what a UK monthly mortgage payment looks like during the fixed-rate period and after it reverts to the lender's Standard Variable Rate. Stamp duty and upfront costs are shown alongside the monthly number so you can see the whole picture.</p>
+
+        <section class="eli5" aria-label="Plain-English explanation">
+          <h2>Explain like I'm 5 (what even is this calculator?)</h2>
+          <p>A mortgage is a big loan used to buy a house. In the UK, you usually agree a fixed rate for 2, 3 or 5 years, and your monthly payment stays the same during that time. When the fix ends, the rate changes to whatever the lender has set, which is almost always higher. This tool shows both numbers, plus the stamp duty bill and the cash you'll need on day one.</p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="in-content" aria-hidden="true"></div>
+
+        <section data-calculator class="calculator-card">
+          <h2>Calculate</h2>
+
+          <aside class="indicative-notice" role="note" aria-label="Indicative estimate notice">
+            <strong>Indicative estimate only.</strong> This tool gives you a sensible starting number to think with. It is not a mortgage offer, and it cannot factor in a lender's affordability assessment, credit checks, deposit source, or stress tests. Before acting on any figure here, speak to a qualified UK mortgage broker.
+          </aside>
+
+          <form id="ukmort-form" class="calc-form" novalidate>
+            <div class="calc-row">
+              <label for="ukmort-price">Property price (£)</label>
+              <input type="number" id="ukmort-price" name="homePrice" min="1" step="any" value="300000" data-price>
+            </div>
+
+            <div class="calc-row">
+              <label for="ukmort-dp">Deposit</label>
+              <div class="mort-dp-input">
+                <input type="number" id="ukmort-dp" name="deposit" min="0" step="any" value="30000" data-dp>
+                <select id="ukmort-dp-mode" data-dp-mode aria-label="Deposit type">
+                  <option value="amount">£</option>
+                  <option value="percent">%</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="calc-row">
+              <label for="ukmort-fix-rate">Initial rate (%)</label>
+              <input type="number" id="ukmort-fix-rate" name="initialRatePercent" min="0" step="any" value="4.5" data-fix-rate>
+            </div>
+
+            <div class="calc-row">
+              <label for="ukmort-fix-years">Fixed for (years)</label>
+              <select id="ukmort-fix-years" name="fixYears" data-fix-years>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="5" selected>5</option>
+                <option value="10">10</option>
+              </select>
+            </div>
+
+            <div class="calc-row">
+              <label for="ukmort-svr">SVR after fix (%)</label>
+              <input type="number" id="ukmort-svr" name="svrRatePercent" min="0" step="any" value="7.5" data-svr>
+            </div>
+
+            <div class="calc-row">
+              <label for="ukmort-term">Mortgage term (years)</label>
+              <select id="ukmort-term" name="termYears" data-term>
+                <option value="20">20</option>
+                <option value="25" selected>25</option>
+                <option value="30">30</option>
+                <option value="35">35</option>
+                <option value="40">40</option>
+              </select>
+            </div>
+
+            <div class="calc-row">
+              <label for="ukmort-fee">Product fee (£)</label>
+              <input type="number" id="ukmort-fee" name="productFee" min="0" step="any" value="999" data-fee>
+            </div>
+
+            <div class="calc-row">
+              <label for="ukmort-fee-mode">Fee payment</label>
+              <select id="ukmort-fee-mode" data-fee-mode aria-label="How the product fee is paid">
+                <option value="upfront" selected>Paid upfront</option>
+                <option value="loan">Added to loan</option>
+              </select>
+            </div>
+
+            <div class="calc-row">
+              <label for="ukmort-ins">Buildings insurance per year (£)</label>
+              <input type="number" id="ukmort-ins" name="buildingsInsuranceYearly" min="0" step="any" value="240" data-ins>
+            </div>
+
+            <div class="calc-row">
+              <label for="ukmort-ground">Ground rent per year (£, leasehold only)</label>
+              <input type="number" id="ukmort-ground" name="groundRentYearly" min="0" step="any" value="0" data-ground>
+            </div>
+
+            <div class="calc-row">
+              <label for="ukmort-service">Service charge per year (£, leasehold only)</label>
+              <input type="number" id="ukmort-service" name="serviceChargeYearly" min="0" step="any" value="0" data-service>
+            </div>
+
+            <div class="calc-row">
+              <label for="ukmort-ftb">First-time buyer?</label>
+              <select id="ukmort-ftb" name="firstTimeBuyer" data-ftb>
+                <option value="no" selected>No</option>
+                <option value="yes">Yes</option>
+              </select>
+            </div>
+
+            <button type="submit" data-calculate>Calculate</button>
+          </form>
+
+          <div data-calculator-results class="calculator-results">
+            <div class="result-summary">
+              <p class="result-display" data-result>Enter your numbers, then press Calculate.</p>
+            </div>
+
+            <div class="mort-breakdown" data-breakdown hidden>
+              <h3>Monthly breakdown</h3>
+              <ul>
+                <li><span>During the fix (years 1&ndash;<span data-fix-years-label>5</span>)</span><strong data-line-fix>&mdash;</strong></li>
+                <li><span>After revert to SVR</span><strong data-line-svr>&mdash;</strong></li>
+                <li><span>Buildings insurance</span><strong data-line-ins>&mdash;</strong></li>
+                <li><span>Ground rent</span><strong data-line-ground>&mdash;</strong></li>
+                <li><span>Service charge</span><strong data-line-service>&mdash;</strong></li>
+                <li class="mort-breakdown__total"><span>Total during fix</span><strong data-line-total-fix>&mdash;</strong></li>
+                <li class="mort-breakdown__total"><span>Total after SVR</span><strong data-line-total-svr>&mdash;</strong></li>
+              </ul>
+              <h3>Upfront costs</h3>
+              <ul>
+                <li><span>Deposit</span><strong data-line-deposit>&mdash;</strong></li>
+                <li><span>Stamp duty (SDLT)</span><strong data-line-sdlt>&mdash;</strong></li>
+                <li><span>Product fee (if paid upfront)</span><strong data-line-fee-upfront>&mdash;</strong></li>
+                <li class="mort-breakdown__total"><span>Cash needed on completion</span><strong data-line-upfront>&mdash;</strong></li>
+              </ul>
+              <h3>Life of loan</h3>
+              <ul>
+                <li><span>Loan principal</span><strong data-line-principal>&mdash;</strong></li>
+                <li><span>Balance at end of fix</span><strong data-line-balance>&mdash;</strong></li>
+                <li><span>Total interest (full term)</span><strong data-line-interest>&mdash;</strong></li>
+                <li><span>Total cost (principal + interest)</span><strong data-line-cost>&mdash;</strong></li>
+              </ul>
+            </div>
+
+            <details class="prove-it" data-prove-it>
+              <summary>Prove it</summary>
+              <div data-prove-it-body></div>
+              <p class="prove-it-source">Monthly principal and interest use the standard formula M = P &middot; r &middot; (1 + r)<sup>n</sup> &divide; ((1 + r)<sup>n</sup> &minus; 1), amortised across the full term at the initial rate. The balance at the end of the fix is the amortisation identity B = P(1+r)<sup>k</sup> &minus; M((1+r)<sup>k</sup> &minus; 1)/r. The SVR monthly is recalculated on that remaining balance over the remaining term. SDLT uses the 2025/26 England &amp; Northern Ireland bands; Scotland (LBTT) and Wales (LTT) have different rules.</p>
+              <p class="prove-it-source"><strong>What the tool cannot know:</strong> your lender's actual SVR when the fix ends (it could be higher or lower than you type), rate changes during any tracker period, overpayments you choose to make, early repayment charges if you remortgage mid-fix, and lender-specific stress tests.</p>
+            </details>
+          </div>
+
+          <p class="bookmark-nudge">
+            Useful? Save this calculator: press <kbd data-bookmark-shortcut>Ctrl</kbd> + <kbd>D</kbd> to bookmark it.
+          </p>
+
+          <aside class="broker-cta" aria-label="Mortgage broker referral">
+            <h3>Ready to talk to a UK mortgage broker?</h3>
+            <p>A trusted referral is coming soon. In the meantime, a qualified broker can compare the whole UK market, factor in your real affordability, and usually get you a rate the calculator can't. If you know one already, take the numbers above to them as your starting point.</p>
+            <p data-broker-placeholder><em>Broker link to follow.</em></p>
+          </aside>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="below-results" aria-hidden="true"></div>
+
+        <section class="long-form">
+          <h2>How a UK mortgage actually works, in plain English</h2>
+          <p>A UK mortgage has three moving parts that most calculators quietly skip over: the fixed-rate period, the Standard Variable Rate that kicks in when it ends, and the one-off costs on completion day. Getting all three on one page is the difference between a useful estimate and a misleading one.</p>
+
+          <h3>The fixed-rate period</h3>
+          <p>You agree an interest rate for a set period, most commonly 2, 3 or 5 years. During that window your monthly payment is locked. The rate you get depends on your deposit size (loan-to-value), your credit file, and the lender's pricing on the day you apply. Longer fixes usually cost slightly more in rate, but give you certainty for longer.</p>
+
+          <h3>The revert to SVR</h3>
+          <p>When the fix ends, the loan reverts to the lender's Standard Variable Rate unless you remortgage to a new deal. SVR is set by the lender and moves more or less in line with the Bank of England base rate, but with a generous margin added on. It is almost always a worse rate than any fix you could arrange, which is why most borrowers remortgage every time a fix ends. The calculator shows your payment on SVR so you can see the cliff edge.</p>
+
+          <h3>Stamp Duty Land Tax</h3>
+          <p>SDLT is a one-off tax on the purchase price, paid within 14 days of completion. Everyone pays SDLT in England and Northern Ireland. First-time buyers buying a home of £500,000 or less get relief: no SDLT on the first £300,000, then 5% on the slice between £300,000 and £500,000. Above £500,000, first-time buyers pay the standard rates. Scotland and Wales have their own equivalents (LBTT and LTT) with different bands; this calculator covers SDLT only, and dedicated LBTT and LTT tools are on the roadmap.</p>
+
+          <h3>Product fees</h3>
+          <p>Most fixed-rate deals come with an arrangement or product fee, typically £999 to £1,999. You can usually choose to pay it at completion or add it to the loan. Adding it to the loan feels easier but means you pay interest on the fee for the whole term, so it costs you meaningfully more over time. The calculator lets you toggle between the two so you can see the difference.</p>
+
+          <h3>Leasehold extras</h3>
+          <p>If the property is leasehold (common for flats and some new-build houses), you will also pay ground rent and a service charge. Neither is part of the mortgage, but both hit the same bank account every year, so the calculator pulls them into the monthly total.</p>
+
+          <h2>Why the number you see here is a starting point, not an offer</h2>
+          <p>A real mortgage offer depends on things this page cannot see. Your income and the way you earn it (salary, self-employed, commission). Your existing credit commitments. Your deposit source. Whether the property is a standard construction or something lenders treat cautiously. Whether you'd pass the lender's affordability stress test at a much higher notional rate. A broker takes all of that into account and can get you a rate the calculator doesn't know about, because it never hits the comparison sites.</p>
+          <p>Treat the figures on this page as the conversation starter. The conversation itself belongs with a qualified broker or directly with the lender.</p>
+
+          <h2>What this tool does not do</h2>
+          <p>It does not quote you a rate. It does not include conveyancing, survey, valuation, or broker fees, which typically add £1,500 to £3,000 on top of everything else. It does not handle help-to-buy, shared ownership, buy-to-let, Islamic mortgages, or bridging loans. It assumes you keep the same mortgage from day one to the end of the term, which almost nobody actually does, because remortgaging every fix period is the norm. It covers England and Northern Ireland stamp duty only.</p>
+          <p>Nothing on this page is financial advice. Every figure is an indication. For a real decision, speak to a qualified UK mortgage broker who can see the full picture.</p>
+        </section>
+
+        <section class="faq" aria-labelledby="faq-heading">
+          <h2 id="faq-heading">Frequently asked questions</h2>
+          <details>
+            <summary>How does a UK fixed-rate mortgage work?</summary>
+            <p>You lock your interest rate for a set period, typically 2, 3 or 5 years. During that time your monthly payment is the same every month. When the fix ends, the loan reverts to the lender's Standard Variable Rate, which is usually higher, so most borrowers remortgage to a new fix.</p>
+          </details>
+          <details>
+            <summary>What is Stamp Duty Land Tax?</summary>
+            <p>A one-off tax on property purchases in England and Northern Ireland, charged in bands on the purchase price. First-time buyers pay no SDLT on the first £300,000 of a property costing up to £500,000. Scotland uses LBTT and Wales uses LTT, both with different bands.</p>
+          </details>
+          <details>
+            <summary>Should I add the product fee to my loan?</summary>
+            <p>Adding the fee to the loan is easier on completion-day cash, but you pay interest on that fee for the whole mortgage term, so it costs you more over time. Paying it upfront costs more on day one but less over the life of the loan. Toggle the option to see the difference.</p>
+          </details>
+          <details>
+            <summary>Does this calculator send my numbers anywhere?</summary>
+            <p>No. Everything runs in your browser. The numbers you type never leave your device.</p>
+          </details>
+        </section>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="ad-slot" data-ad-slot="sidebar" aria-hidden="true"></div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="site-footer-nav" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/calculators/">All calculators</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+
+      <section class="site-disclaimer" data-disclaimer aria-labelledby="disclaimer-heading">
+        <h2 id="disclaimer-heading">A quick, necessary word</h2>
+        <p>Every calculator on this site is built to give you a sensible, well-reasoned estimate. It is, however, exactly that: an estimate, for general information only. Nothing you see here is professional, legal, financial, medical, or tax advice, and it should not be treated as such.</p>
+        <p>Before you make a decision that actually matters, talk to a qualified professional who knows your specific situation: an accountant, a solicitor, a doctor, an IT consultant, whoever fits the question. They can factor in the bits a generic tool can't.</p>
+        <p>We take no liability and accept no responsibility for any loss, damage, or questionable life choice arising from acting on the numbers you see here. Use the results as a starting point for a better conversation, not as the final word.</p>
+        <p><strong>Affiliate disclosure:</strong> some links on this site are affiliate links. If you click through and buy or sign up for something, we may earn a small commission at no extra cost to you. It helps keep the calculators free and ad-light. We only recommend things we'd point a friend towards.</p>
+      </section>
+      <p class="site-copyright">&copy; 2026 WebCaretakers. All rights reserved.</p>
+      <p class="site-legal">WebCaretakers is a trading name of <a href="https://yeseo.io/" rel="noopener">Andrew Laws Associates Ltd</a>, registered in England and Wales (company no. 08602332). ICO registration ZA726704.</p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/calculators/uk-mortgage.js"></script>
+  <script>
+    (function () {
+      'use strict';
+      var shortcutEl = document.querySelector('[data-bookmark-shortcut]');
+      if (shortcutEl) {
+        var isMac = /Mac|iPhone|iPad|iPod/i.test(navigator.platform || navigator.userAgent);
+        shortcutEl.textContent = isMac ? '\u2318' : 'Ctrl';
+      }
+
+      var form = document.getElementById('ukmort-form');
+      if (!form) return;
+
+      var priceIn     = form.querySelector('[data-price]');
+      var dpIn        = form.querySelector('[data-dp]');
+      var dpModeIn    = form.querySelector('[data-dp-mode]');
+      var fixRateIn   = form.querySelector('[data-fix-rate]');
+      var fixYearsIn  = form.querySelector('[data-fix-years]');
+      var svrIn       = form.querySelector('[data-svr]');
+      var termIn      = form.querySelector('[data-term]');
+      var feeIn       = form.querySelector('[data-fee]');
+      var feeModeIn   = form.querySelector('[data-fee-mode]');
+      var insIn       = form.querySelector('[data-ins]');
+      var groundIn    = form.querySelector('[data-ground]');
+      var serviceIn   = form.querySelector('[data-service]');
+      var ftbIn       = form.querySelector('[data-ftb]');
+
+      var resultEl  = document.querySelector('[data-result]');
+      var breakdown = document.querySelector('[data-breakdown]');
+      var proveBody = document.querySelector('[data-prove-it-body]');
+
+      var fixYearsLabel = document.querySelector('[data-fix-years-label]');
+      var lineFix       = document.querySelector('[data-line-fix]');
+      var lineSvr       = document.querySelector('[data-line-svr]');
+      var lineIns       = document.querySelector('[data-line-ins]');
+      var lineGround    = document.querySelector('[data-line-ground]');
+      var lineService   = document.querySelector('[data-line-service]');
+      var lineTotalFix  = document.querySelector('[data-line-total-fix]');
+      var lineTotalSvr  = document.querySelector('[data-line-total-svr]');
+      var lineDeposit   = document.querySelector('[data-line-deposit]');
+      var lineSdlt      = document.querySelector('[data-line-sdlt]');
+      var lineFeeUp     = document.querySelector('[data-line-fee-upfront]');
+      var lineUpfront   = document.querySelector('[data-line-upfront]');
+      var linePrincipal = document.querySelector('[data-line-principal]');
+      var lineBalance   = document.querySelector('[data-line-balance]');
+      var lineInterest  = document.querySelector('[data-line-interest]');
+      var lineCost      = document.querySelector('[data-line-cost]');
+
+      function fmt(n) {
+        if (typeof n !== 'number' || !isFinite(n)) return '\u2014';
+        return '\u00a3' + n.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      }
+
+      [priceIn, dpIn, dpModeIn, fixRateIn, fixYearsIn, svrIn, termIn, feeIn, feeModeIn, insIn, groundIn, serviceIn, ftbIn].forEach(function (el) {
+        if (!el) return;
+        el.addEventListener('input', function () {
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: 'calculator_interaction',
+            calculator_name: 'UK Mortgage Calculator',
+            field_name: el.name || el.id
+          });
+        });
+      });
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var args = {
+          homePrice: parseFloat(priceIn.value),
+          initialRatePercent: parseFloat(fixRateIn.value),
+          fixYears: parseFloat(fixYearsIn.value),
+          svrRatePercent: parseFloat(svrIn.value),
+          termYears: parseFloat(termIn.value),
+          productFee: parseFloat(feeIn.value) || 0,
+          feeAddedToLoan: feeModeIn.value === 'loan',
+          buildingsInsuranceYearly: parseFloat(insIn.value) || 0,
+          groundRentYearly: parseFloat(groundIn.value) || 0,
+          serviceChargeYearly: parseFloat(serviceIn.value) || 0,
+          firstTimeBuyer: ftbIn.value === 'yes',
+        };
+        var dpVal = parseFloat(dpIn.value) || 0;
+        if (dpModeIn.value === 'percent') {
+          args.depositPercent = dpVal;
+        } else {
+          args.deposit = dpVal;
+        }
+
+        try {
+          var r = window.UkMortgageCalc.calculateUkMortgage(args);
+
+          resultEl.textContent = 'Monthly during fix: ' + fmt(r.monthlyTotalDuringFix);
+          breakdown.hidden = false;
+          if (fixYearsLabel) fixYearsLabel.textContent = String(r.fixYears);
+
+          lineFix.textContent      = fmt(r.fixMonthlyPI);
+          lineSvr.textContent      = fmt(r.svrMonthlyPI);
+          lineIns.textContent      = fmt(r.monthlyBuildingsInsurance);
+          lineGround.textContent   = fmt(r.monthlyGroundRent);
+          lineService.textContent  = fmt(r.monthlyServiceCharge);
+          lineTotalFix.textContent = fmt(r.monthlyTotalDuringFix);
+          lineTotalSvr.textContent = fmt(r.monthlyTotalAfterFix);
+
+          lineDeposit.textContent  = fmt(r.deposit);
+          lineSdlt.textContent     = fmt(r.stampDuty);
+          lineFeeUp.textContent    = r.feeAddedToLoan ? fmt(0) : fmt(r.productFee);
+          lineUpfront.textContent  = fmt(r.upfrontCosts);
+
+          linePrincipal.textContent = fmt(r.principal);
+          lineBalance.textContent   = fmt(r.balanceAfterFix);
+          lineInterest.textContent  = fmt(r.totalInterest);
+          lineCost.textContent      = fmt(r.totalCost);
+
+          var ltv = Math.round(r.loanToValue * 100);
+          proveBody.innerHTML = '<ul>' +
+            '<li><span>Loan principal</span><strong>' + fmt(r.principal) + '</strong></li>' +
+            '<li><span>Loan-to-value</span><strong>' + ltv + '%</strong></li>' +
+            '<li><span>Term</span><strong>' + r.numberOfPayments + ' monthly payments</strong></li>' +
+            '<li><span>Monthly during fix (initial rate)</span><strong>' + fmt(r.fixMonthlyPI) + '</strong></li>' +
+            '<li><span>Balance at end of fix</span><strong>' + fmt(r.balanceAfterFix) + '</strong></li>' +
+            '<li><span>Monthly after revert to SVR</span><strong>' + fmt(r.svrMonthlyPI) + '</strong></li>' +
+            '<li><span>Stamp duty (SDLT)</span><strong>' + fmt(r.stampDuty) + '</strong></li>' +
+            '</ul>';
+
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: 'calculator_result',
+            calculator_name: 'UK Mortgage Calculator',
+            result_value: r.monthlyTotalDuringFix,
+            loan_principal: r.principal,
+            loan_term_years: args.termYears,
+            initial_rate_percent: args.initialRatePercent,
+            fix_years: args.fixYears,
+            svr_rate_percent: args.svrRatePercent,
+            stamp_duty: r.stampDuty,
+            first_time_buyer: args.firstTimeBuyer
+          });
+        } catch (err) {
+          resultEl.textContent = err.message || 'Could not calculate.';
+          breakdown.hidden = true;
+          proveBody.innerHTML = '';
+        }
+      });
+    })();
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

@@ -888,3 +888,49 @@ button[type="submit"]:hover {
 }
 .mort-breakdown__total span,
 .mort-breakdown__total strong { color: #0f172a; font-weight: 700; }
+
+/* Country-variant switch link at the top of country-specific calculators */
+.country-switch {
+  margin: 0 0 0.5rem;
+  font-size: 0.9rem;
+}
+.country-switch a {
+  display: inline-block;
+  padding: 0.35rem 0.7rem;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 4px;
+  color: #1e40af;
+  text-decoration: none;
+}
+.country-switch a:hover,
+.country-switch a:focus { background: #dbeafe; }
+
+/* Indicative-estimate notice for regulated-topic calculators (mortgages etc) */
+.indicative-notice {
+  margin: 0 0 1.25rem;
+  padding: 0.9rem 1.1rem;
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+  border-left: 4px solid #f59e0b;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  color: #713f12;
+}
+.indicative-notice strong { color: #78350f; }
+
+/* Broker / professional-referral CTA block */
+.broker-cta {
+  margin: 1.5rem 0 0;
+  padding: 1rem 1.25rem;
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 6px;
+}
+.broker-cta h3 {
+  margin: 0 0 0.4rem;
+  color: #14532d;
+  font-size: 1.05rem;
+}
+.broker-cta p { margin: 0.3rem 0; color: #166534; }
+.broker-cta a { color: #14532d; font-weight: 600; }

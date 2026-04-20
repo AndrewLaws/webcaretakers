@@ -20,6 +20,8 @@
     { "phrase": "health calculators", "url": "/calculators/health/" },
     { "phrase": "US Mortgage Calculator", "url": "/calculators/finance/mortgage-calculator/" },
     { "phrase": "US mortgage calculator", "url": "/calculators/finance/mortgage-calculator/" },
+    { "phrase": "UK Mortgage Calculator", "url": "/calculators/finance/uk-mortgage-calculator/" },
+    { "phrase": "UK mortgage calculator", "url": "/calculators/finance/uk-mortgage-calculator/" },
     { "phrase": "finance calculators", "url": "/calculators/finance/" },
     { "phrase": "privacy policy", "url": "/privacy/" },
     { "phrase": "terms of use", "url": "/terms/" },
