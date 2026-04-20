@@ -18,6 +18,9 @@
     { "phrase": "BMI Calculator", "url": "/calculators/health/bmi-calculator/" },
     { "phrase": "BMI calculator", "url": "/calculators/health/bmi-calculator/" },
     { "phrase": "health calculators", "url": "/calculators/health/" },
+    { "phrase": "US Mortgage Calculator", "url": "/calculators/finance/mortgage-calculator/" },
+    { "phrase": "US mortgage calculator", "url": "/calculators/finance/mortgage-calculator/" },
+    { "phrase": "finance calculators", "url": "/calculators/finance/" },
     { "phrase": "privacy policy", "url": "/privacy/" },
     { "phrase": "terms of use", "url": "/terms/" },
     { "phrase": "About page", "url": "/about/" }

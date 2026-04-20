@@ -61,7 +61,7 @@ test.describe('Images category hub', () => {
   });
 
   test('lists the Photo Resizer', async ({ page }) => {
-    await expect(page.getByRole('link', { name: 'Photo Resizer' })).toBeVisible();
+    await expect(page.getByRole('link', { name: 'Photo Resizer' }).first()).toBeVisible();
   });
 
   test('has CollectionPage JSON-LD', async ({ page }) => {

@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 ### Added
+- US Mortgage Calculator at `/calculators/finance/mortgage-calculator/`: monthly PITI with principal & interest, property tax, home insurance, HOA and PMI broken out separately; down-payment $ / % toggle; 10/15/20/30-year terms; monthly breakdown table + life-of-loan totals (principal, total interest, total cost); ELI5, Prove-it, FAQ, long-form covering why split US vs UK and what the tool doesn't do; hreflang (en-US + x-default), Schema.org SoftwareApplication with `inLanguage: en-US` and `countriesSupported: US`; DataLayer `calculator_interaction` + `calculator_result` events with `loan_principal`, `loan_term_years`, `apr_percent`. Pure-logic module with 13 unit tests, Playwright page + hub tests
+- New `Finance` category with hub at `/calculators/finance/` opened by US Mortgage; long-form explains why US and UK mortgages each get their own dedicated calculator (fixed-for-term vs fix-and-revert, PMI vs no PMI, escrow, arrangement fees, stamp duty)
+- Primary nav submenu extended to include Finance across all pages
+- `/calculators/` all-calculators hub: Finance section added, "Coming soon" row trimmed to Property only, US Mortgage added to JSON-LD `hasPart`
 - BMI Calculator at `/calculators/health/bmi-calculator/`: metric + imperial unit toggle, WHO category (underweight/normal/overweight/obese) colour-coded pill, ELI5, Prove-it, FAQ, long-form honest caveats on limitations (muscle mass, athletes, age, children, ethnicity), SoftwareApplication + FAQPage JSON-LD, DataLayer events. Pure-logic module with 12 unit tests, Playwright page + hub tests (14)
 - New `Health` category with hub at `/calculators/health/` opened by BMI
 - Primary nav submenu extended to include Health across all pages

@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>US Mortgage Calculator | WebCaretakers</title>
+  <meta name="description" content="US mortgage calculator. Work out your monthly mortgage payment in dollars, including principal, interest, property tax, home insurance, HOA, and PMI, with the total interest and total cost over the life of the loan.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/finance/mortgage-calculator/">
+  <link rel="alternate" hreflang="en-US" href="https://webcaretakers.com/calculators/finance/mortgage-calculator/">
+  <link rel="alternate" hreflang="x-default" href="https://webcaretakers.com/calculators/finance/mortgage-calculator/">
+  <meta property="og:title" content="US Mortgage Calculator | WebCaretakers">
+  <meta property="og:description" content="Work out your US monthly mortgage payment with principal, interest, tax, insurance, HOA and PMI shown separately.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/finance/mortgage-calculator/">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="/assets/css/main.css">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var _stored = null;
+    try { _stored = localStorage.getItem('cookie-consent'); } catch (e) {}
+    var _initial = _stored === 'granted' ? 'granted' : 'denied';
+    gtag('consent', 'default', {
+      ad_storage: _initial, analytics_storage: _initial,
+      ad_user_data: _initial, ad_personalization: _initial,
+      functionality_storage: 'granted', security_storage: 'granted',
+      wait_for_update: 500
+    });
+  </script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "US Mortgage Calculator",
+    "url": "https://webcaretakers.com/calculators/finance/mortgage-calculator/",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any",
+    "inLanguage": "en-US",
+    "countriesSupported": "US",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "author": {
+      "@type": "Person",
+      "name": "Andrew Laws",
+      "url": "https://yeseo.io/"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How do I calculate a monthly mortgage payment?",
+        "acceptedAnswer": { "@type": "Answer", "text": "The standard formula is M = P \u00d7 r \u00d7 (1 + r)^n \u00f7 ((1 + r)^n \u2212 1), where P is the loan principal, r is the monthly interest rate (APR divided by 12 and by 100), and n is the total number of monthly payments. The calculator shows the full working after you press Calculate." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is PITI?",
+        "acceptedAnswer": { "@type": "Answer", "text": "PITI is the four components of a typical US monthly mortgage payment: Principal, Interest, Taxes, Insurance. Many lenders collect an escrow amount covering property tax and homeowner's insurance alongside principal and interest. This tool shows each line separately." }
+      },
+      {
+        "@type": "Question",
+        "name": "When do I have to pay PMI?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Private Mortgage Insurance is usually required on conventional loans when the down payment is less than 20% of the home price. It typically runs about 0.5% to 1.5% of the loan amount per year, split into monthly payments. You can generally request PMI removal once you reach 20% equity." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does this calculator send my numbers anywhere?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. Everything runs in your browser. The numbers you type never leave your device." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-banner-heading" aria-describedby="cookie-banner-text" hidden>
+    <div class="cookie-banner__inner">
+      <h2 id="cookie-banner-heading" class="cookie-banner__heading">A quick word about cookies</h2>
+      <p id="cookie-banner-text" class="cookie-banner__text">
+        We use cookies for analytics, so we can see which calculators people actually use and which ones need work. Nothing creepy, nothing sold on. You can say yes, say no, or read the <a href="/privacy/">privacy policy</a> first. Your choice sticks.
+      </p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-reject>Reject</button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>Accept</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var KEY = 'cookie-consent';
+      var banner = document.querySelector('[data-cookie-banner]');
+      if (!banner) return;
+      var stored = null;
+      try { stored = localStorage.getItem(KEY); } catch (e) {}
+      if (stored !== 'granted' && stored !== 'denied') { banner.hidden = false; }
+      function record(choice) {
+        try { localStorage.setItem(KEY, choice); } catch (e) {}
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('consent', 'update', {
+          ad_storage: choice, analytics_storage: choice,
+          ad_user_data: choice, ad_personalization: choice
+        });
+        banner.hidden = true;
+      }
+      var accept = banner.querySelector('[data-cookie-accept]');
+      var reject = banner.querySelector('[data-cookie-reject]');
+      if (accept) accept.addEventListener('click', function () { record('granted'); });
+      if (reject) reject.addEventListener('click', function () { record('denied'); });
+    })();
+  </script>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">WebCaretakers</a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <ul class="primary-nav__list">
+          <li class="primary-nav__item primary-nav__item--has-menu">
+            <button type="button" class="primary-nav__link" data-menu-toggle aria-haspopup="true" aria-expanded="false">Calculators <span class="primary-nav__caret" aria-hidden="true">▾</span></button>
+            <ul class="primary-nav__submenu">
+              <li><a href="/calculators/broadband/">Broadband</a></li>
+              <li><a href="/calculators/finance/">Finance</a></li>
+              <li><a href="/calculators/health/">Health</a></li>
+              <li><a href="/calculators/images/">Images</a></li>
+              <li><a href="/calculators/math/">Math</a></li>
+              <li class="primary-nav__submenu-sep"><a href="/calculators/">See all calculators</a></li>
+            </ul>
+          </li>
+          <li class="primary-nav__item"><a href="/about/" class="primary-nav__link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <main id="main-content">
+      <div class="container">
+        <nav aria-label="Breadcrumb" class="breadcrumbs">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/calculators/">Calculators</a></li>
+            <li><a href="/calculators/finance/">Finance</a></li>
+            <li aria-current="page">US Mortgage Calculator</li>
+          </ol>
+        </nav>
+
+        <h1>US Mortgage Calculator</h1>
+        <p class="intro">Work out what your US monthly mortgage payment looks like once principal, interest, property tax, home insurance, HOA fees, and PMI are all on the table. See the total interest and total cost over the life of the loan.</p>
+
+        <section class="eli5" aria-label="Plain-English explanation">
+          <h2>Explain like I'm 5 (what even is this calculator?)</h2>
+          <p>A mortgage is a big loan used to buy a house. You put a bit of money down, the bank lends you the rest, and you pay it back every month for many years with interest. This tool tells you roughly what that monthly cheque looks like, including the extras like property tax and insurance that usually get bundled in.</p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="in-content" aria-hidden="true"></div>
+
+        <section data-calculator class="calculator-card">
+          <h2>Calculate</h2>
+          <form id="mort-form" class="calc-form" novalidate>
+            <div class="calc-row">
+              <label for="mort-price">Home price ($)</label>
+              <input type="number" id="mort-price" name="homePrice" min="1" step="any" value="400000" data-price>
+            </div>
+
+            <div class="calc-row">
+              <label for="mort-dp">Down payment</label>
+              <div class="mort-dp-input">
+                <input type="number" id="mort-dp" name="downPayment" min="0" step="any" value="80000" data-dp>
+                <select id="mort-dp-mode" data-dp-mode aria-label="Down payment type">
+                  <option value="amount">$</option>
+                  <option value="percent">%</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="calc-row">
+              <label for="mort-apr">Interest rate (APR %)</label>
+              <input type="number" id="mort-apr" name="aprPercent" min="0" step="any" value="6.5" data-apr>
+            </div>
+
+            <div class="calc-row">
+              <label for="mort-term">Loan term (years)</label>
+              <select id="mort-term" name="termYears" data-term>
+                <option value="30" selected>30</option>
+                <option value="20">20</option>
+                <option value="15">15</option>
+                <option value="10">10</option>
+              </select>
+            </div>
+
+            <div class="calc-row">
+              <label for="mort-tax">Property tax per year ($)</label>
+              <input type="number" id="mort-tax" name="propertyTaxYearly" min="0" step="any" value="4800" data-tax>
+            </div>
+
+            <div class="calc-row">
+              <label for="mort-ins">Home insurance per year ($)</label>
+              <input type="number" id="mort-ins" name="insuranceYearly" min="0" step="any" value="1500" data-ins>
+            </div>
+
+            <div class="calc-row">
+              <label for="mort-hoa">HOA per month ($)</label>
+              <input type="number" id="mort-hoa" name="hoaMonthly" min="0" step="any" value="0" data-hoa>
+            </div>
+
+            <div class="calc-row">
+              <label for="mort-pmi">PMI per month ($)</label>
+              <input type="number" id="mort-pmi" name="pmiMonthly" min="0" step="any" value="0" data-pmi>
+            </div>
+
+            <button type="submit" data-calculate>Calculate</button>
+          </form>
+
+          <div data-calculator-results class="calculator-results">
+            <div class="result-summary">
+              <p class="result-display" data-result>Enter your numbers, then press Calculate.</p>
+            </div>
+
+            <div class="mort-breakdown" data-breakdown hidden>
+              <h3>Monthly breakdown</h3>
+              <ul>
+                <li><span>Principal and interest</span><strong data-line-pi>—</strong></li>
+                <li><span>Property tax</span><strong data-line-tax>—</strong></li>
+                <li><span>Home insurance</span><strong data-line-ins>—</strong></li>
+                <li><span>HOA</span><strong data-line-hoa>—</strong></li>
+                <li><span>PMI</span><strong data-line-pmi>—</strong></li>
+                <li class="mort-breakdown__total"><span>Monthly total</span><strong data-line-total>—</strong></li>
+              </ul>
+              <h3>Life of loan</h3>
+              <ul>
+                <li><span>Loan principal</span><strong data-line-principal>—</strong></li>
+                <li><span>Total interest</span><strong data-line-interest>—</strong></li>
+                <li><span>Total cost (principal + interest)</span><strong data-line-cost>—</strong></li>
+              </ul>
+            </div>
+
+            <details class="prove-it" data-prove-it>
+              <summary>Prove it</summary>
+              <div data-prove-it-body></div>
+              <p class="prove-it-source">Monthly principal and interest: M = P · r · (1 + r)^n ÷ ((1 + r)^n − 1), with P the loan principal, r the monthly rate (APR ÷ 12 ÷ 100), and n the total number of monthly payments (years × 12). Tax, insurance, HOA and PMI are added on top at their monthly equivalents. Zero-rate loans skip the formula and simply divide principal by months.</p>
+            </details>
+          </div>
+
+          <p class="bookmark-nudge">
+            Useful? Save this calculator: press <kbd data-bookmark-shortcut>Ctrl</kbd> + <kbd>D</kbd> to bookmark it.
+          </p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="below-results" aria-hidden="true"></div>
+
+        <section class="long-form">
+          <h2>What actually goes into a US monthly mortgage payment</h2>
+          <p>In the US, most homebuyers talk about their mortgage as a single monthly number. Behind that one cheque are four or five moving parts, each of which changes on its own timetable.</p>
+          <h3>Principal and interest</h3>
+          <p>This is the loan itself. Every month a portion goes toward paying down what you borrowed and a portion goes to interest. Early in the loan, most of your payment is interest. Late in the loan, most of it is principal. The ratio shifts gradually, which is why a mortgage feels different 5 years in than 25 years in.</p>
+          <h3>Property tax</h3>
+          <p>Usually collected by the lender through an escrow account and paid to the county or city on your behalf. Rates vary hugely by state and municipality: Texas and New Jersey are famously high, several states have no personal property tax on homes at all. The number you type into this calculator should be the annual property tax in dollars, which your real-estate listing or county assessor's site will confirm.</p>
+          <h3>Homeowner's insurance</h3>
+          <p>Also escrowed in most cases. Required by the lender for any mortgaged property. Covers fire, storm, theft, and liability. Flood is usually separate.</p>
+          <h3>HOA fees</h3>
+          <p>If the property sits inside a homeowner's association, condo board, or co-op, expect a monthly fee covering shared maintenance, amenities, and reserves. HOA dues are not escrowed by the lender; you pay them directly to the association. Enter the monthly amount.</p>
+          <h3>PMI</h3>
+          <p>Private Mortgage Insurance. Required on conventional loans when your down payment is under 20% of the home price. It protects the lender, not you. Typically 0.5% to 1.5% of the loan amount per year, paid monthly. You can usually request it be removed once you have 20% equity in the home, either through paying down the loan or through the home's value rising.</p>
+
+          <h2>How to stress-test the number</h2>
+          <p>A useful habit: run the calculator three times. First with your expected rate, then with a rate one percent higher, then with a rate two percent higher. If the higher-rate monthly numbers would hurt, you are buying at the edge of your budget. Rates move. Property taxes rise. Insurance premiums climb after a bad storm season. The payment you can afford comfortably today is not necessarily the payment you will be making in three years, so leave yourself room.</p>
+          <p>A second useful habit: look at total interest, not just monthly payment. A 30-year loan at 6.5% on a $320,000 principal costs you about $408,000 in interest over the life of the loan. The same principal on a 15-year loan at the same rate costs about $182,000 in interest. The monthly payment is higher on the 15, but the lifetime cost is much lower. That is a real choice worth thinking about, not a footnote.</p>
+
+          <h2>What this tool does not do</h2>
+          <p>It does not quote you a rate. Lenders do that based on your credit score, down payment, income, debt ratio, and property details. It does not include closing costs (usually 2-5% of the home price, one-off). It does not assume any particular PMI rate; you enter your own expected monthly figure, which your lender or loan officer can give you. It is a back-of-envelope tool, useful for comparing scenarios, not a loan offer.</p>
+          <p>Nothing on this page is financial advice. For a real loan, talk to a loan officer or mortgage broker who knows your full picture.</p>
+        </section>
+
+        <section class="faq" aria-labelledby="faq-heading">
+          <h2 id="faq-heading">Frequently asked questions</h2>
+          <details>
+            <summary>How do I calculate a monthly mortgage payment?</summary>
+            <p>The standard formula is M = P × r × (1 + r)<sup>n</sup> ÷ ((1 + r)<sup>n</sup> − 1), where P is the loan principal, r is the monthly interest rate (APR divided by 12 and by 100), and n is the total number of monthly payments. The calculator shows the working after you press Calculate.</p>
+          </details>
+          <details>
+            <summary>What is PITI?</summary>
+            <p>Principal, Interest, Taxes, Insurance. The four components of a typical US monthly mortgage payment. Many lenders collect an escrow amount covering property tax and homeowner's insurance alongside the principal and interest.</p>
+          </details>
+          <details>
+            <summary>When do I have to pay PMI?</summary>
+            <p>On a conventional loan, PMI is usually required when your down payment is under 20% of the home price. Roughly 0.5% to 1.5% of the loan amount per year, paid monthly. You can usually request removal once you reach 20% equity.</p>
+          </details>
+          <details>
+            <summary>Does this calculator send my numbers anywhere?</summary>
+            <p>No. Everything runs in your browser. The numbers you type never leave your device.</p>
+          </details>
+        </section>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="ad-slot" data-ad-slot="sidebar" aria-hidden="true"></div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="site-footer-nav" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/calculators/">All calculators</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+
+      <section class="site-disclaimer" data-disclaimer aria-labelledby="disclaimer-heading">
+        <h2 id="disclaimer-heading">A quick, necessary word</h2>
+        <p>Every calculator on this site is built to give you a sensible, well-reasoned estimate. It is, however, exactly that: an estimate, for general information only. Nothing you see here is professional, legal, financial, medical, or tax advice, and it should not be treated as such.</p>
+        <p>Before you make a decision that actually matters, talk to a qualified professional who knows your specific situation: an accountant, a solicitor, a doctor, an IT consultant, whoever fits the question. They can factor in the bits a generic tool can't.</p>
+        <p>We take no liability and accept no responsibility for any loss, damage, or questionable life choice arising from acting on the numbers you see here. Use the results as a starting point for a better conversation, not as the final word.</p>
+        <p><strong>Affiliate disclosure:</strong> some links on this site are affiliate links. If you click through and buy or sign up for something, we may earn a small commission at no extra cost to you. It helps keep the calculators free and ad-light. We only recommend things we'd point a friend towards.</p>
+      </section>
+      <p class="site-copyright">&copy; 2026 WebCaretakers. All rights reserved.</p>
+      <p class="site-legal">WebCaretakers is a trading name of <a href="https://yeseo.io/" rel="noopener">Andrew Laws Associates Ltd</a>, registered in England and Wales (company no. 08602332). ICO registration ZA726704.</p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/calculators/mortgage.js"></script>
+  <script>
+    (function () {
+      'use strict';
+      var shortcutEl = document.querySelector('[data-bookmark-shortcut]');
+      if (shortcutEl) {
+        var isMac = /Mac|iPhone|iPad|iPod/i.test(navigator.platform || navigator.userAgent);
+        shortcutEl.textContent = isMac ? '\u2318' : 'Ctrl';
+      }
+
+      var form      = document.getElementById('mort-form');
+      if (!form) return;
+      var priceIn   = form.querySelector('[data-price]');
+      var dpIn      = form.querySelector('[data-dp]');
+      var dpModeIn  = form.querySelector('[data-dp-mode]');
+      var aprIn     = form.querySelector('[data-apr]');
+      var termIn    = form.querySelector('[data-term]');
+      var taxIn     = form.querySelector('[data-tax]');
+      var insIn     = form.querySelector('[data-ins]');
+      var hoaIn     = form.querySelector('[data-hoa]');
+      var pmiIn     = form.querySelector('[data-pmi]');
+      var resultEl  = document.querySelector('[data-result]');
+      var breakdown = document.querySelector('[data-breakdown]');
+      var proveBody = document.querySelector('[data-prove-it-body]');
+
+      var linePi       = document.querySelector('[data-line-pi]');
+      var lineTax      = document.querySelector('[data-line-tax]');
+      var lineIns      = document.querySelector('[data-line-ins]');
+      var lineHoa      = document.querySelector('[data-line-hoa]');
+      var linePmi      = document.querySelector('[data-line-pmi]');
+      var lineTotal    = document.querySelector('[data-line-total]');
+      var linePrincipal = document.querySelector('[data-line-principal]');
+      var lineInterest = document.querySelector('[data-line-interest]');
+      var lineCost     = document.querySelector('[data-line-cost]');
+
+      function fmt(n) {
+        if (typeof n !== 'number' || !isFinite(n)) return '—';
+        return '$' + n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      }
+
+      [priceIn, dpIn, dpModeIn, aprIn, termIn, taxIn, insIn, hoaIn, pmiIn].forEach(function (el) {
+        if (!el) return;
+        el.addEventListener('input', function () {
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: 'calculator_interaction',
+            calculator_name: 'US Mortgage Calculator',
+            field_name: el.name || el.id
+          });
+        });
+      });
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var args = {
+          homePrice: parseFloat(priceIn.value),
+          aprPercent: parseFloat(aprIn.value),
+          termYears: parseFloat(termIn.value),
+          propertyTaxYearly: parseFloat(taxIn.value) || 0,
+          insuranceYearly: parseFloat(insIn.value) || 0,
+          hoaMonthly: parseFloat(hoaIn.value) || 0,
+          pmiMonthly: parseFloat(pmiIn.value) || 0,
+        };
+        var dpVal = parseFloat(dpIn.value) || 0;
+        if (dpModeIn.value === 'percent') {
+          args.downPaymentPercent = dpVal;
+        } else {
+          args.downPayment = dpVal;
+        }
+
+        try {
+          var r = window.MortgageCalc.calculateMortgage(args);
+
+          resultEl.textContent = 'Monthly total: ' + fmt(r.monthlyTotal);
+          breakdown.hidden = false;
+
+          linePi.textContent = fmt(r.monthlyPI);
+          lineTax.textContent = fmt(r.monthlyTax);
+          lineIns.textContent = fmt(r.monthlyInsurance);
+          lineHoa.textContent = fmt(r.monthlyHoa);
+          linePmi.textContent = fmt(r.monthlyPmi);
+          lineTotal.textContent = fmt(r.monthlyTotal);
+          linePrincipal.textContent = fmt(r.principal);
+          lineInterest.textContent = fmt(r.totalInterest);
+          lineCost.textContent = fmt(r.totalCost);
+
+          var ltv = Math.round(r.loanToValue * 100);
+          proveBody.innerHTML = '<ul>' +
+            '<li><span>Loan principal</span><strong>' + fmt(r.principal) + '</strong></li>' +
+            '<li><span>Loan-to-value</span><strong>' + ltv + '%</strong></li>' +
+            '<li><span>Term</span><strong>' + r.numberOfPayments + ' monthly payments</strong></li>' +
+            '<li><span>Monthly P&amp;I</span><strong>' + fmt(r.monthlyPI) + '</strong></li>' +
+            '</ul>';
+
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: 'calculator_result',
+            calculator_name: 'US Mortgage Calculator',
+            result_value: r.monthlyTotal,
+            loan_principal: r.principal,
+            loan_term_years: args.termYears,
+            apr_percent: args.aprPercent
+          });
+        } catch (err) {
+          resultEl.textContent = err.message || 'Could not calculate.';
+          breakdown.hidden = true;
+          proveBody.innerHTML = '';
+        }
+      });
+    })();
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

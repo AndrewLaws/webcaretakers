@@ -843,3 +843,48 @@ button[type="submit"]:hover {
 .bmi-category--normal      { background: #dcfce7; color: #166534; }
 .bmi-category--overweight  { background: #fef3c7; color: #854d0e; }
 .bmi-category--obese       { background: #fee2e2; color: #991b1b; }
+
+/* Mortgage calculator: down payment combo (amount + $/% toggle) */
+.mort-dp-input {
+  display: flex;
+  gap: 0.4rem;
+  justify-self: end;
+}
+.mort-dp-input input[type="number"] { width: 7.5rem; }
+.mort-dp-input select { width: 4rem; }
+
+/* Mortgage result breakdown */
+.mort-breakdown {
+  margin-top: 1.25rem;
+  padding: 1rem 1.25rem;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+}
+.mort-breakdown h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
+  color: #334155;
+}
+.mort-breakdown h3 + ul { margin-bottom: 1rem; }
+.mort-breakdown ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.mort-breakdown li {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.4rem 0;
+  border-bottom: 1px solid #e2e8f0;
+  font-variant-numeric: tabular-nums;
+}
+.mort-breakdown li:last-child { border-bottom: none; }
+.mort-breakdown li span { color: #475569; }
+.mort-breakdown li strong { color: #0f172a; }
+.mort-breakdown__total {
+  margin-top: 0.25rem;
+  font-size: 1.05rem;
+}
+.mort-breakdown__total span,
+.mort-breakdown__total strong { color: #0f172a; font-weight: 700; }
