@@ -8,7 +8,8 @@
     "test:unit": "node --test scripts/*.test.js site/assets/js/calculators/*.test.js",
     "test:html": "npx htmlhint site/**/*.html",
     "generate": "node scripts/generate-site-files.js",
-    "research": "node scripts/research.js"
+    "research": "node scripts/research.js",
+    "prioritise": "node scripts/prioritise.js"
   },
   "repository": {
     "type": "git",

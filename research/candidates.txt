@@ -1,0 +1,66 @@
+# Candidate keywords for SEMrush batch prioritisation.
+# Lines starting with # are ignored. Blank lines are ignored.
+# Edit freely. Re-run `npm run prioritise` to refresh (cached 30 days per keyword).
+
+# --- Already shipped (keep for baseline comparison) ---
+broadband calculator
+percentage calculator
+photo resizer
+
+# --- Math ---
+tip calculator
+fraction calculator
+decimal to percent
+ratio calculator
+random number generator
+
+# --- Images ---
+image compressor
+convert png to jpg
+convert jpg to webp
+image cropper
+exif viewer
+
+# --- Finance ---
+mortgage calculator
+loan calculator
+compound interest calculator
+savings calculator
+income tax calculator
+salary calculator
+tip calculator
+car loan calculator
+
+# --- Health ---
+bmi calculator
+calorie calculator
+body fat calculator
+tdee calculator
+macro calculator
+pregnancy due date calculator
+
+# --- Property ---
+stamp duty calculator
+rental yield calculator
+mortgage affordability calculator
+house affordability calculator
+
+# --- Web / tech ---
+password generator
+password strength checker
+base64 encoder
+url encoder
+word counter
+character counter
+case converter
+hex to rgb
+color contrast checker
+domain age checker
+dns lookup
+
+# --- Hosting / SEO ---
+hosting cost calculator
+bandwidth calculator
+page speed calculator
+seo roi calculator
+keyword difficulty calculator

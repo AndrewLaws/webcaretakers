@@ -709,8 +709,14 @@ button[type="submit"]:hover {
   text-align: center;
 }
 
+/* The hidden attribute must beat any display rule (flex/grid/block on forms
+   and containers that start out hidden). Without this, .calc-form[hidden]
+   still renders as a flex column because display: flex beats hidden. */
+[hidden] { display: none !important; }
+
 /* Photo Resizer specific UI */
 .resizer-dropzone {
+  display: block;
   border: 2px dashed #c7d7f0;
   border-radius: 8px;
   padding: 2rem 1.25rem;

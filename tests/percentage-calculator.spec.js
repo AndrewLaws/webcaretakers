@@ -81,9 +81,16 @@ test.describe('Homepage landing page', () => {
     await expect(page.locator('[data-calculator]')).toHaveCount(0);
   });
 
-  test('features both live calculators as cards', async ({ page }) => {
-    await expect(page.getByRole('link', { name: 'Broadband Bandwidth Calculator' })).toBeVisible();
-    await expect(page.getByRole('link', { name: 'Percentage Calculator' })).toBeVisible();
+  test('features every live calculator from categories.json as a card', async ({ page }) => {
+    const fs = require('fs');
+    const path = require('path');
+    const categories = JSON.parse(
+      fs.readFileSync(path.join(__dirname, '..', 'categories.json'), 'utf8')
+    );
+    const tools = categories.categories.flatMap((c) => c.tools);
+    for (const tool of tools) {
+      await expect(page.getByRole('link', { name: tool.name, exact: true }).first()).toBeVisible();
+    }
   });
 
   test('links to the all-calculators hub', async ({ page }) => {
