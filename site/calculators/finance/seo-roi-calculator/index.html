@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SEO ROI Calculator | WebCaretakers</title>
+  <meta name="description" content="Work out the return on your SEO investment. Enter your monthly cost, organic traffic and conversion data to see ROI, monthly profit and the break-even traffic threshold.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/finance/seo-roi-calculator/">
+  <meta property="og:title" content="SEO ROI Calculator | WebCaretakers">
+  <meta property="og:description" content="Enter SEO cost, organic sessions and conversion data to get ROI, monthly profit, and the minimum traffic needed to break even.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/finance/seo-roi-calculator/">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var _stored = null;
+    try { _stored = localStorage.getItem('cookie-consent'); } catch (e) {}
+    var _initial = _stored === 'granted' ? 'granted' : 'denied';
+    gtag('consent', 'default', {
+      ad_storage: _initial, analytics_storage: _initial,
+      ad_user_data: _initial, ad_personalization: _initial,
+      functionality_storage: 'granted', security_storage: 'granted',
+      wait_for_update: 500
+    });
+  </script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "SEO ROI Calculator",
+    "url": "https://webcaretakers.com/calculators/finance/seo-roi-calculator/",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0" },
+    "author": {
+      "@type": "Person",
+      "name": "Andrew Laws",
+      "url": "https://yeseo.io/"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How do you calculate SEO ROI?",
+        "acceptedAnswer": { "@type": "Answer", "text": "SEO ROI = (Additional revenue from organic traffic \u2212 Cost of SEO) \u00f7 Cost of SEO \u00d7 100. Additional revenue is the extra organic sessions multiplied by your conversion rate and average conversion value. The cost is your total monthly SEO spend: agency or contractor fees, tools, and any content production costs." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the break-even sessions figure?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Break-even sessions is the minimum number of additional monthly organic visitors your SEO needs to deliver just to cover its cost. It is calculated as: monthly cost \u00f7 (conversion rate \u00d7 value per conversion). If your projected traffic growth sits below this number, your SEO spend is not yet paying for itself." }
+      },
+      {
+        "@type": "Question",
+        "name": "What should I enter as my conversion rate?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Use the conversion rate for your organic traffic specifically, not your site average. Organic visitors often convert at a different rate to paid traffic. Find it in Google Analytics or Search Console by filtering sessions by organic channel and dividing goal completions by organic sessions. If you do not have this data yet, 1\u20132% is a typical starting range for e-commerce; B2B lead generation is often lower." }
+      },
+      {
+        "@type": "Question",
+        "name": "What counts as the value per conversion?",
+        "acceptedAnswer": { "@type": "Answer", "text": "For e-commerce, use your average order value. For lead generation, use the average revenue a lead generates over its lifetime (or the average deal value if you have it). For ad-supported content, use the average revenue per session. The more accurately you can estimate this, the more useful the result." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does the calculator not account for how long SEO takes?",
+        "acceptedAnswer": { "@type": "Answer", "text": "SEO results build over time. This calculator takes a point-in-time snapshot: once you reach the projected session level, what does the return look like? It deliberately excludes the ramp-up period so you can model the steady-state economics cleanly. For a full payback model that includes ramp-up, you would need month-by-month traffic projections, which are too site-specific to generalise." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-banner-heading" aria-describedby="cookie-banner-text" hidden>
+    <div class="cookie-banner__inner">
+      <h2 id="cookie-banner-heading" class="cookie-banner__heading">A quick word about cookies</h2>
+      <p id="cookie-banner-text" class="cookie-banner__text">
+        We use cookies for analytics, so we can see which calculators people actually use and which ones need work. Nothing creepy, nothing sold on. You can say yes, say no, or read the <a href="/privacy/">privacy policy</a> first. Your choice sticks.
+      </p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-reject>Reject</button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>Accept</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var KEY = 'cookie-consent';
+      var banner = document.querySelector('[data-cookie-banner]');
+      if (!banner) return;
+      var stored = null;
+      try { stored = localStorage.getItem(KEY); } catch (e) {}
+      if (stored !== 'granted' && stored !== 'denied') { banner.hidden = false; }
+      function record(choice) {
+        try { localStorage.setItem(KEY, choice); } catch (e) {}
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('consent', 'update', {
+          ad_storage: choice, analytics_storage: choice,
+          ad_user_data: choice, ad_personalization: choice
+        });
+        banner.hidden = true;
+      }
+      var accept = banner.querySelector('[data-cookie-accept]');
+      var reject = banner.querySelector('[data-cookie-reject]');
+      if (accept) accept.addEventListener('click', function () { record('granted'); });
+      if (reject) reject.addEventListener('click', function () { record('denied'); });
+    })();
+  </script>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">WebCaretakers</a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <ul class="primary-nav__list">
+          <li class="primary-nav__item primary-nav__item--has-menu">
+            <button type="button" class="primary-nav__link" data-menu-toggle aria-haspopup="true" aria-expanded="false">Calculators <span class="primary-nav__caret" aria-hidden="true">▾</span></button>
+            <ul class="primary-nav__submenu">
+              <li><a href="/calculators/broadband/">Broadband</a></li>
+              <li><a href="/calculators/finance/">Finance</a></li>
+              <li><a href="/calculators/health/">Health</a></li>
+              <li><a href="/calculators/images/">Images</a></li>
+              <li><a href="/calculators/math/">Math</a></li>
+              <li class="primary-nav__submenu-sep"><a href="/calculators/">See all calculators</a></li>
+            </ul>
+          </li>
+          <li class="primary-nav__item"><a href="/about/" class="primary-nav__link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <main id="main-content">
+      <div class="container">
+        <nav aria-label="Breadcrumb" class="breadcrumbs">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/calculators/">Calculators</a></li>
+            <li><a href="/calculators/finance/">Finance</a></li>
+            <li aria-current="page">SEO ROI Calculator</li>
+          </ol>
+        </nav>
+
+        <h1>SEO ROI Calculator</h1>
+        <p class="intro">Enter your monthly SEO cost, current and projected organic traffic, and your conversion data. The calculator works out your return on investment, monthly profit, and the minimum traffic level needed to cover the cost. It builds a clearer picture of how the investment is performing and where the gaps are.</p>
+
+        <section class="eli5" aria-label="Plain-English explanation">
+          <h2>Explain like I'm 5 (what even is SEO ROI?)</h2>
+          <p>You pay someone to help more people find your website through Google. More visitors means more customers, which means more money. SEO ROI answers the question: are you making more money from those extra visitors than you're spending to get them? And if not, how many more visitors do you need before you are?</p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="in-content" aria-hidden="true"></div>
+
+        <section data-calculator class="calculator-card">
+          <h2>Calculate</h2>
+          <form id="seo-roi-form" class="calc-form" novalidate>
+
+            <div class="calc-row">
+              <label for="seo-currency">Currency</label>
+              <select id="seo-currency" data-currency aria-label="Currency">
+                <option value="GBP" selected>£ GBP</option>
+                <option value="USD">$ USD</option>
+                <option value="EUR">€ EUR</option>
+                <option value="CAD">CA$ CAD</option>
+                <option value="AUD">A$ AUD</option>
+              </select>
+            </div>
+
+            <div class="calc-row">
+              <label for="seo-cost">Monthly SEO cost (<span data-currency-symbol>£</span>)</label>
+              <input type="number" id="seo-cost" name="monthlyCost" min="1" step="any" value="1500" data-cost>
+            </div>
+
+            <div class="calc-row">
+              <label for="seo-current-sessions">Current monthly organic sessions</label>
+              <input type="number" id="seo-current-sessions" name="currentSessions" min="0" step="1" value="5000" data-current-sessions>
+            </div>
+
+            <div class="calc-row">
+              <label for="seo-projected-sessions">Projected monthly organic sessions</label>
+              <input type="number" id="seo-projected-sessions" name="projectedSessions" min="0" step="1" value="10000" data-projected-sessions>
+            </div>
+
+            <div class="calc-row">
+              <label for="seo-conversion-rate">Organic conversion rate (%)</label>
+              <input type="number" id="seo-conversion-rate" name="conversionRate" min="0.01" max="100" step="any" value="2" data-conversion-rate>
+            </div>
+
+            <div class="calc-row">
+              <label for="seo-value">Value per conversion (<span data-currency-symbol>£</span>)</label>
+              <input type="number" id="seo-value" name="valuePerConversion" min="0.01" step="any" value="75" data-value-per-conversion>
+            </div>
+
+            <div class="calc-row">
+              <label for="seo-period">Time period (months)</label>
+              <input type="number" id="seo-period" name="periodMonths" min="1" max="120" step="1" value="12" data-period>
+            </div>
+
+            <button type="submit" data-calculate>Calculate</button>
+          </form>
+
+          <div data-calculator-results class="calculator-results">
+            <div class="result-summary">
+              <p class="result-display" data-result>Enter your numbers, then press Calculate.</p>
+            </div>
+
+            <div class="mort-breakdown" data-breakdown hidden>
+
+              <h3>Monthly picture</h3>
+              <ul>
+                <li><span>Additional organic sessions</span><strong data-line-additional-sessions>—</strong></li>
+                <li><span>Additional conversions per month</span><strong data-line-additional-conversions>—</strong></li>
+                <li><span>Additional revenue per month</span><strong data-line-additional-revenue>—</strong></li>
+                <li><span>Monthly SEO cost</span><strong data-line-monthly-cost>—</strong></li>
+                <li class="mort-breakdown__total"><span>Monthly net profit / loss</span><strong data-line-monthly-profit>—</strong></li>
+              </ul>
+
+              <h3>Over <span data-label-period>12</span> months</h3>
+              <ul>
+                <li><span>Total investment</span><strong data-line-total-investment>—</strong></li>
+                <li><span>Total additional revenue</span><strong data-line-total-revenue>—</strong></li>
+                <li class="mort-breakdown__total"><span>Total net profit / loss</span><strong data-line-total-profit>—</strong></li>
+              </ul>
+
+              <h3>Return</h3>
+              <ul>
+                <li><span>ROI</span><strong data-line-roi>—</strong></li>
+                <li class="mort-breakdown__total"><span>For every <span data-currency-symbol-inline>£</span>1 invested</span><strong data-line-revenue-per-unit>—</strong></li>
+              </ul>
+
+              <h3>Break-even</h3>
+              <ul>
+                <li><span>Minimum additional sessions to cover cost</span><strong data-line-breakeven>—</strong></li>
+                <li class="mort-breakdown__total"><span>Status</span><strong data-line-status>—</strong></li>
+              </ul>
+
+            </div>
+
+            <details class="prove-it" data-prove-it>
+              <summary>Prove it</summary>
+              <div data-prove-it-body></div>
+              <p class="prove-it-source">Additional monthly conversions = additional sessions × (conversion rate ÷ 100). Additional monthly revenue = additional conversions × value per conversion. Monthly net profit = additional revenue − monthly cost. ROI = (total net profit ÷ total investment) × 100. Break-even sessions = monthly cost ÷ (conversion rate ÷ 100 ÷ value per conversion) — the minimum additional sessions needed for revenue to equal cost. Revenue per unit invested = additional monthly revenue ÷ monthly cost.</p>
+            </details>
+          </div>
+
+          <p class="bookmark-nudge">
+            Useful? Save this calculator: press <kbd data-bookmark-shortcut>Ctrl</kbd> + <kbd>D</kbd> to bookmark it.
+          </p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="below-results" aria-hidden="true"></div>
+
+        <section class="long-form">
+          <h2>How to get accurate inputs</h2>
+          <p>The quality of the output depends on the quality of the inputs. Here is where to find each one.</p>
+
+          <h3>Monthly SEO cost</h3>
+          <p>Add up everything you spend on SEO each month: agency or consultant fees, SEO tools and subscriptions, and any content you are paying to produce specifically for search. If your costs vary, use a three-month average. Do not include general website hosting or design costs unless they are directly tied to the SEO work.</p>
+
+          <h3>Current monthly organic sessions</h3>
+          <p>Pull this from Google Analytics. Go to Acquisition &gt; Traffic Acquisition, filter by Organic Search, and read the session count for the last 30 days. Use a recent, representative month — avoid months with unusual spikes or known tracking issues.</p>
+
+          <h3>Projected monthly organic sessions</h3>
+          <p>This is the harder number. If you are working with an SEO consultant or agency, use their traffic projection. If not, look at competitors who rank for your target keywords using a tool like Ahrefs or SEMrush, and estimate realistically where you could reach in 12 months. Being conservative here gives you a more honest result.</p>
+
+          <h3>Organic conversion rate</h3>
+          <p>Filter your conversions in Google Analytics by organic traffic specifically, not your overall site average. Organic and paid visitors often convert at different rates because the intent behind a search query differs from clicking an ad. If you have no organic-specific data yet, start with 1–2% for e-commerce and 0.5–1% for B2B lead generation as a baseline.</p>
+
+          <h3>Value per conversion</h3>
+          <p>For e-commerce, use your average order value. For lead generation, use the average revenue that a converted lead generates, either as a deal value or customer lifetime value depending on what you know. For content or ad-supported sites, use average revenue per session. The more precisely you can estimate this, the more the calculator tells you.</p>
+
+          <h2>What the break-even sessions figure tells you</h2>
+          <p>The break-even sessions figure is the minimum number of additional organic sessions per month your SEO needs to deliver just to cover its cost. Nothing more.</p>
+          <p>If your projected traffic is above the break-even threshold, the investment is covering its cost and returning something on top. If it is below the threshold, you are either not projecting enough traffic growth, your conversion rate is too low, or your value per conversion is too low to justify the spend at its current level. The calculator shows you which lever matters most: try adjusting each input individually and watch which one moves the needle most on the result.</p>
+
+          <h2>What this calculator does not account for</h2>
+          <p>This is a point-in-time, steady-state model. It assumes you have already reached the projected session level and are holding it. It does not model the ramp-up period, which for SEO is typically 3–12 months before results become meaningful. During that period your cost runs but your additional revenue has not yet materialised.</p>
+          <p>It also does not account for:</p>
+          <ul>
+            <li>Brand value: organic visibility builds brand recognition even for visitors who do not convert immediately</li>
+            <li>Assisted conversions: organic search often plays a role in the customer journey even when another channel gets the last-click credit</li>
+            <li>Compounding: traffic and authority built through SEO tends to grow over time, unlike paid traffic which stops when the budget stops</li>
+            <li>Competitor actions: what your competitors are doing to their organic presence affects your results</li>
+          </ul>
+          <p>For a broader view of how investment grows over time, try the <a href="/calculators/finance/compound-interest-calculator/">Compound Interest Calculator</a>. For a general-purpose return on any investment, see the <a href="/calculators/finance/roi-calculator/">ROI Calculator</a>.</p>
+          <p>Nothing on this page is financial advice. For an investment decision that matters, talk to a qualified professional.</p>
+        </section>
+
+        <section class="faq" aria-labelledby="faq-heading">
+          <h2 id="faq-heading">Frequently asked questions</h2>
+          <details>
+            <summary>How do you calculate SEO ROI?</summary>
+            <p>SEO ROI = (Additional revenue from organic traffic − Cost of SEO) ÷ Cost of SEO × 100. Additional revenue is the extra sessions your SEO delivers, multiplied by your conversion rate and average conversion value.</p>
+          </details>
+          <details>
+            <summary>What is the break-even sessions figure?</summary>
+            <p>The minimum additional monthly organic sessions your SEO needs to generate to cover its own cost. If your projected growth falls below this number, the investment is not yet paying for itself. Use it to challenge traffic projections and set realistic targets.</p>
+          </details>
+          <details>
+            <summary>What should I enter as my conversion rate?</summary>
+            <p>Use the conversion rate for organic traffic specifically. Find it in Google Analytics by filtering sessions and goal completions by the organic channel. If you do not have organic-specific data, 1–2% is a typical starting range for e-commerce; B2B lead generation is often lower.</p>
+          </details>
+          <details>
+            <summary>What counts as the value per conversion?</summary>
+            <p>For e-commerce, use average order value. For lead generation, use average deal value or customer lifetime value. The more accurately you can estimate this, the more useful the result.</p>
+          </details>
+          <details>
+            <summary>Why does the calculator not account for the SEO ramp-up period?</summary>
+            <p>This calculator models the steady-state economics: once you reach the projected traffic level, what does the return look like? Including ramp-up would require month-by-month traffic projections that are too site-specific to generalise. Use the steady-state result to decide whether the destination is worth reaching; factor in the ramp-up time separately when deciding whether the journey is right for you.</p>
+          </details>
+        </section>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="ad-slot" data-ad-slot="sidebar" aria-hidden="true"></div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="site-footer-nav" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/calculators/">All calculators</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+
+      <section class="site-disclaimer" data-disclaimer aria-labelledby="disclaimer-heading">
+        <h2 id="disclaimer-heading">A quick, necessary word</h2>
+        <p>Every calculator on this site is built to give you a sensible, well-reasoned estimate. It is, however, exactly that: an estimate, for general information only. Nothing you see here is professional, legal, financial, medical, or tax advice, and it should not be treated as such.</p>
+        <p>Before you make a decision that actually matters, talk to a qualified professional who knows your specific situation: an accountant, a solicitor, a doctor, an IT consultant, whoever fits the question. They can factor in the bits a generic tool can't.</p>
+        <p>We take no liability and accept no responsibility for any loss, damage, or questionable life choice arising from acting on the numbers you see here. Use the results as a starting point for a better conversation, not as the final word.</p>
+        <p><strong>Affiliate disclosure:</strong> some links on this site are affiliate links. If you click through and buy or sign up for something, we may earn a small commission at no extra cost to you. It helps keep the calculators free and ad-light. We only recommend things we'd point a friend towards.</p>
+      </section>
+      <p class="site-copyright">&copy; 2026 WebCaretakers. All rights reserved.</p>
+      <p class="site-legal">WebCaretakers is a trading name of <a href="https://yeseo.io/" rel="noopener">Andrew Laws Associates Ltd</a>, registered in England and Wales (company no. 08602332). ICO registration ZA726704.</p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/calculators/seo-roi.js"></script>
+  <script>
+    (function () {
+      'use strict';
+      var shortcutEl = document.querySelector('[data-bookmark-shortcut]');
+      if (shortcutEl) {
+        var isMac = /Mac|iPhone|iPad|iPod/i.test(navigator.platform || navigator.userAgent);
+        shortcutEl.textContent = isMac ? '\u2318' : 'Ctrl';
+      }
+
+      var form = document.getElementById('seo-roi-form');
+      if (!form) return;
+
+      var currencyIn      = form.querySelector('[data-currency]');
+      var costIn          = form.querySelector('[data-cost]');
+      var currentSessIn   = form.querySelector('[data-current-sessions]');
+      var projSessIn      = form.querySelector('[data-projected-sessions]');
+      var convRateIn      = form.querySelector('[data-conversion-rate]');
+      var valueIn         = form.querySelector('[data-value-per-conversion]');
+      var periodIn        = form.querySelector('[data-period]');
+
+      var resultEl            = document.querySelector('[data-result]');
+      var breakdown           = document.querySelector('[data-breakdown]');
+      var proveBody           = document.querySelector('[data-prove-it-body]');
+      var labelPeriod         = document.querySelector('[data-label-period]');
+
+      var lineAddSessions     = document.querySelector('[data-line-additional-sessions]');
+      var lineAddConversions  = document.querySelector('[data-line-additional-conversions]');
+      var lineAddRevenue      = document.querySelector('[data-line-additional-revenue]');
+      var lineMonthlyCost     = document.querySelector('[data-line-monthly-cost]');
+      var lineMonthlyProfit   = document.querySelector('[data-line-monthly-profit]');
+      var lineTotalInvestment = document.querySelector('[data-line-total-investment]');
+      var lineTotalRevenue    = document.querySelector('[data-line-total-revenue]');
+      var lineTotalProfit     = document.querySelector('[data-line-total-profit]');
+      var lineROI             = document.querySelector('[data-line-roi]');
+      var lineRevPerUnit      = document.querySelector('[data-line-revenue-per-unit]');
+      var lineBreakeven       = document.querySelector('[data-line-breakeven]');
+      var lineStatus          = document.querySelector('[data-line-status]');
+      var inlineSymbols       = document.querySelectorAll('[data-currency-symbol-inline]');
+
+      var CURRENCY_META = {
+        GBP: { symbol: '\u00a3', locale: 'en-GB' },
+        USD: { symbol: '$',      locale: 'en-US' },
+        EUR: { symbol: '\u20ac', locale: 'en-IE' },
+        CAD: { symbol: 'CA$',   locale: 'en-CA' },
+        AUD: { symbol: 'A$',    locale: 'en-AU' },
+      };
+
+      function currentCurrency() {
+        return CURRENCY_META[currencyIn.value] || CURRENCY_META.GBP;
+      }
+
+      function updateSymbols() {
+        var sym = currentCurrency().symbol;
+        document.querySelectorAll('[data-currency-symbol]').forEach(function (el) { el.textContent = sym; });
+        inlineSymbols.forEach(function (el) { el.textContent = sym; });
+      }
+      updateSymbols();
+      currencyIn.addEventListener('change', updateSymbols);
+
+      function fmtMoney(n) {
+        if (typeof n !== 'number' || !isFinite(n)) return '\u2014';
+        var c = currentCurrency();
+        var abs = Math.abs(n);
+        var str = c.symbol + abs.toLocaleString(c.locale, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        return n < 0 ? '\u2212' + str : str;
+      }
+
+      function fmtNum(n) {
+        if (typeof n !== 'number' || !isFinite(n)) return '\u2014';
+        return n.toLocaleString('en-GB');
+      }
+
+      [currencyIn, costIn, currentSessIn, projSessIn, convRateIn, valueIn, periodIn].forEach(function (el) {
+        if (!el) return;
+        el.addEventListener('input', function () {
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: 'calculator_interaction',
+            calculator_name: 'SEO ROI Calculator',
+            field_name: el.name || el.id
+          });
+        });
+      });
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        var args = {
+          monthlyCost: parseFloat(costIn.value),
+          currentSessions: parseInt(currentSessIn.value, 10) || 0,
+          projectedSessions: parseInt(projSessIn.value, 10) || 0,
+          conversionRate: parseFloat(convRateIn.value),
+          valuePerConversion: parseFloat(valueIn.value),
+          periodMonths: parseInt(periodIn.value, 10) || 12,
+        };
+
+        try {
+          var r = window.SEOROICalc.calculateSEOROI(args);
+
+          var roiSign = r.roiPercent >= 0 ? '+' : '';
+          resultEl.textContent = 'ROI: ' + roiSign + r.roiPercent.toFixed(1) + '% over ' + r.periodMonths + (r.periodMonths === 1 ? ' month' : ' months');
+          breakdown.hidden = false;
+
+          if (labelPeriod) labelPeriod.textContent = r.periodMonths;
+
+          lineAddSessions.textContent    = fmtNum(r.additionalSessions);
+          lineAddConversions.textContent = fmtNum(r.additionalMonthlyConversions) + ' per month';
+          lineAddRevenue.textContent     = fmtMoney(r.additionalMonthlyRevenue) + ' per month';
+          lineMonthlyCost.textContent    = fmtMoney(r.monthlyCost);
+          lineMonthlyProfit.textContent  = fmtMoney(r.monthlyNetProfit) + ' per month';
+
+          lineTotalInvestment.textContent = fmtMoney(r.totalInvestment);
+          lineTotalRevenue.textContent    = fmtMoney(r.totalAdditionalRevenue);
+          lineTotalProfit.textContent     = fmtMoney(r.totalNetProfit);
+
+          lineROI.textContent         = roiSign + r.roiPercent.toFixed(1) + '%';
+          lineRevPerUnit.textContent  = fmtMoney(r.revenuePerUnitInvested) + ' back';
+
+          lineBreakeven.textContent = fmtNum(r.breakEvenSessionsPerMonth) + ' sessions/month';
+          lineStatus.textContent    = r.isProfitable
+            ? 'Profitable at projected traffic'
+            : 'Not yet profitable — projected traffic is below break-even';
+
+          var sym = currentCurrency().symbol;
+          proveBody.innerHTML = '<ul>' +
+            '<li><span>Monthly cost</span><strong>' + fmtMoney(r.monthlyCost) + '</strong></li>' +
+            '<li><span>Additional sessions/month</span><strong>' + fmtNum(r.additionalSessions) + '</strong></li>' +
+            '<li><span>Conversion rate</span><strong>' + args.conversionRate + '%</strong></li>' +
+            '<li><span>Value per conversion</span><strong>' + fmtMoney(args.valuePerConversion) + '</strong></li>' +
+            '<li><span>Additional conversions/month</span><strong>' + fmtNum(r.additionalMonthlyConversions) + '</strong></li>' +
+            '<li><span>Additional revenue/month</span><strong>' + fmtMoney(r.additionalMonthlyRevenue) + '</strong></li>' +
+            '<li><span>Monthly net profit</span><strong>' + fmtMoney(r.monthlyNetProfit) + '</strong></li>' +
+            '<li><span>ROI over ' + r.periodMonths + ' months</span><strong>' + roiSign + r.roiPercent.toFixed(1) + '%</strong></li>' +
+            '</ul>';
+
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: 'calculator_result',
+            calculator_name: 'SEO ROI Calculator',
+            result_value: r.roiPercent,
+            monthly_cost: r.monthlyCost,
+            additional_sessions: r.additionalSessions,
+            conversion_rate: args.conversionRate,
+            is_profitable: r.isProfitable,
+            currency: currencyIn.value
+          });
+
+        } catch (err) {
+          resultEl.textContent = err.message || 'Could not calculate.';
+          breakdown.hidden = true;
+          proveBody.innerHTML = '';
+        }
+      });
+    })();
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>
