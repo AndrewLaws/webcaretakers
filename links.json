@@ -22,6 +22,8 @@
     { "phrase": "US mortgage calculator", "url": "/calculators/finance/mortgage-calculator/" },
     { "phrase": "UK Mortgage Calculator", "url": "/calculators/finance/uk-mortgage-calculator/" },
     { "phrase": "UK mortgage calculator", "url": "/calculators/finance/uk-mortgage-calculator/" },
+    { "phrase": "Loan Calculator", "url": "/calculators/finance/loan-calculator/" },
+    { "phrase": "loan calculator", "url": "/calculators/finance/loan-calculator/" },
     { "phrase": "finance calculators", "url": "/calculators/finance/" },
     { "phrase": "privacy policy", "url": "/privacy/" },
     { "phrase": "terms of use", "url": "/terms/" },
