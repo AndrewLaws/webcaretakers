@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BMI Calculator | WebCaretakers</title>
+  <meta name="description" content="Free BMI calculator. Type your weight and height in metric or imperial units and see your body mass index with the WHO category, plus the workings and the honest caveats.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/health/bmi-calculator/">
+  <meta property="og:title" content="BMI Calculator | WebCaretakers">
+  <meta property="og:description" content="Work out your BMI in metric or imperial units, with the workings and an honest note on what BMI does and does not tell you.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/health/bmi-calculator/">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="/assets/css/main.css">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var _stored = null;
+    try { _stored = localStorage.getItem('cookie-consent'); } catch (e) {}
+    var _initial = _stored === 'granted' ? 'granted' : 'denied';
+    gtag('consent', 'default', {
+      ad_storage: _initial, analytics_storage: _initial,
+      ad_user_data: _initial, ad_personalization: _initial,
+      functionality_storage: 'granted', security_storage: 'granted',
+      wait_for_update: 500
+    });
+  </script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "BMI Calculator",
+    "url": "https://webcaretakers.com/calculators/health/bmi-calculator/",
+    "applicationCategory": "HealthApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "author": {
+      "@type": "Person",
+      "name": "Andrew Laws",
+      "url": "https://yeseo.io/"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is a healthy BMI?",
+        "acceptedAnswer": { "@type": "Answer", "text": "The World Health Organisation classifies a BMI of 18.5 to 24.9 as the \u2018normal\u2019 range for most adults. Below 18.5 is underweight, 25 to 29.9 is overweight, and 30 or above is obese. These are screening categories, not a diagnosis." }
+      },
+      {
+        "@type": "Question",
+        "name": "How is BMI calculated?",
+        "acceptedAnswer": { "@type": "Answer", "text": "In metric units: weight in kilograms divided by the square of your height in metres. In imperial: weight in pounds multiplied by 703, divided by the square of your height in inches." }
+      },
+      {
+        "@type": "Question",
+        "name": "Is BMI accurate for athletes or very muscular people?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Often not. BMI only uses weight and height, so it cannot tell muscle from fat. A rugby player or bodybuilder will often score in the overweight or obese range while being lean. Treat the number as one input, not a verdict." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does BMI apply to children?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. Children and teenagers need age- and sex-specific BMI-for-age percentiles rather than the adult cut-offs used here. Speak to a GP or paediatrician." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-banner-heading" aria-describedby="cookie-banner-text" hidden>
+    <div class="cookie-banner__inner">
+      <h2 id="cookie-banner-heading" class="cookie-banner__heading">A quick word about cookies</h2>
+      <p id="cookie-banner-text" class="cookie-banner__text">
+        We use cookies for analytics, so we can see which calculators people actually use and which ones need work. Nothing creepy, nothing sold on. You can say yes, say no, or read the <a href="/privacy/">privacy policy</a> first. Your choice sticks.
+      </p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-reject>Reject</button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>Accept</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var KEY = 'cookie-consent';
+      var banner = document.querySelector('[data-cookie-banner]');
+      if (!banner) return;
+      var stored = null;
+      try { stored = localStorage.getItem(KEY); } catch (e) {}
+      if (stored !== 'granted' && stored !== 'denied') { banner.hidden = false; }
+      function record(choice) {
+        try { localStorage.setItem(KEY, choice); } catch (e) {}
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('consent', 'update', {
+          ad_storage: choice, analytics_storage: choice,
+          ad_user_data: choice, ad_personalization: choice
+        });
+        banner.hidden = true;
+      }
+      var accept = banner.querySelector('[data-cookie-accept]');
+      var reject = banner.querySelector('[data-cookie-reject]');
+      if (accept) accept.addEventListener('click', function () { record('granted'); });
+      if (reject) reject.addEventListener('click', function () { record('denied'); });
+    })();
+  </script>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">WebCaretakers</a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <ul class="primary-nav__list">
+          <li class="primary-nav__item primary-nav__item--has-menu">
+            <button type="button" class="primary-nav__link" data-menu-toggle aria-haspopup="true" aria-expanded="false">Calculators <span class="primary-nav__caret" aria-hidden="true">▾</span></button>
+            <ul class="primary-nav__submenu">
+              <li><a href="/calculators/broadband/">Broadband</a></li>
+              <li><a href="/calculators/health/">Health</a></li>
+              <li><a href="/calculators/images/">Images</a></li>
+              <li><a href="/calculators/math/">Math</a></li>
+              <li class="primary-nav__submenu-sep"><a href="/calculators/">See all calculators</a></li>
+            </ul>
+          </li>
+          <li class="primary-nav__item"><a href="/about/" class="primary-nav__link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <main id="main-content">
+      <div class="container">
+        <nav aria-label="Breadcrumb" class="breadcrumbs">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/calculators/">Calculators</a></li>
+            <li><a href="/calculators/health/">Health</a></li>
+            <li aria-current="page">BMI Calculator</li>
+          </ol>
+        </nav>
+
+        <h1>BMI Calculator</h1>
+        <p class="intro">Work out your body mass index in metric or imperial units. You will get the number, the category the WHO puts it in, and a clear note on what BMI can and cannot tell you.</p>
+
+        <section class="eli5" aria-label="Plain-English explanation">
+          <h2>Explain like I'm 5 (what even is this calculator?)</h2>
+          <p>BMI is a quick sum that compares your weight to your height. Type in two numbers, get one number back. Doctors use it as a rough signpost: is someone likely carrying too little weight for their height, about right, or too much? It is a signpost, not a verdict.</p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="in-content" aria-hidden="true"></div>
+
+        <section data-calculator class="calculator-card">
+          <h2>Calculate</h2>
+          <form id="bmi-form" class="calc-form" novalidate>
+            <div class="calc-row">
+              <label for="bmi-units">Units</label>
+              <select id="bmi-units" name="units" data-units>
+                <option value="metric">Metric (kg, cm)</option>
+                <option value="imperial">Imperial (lb, ft/in)</option>
+              </select>
+            </div>
+            <div class="calc-row">
+              <label for="bmi-weight" data-label-weight>Weight (kg)</label>
+              <input type="number" id="bmi-weight" name="weight" min="1" step="any" value="70" data-weight>
+            </div>
+
+            <!-- Metric height: one input in cm -->
+            <div class="calc-row" data-row-height-metric>
+              <label for="bmi-height-cm">Height (cm)</label>
+              <input type="number" id="bmi-height-cm" name="heightCm" min="30" step="any" value="175" data-height-cm>
+            </div>
+
+            <!-- Imperial height: feet + inches side by side -->
+            <div class="calc-row" data-row-height-imperial hidden>
+              <label for="bmi-height-ft">Height</label>
+              <div class="bmi-height-imperial">
+                <input type="number" id="bmi-height-ft" name="heightFt" min="1" max="9" step="1" value="5" data-height-ft aria-label="Feet">
+                <span>ft</span>
+                <input type="number" id="bmi-height-in" name="heightInches" min="0" max="11" step="1" value="9" data-height-in aria-label="Inches">
+                <span>in</span>
+              </div>
+            </div>
+
+            <button type="submit" data-calculate>Calculate BMI</button>
+          </form>
+
+          <div data-calculator-results class="calculator-results">
+            <div class="result-summary">
+              <p class="result-display" data-result>Enter your weight and height, then press Calculate.</p>
+              <p class="bmi-category" data-category hidden></p>
+            </div>
+            <details class="prove-it" data-prove-it>
+              <summary>Prove it</summary>
+              <div data-prove-it-body></div>
+              <p class="prove-it-source">Metric formula: BMI = weight (kg) ÷ height (m)². Imperial formula: BMI = (weight (lb) × 703) ÷ height (in)². Categories: under 18.5 underweight, 18.5 to 24.9 normal, 25 to 29.9 overweight, 30 and over obese. Source: World Health Organisation.</p>
+            </details>
+          </div>
+
+          <p class="bookmark-nudge">
+            Useful? Save this calculator: press <kbd data-bookmark-shortcut>Ctrl</kbd> + <kbd>D</kbd> to bookmark it.
+          </p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="below-results" aria-hidden="true"></div>
+
+        <section class="long-form">
+          <h2>What BMI actually measures</h2>
+          <p>BMI, body mass index, is a number that compares weight to height. Nothing more, nothing less. It was devised in the 1830s by a Belgian statistician who was looking for a tidy way to describe the "average man" in a population. It was never meant to be a health diagnosis for an individual. Somewhere along the way, that got forgotten.</p>
+          <p>As a rough filter across millions of people, it is useful. As a description of the person standing in front of you, it has serious limitations. Knowing both at once is how you use it sensibly.</p>
+
+          <h2>When BMI is a bad fit</h2>
+          <p>BMI uses only weight and height, so any person whose body composition sits outside the statistical middle is poorly described by it.</p>
+          <ul>
+            <li><strong>Athletes and very muscular people</strong> routinely score as overweight or obese while carrying very little body fat. Muscle is denser than fat; the scale can't tell the difference.</li>
+            <li><strong>Older adults</strong> tend to lose muscle mass over time, so a "normal" BMI can mask a higher body-fat percentage than the number suggests.</li>
+            <li><strong>Children and teenagers</strong> need BMI-for-age percentiles that account for growth. The adult cut-offs used here do not apply.</li>
+            <li><strong>Pregnant and post-natal women</strong> are not well described by BMI for obvious reasons.</li>
+            <li><strong>People of different ethnic backgrounds</strong> carry body fat differently, and the WHO itself has flagged that standard thresholds may overestimate healthy ranges for some Asian populations and underestimate risk for others. A GP who knows you will interpret the number more carefully than a generic formula can.</li>
+          </ul>
+
+          <h2>How to use the number honestly</h2>
+          <p>Treat BMI as one reading on one gauge. If it lands well outside the "normal" band, it is worth a conversation with a doctor who can look at the rest of the picture: waist measurement, blood pressure, blood tests, family history, how you actually feel. If it lands near the middle, that is reassuring but not a green light to ignore everything else. Plenty of people with a "normal" BMI have poor underlying health; plenty with a "high" BMI are fit and well.</p>
+          <p>Nothing on this page is medical advice. If you are worried about your weight, see a professional who can look at you, not a form on a website.</p>
+        </section>
+
+        <section class="faq" aria-labelledby="faq-heading">
+          <h2 id="faq-heading">Frequently asked questions</h2>
+          <details>
+            <summary>What is a healthy BMI?</summary>
+            <p>The WHO classifies 18.5 to 24.9 as "normal" for most adults. Below 18.5 is underweight, 25 to 29.9 is overweight, 30 and above is obese. These are screening categories, not a diagnosis.</p>
+          </details>
+          <details>
+            <summary>How is BMI calculated?</summary>
+            <p>Metric: weight in kilograms divided by the square of your height in metres. Imperial: weight in pounds times 703, divided by the square of your height in inches.</p>
+          </details>
+          <details>
+            <summary>Is BMI accurate for athletes or very muscular people?</summary>
+            <p>Often not. BMI only knows weight and height, so it cannot tell muscle from fat. A lean rugby player or bodybuilder will often score in the overweight or obese range.</p>
+          </details>
+          <details>
+            <summary>Does BMI apply to children?</summary>
+            <p>No. Children and teenagers need age- and sex-specific BMI-for-age percentiles rather than the adult cut-offs used here. Speak to a GP or paediatrician.</p>
+          </details>
+          <details>
+            <summary>Does this calculator send my numbers anywhere?</summary>
+            <p>No. Everything runs in your browser. The numbers you type never leave your device.</p>
+          </details>
+        </section>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="ad-slot" data-ad-slot="sidebar" aria-hidden="true"></div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="site-footer-nav" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/calculators/">All calculators</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+
+      <section class="site-disclaimer" data-disclaimer aria-labelledby="disclaimer-heading">
+        <h2 id="disclaimer-heading">A quick, necessary word</h2>
+        <p>Every calculator on this site is built to give you a sensible, well-reasoned estimate. It is, however, exactly that: an estimate, for general information only. Nothing you see here is professional, legal, financial, medical, or tax advice, and it should not be treated as such.</p>
+        <p>Before you make a decision that actually matters, talk to a qualified professional who knows your specific situation: an accountant, a solicitor, a doctor, an IT consultant, whoever fits the question. They can factor in the bits a generic tool can't.</p>
+        <p>We take no liability and accept no responsibility for any loss, damage, or questionable life choice arising from acting on the numbers you see here. Use the results as a starting point for a better conversation, not as the final word.</p>
+        <p><strong>Affiliate disclosure:</strong> some links on this site are affiliate links. If you click through and buy or sign up for something, we may earn a small commission at no extra cost to you. It helps keep the calculators free and ad-light. We only recommend things we'd point a friend towards.</p>
+      </section>
+      <p class="site-copyright">&copy; 2026 WebCaretakers. All rights reserved.</p>
+      <p class="site-legal">WebCaretakers is a trading name of <a href="https://yeseo.io/" rel="noopener">Andrew Laws Associates Ltd</a>, registered in England and Wales (company no. 08602332). ICO registration ZA726704.</p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/calculators/bmi.js"></script>
+  <script>
+    (function () {
+      'use strict';
+      var shortcutEl = document.querySelector('[data-bookmark-shortcut]');
+      if (shortcutEl) {
+        var isMac = /Mac|iPhone|iPad|iPod/i.test(navigator.platform || navigator.userAgent);
+        shortcutEl.textContent = isMac ? '\u2318' : 'Ctrl';
+      }
+
+      var form        = document.getElementById('bmi-form');
+      if (!form) return;
+      var unitsIn     = form.querySelector('[data-units]');
+      var weightIn    = form.querySelector('[data-weight]');
+      var heightCmIn  = form.querySelector('[data-height-cm]');
+      var heightFtIn  = form.querySelector('[data-height-ft]');
+      var heightInIn  = form.querySelector('[data-height-in]');
+      var labelWeight = form.querySelector('[data-label-weight]');
+      var rowMetric   = form.querySelector('[data-row-height-metric]');
+      var rowImperial = form.querySelector('[data-row-height-imperial]');
+      var resultEl    = document.querySelector('[data-result]');
+      var categoryEl  = document.querySelector('[data-category]');
+      var proveBody   = document.querySelector('[data-prove-it-body]');
+
+      function applyUnits() {
+        var u = unitsIn.value;
+        if (u === 'metric') {
+          labelWeight.textContent = 'Weight (kg)';
+          rowMetric.hidden = false;
+          rowImperial.hidden = true;
+        } else {
+          labelWeight.textContent = 'Weight (lb)';
+          rowMetric.hidden = true;
+          rowImperial.hidden = false;
+        }
+      }
+      unitsIn.addEventListener('change', applyUnits);
+      applyUnits();
+
+      [unitsIn, weightIn, heightCmIn, heightFtIn, heightInIn].forEach(function (el) {
+        if (!el) return;
+        el.addEventListener('input', function () {
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: 'calculator_interaction',
+            calculator_name: 'BMI Calculator',
+            field_name: el.name || el.id
+          });
+        });
+      });
+
+      function categoryClass(cat) {
+        return 'bmi-category bmi-category--' + cat.toLowerCase();
+      }
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var units = unitsIn.value;
+        var weight = parseFloat(weightIn.value);
+        if (isNaN(weight) || weight <= 0) {
+          resultEl.textContent = 'Enter a weight greater than zero.';
+          categoryEl.hidden = true;
+          proveBody.innerHTML = '';
+          return;
+        }
+
+        var args, working;
+        if (units === 'metric') {
+          var cm = parseFloat(heightCmIn.value);
+          if (isNaN(cm) || cm <= 0) {
+            resultEl.textContent = 'Enter a height greater than zero.';
+            categoryEl.hidden = true;
+            proveBody.innerHTML = '';
+            return;
+          }
+          var m = cm / 100;
+          args = { units: 'metric', weightKg: weight, heightM: m };
+        } else {
+          var ft = parseFloat(heightFtIn.value) || 0;
+          var inches = parseFloat(heightInIn.value) || 0;
+          var totalIn = ft * 12 + inches;
+          if (totalIn <= 0) {
+            resultEl.textContent = 'Enter a height greater than zero.';
+            categoryEl.hidden = true;
+            proveBody.innerHTML = '';
+            return;
+          }
+          args = { units: 'imperial', weightLb: weight, heightIn: totalIn };
+        }
+
+        try {
+          var r = window.BMICalc.calculateBMI(args);
+          resultEl.textContent = 'Your BMI is ' + r.bmi;
+          categoryEl.textContent = r.category;
+          categoryEl.className = categoryClass(r.category);
+          categoryEl.hidden = false;
+
+          if (units === 'metric') {
+            var mDisp = (args.heightM).toFixed(2);
+            working = r.bmi + ' = ' + args.weightKg + ' \u00f7 (' + mDisp + ' \u00d7 ' + mDisp + ')';
+          } else {
+            working = r.bmi + ' = (' + args.weightLb + ' \u00d7 703) \u00f7 (' + args.heightIn + ' \u00d7 ' + args.heightIn + ')';
+          }
+          proveBody.innerHTML = '<ul><li><span>Working</span><strong>' + working + '</strong></li><li><span>Category</span><strong>' + r.category + '</strong></li></ul>';
+
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: 'calculator_result',
+            calculator_name: 'BMI Calculator',
+            result_value: r.bmi,
+            calculator_category: r.category,
+            calculator_units: units
+          });
+        } catch (err) {
+          resultEl.textContent = err.message || 'Could not calculate.';
+          categoryEl.hidden = true;
+          proveBody.innerHTML = '';
+        }
+      });
+    })();
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

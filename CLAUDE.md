@@ -61,6 +61,26 @@ Rationale: cost control and abuse protection. A popular calculator that triggers
 - Category pages: `/calculators/{category}/`
 - Each calculator is a directory with `index.html` for clean URLs.
 
+## Country-specific calculators (UK, US, etc.)
+
+When a calculator is only valid for one country (tax, mortgage, stamp duty, anything regulated), apply every one of these signals so Google routes the right users. Missing any one of them weakens the whole setup.
+
+1. **URL slug**: country at the front, e.g. `/calculators/finance/uk-mortgage-calculator/`, `/calculators/finance/us-tax-calculator/`. Never hide country in the middle of the slug.
+2. **`<title>` and `<h1>`**: start with the country, e.g. "UK Mortgage Calculator". Do not assume it from context.
+3. **Meta description**: state the country focus in the first clause.
+4. **hreflang tags in `<head>`**: self-reference the country, and cross-reference any sibling variant (UK ↔ US). Always include `x-default`.
+   ```html
+   <link rel="alternate" hreflang="en-GB" href="https://webcaretakers.com/calculators/finance/uk-mortgage-calculator/">
+   <link rel="alternate" hreflang="en-US" href="https://webcaretakers.com/calculators/finance/mortgage-calculator/">
+   <link rel="alternate" hreflang="x-default" href="https://webcaretakers.com/calculators/finance/mortgage-calculator/">
+   ```
+5. **Schema.org `SoftwareApplication`**: add `"inLanguage": "en-GB"` (or `en-US`) and `"countriesSupported": "GB"` (or `US`).
+6. **Cross-link at the top of the page**: a small "Looking for the US version? →" / "UK version? →" callout so users self-route and link equity flows between variants.
+7. **Content signals**: use the country's currency symbol, terminology (HMRC, IRS, council tax, property tax, stamp duty, PMI), and realistic thresholds. Do not mix examples across countries.
+8. **`<html lang>`**: stays `en-GB` site-wide because we write in British English as a brand decision, even on US-targeted pages. The country-targeting work is done by the signals above, not by the root `lang` attribute.
+
+Global calculators (BMI, percentage, photo resizer, etc.) do not need any of this — they stay on the site default.
+
 ## GTM and tracking
 
 - GTM container in base template (head and body snippets).

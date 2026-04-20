@@ -1,0 +1,94 @@
+{
+  "phrase": [
+    {
+      "Keyword": "salary calculator",
+      "Search Volume": "165000",
+      "CPC": "2.16",
+      "Competition": "0.01",
+      "Number of Results": "255000000",
+      "Trends": "1.00,0.82,1.00,0.82,0.82,0.82,0.82,0.82,1.00,0.67,0.54,1.00"
+    }
+  ],
+  "related": [
+    {
+      "Keyword": "grade calculator",
+      "Search Volume": "673000",
+      "CPC": "0",
+      "Competition": "0",
+      "Number of Results": "638000000",
+      "Trends": "0.24,0.30,0.44,0.66,0.81,0.20,0.08,0.10,0.24,0.44,0.06,0.06"
+    },
+    {
+      "Keyword": "paycheck calculator",
+      "Search Volume": "450000",
+      "CPC": "5.33",
+      "Competition": "0.03",
+      "Number of Results": "32000000",
+      "Trends": "1.00,0.81,0.81,0.81,1.00,0.81,0.81,1.00,0.81,0.81,0.81,0.66"
+    },
+    {
+      "Keyword": "tax calculator",
+      "Search Volume": "165000",
+      "CPC": "0.82",
+      "Competition": "0.15",
+      "Number of Results": "144",
+      "Trends": "0.81,0.44,0.36,0.30,0.20,0.20,0.20,0.20,0.20,0.24,0.24,0.30"
+    },
+    {
+      "Keyword": "401k calculator",
+      "Search Volume": "135000",
+      "CPC": "0.37",
+      "Competition": "0.13",
+      "Number of Results": "398000000",
+      "Trends": "1.00,0.81,0.66,0.54,0.81,0.81,1.00,1.00,0.81,1.00,0.66,0.81"
+    },
+    {
+      "Keyword": "adp calculator",
+      "Search Volume": "110000",
+      "CPC": "15.15",
+      "Competition": "0",
+      "Number of Results": "22400000",
+      "Trends": "1.00,0.82,1.00,1.00,1.00,1.00,1.00,1.00,1.00,1.00,1.00,0.82"
+    },
+    {
+      "Keyword": "adp paycheck calculator",
+      "Search Volume": "110000",
+      "CPC": "13.67",
+      "Competition": "0",
+      "Number of Results": "87",
+      "Trends": "0.54,0.44,0.54,0.44,0.44,0.54,0.66,0.54,1.00,0.66,0.81,0.81"
+    },
+    {
+      "Keyword": "mypay dfas",
+      "Search Volume": "110000",
+      "CPC": "0",
+      "Competition": "0",
+      "Number of Results": "145",
+      "Trends": "0.54,0.24,0.29,0.20,0.13,0.20,0.24,0.20,0.29,0.29,0.29,0.29"
+    },
+    {
+      "Keyword": "hour calculator",
+      "Search Volume": "90500",
+      "CPC": "2.72",
+      "Competition": "0",
+      "Number of Results": "954000000",
+      "Trends": "0.67,0.67,0.67,0.67,0.67,0.67,0.67,0.54,0.67,0.54,0.67,0.44"
+    },
+    {
+      "Keyword": "income tax calculator",
+      "Search Volume": "90500",
+      "CPC": "0.35",
+      "Competition": "0.14",
+      "Number of Results": "139",
+      "Trends": "1.00,0.54,0.36,0.36,0.24,0.24,0.30,0.24,0.24,0.24,0.30,0.36"
+    },
+    {
+      "Keyword": "bah calculator",
+      "Search Volume": "74000",
+      "CPC": "1.68",
+      "Competition": "0",
+      "Number of Results": "5060000",
+      "Trends": "0.54,0.44,0.44,0.44,0.44,0.44,0.54,0.44,0.44,0.44,0.44,0.54"
+    }
+  ]
+}

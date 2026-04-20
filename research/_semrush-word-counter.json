@@ -1,0 +1,94 @@
+{
+  "phrase": [
+    {
+      "Keyword": "word counter",
+      "Search Volume": "823000",
+      "CPC": "0.08",
+      "Competition": "0.17",
+      "Number of Results": "2370000000",
+      "Trends": "0.44,0.54,0.24,0.44,0.36,0.20,0.20,0.44,0.54,0.54,0.44,0.36"
+    }
+  ],
+  "related": [
+    {
+      "Keyword": "word count",
+      "Search Volume": "301000",
+      "CPC": "0.08",
+      "Competition": "0.17",
+      "Number of Results": "1610000000",
+      "Trends": "0.29,0.54,0.44,0.29,0.29,0.20,0.20,0.24,0.36,0.54,0.36,0.44"
+    },
+    {
+      "Keyword": "words",
+      "Search Volume": "110000",
+      "CPC": "0.57",
+      "Competition": "0.02",
+      "Number of Results": "4440000000",
+      "Trends": "0.81,0.66,0.66,0.66,0.66,0.44,0.44,0.54,0.81,0.81,0.66,0.66"
+    },
+    {
+      "Keyword": "character count",
+      "Search Volume": "60500",
+      "CPC": "0.06",
+      "Competition": "0.13",
+      "Number of Results": "127",
+      "Trends": "0.54,0.36,0.36,0.44,0.66,0.54,0.66,0.54,0.44,1.00,1.00,1.00"
+    },
+    {
+      "Keyword": "wordcounter",
+      "Search Volume": "49500",
+      "CPC": "0.08",
+      "Competition": "0.17",
+      "Number of Results": "1260000",
+      "Trends": "0.36,0.55,1.00,0.55,0.45,0.24,0.24,0.30,0.55,0.55,0.45,0.36"
+    },
+    {
+      "Keyword": "sentence counter",
+      "Search Volume": "18100",
+      "CPC": "0.09",
+      "Competition": "0.07",
+      "Number of Results": "444000000",
+      "Trends": "0.44,0.44,0.81,0.67,0.67,0.24,0.19,0.44,0.54,0.81,1.00,0.67"
+    },
+    {
+      "Keyword": "words counter",
+      "Search Volume": "18100",
+      "CPC": "0.08",
+      "Competition": "0.17",
+      "Number of Results": "143",
+      "Trends": "0.67,0.36,1.00,1.00,0.44,0.24,0.44,0.36,0.44,0.67,0.67,0.36"
+    },
+    {
+      "Keyword": "word count checker",
+      "Search Volume": "14800",
+      "CPC": "0.1",
+      "Competition": "0.3",
+      "Number of Results": "467000000",
+      "Trends": "0.54,0.81,0.54,0.54,0.54,0.29,0.29,0.54,1.00,0.81,0.81,0.54"
+    },
+    {
+      "Keyword": "word online word count",
+      "Search Volume": "12100",
+      "CPC": "0.1",
+      "Competition": "0.1",
+      "Number of Results": "1570000000",
+      "Trends": "0.00,0.00,0.00,0.08,0.29,1.00,0.00,0.00,0.03,0.05,0.04,0.10"
+    },
+    {
+      "Keyword": "wordcount",
+      "Search Volume": "12100",
+      "CPC": "0.08",
+      "Competition": "0.17",
+      "Number of Results": "11800000",
+      "Trends": "0.44,0.54,0.54,0.44,0.44,0.36,0.29,0.36,0.54,0.44,0.54,0.36"
+    },
+    {
+      "Keyword": "how many words is this",
+      "Search Volume": "9900",
+      "CPC": "0.08",
+      "Competition": "0.28",
+      "Number of Results": "183",
+      "Trends": "0.66,0.66,0.54,0.81,0.66,0.44,0.36,0.66,1.00,1.00,1.00,0.81"
+    }
+  ]
+}

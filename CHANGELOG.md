@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 ### Added
+- BMI Calculator at `/calculators/health/bmi-calculator/`: metric + imperial unit toggle, WHO category (underweight/normal/overweight/obese) colour-coded pill, ELI5, Prove-it, FAQ, long-form honest caveats on limitations (muscle mass, athletes, age, children, ethnicity), SoftwareApplication + FAQPage JSON-LD, DataLayer events. Pure-logic module with 12 unit tests, Playwright page + hub tests (14)
+- New `Health` category with hub at `/calculators/health/` opened by BMI
+- Primary nav submenu extended to include Health across all pages
+- `/calculators/` all-calculators hub: Health section added, "Coming soon" row trimmed to Finance + Property, BMI added to JSON-LD `hasPart`
+- `CLAUDE.md`: new "Country-specific calculators" rule documenting the full localisation signal stack (URL slug, title/h1, meta, hreflang, Schema.org `inLanguage` + `countriesSupported`, cross-link, content signals) so UK and US variants get the right Google routing
+- `scripts/prioritise.js` + 9 unit tests: batch SEMrush scoring (volume × CPC × (1 − competition)), 30-day per-keyword cache, sorted markdown output. `research/candidates.txt` seeded with ~45 roadmap candidates. `npm run prioritise`
+- First prioritisation run confirms Finance + Health as the highest-value next categories to build
+
+### Fixed
+- Photo Resizer form and dropzone no longer render broken on first load: added global `[hidden] { display: none !important }` so `.calc-form` flex layout stops overriding the `hidden` attribute, and `.resizer-dropzone` now `display: block` so the label occupies its full container
+- Photo Resizer now features on the homepage `Featured calculators` grid; the homepage test reads `categories.json` and asserts every live tool has a card so this cannot regress
+
 - Photo Resizer calculator at `/calculators/images/photo-resizer/`: client-side canvas resize with drag-and-drop, width/height with aspect-ratio lock, JPEG/WebP/PNG output, live quality slider, side-by-side original vs resized previews, blob download, ELI5, Prove-it, FAQ, long-form copy, SoftwareApplication + FAQPage JSON-LD, DataLayer events. Pure-logic module with 11 unit tests, Playwright page tests
 - New `Images` category with hub at `/calculators/images/` and entry in `categories.json`
 - Primary nav submenu extended to include Images across all pages

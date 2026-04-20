@@ -1,0 +1,94 @@
+{
+  "phrase": [
+    {
+      "Keyword": "dns lookup",
+      "Search Volume": "33100",
+      "CPC": "0.44",
+      "Competition": "0.07",
+      "Number of Results": "42700000",
+      "Trends": "0.81,0.66,0.81,0.66,0.66,0.66,0.66,0.66,0.66,0.66,0.54,0.44"
+    }
+  ],
+  "related": [
+    {
+      "Keyword": "whois",
+      "Search Volume": "135000",
+      "CPC": "4.52",
+      "Competition": "0.24",
+      "Number of Results": "28600000",
+      "Trends": "0.81,0.54,0.67,0.54,0.54,0.54,0.54,0.54,0.54,0.54,0.54,0.54"
+    },
+    {
+      "Keyword": "domain",
+      "Search Volume": "90500",
+      "CPC": "7.85",
+      "Competition": "0.33",
+      "Number of Results": "888000000",
+      "Trends": "0.16,0.13,0.13,0.16,0.13,0.10,0.08,0.10,0.16,0.13,0.16,0.10"
+    },
+    {
+      "Keyword": "who is",
+      "Search Volume": "90500",
+      "CPC": "4.52",
+      "Competition": "0.24",
+      "Number of Results": "25270000000",
+      "Trends": "0.54,0.54,0.81,0.54,0.54,0.44,0.44,0.44,0.44,0.44,1.00,0.44"
+    },
+    {
+      "Keyword": "dns",
+      "Search Volume": "74000",
+      "CPC": "4.03",
+      "Competition": "0.04",
+      "Number of Results": "151",
+      "Trends": "0.81,0.44,0.67,0.81,0.54,0.54,0.54,0.44,0.44,0.54,0.67,0.67"
+    },
+    {
+      "Keyword": "whois lookup",
+      "Search Volume": "74000",
+      "CPC": "3.93",
+      "Competition": "0.38",
+      "Number of Results": "18900000",
+      "Trends": "0.67,0.67,0.67,0.67,0.67,0.67,0.67,0.55,0.55,0.55,0.67,0.45"
+    },
+    {
+      "Keyword": "dig",
+      "Search Volume": "60500",
+      "CPC": "1.31",
+      "Competition": "0.01",
+      "Number of Results": "658000000",
+      "Trends": "0.54,0.81,0.81,0.54,0.44,0.24,0.24,0.24,0.44,0.44,0.36,0.36"
+    },
+    {
+      "Keyword": "domain name search",
+      "Search Volume": "40500",
+      "CPC": "5.99",
+      "Competition": "0.85",
+      "Number of Results": "406000",
+      "Trends": "1.00,0.81,0.81,0.81,1.00,0.81,0.81,0.81,0.81,0.81,0.66,0.66"
+    },
+    {
+      "Keyword": "lookup ip address with ip lookup",
+      "Search Volume": "40500",
+      "CPC": "0.61",
+      "Competition": "0.01",
+      "Number of Results": "1410000000",
+      "Trends": "0.00,0.13,1.00,0.55,0.55,0.67,0.00,0.01,0.20,0.11,0.55,0.30"
+    },
+    {
+      "Keyword": "wo is",
+      "Search Volume": "40500",
+      "CPC": "4.52",
+      "Competition": "0.24",
+      "Number of Results": "25270000000",
+      "Trends": "0.02,0.04,0.82,0.00,0.00,0.00,0.00,0.00,1.00,0.00,0.54,0.03"
+    },
+    {
+      "Keyword": "search by ip number",
+      "Search Volume": "33100",
+      "CPC": "0.48",
+      "Competition": "0.02",
+      "Number of Results": "1740000000",
+      "Trends": "1.00,0.81,0.81,0.81,0.66,0.66,0.81,0.81,0.81,0.66,0.66,1.00"
+    }
+  ]
+}

@@ -47,7 +47,13 @@
       "slug": "health",
       "name": "Health",
       "tagline": "Quick health and fitness numbers, with the caveats made plain.",
-      "tools": []
+      "tools": [
+        {
+          "slug": "bmi-calculator",
+          "name": "BMI Calculator",
+          "summary": "Work out your body mass index in metric or imperial units, with the WHO category and an honest note on what BMI can and cannot tell you."
+        }
+      ]
     },
     {
       "slug": "property",

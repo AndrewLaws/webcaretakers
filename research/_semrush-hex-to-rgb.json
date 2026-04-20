@@ -1,0 +1,94 @@
+{
+  "phrase": [
+    {
+      "Keyword": "hex to rgb",
+      "Search Volume": "9900",
+      "CPC": "0.03",
+      "Competition": "0.03",
+      "Number of Results": "109",
+      "Trends": "0.66,0.44,0.54,0.66,0.54,0.54,0.54,0.44,0.44,0.44,0.36,0.36"
+    }
+  ],
+  "related": [
+    {
+      "Keyword": "colour by hex",
+      "Search Volume": "18100",
+      "CPC": "0",
+      "Competition": "0",
+      "Number of Results": "83000000",
+      "Trends": "0.00,1.00,0.29,0.81,0.20,0.29,0.00,0.03,0.00,0.24,0.29,0.20"
+    },
+    {
+      "Keyword": "rgb to hex",
+      "Search Volume": "18100",
+      "CPC": "0.06",
+      "Competition": "0.01",
+      "Number of Results": "33900000",
+      "Trends": "0.44,0.44,0.54,0.36,0.54,0.29,0.24,0.44,0.44,0.36,0.44,0.36"
+    },
+    {
+      "Keyword": "rgb color hexadecimal",
+      "Search Volume": "9900",
+      "CPC": "0.06",
+      "Competition": "0.01",
+      "Number of Results": "146",
+      "Trends": "0.00,1.00,1.00,1.00,0.66,0.81,0.00,0.08,0.54,0.81,0.54,0.66"
+    },
+    {
+      "Keyword": "rgb color in hex",
+      "Search Volume": "6600",
+      "CPC": "0.06",
+      "Competition": "0.01",
+      "Number of Results": "49200000",
+      "Trends": "0.00,0.81,0.81,0.81,0.00,0.01,0.00,0.07,0.44,0.66,0.00,0.01"
+    },
+    {
+      "Keyword": "hex converter",
+      "Search Volume": "5400",
+      "CPC": "0",
+      "Competition": "0",
+      "Number of Results": "116000000",
+      "Trends": "0.66,0.81,0.54,0.44,0.44,0.29,0.36,0.44,0.54,0.54,0.44,0.54"
+    },
+    {
+      "Keyword": "rgb hex",
+      "Search Volume": "5400",
+      "CPC": "0.06",
+      "Competition": "0.01",
+      "Number of Results": "57300000",
+      "Trends": "0.66,0.81,0.44,0.36,0.04,0.04,0.29,0.44,0.81,0.23,0.36,0.54"
+    },
+    {
+      "Keyword": "rgb to hexadecimal color",
+      "Search Volume": "5400",
+      "CPC": "0",
+      "Competition": "0",
+      "Number of Results": "27900000",
+      "Trends": "0.00,1.00,1.00,1.00,0.66,0.00,0.00,0.00,0.00,0.00,0.00,0.00"
+    },
+    {
+      "Keyword": "hex code color",
+      "Search Volume": "4400",
+      "CPC": "0.03",
+      "Competition": "0",
+      "Number of Results": "184000000",
+      "Trends": "0.35,0.66,1.00,0.54,0.35,0.54,0.44,0.44,0.66,0.81,0.29,0.44"
+    },
+    {
+      "Keyword": "hexadecimal to rgb color",
+      "Search Volume": "4400",
+      "CPC": "0.03",
+      "Competition": "0.03",
+      "Number of Results": "107",
+      "Trends": "0.00,1.00,1.00,1.00,0.00,0.00,0.00,0.07,0.66,0.66,0.44,0.44"
+    },
+    {
+      "Keyword": "red green blue to hex",
+      "Search Volume": "4400",
+      "CPC": "0.06",
+      "Competition": "0.01",
+      "Number of Results": "201",
+      "Trends": "0.00,0.81,0.00,0.00,0.00,0.02,0.00,0.07,0.66,0.66,0.00,0.02"
+    }
+  ]
+}

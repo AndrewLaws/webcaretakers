@@ -8,11 +8,11 @@ percentage calculator
 photo resizer
 
 # --- Math ---
-tip calculator
 fraction calculator
 decimal to percent
 ratio calculator
 random number generator
+tip calculator
 
 # --- Images ---
 image compressor
@@ -23,12 +23,12 @@ exif viewer
 
 # --- Finance ---
 mortgage calculator
+uk mortgage calculator
 loan calculator
 compound interest calculator
 savings calculator
 income tax calculator
 salary calculator
-tip calculator
 car loan calculator
 
 # --- Health ---
@@ -37,7 +37,6 @@ calorie calculator
 body fat calculator
 tdee calculator
 macro calculator
-pregnancy due date calculator
 
 # --- Property ---
 stamp duty calculator

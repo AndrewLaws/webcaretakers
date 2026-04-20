@@ -1,0 +1,94 @@
+{
+  "phrase": [
+    {
+      "Keyword": "savings calculator",
+      "Search Volume": "49500",
+      "CPC": "0.92",
+      "Competition": "0.16",
+      "Number of Results": "740000000",
+      "Trends": "0.81,0.66,0.66,0.66,0.66,0.66,0.81,0.66,0.66,0.66,0.54,0.66"
+    }
+  ],
+  "related": [
+    {
+      "Keyword": "interest calculator",
+      "Search Volume": "165000",
+      "CPC": "1.1",
+      "Competition": "0.06",
+      "Number of Results": "643000000",
+      "Trends": "0.67,0.67,0.81,0.67,0.67,0.54,0.67,0.67,0.54,0.54,0.54,0.67"
+    },
+    {
+      "Keyword": "hysa",
+      "Search Volume": "60500",
+      "CPC": "6.14",
+      "Competition": "0.87",
+      "Number of Results": "3910000",
+      "Trends": "0.81,0.66,0.81,0.81,0.66,0.54,0.66,0.81,0.66,0.66,0.66,0.81"
+    },
+    {
+      "Keyword": "apy calculator",
+      "Search Volume": "40500",
+      "CPC": "1.93",
+      "Competition": "0.29",
+      "Number of Results": "51400000",
+      "Trends": "0.66,0.66,0.66,0.54,0.54,0.36,0.54,0.44,0.44,0.44,0.29,0.20"
+    },
+    {
+      "Keyword": "compounding interest calculator",
+      "Search Volume": "40500",
+      "CPC": "0.33",
+      "Competition": "0.09",
+      "Number of Results": "116",
+      "Trends": "1.00,0.81,0.66,0.54,0.66,0.66,0.81,0.81,0.81,0.81,0.66,0.66"
+    },
+    {
+      "Keyword": "capital one high yield savings",
+      "Search Volume": "33100",
+      "CPC": "6.74",
+      "Competition": "0.71",
+      "Number of Results": "101000000",
+      "Trends": "1.00,0.66,0.66,0.66,0.54,0.54,0.66,0.66,0.44,0.54,0.44,0.44"
+    },
+    {
+      "Keyword": "high interest savings account us",
+      "Search Volume": "33100",
+      "CPC": "5.97",
+      "Competition": "0.65",
+      "Number of Results": "734000000",
+      "Trends": "0.00,0.20,0.13,0.13,0.03,1.00,0.06,0.04,0.00,0.00,0.00,0.00"
+    },
+    {
+      "Keyword": "high yield savings account calculator",
+      "Search Volume": "33100",
+      "CPC": "2.6",
+      "Competition": "0.7",
+      "Number of Results": "118000000",
+      "Trends": "0.36,0.30,0.36,0.30,0.30,0.30,0.30,0.30,0.24,0.24,0.30,0.24"
+    },
+    {
+      "Keyword": "hysa calculator",
+      "Search Volume": "27100",
+      "CPC": "2.58",
+      "Competition": "0.61",
+      "Number of Results": "3320000",
+      "Trends": "1.00,0.81,0.81,0.81,0.67,0.67,0.81,0.81,0.67,0.67,0.67,0.81"
+    },
+    {
+      "Keyword": "simple interest calculator",
+      "Search Volume": "27100",
+      "CPC": "1.38",
+      "Competition": "0.02",
+      "Number of Results": "481000000",
+      "Trends": "0.36,0.36,0.36,0.36,0.30,0.36,0.54,0.66,0.36,0.30,0.24,0.20"
+    },
+    {
+      "Keyword": "sofi high yield savings",
+      "Search Volume": "27100",
+      "CPC": "7.18",
+      "Competition": "0.73",
+      "Number of Results": "10600000",
+      "Trends": "0.44,0.29,0.29,0.29,0.24,0.20,0.24,0.24,0.29,0.29,0.29,0.36"
+    }
+  ]
+}

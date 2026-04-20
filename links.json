@@ -15,6 +15,9 @@
     { "phrase": "Photo Resizer", "url": "/calculators/images/photo-resizer/" },
     { "phrase": "photo resizer", "url": "/calculators/images/photo-resizer/" },
     { "phrase": "image tools", "url": "/calculators/images/" },
+    { "phrase": "BMI Calculator", "url": "/calculators/health/bmi-calculator/" },
+    { "phrase": "BMI calculator", "url": "/calculators/health/bmi-calculator/" },
+    { "phrase": "health calculators", "url": "/calculators/health/" },
     { "phrase": "privacy policy", "url": "/privacy/" },
     { "phrase": "terms of use", "url": "/terms/" },
     { "phrase": "About page", "url": "/about/" }

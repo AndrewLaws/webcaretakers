@@ -1,0 +1,94 @@
+{
+  "phrase": [
+    {
+      "Keyword": "broadband calculator",
+      "Search Volume": "70",
+      "CPC": "0",
+      "Competition": "0.01",
+      "Number of Results": "40600000",
+      "Trends": "0.11,0.17,0.17,0.11,0.64,0.17,1.00,0.52,0.41,0.41,0.41,0.41"
+    }
+  ],
+  "related": [
+    {
+      "Keyword": "test",
+      "Search Volume": "11100000",
+      "CPC": "1.92",
+      "Competition": "0",
+      "Number of Results": "5490000000",
+      "Trends": "0.01,0.00,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,1.00,0.01"
+    },
+    {
+      "Keyword": "speed test",
+      "Search Volume": "9140000",
+      "CPC": "0.96",
+      "Competition": "0.01",
+      "Number of Results": "2100000000",
+      "Trends": "0.24,0.30,0.24,0.24,0.30,0.30,0.30,0.30,0.36,0.36,0.30,0.36"
+    },
+    {
+      "Keyword": "internet speed test",
+      "Search Volume": "4090000",
+      "CPC": "0.37",
+      "Competition": "0.02",
+      "Number of Results": "1090000",
+      "Trends": "0.45,0.36,0.36,0.30,0.30,0.36,0.36,0.36,0.45,0.45,0.36,0.36"
+    },
+    {
+      "Keyword": "speedtest",
+      "Search Volume": "2740000",
+      "CPC": "0.96",
+      "Competition": "0.01",
+      "Number of Results": "147",
+      "Trends": "0.24,0.24,0.24,0.20,0.29,0.29,0.29,0.36,0.24,0.24,0.36,0.44"
+    },
+    {
+      "Keyword": "wifi speed test",
+      "Search Volume": "823000",
+      "CPC": "1.02",
+      "Competition": "0.04",
+      "Number of Results": "361000000",
+      "Trends": "0.54,0.44,0.54,0.44,0.54,0.54,0.54,0.66,0.54,0.54,0.54,0.66"
+    },
+    {
+      "Keyword": "internet speed",
+      "Search Volume": "301000",
+      "CPC": "1.42",
+      "Competition": "0.1",
+      "Number of Results": "2280000000",
+      "Trends": "0.44,0.54,0.66,0.54,0.66,0.81,0.54,0.54,0.44,1.00,0.44,0.54"
+    },
+    {
+      "Keyword": "internet",
+      "Search Volume": "246000",
+      "CPC": "4.61",
+      "Competition": "0.01",
+      "Number of Results": "3530000000",
+      "Trends": "0.81,0.81,0.81,0.81,0.81,0.81,0.81,0.81,0.81,0.81,0.81,1.00"
+    },
+    {
+      "Keyword": "ookla speed test",
+      "Search Volume": "246000",
+      "CPC": "0.06",
+      "Competition": "0",
+      "Number of Results": "2130",
+      "Trends": "0.81,0.66,0.81,0.81,0.81,0.81,0.81,1.00,1.00,1.00,0.81,0.81"
+    },
+    {
+      "Keyword": "speed",
+      "Search Volume": "201000",
+      "CPC": "4.63",
+      "Competition": "0",
+      "Number of Results": "3540000000",
+      "Trends": "0.66,0.66,0.54,0.66,0.66,0.54,0.54,0.54,0.81,0.66,0.81,0.66"
+    },
+    {
+      "Keyword": "wifi",
+      "Search Volume": "201000",
+      "CPC": "11.56",
+      "Competition": "0.3",
+      "Number of Results": "512000",
+      "Trends": "0.54,0.54,0.54,0.54,0.54,0.54,0.54,0.54,0.54,0.54,0.54,1.00"
+    }
+  ]
+}
