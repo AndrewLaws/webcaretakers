@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Email Marketing ROI Calculator | WebCaretakers</title>
+  <meta name="description" content="Work out the return on your email marketing spend. Enter your list size, send frequency, open and click rates, and conversion data to see ROI, cost per conversion, and the minimum list size to break even.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/finance/email-marketing-roi-calculator/">
+  <meta property="og:title" content="Email Marketing ROI Calculator | WebCaretakers">
+  <meta property="og:description" content="Enter your list size, send frequency, rates, and conversion data to see email ROI, monthly profit, cost per conversion, and your break-even list size.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/finance/email-marketing-roi-calculator/">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var _stored = null;
+    try { _stored = localStorage.getItem('cookie-consent'); } catch (e) {}
+    var _initial = _stored === 'granted' ? 'granted' : 'denied';
+    gtag('consent', 'default', {
+      ad_storage: _initial, analytics_storage: _initial,
+      ad_user_data: _initial, ad_personalization: _initial,
+      functionality_storage: 'granted', security_storage: 'granted',
+      wait_for_update: 500
+    });
+  </script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Email Marketing ROI Calculator",
+    "url": "https://webcaretakers.com/calculators/finance/email-marketing-roi-calculator/",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0" },
+    "author": {
+      "@type": "Person",
+      "name": "Andrew Laws",
+      "url": "https://yeseo.io/"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How do you calculate email marketing ROI?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Email marketing ROI = (total net profit \u00f7 total cost) \u00d7 100. Net profit is total revenue from email-driven conversions minus your platform and content costs. Revenue is worked out by multiplying your list size by sends per month, then applying your click rate, then your conversion rate, then your average revenue per conversion." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is a good email marketing ROI?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Industry benchmarks often cite a \u00a336 return for every \u00a31 spent, but this varies enormously by sector, list quality, and offer type. E-commerce typically outperforms B2B lead generation. Rather than chasing an industry average, focus on improving your own numbers month by month: a higher click rate, better conversion rate, or higher average order value all move the result in your favour." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the difference between open rate and click rate?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Open rate is the percentage of emails delivered that were opened. Click rate (also called click-through rate or CTR) is the percentage of emails sent that resulted in at least one click. This calculator uses click rate as a percentage of emails sent, not click-to-open rate (CTOR), which is clicks as a percentage of opens." }
+      },
+      {
+        "@type": "Question",
+        "name": "What counts as a conversion in email marketing?",
+        "acceptedAnswer": { "@type": "Answer", "text": "A conversion is whatever you are measuring as a meaningful outcome from the email: a purchase, a booked call, a completed form, a subscription sign-up. Use the revenue or value that a single conversion is worth to your business. For e-commerce this is average order value; for lead generation it is average deal value or customer lifetime value." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is break-even list size?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Break-even list size is the minimum number of subscribers your list needs to reach for email revenue to cover your platform and content costs. It is calculated as: monthly cost \u00f7 (sends per month \u00d7 click rate \u00d7 conversion rate \u00d7 revenue per conversion). If your current list is below this number, the channel is not yet covering its own costs at your current rates." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-banner-heading" aria-describedby="cookie-banner-text" hidden>
+    <div class="cookie-banner__inner">
+      <h2 id="cookie-banner-heading" class="cookie-banner__heading">A quick word about cookies</h2>
+      <p id="cookie-banner-text" class="cookie-banner__text">
+        We use cookies for analytics, so we can see which calculators people actually use and which ones need work. Nothing creepy, nothing sold on. You can say yes, say no, or read the <a href="/privacy/">privacy policy</a> first. Your choice sticks.
+      </p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-reject>Reject</button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>Accept</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var KEY = 'cookie-consent';
+      var banner = document.querySelector('[data-cookie-banner]');
+      if (!banner) return;
+      var stored = null;
+      try { stored = localStorage.getItem(KEY); } catch (e) {}
+      if (stored !== 'granted' && stored !== 'denied') { banner.hidden = false; }
+      function record(choice) {
+        try { localStorage.setItem(KEY, choice); } catch (e) {}
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('consent', 'update', {
+          ad_storage: choice, analytics_storage: choice,
+          ad_user_data: choice, ad_personalization: choice
+        });
+        banner.hidden = true;
+      }
+      var accept = banner.querySelector('[data-cookie-accept]');
+      var reject = banner.querySelector('[data-cookie-reject]');
+      if (accept) accept.addEventListener('click', function () { record('granted'); });
+      if (reject) reject.addEventListener('click', function () { record('denied'); });
+    })();
+  </script>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">WebCaretakers</a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <ul class="primary-nav__list">
+          <li class="primary-nav__item primary-nav__item--has-menu">
+            <button type="button" class="primary-nav__link" data-menu-toggle aria-haspopup="true" aria-expanded="false">Calculators <span class="primary-nav__caret" aria-hidden="true">▾</span></button>
+            <ul class="primary-nav__submenu">
+              <li><a href="/calculators/broadband/">Broadband</a></li>
+              <li><a href="/calculators/finance/">Finance</a></li>
+              <li><a href="/calculators/health/">Health</a></li>
+              <li><a href="/calculators/images/">Images</a></li>
+              <li><a href="/calculators/math/">Math</a></li>
+              <li class="primary-nav__submenu-sep"><a href="/calculators/">See all calculators</a></li>
+            </ul>
+          </li>
+          <li class="primary-nav__item"><a href="/about/" class="primary-nav__link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <main id="main-content">
+      <div class="container">
+        <nav aria-label="Breadcrumb" class="breadcrumbs">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/calculators/">Calculators</a></li>
+            <li><a href="/calculators/finance/">Finance</a></li>
+            <li aria-current="page">Email Marketing ROI Calculator</li>
+          </ol>
+        </nav>
+
+        <h1>Email Marketing ROI Calculator</h1>
+        <p class="intro">Enter your list size, how often you send, your open and click rates, and what a conversion is worth. The calculator works out your monthly revenue, profit, cost per conversion, and the minimum list size you need to cover your costs.</p>
+
+        <section class="eli5" aria-label="Plain-English explanation">
+          <h2>Explain like I'm 5 (what even is email marketing ROI?)</h2>
+          <p>You have a list of people who said you could email them. You send them messages about things you sell. Some open the email, some click something in it, and a few of those actually buy. Email marketing ROI asks: are you making more money from those buyers than you're spending on the email platform and the content to fill it? If yes, by how much? If not, how many more subscribers do you need before you are?</p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="in-content" aria-hidden="true"></div>
+
+        <section data-calculator class="calculator-card">
+          <h2>Calculate</h2>
+          <form id="email-roi-form" class="calc-form" novalidate>
+
+            <div class="calc-row">
+              <label for="email-currency">Currency</label>
+              <select id="email-currency" data-currency aria-label="Currency">
+                <option value="GBP" selected>£ GBP</option>
+                <option value="USD">$ USD</option>
+                <option value="EUR">€ EUR</option>
+                <option value="CAD">CA$ CAD</option>
+                <option value="AUD">A$ AUD</option>
+              </select>
+            </div>
+
+            <div class="calc-row">
+              <label for="email-list-size">List size (subscribers)</label>
+              <input type="number" id="email-list-size" name="listSize" min="1" step="1" value="5000" data-list-size>
+            </div>
+
+            <div class="calc-row">
+              <label for="email-sends-per-month">Campaigns per month</label>
+              <input type="number" id="email-sends-per-month" name="sendsPerMonth" min="1" max="365" step="1" value="4" data-sends-per-month>
+            </div>
+
+            <div class="calc-row">
+              <label for="email-open-rate">Open rate (%)</label>
+              <input type="number" id="email-open-rate" name="openRate" min="0.01" max="100" step="any" value="22" data-open-rate>
+            </div>
+
+            <div class="calc-row">
+              <label for="email-click-rate">Click rate, % of emails sent (%)</label>
+              <input type="number" id="email-click-rate" name="clickRate" min="0.01" max="100" step="any" value="2.5" data-click-rate>
+            </div>
+
+            <div class="calc-row">
+              <label for="email-conversion-rate">Conversion rate, % of clicks (%)</label>
+              <input type="number" id="email-conversion-rate" name="conversionRate" min="0.01" max="100" step="any" value="2" data-conversion-rate>
+            </div>
+
+            <div class="calc-row">
+              <label for="email-revenue-per-conversion">Revenue per conversion (<span data-currency-symbol>£</span>)</label>
+              <input type="number" id="email-revenue-per-conversion" name="revenuePerConversion" min="0.01" step="any" value="50" data-revenue-per-conversion>
+            </div>
+
+            <div class="calc-row">
+              <label for="email-esp-cost">Monthly platform cost, e.g. Mailchimp (<span data-currency-symbol>£</span>)</label>
+              <input type="number" id="email-esp-cost" name="monthlyEspCost" min="0" step="any" value="80" data-esp-cost>
+            </div>
+
+            <div class="calc-row">
+              <label for="email-content-cost">Monthly content cost (<span data-currency-symbol>£</span>)</label>
+              <input type="number" id="email-content-cost" name="monthlyContentCost" min="0" step="any" value="0" data-content-cost>
+            </div>
+
+            <div class="calc-row">
+              <label for="email-period">Time period (months)</label>
+              <input type="number" id="email-period" name="periodMonths" min="1" max="120" step="1" value="12" data-period>
+            </div>
+
+            <button type="submit" data-calculate>Calculate</button>
+          </form>
+
+          <div data-calculator-results class="calculator-results">
+            <div class="result-summary">
+              <p class="result-display" data-result>Enter your numbers, then press Calculate.</p>
+            </div>
+
+            <div class="mort-breakdown" data-breakdown hidden>
+
+              <h3>Monthly funnel</h3>
+              <ul>
+                <li><span>Emails sent per month</span><strong data-line-emails-sent>—</strong></li>
+                <li><span>Opens per month</span><strong data-line-opens>—</strong></li>
+                <li><span>Clicks per month</span><strong data-line-clicks>—</strong></li>
+                <li><span>Conversions per month</span><strong data-line-conversions>—</strong></li>
+              </ul>
+
+              <h3>Monthly financials</h3>
+              <ul>
+                <li><span>Monthly revenue</span><strong data-line-monthly-revenue>—</strong></li>
+                <li><span>Monthly cost</span><strong data-line-monthly-cost>—</strong></li>
+                <li class="mort-breakdown__total"><span>Monthly net profit / loss</span><strong data-line-monthly-profit>—</strong></li>
+              </ul>
+
+              <h3>Over <span data-label-period>12</span> months</h3>
+              <ul>
+                <li><span>Total revenue</span><strong data-line-total-revenue>—</strong></li>
+                <li><span>Total cost</span><strong data-line-total-cost>—</strong></li>
+                <li class="mort-breakdown__total"><span>Total net profit / loss</span><strong data-line-total-profit>—</strong></li>
+              </ul>
+
+              <h3>Return</h3>
+              <ul>
+                <li><span>ROI</span><strong data-line-roi>—</strong></li>
+                <li><span>For every <span data-currency-symbol-inline>£</span>1 spent</span><strong data-line-revenue-per-unit>—</strong></li>
+                <li class="mort-breakdown__total"><span>Cost per conversion</span><strong data-line-cost-per-conversion>—</strong></li>
+              </ul>
+
+              <h3>Break-even</h3>
+              <ul>
+                <li><span>Minimum list size to cover costs</span><strong data-line-breakeven>—</strong></li>
+                <li class="mort-breakdown__total"><span>Status</span><strong data-line-status>—</strong></li>
+              </ul>
+
+            </div>
+
+            <details class="prove-it" data-prove-it>
+              <summary>Prove it</summary>
+              <div data-prove-it-body></div>
+              <p class="prove-it-source">Monthly emails sent = list size × campaigns per month. Monthly opens = emails sent × open rate. Monthly clicks = emails sent × click rate. Monthly conversions = clicks × conversion rate. Monthly revenue = conversions × revenue per conversion. Monthly cost = platform cost + content cost. ROI = (total net profit ÷ total cost) × 100. Cost per conversion = monthly cost ÷ monthly conversions. Break-even list size = monthly cost ÷ (campaigns per month × click rate × conversion rate × revenue per conversion).</p>
+            </details>
+          </div>
+
+          <p class="bookmark-nudge">
+            Useful? Save this calculator: press <kbd data-bookmark-shortcut>Ctrl</kbd> + <kbd>D</kbd> to bookmark it.
+          </p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="below-results" aria-hidden="true"></div>
+
+        <section class="long-form">
+          <h2>How to find accurate inputs</h2>
+          <p>The result is only as good as the numbers you put in. Here is where to find each one.</p>
+
+          <h3>List size</h3>
+          <p>Use your active subscriber count, not your total list. Most email platforms let you filter by engagement status. A list of 10,000 with 3,000 unengaged subscribers sitting at the bottom is not a list of 10,000 for the purposes of this calculation. Use the number who are likely to see your emails.</p>
+
+          <h3>Campaigns per month</h3>
+          <p>How many separate emails do you send to your full list each month? Automated sequences sent to segments count separately, but if you are not sure, start with your broadcast campaigns and add automation later once you have a clear picture of those numbers.</p>
+
+          <h3>Open rate</h3>
+          <p>Pull this from your email platform's reporting. Bear in mind that open tracking has become less reliable since Apple Mail Privacy Protection launched in 2021 — iOS devices now pre-load images, which inflates open rates for lists with a lot of iPhone users. Use it as a directional number, not a precise one. Industry averages sit around 20–25% for B2C and 15–20% for B2B, though these vary widely by sector and list quality.</p>
+
+          <h3>Click rate</h3>
+          <p>This is clicks as a percentage of total emails sent (not opens). Your platform may also show click-to-open rate (CTOR), which is clicks as a percentage of opens. This calculator uses click rate as a percentage of sends. If your platform only shows CTOR, multiply it by your open rate and divide by 100 to convert. Typical click rates sit between 1–5% for most lists.</p>
+
+          <h3>Conversion rate</h3>
+          <p>This is the percentage of people who clicked and then completed the goal: made a purchase, booked a call, signed up. If you have e-commerce tracking set up and UTM parameters on your email links, you can find this in Google Analytics by filtering sessions from your email channel and looking at the goal or purchase conversion rate. If not, estimate conservatively: 1–3% is realistic for most e-commerce; B2B lead generation is often lower.</p>
+
+          <h3>Revenue per conversion</h3>
+          <p>For e-commerce: use your average order value. For lead generation: use the average revenue a converted lead generates, either as a deal value or a lifetime value estimate. If your product has a range of prices, use a weighted average based on what email campaigns typically sell, not your overall product mix.</p>
+
+          <h3>Platform and content costs</h3>
+          <p>Your email platform cost is whatever you pay your ESP (Mailchimp, Klaviyo, ActiveCampaign, and the rest) each month. Content cost is anything you pay to write, design, or produce the emails: copywriter fees, designer time, or your own time costed at an hourly rate. If you write the emails yourself and are not costing your time, leave it at zero, but know the result will look more flattering than it really is.</p>
+
+          <h2>What the break-even list size tells you</h2>
+          <p>The break-even list size is the minimum number of engaged subscribers you need, at your current send frequency, click rate, conversion rate, and revenue per conversion, for your email channel to cover its own costs.</p>
+          <p>If your current list is above the break-even threshold, email is covering its costs and generating surplus revenue. If it is below, you are either investing ahead of your list growth (which is sometimes the right call), or your rates and revenue per conversion need attention before the list size matters much.</p>
+          <p>The most useful thing to do with this number is to work backwards: if break-even is 2,000 subscribers and your list is at 1,200, you need either 800 more subscribers at the same rates, or you need to improve your conversion rate or average order value so the break-even moves down to where you already are.</p>
+
+          <h2>What this calculator does not account for</h2>
+          <p>This is a steady-state model. It assumes every campaign performs at the rates you enter, every month, for the full period. Real email lists are messier: open rates decline over time as lists grow stale, seasonal campaigns outperform regular sends, and a single well-timed re-engagement campaign can change the numbers significantly.</p>
+          <p>It also does not account for:</p>
+          <ul>
+            <li>Segmentation: a well-segmented list typically outperforms a single-segment blast; this calculator models the average across your full list</li>
+            <li>List growth: if your list is growing, your results improve over the period; this calculator holds list size constant</li>
+            <li>Deliverability: emails that land in spam or promotions tabs do not get opened; if deliverability is an issue, your effective open rate is lower than the one you are entering</li>
+            <li>Attribution: some of your email-driven revenue will get attributed to other channels in last-click models; the true contribution of email is often higher than analytics shows</li>
+          </ul>
+          <p>For a broader view of marketing channel returns, try the <a href="/calculators/finance/seo-roi-calculator/">SEO ROI Calculator</a> or the general-purpose <a href="/calculators/finance/roi-calculator/">ROI Calculator</a>.</p>
+          <p>Nothing on this page is financial or marketing advice. For decisions that matter, talk to someone who knows your specific situation.</p>
+        </section>
+
+        <section class="faq" aria-labelledby="faq-heading">
+          <h2 id="faq-heading">Frequently asked questions</h2>
+          <details>
+            <summary>How do you calculate email marketing ROI?</summary>
+            <p>Email marketing ROI = (total net profit ÷ total cost) × 100. Net profit is the revenue your email list generates minus your platform and content costs. Revenue is worked out by multiplying emails sent by your click rate, then your conversion rate, then revenue per conversion.</p>
+          </details>
+          <details>
+            <summary>What is a good email marketing ROI?</summary>
+            <p>Industry figures often cite £36 back for every £1 spent, but the range is huge depending on sector, list quality, and what you are selling. A better question is whether your ROI is improving month on month. Use this calculator to track your baseline, then measure whether changes to your copy, offer, or segmentation move the number.</p>
+          </details>
+          <details>
+            <summary>What is the difference between open rate and click rate?</summary>
+            <p>Open rate is the percentage of delivered emails that were opened. Click rate (click-through rate) is the percentage of emails sent that got at least one click. This calculator uses click rate as a percentage of sends. If your platform shows click-to-open rate (CTOR) instead, multiply it by your open rate and divide by 100 to convert.</p>
+          </details>
+          <details>
+            <summary>What counts as a conversion?</summary>
+            <p>Whatever the email is trying to get the reader to do: buy something, book a call, sign up for a trial. Use the average revenue that a single conversion generates. For e-commerce that is average order value; for lead generation it is average deal value or customer lifetime value.</p>
+          </details>
+          <details>
+            <summary>What is break-even list size?</summary>
+            <p>The minimum number of subscribers you need, at your current rates, for email revenue to cover your platform and content costs. If your list is below this number, the channel is not yet self-funding. You can close the gap by growing the list, improving click or conversion rates, or increasing revenue per conversion.</p>
+          </details>
+        </section>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="ad-slot" data-ad-slot="sidebar" aria-hidden="true"></div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="site-footer-nav" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/calculators/">All calculators</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+
+      <section class="site-disclaimer" data-disclaimer aria-labelledby="disclaimer-heading">
+        <h2 id="disclaimer-heading">A quick, necessary word</h2>
+        <p>Every calculator on this site is built to give you a sensible, well-reasoned estimate. It is, however, exactly that: an estimate, for general information only. Nothing you see here is professional, legal, financial, medical, or tax advice, and it should not be treated as such.</p>
+        <p>Before you make a decision that actually matters, talk to a qualified professional who knows your specific situation: an accountant, a solicitor, a doctor, an IT consultant, whoever fits the question. They can factor in the bits a generic tool can't.</p>
+        <p>We take no liability and accept no responsibility for any loss, damage, or questionable life choice arising from acting on the numbers you see here. Use the results as a starting point for a better conversation, not as the final word.</p>
+        <p><strong>Affiliate disclosure:</strong> some links on this site are affiliate links. If you click through and buy or sign up for something, we may earn a small commission at no extra cost to you. It helps keep the calculators free and ad-light. We only recommend things we'd point a friend towards.</p>
+      </section>
+      <p class="site-copyright">&copy; 2026 WebCaretakers. All rights reserved.</p>
+      <p class="site-legal">WebCaretakers is a trading name of <a href="https://yeseo.io/" rel="noopener">Andrew Laws Associates Ltd</a>, registered in England and Wales (company no. 08602332). ICO registration ZA726704.</p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/calculators/email-roi.js"></script>
+  <script>
+    (function () {
+      'use strict';
+      var shortcutEl = document.querySelector('[data-bookmark-shortcut]');
+      if (shortcutEl) {
+        var isMac = /Mac|iPhone|iPad|iPod/i.test(navigator.platform || navigator.userAgent);
+        shortcutEl.textContent = isMac ? '\u2318' : 'Ctrl';
+      }
+
+      var form = document.getElementById('email-roi-form');
+      if (!form) return;
+
+      var currencyIn      = form.querySelector('[data-currency]');
+      var listSizeIn      = form.querySelector('[data-list-size]');
+      var sendsIn         = form.querySelector('[data-sends-per-month]');
+      var openRateIn      = form.querySelector('[data-open-rate]');
+      var clickRateIn     = form.querySelector('[data-click-rate]');
+      var convRateIn      = form.querySelector('[data-conversion-rate]');
+      var revenueIn       = form.querySelector('[data-revenue-per-conversion]');
+      var espCostIn       = form.querySelector('[data-esp-cost]');
+      var contentCostIn   = form.querySelector('[data-content-cost]');
+      var periodIn        = form.querySelector('[data-period]');
+
+      var resultEl              = document.querySelector('[data-result]');
+      var breakdown             = document.querySelector('[data-breakdown]');
+      var proveBody             = document.querySelector('[data-prove-it-body]');
+      var labelPeriod           = document.querySelector('[data-label-period]');
+
+      var lineEmailsSent        = document.querySelector('[data-line-emails-sent]');
+      var lineOpens             = document.querySelector('[data-line-opens]');
+      var lineClicks            = document.querySelector('[data-line-clicks]');
+      var lineConversions       = document.querySelector('[data-line-conversions]');
+      var lineMonthlyRevenue    = document.querySelector('[data-line-monthly-revenue]');
+      var lineMonthlyCost       = document.querySelector('[data-line-monthly-cost]');
+      var lineMonthlyProfit     = document.querySelector('[data-line-monthly-profit]');
+      var lineTotalRevenue      = document.querySelector('[data-line-total-revenue]');
+      var lineTotalCost         = document.querySelector('[data-line-total-cost]');
+      var lineTotalProfit       = document.querySelector('[data-line-total-profit]');
+      var lineROI               = document.querySelector('[data-line-roi]');
+      var lineRevPerUnit        = document.querySelector('[data-line-revenue-per-unit]');
+      var lineCostPerConversion = document.querySelector('[data-line-cost-per-conversion]');
+      var lineBreakeven         = document.querySelector('[data-line-breakeven]');
+      var lineStatus            = document.querySelector('[data-line-status]');
+      var inlineSymbols         = document.querySelectorAll('[data-currency-symbol-inline]');
+
+      var CURRENCY_META = {
+        GBP: { symbol: '\u00a3', locale: 'en-GB' },
+        USD: { symbol: '$',      locale: 'en-US' },
+        EUR: { symbol: '\u20ac', locale: 'en-IE' },
+        CAD: { symbol: 'CA$',   locale: 'en-CA' },
+        AUD: { symbol: 'A$',    locale: 'en-AU' },
+      };
+
+      function currentCurrency() {
+        return CURRENCY_META[currencyIn.value] || CURRENCY_META.GBP;
+      }
+
+      function updateSymbols() {
+        var sym = currentCurrency().symbol;
+        document.querySelectorAll('[data-currency-symbol]').forEach(function (el) { el.textContent = sym; });
+        inlineSymbols.forEach(function (el) { el.textContent = sym; });
+      }
+      updateSymbols();
+      currencyIn.addEventListener('change', updateSymbols);
+
+      function fmtMoney(n) {
+        if (typeof n !== 'number' || !isFinite(n)) return '\u2014';
+        var c = currentCurrency();
+        var abs = Math.abs(n);
+        var str = c.symbol + abs.toLocaleString(c.locale, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        return n < 0 ? '\u2212' + str : str;
+      }
+
+      function fmtNum(n) {
+        if (typeof n !== 'number' || !isFinite(n)) return '\u2014';
+        return n.toLocaleString('en-GB');
+      }
+
+      var fields = [currencyIn, listSizeIn, sendsIn, openRateIn, clickRateIn, convRateIn, revenueIn, espCostIn, contentCostIn, periodIn];
+      fields.forEach(function (el) {
+        if (!el) return;
+        el.addEventListener('input', function () {
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: 'calculator_interaction',
+            calculator_name: 'Email Marketing ROI Calculator',
+            field_name: el.name || el.id
+          });
+        });
+      });
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        var args = {
+          listSize:             parseInt(listSizeIn.value, 10) || 0,
+          sendsPerMonth:        parseInt(sendsIn.value, 10) || 0,
+          openRate:             parseFloat(openRateIn.value),
+          clickRate:            parseFloat(clickRateIn.value),
+          conversionRate:       parseFloat(convRateIn.value),
+          revenuePerConversion: parseFloat(revenueIn.value),
+          monthlyEspCost:       parseFloat(espCostIn.value) || 0,
+          monthlyContentCost:   parseFloat(contentCostIn.value) || 0,
+          periodMonths:         parseInt(periodIn.value, 10) || 12,
+        };
+
+        try {
+          var r = window.EmailROICalc.calculateEmailROI(args);
+
+          var roiSign = r.roiPercent !== null && r.roiPercent >= 0 ? '+' : '';
+          var roiDisplay = r.roiPercent !== null ? roiSign + r.roiPercent.toFixed(1) + '%' : 'n/a (zero cost)';
+          resultEl.textContent = 'ROI: ' + roiDisplay + ' over ' + r.periodMonths + (r.periodMonths === 1 ? ' month' : ' months');
+          breakdown.hidden = false;
+
+          if (labelPeriod) labelPeriod.textContent = r.periodMonths;
+
+          lineEmailsSent.textContent        = fmtNum(r.monthlyEmailsSent) + '/month';
+          lineOpens.textContent             = fmtNum(r.monthlyOpens) + '/month';
+          lineClicks.textContent            = fmtNum(r.monthlyClicks) + '/month';
+          lineConversions.textContent       = fmtNum(r.monthlyConversions) + '/month';
+
+          lineMonthlyRevenue.textContent    = fmtMoney(r.monthlyRevenue) + '/month';
+          lineMonthlyCost.textContent       = fmtMoney(r.monthlyCost) + '/month';
+          lineMonthlyProfit.textContent     = fmtMoney(r.monthlyNetProfit) + '/month';
+
+          lineTotalRevenue.textContent      = fmtMoney(r.totalRevenue);
+          lineTotalCost.textContent         = fmtMoney(r.totalCost);
+          lineTotalProfit.textContent       = fmtMoney(r.totalNetProfit);
+
+          lineROI.textContent               = r.roiPercent !== null ? roiSign + r.roiPercent.toFixed(1) + '%' : 'n/a';
+          lineRevPerUnit.textContent        = r.revenuePerUnitInvested !== null ? fmtMoney(r.revenuePerUnitInvested) + ' back' : 'n/a';
+          lineCostPerConversion.textContent = r.costPerConversion !== null ? fmtMoney(r.costPerConversion) + ' per conversion' : 'n/a';
+
+          lineBreakeven.textContent = r.breakEvenListSize !== null ? fmtNum(r.breakEvenListSize) + ' subscribers' : 'n/a';
+          lineStatus.textContent    = r.isProfitable
+            ? 'Profitable at current list size'
+            : 'Not yet profitable — list size is below break-even';
+
+          var sym = currentCurrency().symbol;
+          proveBody.innerHTML = '<ul>' +
+            '<li><span>List size</span><strong>' + fmtNum(args.listSize) + '</strong></li>' +
+            '<li><span>Campaigns per month</span><strong>' + args.sendsPerMonth + '</strong></li>' +
+            '<li><span>Emails sent per month</span><strong>' + fmtNum(r.monthlyEmailsSent) + '</strong></li>' +
+            '<li><span>Open rate</span><strong>' + args.openRate + '%</strong></li>' +
+            '<li><span>Click rate</span><strong>' + args.clickRate + '%</strong></li>' +
+            '<li><span>Clicks per month</span><strong>' + fmtNum(r.monthlyClicks) + '</strong></li>' +
+            '<li><span>Conversion rate</span><strong>' + args.conversionRate + '%</strong></li>' +
+            '<li><span>Conversions per month</span><strong>' + fmtNum(r.monthlyConversions) + '</strong></li>' +
+            '<li><span>Revenue per conversion</span><strong>' + fmtMoney(args.revenuePerConversion) + '</strong></li>' +
+            '<li><span>Monthly revenue</span><strong>' + fmtMoney(r.monthlyRevenue) + '</strong></li>' +
+            '<li><span>Monthly cost</span><strong>' + fmtMoney(r.monthlyCost) + '</strong></li>' +
+            '<li><span>Monthly net profit</span><strong>' + fmtMoney(r.monthlyNetProfit) + '</strong></li>' +
+            '</ul>';
+
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: 'calculator_result',
+            calculator_name: 'Email Marketing ROI Calculator',
+            result_value: r.roiPercent,
+            list_size: args.listSize,
+            monthly_revenue: r.monthlyRevenue,
+            monthly_cost: r.monthlyCost,
+            is_profitable: r.isProfitable,
+            currency: currencyIn.value
+          });
+
+        } catch (err) {
+          resultEl.textContent = err.message || 'Could not calculate.';
+          breakdown.hidden = true;
+          proveBody.innerHTML = '';
+        }
+      });
+    })();
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

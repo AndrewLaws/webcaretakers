@@ -71,6 +71,11 @@
           "slug": "seo-roi-calculator",
           "name": "SEO ROI Calculator",
           "summary": "Enter your monthly SEO cost, current and projected organic traffic, and conversion data to see ROI, monthly profit, and the minimum sessions needed to break even."
+        },
+        {
+          "slug": "email-marketing-roi-calculator",
+          "name": "Email Marketing ROI Calculator",
+          "summary": "Enter your list size, send frequency, open and click rates, and conversion data to see ROI, monthly profit, cost per conversion, and the minimum list size needed to cover your costs."
         }
       ]
     },
