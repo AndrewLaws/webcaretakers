@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web Hosting Storage &amp; Bandwidth Estimator | WebCaretakers</title>
+  <meta name="description" content="Work out how much storage and monthly bandwidth your website needs based on your traffic, page weight, media files, and downloadable content. See which hosting tier fits.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/broadband/web-hosting-estimator/">
+  <meta property="og:title" content="Web Hosting Storage &amp; Bandwidth Estimator | WebCaretakers">
+  <meta property="og:description" content="Enter your monthly visitors, page weight, and file sizes to estimate the storage and bandwidth your hosting plan needs to cover.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/broadband/web-hosting-estimator/">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var _stored = null;
+    try { _stored = localStorage.getItem('cookie-consent'); } catch (e) {}
+    var _initial = _stored === 'granted' ? 'granted' : 'denied';
+    gtag('consent', 'default', {
+      ad_storage: _initial, analytics_storage: _initial,
+      ad_user_data: _initial, ad_personalization: _initial,
+      functionality_storage: 'granted', security_storage: 'granted',
+      wait_for_update: 500
+    });
+  </script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Web Hosting Storage & Bandwidth Estimator",
+    "url": "https://webcaretakers.com/calculators/broadband/web-hosting-estimator/",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0" },
+    "author": {
+      "@type": "Person",
+      "name": "Andrew Laws",
+      "url": "https://yeseo.io/"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How is website bandwidth calculated?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Monthly bandwidth = monthly visitors \u00d7 pages per visit \u00d7 average page weight. If you also serve downloadable files, add monthly downloads \u00d7 file size. Add a buffer of 20\u201350% on top to absorb traffic spikes and crawlers." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the difference between bandwidth and storage in web hosting?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Storage is how much space your files take up on the server: HTML, CSS, images, videos, PDFs. Bandwidth (also called data transfer) is how much data flows out of the server each month as visitors load your pages and download your files. A small site with lots of downloads can have low storage but high bandwidth. A site with large media libraries has high storage but may have modest bandwidth if traffic is low." }
+      },
+      {
+        "@type": "Question",
+        "name": "What hosting tier do I need?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Shared hosting handles most sites with under 100 GB of monthly bandwidth and under 5 GB of storage. VPS or cloud hosting is appropriate for 100\u20131,000 GB bandwidth or 5\u2013100 GB storage. Dedicated servers or enterprise cloud are needed above those thresholds. These are rough guides; specific hosts define their own limits." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is a bandwidth buffer and why do I need one?",
+        "acceptedAnswer": { "@type": "Answer", "text": "A bandwidth buffer is extra headroom above your calculated average. Traffic is never perfectly flat: a viral link, a news mention, or a seasonal spike can send your monthly bandwidth well above the average. A 20\u201350% buffer means you are buying a plan that can handle your peak, not just your average." }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I find my average page weight?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Open your browser's developer tools (F12 in most browsers), go to the Network tab, reload a page, and look at the total transferred size at the bottom of the requests list. That is the page weight for that URL. The HTTP Archive Web Almanac reports that the median page weight is around 2,000 KB for desktop and 1,900 KB for mobile." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-banner-heading" aria-describedby="cookie-banner-text" hidden>
+    <div class="cookie-banner__inner">
+      <h2 id="cookie-banner-heading" class="cookie-banner__heading">A quick word about cookies</h2>
+      <p id="cookie-banner-text" class="cookie-banner__text">
+        We use cookies for analytics, so we can see which calculators people actually use and which ones need work. Nothing creepy, nothing sold on. You can say yes, say no, or read the <a href="/privacy/">privacy policy</a> first. Your choice sticks.
+      </p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-reject>Reject</button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>Accept</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var KEY = 'cookie-consent';
+      var banner = document.querySelector('[data-cookie-banner]');
+      if (!banner) return;
+      var stored = null;
+      try { stored = localStorage.getItem(KEY); } catch (e) {}
+      if (stored !== 'granted' && stored !== 'denied') { banner.hidden = false; }
+      function record(choice) {
+        try { localStorage.setItem(KEY, choice); } catch (e) {}
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('consent', 'update', {
+          ad_storage: choice, analytics_storage: choice,
+          ad_user_data: choice, ad_personalization: choice
+        });
+        banner.hidden = true;
+      }
+      var accept = banner.querySelector('[data-cookie-accept]');
+      var reject = banner.querySelector('[data-cookie-reject]');
+      if (accept) accept.addEventListener('click', function () { record('granted'); });
+      if (reject) reject.addEventListener('click', function () { record('denied'); });
+    })();
+  </script>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">WebCaretakers</a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <ul class="primary-nav__list">
+          <li class="primary-nav__item primary-nav__item--has-menu">
+            <button type="button" class="primary-nav__link" data-menu-toggle aria-haspopup="true" aria-expanded="false">Calculators <span class="primary-nav__caret" aria-hidden="true">▾</span></button>
+            <ul class="primary-nav__submenu">
+              <li><a href="/calculators/broadband/">Broadband</a></li>
+              <li><a href="/calculators/finance/">Finance</a></li>
+              <li><a href="/calculators/health/">Health</a></li>
+              <li><a href="/calculators/images/">Images</a></li>
+              <li><a href="/calculators/math/">Math</a></li>
+              <li><a href="/calculators/productivity/">Productivity</a></li>
+              <li class="primary-nav__submenu-sep"><a href="/calculators/">See all calculators</a></li>
+            </ul>
+          </li>
+          <li class="primary-nav__item"><a href="/about/" class="primary-nav__link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <main id="main-content">
+      <div class="container">
+        <nav aria-label="Breadcrumb" class="breadcrumbs">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/calculators/">Calculators</a></li>
+            <li><a href="/calculators/broadband/">Broadband</a></li>
+            <li aria-current="page">Web Hosting Estimator</li>
+          </ol>
+        </nav>
+
+        <h1>Web Hosting Storage &amp; Bandwidth Estimator</h1>
+        <p class="intro">Enter your monthly visitors, page weight, media library size, and any downloadable files. The estimator works out how much storage and monthly bandwidth your hosting plan needs to cover, with a buffer for traffic spikes, and suggests which hosting tier fits.</p>
+
+        <section class="eli5" aria-label="Plain-English explanation">
+          <h2>Explain like I'm 5 (what is web hosting bandwidth?)</h2>
+          <p>Imagine your website is a shop. Storage is how much shelf space you need to hold all your products (the files that make up your site: pages, images, videos, PDFs). Bandwidth is how much stuff gets carried out of the shop each month. Every time someone loads a page, that page's weight gets carried out over the internet to their screen. If lots of people visit, or your pages are heavy, a lot gets carried out. Your hosting plan has a limit on both. This tool works out how much of each you actually need, so you can pick a plan that fits without paying for a warehouse when a cupboard would do.</p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="in-content" aria-hidden="true"></div>
+
+        <section data-calculator class="calculator-card">
+          <h2>Estimate</h2>
+          <form id="hosting-form" class="calc-form" novalidate>
+
+            <fieldset>
+              <legend>Traffic</legend>
+
+              <div class="calc-row">
+                <label for="hosting-visitors">Monthly visitors</label>
+                <input type="number" id="hosting-visitors" name="monthlyVisitors" min="1" step="1" value="5000" data-monthly-visitors>
+              </div>
+
+              <div class="calc-row">
+                <label for="hosting-pages">Pages per visit</label>
+                <input type="number" id="hosting-pages" name="pagesPerVisit" min="1" step="any" value="3" data-pages-per-visit>
+              </div>
+
+              <div class="calc-row">
+                <label for="hosting-page-weight">Average page weight (KB)</label>
+                <input type="number" id="hosting-page-weight" name="pageWeightKB" min="1" step="any" value="2000" data-page-weight-kb>
+                <small>Typical pages are 1,000–3,000 KB. Check yours in browser dev tools (F12 → Network tab → reload page → total size).</small>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>Media library (images, videos stored on your server)</legend>
+
+              <div class="calc-row">
+                <label for="hosting-media-files">Number of media files</label>
+                <input type="number" id="hosting-media-files" name="mediaFiles" min="0" step="1" value="0" data-media-files>
+              </div>
+
+              <div class="calc-row">
+                <label for="hosting-media-size">Average media file size (KB)</label>
+                <input type="number" id="hosting-media-size" name="mediaFileSizeKB" min="0" step="any" value="0" data-media-file-size-kb>
+                <small>Compressed JPEGs and WebP images are typically 100–500 KB. Uncompressed or video files are much larger.</small>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>Downloadable files (PDFs, ZIPs, etc.)</legend>
+
+              <div class="calc-row">
+                <label for="hosting-download-files">Number of downloadable files stored</label>
+                <input type="number" id="hosting-download-files" name="downloadFiles" min="0" step="1" value="0" data-download-files>
+              </div>
+
+              <div class="calc-row">
+                <label for="hosting-download-size">Average downloadable file size (MB)</label>
+                <input type="number" id="hosting-download-size" name="downloadFileSizeMB" min="0" step="any" value="0" data-download-file-size-mb>
+              </div>
+
+              <div class="calc-row">
+                <label for="hosting-monthly-downloads">Monthly downloads across all files</label>
+                <input type="number" id="hosting-monthly-downloads" name="monthlyDownloads" min="0" step="1" value="0" data-monthly-downloads>
+                <small>Total number of file downloads per month, across all your downloadable files combined.</small>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>Buffer</legend>
+
+              <div class="calc-row">
+                <label for="hosting-buffer">Headroom buffer (%)</label>
+                <input type="number" id="hosting-buffer" name="bufferPercent" min="0" max="200" step="1" value="30" data-buffer-percent>
+                <small>Add 20–50% to absorb traffic spikes, crawlers, and growth. Zero means no headroom at all.</small>
+              </div>
+            </fieldset>
+
+            <button type="submit" data-calculate>Estimate</button>
+          </form>
+
+          <div data-calculator-results class="calculator-results">
+            <div class="result-summary">
+              <p class="result-display" data-result>Enter your numbers, then press Estimate.</p>
+            </div>
+
+            <div class="mort-breakdown" data-breakdown hidden>
+
+              <h3>Bandwidth</h3>
+              <ul>
+                <li><span>Monthly pageviews</span><strong data-line-pageviews>—</strong></li>
+                <li><span>Page bandwidth</span><strong data-line-page-bw>—</strong></li>
+                <li><span>Download bandwidth</span><strong data-line-download-bw>—</strong></li>
+                <li><span>Raw total bandwidth</span><strong data-line-raw-bw>—</strong></li>
+                <li class="mort-breakdown__total"><span>Bandwidth with <span data-label-buffer>30</span>% buffer</span><strong data-line-buffered-bw>—</strong></li>
+              </ul>
+
+              <h3>Storage</h3>
+              <ul>
+                <li><span>Media storage</span><strong data-line-media-storage>—</strong></li>
+                <li><span>Download file storage</span><strong data-line-download-storage>—</strong></li>
+                <li><span>Raw total storage</span><strong data-line-raw-storage>—</strong></li>
+                <li class="mort-breakdown__total"><span>Storage with <span data-label-buffer-storage>30</span>% buffer</span><strong data-line-buffered-storage>—</strong></li>
+              </ul>
+
+              <h3>Hosting tier</h3>
+              <ul>
+                <li class="mort-breakdown__total"><span>Suggested tier</span><strong data-line-tier>—</strong></li>
+              </ul>
+
+            </div>
+
+            <details class="prove-it" data-prove-it>
+              <summary>Prove it</summary>
+              <div data-prove-it-body></div>
+              <p class="prove-it-source">Page bandwidth = monthly visitors × pages per visit × page weight (KB) ÷ 1,000,000. Download bandwidth = monthly downloads × file size (MB) ÷ 1,000. Total bandwidth with buffer = (page bandwidth + download bandwidth) × (1 + buffer ÷ 100). Media storage = media files × average file size (KB) ÷ 1,000,000. Download storage = download files × file size (MB) ÷ 1,000. Total storage with buffer = (media storage + download storage) × (1 + buffer ÷ 100).</p>
+            </details>
+          </div>
+
+          <p class="bookmark-nudge">
+            Useful? Save this page: press <kbd data-bookmark-shortcut>Ctrl</kbd> + <kbd>D</kbd> to bookmark it.
+          </p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="below-results" aria-hidden="true"></div>
+
+        <section class="long-form">
+          <h2>How to find your page weight</h2>
+          <p>Open your browser, go to a representative page on your site, and press F12 to open developer tools. Click the Network tab, then reload the page. Once it finishes loading, look at the status bar at the bottom of the Network panel. You will see "X requests, Y KB transferred". That transferred figure is your page weight for that URL.</p>
+          <p>Check a few different page types: your homepage, a typical content page, and a product or landing page if you have them. Average those figures. Most pages on a well-optimised site fall between 500 KB and 3,000 KB. If yours is significantly higher, image compression and lazy loading are usually the first levers to pull.</p>
+
+          <h2>What counts as media files</h2>
+          <p>Media files are anything stored on your server that is embedded into your pages: photos, illustrations, background images, short video clips, audio files. They contribute to storage but not necessarily bandwidth in a straightforward way — images already embedded in pages are counted in the page weight calculation. Use this section for files that sit in your media library but may not all be loaded on every page, such as a large image archive.</p>
+          <p>If you use a CDN (Content Delivery Network) or a third-party image host, those files are stored and served from there, not from your main hosting account. Only count files that sit on your hosting plan's server.</p>
+
+          <h2>What counts as downloadable files</h2>
+          <p>PDFs, ZIPs, software packages, ebooks, templates, datasets: anything a visitor clicks to download to their own device. These contribute to both storage (the file lives on your server) and bandwidth (each download transfers the full file size). A 10 MB PDF downloaded 500 times a month adds 5,000 MB (5 GB) to your monthly bandwidth before any buffer.</p>
+
+          <h2>Understanding the hosting tiers</h2>
+          <p>The tier labels are rough guides based on common hosting plan thresholds. Individual hosts set their own limits, so always read the plan details before committing.</p>
+
+          <h3>Shared hosting</h3>
+          <p>Multiple sites share the same server resources. Typically up to 100 GB per month bandwidth and up to 5 GB storage for the purposes of this estimator. Fine for most small to medium sites: blogs, small business sites, portfolios, local service sites. Costs a few pounds a month. Limitations: a traffic spike on a neighbour's site can affect yours, and you have no control over server configuration.</p>
+
+          <h3>VPS (Virtual Private Server) or cloud</h3>
+          <p>Your own slice of a server, isolated from other users. Appropriate for 100–1,000 GB per month bandwidth or 5–100 GB storage. Better performance, more configuration control, and more predictable behaviour under load. Costs typically £10–£100 per month depending on resources. Suitable for growing business sites, WooCommerce stores, and sites with regular traffic spikes.</p>
+
+          <h3>Dedicated server or enterprise cloud</h3>
+          <p>An entire physical server or enterprise-tier cloud instance. Required above 1,000 GB per month bandwidth or above 100 GB storage. Full resource control, highest performance, highest cost. Suitable for large e-commerce sites, media-heavy platforms, and sites with very high traffic volumes.</p>
+
+          <h2>What this estimator does not cover</h2>
+          <p>This tool estimates the raw data you need; it does not account for:</p>
+          <ul>
+            <li><strong>CDN offload:</strong> if you use Cloudflare, AWS CloudFront, or a similar CDN, most of your bandwidth is served from edge nodes, not your origin server. Your origin bandwidth may be a fraction of what this tool shows.</li>
+            <li><strong>Database and application overhead:</strong> dynamic sites (WordPress, WooCommerce, Magento) use server CPU and database resources alongside storage and bandwidth. A high-traffic dynamic site may need a VPS for performance reasons even if bandwidth is modest.</li>
+            <li><strong>Email hosting:</strong> if your hosting plan includes email, each mailbox uses additional storage.</li>
+            <li><strong>Backup storage:</strong> most hosts recommend keeping backups for at least 30 days. Daily backups of a 5 GB site add up quickly.</li>
+          </ul>
+          <p>For advice on broadband speeds, see the <a href="/calculators/broadband/broadband-bandwidth-calculator/">Broadband Bandwidth Calculator</a>. For hosting costs relative to returns, the <a href="/calculators/finance/roi-calculator/">ROI Calculator</a> can help frame the decision.</p>
+          <p>Nothing on this page is hosting, technical, or professional advice. Hosting requirements vary by platform, traffic pattern, and application. Read your prospective host's fair-use and acceptable-use policies before making a decision.</p>
+        </section>
+
+        <section class="faq" aria-labelledby="faq-heading">
+          <h2 id="faq-heading">Frequently asked questions</h2>
+          <details>
+            <summary>How is website bandwidth calculated?</summary>
+            <p>Monthly bandwidth = monthly visitors × pages per visit × average page weight. Add monthly downloads × file size for any downloadable content. Add a buffer of 20–50% on top to absorb traffic spikes and crawlers. This tool does that maths for you.</p>
+          </details>
+          <details>
+            <summary>What is the difference between bandwidth and storage?</summary>
+            <p>Storage is how much space your files take up on the server. Bandwidth (data transfer) is how much data flows out to visitors each month. You can have high storage with low bandwidth (a large archive with few visitors) or low storage with high bandwidth (a lean site with lots of traffic).</p>
+          </details>
+          <details>
+            <summary>What hosting tier do I need?</summary>
+            <p>Shared hosting suits most sites under 100 GB per month bandwidth and 5 GB storage. VPS or cloud is right for 100–1,000 GB or 5–100 GB storage. Above those figures, dedicated or enterprise cloud is the appropriate tier. These are rough guides; the estimator applies the same thresholds.</p>
+          </details>
+          <details>
+            <summary>Why add a buffer?</summary>
+            <p>Your average monthly bandwidth is exactly that: an average. A link from a popular site, a seasonal campaign, or a crawl from a large search engine can send bandwidth well above the average for days at a time. A 20–50% buffer means your plan covers your peak, not just your steady-state figure.</p>
+          </details>
+          <details>
+            <summary>How do I find my average page weight?</summary>
+            <p>Open browser dev tools (F12), go to the Network tab, reload the page, and look at the total transferred size. Check a few representative pages and average them. The HTTP Archive reports a median of around 2,000 KB for desktop pages.</p>
+          </details>
+        </section>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="ad-slot" data-ad-slot="sidebar" aria-hidden="true"></div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="site-footer-nav" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/calculators/">All calculators</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+
+      <section class="site-disclaimer" data-disclaimer aria-labelledby="disclaimer-heading">
+        <h2 id="disclaimer-heading">A quick, necessary word</h2>
+        <p>Every calculator on this site is built to give you a sensible, well-reasoned estimate. It is, however, exactly that: an estimate, for general information only. Nothing you see here is professional, legal, financial, medical, or tax advice, and it should not be treated as such.</p>
+        <p>Before you make a decision that actually matters, talk to a qualified professional who knows your specific situation: an accountant, a solicitor, a doctor, an IT consultant, whoever fits the question. They can factor in the bits a generic tool can't.</p>
+        <p>We take no liability and accept no responsibility for any loss, damage, or questionable life choice arising from acting on the numbers you see here. Use the results as a starting point for a better conversation, not as the final word.</p>
+        <p><strong>Affiliate disclosure:</strong> some links on this site are affiliate links. If you click through and buy or sign up for something, we may earn a small commission at no extra cost to you. It helps keep the calculators free and ad-light. We only recommend things we'd point a friend towards.</p>
+      </section>
+      <p class="site-copyright">&copy; 2026 WebCaretakers. All rights reserved.</p>
+      <p class="site-legal">WebCaretakers is a trading name of <a href="https://yeseo.io/" rel="noopener">Andrew Laws Associates Ltd</a>, registered in England and Wales (company no. 08602332). ICO registration ZA726704.</p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/calculators/web-hosting-estimator.js"></script>
+  <script>
+    (function () {
+      'use strict';
+      var shortcutEl = document.querySelector('[data-bookmark-shortcut]');
+      if (shortcutEl) {
+        var isMac = /Mac|iPhone|iPad|iPod/i.test(navigator.platform || navigator.userAgent);
+        shortcutEl.textContent = isMac ? '\u2318' : 'Ctrl';
+      }
+
+      var form = document.getElementById('hosting-form');
+      if (!form) return;
+
+      var visitorsIn       = form.querySelector('[data-monthly-visitors]');
+      var pagesIn          = form.querySelector('[data-pages-per-visit]');
+      var pageWeightIn     = form.querySelector('[data-page-weight-kb]');
+      var mediaFilesIn     = form.querySelector('[data-media-files]');
+      var mediaSizeIn      = form.querySelector('[data-media-file-size-kb]');
+      var dlFilesIn        = form.querySelector('[data-download-files]');
+      var dlSizeIn         = form.querySelector('[data-download-file-size-mb]');
+      var dlMonthlyIn      = form.querySelector('[data-monthly-downloads]');
+      var bufferIn         = form.querySelector('[data-buffer-percent]');
+
+      var resultEl         = document.querySelector('[data-result]');
+      var breakdown        = document.querySelector('[data-breakdown]');
+      var proveBody        = document.querySelector('[data-prove-it-body]');
+      var labelBuffer      = document.querySelector('[data-label-buffer]');
+      var labelBufferStorage = document.querySelector('[data-label-buffer-storage]');
+
+      var linePageviews       = document.querySelector('[data-line-pageviews]');
+      var linePageBw          = document.querySelector('[data-line-page-bw]');
+      var lineDownloadBw      = document.querySelector('[data-line-download-bw]');
+      var lineRawBw           = document.querySelector('[data-line-raw-bw]');
+      var lineBufferedBw      = document.querySelector('[data-line-buffered-bw]');
+      var lineMediaStorage    = document.querySelector('[data-line-media-storage]');
+      var lineDownloadStorage = document.querySelector('[data-line-download-storage]');
+      var lineRawStorage      = document.querySelector('[data-line-raw-storage]');
+      var lineBufferedStorage = document.querySelector('[data-line-buffered-storage]');
+      var lineTier            = document.querySelector('[data-line-tier]');
+
+      var TIER_LABELS = {
+        shared:    'Shared hosting',
+        vps:       'VPS or cloud hosting',
+        dedicated: 'Dedicated server or enterprise cloud',
+      };
+
+      function fmtGB(n) {
+        if (typeof n !== 'number' || !isFinite(n)) return '\u2014';
+        if (n < 1) return n.toFixed(3) + ' GB';
+        if (n < 100) return n.toFixed(2) + ' GB';
+        return Math.round(n).toLocaleString('en-GB') + ' GB';
+      }
+
+      function fmtNum(n) {
+        if (typeof n !== 'number' || !isFinite(n)) return '\u2014';
+        return n.toLocaleString('en-GB');
+      }
+
+      var fields = [visitorsIn, pagesIn, pageWeightIn, mediaFilesIn, mediaSizeIn, dlFilesIn, dlSizeIn, dlMonthlyIn, bufferIn];
+      fields.forEach(function (el) {
+        if (!el) return;
+        el.addEventListener('input', function () {
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: 'calculator_interaction',
+            calculator_name: 'Web Hosting Estimator',
+            field_name: el.name || el.id
+          });
+        });
+      });
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        var opts = {
+          monthlyVisitors:    parseInt(visitorsIn.value, 10)   || 0,
+          pagesPerVisit:      parseFloat(pagesIn.value)        || 0,
+          pageWeightKB:       parseFloat(pageWeightIn.value)   || 0,
+          mediaFiles:         parseInt(mediaFilesIn.value, 10) || 0,
+          mediaFileSizeKB:    parseFloat(mediaSizeIn.value)    || 0,
+          downloadFiles:      parseInt(dlFilesIn.value, 10)    || 0,
+          downloadFileSizeMB: parseFloat(dlSizeIn.value)       || 0,
+          monthlyDownloads:   parseInt(dlMonthlyIn.value, 10)  || 0,
+          bufferPercent:      parseFloat(bufferIn.value)       || 0,
+        };
+
+        try {
+          var r = window.WebHostingEstimator.estimateHosting(opts);
+
+          var buf = opts.bufferPercent;
+          if (labelBuffer)        labelBuffer.textContent        = buf;
+          if (labelBufferStorage) labelBufferStorage.textContent = buf;
+
+          resultEl.textContent = TIER_LABELS[r.tier] + ' — ' + fmtGB(r.totalBandwidthWithBufferGB) + '/month bandwidth, ' + fmtGB(r.totalStorageWithBufferGB) + ' storage';
+          breakdown.hidden = false;
+
+          linePageviews.textContent       = fmtNum(r.monthlyPageviews) + ' pageviews/month';
+          linePageBw.textContent          = fmtGB(r.pageBandwidthGB) + '/month';
+          lineDownloadBw.textContent      = fmtGB(r.downloadBandwidthGB) + '/month';
+          lineRawBw.textContent           = fmtGB(r.totalBandwidthRawGB) + '/month';
+          lineBufferedBw.textContent      = fmtGB(r.totalBandwidthWithBufferGB) + '/month';
+          lineMediaStorage.textContent    = fmtGB(r.mediaStorageGB);
+          lineDownloadStorage.textContent = fmtGB(r.downloadStorageGB);
+          lineRawStorage.textContent      = fmtGB(r.totalStorageRawGB);
+          lineBufferedStorage.textContent = fmtGB(r.totalStorageWithBufferGB);
+          lineTier.textContent            = TIER_LABELS[r.tier];
+
+          proveBody.innerHTML = '<ul>' +
+            '<li><span>Monthly visitors</span><strong>' + fmtNum(opts.monthlyVisitors) + '</strong></li>' +
+            '<li><span>Pages per visit</span><strong>' + opts.pagesPerVisit + '</strong></li>' +
+            '<li><span>Page weight</span><strong>' + opts.pageWeightKB.toLocaleString('en-GB') + ' KB</strong></li>' +
+            '<li><span>Monthly pageviews</span><strong>' + fmtNum(r.monthlyPageviews) + '</strong></li>' +
+            '<li><span>Page bandwidth</span><strong>' + fmtNum(opts.monthlyVisitors) + ' \u00d7 ' + opts.pagesPerVisit + ' \u00d7 ' + opts.pageWeightKB + ' KB \u00f7 1,000,000 = ' + fmtGB(r.pageBandwidthGB) + '/month</strong></li>' +
+            '<li><span>Download bandwidth</span><strong>' + fmtNum(opts.monthlyDownloads) + ' downloads \u00d7 ' + opts.downloadFileSizeMB + ' MB \u00f7 1,000 = ' + fmtGB(r.downloadBandwidthGB) + '/month</strong></li>' +
+            '<li><span>Bandwidth with ' + buf + '% buffer</span><strong>' + fmtGB(r.totalBandwidthRawGB) + ' \u00d7 ' + (1 + buf / 100).toFixed(2) + ' = ' + fmtGB(r.totalBandwidthWithBufferGB) + '/month</strong></li>' +
+            '<li><span>Media storage</span><strong>' + fmtNum(opts.mediaFiles) + ' files \u00d7 ' + opts.mediaFileSizeKB + ' KB \u00f7 1,000,000 = ' + fmtGB(r.mediaStorageGB) + '</strong></li>' +
+            '<li><span>Download storage</span><strong>' + fmtNum(opts.downloadFiles) + ' files \u00d7 ' + opts.downloadFileSizeMB + ' MB \u00f7 1,000 = ' + fmtGB(r.downloadStorageGB) + '</strong></li>' +
+            '<li><span>Storage with ' + buf + '% buffer</span><strong>' + fmtGB(r.totalStorageRawGB) + ' \u00d7 ' + (1 + buf / 100).toFixed(2) + ' = ' + fmtGB(r.totalStorageWithBufferGB) + '</strong></li>' +
+            '</ul>';
+
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: 'calculator_result',
+            calculator_name: 'Web Hosting Estimator',
+            result_tier: r.tier,
+            bandwidth_gb: r.totalBandwidthWithBufferGB,
+            storage_gb: r.totalStorageWithBufferGB,
+            monthly_visitors: opts.monthlyVisitors
+          });
+
+        } catch (err) {
+          resultEl.textContent = err.message || 'Could not estimate.';
+          breakdown.hidden = true;
+          proveBody.innerHTML = '';
+        }
+      });
+    })();
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>
