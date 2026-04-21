@@ -113,6 +113,18 @@
       "name": "Property",
       "tagline": "Figures for buying, renting, moving, and maintaining a home.",
       "tools": []
+    },
+    {
+      "slug": "wedding",
+      "name": "Wedding",
+      "tagline": "Planning tools for weddings. Timeline generators, date calculators, and checklists.",
+      "tools": [
+        {
+          "slug": "save-the-date-calculator",
+          "name": "Save the Date Calculator",
+          "summary": "Enter your wedding date to get a personalised planning timeline: when to send save-the-dates, book vendors, send formal invitations, set the RSVP deadline, and handle final preparations."
+        }
+      ]
     }
   ]
 }

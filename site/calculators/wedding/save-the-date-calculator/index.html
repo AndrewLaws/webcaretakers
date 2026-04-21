@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Save the Date Calculator: Wedding Planning Timeline | WebCaretakers</title>
+  <meta name="description" content="Enter your wedding date to get a personalised planning timeline: when to send save-the-dates, invitations, RSVP deadlines, vendor bookings, and final preparations.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/wedding/save-the-date-calculator/">
+  <meta property="og:title" content="Save the Date Calculator: Wedding Planning Timeline | WebCaretakers">
+  <meta property="og:description" content="Enter your wedding date and get a complete planning timeline: save-the-dates, invitations, RSVPs, vendor deadlines, and final preparations.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/wedding/save-the-date-calculator/">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var _stored = null;
+    try { _stored = localStorage.getItem('cookie-consent'); } catch (e) {}
+    var _initial = _stored === 'granted' ? 'granted' : 'denied';
+    gtag('consent', 'default', {
+      ad_storage: _initial, analytics_storage: _initial,
+      ad_user_data: _initial, ad_personalization: _initial,
+      functionality_storage: 'granted', security_storage: 'granted',
+      wait_for_update: 500
+    });
+  </script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Save the Date Calculator",
+    "url": "https://webcaretakers.com/calculators/wedding/save-the-date-calculator/",
+    "applicationCategory": "LifestyleApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0" },
+    "author": {
+      "@type": "Person",
+      "name": "Andrew Laws",
+      "url": "https://yeseo.io/"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "When should you send save-the-dates?",
+        "acceptedAnswer": { "@type": "Answer", "text": "For a local wedding, send save-the-dates 6\u20138 months before the date. For a destination wedding where guests need to book travel and accommodation, send them 9\u201312 months in advance. The earlier the better if your date falls near a bank holiday or popular travel period." }
+      },
+      {
+        "@type": "Question",
+        "name": "How early do you need to book a wedding venue?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Popular venues, particularly those with limited Saturday availability, are often booked 12\u201318 months in advance. If you have your heart set on a specific venue, start enquiring as soon as you have a rough date in mind. Weekday or Sunday weddings typically have more availability and shorter lead times." }
+      },
+      {
+        "@type": "Question",
+        "name": "When should wedding invitations be sent?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Formal invitations are typically sent 6\u20138 weeks before the wedding. This gives guests enough time to arrange travel and accommodation, while keeping the RSVP window short enough that you get responses promptly. If your wedding involves significant travel, consider sending invitations 10\u201312 weeks before." }
+      },
+      {
+        "@type": "Question",
+        "name": "How long should the RSVP window be?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Set the RSVP deadline 3\u20134 weeks before the wedding. This gives you and your venue or caterer enough time to finalise headcount, seating plans, and dietary requirements. A longer RSVP window tends to produce more late responses, not fewer." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the difference between save-the-dates and invitations?",
+        "acceptedAnswer": { "@type": "Answer", "text": "A save-the-date is an early heads-up: the date, the location (broadly), and a note that a formal invitation will follow. It is informal and does not require an RSVP. A formal invitation contains all the details: venue address, ceremony and reception times, dress code, RSVP instructions, and any dietary or accessibility information. Send save-the-dates months in advance; invitations follow closer to the date." }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    .timeline-list { list-style: none; padding: 0; margin: 1.5rem 0; }
+    .timeline-item { display: flex; gap: 1rem; padding: 0.85rem 0; border-bottom: 1px solid var(--border, #e5e7eb); }
+    .timeline-item:last-child { border-bottom: none; }
+    .timeline-item__date { flex: 0 0 9rem; font-weight: 600; font-size: 0.9rem; }
+    .timeline-item__body { flex: 1; }
+    .timeline-item__name { font-weight: 600; margin: 0 0 0.15rem; }
+    .timeline-item__meta { font-size: 0.85rem; color: var(--text-muted, #6b7280); margin: 0; }
+    .timeline-item__note { font-size: 0.82rem; color: var(--text-muted, #6b7280); margin: 0.25rem 0 0; font-style: italic; }
+    .timeline-category { margin: 1.5rem 0 0.5rem; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted, #6b7280); }
+    @media (max-width: 480px) {
+      .timeline-item { flex-direction: column; gap: 0.25rem; }
+      .timeline-item__date { flex: none; }
+    }
+  </style>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-banner-heading" aria-describedby="cookie-banner-text" hidden>
+    <div class="cookie-banner__inner">
+      <h2 id="cookie-banner-heading" class="cookie-banner__heading">A quick word about cookies</h2>
+      <p id="cookie-banner-text" class="cookie-banner__text">
+        We use cookies for analytics, so we can see which calculators people actually use and which ones need work. Nothing creepy, nothing sold on. You can say yes, say no, or read the <a href="/privacy/">privacy policy</a> first. Your choice sticks.
+      </p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-reject>Reject</button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>Accept</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var KEY = 'cookie-consent';
+      var banner = document.querySelector('[data-cookie-banner]');
+      if (!banner) return;
+      var stored = null;
+      try { stored = localStorage.getItem(KEY); } catch (e) {}
+      if (stored !== 'granted' && stored !== 'denied') { banner.hidden = false; }
+      function record(choice) {
+        try { localStorage.setItem(KEY, choice); } catch (e) {}
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('consent', 'update', {
+          ad_storage: choice, analytics_storage: choice,
+          ad_user_data: choice, ad_personalization: choice
+        });
+        banner.hidden = true;
+      }
+      var accept = banner.querySelector('[data-cookie-accept]');
+      var reject = banner.querySelector('[data-cookie-reject]');
+      if (accept) accept.addEventListener('click', function () { record('granted'); });
+      if (reject) reject.addEventListener('click', function () { record('denied'); });
+    })();
+  </script>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">WebCaretakers</a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <ul class="primary-nav__list">
+          <li class="primary-nav__item primary-nav__item--has-menu">
+            <button type="button" class="primary-nav__link" data-menu-toggle aria-haspopup="true" aria-expanded="false">Calculators <span class="primary-nav__caret" aria-hidden="true">▾</span></button>
+            <ul class="primary-nav__submenu">
+              <li><a href="/calculators/broadband/">Broadband</a></li>
+              <li><a href="/calculators/finance/">Finance</a></li>
+              <li><a href="/calculators/health/">Health</a></li>
+              <li><a href="/calculators/images/">Images</a></li>
+              <li><a href="/calculators/math/">Math</a></li>
+              <li><a href="/calculators/productivity/">Productivity</a></li>
+              <li><a href="/calculators/wedding/">Wedding</a></li>
+              <li class="primary-nav__submenu-sep"><a href="/calculators/">See all calculators</a></li>
+            </ul>
+          </li>
+          <li class="primary-nav__item"><a href="/about/" class="primary-nav__link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <main id="main-content">
+      <div class="container">
+        <nav aria-label="Breadcrumb" class="breadcrumbs">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/calculators/">Calculators</a></li>
+            <li><a href="/calculators/wedding/">Wedding</a></li>
+            <li aria-current="page">Save the Date Calculator</li>
+          </ol>
+        </nav>
+
+        <h1>Save the Date Calculator</h1>
+        <p class="intro">Enter your wedding date to get a personalised planning timeline: when to send save-the-dates, book vendors, send formal invitations, set the RSVP deadline, and handle final preparations. Every date is worked out from your wedding date backwards.</p>
+
+        <section class="eli5" aria-label="Plain-English explanation">
+          <h2>Explain like I'm 5 (how does wedding timing work?)</h2>
+          <p>Planning a wedding is mostly about telling people things at the right time. Tell people too early and they forget; too late and they can't rearrange their lives. The venue and photographer need to know first because they only have so many Saturdays. Your guests need a heads-up (the save-the-date) months before you send the proper invitation, so they can get time off work and sort travel. Then you need their RSVP early enough to tell the caterer how many meals to prepare. This tool works backwards from your wedding date and gives you a checklist of when each of those things needs to happen.</p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="in-content" aria-hidden="true"></div>
+
+        <section data-calculator class="calculator-card">
+          <h2>Generate your timeline</h2>
+          <form id="wedding-form" class="calc-form" novalidate>
+
+            <div class="calc-row">
+              <label for="wedding-date">Wedding date</label>
+              <input type="date" id="wedding-date" name="weddingDate" data-wedding-date required>
+            </div>
+
+            <div class="calc-row">
+              <label>
+                <input type="checkbox" id="wedding-destination" name="isDestination" data-is-destination>
+                Destination wedding (guests travelling abroad or long distance)
+              </label>
+              <small>Ticks the save-the-date window back to 10 months instead of 7.</small>
+            </div>
+
+            <button type="submit" data-calculate>Generate timeline</button>
+          </form>
+
+          <div data-calculator-results class="calculator-results">
+            <div class="result-summary">
+              <p class="result-display" data-result>Enter your wedding date, then press Generate timeline.</p>
+            </div>
+
+            <div data-breakdown hidden>
+              <ul class="timeline-list" data-timeline-list aria-label="Wedding planning timeline"></ul>
+            </div>
+          </div>
+
+          <p class="bookmark-nudge">
+            Useful? Save this page: press <kbd data-bookmark-shortcut>Ctrl</kbd> + <kbd>D</kbd> to bookmark it.
+          </p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="below-results" aria-hidden="true"></div>
+
+        <section class="long-form">
+          <h2>When to send save-the-dates</h2>
+          <p>The general rule is 6–8 months before a local wedding and 9–12 months before a destination wedding. The logic is straightforward: your guests need enough notice to request annual leave, book accommodation, and arrange travel. For a wedding on a bank holiday weekend or in an unusually popular location, err towards the longer end of the range.</p>
+          <p>Save-the-dates are intentionally informal. They do not need to contain every detail. A date, a broad location ("we're getting married in the Cotswolds"), and a note that a formal invitation will follow is enough. The point is to block the date in people's heads before they book something else.</p>
+
+          <h2>When to book your vendors</h2>
+          <p>The venue and photographer are the two things that have the narrowest supply. Most sought-after photographers are booked 12–18 months in advance for summer and bank holiday Saturdays. Once you have a date and a venue confirmed, lock in the photographer next.</p>
+          <p>Caterers, florists, and bands or DJs can usually be booked 6–12 months out, though popular local suppliers book up at peak times. If you have a specific florist or band in mind, treat them as a vendor to secure early rather than assuming they will be available later.</p>
+
+          <h2>When to send formal invitations</h2>
+          <p>Formal invitations go out 6–8 weeks before the wedding for most UK weddings. This is deliberately later than the save-the-date: once people have the formal invitation in their hands, the RSVP clock starts. Sending invitations too early tends to produce a long tail of late RSVPs because guests do not feel urgency until the deadline feels close.</p>
+          <p>If your wedding involves significant travel, or if a meaningful number of guests are coming from abroad, consider sending invitations 10–12 weeks before instead.</p>
+
+          <h2>Setting the RSVP deadline</h2>
+          <p>Three to four weeks before the wedding is the standard RSVP window. Your caterer and venue will need a final headcount approximately two weeks before the date, so you need the RSVPs to land at least a week before that to give you time to chase non-responders and compile the list.</p>
+          <p>A common mistake is setting the RSVP deadline too late. If the deadline is one week before the wedding, you will be chasing guests at exactly the wrong moment. Set it three weeks out, expect to chase 20–30% of guests anyway, and build in time to deal with the stragglers before the venue needs the numbers.</p>
+
+          <h2>What this timeline does not cover</h2>
+          <p>This tool focuses on the communication and booking timeline. It does not cover:</p>
+          <ul>
+            <li>Budget planning and deposits</li>
+            <li>Wedding dress design and fitting timelines (which vary significantly by designer)</li>
+            <li>Hen and stag dos, which are typically 1–3 months before the wedding</li>
+            <li>Legal requirements specific to your country, council, or register office</li>
+          </ul>
+          <p>For the marriage licence specifically, check with your local register office or council. Requirements vary: in England and Wales you give notice at least 28 days before the ceremony; in Scotland the notice period is different. If either partner is from outside the UK, there may be additional documentation requirements.</p>
+        </section>
+
+        <section class="faq" aria-labelledby="faq-heading">
+          <h2 id="faq-heading">Frequently asked questions</h2>
+          <details>
+            <summary>When should you send save-the-dates?</summary>
+            <p>For a local wedding: 6–8 months before. For a destination wedding: 9–12 months before. If your date falls near a bank holiday or popular travel period, send them at the early end of that range.</p>
+          </details>
+          <details>
+            <summary>How early do you need to book a wedding venue?</summary>
+            <p>Popular venues, particularly for summer Saturdays, are often booked 12–18 months ahead. If you have a specific venue in mind, enquire as soon as you have a rough date. Weekday and Sunday weddings typically have more availability.</p>
+          </details>
+          <details>
+            <summary>When should wedding invitations be sent?</summary>
+            <p>Formal invitations typically go out 6–8 weeks before the wedding. If guests need to arrange significant travel, consider 10–12 weeks instead.</p>
+          </details>
+          <details>
+            <summary>How long should the RSVP window be?</summary>
+            <p>Set the RSVP deadline 3–4 weeks before the wedding. This gives you and your venue time to finalise headcount before the two-week-out deadline most caterers and venues work to.</p>
+          </details>
+          <details>
+            <summary>What is the difference between a save-the-date and an invitation?</summary>
+            <p>A save-the-date is an informal early notice: the date, general location, and a note that a proper invitation follows. No RSVP needed. A formal invitation contains all the details, venue address, times, dress code, and RSVP instructions, and goes out much closer to the date.</p>
+          </details>
+        </section>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="ad-slot" data-ad-slot="sidebar" aria-hidden="true"></div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="site-footer-nav" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/calculators/">All calculators</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+
+      <section class="site-disclaimer" data-disclaimer aria-labelledby="disclaimer-heading">
+        <h2 id="disclaimer-heading">A quick, necessary word</h2>
+        <p>Every calculator on this site is built to give you a sensible, well-reasoned estimate. It is, however, exactly that: an estimate, for general information only. Nothing you see here is professional, legal, financial, medical, or tax advice, and it should not be treated as such.</p>
+        <p>Before you make a decision that actually matters, talk to a qualified professional who knows your specific situation: an accountant, a solicitor, a doctor, an IT consultant, whoever fits the question. They can factor in the bits a generic tool can't.</p>
+        <p>We take no liability and accept no responsibility for any loss, damage, or questionable life choice arising from acting on the numbers you see here. Use the results as a starting point for a better conversation, not as the final word.</p>
+        <p><strong>Affiliate disclosure:</strong> some links on this site are affiliate links. If you click through and buy or sign up for something, we may earn a small commission at no extra cost to you. It helps keep the calculators free and ad-light. We only recommend things we'd point a friend towards.</p>
+      </section>
+      <p class="site-copyright">&copy; 2026 WebCaretakers. All rights reserved.</p>
+      <p class="site-legal">WebCaretakers is a trading name of <a href="https://yeseo.io/" rel="noopener">Andrew Laws Associates Ltd</a>, registered in England and Wales (company no. 08602332). ICO registration ZA726704.</p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/calculators/wedding-timeline.js"></script>
+  <script>
+    (function () {
+      'use strict';
+
+      var shortcutEl = document.querySelector('[data-bookmark-shortcut]');
+      if (shortcutEl) {
+        var isMac = /Mac|iPhone|iPad|iPod/i.test(navigator.platform || navigator.userAgent);
+        shortcutEl.textContent = isMac ? '\u2318' : 'Ctrl';
+      }
+
+      // Pre-fill date to next year's current month/day as a sensible default
+      var dateInput = document.querySelector('[data-wedding-date]');
+      if (dateInput && !dateInput.value) {
+        var today = new Date();
+        var nextYear = new Date(today);
+        nextYear.setFullYear(today.getFullYear() + 1);
+        dateInput.value = nextYear.toISOString().slice(0, 10);
+      }
+
+      var MONTH_NAMES = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+      function fmtDate(str) {
+        var parts = str.split('-');
+        return parseInt(parts[2], 10) + ' ' + MONTH_NAMES[parseInt(parts[1], 10) - 1] + ' ' + parts[0];
+      }
+
+      function timingLabel(daysBeforeWedding) {
+        if (daysBeforeWedding >= 365) {
+          var y = Math.round(daysBeforeWedding / 30.44);
+          return y + ' months before';
+        }
+        if (daysBeforeWedding >= 28) {
+          var wk = Math.round(daysBeforeWedding / 7);
+          return wk + ' weeks before';
+        }
+        if (daysBeforeWedding === 1) return 'The day before';
+        return daysBeforeWedding + ' days before';
+      }
+
+      var CATEGORY_LABELS = {
+        'venue':        'Venue',
+        'vendors':      'Vendors',
+        'save-the-date':'Save-the-dates',
+        'logistics':    'Logistics',
+        'attire':       'Attire',
+        'travel':       'Travel',
+        'invitations':  'Invitations',
+        'legal':        'Legal',
+        'rsvp':         'RSVPs',
+        'pre-wedding':  'Pre-wedding',
+      };
+
+      var form        = document.getElementById('wedding-form');
+      var resultEl    = document.querySelector('[data-result]');
+      var breakdown   = document.querySelector('[data-breakdown]');
+      var timelineList = document.querySelector('[data-timeline-list]');
+
+      if (!form) return;
+
+      var fields = form.querySelectorAll('input');
+      fields.forEach(function (el) {
+        el.addEventListener('input', function () {
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: 'calculator_interaction',
+            calculator_name: 'Save the Date Calculator',
+            field_name: el.name || el.id
+          });
+        });
+      });
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        var weddingDate   = dateInput.value;
+        var isDestination = document.querySelector('[data-is-destination]').checked;
+
+        try {
+          var r = window.WeddingTimeline.calculateWeddingTimeline({ weddingDate: weddingDate, isDestination: isDestination });
+
+          var formatted = fmtDate(weddingDate);
+          resultEl.textContent = 'Timeline for ' + formatted + (isDestination ? ' (destination wedding)' : '');
+          breakdown.hidden = false;
+
+          // Group milestones by category for display (flat list — category labels are li items)
+          var lastCategory = null;
+          var html = '';
+          r.milestones.forEach(function (m) {
+            if (m.category !== lastCategory) {
+              html += '<li class="timeline-category">' + (CATEGORY_LABELS[m.category] || m.category) + '</li>';
+              lastCategory = m.category;
+            }
+            html += '<li class="timeline-item">' +
+              '<div class="timeline-item__date">' + fmtDate(m.date) + '</div>' +
+              '<div class="timeline-item__body">' +
+                '<p class="timeline-item__name">' + m.name + '</p>' +
+                '<p class="timeline-item__meta">' + timingLabel(m.daysBeforeWedding) + '</p>' +
+                (m.note ? '<p class="timeline-item__note">' + m.note + '</p>' : '') +
+              '</div>' +
+              '</li>';
+          });
+          timelineList.innerHTML = html;
+
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: 'calculator_result',
+            calculator_name: 'Save the Date Calculator',
+            wedding_date: weddingDate,
+            is_destination: isDestination,
+            milestone_count: r.milestones.length
+          });
+
+        } catch (err) {
+          resultEl.textContent = err.message || 'Could not generate timeline.';
+          breakdown.hidden = true;
+          if (timelineList) timelineList.innerHTML = '';
+        }
+      });
+    })();
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>
