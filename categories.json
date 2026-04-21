@@ -123,6 +123,21 @@
           "slug": "save-the-date-calculator",
           "name": "Save the Date Calculator",
           "summary": "Enter your wedding date to get a personalised planning timeline: when to send save-the-dates, book vendors, send formal invitations, set the RSVP deadline, and handle final preparations."
+        },
+        {
+          "slug": "wedding-budget-calculator",
+          "name": "Wedding Budget Calculator",
+          "summary": "Enter your total budget and guest count to get a recommended spend breakdown across venue, catering, photography, music, flowers, attire, stationery, transport, and contingency."
+        },
+        {
+          "slug": "wedding-day-timeline",
+          "name": "Wedding Day Timeline Generator",
+          "summary": "Enter your ceremony time and reception end time to generate a complete wedding day schedule from bridal preparation through to carriages."
+        },
+        {
+          "slug": "wedding-drinks-calculator",
+          "name": "Wedding Drinks Calculator",
+          "summary": "Enter your guest count and event duration to get bottle and quantity estimates for white wine, red wine, prosecco, beer, spirits, and soft drinks."
         }
       ]
     }

@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wedding Drinks Calculator: How Many Bottles? | WebCaretakers</title>
+  <meta name="description" content="Work out how many bottles of wine, prosecco, beer, and spirits you need for your wedding. Enter guest count, reception length, and drinking style to get quantities for each phase of the day.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/wedding/wedding-drinks-calculator/">
+  <meta property="og:title" content="Wedding Drinks Calculator | WebCaretakers">
+  <meta property="og:description" content="How many bottles of wine, prosecco, beer, and spirits do you need for your wedding? Enter guest count and reception length to find out.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/wedding/wedding-drinks-calculator/">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var _stored = null;
+    try { _stored = localStorage.getItem('cookie-consent'); } catch (e) {}
+    var _initial = _stored === 'granted' ? 'granted' : 'denied';
+    gtag('consent', 'default', {
+      ad_storage: _initial, analytics_storage: _initial,
+      ad_user_data: _initial, ad_personalization: _initial,
+      functionality_storage: 'granted', security_storage: 'granted',
+      wait_for_update: 500
+    });
+  </script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Wedding Drinks Calculator",
+    "url": "https://webcaretakers.com/calculators/wedding/wedding-drinks-calculator/",
+    "applicationCategory": "LifestyleApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0" },
+    "author": { "@type": "Person", "name": "Andrew Laws", "url": "https://yeseo.io/" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How many bottles of wine do I need for a wedding?",
+        "acceptedAnswer": { "@type": "Answer", "text": "A rough guide is one bottle of wine per adult guest for a full-day wedding with a drinks reception and sit-down meal, assuming a mixed drinks offering. If your guests are wine-heavy drinkers or you are offering wine throughout the evening, plan for closer to 1.5 bottles per person. This calculator works out a more precise figure based on your actual reception lengths and drinking style." }
+      },
+      {
+        "@type": "Question",
+        "name": "How many glasses of prosecco per bottle?",
+        "acceptedAnswer": { "@type": "Answer", "text": "A standard 750 ml bottle of prosecco or champagne gives approximately 6 flutes at 125 ml each. For a toast-only pour, this calculator uses 6 glasses per bottle. For a drinks reception with prosecco on arrival, the same serving size applies." }
+      },
+      {
+        "@type": "Question",
+        "name": "How many bottles of wine per person for a wedding?",
+        "acceptedAnswer": { "@type": "Answer", "text": "For a moderate-drinking wedding with a 1.5-hour drinks reception, 2.5-hour meal, and 4-hour evening, this calculator estimates approximately 0.6\u20130.8 bottles of wine (red and white combined) per adult guest. The actual figure depends on your drinking style setting and how many guests prefer beer or spirits." }
+      },
+      {
+        "@type": "Question",
+        "name": "Should I buy more drinks than the calculator suggests?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes, always add a buffer. This calculator gives you a mathematically derived estimate based on consumption averages; your actual guests may drink more or less. A 10\u201315% buffer on wine and beer is sensible. Running out of wine mid-reception is a much worse outcome than having leftover bottles. Many suppliers offer sale-or-return on unopened cases, which removes most of the risk." }
+      },
+      {
+        "@type": "Question",
+        "name": "How much soft drink do I need for a wedding?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Plan for at least 400 ml of soft drink per person per phase for non-drinkers and designated drivers, plus soft options for children if they are attending. This calculator gives a litre figure for soft drinks across the whole day. Offer a variety: water, juice, and a fizzy option at minimum. Having only sparkling water as the soft option is a common and easily avoidable mistake." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-banner-heading" aria-describedby="cookie-banner-text" hidden>
+    <div class="cookie-banner__inner">
+      <h2 id="cookie-banner-heading" class="cookie-banner__heading">A quick word about cookies</h2>
+      <p id="cookie-banner-text" class="cookie-banner__text">We use cookies for analytics, so we can see which calculators people actually use and which ones need work. Nothing creepy, nothing sold on. You can say yes, say no, or read the <a href="/privacy/">privacy policy</a> first. Your choice sticks.</p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-reject>Reject</button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>Accept</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var KEY = 'cookie-consent';
+      var banner = document.querySelector('[data-cookie-banner]');
+      if (!banner) return;
+      var stored = null;
+      try { stored = localStorage.getItem(KEY); } catch (e) {}
+      if (stored !== 'granted' && stored !== 'denied') { banner.hidden = false; }
+      function record(choice) {
+        try { localStorage.setItem(KEY, choice); } catch (e) {}
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('consent', 'update', { ad_storage: choice, analytics_storage: choice, ad_user_data: choice, ad_personalization: choice });
+        banner.hidden = true;
+      }
+      var accept = banner.querySelector('[data-cookie-accept]');
+      var reject = banner.querySelector('[data-cookie-reject]');
+      if (accept) accept.addEventListener('click', function () { record('granted'); });
+      if (reject) reject.addEventListener('click', function () { record('denied'); });
+    })();
+  </script>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">WebCaretakers</a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <ul class="primary-nav__list">
+          <li class="primary-nav__item primary-nav__item--has-menu">
+            <button type="button" class="primary-nav__link" data-menu-toggle aria-haspopup="true" aria-expanded="false">Calculators <span class="primary-nav__caret" aria-hidden="true">▾</span></button>
+            <ul class="primary-nav__submenu">
+              <li><a href="/calculators/broadband/">Broadband</a></li>
+              <li><a href="/calculators/finance/">Finance</a></li>
+              <li><a href="/calculators/health/">Health</a></li>
+              <li><a href="/calculators/images/">Images</a></li>
+              <li><a href="/calculators/math/">Math</a></li>
+              <li><a href="/calculators/productivity/">Productivity</a></li>
+              <li><a href="/calculators/wedding/">Wedding</a></li>
+              <li class="primary-nav__submenu-sep"><a href="/calculators/">See all calculators</a></li>
+            </ul>
+          </li>
+          <li class="primary-nav__item"><a href="/about/" class="primary-nav__link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <main id="main-content">
+      <div class="container">
+        <nav aria-label="Breadcrumb" class="breadcrumbs">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/calculators/">Calculators</a></li>
+            <li><a href="/calculators/wedding/">Wedding</a></li>
+            <li aria-current="page">Wedding Drinks Calculator</li>
+          </ol>
+        </nav>
+
+        <h1>Wedding Drinks Calculator</h1>
+        <p class="intro">Enter your guest count, the length of each phase of your day, and your guests' drinking style to get bottle and quantity estimates for white wine, red wine, prosecco, beer and cider, spirits, and soft drinks. All quantities are rounded up so you do not run short.</p>
+
+        <section class="eli5" aria-label="Plain-English explanation">
+          <h2>Explain like I'm 5 (why is drinks planning complicated?)</h2>
+          <p>At a wedding, people drink different things at different times. During the drinks reception, most people want something fizzy or a cold beer. During the meal, wine is more popular. In the evening, beer and spirits go up. If you just buy "a load of wine", you will probably run out of white and have leftover red. This calculator splits the day into three phases, works out what people are likely to drink in each one, and adds it all up into a shopping list. It rounds up so you always have a little more than you need, because running out of drinks is the one thing guests remember.</p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="in-content" aria-hidden="true"></div>
+
+        <section data-calculator class="calculator-card">
+          <h2>Calculate</h2>
+          <form id="drinks-form" class="calc-form" novalidate>
+
+            <div class="calc-row">
+              <label for="drinks-guests">Number of adult guests</label>
+              <input type="number" id="drinks-guests" name="guestCount" min="2" step="1" value="80" data-guest-count>
+            </div>
+
+            <div class="calc-row">
+              <label for="drinks-style">Drinking style</label>
+              <select id="drinks-style" name="drinkingStyle" data-drinking-style>
+                <option value="light">Light — a fair number of non-drinkers or early leavers</option>
+                <option value="moderate" selected>Moderate — typical mixed group</option>
+                <option value="heavy">Heavy — enthusiastic crowd, late finish</option>
+              </select>
+            </div>
+
+            <fieldset>
+              <legend>Reception phases</legend>
+
+              <div class="calc-row">
+                <label for="drinks-pre">Drinks reception (hours)</label>
+                <input type="number" id="drinks-pre" name="preReceptionHours" min="0" max="4" step="0.5" value="1.5" data-pre-reception-hours>
+              </div>
+
+              <div class="calc-row">
+                <label for="drinks-meal">Wedding breakfast (hours)</label>
+                <input type="number" id="drinks-meal" name="mealHours" min="0" max="5" step="0.5" value="2.5" data-meal-hours>
+              </div>
+
+              <div class="calc-row">
+                <label for="drinks-evening">Evening reception (hours)</label>
+                <input type="number" id="drinks-evening" name="eveningHours" min="0" max="8" step="0.5" value="4" data-evening-hours>
+              </div>
+            </fieldset>
+
+            <div class="calc-row">
+              <label>
+                <input type="checkbox" id="drinks-toast" name="includeToast" data-include-toast checked>
+                Include a toast drink (1 glass of prosecco per guest)
+              </label>
+            </div>
+
+            <button type="submit" data-calculate>Calculate quantities</button>
+          </form>
+
+          <div data-calculator-results class="calculator-results">
+            <div class="result-summary">
+              <p class="result-display" data-result>Enter your details, then press Calculate quantities.</p>
+            </div>
+
+            <div class="mort-breakdown" data-breakdown hidden>
+              <h3>What to buy</h3>
+              <ul>
+                <li><span>White wine (750 ml bottles)</span><strong data-line-white-wine>—</strong></li>
+                <li><span>Red wine (750 ml bottles)</span><strong data-line-red-wine>—</strong></li>
+                <li><span>Prosecco / champagne (750 ml bottles)</span><strong data-line-prosecco>—</strong></li>
+                <li><span>Beer and cider (cans or bottles)</span><strong data-line-beer>—</strong></li>
+                <li><span>Spirits (700 ml bottles)</span><strong data-line-spirits>—</strong></li>
+                <li><span>Soft drinks (litres)</span><strong data-line-soft>—</strong></li>
+              </ul>
+              <h3>Summary</h3>
+              <ul>
+                <li><span>Estimated glasses per person</span><strong data-line-per-person>—</strong></li>
+                <li><span>Total glasses served</span><strong data-line-total>—</strong></li>
+              </ul>
+            </div>
+
+            <details class="prove-it" data-prove-it>
+              <summary>Prove it</summary>
+              <div data-prove-it-body></div>
+              <p class="prove-it-source">Consumption rates: drinks reception 1.5 glasses/person/hour; wedding breakfast 1.0 glass/person/hour; evening reception 1.5 glasses/person/hour. Style multipliers: light 0.7×, moderate 1.0×, heavy 1.4×. Drink mix: drinks reception is 25% white, 15% red, 10% prosecco, 35% beer, 15% soft; wedding breakfast is 35% white, 25% red, 15% beer, 25% soft; evening is 20% white, 10% red, 45% beer, 15% spirits, 10% soft. Toast adds 1 prosecco flute per guest. Wine: 5 glasses per 750 ml bottle. Prosecco: 6 flutes per bottle. Soft drinks: 400 ml per glass. Spirits: 28 measures per 700 ml bottle. All quantities are rounded up.</p>
+            </details>
+          </div>
+
+          <p class="bookmark-nudge">Useful? Save this page: press <kbd data-bookmark-shortcut>Ctrl</kbd> + <kbd>D</kbd> to bookmark it.</p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="below-results" aria-hidden="true"></div>
+
+        <section class="long-form">
+          <h2>Buy more than you think you need</h2>
+          <p>These quantities are based on statistical averages. Your actual guests may drink more or less. Add a 10–15% buffer on wine and beer, and check whether your supplier offers sale-or-return on unopened cases. Most independent wine merchants and many supermarkets do. This means you can over-order without financial risk and return what is left.</p>
+          <p>Running out of wine at a wedding is memorable in all the wrong ways. Having unopened cases left over is not a problem at all.</p>
+
+          <h2>What to offer at each phase</h2>
+          <h3>Drinks reception</h3>
+          <p>Arrival drinks set the tone. Most guests want something in their hand quickly, so service speed matters more than variety. Offer two or three options: a sparkling wine or prosecco, a beer or cider, and a clear non-alcoholic option. Having a single tray of one drink ready at the door as guests exit the ceremony means no one waits. Expand the bar options once everyone is through.</p>
+
+          <h3>Wedding breakfast</h3>
+          <p>Wine with the meal is the expectation for most UK weddings. Offer both white and red; some guests will want both. Have water on tables throughout. If you are providing a bar during the meal for spirits and beer, budget more for that category. This calculator assumes a table wine service with beer on request.</p>
+
+          <h3>Evening reception</h3>
+          <p>Beer and cider pick up significantly in the evening, particularly once dancing starts. Spirits (usually served as mixed drinks: gin and tonic, rum and cola) become a larger share. Have soft drink options clearly available and well-stocked: a third of your guests may not be drinking alcohol at any given point.</p>
+
+          <h2>The toast drink</h2>
+          <p>One glass of prosecco, champagne, or cava per guest for the toast is standard. If you want to use a non-alcoholic alternative for guests who do not drink, have it ready poured before the toast begins so no one is waiting. One glass per person is enough; most guests take a sip rather than finishing the glass.</p>
+          <p>For day-of timing, see the <a href="/calculators/wedding/wedding-day-timeline/">Wedding Day Timeline Generator</a>. For overall budget planning, see the <a href="/calculators/wedding/wedding-budget-calculator/">Wedding Budget Calculator</a>.</p>
+        </section>
+
+        <section class="faq" aria-labelledby="faq-heading">
+          <h2 id="faq-heading">Frequently asked questions</h2>
+          <details>
+            <summary>How many bottles of wine do I need for a wedding?</summary>
+            <p>A rough guide is one bottle per adult guest for a full-day wedding. This calculator gives a more precise figure based on your reception lengths and drinking style. Always add a 10–15% buffer and check for sale-or-return on unopened cases.</p>
+          </details>
+          <details>
+            <summary>How many glasses of prosecco per bottle?</summary>
+            <p>A standard 750 ml bottle gives approximately 6 flutes at 125 ml each. This calculator uses 6 glasses per bottle for prosecco and champagne, and 5 glasses per bottle for wine (at 150 ml per glass).</p>
+          </details>
+          <details>
+            <summary>Should I buy more than the calculator suggests?</summary>
+            <p>Yes. Add 10–15% on wine and beer. Running out is far worse than having leftovers. Many suppliers offer sale-or-return on unopened cases, which removes most of the financial risk of over-ordering.</p>
+          </details>
+          <details>
+            <summary>How much soft drink do I need?</summary>
+            <p>Plan for at least 400 ml per person per phase for non-drinkers, plus extra for children. Offer a variety: water, juice, and a fizzy option. Having only sparkling water as the soft option is a common mistake.</p>
+          </details>
+          <details>
+            <summary>What is the "drinking style" setting?</summary>
+            <p>It applies a multiplier to the base consumption rate. Light (0.7×) suits a group with a significant number of non-drinkers or early leavers. Moderate (1.0×) is the baseline for a typical mixed group. Heavy (1.4×) suits a group of enthusiastic drinkers with a late finish. When in doubt, use Moderate and add a buffer.</p>
+          </details>
+        </section>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="ad-slot" data-ad-slot="sidebar" aria-hidden="true"></div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="site-footer-nav" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/calculators/">All calculators</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+      <section class="site-disclaimer" data-disclaimer aria-labelledby="disclaimer-heading">
+        <h2 id="disclaimer-heading">A quick, necessary word</h2>
+        <p>Every calculator on this site is built to give you a sensible, well-reasoned estimate. It is, however, exactly that: an estimate, for general information only. Nothing you see here is professional, legal, financial, medical, or tax advice, and it should not be treated as such.</p>
+        <p>We take no liability and accept no responsibility for any loss, damage, or questionable life choice arising from acting on the numbers you see here.</p>
+        <p><strong>Affiliate disclosure:</strong> some links on this site are affiliate links. If you click through and buy or sign up for something, we may earn a small commission at no extra cost to you.</p>
+      </section>
+      <p class="site-copyright">&copy; 2026 WebCaretakers. All rights reserved.</p>
+      <p class="site-legal">WebCaretakers is a trading name of <a href="https://yeseo.io/" rel="noopener">Andrew Laws Associates Ltd</a>, registered in England and Wales (company no. 08602332). ICO registration ZA726704.</p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/calculators/wedding-drinks.js"></script>
+  <script>
+    (function () {
+      'use strict';
+      var shortcutEl = document.querySelector('[data-bookmark-shortcut]');
+      if (shortcutEl) {
+        shortcutEl.textContent = /Mac|iPhone|iPad|iPod/i.test(navigator.platform || navigator.userAgent) ? '\u2318' : 'Ctrl';
+      }
+
+      var form = document.getElementById('drinks-form');
+      if (!form) return;
+
+      var guestsIn   = form.querySelector('[data-guest-count]');
+      var styleIn    = form.querySelector('[data-drinking-style]');
+      var preIn      = form.querySelector('[data-pre-reception-hours]');
+      var mealIn     = form.querySelector('[data-meal-hours]');
+      var eveningIn  = form.querySelector('[data-evening-hours]');
+      var toastIn    = form.querySelector('[data-include-toast]');
+
+      var resultEl   = document.querySelector('[data-result]');
+      var breakdown  = document.querySelector('[data-breakdown]');
+      var proveBody  = document.querySelector('[data-prove-it-body]');
+
+      var lineWhite  = document.querySelector('[data-line-white-wine]');
+      var lineRed    = document.querySelector('[data-line-red-wine]');
+      var linePros   = document.querySelector('[data-line-prosecco]');
+      var lineBeer   = document.querySelector('[data-line-beer]');
+      var lineSpirit = document.querySelector('[data-line-spirits]');
+      var lineSoft   = document.querySelector('[data-line-soft]');
+      var linePerPerson = document.querySelector('[data-line-per-person]');
+      var lineTotal  = document.querySelector('[data-line-total]');
+
+      var fields = form.querySelectorAll('input, select');
+      fields.forEach(function (el) {
+        el.addEventListener('input', function () {
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({ event: 'calculator_interaction', calculator_name: 'Wedding Drinks Calculator', field_name: el.name || el.id });
+        });
+      });
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var opts = {
+          guestCount:        parseInt(guestsIn.value, 10) || 0,
+          drinkingStyle:     styleIn.value,
+          preReceptionHours: parseFloat(preIn.value) || 0,
+          mealHours:         parseFloat(mealIn.value) || 0,
+          eveningHours:      parseFloat(eveningIn.value) || 0,
+          includeToast:      toastIn.checked,
+        };
+        try {
+          var r = window.WeddingDrinks.calculateWeddingDrinks(opts);
+
+          resultEl.textContent = r.guestCount + ' guests, ' + r.glassesPerPerson + ' glasses per person, ' + r.totalGlasses + ' total';
+          breakdown.hidden = false;
+
+          lineWhite.textContent  = r.whiteWineBottles + ' bottles';
+          lineRed.textContent    = r.redWineBottles + ' bottles';
+          linePros.textContent   = r.proseccoBottles + ' bottles';
+          lineBeer.textContent   = r.beerAndCiderCans + ' cans / bottles';
+          lineSpirit.textContent = r.spiritBottles + ' bottles';
+          lineSoft.textContent   = r.softDrinkLitres + ' litres';
+          linePerPerson.textContent = r.glassesPerPerson + ' glasses';
+          lineTotal.textContent  = r.totalGlasses + ' glasses';
+
+          proveBody.innerHTML = '<ul>' +
+            '<li><span>Guests</span><strong>' + r.guestCount + '</strong></li>' +
+            '<li><span>Drinking style</span><strong>' + r.drinkingStyle + '</strong></li>' +
+            '<li><span>Drinks reception</span><strong>' + opts.preReceptionHours + ' hrs</strong></li>' +
+            '<li><span>Wedding breakfast</span><strong>' + opts.mealHours + ' hrs</strong></li>' +
+            '<li><span>Evening reception</span><strong>' + opts.eveningHours + ' hrs</strong></li>' +
+            '<li><span>Toast included</span><strong>' + (r.includeToast ? 'Yes' : 'No') + '</strong></li>' +
+            '<li><span>Glasses per person</span><strong>' + r.glassesPerPerson + '</strong></li>' +
+            '<li><span>Total glasses</span><strong>' + r.totalGlasses + '</strong></li>' +
+            '</ul>';
+
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: 'calculator_result',
+            calculator_name: 'Wedding Drinks Calculator',
+            guest_count: r.guestCount,
+            drinking_style: r.drinkingStyle,
+            total_glasses: r.totalGlasses,
+            white_wine_bottles: r.whiteWineBottles,
+            red_wine_bottles: r.redWineBottles,
+          });
+        } catch (err) {
+          resultEl.textContent = err.message || 'Could not calculate.';
+          breakdown.hidden = true;
+          if (proveBody) proveBody.innerHTML = '';
+        }
+      });
+    })();
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

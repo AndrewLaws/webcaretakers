@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wedding Day Timeline Generator | WebCaretakers</title>
+  <meta name="description" content="Enter your ceremony time and reception end time to generate a personalised wedding day schedule: prep, ceremony, photos, drinks reception, speeches, first dance, and carriages.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/wedding/wedding-day-timeline/">
+  <meta property="og:title" content="Wedding Day Timeline Generator | WebCaretakers">
+  <meta property="og:description" content="Generate a personalised wedding day schedule from ceremony time to carriages. Every milestone timed from your ceremony start.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/wedding/wedding-day-timeline/">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var _stored = null;
+    try { _stored = localStorage.getItem('cookie-consent'); } catch (e) {}
+    var _initial = _stored === 'granted' ? 'granted' : 'denied';
+    gtag('consent', 'default', {
+      ad_storage: _initial, analytics_storage: _initial,
+      ad_user_data: _initial, ad_personalization: _initial,
+      functionality_storage: 'granted', security_storage: 'granted',
+      wait_for_update: 500
+    });
+  </script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Wedding Day Timeline Generator",
+    "url": "https://webcaretakers.com/calculators/wedding/wedding-day-timeline/",
+    "applicationCategory": "LifestyleApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0" },
+    "author": { "@type": "Person", "name": "Andrew Laws", "url": "https://yeseo.io/" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How long does a wedding ceremony last?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Most wedding ceremonies last between 20 and 60 minutes. A civil ceremony in a register office is typically 20\u201330 minutes. A religious ceremony in a church is usually 45\u201375 minutes, and may be longer for a full nuptial mass. This timeline uses 45 minutes as the default, which is a reliable middle estimate for a civil ceremony at a licensed venue." }
+      },
+      {
+        "@type": "Question",
+        "name": "How long should the drinks reception last?",
+        "acceptedAnswer": { "@type": "Answer", "text": "A drinks reception typically lasts 60\u201390 minutes. It gives the couple time to complete group photographs while guests mingle. If you have a large wedding party requiring extensive group shots, plan for up to two hours. Tell guests it lasts 60 minutes and plan for 90: guests are usually happy to extend it, but an overrunning drinks reception that delays dinner creates tension." }
+      },
+      {
+        "@type": "Question",
+        "name": "When should speeches happen?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Traditionally, speeches follow the wedding breakfast (the sit-down meal). This lets speakers enjoy their food without nerves and gives guests a chance to settle in. Some couples move speeches to before the meal so speakers can relax and eat. Both work; just make sure your MC and toastmaster know the plan well in advance." }
+      },
+      {
+        "@type": "Question",
+        "name": "How long should a wedding breakfast take?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Allow 90\u2013150 minutes for a wedding breakfast, depending on the number of courses and the pace of service. A two-course meal with speeches after runs about 90 minutes. Three courses with speeches can run to two hours or more. Your venue and caterer will have a view based on their service model; build in a 20-minute buffer in your planning timeline." }
+      },
+      {
+        "@type": "Question",
+        "name": "When should the first dance happen?",
+        "acceptedAnswer": { "@type": "Answer", "text": "The first dance traditionally opens the evening reception, after the wedding breakfast and before the band or DJ starts their set. This timeline places it 90 minutes before the end of the reception. If your reception ends at midnight, the first dance would be around 22:30. Adjust based on whether you have a live band (who may need a longer set) or a DJ." }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    .timeline-list { list-style: none; padding: 0; margin: 1.5rem 0; }
+    .timeline-item { display: flex; gap: 1rem; padding: 0.85rem 0; border-bottom: 1px solid var(--border, #e5e7eb); align-items: flex-start; }
+    .timeline-item:last-child { border-bottom: none; }
+    .timeline-item__time { flex: 0 0 4.5rem; font-weight: 700; font-size: 1rem; padding-top: 0.1rem; }
+    .timeline-item__time--pre { color: var(--text-muted, #6b7280); }
+    .timeline-item__body { flex: 1; }
+    .timeline-item__name { font-weight: 600; margin: 0 0 0.1rem; }
+    .timeline-item__note { font-size: 0.82rem; color: var(--text-muted, #6b7280); margin: 0.2rem 0 0; font-style: italic; }
+    .timeline-divider { list-style: none; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted, #6b7280); padding: 1rem 0 0.25rem; border-top: 2px solid var(--border, #e5e7eb); margin-top: 0.5rem; }
+    .timeline-divider:first-child { border-top: none; padding-top: 0; }
+    @media (max-width: 480px) {
+      .timeline-item { flex-direction: column; gap: 0.15rem; }
+      .timeline-item__time { flex: none; }
+    }
+  </style>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-banner-heading" aria-describedby="cookie-banner-text" hidden>
+    <div class="cookie-banner__inner">
+      <h2 id="cookie-banner-heading" class="cookie-banner__heading">A quick word about cookies</h2>
+      <p id="cookie-banner-text" class="cookie-banner__text">We use cookies for analytics, so we can see which calculators people actually use and which ones need work. Nothing creepy, nothing sold on. You can say yes, say no, or read the <a href="/privacy/">privacy policy</a> first. Your choice sticks.</p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-reject>Reject</button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>Accept</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var KEY = 'cookie-consent';
+      var banner = document.querySelector('[data-cookie-banner]');
+      if (!banner) return;
+      var stored = null;
+      try { stored = localStorage.getItem(KEY); } catch (e) {}
+      if (stored !== 'granted' && stored !== 'denied') { banner.hidden = false; }
+      function record(choice) {
+        try { localStorage.setItem(KEY, choice); } catch (e) {}
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('consent', 'update', { ad_storage: choice, analytics_storage: choice, ad_user_data: choice, ad_personalization: choice });
+        banner.hidden = true;
+      }
+      var accept = banner.querySelector('[data-cookie-accept]');
+      var reject = banner.querySelector('[data-cookie-reject]');
+      if (accept) accept.addEventListener('click', function () { record('granted'); });
+      if (reject) reject.addEventListener('click', function () { record('denied'); });
+    })();
+  </script>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">WebCaretakers</a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <ul class="primary-nav__list">
+          <li class="primary-nav__item primary-nav__item--has-menu">
+            <button type="button" class="primary-nav__link" data-menu-toggle aria-haspopup="true" aria-expanded="false">Calculators <span class="primary-nav__caret" aria-hidden="true">▾</span></button>
+            <ul class="primary-nav__submenu">
+              <li><a href="/calculators/broadband/">Broadband</a></li>
+              <li><a href="/calculators/finance/">Finance</a></li>
+              <li><a href="/calculators/health/">Health</a></li>
+              <li><a href="/calculators/images/">Images</a></li>
+              <li><a href="/calculators/math/">Math</a></li>
+              <li><a href="/calculators/productivity/">Productivity</a></li>
+              <li><a href="/calculators/wedding/">Wedding</a></li>
+              <li class="primary-nav__submenu-sep"><a href="/calculators/">See all calculators</a></li>
+            </ul>
+          </li>
+          <li class="primary-nav__item"><a href="/about/" class="primary-nav__link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <main id="main-content">
+      <div class="container">
+        <nav aria-label="Breadcrumb" class="breadcrumbs">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/calculators/">Calculators</a></li>
+            <li><a href="/calculators/wedding/">Wedding</a></li>
+            <li aria-current="page">Wedding Day Timeline Generator</li>
+          </ol>
+        </nav>
+
+        <h1>Wedding Day Timeline Generator</h1>
+        <p class="intro">Enter your ceremony start time and reception end time to generate a complete wedding day schedule: when preparation starts, when guests arrive, ceremony, photographs, drinks reception, wedding breakfast, speeches, first dance, and carriages. Every milestone is timed from your ceremony.</p>
+
+        <section class="eli5" aria-label="Plain-English explanation">
+          <h2>Explain like I'm 5 (why does a wedding day need a timeline?)</h2>
+          <p>A wedding day has a lot of moving parts: hair and makeup need to start early enough that the bride is ready before guests arrive; the photographer needs to know when the group photos happen; the caterer needs to know when to serve the meal; the band needs to know when the first dance is. If any one of those things is late, it delays everything after it, and by the end of the evening you are cutting the cake at 11pm and the DJ is playing the last song to an empty floor. A timeline means everyone knows what is happening and when, and the couple can actually enjoy their day instead of worrying about it.</p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="in-content" aria-hidden="true"></div>
+
+        <section data-calculator class="calculator-card">
+          <h2>Generate your timeline</h2>
+          <form id="timeline-form" class="calc-form" novalidate>
+
+            <div class="calc-row">
+              <label for="ceremony-time">Ceremony start time</label>
+              <input type="time" id="ceremony-time" name="ceremonyTime" value="14:00" data-ceremony-time required>
+            </div>
+
+            <div class="calc-row">
+              <label for="reception-end-time">Reception end time (carriages)</label>
+              <input type="time" id="reception-end-time" name="receptionEndTime" value="23:30" data-reception-end-time required>
+              <small>Must be at least 4 hours after the ceremony start.</small>
+            </div>
+
+            <button type="submit" data-calculate>Generate timeline</button>
+          </form>
+
+          <div data-calculator-results class="calculator-results">
+            <div class="result-summary">
+              <p class="result-display" data-result>Enter your ceremony and end times, then press Generate timeline.</p>
+            </div>
+
+            <div data-breakdown hidden>
+              <ul class="timeline-list" data-timeline-list aria-label="Wedding day timeline"></ul>
+            </div>
+          </div>
+
+          <p class="bookmark-nudge">Useful? Save this page: press <kbd data-bookmark-shortcut>Ctrl</kbd> + <kbd>D</kbd> to bookmark it.</p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="below-results" aria-hidden="true"></div>
+
+        <section class="long-form">
+          <h2>How to use this timeline</h2>
+          <p>The times generated here are starting points. Once you have your timeline, share it with your photographer, venue coordinator, MC or toastmaster, catering manager, and band or DJ. Each of them will have a view on whether the timings are realistic for what you have planned, and will flag conflicts early rather than on the day.</p>
+          <p>Build in more time than you think you need for photographs. Group shots take longer than expected, especially with large families or guests who have had a few drinks. If the timeline shows group photos finishing at 15:00 and drinks reception starting at 15:15, a 15-minute buffer is not enough. Compress somewhere else if you need to, not in the photography slot.</p>
+
+          <h2>Common things that run late</h2>
+          <ul>
+            <li><strong>Preparation:</strong> hair and makeup nearly always takes longer than planned. Budget four hours for a bride with a large bridal party; three for a smaller one. This timeline uses four hours as the default.</li>
+            <li><strong>Guest arrivals:</strong> guests consistently arrive in the final five minutes before a ceremony, not the thirty minutes before that is technically allowed. Do not rely on guests being seated early.</li>
+            <li><strong>Group photographs:</strong> rounding up large family groups is slow. Give the photographer a shot list and assign someone they know to help collect people.</li>
+            <li><strong>Meal service:</strong> dietary requirements, large guest counts, and complex menus all slow service. Check with your caterer how many staff will be on and what their expected service time is per course.</li>
+          </ul>
+
+          <h2>Sharing the timeline</h2>
+          <p>Once you are happy with the timeline, print it or share it digitally. Give a copy to: the venue coordinator, the photographer, the band or DJ, the MC or toastmaster, the bridal party, and the best man or maid of honour. If any supplier has a different version of the day in their head, better to find out at a planning meeting than on the morning.</p>
+          <p>For save-the-date and invitation timing, use the <a href="/calculators/wedding/save-the-date-calculator/">Save the Date Calculator</a>. For budget planning, use the <a href="/calculators/wedding/wedding-budget-calculator/">Wedding Budget Calculator</a>.</p>
+        </section>
+
+        <section class="faq" aria-labelledby="faq-heading">
+          <h2 id="faq-heading">Frequently asked questions</h2>
+          <details>
+            <summary>How long does a wedding ceremony last?</summary>
+            <p>Most ceremonies last 20–60 minutes. A civil ceremony at a licensed venue is usually 20–30 minutes. A church ceremony is typically 45–75 minutes. This timeline uses 45 minutes as a reliable middle estimate.</p>
+          </details>
+          <details>
+            <summary>How long should the drinks reception last?</summary>
+            <p>60–90 minutes is typical. It gives the couple time for photographs while guests mingle. Plan for 90 minutes if you have a large wedding party requiring extensive group shots.</p>
+          </details>
+          <details>
+            <summary>When should speeches happen?</summary>
+            <p>Traditionally after the wedding breakfast, so speakers can enjoy their meal. Some couples move them to before the meal so speakers can relax and eat. Both work; just make sure your MC knows the plan well in advance.</p>
+          </details>
+          <details>
+            <summary>When should the first dance happen?</summary>
+            <p>The first dance traditionally opens the evening reception. This timeline places it 90 minutes before carriages. If your reception ends at midnight, the first dance would be at around 22:30.</p>
+          </details>
+          <details>
+            <summary>How much buffer should I build into the timeline?</summary>
+            <p>At least 20 minutes at each transition point: after the ceremony, between group photos and drinks reception, and between the meal and the evening. Things run late on wedding days. Building buffer in is always the right call.</p>
+          </details>
+        </section>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="ad-slot" data-ad-slot="sidebar" aria-hidden="true"></div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="site-footer-nav" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/calculators/">All calculators</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+      <section class="site-disclaimer" data-disclaimer aria-labelledby="disclaimer-heading">
+        <h2 id="disclaimer-heading">A quick, necessary word</h2>
+        <p>Every calculator on this site is built to give you a sensible, well-reasoned estimate. It is, however, exactly that: an estimate, for general information only. Nothing you see here is professional, legal, financial, medical, or tax advice, and it should not be treated as such.</p>
+        <p>We take no liability and accept no responsibility for any loss, damage, or questionable life choice arising from acting on the numbers you see here.</p>
+        <p><strong>Affiliate disclosure:</strong> some links on this site are affiliate links. If you click through and buy or sign up for something, we may earn a small commission at no extra cost to you.</p>
+      </section>
+      <p class="site-copyright">&copy; 2026 WebCaretakers. All rights reserved.</p>
+      <p class="site-legal">WebCaretakers is a trading name of <a href="https://yeseo.io/" rel="noopener">Andrew Laws Associates Ltd</a>, registered in England and Wales (company no. 08602332). ICO registration ZA726704.</p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/calculators/wedding-day-timeline.js"></script>
+  <script>
+    (function () {
+      'use strict';
+      var shortcutEl = document.querySelector('[data-bookmark-shortcut]');
+      if (shortcutEl) {
+        shortcutEl.textContent = /Mac|iPhone|iPad|iPod/i.test(navigator.platform || navigator.userAgent) ? '\u2318' : 'Ctrl';
+      }
+
+      var form        = document.getElementById('timeline-form');
+      if (!form) return;
+      var ceremonyIn  = form.querySelector('[data-ceremony-time]');
+      var endIn       = form.querySelector('[data-reception-end-time]');
+      var resultEl    = document.querySelector('[data-result]');
+      var breakdown   = document.querySelector('[data-breakdown]');
+      var timelineList = document.querySelector('[data-timeline-list]');
+
+      var SECTION_LABELS = {
+        before:  'Before the ceremony',
+        ceremony:'Ceremony',
+        after:   'After the ceremony',
+      };
+
+      function sectionFor(min) {
+        if (min < 0)   return 'before';
+        if (min === 0) return 'ceremony';
+        return 'after';
+      }
+
+      [ceremonyIn, endIn].forEach(function (el) {
+        el.addEventListener('input', function () {
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({ event: 'calculator_interaction', calculator_name: 'Wedding Day Timeline Generator', field_name: el.name || el.id });
+        });
+      });
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        try {
+          var r = window.WeddingDayTimeline.calculateWeddingDayTimeline({
+            ceremonyTime:     ceremonyIn.value,
+            receptionEndTime: endIn.value,
+          });
+
+          resultEl.textContent = 'Ceremony at ' + r.ceremonyTime + ', carriages at ' + r.receptionEndTime;
+          breakdown.hidden = false;
+
+          var html = '';
+          var lastSection = null;
+          r.milestones.forEach(function (m) {
+            var section = sectionFor(m.minutesFromCeremony);
+            if (section !== lastSection) {
+              html += '<li class="timeline-divider">' + (SECTION_LABELS[section] || section) + '</li>';
+              lastSection = section;
+            }
+            var isPre = m.minutesFromCeremony < 0;
+            html += '<li class="timeline-item">' +
+              '<div class="timeline-item__time' + (isPre ? ' timeline-item__time--pre' : '') + '">' + m.time + '</div>' +
+              '<div class="timeline-item__body">' +
+                '<p class="timeline-item__name">' + m.name + '</p>' +
+                (m.note ? '<p class="timeline-item__note">' + m.note + '</p>' : '') +
+              '</div>' +
+              '</li>';
+          });
+          timelineList.innerHTML = html;
+
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: 'calculator_result',
+            calculator_name: 'Wedding Day Timeline Generator',
+            ceremony_time: r.ceremonyTime,
+            reception_end: r.receptionEndTime,
+            milestone_count: r.milestones.length,
+          });
+        } catch (err) {
+          resultEl.textContent = err.message || 'Could not generate timeline.';
+          breakdown.hidden = true;
+          if (timelineList) timelineList.innerHTML = '';
+        }
+      });
+    })();
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>
