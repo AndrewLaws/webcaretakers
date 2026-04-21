@@ -92,6 +92,18 @@
       ]
     },
     {
+      "slug": "productivity",
+      "name": "Productivity",
+      "tagline": "Browser-based tools for everyday tasks. Nothing uploaded, nothing stored.",
+      "tools": [
+        {
+          "slug": "ical-event-generator",
+          "name": "iCal Event Generator",
+          "summary": "Create a .ics calendar file for any event. Set the date, time, timezone, location and recurrence, then download and import into Google Calendar, Apple Calendar, Outlook, or any other calendar app."
+        }
+      ]
+    },
+    {
       "slug": "property",
       "name": "Property",
       "tagline": "Figures for buying, renting, moving, and maintaining a home.",

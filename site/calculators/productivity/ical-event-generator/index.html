@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>iCal Event Generator | Create .ics Calendar Files | WebCaretakers</title>
+  <meta name="description" content="Create a .ics calendar file for any event. Set the date, time, timezone, location and recurrence, then download and import into Google Calendar, Apple Calendar, Outlook or any other calendar app.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/productivity/ical-event-generator/">
+  <meta property="og:title" content="iCal Event Generator | WebCaretakers">
+  <meta property="og:description" content="Create a .ics calendar file for any event. Download and import into Google Calendar, Apple Calendar, Outlook, or any other calendar app.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/productivity/ical-event-generator/">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var _stored = null;
+    try { _stored = localStorage.getItem('cookie-consent'); } catch (e) {}
+    var _initial = _stored === 'granted' ? 'granted' : 'denied';
+    gtag('consent', 'default', {
+      ad_storage: _initial, analytics_storage: _initial,
+      ad_user_data: _initial, ad_personalization: _initial,
+      functionality_storage: 'granted', security_storage: 'granted',
+      wait_for_update: 500
+    });
+  </script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "iCal Event Generator",
+    "url": "https://webcaretakers.com/calculators/productivity/ical-event-generator/",
+    "applicationCategory": "ProductivityApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0" },
+    "author": {
+      "@type": "Person",
+      "name": "Andrew Laws",
+      "url": "https://yeseo.io/"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is an iCal file (.ics)?",
+        "acceptedAnswer": { "@type": "Answer", "text": "An iCal file (with the .ics extension) is a standard calendar format defined by RFC 5545. It is used by virtually every calendar application, including Google Calendar, Apple Calendar, Microsoft Outlook, Fastmail, and Proton Calendar. You create one file, and any of those apps can import it to add the event to a calendar." }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I import a .ics file into Google Calendar?",
+        "acceptedAnswer": { "@type": "Answer", "text": "On desktop: open Google Calendar, click the settings gear, select Settings, then go to Import and export. Click Import, choose your .ics file, select which calendar to add it to, then click Import. On mobile you can open the .ics file directly and Google Calendar should offer to import it." }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I import a .ics file into Apple Calendar?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Double-click the .ics file in Finder and Apple Calendar will open and ask which calendar to add the event to. Alternatively, open Calendar, go to File then Import, and select the .ics file." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the difference between UTC, a named timezone, and floating time?",
+        "acceptedAnswer": { "@type": "Answer", "text": "UTC stores the event at a fixed point in time. If you set a meeting for 10:00 UTC, it is always 10:00 UTC regardless of where the recipient opens their calendar. A named timezone (e.g. Europe/London) stores the local time in that timezone, and the calendar app converts it to the viewer's own timezone. Floating time stores just the clock time with no timezone at all, meaning the event shows at that time wherever the file is opened. Floating time is best for all-day or location-independent events like birthdays." }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I create a recurring event?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. Choose daily, weekly, monthly, or yearly from the Recurrence field. You can optionally set a count to limit how many times the event repeats. Leave count blank for an event that repeats indefinitely." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-banner-heading" aria-describedby="cookie-banner-text" hidden>
+    <div class="cookie-banner__inner">
+      <h2 id="cookie-banner-heading" class="cookie-banner__heading">A quick word about cookies</h2>
+      <p id="cookie-banner-text" class="cookie-banner__text">
+        We use cookies for analytics, so we can see which calculators people actually use and which ones need work. Nothing creepy, nothing sold on. You can say yes, say no, or read the <a href="/privacy/">privacy policy</a> first. Your choice sticks.
+      </p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-reject>Reject</button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>Accept</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var KEY = 'cookie-consent';
+      var banner = document.querySelector('[data-cookie-banner]');
+      if (!banner) return;
+      var stored = null;
+      try { stored = localStorage.getItem(KEY); } catch (e) {}
+      if (stored !== 'granted' && stored !== 'denied') { banner.hidden = false; }
+      function record(choice) {
+        try { localStorage.setItem(KEY, choice); } catch (e) {}
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('consent', 'update', {
+          ad_storage: choice, analytics_storage: choice,
+          ad_user_data: choice, ad_personalization: choice
+        });
+        banner.hidden = true;
+      }
+      var accept = banner.querySelector('[data-cookie-accept]');
+      var reject = banner.querySelector('[data-cookie-reject]');
+      if (accept) accept.addEventListener('click', function () { record('granted'); });
+      if (reject) reject.addEventListener('click', function () { record('denied'); });
+    })();
+  </script>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">WebCaretakers</a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <ul class="primary-nav__list">
+          <li class="primary-nav__item primary-nav__item--has-menu">
+            <button type="button" class="primary-nav__link" data-menu-toggle aria-haspopup="true" aria-expanded="false">Calculators <span class="primary-nav__caret" aria-hidden="true">▾</span></button>
+            <ul class="primary-nav__submenu">
+              <li><a href="/calculators/broadband/">Broadband</a></li>
+              <li><a href="/calculators/finance/">Finance</a></li>
+              <li><a href="/calculators/health/">Health</a></li>
+              <li><a href="/calculators/images/">Images</a></li>
+              <li><a href="/calculators/math/">Math</a></li>
+              <li><a href="/calculators/productivity/">Productivity</a></li>
+              <li class="primary-nav__submenu-sep"><a href="/calculators/">See all calculators</a></li>
+            </ul>
+          </li>
+          <li class="primary-nav__item"><a href="/about/" class="primary-nav__link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <main id="main-content">
+      <div class="container">
+        <nav aria-label="Breadcrumb" class="breadcrumbs">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/calculators/">Calculators</a></li>
+            <li><a href="/calculators/productivity/">Productivity</a></li>
+            <li aria-current="page">iCal Event Generator</li>
+          </ol>
+        </nav>
+
+        <h1>iCal Event Generator</h1>
+        <p class="intro">Fill in the event details and click Generate. You get a .ics file that you can import into Google Calendar, Apple Calendar, Outlook, or any other calendar app that understands the standard format (which is all of them). Nothing leaves your browser.</p>
+
+        <section class="eli5" aria-label="Plain-English explanation">
+          <h2>Explain like I'm 5 (what even is a .ics file?)</h2>
+          <p>Every calendar app speaks the same language when it comes to sharing events. That language is stored in a file ending in .ics. When you double-click one or import it, your calendar app reads it and adds the event. This tool writes the file for you, so you don't have to learn the format yourself.</p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="in-content" aria-hidden="true"></div>
+
+        <section data-calculator class="calculator-card">
+          <h2>Generate your .ics file</h2>
+          <form id="ical-form" class="calc-form" novalidate>
+
+            <div class="calc-row">
+              <label for="ical-title">Event title <span aria-hidden="true">*</span></label>
+              <input type="text" id="ical-title" name="title" required autocomplete="off" placeholder="e.g. Team meeting" data-title>
+            </div>
+
+            <div class="calc-row">
+              <label>
+                <input type="checkbox" id="ical-all-day" name="allDay" data-all-day>
+                All-day event
+              </label>
+            </div>
+
+            <div class="calc-row">
+              <label for="ical-start-date">Start date <span aria-hidden="true">*</span></label>
+              <input type="date" id="ical-start-date" name="startDate" required data-start-date>
+            </div>
+
+            <div class="calc-row" data-time-row>
+              <label for="ical-start-time">Start time</label>
+              <input type="time" id="ical-start-time" name="startTime" value="10:00" data-start-time>
+            </div>
+
+            <div class="calc-row">
+              <label for="ical-end-date">End date <span aria-hidden="true">*</span></label>
+              <input type="date" id="ical-end-date" name="endDate" required data-end-date>
+            </div>
+
+            <div class="calc-row" data-time-row>
+              <label for="ical-end-time">End time</label>
+              <input type="time" id="ical-end-time" name="endTime" value="11:00" data-end-time>
+            </div>
+
+            <div class="calc-row" data-timezone-row>
+              <label for="ical-timezone">Timezone</label>
+              <select id="ical-timezone" name="timezone" data-timezone>
+                <option value="Europe/London">Europe/London</option>
+                <option value="Europe/Paris">Europe/Paris</option>
+                <option value="Europe/Berlin">Europe/Berlin</option>
+                <option value="Europe/Amsterdam">Europe/Amsterdam</option>
+                <option value="UTC">UTC</option>
+                <option value="America/New_York">America/New_York</option>
+                <option value="America/Chicago">America/Chicago</option>
+                <option value="America/Denver">America/Denver</option>
+                <option value="America/Los_Angeles">America/Los_Angeles</option>
+                <option value="America/Toronto">America/Toronto</option>
+                <option value="America/Vancouver">America/Vancouver</option>
+                <option value="America/Sao_Paulo">America/Sao_Paulo</option>
+                <option value="Africa/Johannesburg">Africa/Johannesburg</option>
+                <option value="Asia/Dubai">Asia/Dubai</option>
+                <option value="Asia/Kolkata">Asia/Kolkata</option>
+                <option value="Asia/Bangkok">Asia/Bangkok</option>
+                <option value="Asia/Shanghai">Asia/Shanghai</option>
+                <option value="Asia/Tokyo">Asia/Tokyo</option>
+                <option value="Asia/Seoul">Asia/Seoul</option>
+                <option value="Australia/Sydney">Australia/Sydney</option>
+                <option value="Australia/Melbourne">Australia/Melbourne</option>
+                <option value="Pacific/Auckland">Pacific/Auckland</option>
+                <option value="floating">Local / floating (no timezone)</option>
+              </select>
+            </div>
+
+            <div class="calc-row">
+              <label for="ical-location">Location <span class="label-optional">(optional)</span></label>
+              <input type="text" id="ical-location" name="location" placeholder="e.g. Conference Room B or https://meet.example.com/abc" data-location>
+            </div>
+
+            <div class="calc-row">
+              <label for="ical-description">Description <span class="label-optional">(optional)</span></label>
+              <textarea id="ical-description" name="description" rows="3" placeholder="Agenda, dial-in details, anything useful" data-description></textarea>
+            </div>
+
+            <div class="calc-row">
+              <label for="ical-url">URL <span class="label-optional">(optional)</span></label>
+              <input type="url" id="ical-url" name="url" placeholder="https://example.com/meeting" data-url>
+            </div>
+
+            <div class="calc-row">
+              <label for="ical-recurrence">Recurrence</label>
+              <select id="ical-recurrence" name="recurrence" data-recurrence>
+                <option value="none">No recurrence</option>
+                <option value="daily">Daily</option>
+                <option value="weekly">Weekly</option>
+                <option value="monthly">Monthly</option>
+                <option value="yearly">Yearly</option>
+              </select>
+            </div>
+
+            <div class="calc-row" data-recurrence-count-row hidden>
+              <label for="ical-recurrence-count">Repeat count <span class="label-optional">(leave blank for indefinite)</span></label>
+              <input type="number" id="ical-recurrence-count" name="recurrenceCount" min="2" step="1" placeholder="e.g. 10" data-recurrence-count>
+            </div>
+
+            <button type="submit" data-generate>Generate .ics file</button>
+          </form>
+
+          <div data-generator-results class="calculator-results" hidden>
+            <div class="result-summary">
+              <p class="result-display" data-result></p>
+            </div>
+
+            <details class="prove-it" data-prove-it>
+              <summary>View iCal source</summary>
+              <pre data-ical-source class="ical-source-preview"></pre>
+            </details>
+          </div>
+
+          <p class="bookmark-nudge">
+            Useful? Save this tool: press <kbd data-bookmark-shortcut>Ctrl</kbd> + <kbd>D</kbd> to bookmark it.
+          </p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="below-results" aria-hidden="true"></div>
+
+        <section class="long-form">
+          <h2>How to import your .ics file</h2>
+
+          <h3>Google Calendar</h3>
+          <p>On desktop: open Google Calendar, click the settings gear, choose Settings, then Import and export. Click Import, select your .ics file, pick which calendar to add it to, and click Import. On mobile, opening the .ics file from your downloads should prompt Google Calendar to import it directly.</p>
+
+          <h3>Apple Calendar</h3>
+          <p>Double-click the .ics file in Finder. Apple Calendar opens and asks which calendar to add the event to. Alternatively, go to File, then Import inside the Calendar app itself.</p>
+
+          <h3>Microsoft Outlook</h3>
+          <p>Open the .ics file from File Explorer. Outlook will ask if you want to open the event or import it into a calendar. Choose Import to add it permanently. On Outlook.com, go to Events from file in the settings sidebar and upload the .ics file.</p>
+
+          <h3>Other calendar apps</h3>
+          <p>Any app that supports the iCalendar standard (RFC 5545) will work, which is essentially all of them. Fastmail, Proton Calendar, Thunderbird, and most mobile calendar apps all accept .ics files. If you're not sure, look for "Import" in the app's settings or file menu.</p>
+
+          <h2>Choosing the right timezone</h2>
+          <p>The timezone you choose affects how the event appears when recipients open it in their own calendars.</p>
+          <p><strong>Named timezone (e.g. Europe/London)</strong>: stores the event in a specific timezone. Calendar apps convert it to the viewer's local time automatically. Best for meetings where attendees are in different timezones.</p>
+          <p><strong>UTC</strong>: stores the event at a fixed universal time. No conversion ambiguity. Good for reminders and scheduled tasks where the exact UTC moment matters.</p>
+          <p><strong>Local / floating</strong>: stores just the clock time with no timezone. The event shows at that time wherever the file is opened. Good for birthdays, anniversaries, or events that are genuinely location-independent, where you don't want calendar apps shifting the time.</p>
+
+          <h2>Recurring events</h2>
+          <p>Setting a recurrence creates a repeating event rule in the .ics file. Weekly creates a new instance of the event every week on the same day. If you set a repeat count, the recurrence stops after that many occurrences. Leave it blank and the event repeats indefinitely until manually deleted from the calendar.</p>
+          <p>Note: editing a recurring event after import varies by calendar app. Some allow editing all future occurrences, others only the single instance. If precision matters, consider generating a separate .ics file for each occurrence.</p>
+        </section>
+
+        <section class="faq" aria-labelledby="faq-heading">
+          <h2 id="faq-heading">Frequently asked questions</h2>
+          <details>
+            <summary>What is an iCal file (.ics)?</summary>
+            <p>A standard calendar format understood by virtually every calendar app: Google Calendar, Apple Calendar, Outlook, Fastmail, Proton Calendar, and others. You create one file and any of them can import it.</p>
+          </details>
+          <details>
+            <summary>How do I import a .ics file into Google Calendar?</summary>
+            <p>On desktop: settings gear, Settings, Import and export, Import, select the file, choose a calendar, Import. On mobile, open the file from downloads and Google Calendar should offer to import it.</p>
+          </details>
+          <details>
+            <summary>How do I import a .ics file into Apple Calendar?</summary>
+            <p>Double-click the file in Finder. Calendar will ask which calendar to add it to. Or use File, Import inside the app.</p>
+          </details>
+          <details>
+            <summary>What is floating time?</summary>
+            <p>Floating time stores the event with just a clock time and no timezone. The event appears at that time regardless of where the file is opened. Best for all-day or location-independent events where you don't want calendar apps shifting the time.</p>
+          </details>
+          <details>
+            <summary>Can I create a recurring event?</summary>
+            <p>Yes. Pick daily, weekly, monthly, or yearly. Set a repeat count to limit occurrences, or leave it blank to repeat indefinitely.</p>
+          </details>
+          <details>
+            <summary>Does anything leave my browser?</summary>
+            <p>No. The .ics file is generated entirely in your browser and downloaded directly to your device. Nothing is sent to any server.</p>
+          </details>
+        </section>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="ad-slot" data-ad-slot="sidebar" aria-hidden="true"></div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="site-footer-nav" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/calculators/">All calculators</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+
+      <section class="site-disclaimer" data-disclaimer aria-labelledby="disclaimer-heading">
+        <h2 id="disclaimer-heading">A quick, necessary word</h2>
+        <p>Every calculator on this site is built to give you a sensible, well-reasoned estimate. It is, however, exactly that: an estimate, for general information only. Nothing you see here is professional, legal, financial, medical, or tax advice, and it should not be treated as such.</p>
+        <p>Before you make a decision that actually matters, talk to a qualified professional who knows your specific situation: an accountant, a solicitor, a doctor, an IT consultant, whoever fits the question. They can factor in the bits a generic tool can't.</p>
+        <p>We take no liability and accept no responsibility for any loss, damage, or questionable life choice arising from acting on the numbers you see here. Use the results as a starting point for a better conversation, not as the final word.</p>
+        <p><strong>Affiliate disclosure:</strong> some links on this site are affiliate links. If you click through and buy or sign up for something, we may earn a small commission at no extra cost to you. It helps keep the calculators free and ad-light. We only recommend things we'd point a friend towards.</p>
+      </section>
+      <p class="site-copyright">&copy; 2026 WebCaretakers. All rights reserved.</p>
+      <p class="site-legal">WebCaretakers is a trading name of <a href="https://yeseo.io/" rel="noopener">Andrew Laws Associates Ltd</a>, registered in England and Wales (company no. 08602332). ICO registration ZA726704.</p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/calculators/ical-generator.js"></script>
+  <script>
+    (function () {
+      'use strict';
+
+      var shortcutEl = document.querySelector('[data-bookmark-shortcut]');
+      if (shortcutEl) {
+        var isMac = /Mac|iPhone|iPad|iPod/i.test(navigator.platform || navigator.userAgent);
+        shortcutEl.textContent = isMac ? '\u2318' : 'Ctrl';
+      }
+
+      var form           = document.getElementById('ical-form');
+      var allDayIn       = form.querySelector('[data-all-day]');
+      var startDateIn    = form.querySelector('[data-start-date]');
+      var startTimeIn    = form.querySelector('[data-start-time]');
+      var endDateIn      = form.querySelector('[data-end-date]');
+      var endTimeIn      = form.querySelector('[data-end-time]');
+      var timezoneIn     = form.querySelector('[data-timezone]');
+      var locationIn     = form.querySelector('[data-location]');
+      var descIn         = form.querySelector('[data-description]');
+      var urlIn          = form.querySelector('[data-url]');
+      var recurrenceIn   = form.querySelector('[data-recurrence]');
+      var recCountIn     = form.querySelector('[data-recurrence-count]');
+
+      var timeRows        = form.querySelectorAll('[data-time-row]');
+      var timezoneRow     = form.querySelector('[data-timezone-row]');
+      var recCountRow     = form.querySelector('[data-recurrence-count-row]');
+
+      var resultsEl      = document.querySelector('[data-generator-results]');
+      var resultText     = document.querySelector('[data-result]');
+      var icalSourceEl   = document.querySelector('[data-ical-source]');
+
+      // Pre-fill today's date
+      var today = new Date().toISOString().slice(0, 10);
+      startDateIn.value = today;
+      endDateIn.value   = today;
+
+      // Show/hide time rows and timezone when all-day toggles
+      allDayIn.addEventListener('change', function () {
+        var hidden = allDayIn.checked;
+        timeRows.forEach(function (r) { r.hidden = hidden; });
+        timezoneRow.hidden = hidden;
+      });
+
+      // Sync end date to start date if end is before start
+      startDateIn.addEventListener('change', function () {
+        if (endDateIn.value && endDateIn.value < startDateIn.value) {
+          endDateIn.value = startDateIn.value;
+        }
+      });
+
+      // Show/hide recurrence count row
+      recurrenceIn.addEventListener('change', function () {
+        recCountRow.hidden = recurrenceIn.value === 'none';
+      });
+
+      // Track interactions
+      var fields = [allDayIn, startDateIn, startTimeIn, endDateIn, endTimeIn,
+                    timezoneIn, locationIn, descIn, urlIn, recurrenceIn, recCountIn];
+      fields.forEach(function (el) {
+        if (!el) return;
+        el.addEventListener('input', function () {
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: 'calculator_interaction',
+            calculator_name: 'iCal Event Generator',
+            field_name: el.name || el.id
+          });
+        });
+        el.addEventListener('change', function () {
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: 'calculator_interaction',
+            calculator_name: 'iCal Event Generator',
+            field_name: el.name || el.id
+          });
+        });
+      });
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        var recCountVal = parseInt(recCountIn.value, 10);
+
+        var args = {
+          title:            (form.querySelector('[data-title]').value || '').trim(),
+          startDate:        startDateIn.value,
+          startTime:        startTimeIn.value || undefined,
+          endDate:          endDateIn.value,
+          endTime:          endTimeIn.value || undefined,
+          allDay:           allDayIn.checked,
+          timezone:         timezoneIn.value,
+          location:         locationIn.value || '',
+          description:      descIn.value || '',
+          url:              urlIn.value || '',
+          recurrence:       recurrenceIn.value,
+          recurrenceCount:  isNaN(recCountVal) ? null : recCountVal,
+        };
+
+        try {
+          var icalStr = window.ICalGenerator.generateICalString(args);
+
+          // Trigger download
+          var blob    = new Blob([icalStr], { type: 'text/calendar;charset=utf-8' });
+          var blobUrl = URL.createObjectURL(blob);
+          var a       = document.createElement('a');
+          var safeName = args.title.replace(/[^a-z0-9_-]/gi, '-').toLowerCase() || 'event';
+          a.href      = blobUrl;
+          a.download  = safeName + '.ics';
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          setTimeout(function () { URL.revokeObjectURL(blobUrl); }, 10000);
+
+          // Show confirmation
+          resultsEl.hidden = false;
+          var dateLabel = args.allDay
+            ? args.startDate + (args.endDate !== args.startDate ? ' to ' + args.endDate : '')
+            : args.startDate + ' ' + args.startTime + '\u2013' + args.endTime + (args.timezone !== 'floating' ? ' ' + args.timezone : '');
+          resultText.textContent = 'File generated: ' + args.title + ' \u2014 ' + dateLabel;
+
+          icalSourceEl.textContent = icalStr;
+
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: 'calculator_result',
+            calculator_name: 'iCal Event Generator',
+            event_title: args.title,
+            all_day: args.allDay,
+            recurrence: args.recurrence,
+            timezone: args.timezone
+          });
+
+        } catch (err) {
+          resultsEl.hidden = false;
+          resultText.textContent = err.message || 'Could not generate the file. Please check your inputs.';
+          icalSourceEl.textContent = '';
+        }
+      });
+    })();
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

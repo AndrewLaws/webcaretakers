@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About WebCaretakers | Andrew Laws</title>
-  <meta name="description" content="WebCaretakers is a free calculator hub built and maintained by Andrew Laws, an SEO and web practitioner since 1999. Here is who is behind it and why it exists.">
-  <link rel="canonical" href="https://webcaretakers.com/about/">
-  <meta property="og:title" content="About WebCaretakers">
-  <meta property="og:description" content="WebCaretakers is a free calculator hub built and maintained by Andrew Laws, an SEO and web practitioner since 1999.">
+  <title>Productivity Tools | WebCaretakers</title>
+  <meta name="description" content="Browser-based productivity tools for everyday tasks. No sign-up, no uploads, workings shown.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/productivity/">
+  <meta property="og:title" content="Productivity Tools | WebCaretakers">
+  <meta property="og:description" content="Browser-based productivity tools for everyday tasks. No sign-up, no uploads.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://webcaretakers.com/about/">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/productivity/">
   <meta name="robots" content="index, follow">
   <link rel="stylesheet" href="/assets/css/main.css">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -22,12 +22,9 @@
     try { _stored = localStorage.getItem('cookie-consent'); } catch (e) {}
     var _initial = _stored === 'granted' ? 'granted' : 'denied';
     gtag('consent', 'default', {
-      ad_storage: _initial,
-      analytics_storage: _initial,
-      ad_user_data: _initial,
-      ad_personalization: _initial,
-      functionality_storage: 'granted',
-      security_storage: 'granted',
+      ad_storage: _initial, analytics_storage: _initial,
+      ad_user_data: _initial, ad_personalization: _initial,
+      functionality_storage: 'granted', security_storage: 'granted',
       wait_for_update: 500
     });
   </script>
@@ -41,18 +38,25 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Andrew Laws",
-    "jobTitle": "SEO and web practitioner",
-    "url": "https://webcaretakers.com/about/",
-    "sameAs": [
-      "https://yeseo.io/",
-      "https://webcaretakers.com/"
-    ],
-    "worksFor": {
-      "@type": "Organization",
-      "name": "Andrew Laws Associates Ltd",
-      "url": "https://yeseo.io/"
+    "@type": "CollectionPage",
+    "name": "Productivity Tools",
+    "url": "https://webcaretakers.com/calculators/productivity/",
+    "description": "Browser-based productivity tools for everyday tasks.",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "WebCaretakers",
+      "url": "https://webcaretakers.com/"
+    },
+    "mainEntity": {
+      "@type": "ItemList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "url": "https://webcaretakers.com/calculators/productivity/ical-event-generator/",
+          "name": "iCal Event Generator"
+        }
+      ]
     }
   }
   </script>
@@ -130,37 +134,20 @@
         <nav aria-label="Breadcrumb" class="breadcrumbs">
           <ol>
             <li><a href="/">Home</a></li>
-            <li aria-current="page">About</li>
+            <li><a href="/calculators/">Calculators</a></li>
+            <li aria-current="page">Productivity</li>
           </ol>
         </nav>
 
-        <h1>About WebCaretakers</h1>
-        <p class="intro">A calculator hub built by a human, not a content farm. Here is who is behind it, why it exists, and where to find me if something on this site is wrong or could be better.</p>
+        <h1>Productivity tools</h1>
+        <p class="intro hub-intro">Browser-based tools that help you get things done. Everything runs in your browser, nothing is uploaded anywhere, and none of it requires an account.</p>
 
-        <section class="long-form">
-          <h2>Who runs this site</h2>
-          <p>My name is Andrew Laws. I have been building, breaking, and fixing websites since 1999. Today I run <a href="https://yeseo.io/" rel="noopener">Yeseo</a>, an SEO and AI consultancy, and WebCaretakers is a personal project that grew out of a long-held soft spot for the kind of genuinely useful web that existed before every page became a funnel.</p>
-          <p>You can read more about my professional work, credentials, and client roster at <a href="https://yeseo.io/" rel="noopener">yeseo.io</a>. That is where anything formal lives. This site is where I make the kind of small, focused tools that used to live on every corner of the 2001-era web.</p>
-
-          <h2>Why this site exists</h2>
-          <p>The webcaretakers.com domain has been registered since 2001. For the best part of two decades it covered web hosting, broadband, email marketing and small business IT. Rather than let a domain with that much history collect cobwebs, it made more sense to rebuild it as something useful: a collection of free, honest calculators that help people make small decisions well.</p>
-          <p>The rules I set for myself at the start are still the rules:</p>
-          <ul>
-            <li><strong>No sign-up, ever.</strong> If a calculator needs an account, something has gone wrong in the design.</li>
-            <li><strong>Everything runs in your browser.</strong> The numbers you type do not leave your device. There is no server-side maths, no logging of inputs, no "we saw you looked at this".</li>
-            <li><strong>Show the workings.</strong> Every calculator has a "Prove it" button that explains how the number was arrived at. You should never have to take the result on faith.</li>
-            <li><strong>Plain English.</strong> If a tool cannot explain itself without jargon, it has failed.</li>
-          </ul>
-
-          <h2>How the site is funded</h2>
-          <p>Two ways. One, <strong>programmatic ads</strong> (Google AdSense, likely moving to a managed partner once traffic justifies it). Two, <strong>affiliate links</strong> on a small number of pages where it is genuinely useful to point people towards a service or product. Every affiliate link is disclosed in the footer of every page. No one pays to be recommended, and no calculator is designed to funnel you towards a specific partner. If the calculator says 50 Mbps is enough for your household, that is what it says, regardless of whether the partner we link to charges more for 150 Mbps.</p>
-
-          <h2>Who to contact</h2>
-          <p>For anything at all (wrong answer, typo, idea for a tool, privacy or data query), use the <a href="/contact/">contact page</a>. I read every message; I reply to most within a few days.</p>
-
-          <h2>The legal bit</h2>
-          <p>WebCaretakers is a trading name of <strong>Andrew Laws Associates Ltd</strong>, a company registered in England and Wales (company number 08602332, VAT GB166900204, ICO registration ZA726704). Registered address: 7 Bailey Close, Ipswich, Suffolk, IP2 0UD, United Kingdom.</p>
-        </section>
+        <ul class="category-grid">
+          <li class="category-card">
+            <h2><a href="/calculators/productivity/ical-event-generator/">iCal Event Generator</a></h2>
+            <p>Create a .ics calendar file for any event. Set the date, time, timezone, location and recurrence, then download the file and import it into Google Calendar, Apple Calendar, Outlook, or any other calendar app.</p>
+          </li>
+        </ul>
       </div>
     </main>
 
@@ -193,5 +180,6 @@
       <p class="site-legal">WebCaretakers is a trading name of <a href="https://yeseo.io/" rel="noopener">Andrew Laws Associates Ltd</a>, registered in England and Wales (company no. 08602332). ICO registration ZA726704.</p>
     </div>
   </footer>
+  <script src="/assets/js/main.js"></script>
 </body>
 </html>
