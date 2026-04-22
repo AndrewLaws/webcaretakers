@@ -105,6 +105,11 @@
           "slug": "age-in-months-calculator",
           "name": "Age in Months Calculator",
           "summary": "Enter a date of birth and find out exactly how many months old you are. A reference to the Parenting Hell podcast bit about adults reporting their age the way parents of toddlers do."
+        },
+        {
+          "slug": "date-difference-calculator",
+          "name": "Date Difference Calculator",
+          "summary": "Enter two dates to see the gap in years, months, days, weeks, hours and weekdays. Auto-flips reversed dates so the answer is always positive."
         }
       ]
     },

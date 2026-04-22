@@ -209,6 +209,14 @@
     {
       "phrase": "fun calculators",
       "url": "/calculators/fun/"
+    },
+    {
+      "phrase": "Date Difference Calculator",
+      "url": "/calculators/fun/date-difference-calculator/"
+    },
+    {
+      "phrase": "date difference calculator",
+      "url": "/calculators/fun/date-difference-calculator/"
     }
   ]
 }
