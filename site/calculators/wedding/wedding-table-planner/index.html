@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wedding Table Planner Calculator | WebCaretakers</title>
+  <meta name="description" content="Enter your guest count and preferred table size to find out how many tables you need, how many seats will be spare, and how alternative table sizes compare.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/wedding/wedding-table-planner/">
+  <meta property="og:title" content="Wedding Table Planner Calculator | WebCaretakers">
+  <meta property="og:description" content="Work out how many tables you need for your wedding. Compare table sizes and see how many seats will be spare.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/wedding/wedding-table-planner/">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var _stored = null;
+    try { _stored = localStorage.getItem('cookie-consent'); } catch (e) {}
+    var _initial = _stored === 'granted' ? 'granted' : 'denied';
+    gtag('consent', 'default', {
+      ad_storage: _initial, analytics_storage: _initial,
+      ad_user_data: _initial, ad_personalization: _initial,
+      functionality_storage: 'granted', security_storage: 'granted',
+      wait_for_update: 500
+    });
+  </script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Wedding Table Planner Calculator",
+    "url": "https://webcaretakers.com/calculators/wedding/wedding-table-planner/",
+    "applicationCategory": "LifestyleApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0" },
+    "author": { "@type": "Person", "name": "Andrew Laws", "url": "https://yeseo.io/" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How many guests can sit at a round wedding table?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Round tables at weddings typically seat 8 or 10 guests. A 5 ft (150 cm) round table seats 8 comfortably. A 6 ft (180 cm) round table seats 10. Seating 12 at a round table is possible but tight; guests at the extremes will struggle to hear each other. For banquet-style (long rectangular) tables, a common configuration is 10 or 12 per table depending on table length and chair width." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is a top table at a wedding?",
+        "acceptedAnswer": { "@type": "Answer", "text": "The top table is where the wedding party sits: traditionally the couple, their parents, and the best man and chief bridesmaid. It faces the other guests and is usually a long rectangular table. Top table guests are counted separately in this calculator because they sit at a different table from the main round or banquet tables." }
+      },
+      {
+        "@type": "Question",
+        "name": "Is it better to have slightly fewer or more tables?",
+        "acceptedAnswer": { "@type": "Answer", "text": "More tables with fewer empty seats is generally better than fewer tables packed tightly. Guests need room for their food, drinks, bags, and to push chairs back. A table with 2 or 3 spare seats is perfectly normal and gives guests breathing room. Venues often set tables to a standard size regardless, so check with your venue what their standard configuration is before finalising your count." }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I handle an odd number of guests?",
+        "acceptedAnswer": { "@type": "Answer", "text": "An odd number almost always means some tables will have empty seats. That is fine. The key decision is whether to use a consistent table size across all tables (simpler for the venue) or to mix sizes to minimise empty seats (more complex to manage). This calculator shows both approaches: your primary result uses a single table size, and the alternatives section shows what different sizes would look like." }
+      },
+      {
+        "@type": "Question",
+        "name": "Should children have their own table?",
+        "acceptedAnswer": { "@type": "Answer", "text": "A separate children's table works well for weddings with a significant number of children (10 or more). It gives them space to move around without disturbing other guests. For smaller numbers of children, seating them with their parents is simpler. If you use a children's table, you may want to seat a supervising adult or two nearby. Count the children in your guest total but plan their table separately." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-banner-heading" aria-describedby="cookie-banner-text" hidden>
+    <div class="cookie-banner__inner">
+      <h2 id="cookie-banner-heading" class="cookie-banner__heading">A quick word about cookies</h2>
+      <p id="cookie-banner-text" class="cookie-banner__text">We use cookies for analytics, so we can see which calculators people actually use and which ones need work. Nothing creepy, nothing sold on. You can say yes, say no, or read the <a href="/privacy/">privacy policy</a> first. Your choice sticks.</p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-reject>Reject</button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>Accept</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var KEY = 'cookie-consent';
+      var banner = document.querySelector('[data-cookie-banner]');
+      if (!banner) return;
+      var stored = null;
+      try { stored = localStorage.getItem(KEY); } catch (e) {}
+      if (stored !== 'granted' && stored !== 'denied') { banner.hidden = false; }
+      function record(choice) {
+        try { localStorage.setItem(KEY, choice); } catch (e) {}
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('consent', 'update', { ad_storage: choice, analytics_storage: choice, ad_user_data: choice, ad_personalization: choice });
+        banner.hidden = true;
+      }
+      var accept = banner.querySelector('[data-cookie-accept]');
+      var reject = banner.querySelector('[data-cookie-reject]');
+      if (accept) accept.addEventListener('click', function () { record('granted'); });
+      if (reject) reject.addEventListener('click', function () { record('denied'); });
+    })();
+  </script>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">WebCaretakers</a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <ul class="primary-nav__list">
+          <li class="primary-nav__item primary-nav__item--has-menu">
+            <button type="button" class="primary-nav__link" data-menu-toggle aria-haspopup="true" aria-expanded="false">Calculators <span class="primary-nav__caret" aria-hidden="true">▾</span></button>
+            <ul class="primary-nav__submenu">
+              <li><a href="/calculators/broadband/">Broadband</a></li>
+              <li><a href="/calculators/finance/">Finance</a></li>
+              <li><a href="/calculators/health/">Health</a></li>
+              <li><a href="/calculators/images/">Images</a></li>
+              <li><a href="/calculators/math/">Math</a></li>
+              <li><a href="/calculators/productivity/">Productivity</a></li>
+              <li><a href="/calculators/wedding/">Wedding</a></li>
+              <li class="primary-nav__submenu-sep"><a href="/calculators/">See all calculators</a></li>
+            </ul>
+          </li>
+          <li class="primary-nav__item"><a href="/about/" class="primary-nav__link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <main id="main-content">
+      <div class="container">
+        <nav aria-label="Breadcrumb" class="breadcrumbs">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/calculators/">Calculators</a></li>
+            <li><a href="/calculators/wedding/">Wedding</a></li>
+            <li aria-current="page">Wedding Table Planner Calculator</li>
+          </ol>
+        </nav>
+
+        <h1>Wedding Table Planner Calculator</h1>
+        <p class="intro">Enter your guest count and preferred table size to find out how many tables you need, how many seats will be spare, and how alternative table sizes compare. Accounts for a top table if you have one.</p>
+
+        <section class="eli5" aria-label="Plain-English explanation">
+          <h2>Explain like I'm 5 (why does table planning matter?)</h2>
+          <p>Imagine you have 83 friends coming to dinner and tables that seat 8. You need 11 tables (because 10 tables only seat 80), and you will have 5 empty chairs. That is fine, but it is better to know in advance so the venue can set the room correctly. The tricky part is choosing your table size: smaller tables feel more intimate but you need more of them; bigger tables fit more people but can feel impersonal. This calculator shows you the number of tables for your chosen size, then shows what would happen if you went slightly bigger or smaller, so you can make the call with the actual numbers in front of you.</p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="in-content" aria-hidden="true"></div>
+
+        <section data-calculator class="calculator-card">
+          <h2>Calculate</h2>
+          <form id="table-form" class="calc-form" novalidate>
+
+            <div class="calc-row">
+              <label for="table-guests">Total number of guests</label>
+              <input type="number" id="table-guests" name="guestCount" min="2" step="1" value="80" data-guest-count>
+            </div>
+
+            <div class="calc-row">
+              <label for="table-size">Seats per table</label>
+              <select id="table-size" name="tableSize" data-table-size>
+                <option value="4">4</option>
+                <option value="6">6</option>
+                <option value="8" selected>8 (most common)</option>
+                <option value="10">10</option>
+                <option value="12">12</option>
+                <option value="14">14</option>
+              </select>
+            </div>
+
+            <div class="calc-row">
+              <label for="table-top">Top table guests (leave at 0 if no top table)</label>
+              <input type="number" id="table-top" name="topTableGuests" min="0" step="1" value="0" data-top-table-guests>
+            </div>
+
+            <button type="submit" data-calculate>Calculate tables</button>
+          </form>
+
+          <div data-calculator-results class="calculator-results">
+            <div class="result-summary">
+              <p class="result-display" data-result>Enter your details, then press Calculate tables.</p>
+            </div>
+
+            <div class="mort-breakdown" data-breakdown hidden>
+              <h3>Your configuration</h3>
+              <ul>
+                <li><span>Tables needed</span><strong data-line-tables>—</strong></li>
+                <li><span>Total seats</span><strong data-line-total-seats>—</strong></li>
+                <li><span>Empty seats</span><strong data-line-empty>—</strong></li>
+              </ul>
+
+              <h3>Alternative table sizes</h3>
+              <p class="prove-it-source">How the numbers change if you use a different table size for the same guest count.</p>
+              <table data-alternatives-table style="width:100%;border-collapse:collapse;font-size:0.9rem;margin-top:0.5rem;">
+                <thead>
+                  <tr style="text-align:left;border-bottom:2px solid var(--border,#e5e7eb);">
+                    <th style="padding:0.4rem 0.6rem;">Seats per table</th>
+                    <th style="padding:0.4rem 0.6rem;">Tables needed</th>
+                    <th style="padding:0.4rem 0.6rem;">Empty seats</th>
+                  </tr>
+                </thead>
+                <tbody data-alternatives-body></tbody>
+              </table>
+            </div>
+
+            <details class="prove-it" data-prove-it>
+              <summary>Prove it</summary>
+              <p class="prove-it-source">Tables needed = ⌈guests to seat ÷ seats per table⌉ (ceiling, always rounded up). Guests to seat = total guests minus top table guests. Empty seats = (tables × seats per table) minus guests to seat. Alternatives use the same formula with a different seats-per-table value.</p>
+            </details>
+          </div>
+
+          <p class="bookmark-nudge">Useful? Save this page: press <kbd data-bookmark-shortcut>Ctrl</kbd> + <kbd>D</kbd> to bookmark it.</p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="below-results" aria-hidden="true"></div>
+
+        <section class="long-form">
+          <h2>Choosing a table size</h2>
+          <p>The most common choice for UK weddings is a round table of 8 or 10. An 8-seat table (typically 5 ft / 150 cm diameter) gives guests comfortable elbow room and makes it easy to talk to everyone at the table. A 10-seat table (6 ft / 180 cm) fits more people but the guests directly opposite each other will struggle to hold a conversation during the meal.</p>
+          <p>Banquet-style long tables seat 10 to 14 and create a different atmosphere: more family-style, louder, and more social across the full table. They require more linens, more centrepiece planning, and a venue with straight sightlines. Many barn venues and older halls work well with long tables; round-table setups are more common in hotels and licensed venues.</p>
+
+          <h2>The top table</h2>
+          <p>A top table traditionally seats the couple, their parents, and the principal attendants (best man, chief bridesmaid, maid of honour). It faces the room and is usually a long rectangular table. Top table guests are not counted against the round table allocation; they have their own table. If you are opting for a sweetheart table (just the two of you) or no top table at all, leave the top table field at zero.</p>
+          <p>Some couples move away from the top table entirely because it separates them from their guests for the whole meal. A round table in the centre of the room, or splitting the couple to host separate tables, are increasingly common alternatives. Neither affects the total table count calculation.</p>
+
+          <h2>Empty seats: a feature, not a bug</h2>
+          <p>A few empty seats per table is not a problem. It gives guests room for bags, extra place settings for dessert, and the ability to pull chairs back without bumping into their neighbours. Most venues set a table at the stated size regardless; a table of 8 with 7 guests is indistinguishable from the outside. Aim to keep any given table no more than 2 seats short to avoid it looking sparse. If you have a table with 5 or more empty seats, consider redistributing those guests to other tables rather than leaving one table visibly underpopulated.</p>
+
+          <h2>What to give the venue</h2>
+          <p>Venues need: total guest count, number of tables, table size, and top table configuration. They will also want a seating plan (which guest sits where) typically 2 weeks before the wedding. The table count from this calculator is the number to confirm with the venue when you finalise your contract. For the drinks side of planning, use the <a href="/calculators/wedding/wedding-drinks-calculator/">Wedding Drinks Calculator</a>. For the food quantities, use the <a href="/calculators/wedding/wedding-catering-calculator/">Wedding Catering Calculator</a>.</p>
+        </section>
+
+        <section class="faq" aria-labelledby="faq-heading">
+          <h2 id="faq-heading">Frequently asked questions</h2>
+          <details>
+            <summary>How many guests fit at a round wedding table?</summary>
+            <p>A 5 ft round table seats 8 comfortably; a 6 ft round table seats 10. Squeezing 12 onto a round table is possible but not recommended for a sit-down meal.</p>
+          </details>
+          <details>
+            <summary>What is a top table?</summary>
+            <p>The top table is where the wedding party sits, facing the other guests. It is counted separately from the round or banquet tables. If you have no top table, leave that field at zero.</p>
+          </details>
+          <details>
+            <summary>Is it a problem to have empty seats?</summary>
+            <p>A couple of empty seats per table is normal and gives guests space. Try to keep any one table no more than 2 seats short of its stated capacity.</p>
+          </details>
+          <details>
+            <summary>Should I mix table sizes?</summary>
+            <p>Most venues prefer a consistent table size — it simplifies linen, centrepieces, and room layout. The alternatives table in this calculator shows what each size would look like if used uniformly. If you want to mix sizes, the most common approach is to use a slightly smaller table for one "overflow" group rather than mixing throughout the room.</p>
+          </details>
+          <details>
+            <summary>When do I need to give the venue a final table count?</summary>
+            <p>Most venues ask for a final guest count and table plan 1 to 2 weeks before the wedding. Confirm their specific deadline when you book.</p>
+          </details>
+        </section>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="ad-slot" data-ad-slot="sidebar" aria-hidden="true"></div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="site-footer-nav" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/calculators/">All calculators</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+      <section class="site-disclaimer" data-disclaimer aria-labelledby="disclaimer-heading">
+        <h2 id="disclaimer-heading">A quick, necessary word</h2>
+        <p>Every calculator on this site is built to give you a sensible, well-reasoned estimate. It is, however, exactly that: an estimate, for general information only. Nothing you see here is professional advice of any kind.</p>
+        <p>We take no liability for any loss arising from acting on the numbers you see here. Use the results as a starting point for a better conversation with your venue.</p>
+        <p><strong>Affiliate disclosure:</strong> some links on this site are affiliate links. We may earn a small commission if you click through and buy something, at no extra cost to you.</p>
+      </section>
+      <p class="site-copyright">&copy; 2026 WebCaretakers. All rights reserved.</p>
+      <p class="site-legal">WebCaretakers is a trading name of <a href="https://yeseo.io/" rel="noopener">Andrew Laws Associates Ltd</a>, registered in England and Wales (company no. 08602332). ICO registration ZA726704.</p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/calculators/wedding-table-planner.js"></script>
+  <script>
+    (function () {
+      'use strict';
+      var shortcutEl = document.querySelector('[data-bookmark-shortcut]');
+      if (shortcutEl) {
+        shortcutEl.textContent = /Mac|iPhone|iPad|iPod/i.test(navigator.platform || navigator.userAgent) ? '\u2318' : 'Ctrl';
+      }
+
+      var form        = document.getElementById('table-form');
+      if (!form) return;
+
+      var guestsIn    = form.querySelector('[data-guest-count]');
+      var sizeIn      = form.querySelector('[data-table-size]');
+      var topIn       = form.querySelector('[data-top-table-guests]');
+      var resultEl    = document.querySelector('[data-result]');
+      var breakdown   = document.querySelector('[data-breakdown]');
+      var lineTables  = document.querySelector('[data-line-tables]');
+      var lineSeats   = document.querySelector('[data-line-total-seats]');
+      var lineEmpty   = document.querySelector('[data-line-empty]');
+      var altBody     = document.querySelector('[data-alternatives-body]');
+
+      form.querySelectorAll('input, select').forEach(function (el) {
+        el.addEventListener('input', function () {
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({ event: 'calculator_interaction', calculator_name: 'Wedding Table Planner Calculator', field_name: el.name || el.id });
+        });
+      });
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var opts = {
+          guestCount:     parseInt(guestsIn.value, 10) || 0,
+          tableSize:      parseInt(sizeIn.value, 10)  || 8,
+          topTableGuests: parseInt(topIn.value, 10)   || 0,
+        };
+        try {
+          var r = window.WeddingTablePlanner.calculateWeddingTables(opts);
+
+          var emptyLabel = r.emptySeats === 0 ? 'none' : r.emptySeats + ' (' + r.emptySeats + ' spare ' + (r.emptySeats === 1 ? 'seat' : 'seats') + ')';
+          resultEl.textContent = r.tablesNeeded + ' tables of ' + r.tableSize + ' for ' + r.guestsToSeat + ' seated guests' + (r.topTableGuests > 0 ? ' (plus top table of ' + r.topTableGuests + ')' : '');
+          breakdown.hidden = false;
+
+          lineTables.textContent = r.tablesNeeded;
+          lineSeats.textContent  = r.totalSeats;
+          lineEmpty.textContent  = r.emptySeats === 0 ? 'None' : r.emptySeats;
+
+          // Build alternatives table rows
+          var rows = '';
+          r.alternatives.forEach(function (a) {
+            rows += '<tr style="border-bottom:1px solid var(--border,#e5e7eb);">' +
+              '<td style="padding:0.4rem 0.6rem;">' + a.tableSize + ' seats</td>' +
+              '<td style="padding:0.4rem 0.6rem;">' + a.tablesNeeded + '</td>' +
+              '<td style="padding:0.4rem 0.6rem;">' + (a.emptySeats === 0 ? 'None' : a.emptySeats) + '</td>' +
+              '</tr>';
+          });
+          altBody.innerHTML = rows;
+
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: 'calculator_result',
+            calculator_name: 'Wedding Table Planner Calculator',
+            guest_count: r.guestCount,
+            table_size: r.tableSize,
+            tables_needed: r.tablesNeeded,
+            empty_seats: r.emptySeats,
+          });
+        } catch (err) {
+          resultEl.textContent = err.message || 'Could not calculate.';
+          breakdown.hidden = true;
+        }
+      });
+    })();
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

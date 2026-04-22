@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wedding Anniversary Calculator: Year, Traditional and Modern Gifts | WebCaretakers</title>
+  <meta name="description" content="Enter your wedding date to find out which anniversary you are celebrating, the traditional and modern gift themes, and your upcoming milestone anniversaries.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/wedding/wedding-anniversary-calculator/">
+  <meta property="og:title" content="Wedding Anniversary Calculator | WebCaretakers">
+  <meta property="og:description" content="Find your anniversary year and traditional and modern gift themes. See your upcoming milestone anniversaries at a glance.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/wedding/wedding-anniversary-calculator/">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var _stored = null;
+    try { _stored = localStorage.getItem('cookie-consent'); } catch (e) {}
+    var _initial = _stored === 'granted' ? 'granted' : 'denied';
+    gtag('consent', 'default', {
+      ad_storage: _initial, analytics_storage: _initial,
+      ad_user_data: _initial, ad_personalization: _initial,
+      functionality_storage: 'granted', security_storage: 'granted',
+      wait_for_update: 500
+    });
+  </script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Wedding Anniversary Calculator",
+    "url": "https://webcaretakers.com/calculators/wedding/wedding-anniversary-calculator/",
+    "applicationCategory": "LifestyleApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0" },
+    "author": { "@type": "Person", "name": "Andrew Laws", "url": "https://yeseo.io/" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What are the traditional anniversary gifts by year?",
+        "acceptedAnswer": { "@type": "Answer", "text": "The traditional anniversary gift themes by year are: 1st Paper, 2nd Cotton, 3rd Leather, 4th Fruit and flowers, 5th Wood, 6th Sugar, 7th Wool, 8th Pottery, 9th Willow, 10th Tin, 11th Steel, 12th Silk, 13th Lace, 14th Ivory, 15th Crystal, 20th China, 25th Silver, 30th Pearl, 35th Coral, 40th Ruby, 45th Sapphire, 50th Gold, 55th Emerald, 60th Diamond, 65th Blue sapphire, 70th Platinum. Years without a named theme in this list have no traditional association." }
+      },
+      {
+        "@type": "Question",
+        "name": "What are the modern anniversary gifts by year?",
+        "acceptedAnswer": { "@type": "Answer", "text": "The modern anniversary gift themes by year are: 1st Clocks, 2nd China, 3rd Crystal or glass, 4th Appliances, 5th Silverware, 6th Wood, 7th Desk sets, 8th Linens, 9th Leather, 10th Diamond jewellery, 11th Fashion jewellery, 12th Pearls, 13th Textiles, 14th Gold jewellery, 15th Watches, 20th Platinum, 25th Silver, 30th Diamond, 35th Jade, 40th Ruby, 45th Sapphire, 50th Gold, 55th Emerald, 60th Diamond. The modern list was developed in the twentieth century as an alternative to the traditional themes." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is a silver wedding anniversary?",
+        "acceptedAnswer": { "@type": "Answer", "text": "A silver wedding anniversary marks 25 years of marriage. The traditional and modern gift theme for the 25th anniversary is silver, including silver jewellery, silverware, or any gift with a silver theme. It is one of the major milestone anniversaries, alongside the 10th (tin), 15th (crystal), 40th (ruby), 50th (gold), and 60th (diamond)." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is a golden wedding anniversary?",
+        "acceptedAnswer": { "@type": "Answer", "text": "A golden wedding anniversary marks 50 years of marriage. Both the traditional and modern gift themes for the 50th anniversary are gold. It is one of the most significant milestones. A diamond wedding anniversary (60 years) and platinum anniversary (70 years) follow beyond it." }
+      },
+      {
+        "@type": "Question",
+        "name": "Do anniversary gift themes change between countries?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes, the traditional themes vary somewhat between the UK and US, and the modern list differs from both. This calculator uses the UK traditional themes. The major milestone years (25th silver, 40th ruby, 50th gold, 60th diamond) are consistent across most countries and traditions." }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    .milestones-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; margin-top: 0.75rem; }
+    .milestones-table th { text-align: left; padding: 0.4rem 0.6rem; border-bottom: 2px solid var(--border,#e5e7eb); font-weight: 700; }
+    .milestones-table td { padding: 0.4rem 0.6rem; border-bottom: 1px solid var(--border,#e5e7eb); }
+    .milestones-table tr:last-child td { border-bottom: none; }
+    .anniversary-today { background: var(--highlight-bg, #fef9c3); border: 1px solid var(--highlight-border, #fde68a); border-radius: 0.375rem; padding: 0.75rem 1rem; margin: 0.75rem 0; font-weight: 600; }
+  </style>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-banner-heading" aria-describedby="cookie-banner-text" hidden>
+    <div class="cookie-banner__inner">
+      <h2 id="cookie-banner-heading" class="cookie-banner__heading">A quick word about cookies</h2>
+      <p id="cookie-banner-text" class="cookie-banner__text">We use cookies for analytics, so we can see which calculators people actually use and which ones need work. Nothing creepy, nothing sold on. You can say yes, say no, or read the <a href="/privacy/">privacy policy</a> first. Your choice sticks.</p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-reject>Reject</button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>Accept</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var KEY = 'cookie-consent';
+      var banner = document.querySelector('[data-cookie-banner]');
+      if (!banner) return;
+      var stored = null;
+      try { stored = localStorage.getItem(KEY); } catch (e) {}
+      if (stored !== 'granted' && stored !== 'denied') { banner.hidden = false; }
+      function record(choice) {
+        try { localStorage.setItem(KEY, choice); } catch (e) {}
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('consent', 'update', { ad_storage: choice, analytics_storage: choice, ad_user_data: choice, ad_personalization: choice });
+        banner.hidden = true;
+      }
+      var accept = banner.querySelector('[data-cookie-accept]');
+      var reject = banner.querySelector('[data-cookie-reject]');
+      if (accept) accept.addEventListener('click', function () { record('granted'); });
+      if (reject) reject.addEventListener('click', function () { record('denied'); });
+    })();
+  </script>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">WebCaretakers</a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <ul class="primary-nav__list">
+          <li class="primary-nav__item primary-nav__item--has-menu">
+            <button type="button" class="primary-nav__link" data-menu-toggle aria-haspopup="true" aria-expanded="false">Calculators <span class="primary-nav__caret" aria-hidden="true">▾</span></button>
+            <ul class="primary-nav__submenu">
+              <li><a href="/calculators/broadband/">Broadband</a></li>
+              <li><a href="/calculators/finance/">Finance</a></li>
+              <li><a href="/calculators/health/">Health</a></li>
+              <li><a href="/calculators/images/">Images</a></li>
+              <li><a href="/calculators/math/">Math</a></li>
+              <li><a href="/calculators/productivity/">Productivity</a></li>
+              <li><a href="/calculators/wedding/">Wedding</a></li>
+              <li class="primary-nav__submenu-sep"><a href="/calculators/">See all calculators</a></li>
+            </ul>
+          </li>
+          <li class="primary-nav__item"><a href="/about/" class="primary-nav__link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <main id="main-content">
+      <div class="container">
+        <nav aria-label="Breadcrumb" class="breadcrumbs">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/calculators/">Calculators</a></li>
+            <li><a href="/calculators/wedding/">Wedding</a></li>
+            <li aria-current="page">Wedding Anniversary Calculator</li>
+          </ol>
+        </nav>
+
+        <h1>Wedding Anniversary Calculator</h1>
+        <p class="intro">Enter your wedding date to find out which anniversary you are celebrating this year, the traditional and modern gift themes for that year, how many days until your next anniversary, and your upcoming milestone anniversaries.</p>
+
+        <section class="eli5" aria-label="Plain-English explanation">
+          <h2>Explain like I'm 5 (where do anniversary gift themes come from?)</h2>
+          <p>Hundreds of years ago, husbands in medieval Germany gave their wives silver garlands on their 25th anniversary and gold garlands on their 50th. The idea of having a different theme for each year grew from there, and by the 20th century there were lists for every year up to 70. Nobody invented the list in one go: it evolved through tradition, commercial marketing, and cultural borrowing between countries, which is why the UK and US versions differ on several years. The themes are a useful starting point for choosing a gift, nothing more. Nobody is keeping score.</p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="in-content" aria-hidden="true"></div>
+
+        <section data-calculator class="calculator-card">
+          <h2>Calculate</h2>
+          <form id="anniversary-form" class="calc-form" novalidate>
+
+            <div class="calc-row">
+              <label for="wedding-date">Wedding date</label>
+              <input type="date" id="wedding-date" name="weddingDate" data-wedding-date required>
+              <small>Must be a past date.</small>
+            </div>
+
+            <button type="submit" data-calculate>Calculate anniversary</button>
+          </form>
+
+          <div data-calculator-results class="calculator-results">
+            <div class="result-summary">
+              <p class="result-display" data-result>Enter your wedding date, then press Calculate anniversary.</p>
+            </div>
+
+            <div class="mort-breakdown" data-breakdown hidden>
+              <div data-today-banner class="anniversary-today" hidden>
+                <span data-today-message></span>
+              </div>
+
+              <h3>This anniversary</h3>
+              <ul>
+                <li><span>Anniversary year</span><strong data-anniversary-year>—</strong></li>
+                <li><span>Traditional gift theme</span><strong data-traditional>—</strong></li>
+                <li><span>Modern gift theme</span><strong data-modern>—</strong></li>
+                <li><span>Days until next anniversary</span><strong data-days-until>—</strong></li>
+              </ul>
+
+              <h3>Upcoming milestones</h3>
+              <table class="milestones-table" data-milestones-table aria-label="Upcoming milestone anniversaries">
+                <thead>
+                  <tr>
+                    <th>Year</th>
+                    <th>Calendar year</th>
+                    <th>Traditional</th>
+                    <th>Modern</th>
+                  </tr>
+                </thead>
+                <tbody data-milestones-body></tbody>
+              </table>
+            </div>
+
+            <details class="prove-it" data-prove-it>
+              <summary>Prove it</summary>
+              <p class="prove-it-source">Anniversary year = complete years elapsed since the wedding date (the count increments on the anniversary date itself). If your anniversary date has not yet occurred this calendar year, the completed year count is one less than the simple year difference. Traditional themes are the UK standard list. Modern themes are the updated 20th-century list. Both lists have named themes for selected years only; years without a named theme show a dash.</p>
+            </details>
+          </div>
+
+          <p class="bookmark-nudge">Useful? Save this page: press <kbd data-bookmark-shortcut>Ctrl</kbd> + <kbd>D</kbd> to bookmark it.</p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="below-results" aria-hidden="true"></div>
+
+        <section class="long-form">
+          <h2>The major milestone anniversaries</h2>
+          <p>Most anniversary years have a gift theme, but some carry more cultural weight than others. The milestones people most commonly mark with a celebration or significant gift are:</p>
+          <ul>
+            <li><strong>5th (Wood):</strong> The first five years are often the hardest as a couple adjusts to life together. Reaching five years is genuinely worth marking.</li>
+            <li><strong>10th (Tin):</strong> A decade together. The modern alternative is diamond jewellery, which reflects how the modern list tends to be more expensive than the traditional one.</li>
+            <li><strong>15th (Crystal):</strong> Less commonly celebrated than the 10th or 25th, but still a named milestone in both lists.</li>
+            <li><strong>25th (Silver):</strong> The silver wedding anniversary is one of the most celebrated milestones. Parties comparable in scale to the original wedding are common.</li>
+            <li><strong>40th (Ruby):</strong> Reached by relatively few couples, which makes it all the more significant.</li>
+            <li><strong>50th (Gold):</strong> The golden wedding anniversary. Reaching 50 years together is a genuine achievement; it is worth a proper celebration.</li>
+            <li><strong>60th (Diamond):</strong> The diamond anniversary. The Queen and Prince Philip celebrated their diamond anniversary in 2007.</li>
+          </ul>
+
+          <h2>Traditional vs modern gift themes</h2>
+          <p>The traditional list is older and more poetic: paper, cotton, leather, wood. The modern list, developed in the 20th century partly through commercial influence, tends towards more expensive and practical gifts: clocks, china, silverware, diamond jewellery. Neither list is prescriptive. Most people use the theme as a starting point and adapt it to something the recipient would actually want: a leather wallet for the 3rd anniversary, a wooden chopping board or a weekend in a woodland cabin for the 5th.</p>
+          <p>For years without a named theme (years 16 through 19, for example), the convention is simply to use the theme from the nearest named year as a loose guide, or ignore the themes entirely.</p>
+        </section>
+
+        <section class="faq" aria-labelledby="faq-heading">
+          <h2 id="faq-heading">Frequently asked questions</h2>
+          <details>
+            <summary>What is the traditional gift for a 1st anniversary?</summary>
+            <p>Paper, traditionally. Modern alternatives include clocks. In practice, anything sentimental or personalised works well for a first anniversary.</p>
+          </details>
+          <details>
+            <summary>What is a ruby wedding anniversary?</summary>
+            <p>A ruby wedding anniversary marks 40 years of marriage. The traditional and modern gift theme is ruby, or red-themed gifts more broadly.</p>
+          </details>
+          <details>
+            <summary>What is a diamond wedding anniversary?</summary>
+            <p>A diamond wedding anniversary marks 60 years of marriage. Both the traditional and modern themes are diamond. It is one of the rarest milestones, reached by a small proportion of married couples.</p>
+          </details>
+          <details>
+            <summary>Do I count the wedding year as year 0 or year 1?</summary>
+            <p>The wedding year is year 0. The first anniversary falls one year after the wedding date. This calculator counts completed years, so if your anniversary date has not yet passed this calendar year, the count is one less than the simple subtraction of years.</p>
+          </details>
+          <details>
+            <summary>What if we got married on a leap day (29 February)?</summary>
+            <p>In non-leap years, your anniversary falls on 28 February. This calculator handles this automatically: it clamped the anniversary date to 28 February when 29 February does not exist in the relevant year.</p>
+          </details>
+        </section>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="ad-slot" data-ad-slot="sidebar" aria-hidden="true"></div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="site-footer-nav" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/calculators/">All calculators</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+      <section class="site-disclaimer" data-disclaimer aria-labelledby="disclaimer-heading">
+        <h2 id="disclaimer-heading">A quick, necessary word</h2>
+        <p>Every calculator on this site is built to give you a sensible, well-reasoned estimate. It is, however, exactly that: an estimate, for general information only.</p>
+        <p>We take no liability for any loss arising from acting on the results you see here.</p>
+        <p><strong>Affiliate disclosure:</strong> some links on this site are affiliate links. We may earn a small commission if you click through and buy something, at no extra cost to you.</p>
+      </section>
+      <p class="site-copyright">&copy; 2026 WebCaretakers. All rights reserved.</p>
+      <p class="site-legal">WebCaretakers is a trading name of <a href="https://yeseo.io/" rel="noopener">Andrew Laws Associates Ltd</a>, registered in England and Wales (company no. 08602332). ICO registration ZA726704.</p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/calculators/wedding-anniversary.js"></script>
+  <script>
+    (function () {
+      'use strict';
+      var shortcutEl = document.querySelector('[data-bookmark-shortcut]');
+      if (shortcutEl) {
+        shortcutEl.textContent = /Mac|iPhone|iPad|iPod/i.test(navigator.platform || navigator.userAgent) ? '\u2318' : 'Ctrl';
+      }
+
+      // Pre-fill with a date 10 years ago (crystal anniversary)
+      var dateIn = document.querySelector('[data-wedding-date]');
+      if (dateIn && !dateIn.value) {
+        var d = new Date();
+        d.setFullYear(d.getFullYear() - 10);
+        dateIn.value = d.toISOString().slice(0, 10);
+      }
+
+      var form = document.getElementById('anniversary-form');
+      if (!form) return;
+
+      var resultEl     = document.querySelector('[data-result]');
+      var breakdown    = document.querySelector('[data-breakdown]');
+      var todayBanner  = document.querySelector('[data-today-banner]');
+      var todayMsg     = document.querySelector('[data-today-message]');
+      var annYear      = document.querySelector('[data-anniversary-year]');
+      var traditional  = document.querySelector('[data-traditional]');
+      var modern       = document.querySelector('[data-modern]');
+      var daysUntil    = document.querySelector('[data-days-until]');
+      var milestonesBody = document.querySelector('[data-milestones-body]');
+
+      var ORDINALS = { 1:'1st',2:'2nd',3:'3rd',4:'4th',5:'5th',6:'6th',7:'7th',8:'8th',9:'9th',10:'10th',
+        11:'11th',12:'12th',13:'13th',14:'14th',15:'15th',20:'20th',25:'25th',30:'30th',
+        35:'35th',40:'40th',45:'45th',50:'50th',55:'55th',60:'60th',65:'65th',70:'70th' };
+
+      function ordinal(n) {
+        if (ORDINALS[n]) return ORDINALS[n];
+        var s = ['th','st','nd','rd'], v = n % 100;
+        return n + (s[(v - 20) % 10] || s[v] || s[0]);
+      }
+
+      dateIn.addEventListener('input', function () {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({ event: 'calculator_interaction', calculator_name: 'Wedding Anniversary Calculator', field_name: 'weddingDate' });
+      });
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        try {
+          var r = window.WeddingAnniversary.calculateWeddingAnniversary({
+            weddingDate: dateIn.value,
+          });
+
+          var annLabel = ordinal(r.anniversaryYear) + ' anniversary';
+          resultEl.textContent = annLabel + (r.isAnniversaryToday ? ' — today!' : '');
+          breakdown.hidden = false;
+
+          // Today banner
+          if (r.isAnniversaryToday) {
+            todayBanner.hidden = false;
+            todayMsg.textContent = 'Today is your ' + ordinal(r.anniversaryYear) + ' wedding anniversary. Happy anniversary!';
+          } else {
+            todayBanner.hidden = true;
+          }
+
+          annYear.textContent    = ordinal(r.anniversaryYear);
+          traditional.textContent = r.traditional || 'No named theme';
+          modern.textContent      = r.modern      || 'No named theme';
+          daysUntil.textContent   = r.isAnniversaryToday
+            ? '365 days until the ' + ordinal(r.nextAnniversaryYear)
+            : r.daysUntilNextAnniversary + ' days until the ' + ordinal(r.nextAnniversaryYear);
+
+          // Milestones table
+          var rows = '';
+          r.upcomingMilestones.forEach(function (m) {
+            rows += '<tr>' +
+              '<td>' + ordinal(m.year) + '</td>' +
+              '<td>' + m.calendarYear + '</td>' +
+              '<td>' + (m.traditional || '\u2014') + '</td>' +
+              '<td>' + (m.modern      || '\u2014') + '</td>' +
+              '</tr>';
+          });
+          milestonesBody.innerHTML = rows;
+
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: 'calculator_result',
+            calculator_name: 'Wedding Anniversary Calculator',
+            anniversary_year: r.anniversaryYear,
+            is_anniversary_today: r.isAnniversaryToday,
+            days_until_next: r.daysUntilNextAnniversary,
+          });
+        } catch (err) {
+          resultEl.textContent = err.message || 'Could not calculate.';
+          breakdown.hidden = true;
+        }
+      });
+    })();
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

@@ -138,6 +138,21 @@
           "slug": "wedding-drinks-calculator",
           "name": "Wedding Drinks Calculator",
           "summary": "Enter your guest count and event duration to get bottle and quantity estimates for white wine, red wine, prosecco, beer, spirits, and soft drinks."
+        },
+        {
+          "slug": "wedding-table-planner",
+          "name": "Wedding Table Planner Calculator",
+          "summary": "Enter your guest count and preferred table size to find out how many tables you need, how many seats will be spare, and how alternative sizes compare."
+        },
+        {
+          "slug": "wedding-catering-calculator",
+          "name": "Wedding Catering Calculator",
+          "summary": "Enter your guest count, meal style, and number of courses to get portion counts and food weight estimates for every part of your wedding day."
+        },
+        {
+          "slug": "wedding-anniversary-calculator",
+          "name": "Wedding Anniversary Calculator",
+          "summary": "Enter your wedding date to find out which anniversary you are celebrating, the traditional and modern gift themes, and your upcoming milestone anniversaries."
         }
       ]
     }
