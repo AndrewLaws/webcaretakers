@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Break-Even Calculator | WebCaretakers</title>
+  <meta name="description" content="Calculate your break-even point in units and revenue. Enter fixed costs, variable cost per unit, and selling price to see exactly how many sales you need before you start making a profit.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/business/break-even-calculator/">
+  <meta property="og:title" content="Break-Even Calculator | WebCaretakers">
+  <meta property="og:description" content="Find your break-even point in units and revenue. Set a profit target to see how many sales you need to hit it. Includes a scenario table.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/business/break-even-calculator/">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var _stored = null;
+    try { _stored = localStorage.getItem('cookie-consent'); } catch (e) {}
+    var _initial = _stored === 'granted' ? 'granted' : 'denied';
+    gtag('consent', 'default', {
+      ad_storage: _initial, analytics_storage: _initial,
+      ad_user_data: _initial, ad_personalization: _initial,
+      functionality_storage: 'granted', security_storage: 'granted',
+      wait_for_update: 500
+    });
+  </script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Break-Even Calculator",
+    "url": "https://webcaretakers.com/calculators/business/break-even-calculator/",
+    "description": "Calculate the break-even point in units and revenue, set a profit target, and see a scenario table at different sales volumes.",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Any",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "WebCaretakers",
+      "url": "https://webcaretakers.com/"
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is a break-even point?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The break-even point is the number of units (or amount of revenue) at which your total income exactly covers your total costs — you make neither a profit nor a loss. Every unit sold above the break-even point generates profit; every unit below it represents a loss."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the formula for break-even point?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Break-even units = Fixed costs ÷ Contribution margin per unit. Contribution margin per unit = Selling price − Variable cost per unit. For example: £10,000 fixed costs, £5 variable cost, £15 selling price. Contribution margin = £10. Break-even = £10,000 ÷ £10 = 1,000 units."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What counts as a fixed cost vs a variable cost?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Fixed costs do not change with the number of units you produce or sell: rent, salaries, software subscriptions, insurance, loan repayments. Variable costs change directly with output: raw materials, packaging, payment processing fees, production labour. In practice most costs have some fixed and some variable element — use your best estimate."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I use break-even analysis for pricing?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Try different selling prices in the calculator. A higher price reduces the break-even point but may reduce demand. A lower price may be easier to sell but requires higher volume to cover costs. The contribution margin percentage tells you how much of each pound of revenue goes toward fixed costs and then profit."
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-banner-heading" aria-describedby="cookie-banner-text" hidden>
+    <div class="cookie-banner__inner">
+      <h2 id="cookie-banner-heading" class="cookie-banner__heading">A quick word about cookies</h2>
+      <p id="cookie-banner-text" class="cookie-banner__text">
+        We use cookies for analytics, so we can see which calculators people actually use and which ones need work. Nothing creepy, nothing sold on. You can say yes, say no, or read the <a href="/privacy/">privacy policy</a> first. Your choice sticks.
+      </p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-reject>Reject</button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>Accept</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var KEY = 'cookie-consent';
+      var banner = document.querySelector('[data-cookie-banner]');
+      if (!banner) return;
+      var stored = null;
+      try { stored = localStorage.getItem(KEY); } catch (e) {}
+      if (stored !== 'granted' && stored !== 'denied') { banner.hidden = false; }
+      function record(choice) {
+        try { localStorage.setItem(KEY, choice); } catch (e) {}
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('consent', 'update', {
+          ad_storage: choice, analytics_storage: choice,
+          ad_user_data: choice, ad_personalization: choice
+        });
+        banner.hidden = true;
+      }
+      var accept = banner.querySelector('[data-cookie-accept]');
+      var reject = banner.querySelector('[data-cookie-reject]');
+      if (accept) accept.addEventListener('click', function () { record('granted'); });
+      if (reject) reject.addEventListener('click', function () { record('denied'); });
+    })();
+  </script>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">WebCaretakers</a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <ul class="primary-nav__list">
+          <li class="primary-nav__item primary-nav__item--has-menu">
+            <button type="button" class="primary-nav__link" data-menu-toggle aria-haspopup="true" aria-expanded="false">Calculators <span class="primary-nav__caret" aria-hidden="true">▾</span></button>
+            <ul class="primary-nav__submenu">
+              <li><a href="/calculators/broadband/">Broadband</a></li>
+              <li><a href="/calculators/business/">Business</a></li>
+              <li><a href="/calculators/finance/">Finance</a></li>
+              <li><a href="/calculators/health/">Health</a></li>
+              <li><a href="/calculators/images/">Images</a></li>
+              <li><a href="/calculators/math/">Math</a></li>
+              <li><a href="/calculators/productivity/">Productivity</a></li>
+              <li><a href="/calculators/wedding/">Wedding</a></li>
+              <li class="primary-nav__submenu-sep"><a href="/calculators/">See all calculators</a></li>
+            </ul>
+          </li>
+          <li class="primary-nav__item"><a href="/about/" class="primary-nav__link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <main id="main-content">
+      <div class="container">
+        <nav aria-label="Breadcrumb" class="breadcrumbs">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/calculators/">Calculators</a></li>
+            <li><a href="/calculators/business/">Business</a></li>
+            <li aria-current="page">Break-Even Calculator</li>
+          </ol>
+        </nav>
+
+        <h1>Break-Even Calculator</h1>
+
+        <div class="eli5">
+          <h2>Explain like I'm 5</h2>
+          <p>Imagine your lemonade stand costs £10 to set up (the table, sign, cups) — that is your fixed cost. Each cup of lemonade costs 20p to make — that is your variable cost. You sell each cup for £1. Every cup earns you 80p toward your £10. After 13 cups you have covered your costs. Cup 14 is where you start making actual profit. That is your break-even point.</p>
+        </div>
+
+        <div class="calculator-form">
+          <div class="form-group">
+            <label for="fixed-costs">Fixed costs per period (£) <span class="label-hint">Rent, salaries, subscriptions — costs that don't change with output</span></label>
+            <input type="number" id="fixed-costs" data-fixed-costs min="0" step="0.01" value="10000" placeholder="e.g. 10000">
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="var-cost">Variable cost per unit (£) <span class="label-hint">Materials, packaging — costs that rise with each sale</span></label>
+              <input type="number" id="var-cost" data-var-cost min="0" step="0.01" value="5" placeholder="e.g. 5">
+            </div>
+            <div class="form-group">
+              <label for="price">Selling price per unit (£)</label>
+              <input type="number" id="price" data-price min="0.01" step="0.01" value="15" placeholder="e.g. 15">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="target-profit">Profit target per period (£) <span class="label-hint">Optional — leave blank for break-even only</span></label>
+            <input type="number" id="target-profit" data-target-profit min="0" step="0.01" placeholder="e.g. 5000">
+          </div>
+
+          <button type="button" class="btn btn--primary" data-calculate>Calculate break-even</button>
+          <p class="form-error" data-error hidden></p>
+        </div>
+
+        <div class="results-panel" data-breakdown hidden>
+          <h2>Break-even results</h2>
+          <table class="results-table">
+            <tbody>
+              <tr><th>Contribution margin per unit</th><td data-line-contribution>—</td></tr>
+              <tr><th>Contribution margin %</th><td data-line-contribution-pct>—</td></tr>
+              <tr class="results-table__highlight"><th>Break-even units</th><td data-line-be-units>—</td></tr>
+              <tr class="results-table__highlight"><th>Break-even revenue</th><td data-line-be-revenue>—</td></tr>
+            </tbody>
+          </table>
+
+          <div data-target-block hidden style="margin-top:1rem">
+            <table class="results-table">
+              <tbody>
+                <tr><th>Units to hit profit target</th><td data-line-target-units>—</td></tr>
+                <tr><th>Revenue to hit profit target</th><td data-line-target-revenue>—</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3 style="margin-top:1.5rem">Volume scenarios</h3>
+          <div class="table-scroll">
+            <table class="results-table results-table--scenarios">
+              <thead>
+                <tr>
+                  <th>Volume</th>
+                  <th>Units</th>
+                  <th>Revenue</th>
+                  <th>Variable costs</th>
+                  <th>Profit / Loss</th>
+                </tr>
+              </thead>
+              <tbody data-scenarios-body>
+              </tbody>
+            </table>
+          </div>
+
+          <details class="prove-it">
+            <summary>Show workings</summary>
+            <div data-prove-it-body class="prove-it__body"></div>
+          </details>
+        </div>
+
+        <section class="long-form">
+          <h2>How to use break-even analysis</h2>
+          <p>Break-even analysis answers one question: how much do I need to sell before this is worth doing? It is useful for new products, pricing decisions, and evaluating whether a business model is viable before committing to fixed costs.</p>
+          <p>The contribution margin is the key number. Every unit sold contributes that amount toward covering fixed costs, and once fixed costs are covered, toward profit. A high contribution margin means you need to sell fewer units to break even. A low contribution margin means your business model is sensitive to volume — a small drop in sales has an outsized impact on profitability.</p>
+
+          <h2>Fixed costs vs variable costs</h2>
+          <p>Fixed costs stay the same regardless of how much you sell: rent, full-time salaries, annual software licences, insurance. Variable costs rise and fall with output: materials, packaging, fulfilment, payment processing fees, hourly labour tied to production. Some costs are semi-variable — they have a fixed element and a variable element. Use your best estimate and revisit the numbers as your understanding improves.</p>
+
+          <h2>The limits of break-even analysis</h2>
+          <p>Break-even analysis assumes a constant selling price and constant variable cost per unit, which may not hold at higher volumes (bulk discounts on materials, or the need to discount to sell more). It also ignores timing: if your fixed costs are monthly but sales are seasonal, the monthly break-even may not reflect your actual cash position. Use it as a starting point, not a full financial model.</p>
+        </section>
+
+        <section class="faq">
+          <h2>Common questions</h2>
+          <details>
+            <summary>What is a break-even point?</summary>
+            <p>The number of units (or amount of revenue) at which your total income exactly covers your total costs — you make neither a profit nor a loss. Every unit sold above the break-even point generates profit.</p>
+          </details>
+          <details>
+            <summary>What is the formula for break-even point?</summary>
+            <p>Break-even units = Fixed costs ÷ Contribution margin per unit. Contribution margin per unit = Selling price − Variable cost per unit. For example: £10,000 fixed costs, £5 variable cost, £15 selling price → contribution margin = £10 → break-even = 1,000 units.</p>
+          </details>
+          <details>
+            <summary>What counts as a fixed cost vs a variable cost?</summary>
+            <p>Fixed costs do not change with output: rent, salaries, software subscriptions, insurance. Variable costs change directly with each unit: raw materials, packaging, payment processing fees, production labour.</p>
+          </details>
+          <details>
+            <summary>How do I use break-even analysis for pricing?</summary>
+            <p>Try different selling prices in the calculator. A higher price reduces the break-even point but may reduce demand. A lower price may be easier to sell but requires higher volume. The contribution margin percentage tells you how much of each pound of revenue goes toward covering fixed costs and then profit.</p>
+          </details>
+        </section>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="ad-slot" data-ad-slot="sidebar" aria-hidden="true"></div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="site-footer-nav" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/calculators/">All calculators</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+      <section class="site-disclaimer" data-disclaimer aria-labelledby="disclaimer-heading">
+        <h2 id="disclaimer-heading">A quick, necessary word</h2>
+        <p>Every calculator on this site is built to give you a sensible, well-reasoned estimate. It is, however, exactly that: an estimate, for general information only. Nothing you see here is professional, legal, financial, medical, or tax advice, and it should not be treated as such.</p>
+        <p>Before you make a decision that actually matters, talk to a qualified professional who knows your specific situation: an accountant, a solicitor, a doctor, an IT consultant, whoever fits the question. They can factor in the bits a generic tool can't.</p>
+        <p>We take no liability and accept no responsibility for any loss, damage, or questionable life choice arising from acting on the numbers you see here. Use the results as a starting point for a better conversation, not as the final word.</p>
+        <p><strong>Affiliate disclosure:</strong> some links on this site are affiliate links. If you click through and buy or sign up for something, we may earn a small commission at no extra cost to you. It helps keep the calculators free and ad-light. We only recommend things we'd point a friend towards.</p>
+      </section>
+      <p class="site-copyright">&copy; 2026 WebCaretakers. All rights reserved.</p>
+      <p class="site-legal">WebCaretakers is a trading name of <a href="https://yeseo.io/" rel="noopener">Andrew Laws Associates Ltd</a>, registered in England and Wales (company no. 08602332). ICO registration ZA726704.</p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/calculators/break-even.js"></script>
+  <script>
+  (function () {
+    'use strict';
+
+    var calcBtn      = document.querySelector('[data-calculate]');
+    var breakdown    = document.querySelector('[data-breakdown]');
+    var errorEl      = document.querySelector('[data-error]');
+    var proveItBody  = document.querySelector('[data-prove-it-body]');
+    var scenariosTbl = document.querySelector('[data-scenarios-body]');
+    var targetBlock  = document.querySelector('[data-target-block]');
+
+    function fmt(n)    { return '£' + n.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+    function fmtInt(n) { return n.toLocaleString('en-GB'); }
+    function fmtPct(n) { return n.toFixed(2) + '%'; }
+
+    function val(sel) {
+      var el = document.querySelector(sel);
+      var v = parseFloat(el.value);
+      return isNaN(v) ? undefined : v;
+    }
+
+    function showError(msg) { errorEl.textContent = msg; errorEl.hidden = false; breakdown.hidden = true; }
+    function clearError()   { errorEl.hidden = true; errorEl.textContent = ''; }
+
+    var pctLabels = { 0.5: '50% of break-even', 0.75: '75% of break-even', 1.0: 'Break-even (100%)', 1.25: '125% of break-even', 1.5: '150% of break-even' };
+
+    calcBtn.addEventListener('click', function () {
+      clearError();
+
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event: 'calculator_interaction', calculator_name: 'Break-Even Calculator' });
+
+      try {
+        var r = BreakEven.calculateBreakEven({
+          fixedCosts:           val('[data-fixed-costs]'),
+          variableCostPerUnit:  val('[data-var-cost]'),
+          sellingPricePerUnit:  val('[data-price]'),
+          targetProfit:         val('[data-target-profit]'),
+        });
+
+        document.querySelector('[data-line-contribution]').textContent     = fmt(r.contributionMargin);
+        document.querySelector('[data-line-contribution-pct]').textContent = fmtPct(r.contributionMarginPct);
+        document.querySelector('[data-line-be-units]').textContent         = fmtInt(r.breakEvenUnits) + ' units';
+        document.querySelector('[data-line-be-revenue]').textContent       = fmt(r.breakEvenRevenue);
+
+        if (r.targetUnits !== null) {
+          targetBlock.hidden = false;
+          document.querySelector('[data-line-target-units]').textContent   = fmtInt(r.targetUnits) + ' units';
+          document.querySelector('[data-line-target-revenue]').textContent = fmt(r.targetRevenue);
+        } else {
+          targetBlock.hidden = true;
+        }
+
+        // Scenario table
+        scenariosTbl.innerHTML = '';
+        r.scenarios.forEach(function (s) {
+          var profitFmt = (s.profit >= 0 ? '+' : '') + fmt(s.profit);
+          var row = document.createElement('tr');
+          if (s.factor === 1.0) row.className = 'results-table__highlight';
+          row.innerHTML = '<td>' + (pctLabels[s.factor] || s.factor) + '</td>'
+                        + '<td>' + fmtInt(s.units) + '</td>'
+                        + '<td>' + fmt(s.revenue) + '</td>'
+                        + '<td>' + fmt(s.variableCosts) + '</td>'
+                        + '<td>' + profitFmt + '</td>';
+          scenariosTbl.appendChild(row);
+        });
+
+        var workings = 'Contribution margin = selling price − variable cost = ' + fmt(r.sellingPricePerUnit) + ' − ' + fmt(r.variableCostPerUnit) + ' = ' + fmt(r.contributionMargin) + '\n'
+                     + 'Contribution margin % = ' + fmt(r.contributionMargin) + ' ÷ ' + fmt(r.sellingPricePerUnit) + ' × 100 = ' + fmtPct(r.contributionMarginPct) + '\n'
+                     + 'Break-even units = ' + fmt(r.fixedCosts) + ' ÷ ' + fmt(r.contributionMargin) + ' = ' + r.breakEvenUnits + ' (rounded up)\n'
+                     + 'Break-even revenue = ' + fmtInt(r.breakEvenUnits) + ' × ' + fmt(r.sellingPricePerUnit) + ' = ' + fmt(r.breakEvenRevenue);
+        proveItBody.textContent = workings;
+
+        window.dataLayer.push({
+          event: 'calculator_result',
+          calculator_name: 'Break-Even Calculator',
+          break_even_units: r.breakEvenUnits,
+          break_even_revenue: r.breakEvenRevenue,
+          contribution_margin_pct: r.contributionMarginPct,
+        });
+
+        breakdown.hidden = false;
+      } catch (err) {
+        showError(err.message);
+      }
+    });
+  })();
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

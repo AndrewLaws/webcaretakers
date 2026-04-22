@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Freelance Day Rate Calculator | WebCaretakers</title>
+  <meta name="description" content="Calculate the day rate you need to charge as a freelancer or contractor. Enter your income target, billable days, expenses, pension, and downtime to get a realistic day and hourly rate.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/business/freelance-day-rate-calculator/">
+  <meta property="og:title" content="Freelance Day Rate Calculator | WebCaretakers">
+  <meta property="og:description" content="Work out what day rate you need as a freelancer. Accounts for non-billable days, expenses, pension and downtime between clients.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/business/freelance-day-rate-calculator/">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var _stored = null;
+    try { _stored = localStorage.getItem('cookie-consent'); } catch (e) {}
+    var _initial = _stored === 'granted' ? 'granted' : 'denied';
+    gtag('consent', 'default', {
+      ad_storage: _initial, analytics_storage: _initial,
+      ad_user_data: _initial, ad_personalization: _initial,
+      functionality_storage: 'granted', security_storage: 'granted',
+      wait_for_update: 500
+    });
+  </script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Freelance Day Rate Calculator",
+    "url": "https://webcaretakers.com/calculators/business/freelance-day-rate-calculator/",
+    "description": "Calculate the day rate a freelancer or contractor needs to charge, accounting for non-billable days, expenses, pension contributions, and downtime between clients.",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Any",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "WebCaretakers",
+      "url": "https://webcaretakers.com/"
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How do I calculate my freelance day rate?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Start with your desired annual income, add business expenses and pension contributions, then add a buffer for gaps between clients. Divide the total by your billable days. For example: £50,000 income + £2,500 pension (5%) + £3,000 expenses = £55,500 subtotal. With a 15% downtime buffer that becomes £65,294. Divided by 220 billable days gives a day rate of approximately £297."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is a realistic number of billable days per year?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Most freelancers work from a base of 260 weekdays. Subtract 25 days holiday, plus around 15 days for admin, training, networking, and unavoidable gaps — leaving around 220 billable days. Contractors working back-to-back on long contracts may achieve closer to 230; those building a client base from scratch should plan for fewer."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Should I use my gross or net salary target?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "This calculator works from your gross income target — what your business needs to earn before tax. If you have a net take-home figure in mind, use the UK Salary Tax Calculator to work backwards to the gross equivalent, then enter that figure here."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does the day rate include a downtime buffer?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Freelancers rarely have 100% utilisation. There are gaps between contracts, time spent pitching new business, and occasional slow periods. A 15% downtime buffer means that even if you only bill 85% of your available days, you still hit your income target. Adjust this figure upward if you are new to freelancing, or downward if you have a stable roster of long-term clients."
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-banner-heading" aria-describedby="cookie-banner-text" hidden>
+    <div class="cookie-banner__inner">
+      <h2 id="cookie-banner-heading" class="cookie-banner__heading">A quick word about cookies</h2>
+      <p id="cookie-banner-text" class="cookie-banner__text">
+        We use cookies for analytics, so we can see which calculators people actually use and which ones need work. Nothing creepy, nothing sold on. You can say yes, say no, or read the <a href="/privacy/">privacy policy</a> first. Your choice sticks.
+      </p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-reject>Reject</button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>Accept</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var KEY = 'cookie-consent';
+      var banner = document.querySelector('[data-cookie-banner]');
+      if (!banner) return;
+      var stored = null;
+      try { stored = localStorage.getItem(KEY); } catch (e) {}
+      if (stored !== 'granted' && stored !== 'denied') { banner.hidden = false; }
+      function record(choice) {
+        try { localStorage.setItem(KEY, choice); } catch (e) {}
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('consent', 'update', {
+          ad_storage: choice, analytics_storage: choice,
+          ad_user_data: choice, ad_personalization: choice
+        });
+        banner.hidden = true;
+      }
+      var accept = banner.querySelector('[data-cookie-accept]');
+      var reject = banner.querySelector('[data-cookie-reject]');
+      if (accept) accept.addEventListener('click', function () { record('granted'); });
+      if (reject) reject.addEventListener('click', function () { record('denied'); });
+    })();
+  </script>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">WebCaretakers</a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <ul class="primary-nav__list">
+          <li class="primary-nav__item primary-nav__item--has-menu">
+            <button type="button" class="primary-nav__link" data-menu-toggle aria-haspopup="true" aria-expanded="false">Calculators <span class="primary-nav__caret" aria-hidden="true">▾</span></button>
+            <ul class="primary-nav__submenu">
+              <li><a href="/calculators/broadband/">Broadband</a></li>
+              <li><a href="/calculators/business/">Business</a></li>
+              <li><a href="/calculators/finance/">Finance</a></li>
+              <li><a href="/calculators/health/">Health</a></li>
+              <li><a href="/calculators/images/">Images</a></li>
+              <li><a href="/calculators/math/">Math</a></li>
+              <li><a href="/calculators/productivity/">Productivity</a></li>
+              <li><a href="/calculators/wedding/">Wedding</a></li>
+              <li class="primary-nav__submenu-sep"><a href="/calculators/">See all calculators</a></li>
+            </ul>
+          </li>
+          <li class="primary-nav__item"><a href="/about/" class="primary-nav__link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <main id="main-content">
+      <div class="container">
+        <nav aria-label="Breadcrumb" class="breadcrumbs">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/calculators/">Calculators</a></li>
+            <li><a href="/calculators/business/">Business</a></li>
+            <li aria-current="page">Freelance Day Rate Calculator</li>
+          </ol>
+        </nav>
+
+        <h1>Freelance Day Rate Calculator</h1>
+
+        <div class="eli5">
+          <h2>Explain like I'm 5</h2>
+          <p>Imagine you want to earn £50,000 a year. But you only work 220 days (the rest are weekends, holidays, and admin days). And sometimes you have no client for a couple of weeks. And you want some money in a pension. Add all that up, then divide by 220, and you get the daily price you need to charge.</p>
+        </div>
+
+        <div class="calculator-form">
+          <div class="form-group">
+            <label for="income-target">Desired annual gross income (£) <span class="label-hint">What your business needs to earn before tax</span></label>
+            <input type="number" id="income-target" data-income-target min="1" step="1" value="50000" placeholder="e.g. 50000">
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="working-days">Working days per year <span class="label-hint">Default: 260 (52 weeks × 5 days)</span></label>
+              <input type="number" id="working-days" data-working-days min="1" max="365" step="1" value="260">
+            </div>
+            <div class="form-group">
+              <label for="non-billable">Non-billable days <span class="label-hint">Holiday, training, admin (default 40)</span></label>
+              <input type="number" id="non-billable" data-non-billable min="0" step="1" value="40">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="expenses">Annual business expenses (£) <span class="label-hint">Software, equipment, accountant, insurance</span></label>
+            <input type="number" id="expenses" data-expenses min="0" step="1" value="0" placeholder="e.g. 3000">
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="pension-pct">Pension contribution (%) <span class="label-hint">% of income to set aside (default 5%)</span></label>
+              <input type="number" id="pension-pct" data-pension-pct min="0" max="99" step="0.5" value="5">
+            </div>
+            <div class="form-group">
+              <label for="downtime-pct">Downtime buffer (%) <span class="label-hint">% allowance for gaps between clients (default 15%)</span></label>
+              <input type="number" id="downtime-pct" data-downtime-pct min="0" max="99" step="1" value="15">
+            </div>
+          </div>
+
+          <button type="button" class="btn btn--primary" data-calculate>Calculate day rate</button>
+          <p class="form-error" data-error hidden></p>
+        </div>
+
+        <div class="results-panel" data-breakdown hidden>
+          <h2>Your required day rate</h2>
+          <table class="results-table">
+            <tbody>
+              <tr><th>Billable days per year</th><td data-line-billable-days>—</td></tr>
+              <tr><th>Pension contribution</th><td data-line-pension>—</td></tr>
+              <tr><th>Annual expenses</th><td data-line-expenses>—</td></tr>
+              <tr><th>Subtotal needed</th><td data-line-subtotal>—</td></tr>
+              <tr><th>Downtime buffer</th><td data-line-downtime-buffer>—</td></tr>
+              <tr><th>Total revenue required</th><td data-line-total-required>—</td></tr>
+            </tbody>
+          </table>
+          <table class="results-table results-table--rates" style="margin-top:1rem">
+            <tbody>
+              <tr class="results-table__highlight"><th>Day rate</th><td data-line-day-rate>—</td></tr>
+              <tr><th>Half-day rate</th><td data-line-half-day>—</td></tr>
+              <tr class="results-table__highlight"><th>Hourly rate (8hr day)</th><td data-line-hourly>—</td></tr>
+              <tr><th>Weekly rate (5 days)</th><td data-line-weekly>—</td></tr>
+              <tr><th>Monthly equivalent</th><td data-line-monthly>—</td></tr>
+            </tbody>
+          </table>
+          <details class="prove-it">
+            <summary>Show workings</summary>
+            <div data-prove-it-body class="prove-it__body"></div>
+          </details>
+        </div>
+
+        <section class="long-form">
+          <h2>Why most freelancers undercharge</h2>
+          <p>The most common mistake is dividing a desired salary by 52 weeks to get a weekly rate, then by 5 to get a daily rate. That ignores everything: holiday, admin time, time between clients, pension, and the business costs that a salaried employee never thinks about. The result is a day rate that looks reasonable but leaves you underpaid.</p>
+          <p>The non-billable days alone knock 15–20% off your available capacity before you have charged a single client. Add expenses and downtime, and most freelancers need to charge 30–50% more than their equivalent salaried salary just to net the same.</p>
+
+          <h2>What counts as a business expense?</h2>
+          <p>Software subscriptions, hardware, professional indemnity insurance, an accountant (which you almost certainly need), training, co-working space, and any tools specific to your work. If you are contracting through a limited company, your accountant fees alone are likely £1,000–£2,000 per year.</p>
+
+          <h2>Setting the downtime buffer</h2>
+          <p>New freelancers building a client base should use 25–30%. Established freelancers with recurring clients can drop to 10–15%. If you have a single anchor client that guarantees a significant share of your time, you can model a lower buffer — but be careful about single-client dependency.</p>
+        </section>
+
+        <section class="faq">
+          <h2>Common questions</h2>
+          <details>
+            <summary>How do I calculate my freelance day rate?</summary>
+            <p>Start with your desired annual income, add business expenses and pension contributions, then add a buffer for gaps between clients. Divide the total by your billable days. This calculator does all of that automatically.</p>
+          </details>
+          <details>
+            <summary>What is a realistic number of billable days per year?</summary>
+            <p>Most freelancers work from a base of 260 weekdays. Subtract 25 days holiday, plus around 15 days for admin, training, networking, and unavoidable gaps — leaving around 220 billable days. Contractors on long back-to-back contracts may achieve closer to 230; those building a client base should plan for fewer.</p>
+          </details>
+          <details>
+            <summary>Should I use my gross or net salary target?</summary>
+            <p>This calculator works from your gross income target — what your business needs to earn before tax. If you have a net take-home figure in mind, use the <a href="/calculators/finance/uk-salary-tax-calculator/">UK Salary Tax Calculator</a> to work backwards to the gross equivalent, then enter that figure here.</p>
+          </details>
+          <details>
+            <summary>Why does the day rate include a downtime buffer?</summary>
+            <p>Freelancers rarely have 100% utilisation. There are gaps between contracts, time spent pitching new business, and occasional slow periods. A 15% downtime buffer means that even if you only bill 85% of your available days, you still hit your income target.</p>
+          </details>
+        </section>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="ad-slot" data-ad-slot="sidebar" aria-hidden="true"></div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="site-footer-nav" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/calculators/">All calculators</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+      <section class="site-disclaimer" data-disclaimer aria-labelledby="disclaimer-heading">
+        <h2 id="disclaimer-heading">A quick, necessary word</h2>
+        <p>Every calculator on this site is built to give you a sensible, well-reasoned estimate. It is, however, exactly that: an estimate, for general information only. Nothing you see here is professional, legal, financial, medical, or tax advice, and it should not be treated as such.</p>
+        <p>Before you make a decision that actually matters, talk to a qualified professional who knows your specific situation: an accountant, a solicitor, a doctor, an IT consultant, whoever fits the question. They can factor in the bits a generic tool can't.</p>
+        <p>We take no liability and accept no responsibility for any loss, damage, or questionable life choice arising from acting on the numbers you see here. Use the results as a starting point for a better conversation, not as the final word.</p>
+        <p><strong>Affiliate disclosure:</strong> some links on this site are affiliate links. If you click through and buy or sign up for something, we may earn a small commission at no extra cost to you. It helps keep the calculators free and ad-light. We only recommend things we'd point a friend towards.</p>
+      </section>
+      <p class="site-copyright">&copy; 2026 WebCaretakers. All rights reserved.</p>
+      <p class="site-legal">WebCaretakers is a trading name of <a href="https://yeseo.io/" rel="noopener">Andrew Laws Associates Ltd</a>, registered in England and Wales (company no. 08602332). ICO registration ZA726704.</p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/calculators/freelance-day-rate.js"></script>
+  <script>
+  (function () {
+    'use strict';
+
+    var calcBtn     = document.querySelector('[data-calculate]');
+    var breakdown   = document.querySelector('[data-breakdown]');
+    var errorEl     = document.querySelector('[data-error]');
+    var proveItBody = document.querySelector('[data-prove-it-body]');
+
+    function fmt(n)    { return '£' + n.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+    function fmtInt(n) { return n.toLocaleString('en-GB'); }
+
+    function val(sel)  { return parseFloat(document.querySelector(sel).value); }
+
+    function showError(msg) { errorEl.textContent = msg; errorEl.hidden = false; breakdown.hidden = true; }
+    function clearError()   { errorEl.hidden = true; errorEl.textContent = ''; }
+
+    // Track field interactions
+    document.querySelectorAll('input').forEach(function (el) {
+      el.addEventListener('change', function () {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({ event: 'calculator_interaction', calculator_name: 'Freelance Day Rate Calculator' });
+      });
+    });
+
+    calcBtn.addEventListener('click', function () {
+      clearError();
+      try {
+        var r = FreelanceDayRate.calculateFreelanceDayRate({
+          annualIncomeTarget:  val('[data-income-target]'),
+          workingDaysPerYear:  val('[data-working-days]'),
+          nonBillableDays:     val('[data-non-billable]'),
+          annualExpenses:      val('[data-expenses]'),
+          pensionPercent:      val('[data-pension-pct]'),
+          downtimePercent:     val('[data-downtime-pct]'),
+        });
+
+        document.querySelector('[data-line-billable-days]').textContent  = fmtInt(r.billableDays) + ' days';
+        document.querySelector('[data-line-pension]').textContent         = fmt(r.pensionAmount) + ' (' + r.pensionPercent + '%)';
+        document.querySelector('[data-line-expenses]').textContent        = fmt(r.annualExpenses);
+        document.querySelector('[data-line-subtotal]').textContent        = fmt(r.subtotal);
+        document.querySelector('[data-line-downtime-buffer]').textContent = fmt(r.downtimeBuffer) + ' (' + r.downtimePercent + '%)';
+        document.querySelector('[data-line-total-required]').textContent  = fmt(r.totalRequired);
+        document.querySelector('[data-line-day-rate]').textContent        = fmt(r.dayRate);
+        document.querySelector('[data-line-half-day]').textContent        = fmt(r.halfDayRate);
+        document.querySelector('[data-line-hourly]').textContent          = fmt(r.hourlyRate);
+        document.querySelector('[data-line-weekly]').textContent          = fmt(r.weeklyRate);
+        document.querySelector('[data-line-monthly]').textContent         = fmt(r.monthlyRate);
+
+        var workings = 'Billable days = ' + r.workingDaysPerYear + ' − ' + r.nonBillableDays + ' = ' + r.billableDays + '\n'
+                     + 'Pension (' + r.pensionPercent + '%) = ' + fmt(r.annualIncomeTarget) + ' × ' + r.pensionPercent + '/100 = ' + fmt(r.pensionAmount) + '\n'
+                     + 'Subtotal = income + expenses + pension = ' + fmt(r.subtotal) + '\n'
+                     + 'Downtime buffer (' + r.downtimePercent + '%) = subtotal ÷ (1 − ' + r.downtimePercent + '/100) − subtotal = ' + fmt(r.downtimeBuffer) + '\n'
+                     + 'Total required = ' + fmt(r.totalRequired) + '\n'
+                     + 'Day rate = ' + fmt(r.totalRequired) + ' ÷ ' + r.billableDays + ' days = ' + fmt(r.dayRate);
+        proveItBody.textContent = workings;
+
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: 'calculator_result',
+          calculator_name: 'Freelance Day Rate Calculator',
+          day_rate: r.dayRate,
+          billable_days: r.billableDays,
+          annual_income_target: r.annualIncomeTarget,
+        });
+
+        breakdown.hidden = false;
+      } catch (err) {
+        showError(err.message);
+      }
+    });
+  })();
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

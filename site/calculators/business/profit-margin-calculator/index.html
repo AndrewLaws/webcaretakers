@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profit Margin Calculator | WebCaretakers</title>
+  <meta name="description" content="Calculate gross and net profit margin from revenue and costs, or find the selling price needed to hit a target margin. Shows markup vs margin clearly.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/business/profit-margin-calculator/">
+  <meta property="og:title" content="Profit Margin Calculator | WebCaretakers">
+  <meta property="og:description" content="Calculate gross and net profit margin, or find the price needed to hit a target margin. Markup vs margin explained.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/business/profit-margin-calculator/">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var _stored = null;
+    try { _stored = localStorage.getItem('cookie-consent'); } catch (e) {}
+    var _initial = _stored === 'granted' ? 'granted' : 'denied';
+    gtag('consent', 'default', {
+      ad_storage: _initial, analytics_storage: _initial,
+      ad_user_data: _initial, ad_personalization: _initial,
+      functionality_storage: 'granted', security_storage: 'granted',
+      wait_for_update: 500
+    });
+  </script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Profit Margin Calculator",
+    "url": "https://webcaretakers.com/calculators/business/profit-margin-calculator/",
+    "description": "Calculate gross and net profit margin from revenue and costs, or find the selling price needed to hit a target margin.",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Any",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "WebCaretakers",
+      "url": "https://webcaretakers.com/"
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the difference between profit margin and markup?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Margin is profit as a percentage of the selling price. Markup is profit as a percentage of the cost. If you buy something for £60 and sell it for £100, your margin is 40% (£40 profit on £100 revenue) but your markup is 66.67% (£40 profit on £60 cost). They describe the same profit in different ways — margin from the customer's side, markup from the supplier's side."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is a good profit margin?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "It depends heavily on the industry. Retail typically operates on gross margins of 20–50%. Software and SaaS businesses often achieve gross margins above 70%. Restaurants frequently run at 3–9% net margin despite higher gross margins. The right benchmark is your industry average, not a universal number."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is gross profit vs net profit?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Gross profit is revenue minus the direct cost of producing or buying what you sell (cost of goods sold). Net profit is gross profit minus operating expenses such as rent, salaries, marketing, and overheads. Gross margin tells you how efficiently you produce; net margin tells you how efficiently you run the whole business."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I calculate the price to achieve a target margin?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Use the formula: price = cost ÷ (1 − target margin as a decimal). For example, if your cost is £60 and you want a 40% margin: price = £60 ÷ 0.6 = £100. This calculator does that automatically in the Find selling price mode."
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-banner-heading" aria-describedby="cookie-banner-text" hidden>
+    <div class="cookie-banner__inner">
+      <h2 id="cookie-banner-heading" class="cookie-banner__heading">A quick word about cookies</h2>
+      <p id="cookie-banner-text" class="cookie-banner__text">
+        We use cookies for analytics, so we can see which calculators people actually use and which ones need work. Nothing creepy, nothing sold on. You can say yes, say no, or read the <a href="/privacy/">privacy policy</a> first. Your choice sticks.
+      </p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-reject>Reject</button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>Accept</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var KEY = 'cookie-consent';
+      var banner = document.querySelector('[data-cookie-banner]');
+      if (!banner) return;
+      var stored = null;
+      try { stored = localStorage.getItem(KEY); } catch (e) {}
+      if (stored !== 'granted' && stored !== 'denied') { banner.hidden = false; }
+      function record(choice) {
+        try { localStorage.setItem(KEY, choice); } catch (e) {}
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('consent', 'update', {
+          ad_storage: choice, analytics_storage: choice,
+          ad_user_data: choice, ad_personalization: choice
+        });
+        banner.hidden = true;
+      }
+      var accept = banner.querySelector('[data-cookie-accept]');
+      var reject = banner.querySelector('[data-cookie-reject]');
+      if (accept) accept.addEventListener('click', function () { record('granted'); });
+      if (reject) reject.addEventListener('click', function () { record('denied'); });
+    })();
+  </script>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">WebCaretakers</a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <ul class="primary-nav__list">
+          <li class="primary-nav__item primary-nav__item--has-menu">
+            <button type="button" class="primary-nav__link" data-menu-toggle aria-haspopup="true" aria-expanded="false">Calculators <span class="primary-nav__caret" aria-hidden="true">▾</span></button>
+            <ul class="primary-nav__submenu">
+              <li><a href="/calculators/broadband/">Broadband</a></li>
+              <li><a href="/calculators/business/">Business</a></li>
+              <li><a href="/calculators/finance/">Finance</a></li>
+              <li><a href="/calculators/health/">Health</a></li>
+              <li><a href="/calculators/images/">Images</a></li>
+              <li><a href="/calculators/math/">Math</a></li>
+              <li><a href="/calculators/productivity/">Productivity</a></li>
+              <li><a href="/calculators/wedding/">Wedding</a></li>
+              <li class="primary-nav__submenu-sep"><a href="/calculators/">See all calculators</a></li>
+            </ul>
+          </li>
+          <li class="primary-nav__item"><a href="/about/" class="primary-nav__link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <main id="main-content">
+      <div class="container">
+        <nav aria-label="Breadcrumb" class="breadcrumbs">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/calculators/">Calculators</a></li>
+            <li><a href="/calculators/business/">Business</a></li>
+            <li aria-current="page">Profit Margin Calculator</li>
+          </ol>
+        </nav>
+
+        <h1>Profit Margin Calculator</h1>
+
+        <div class="eli5">
+          <h2>Explain like I'm 5</h2>
+          <p>If you sell lemonade for £1 and the lemons and cups cost 60p, you made 40p profit. That 40p is 40% of your £1 selling price — that's your margin. But it's 66.67% of your 60p cost — that's your markup. Same £1 sale, same 40p profit, two different percentages depending on what you divide by.</p>
+        </div>
+
+        <div class="calculator-form">
+          <fieldset>
+            <legend>What do you want to calculate?</legend>
+            <div class="radio-group">
+              <label><input type="radio" name="mode" value="margin" data-mode checked> Calculate margin from revenue and costs</label>
+              <label><input type="radio" name="mode" value="price_from_margin" data-mode> Find selling price from cost and target margin %</label>
+              <label><input type="radio" name="mode" value="price_from_markup" data-mode> Find selling price from cost and target markup %</label>
+            </div>
+          </fieldset>
+
+          <!-- Mode: calculate margin -->
+          <div data-panel="margin">
+            <div class="form-group">
+              <label for="revenue">Revenue / selling price (£)</label>
+              <input type="number" id="revenue" data-revenue min="0.01" step="0.01" value="10000" placeholder="e.g. 10000">
+            </div>
+            <div class="form-group">
+              <label for="cogs">Cost of goods sold (£) <span class="label-hint">Direct costs to produce or buy what you sold</span></label>
+              <input type="number" id="cogs" data-cogs min="0" step="0.01" value="6000" placeholder="e.g. 6000">
+            </div>
+            <div class="form-group">
+              <label for="opex">Operating expenses (£) <span class="label-hint">Optional — rent, salaries, overheads. Leave blank for gross margin only.</span></label>
+              <input type="number" id="opex" data-opex min="0" step="0.01" placeholder="e.g. 2000">
+            </div>
+          </div>
+
+          <!-- Mode: price from margin -->
+          <div data-panel="price_from_margin" hidden>
+            <div class="form-group">
+              <label for="cost-margin">Your cost (£)</label>
+              <input type="number" id="cost-margin" data-cost-margin min="0.01" step="0.01" value="60" placeholder="e.g. 60">
+            </div>
+            <div class="form-group">
+              <label for="target-margin">Target gross margin (%)</label>
+              <input type="number" id="target-margin" data-target-margin min="0.01" max="99.99" step="0.01" value="40" placeholder="e.g. 40">
+            </div>
+          </div>
+
+          <!-- Mode: price from markup -->
+          <div data-panel="price_from_markup" hidden>
+            <div class="form-group">
+              <label for="cost-markup">Your cost (£)</label>
+              <input type="number" id="cost-markup" data-cost-markup min="0.01" step="0.01" value="60" placeholder="e.g. 60">
+            </div>
+            <div class="form-group">
+              <label for="target-markup">Target markup (%)</label>
+              <input type="number" id="target-markup" data-target-markup min="0.01" step="0.01" value="66.67" placeholder="e.g. 66.67">
+            </div>
+          </div>
+
+          <button type="button" class="btn btn--primary" data-calculate>Calculate</button>
+          <p class="form-error" data-error hidden></p>
+        </div>
+
+        <div class="results-panel" data-breakdown hidden>
+          <h2>Results</h2>
+
+          <!-- Margin mode results -->
+          <div data-result-panel="margin" hidden>
+            <table class="results-table">
+              <tbody>
+                <tr><th>Revenue</th><td data-line-revenue>—</td></tr>
+                <tr><th>Cost of goods sold</th><td data-line-cogs>—</td></tr>
+                <tr class="results-table__highlight"><th>Gross profit</th><td data-line-gross-profit>—</td></tr>
+                <tr class="results-table__highlight"><th>Gross margin</th><td data-line-gross-margin>—</td></tr>
+                <tr><th>Markup</th><td data-line-markup>—</td></tr>
+              </tbody>
+            </table>
+            <div data-net-block hidden>
+              <table class="results-table" style="margin-top:1rem">
+                <tbody>
+                  <tr><th>Operating expenses</th><td data-line-opex>—</td></tr>
+                  <tr class="results-table__highlight"><th>Net profit</th><td data-line-net-profit>—</td></tr>
+                  <tr class="results-table__highlight"><th>Net margin</th><td data-line-net-margin>—</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Price from margin results -->
+          <div data-result-panel="price_from_margin" hidden>
+            <table class="results-table">
+              <tbody>
+                <tr><th>Your cost</th><td data-line-pfm-cost>—</td></tr>
+                <tr><th>Target margin</th><td data-line-pfm-target>—</td></tr>
+                <tr class="results-table__highlight"><th>Selling price needed</th><td data-line-pfm-price>—</td></tr>
+                <tr class="results-table__highlight"><th>Profit per unit</th><td data-line-pfm-profit>—</td></tr>
+                <tr><th>Equivalent markup</th><td data-line-pfm-markup>—</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Price from markup results -->
+          <div data-result-panel="price_from_markup" hidden>
+            <table class="results-table">
+              <tbody>
+                <tr><th>Your cost</th><td data-line-pfu-cost>—</td></tr>
+                <tr><th>Target markup</th><td data-line-pfu-target>—</td></tr>
+                <tr class="results-table__highlight"><th>Selling price needed</th><td data-line-pfu-price>—</td></tr>
+                <tr class="results-table__highlight"><th>Profit per unit</th><td data-line-pfu-profit>—</td></tr>
+                <tr><th>Equivalent margin</th><td data-line-pfu-margin>—</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <details class="prove-it">
+            <summary>Show workings</summary>
+            <div data-prove-it-body class="prove-it__body"></div>
+          </details>
+        </div>
+
+        <section class="long-form">
+          <h2>Margin vs markup: why the difference matters</h2>
+          <p>The confusion between margin and markup trips up a lot of businesses when pricing. A 50% markup is not the same as a 50% margin, and getting them confused means you end up charging less than you think you are. If your cost is £100 and you apply a 50% markup, you sell for £150 and your margin is 33.3%. If you want a 50% margin, you need to sell for £200.</p>
+          <p>The rule is: margins are always lower than the equivalent markup. The gap gets wider as margins get higher.</p>
+
+          <h2>Gross margin vs net margin</h2>
+          <p>Gross margin removes only the direct costs of producing or buying what you sold: materials, labour directly tied to production, wholesale purchase price. It tells you how much money you have left before you pay for the business itself.</p>
+          <p>Net margin removes everything else — rent, staff not directly producing, marketing, software subscriptions, professional fees, depreciation. It tells you how much of every pound of revenue actually becomes profit after all the bills are paid. A business can have an excellent gross margin and a weak net margin because its overheads are too high.</p>
+
+          <h2>What counts as cost of goods sold?</h2>
+          <p>For a product-based business: the wholesale or production cost of each item you sold. For a service business: direct labour (the hours your people spent delivering the project), any materials or tools specific to that project. Overheads like office rent and management salaries are operating expenses, not COGS — they go in the second field if you want net margin.</p>
+        </section>
+
+        <section class="faq">
+          <h2>Common questions</h2>
+          <details>
+            <summary>What is the difference between profit margin and markup?</summary>
+            <p>Margin is profit as a percentage of the selling price. Markup is profit as a percentage of the cost. If you buy something for £60 and sell it for £100, your margin is 40% (£40 profit on £100 revenue) but your markup is 66.67% (£40 profit on £60 cost). They describe the same profit in different ways — margin from the customer's side, markup from the supplier's side.</p>
+          </details>
+          <details>
+            <summary>What is a good profit margin?</summary>
+            <p>It depends heavily on the industry. Retail typically operates on gross margins of 20–50%. Software and SaaS businesses often achieve gross margins above 70%. Restaurants frequently run at 3–9% net margin despite higher gross margins. The right benchmark is your industry average, not a universal number.</p>
+          </details>
+          <details>
+            <summary>What is gross profit vs net profit?</summary>
+            <p>Gross profit is revenue minus the direct cost of producing or buying what you sell (cost of goods sold). Net profit is gross profit minus operating expenses such as rent, salaries, marketing, and overheads. Gross margin tells you how efficiently you produce; net margin tells you how efficiently you run the whole business.</p>
+          </details>
+          <details>
+            <summary>How do I calculate the price to achieve a target margin?</summary>
+            <p>Use the formula: price = cost ÷ (1 − target margin as a decimal). For example, if your cost is £60 and you want a 40% margin: price = £60 ÷ 0.6 = £100. Use the "Find selling price" mode above to do this automatically.</p>
+          </details>
+        </section>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="ad-slot" data-ad-slot="sidebar" aria-hidden="true"></div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="site-footer-nav" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/calculators/">All calculators</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+      <section class="site-disclaimer" data-disclaimer aria-labelledby="disclaimer-heading">
+        <h2 id="disclaimer-heading">A quick, necessary word</h2>
+        <p>Every calculator on this site is built to give you a sensible, well-reasoned estimate. It is, however, exactly that: an estimate, for general information only. Nothing you see here is professional, legal, financial, medical, or tax advice, and it should not be treated as such.</p>
+        <p>Before you make a decision that actually matters, talk to a qualified professional who knows your specific situation: an accountant, a solicitor, a doctor, an IT consultant, whoever fits the question. They can factor in the bits a generic tool can't.</p>
+        <p>We take no liability and accept no responsibility for any loss, damage, or questionable life choice arising from acting on the numbers you see here. Use the results as a starting point for a better conversation, not as the final word.</p>
+        <p><strong>Affiliate disclosure:</strong> some links on this site are affiliate links. If you click through and buy or sign up for something, we may earn a small commission at no extra cost to you. It helps keep the calculators free and ad-light. We only recommend things we'd point a friend towards.</p>
+      </section>
+      <p class="site-copyright">&copy; 2026 WebCaretakers. All rights reserved.</p>
+      <p class="site-legal">WebCaretakers is a trading name of <a href="https://yeseo.io/" rel="noopener">Andrew Laws Associates Ltd</a>, registered in England and Wales (company no. 08602332). ICO registration ZA726704.</p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/calculators/profit-margin.js"></script>
+  <script>
+  (function () {
+    'use strict';
+
+    var modeRadios   = document.querySelectorAll('[data-mode]');
+    var calcBtn      = document.querySelector('[data-calculate]');
+    var breakdown    = document.querySelector('[data-breakdown]');
+    var errorEl      = document.querySelector('[data-error]');
+    var proveItBody  = document.querySelector('[data-prove-it-body]');
+
+    var panels       = {
+      margin:           document.querySelector('[data-panel="margin"]'),
+      price_from_margin: document.querySelector('[data-panel="price_from_margin"]'),
+      price_from_markup: document.querySelector('[data-panel="price_from_markup"]'),
+    };
+    var resultPanels = {
+      margin:           document.querySelector('[data-result-panel="margin"]'),
+      price_from_margin: document.querySelector('[data-result-panel="price_from_margin"]'),
+      price_from_markup: document.querySelector('[data-result-panel="price_from_markup"]'),
+    };
+
+    function currentMode() {
+      for (var i = 0; i < modeRadios.length; i++) {
+        if (modeRadios[i].checked) return modeRadios[i].value;
+      }
+      return 'margin';
+    }
+
+    function showPanel(mode) {
+      Object.keys(panels).forEach(function (k) {
+        panels[k].hidden = (k !== mode);
+      });
+    }
+
+    function showResultPanel(mode) {
+      Object.keys(resultPanels).forEach(function (k) {
+        resultPanels[k].hidden = (k !== mode);
+      });
+    }
+
+    function fmt(n) { return '£' + n.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+    function fmtPct(n) { return n.toFixed(2) + '%'; }
+
+    function showError(msg) {
+      errorEl.textContent = msg;
+      errorEl.hidden = false;
+      breakdown.hidden = true;
+    }
+
+    function clearError() {
+      errorEl.hidden = true;
+      errorEl.textContent = '';
+    }
+
+    function val(sel) {
+      var el = document.querySelector(sel);
+      return el ? parseFloat(el.value) : NaN;
+    }
+
+    modeRadios.forEach(function (r) {
+      r.addEventListener('change', function () { showPanel(r.value); clearError(); breakdown.hidden = true; });
+    });
+
+    calcBtn.addEventListener('click', function () {
+      clearError();
+      var mode = currentMode();
+
+      // Track interaction
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event: 'calculator_interaction', calculator_name: 'Profit Margin Calculator', mode: mode });
+
+      try {
+        var r, workings = '';
+
+        if (mode === 'margin') {
+          var revenue = val('[data-revenue]');
+          var cogs    = val('[data-cogs]');
+          var opex    = val('[data-opex]');
+          if (isNaN(opex)) opex = undefined;
+
+          r = ProfitMargin.calculateMargin({ revenue: revenue, cogs: cogs, operatingExpenses: opex });
+
+          document.querySelector('[data-line-revenue]').textContent    = fmt(r.revenue);
+          document.querySelector('[data-line-cogs]').textContent       = fmt(r.cogs);
+          document.querySelector('[data-line-gross-profit]').textContent = fmt(r.grossProfit);
+          document.querySelector('[data-line-gross-margin]').textContent = fmtPct(r.grossMarginPct);
+          document.querySelector('[data-line-markup]').textContent     = r.markupPct !== null ? fmtPct(r.markupPct) : 'N/A (zero cost)';
+
+          var netBlock = document.querySelector('[data-net-block]');
+          if (r.hasOperatingExpenses) {
+            netBlock.hidden = false;
+            document.querySelector('[data-line-opex]').textContent       = fmt(r.operatingExpenses);
+            document.querySelector('[data-line-net-profit]').textContent  = fmt(r.netProfit);
+            document.querySelector('[data-line-net-margin]').textContent  = fmtPct(r.netMarginPct);
+          } else {
+            netBlock.hidden = true;
+          }
+
+          workings = 'Gross profit = ' + fmt(r.revenue) + ' − ' + fmt(r.cogs) + ' = ' + fmt(r.grossProfit) + '\n'
+                   + 'Gross margin = ' + fmt(r.grossProfit) + ' ÷ ' + fmt(r.revenue) + ' × 100 = ' + fmtPct(r.grossMarginPct) + '\n'
+                   + (r.markupPct !== null ? 'Markup = ' + fmt(r.grossProfit) + ' ÷ ' + fmt(r.cogs) + ' × 100 = ' + fmtPct(r.markupPct) + '\n' : '')
+                   + (r.hasOperatingExpenses
+                       ? 'Net profit = ' + fmt(r.grossProfit) + ' − ' + fmt(r.operatingExpenses) + ' = ' + fmt(r.netProfit) + '\n'
+                       + 'Net margin = ' + fmt(r.netProfit) + ' ÷ ' + fmt(r.revenue) + ' × 100 = ' + fmtPct(r.netMarginPct) + '\n'
+                       : '');
+
+          window.dataLayer.push({ event: 'calculator_result', calculator_name: 'Profit Margin Calculator', mode: mode, gross_margin_pct: r.grossMarginPct, net_margin_pct: r.netMarginPct });
+
+        } else if (mode === 'price_from_margin') {
+          var cost   = val('[data-cost-margin]');
+          var target = val('[data-target-margin]');
+          r = ProfitMargin.calculatePriceFromMargin({ cost: cost, targetMarginPct: target });
+
+          document.querySelector('[data-line-pfm-cost]').textContent   = fmt(r.cost);
+          document.querySelector('[data-line-pfm-target]').textContent = fmtPct(r.targetMarginPct);
+          document.querySelector('[data-line-pfm-price]').textContent  = fmt(r.price);
+          document.querySelector('[data-line-pfm-profit]').textContent = fmt(r.profit);
+          document.querySelector('[data-line-pfm-markup]').textContent = fmtPct(r.markupPct);
+
+          workings = 'price = cost ÷ (1 − margin/100)\n'
+                   + 'price = ' + fmt(r.cost) + ' ÷ (1 − ' + r.targetMarginPct + '/100)\n'
+                   + 'price = ' + fmt(r.cost) + ' ÷ ' + (1 - r.targetMarginPct/100).toFixed(4) + ' = ' + fmt(r.price) + '\n'
+                   + 'profit = ' + fmt(r.price) + ' − ' + fmt(r.cost) + ' = ' + fmt(r.profit) + '\n'
+                   + 'markup = ' + fmt(r.profit) + ' ÷ ' + fmt(r.cost) + ' × 100 = ' + fmtPct(r.markupPct);
+
+          window.dataLayer.push({ event: 'calculator_result', calculator_name: 'Profit Margin Calculator', mode: mode, target_margin_pct: r.targetMarginPct, required_price: r.price });
+
+        } else {
+          var costM   = val('[data-cost-markup]');
+          var targetM = val('[data-target-markup]');
+          r = ProfitMargin.calculatePriceFromMarkup({ cost: costM, targetMarkupPct: targetM });
+
+          document.querySelector('[data-line-pfu-cost]').textContent   = fmt(r.cost);
+          document.querySelector('[data-line-pfu-target]').textContent = fmtPct(r.targetMarkupPct);
+          document.querySelector('[data-line-pfu-price]').textContent  = fmt(r.price);
+          document.querySelector('[data-line-pfu-profit]').textContent = fmt(r.profit);
+          document.querySelector('[data-line-pfu-margin]').textContent = fmtPct(r.marginPct);
+
+          workings = 'price = cost × (1 + markup/100)\n'
+                   + 'price = ' + fmt(r.cost) + ' × (1 + ' + r.targetMarkupPct + '/100)\n'
+                   + 'price = ' + fmt(r.cost) + ' × ' + (1 + r.targetMarkupPct/100).toFixed(4) + ' = ' + fmt(r.price) + '\n'
+                   + 'profit = ' + fmt(r.price) + ' − ' + fmt(r.cost) + ' = ' + fmt(r.profit) + '\n'
+                   + 'margin = ' + fmt(r.profit) + ' ÷ ' + fmt(r.price) + ' × 100 = ' + fmtPct(r.marginPct);
+
+          window.dataLayer.push({ event: 'calculator_result', calculator_name: 'Profit Margin Calculator', mode: mode, target_markup_pct: r.targetMarkupPct, required_price: r.price });
+        }
+
+        showResultPanel(mode);
+        proveItBody.textContent = workings;
+        breakdown.hidden = false;
+
+      } catch (err) {
+        showError(err.message);
+      }
+    });
+  })();
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

@@ -149,6 +149,30 @@
     {
       "phrase": "About page",
       "url": "/about/"
+    },
+    {
+      "phrase": "Profit Margin Calculator",
+      "url": "/calculators/business/profit-margin-calculator/"
+    },
+    {
+      "phrase": "profit margin calculator",
+      "url": "/calculators/business/profit-margin-calculator/"
+    },
+    {
+      "phrase": "Freelance Day Rate Calculator",
+      "url": "/calculators/business/freelance-day-rate-calculator/"
+    },
+    {
+      "phrase": "freelance day rate calculator",
+      "url": "/calculators/business/freelance-day-rate-calculator/"
+    },
+    {
+      "phrase": "Break-Even Calculator",
+      "url": "/calculators/business/break-even-calculator/"
+    },
+    {
+      "phrase": "break-even calculator",
+      "url": "/calculators/business/break-even-calculator/"
     }
   ]
 }
