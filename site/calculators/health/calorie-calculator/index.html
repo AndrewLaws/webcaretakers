@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calorie Calculator — BMR and Daily Needs | WebCaretakers</title>
+  <meta name="description" content="Calculate your Basal Metabolic Rate (BMR) and daily calorie needs based on your age, weight, height and activity level. See how many calories to eat to lose, maintain or gain weight.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/health/calorie-calculator/">
+  <meta property="og:title" content="Calorie Calculator — BMR and Daily Needs | WebCaretakers">
+  <meta property="og:description" content="Find your BMR and daily calorie target for weight loss, maintenance or gain.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/health/calorie-calculator/">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var _stored = null;
+    try { _stored = localStorage.getItem('cookie-consent'); } catch (e) {}
+    var _initial = _stored === 'granted' ? 'granted' : 'denied';
+    gtag('consent', 'default', {
+      ad_storage: _initial, analytics_storage: _initial,
+      ad_user_data: _initial, ad_personalization: _initial,
+      functionality_storage: 'granted', security_storage: 'granted',
+      wait_for_update: 500
+    });
+  </script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Calorie Calculator",
+    "url": "https://webcaretakers.com/calculators/health/calorie-calculator/",
+    "applicationCategory": "HealthApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0" },
+    "author": { "@type": "Person", "name": "Andrew Laws", "url": "https://yeseo.io/" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is BMR and how is it calculated?",
+        "acceptedAnswer": { "@type": "Answer", "text": "BMR (Basal Metabolic Rate) is the number of calories your body burns at complete rest — essentially the energy needed to keep your heart beating, lungs breathing and organs functioning. This calculator uses the Mifflin-St Jeor equation: for men, BMR = 10W + 6.25H \u2212 5A + 5; for women, BMR = 10W + 6.25H \u2212 5A \u2212 161, where W is weight in kg, H is height in cm and A is age in years." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is TDEE?",
+        "acceptedAnswer": { "@type": "Answer", "text": "TDEE (Total Daily Energy Expenditure) is your BMR multiplied by an activity factor. It represents the total calories you burn in a day, including exercise and general movement. If you eat at TDEE, your weight stays roughly the same. Eat below it to lose weight, above it to gain." }
+      },
+      {
+        "@type": "Question",
+        "name": "How much of a calorie deficit should I aim for?",
+        "acceptedAnswer": { "@type": "Answer", "text": "A deficit of around 500 kcal/day produces roughly 0.5 kg of fat loss per week, which is a sustainable rate for most people. Larger deficits cause faster weight loss initially but increase the risk of muscle loss, fatigue and rebound. A deficit of 250 kcal/day is gentler and easier to maintain long-term." }
+      },
+      {
+        "@type": "Question",
+        "name": "Are the macro splits accurate?",
+        "acceptedAnswer": { "@type": "Answer", "text": "The macros shown (30% protein, 40% carbs, 30% fat) are a general starting point. Optimal macro ratios depend on your goal, training type, food preferences and health status. Athletes, those doing strength training, or people with specific health conditions will often benefit from a different split. Treat these as a rough guide, not a prescription." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-banner-heading" aria-describedby="cookie-banner-text" hidden>
+    <div class="cookie-banner__inner">
+      <h2 id="cookie-banner-heading" class="cookie-banner__heading">A quick word about cookies</h2>
+      <p id="cookie-banner-text" class="cookie-banner__text">
+        We use cookies for analytics, so we can see which calculators people actually use and which ones need work. Nothing creepy, nothing sold on. You can say yes, say no, or read the <a href="/privacy/">privacy policy</a> first. Your choice sticks.
+      </p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-reject>Reject</button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>Accept</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var KEY = 'cookie-consent';
+      var banner = document.querySelector('[data-cookie-banner]');
+      if (!banner) return;
+      var stored = null;
+      try { stored = localStorage.getItem(KEY); } catch (e) {}
+      if (stored !== 'granted' && stored !== 'denied') { banner.hidden = false; }
+      function record(choice) {
+        try { localStorage.setItem(KEY, choice); } catch (e) {}
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('consent', 'update', {
+          ad_storage: choice, analytics_storage: choice,
+          ad_user_data: choice, ad_personalization: choice
+        });
+        banner.hidden = true;
+      }
+      var accept = banner.querySelector('[data-cookie-accept]');
+      var reject = banner.querySelector('[data-cookie-reject]');
+      if (accept) accept.addEventListener('click', function () { record('granted'); });
+      if (reject) reject.addEventListener('click', function () { record('denied'); });
+    })();
+  </script>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">WebCaretakers</a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <ul class="primary-nav__list">
+          <li class="primary-nav__item primary-nav__item--has-menu">
+            <button type="button" class="primary-nav__link" data-menu-toggle aria-haspopup="true" aria-expanded="false">Calculators <span class="primary-nav__caret" aria-hidden="true">▾</span></button>
+            <ul class="primary-nav__submenu">
+              <li><a href="/calculators/broadband/">Broadband</a></li>
+              <li><a href="/calculators/finance/">Finance</a></li>
+              <li><a href="/calculators/health/">Health</a></li>
+              <li><a href="/calculators/images/">Images</a></li>
+              <li><a href="/calculators/math/">Math</a></li>
+              <li><a href="/calculators/productivity/">Productivity</a></li>
+              <li><a href="/calculators/wedding/">Wedding</a></li>
+              <li class="primary-nav__submenu-sep"><a href="/calculators/">See all calculators</a></li>
+            </ul>
+          </li>
+          <li class="primary-nav__item"><a href="/about/" class="primary-nav__link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <main id="main-content">
+      <div class="container">
+        <nav aria-label="Breadcrumb" class="breadcrumbs">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/calculators/">Calculators</a></li>
+            <li><a href="/calculators/health/">Health</a></li>
+            <li aria-current="page">Calorie Calculator</li>
+          </ol>
+        </nav>
+
+        <h1>Calorie Calculator</h1>
+        <p class="intro">Find your Basal Metabolic Rate (BMR) and Total Daily Energy Expenditure (TDEE) based on your age, weight, height and how active you are. Then set a goal — lose, maintain or gain — and get a daily calorie target with a rough macro split. All calculations use the Mifflin-St Jeor equation, the most accurately validated formula for most adults.</p>
+
+        <section class="eli5" aria-label="Plain-English explanation">
+          <h2>Explain like I'm 5 (calories and why they matter)</h2>
+          <p>Calories are a measure of energy. Your body burns a certain number just to stay alive — breathing, pumping blood, keeping warm. Move around and you burn more. If you eat more than you burn, your body stores the extra as fat. If you eat less, it uses stored fat for fuel. This calculator works out your personal burn rate so you know what you're working with.</p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="in-content" aria-hidden="true"></div>
+
+        <section data-calculator class="calculator-card">
+          <h2>Calculate</h2>
+          <form id="calorie-form" class="calc-form" novalidate>
+
+            <fieldset class="calc-fieldset">
+              <legend>Sex</legend>
+              <div class="calc-row calc-row--radios">
+                <label><input type="radio" name="sex" value="male" checked data-sex> Male</label>
+                <label><input type="radio" name="sex" value="female" data-sex> Female</label>
+              </div>
+            </fieldset>
+
+            <div class="calc-row">
+              <label for="cal-age">Age (years)</label>
+              <input type="number" id="cal-age" name="age" min="15" max="120" step="1" value="30" data-age>
+            </div>
+
+            <div class="calc-row">
+              <label for="cal-weight">Weight (kg)</label>
+              <input type="number" id="cal-weight" name="weightKg" min="20" max="300" step="0.1" value="75" data-weight>
+            </div>
+
+            <div class="calc-row">
+              <label for="cal-height">Height (cm)</label>
+              <input type="number" id="cal-height" name="heightCm" min="100" max="250" step="1" value="170" data-height>
+            </div>
+
+            <div class="calc-row">
+              <label for="cal-activity">Activity level</label>
+              <select id="cal-activity" name="activityLevel" data-activity>
+                <option value="sedentary">Sedentary — desk job, little or no exercise</option>
+                <option value="lightly_active" selected>Lightly active — light exercise 1-3 days/week</option>
+                <option value="moderately_active">Moderately active — exercise 3-5 days/week</option>
+                <option value="very_active">Very active — hard exercise 6-7 days/week</option>
+                <option value="extra_active">Extra active — physical job plus daily exercise</option>
+              </select>
+            </div>
+
+            <div class="calc-row">
+              <label for="cal-goal">Goal</label>
+              <select id="cal-goal" name="goal" data-goal>
+                <option value="lose_slow">Lose weight gradually (~0.25 kg/week)</option>
+                <option value="lose" selected>Lose weight steadily (~0.5 kg/week)</option>
+                <option value="maintain">Maintain weight</option>
+                <option value="gain">Gain weight gradually (~0.25 kg/week)</option>
+                <option value="gain_fast">Gain weight faster (~0.5 kg/week)</option>
+              </select>
+            </div>
+
+            <div class="calc-row">
+              <label for="cal-goal-weight">Weight to lose/gain (kg) <span style="font-weight:400;font-size:0.875rem;">(optional — for time estimate)</span></label>
+              <input type="number" id="cal-goal-weight" name="weightGoalKg" min="0.5" max="100" step="0.5" placeholder="e.g. 10" data-goal-weight>
+            </div>
+
+            <button type="submit" data-calculate>Calculate</button>
+          </form>
+
+          <div data-calculator-results class="calculator-results">
+            <div class="result-summary">
+              <p class="result-display" data-result>Enter your details and press Calculate.</p>
+            </div>
+
+            <div class="mort-breakdown" data-breakdown hidden>
+              <h3>Your numbers</h3>
+              <ul>
+                <li><span>BMR (calories at rest)</span><strong data-line-bmr>—</strong></li>
+                <li><span>TDEE (daily burn)</span><strong data-line-tdee>—</strong></li>
+                <li class="mort-breakdown__total"><span>Daily calorie target</span><strong data-line-target>—</strong></li>
+              </ul>
+
+              <h3>Rough macro split</h3>
+              <ul>
+                <li><span>Protein (30%)</span><strong data-line-protein>—</strong></li>
+                <li><span>Carbohydrates (40%)</span><strong data-line-carbs>—</strong></li>
+                <li><span>Fat (30%)</span><strong data-line-fat>—</strong></li>
+              </ul>
+
+              <div data-weeks-block hidden>
+                <h3>Time to goal</h3>
+                <ul>
+                  <li><span>Estimated weeks</span><strong data-line-weeks>—</strong></li>
+                  <li><span>Estimated months</span><strong data-line-months>—</strong></li>
+                </ul>
+              </div>
+
+              <p data-capped-warning hidden class="calc-warning">Your calculated target was below the safe minimum. The target shown is the recommended floor for your sex.</p>
+            </div>
+
+            <details class="prove-it" data-prove-it>
+              <summary>Prove it</summary>
+              <div data-prove-it-body></div>
+              <p class="prove-it-source">Mifflin-St Jeor: male BMR = 10W + 6.25H \u2212 5A + 5; female = 10W + 6.25H \u2212 5A \u2212 161. TDEE = BMR × activity multiplier. Goal adjustments: \u22121500 to +500 kcal/day. Macros: 30% protein (4 kcal/g), 40% carbs (4 kcal/g), 30% fat (9 kcal/g).</p>
+            </details>
+          </div>
+
+          <p class="bookmark-nudge">
+            Useful? Press <kbd data-bookmark-shortcut>Ctrl</kbd> + <kbd>D</kbd> to bookmark.
+          </p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="below-results" aria-hidden="true"></div>
+
+        <section class="long-form">
+          <h2>BMR, TDEE and why they are different</h2>
+          <p>Your BMR (Basal Metabolic Rate) is the number of calories your body burns just to function at complete rest — heart beating, lungs breathing, organs working, body temperature maintained. For most people, BMR accounts for 60–75% of total daily calorie burn.</p>
+          <p>TDEE (Total Daily Energy Expenditure) takes BMR and scales it by an activity multiplier. A sedentary desk worker might burn their BMR times 1.2. A construction worker who also trains five days a week might be closer to 1.9. The multipliers used here (1.2 to 1.9) are the standard Harris-Benedict activity factors.</p>
+
+          <h2>How to use these numbers</h2>
+          <p>If you want to lose weight, eat consistently below your TDEE. A 500 kcal daily deficit produces roughly 0.5 kg of fat loss per week (based on fat providing approximately 7,700 kcal/kg). A 250 kcal deficit is slower but often more sustainable. Going much below 1,200 kcal for women or 1,500 kcal for men is not recommended without medical supervision, which is why this calculator imposes a floor.</p>
+          <p>If you want to gain weight, eat above your TDEE. A surplus of 250–500 kcal/day is a reasonable rate for muscle gain with controlled fat gain. Larger surpluses mostly add fat.</p>
+
+          <h2>Why the numbers might not match your experience</h2>
+          <p>The Mifflin-St Jeor equation is the most accurate general formula available, but it is still an estimate. Actual BMR varies by muscle mass, hormonal status, gut microbiome, sleep quality and more. The activity multiplier is also self-reported and notoriously hard to judge accurately. Use the output as a starting point. Track your weight for two or three weeks at the target calorie level, then adjust by 100–200 kcal up or down based on what actually happens.</p>
+          <p>Nothing here is medical or dietary advice. If you have a health condition that affects your metabolism — thyroid issues, diabetes, a history of eating disorders — talk to your GP or a registered dietitian before making significant changes to your eating.</p>
+        </section>
+
+        <section class="faq" aria-labelledby="faq-heading">
+          <h2 id="faq-heading">Frequently asked questions</h2>
+          <details>
+            <summary>What is BMR and how is it calculated?</summary>
+            <p>BMR is the calories your body needs at complete rest. This calculator uses the Mifflin-St Jeor equation: male BMR = 10W + 6.25H − 5A + 5; female BMR = 10W + 6.25H − 5A − 161, where W = weight in kg, H = height in cm, A = age in years.</p>
+          </details>
+          <details>
+            <summary>What is TDEE?</summary>
+            <p>Total Daily Energy Expenditure. Your BMR multiplied by an activity factor. It represents the total calories you burn in a day. Eat at TDEE to maintain weight, below it to lose, above it to gain.</p>
+          </details>
+          <details>
+            <summary>How much of a calorie deficit should I aim for?</summary>
+            <p>Around 500 kcal/day produces roughly 0.5 kg/week fat loss, which is a sustainable rate for most people. A 250 kcal deficit is gentler and often easier to maintain. Larger deficits risk muscle loss and are harder to stick to.</p>
+          </details>
+          <details>
+            <summary>Are the macro splits accurate?</summary>
+            <p>They are a general starting point (30% protein, 40% carbs, 30% fat). Optimal splits depend on your training type, goals and health. Strength athletes often benefit from more protein. Treat these as a rough guide, not a prescription.</p>
+          </details>
+        </section>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="ad-slot" data-ad-slot="sidebar" aria-hidden="true"></div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="site-footer-nav" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/calculators/">All calculators</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+      <section class="site-disclaimer" data-disclaimer aria-labelledby="disclaimer-heading">
+        <h2 id="disclaimer-heading">A quick, necessary word</h2>
+        <p>Every calculator on this site is built to give you a sensible, well-reasoned estimate. It is, however, exactly that: an estimate, for general information only. Nothing you see here is professional, legal, financial, medical, or tax advice, and it should not be treated as such.</p>
+        <p>Before you make a decision that actually matters, talk to a qualified professional who knows your specific situation: an accountant, a solicitor, a doctor, an IT consultant, whoever fits the question. They can factor in the bits a generic tool can't.</p>
+        <p>We take no liability and accept no responsibility for any loss, damage, or questionable life choice arising from acting on the numbers you see here. Use the results as a starting point for a better conversation, not as the final word.</p>
+        <p><strong>Affiliate disclosure:</strong> some links on this site are affiliate links. If you click through and buy or sign up for something, we may earn a small commission at no extra cost to you. It helps keep the calculators free and ad-light. We only recommend things we'd point a friend towards.</p>
+      </section>
+      <p class="site-copyright">&copy; 2026 WebCaretakers. All rights reserved.</p>
+      <p class="site-legal">WebCaretakers is a trading name of <a href="https://yeseo.io/" rel="noopener">Andrew Laws Associates Ltd</a>, registered in England and Wales (company no. 08602332). ICO registration ZA726704.</p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/calculators/calorie-bmr.js"></script>
+  <script>
+    (function () {
+      'use strict';
+      var shortcutEl = document.querySelector('[data-bookmark-shortcut]');
+      if (shortcutEl) {
+        var isMac = /Mac|iPhone|iPad|iPod/i.test(navigator.platform || navigator.userAgent);
+        shortcutEl.textContent = isMac ? '\u2318' : 'Ctrl';
+      }
+
+      var form = document.getElementById('calorie-form');
+      if (!form) return;
+
+      var resultEl     = document.querySelector('[data-result]');
+      var breakdown    = document.querySelector('[data-breakdown]');
+      var proveBody    = document.querySelector('[data-prove-it-body]');
+      var lineBMR      = document.querySelector('[data-line-bmr]');
+      var lineTDEE     = document.querySelector('[data-line-tdee]');
+      var lineTarget   = document.querySelector('[data-line-target]');
+      var lineProtein  = document.querySelector('[data-line-protein]');
+      var lineCarbs    = document.querySelector('[data-line-carbs]');
+      var lineFat      = document.querySelector('[data-line-fat]');
+      var weeksBlock   = document.querySelector('[data-weeks-block]');
+      var lineWeeks    = document.querySelector('[data-line-weeks]');
+      var lineMonths   = document.querySelector('[data-line-months]');
+      var cappedWarn   = document.querySelector('[data-capped-warning]');
+
+      form.querySelectorAll('input, select').forEach(function (el) {
+        el.addEventListener('input', function () {
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({ event: 'calculator_interaction', calculator_name: 'Calorie Calculator', field_name: el.name || el.id });
+        });
+      });
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var sexEl        = form.querySelector('[data-sex]:checked');
+        var goalWeightEl = form.querySelector('[data-goal-weight]');
+
+        try {
+          var r = window.CalorieBMR.calculateCalorieBMR({
+            sex:           sexEl ? sexEl.value : 'male',
+            age:           parseInt(form.querySelector('[data-age]').value, 10),
+            weightKg:      parseFloat(form.querySelector('[data-weight]').value),
+            heightCm:      parseFloat(form.querySelector('[data-height]').value),
+            activityLevel: form.querySelector('[data-activity]').value,
+            goal:          form.querySelector('[data-goal]').value,
+            weightGoalKg:  goalWeightEl.value ? parseFloat(goalWeightEl.value) : null
+          });
+
+          resultEl.textContent = r.safeTargetCalories.toLocaleString() + ' kcal/day (TDEE: ' + r.tdee.toLocaleString() + ' kcal)';
+          breakdown.hidden = false;
+
+          lineBMR.textContent     = r.bmr.toLocaleString() + ' kcal/day';
+          lineTDEE.textContent    = r.tdee.toLocaleString() + ' kcal/day';
+          lineTarget.textContent  = r.safeTargetCalories.toLocaleString() + ' kcal/day';
+          lineProtein.textContent = r.macros.proteinCals + ' kcal (' + r.macros.proteinG + ' g)';
+          lineCarbs.textContent   = r.macros.carbCals   + ' kcal (' + r.macros.carbG    + ' g)';
+          lineFat.textContent     = r.macros.fatCals    + ' kcal (' + r.macros.fatG     + ' g)';
+
+          cappedWarn.hidden = !r.cappedAtMinimum;
+
+          if (r.weeksToGoal != null) {
+            weeksBlock.hidden = false;
+            lineWeeks.textContent  = r.weeksToGoal + ' weeks';
+            lineMonths.textContent = (r.weeksToGoal / 4.33).toFixed(1) + ' months';
+          } else {
+            weeksBlock.hidden = true;
+          }
+
+          proveBody.innerHTML = '<ul>' +
+            '<li><span>Sex</span><strong>' + r.sex + '</strong></li>' +
+            '<li><span>Age</span><strong>' + r.age + ' years</strong></li>' +
+            '<li><span>Weight</span><strong>' + r.weightKg + ' kg</strong></li>' +
+            '<li><span>Height</span><strong>' + r.heightCm + ' cm</strong></li>' +
+            '<li><span>Activity</span><strong>' + r.activityLabel + '</strong></li>' +
+            '<li><span>Goal</span><strong>' + r.goalLabel + '</strong></li>' +
+            '<li><span>BMR</span><strong>' + r.bmr + ' kcal</strong></li>' +
+            '<li><span>TDEE</span><strong>' + r.tdee + ' kcal</strong></li>' +
+            '<li><span>Goal adjustment</span><strong>' + (r.targetCalories - r.tdee >= 0 ? '+' : '') + (r.targetCalories - r.tdee) + ' kcal</strong></li>' +
+            '<li><span>Daily target</span><strong>' + r.safeTargetCalories + ' kcal</strong></li>' +
+            '</ul>';
+
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: 'calculator_result',
+            calculator_name: 'Calorie Calculator',
+            bmr: r.bmr,
+            tdee: r.tdee,
+            target_calories: r.safeTargetCalories,
+            goal: r.goal,
+            activity_level: r.activityLevel
+          });
+        } catch (err) {
+          resultEl.textContent = err.message || 'Could not calculate.';
+          breakdown.hidden = true;
+        }
+      });
+    })();
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UK VAT Calculator | WebCaretakers</title>
+  <meta name="description" content="Add or remove UK VAT at standard (20%), reduced (5%) or zero (0%) rates. See the net, VAT amount and gross instantly. No sign-up, workings shown.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/finance/uk-vat-calculator/">
+  <link rel="alternate" hreflang="en-GB" href="https://webcaretakers.com/calculators/finance/uk-vat-calculator/">
+  <link rel="alternate" hreflang="x-default" href="https://webcaretakers.com/calculators/finance/uk-vat-calculator/">
+  <meta property="og:title" content="UK VAT Calculator | WebCaretakers">
+  <meta property="og:description" content="Add or remove UK VAT at any rate. Net, VAT and gross shown with workings.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/finance/uk-vat-calculator/">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var _stored = null;
+    try { _stored = localStorage.getItem('cookie-consent'); } catch (e) {}
+    var _initial = _stored === 'granted' ? 'granted' : 'denied';
+    gtag('consent', 'default', {
+      ad_storage: _initial, analytics_storage: _initial,
+      ad_user_data: _initial, ad_personalization: _initial,
+      functionality_storage: 'granted', security_storage: 'granted',
+      wait_for_update: 500
+    });
+  </script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "UK VAT Calculator",
+    "url": "https://webcaretakers.com/calculators/finance/uk-vat-calculator/",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any",
+    "inLanguage": "en-GB",
+    "countriesSupported": "GB",
+    "offers": { "@type": "Offer", "price": "0" },
+    "author": { "@type": "Person", "name": "Andrew Laws", "url": "https://yeseo.io/" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What are the UK VAT rates?",
+        "acceptedAnswer": { "@type": "Answer", "text": "There are three UK VAT rates: standard rate at 20% (most goods and services), reduced rate at 5% (domestic energy, children's car seats, some renovation work), and zero rate at 0% (food, children's clothing, books and most prescription medicines). Some supplies are VAT-exempt entirely, which is different from zero-rated." }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I remove VAT from a price that already includes it?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Divide the gross (VAT-inclusive) price by 1.20 for standard rate, or by 1.05 for the reduced rate. The result is the net (ex-VAT) price. The difference between gross and net is the VAT amount. For example, £120 ÷ 1.20 = £100 net, £20 VAT." }
+      },
+      {
+        "@type": "Question",
+        "name": "When do I need to register for VAT?",
+        "acceptedAnswer": { "@type": "Answer", "text": "You must register for VAT when your taxable turnover exceeds £90,000 in any rolling 12-month period (the 2024/25 threshold). You can also register voluntarily below this threshold if it suits your business, for example to reclaim VAT on purchases." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the difference between zero-rated and VAT-exempt?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Zero-rated supplies are taxable at 0%, so VAT-registered businesses can still reclaim input VAT on related costs. VAT-exempt supplies fall outside the VAT system entirely, meaning you cannot reclaim input VAT on costs that relate solely to exempt sales. Getting this distinction wrong affects how much VAT you can recover." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-banner-heading" aria-describedby="cookie-banner-text" hidden>
+    <div class="cookie-banner__inner">
+      <h2 id="cookie-banner-heading" class="cookie-banner__heading">A quick word about cookies</h2>
+      <p id="cookie-banner-text" class="cookie-banner__text">
+        We use cookies for analytics, so we can see which calculators people actually use and which ones need work. Nothing creepy, nothing sold on. You can say yes, say no, or read the <a href="/privacy/">privacy policy</a> first. Your choice sticks.
+      </p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-reject>Reject</button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>Accept</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var KEY = 'cookie-consent';
+      var banner = document.querySelector('[data-cookie-banner]');
+      if (!banner) return;
+      var stored = null;
+      try { stored = localStorage.getItem(KEY); } catch (e) {}
+      if (stored !== 'granted' && stored !== 'denied') { banner.hidden = false; }
+      function record(choice) {
+        try { localStorage.setItem(KEY, choice); } catch (e) {}
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('consent', 'update', {
+          ad_storage: choice, analytics_storage: choice,
+          ad_user_data: choice, ad_personalization: choice
+        });
+        banner.hidden = true;
+      }
+      var accept = banner.querySelector('[data-cookie-accept]');
+      var reject = banner.querySelector('[data-cookie-reject]');
+      if (accept) accept.addEventListener('click', function () { record('granted'); });
+      if (reject) reject.addEventListener('click', function () { record('denied'); });
+    })();
+  </script>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">WebCaretakers</a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <ul class="primary-nav__list">
+          <li class="primary-nav__item primary-nav__item--has-menu">
+            <button type="button" class="primary-nav__link" data-menu-toggle aria-haspopup="true" aria-expanded="false">Calculators <span class="primary-nav__caret" aria-hidden="true">▾</span></button>
+            <ul class="primary-nav__submenu">
+              <li><a href="/calculators/broadband/">Broadband</a></li>
+              <li><a href="/calculators/finance/">Finance</a></li>
+              <li><a href="/calculators/health/">Health</a></li>
+              <li><a href="/calculators/images/">Images</a></li>
+              <li><a href="/calculators/math/">Math</a></li>
+              <li><a href="/calculators/productivity/">Productivity</a></li>
+              <li><a href="/calculators/wedding/">Wedding</a></li>
+              <li class="primary-nav__submenu-sep"><a href="/calculators/">See all calculators</a></li>
+            </ul>
+          </li>
+          <li class="primary-nav__item"><a href="/about/" class="primary-nav__link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <main id="main-content">
+      <div class="container">
+        <nav aria-label="Breadcrumb" class="breadcrumbs">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/calculators/">Calculators</a></li>
+            <li><a href="/calculators/finance/">Finance</a></li>
+            <li aria-current="page">UK VAT Calculator</li>
+          </ol>
+        </nav>
+
+        <h1>UK VAT Calculator</h1>
+        <p class="intro">Add VAT to a net price, or strip it out of a gross price that already includes it. Works for all three UK VAT rates: standard (20%), reduced (5%) and zero (0%). Every figure is shown with the full working so you can see exactly how the number was reached.</p>
+
+        <section class="eli5" aria-label="Plain-English explanation">
+          <h2>Explain like I'm 5 (what even is VAT?)</h2>
+          <p>VAT stands for Value Added Tax. When a business sells you something, it usually has to collect an extra percentage on top of the price and pass that money to HMRC. Most things you buy in a shop include VAT already — that £12 bottle of wine has 20% tax baked in. This calculator lets you either add that tax to a price (to find what a customer pays) or remove it (to find the underlying net price before tax).</p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="in-content" aria-hidden="true"></div>
+
+        <section data-calculator class="calculator-card">
+          <h2>Calculate</h2>
+          <form id="vat-form" class="calc-form" novalidate>
+
+            <div class="calc-row">
+              <label for="vat-amount">Amount (£)</label>
+              <input type="number" id="vat-amount" name="amount" min="0" step="any" value="100" data-amount>
+            </div>
+
+            <fieldset class="calc-fieldset">
+              <legend>VAT rate</legend>
+              <div class="calc-row calc-row--radios">
+                <label><input type="radio" name="rate" value="20" checked data-rate> Standard rate — 20%</label>
+                <label><input type="radio" name="rate" value="5" data-rate> Reduced rate — 5%</label>
+                <label><input type="radio" name="rate" value="0" data-rate> Zero rate — 0%</label>
+              </div>
+            </fieldset>
+
+            <fieldset class="calc-fieldset">
+              <legend>Direction</legend>
+              <div class="calc-row calc-row--radios">
+                <label><input type="radio" name="direction" value="add" checked data-direction> Add VAT (I have the net price, want the gross)</label>
+                <label><input type="radio" name="direction" value="remove" data-direction> Remove VAT (I have the gross price, want the net)</label>
+              </div>
+            </fieldset>
+
+            <button type="submit" data-calculate>Calculate</button>
+          </form>
+
+          <div data-calculator-results class="calculator-results">
+            <div class="result-summary">
+              <p class="result-display" data-result>Enter an amount and press Calculate.</p>
+            </div>
+
+            <div class="mort-breakdown" data-breakdown hidden>
+              <h3>Results</h3>
+              <ul>
+                <li><span>Net (ex-VAT)</span><strong data-line-net>—</strong></li>
+                <li><span>VAT amount</span><strong data-line-vat>—</strong></li>
+                <li class="mort-breakdown__total"><span>Gross (inc. VAT)</span><strong data-line-gross>—</strong></li>
+                <li><span>Rate applied</span><strong data-line-rate>—</strong></li>
+              </ul>
+            </div>
+
+            <details class="prove-it" data-prove-it>
+              <summary>Prove it</summary>
+              <div data-prove-it-body></div>
+              <p class="prove-it-source">Adding VAT: gross = net × (1 + rate ÷ 100). Removing VAT: net = gross ÷ (1 + rate ÷ 100). VAT amount = gross − net.</p>
+            </details>
+          </div>
+
+          <p class="bookmark-nudge">
+            Useful? Press <kbd data-bookmark-shortcut>Ctrl</kbd> + <kbd>D</kbd> to bookmark.
+          </p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="below-results" aria-hidden="true"></div>
+
+        <section class="long-form">
+          <h2>UK VAT rates explained</h2>
+          <p>Most goods and services in the UK are subject to VAT at 20% — the standard rate. A smaller group of supplies, including domestic energy, children's car seats and some insulation materials, falls under the reduced rate of 5%. Then there is the zero rate: VAT applies in principle, but at 0%, so no VAT is actually collected. Zero-rated items include most food sold in shops, children's clothing, printed books, and prescription medicines.</p>
+          <p>A fourth category is VAT-exempt. These supplies sit outside the VAT system entirely, which matters because businesses can generally reclaim the VAT they paid on their costs only if those costs relate to taxable sales. Exempt supplies include financial services, insurance, education, and most health services.</p>
+
+          <h2>Adding VAT versus removing it</h2>
+          <p>The direction matters and the arithmetic is slightly different each way. To add 20% VAT to a net price of £100: multiply by 1.20 to get £120. To remove 20% VAT from a gross price of £120: divide by 1.20 to get £100. The mistake many people make is subtracting 20% from the gross price — £120 × 20% = £24, giving a net of £96. That is wrong, because 20% of the gross and 20% of the net are different amounts.</p>
+
+          <h2>When you need to charge VAT</h2>
+          <p>You must register for VAT once your taxable turnover in any rolling 12-month period exceeds £90,000 (the 2024/25 threshold). Below that, registration is optional. Once registered, you charge VAT on your sales and can reclaim VAT on most of your business purchases. The difference goes to, or comes back from, HMRC via your VAT return.</p>
+          <p>For anything beyond a rough estimate — especially if you are planning a pricing structure, an invoice, or a VAT return — talk to an accountant. The rules around partial exemption, VAT on imports, and mixed-rate supplies have a lot of edge cases.</p>
+        </section>
+
+        <section class="faq" aria-labelledby="faq-heading">
+          <h2 id="faq-heading">Frequently asked questions</h2>
+          <details>
+            <summary>What are the UK VAT rates?</summary>
+            <p>Standard rate: 20% on most goods and services. Reduced rate: 5% on domestic energy, children's car seats and some renovation work. Zero rate: 0% on food, children's clothing, books and most medicines. Some supplies are VAT-exempt entirely, which is different from zero-rated.</p>
+          </details>
+          <details>
+            <summary>How do I remove VAT from a price?</summary>
+            <p>Divide the gross (VAT-inclusive) price by 1.20 for standard rate, or by 1.05 for the reduced rate. The result is the net price. Do not subtract 20% from the gross — that gives the wrong answer because 20% of the gross is not the same as 20% of the net.</p>
+          </details>
+          <details>
+            <summary>When do I need to register for VAT?</summary>
+            <p>When your taxable turnover exceeds £90,000 in any rolling 12-month period. You can also register voluntarily below this threshold, which is often worth doing if your customers are VAT-registered businesses who can reclaim the VAT you charge them.</p>
+          </details>
+          <details>
+            <summary>What is the difference between zero-rated and VAT-exempt?</summary>
+            <p>Zero-rated supplies are taxable at 0%, so you can still reclaim VAT on related costs. VAT-exempt supplies are outside the VAT system, so you cannot reclaim input VAT on costs that relate only to exempt sales. The distinction affects how much VAT you can recover on your purchases.</p>
+          </details>
+        </section>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="ad-slot" data-ad-slot="sidebar" aria-hidden="true"></div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="site-footer-nav" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/calculators/">All calculators</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+      <section class="site-disclaimer" data-disclaimer aria-labelledby="disclaimer-heading">
+        <h2 id="disclaimer-heading">A quick, necessary word</h2>
+        <p>Every calculator on this site is built to give you a sensible, well-reasoned estimate. It is, however, exactly that: an estimate, for general information only. Nothing you see here is professional, legal, financial, medical, or tax advice, and it should not be treated as such.</p>
+        <p>Before you make a decision that actually matters, talk to a qualified professional who knows your specific situation: an accountant, a solicitor, a doctor, an IT consultant, whoever fits the question. They can factor in the bits a generic tool can't.</p>
+        <p>We take no liability and accept no responsibility for any loss, damage, or questionable life choice arising from acting on the numbers you see here. Use the results as a starting point for a better conversation, not as the final word.</p>
+        <p><strong>Affiliate disclosure:</strong> some links on this site are affiliate links. If you click through and buy or sign up for something, we may earn a small commission at no extra cost to you. It helps keep the calculators free and ad-light. We only recommend things we'd point a friend towards.</p>
+      </section>
+      <p class="site-copyright">&copy; 2026 WebCaretakers. All rights reserved.</p>
+      <p class="site-legal">WebCaretakers is a trading name of <a href="https://yeseo.io/" rel="noopener">Andrew Laws Associates Ltd</a>, registered in England and Wales (company no. 08602332). ICO registration ZA726704.</p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/calculators/uk-vat.js"></script>
+  <script>
+    (function () {
+      'use strict';
+      var shortcutEl = document.querySelector('[data-bookmark-shortcut]');
+      if (shortcutEl) {
+        var isMac = /Mac|iPhone|iPad|iPod/i.test(navigator.platform || navigator.userAgent);
+        shortcutEl.textContent = isMac ? '\u2318' : 'Ctrl';
+      }
+
+      var form = document.getElementById('vat-form');
+      if (!form) return;
+
+      var amountIn    = form.querySelector('[data-amount]');
+      var resultEl    = document.querySelector('[data-result]');
+      var breakdown   = document.querySelector('[data-breakdown]');
+      var proveBody   = document.querySelector('[data-prove-it-body]');
+      var lineNet     = document.querySelector('[data-line-net]');
+      var lineVat     = document.querySelector('[data-line-vat]');
+      var lineGross   = document.querySelector('[data-line-gross]');
+      var lineRate    = document.querySelector('[data-line-rate]');
+
+      function fmt(n) {
+        return '£' + n.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      }
+
+      function getRate() {
+        var checked = form.querySelector('[data-rate]:checked');
+        return checked ? Number(checked.value) : 20;
+      }
+
+      function getDirection() {
+        var checked = form.querySelector('[data-direction]:checked');
+        return checked ? checked.value : 'add';
+      }
+
+      form.querySelectorAll('input').forEach(function (el) {
+        el.addEventListener('input', function () {
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({ event: 'calculator_interaction', calculator_name: 'UK VAT Calculator', field_name: el.name || el.id });
+        });
+      });
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        try {
+          var r = window.UKVat.calculateVAT({
+            amount:    parseFloat(amountIn.value),
+            rate:      getRate(),
+            direction: getDirection()
+          });
+
+          var label = r.direction === 'add' ? 'Gross (inc. VAT): ' : 'Net (ex-VAT): ';
+          var key   = r.direction === 'add' ? r.gross : r.net;
+          resultEl.textContent = label + fmt(key);
+          breakdown.hidden = false;
+
+          lineNet.textContent   = fmt(r.net);
+          lineVat.textContent   = fmt(r.vat);
+          lineGross.textContent = fmt(r.gross);
+          lineRate.textContent  = r.rateName;
+
+          var formula = r.direction === 'add'
+            ? fmt(r.net) + ' \u00d7 ' + (1 + r.rate / 100) + ' = ' + fmt(r.gross) + ' (gross). VAT = ' + fmt(r.gross) + ' \u2212 ' + fmt(r.net) + ' = ' + fmt(r.vat) + '.'
+            : fmt(r.gross) + ' \u00f7 ' + (1 + r.rate / 100) + ' = ' + fmt(r.net) + ' (net). VAT = ' + fmt(r.gross) + ' \u2212 ' + fmt(r.net) + ' = ' + fmt(r.vat) + '.';
+
+          proveBody.innerHTML = '<p>' + formula + '</p>';
+
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: 'calculator_result',
+            calculator_name: 'UK VAT Calculator',
+            vat_rate: r.rate,
+            direction: r.direction,
+            net_amount: r.net,
+            vat_amount: r.vat,
+            gross_amount: r.gross
+          });
+        } catch (err) {
+          resultEl.textContent = err.message || 'Could not calculate.';
+          breakdown.hidden = true;
+        }
+      });
+    })();
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>
