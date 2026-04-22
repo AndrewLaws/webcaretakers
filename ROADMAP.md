@@ -1,6 +1,6 @@
 # Roadmap: WebCaretakers Calculator Hub
 
-Last updated: 2026-04-19
+Last updated: 2026-04-22
 
 ## Primary target market
 
@@ -337,10 +337,11 @@ These map directly to content that existed on webcaretakers.com between 2001-201
 - [ ] Ecommerce Customer Acquisition Cost Calculator
 - [ ] Checkout Optimisation Revenue Impact Calculator
 
-## 14. Cybersecurity and Privacy (10)
+## 14. Cybersecurity and Privacy (11)
 
 - [ ] Data Breach Cost Estimator
 - [ ] Password Strength to Crack Time Calculator
+- [ ] Password Generator (configurable length and character sets; client-side only, nothing transmitted)
 - [ ] GDPR Fine Risk Estimator
 - [ ] Phishing Simulation Click Rate Benchmarking Tool
 - [ ] SSL Certificate Expiry Revenue Impact Calculator
@@ -422,14 +423,19 @@ These map directly to content that existed on webcaretakers.com between 2001-201
 - [ ] Annual vs Monthly Billing Revenue Acceleration Calculator
 - [ ] SaaS Onboarding Cost Per Customer Calculator
 
-## 20. Webmaster Tools and Utilities (11)
+## 20. Webmaster Tools and Utilities (14)
 
-- [ ] Character and Word Count Tool
+Note: developer-centric utilities (Base64, JSON formatter, Unix timestamp, JWT decoder, regex tester) are deprioritised. Tech-savvy users reach for an LLM for these now rather than a web tool. The items below that remain are either non-developer in audience or have clear SEO demand from a broader audience.
+
+- [ ] Character and Word Count Tool (already in roadmap; broad audience beyond developers)
+- [ ] Reading Time Estimator (paste any text, get estimated minutes to read — useful for writers, editors, and marketers)
+- [ ] Text Case Converter (camelCase, snake_case, UPPER CASE, Title Case, sentence case — writer and developer crossover)
+- [ ] Text Diff Tool (paste two blocks of text, see what changed — proofreading, contract revisions, code review)
 - [ ] URL Slug Generator and Validator
 - [ ] Meta Title and Description Length Checker
 - [ ] Colour Contrast Ratio Checker (WCAG)
-- [ ] Base64 Encoder and Decoder
-- [ ] Unix Timestamp to Human-Readable Date Converter
+- [ ] Base64 Encoder and Decoder (lower priority — see note above)
+- [ ] Unix Timestamp to Human-Readable Date Converter (lower priority — see note above)
 - [ ] HTTP Status Code Reference and Lookup Tool
 - [ ] UTM Parameter Builder
 - [ ] robots.txt Rule Tester
@@ -472,7 +478,19 @@ Context: highly shareable on LinkedIn and Reddit, drives natural pull traffic.
 - [ ] RSU and Stock Option Real Value Estimator (total compensation with vesting, strike prices, tax hits)
 - [ ] Tech Stack Obsolescence Timer (half-life of a developer's skills based on GitHub and job-market trends)
 
-## 25. High-Utility Quick-Fix Tools (3)
+## 25. Everyday Calculators and Utilities (7)
+
+Context: high search volume, general audience, no backend required. These sit outside the core web/marketing/tech focus but fit naturally on a calculator hub and pull broad organic traffic. Privacy angle ("everything stays in your browser") is a genuine differentiator over ad-heavy sites that do the same job badly.
+
+- [ ] Age Calculator (enter a date of birth, get exact age in years, months, and days — one of the most searched calculator queries globally)
+- [ ] Date Difference Calculator (how many days, weeks, or months between two dates — project planning, legal deadlines, anniversaries)
+- [ ] Tip Calculator (enter a bill total, choose a percentage, split between people — high US search volume, also relevant to UK service charges)
+- [ ] Savings Goal Calculator (how much to save per month to reach a target amount by a given date — natural extension of the existing finance tools)
+- [ ] Password Generator (configurable length and character sets; also listed under Cybersecurity — whichever category fits the URL better wins; client-side only)
+- [ ] EXIF Data Viewer (drag in a photo, see all embedded metadata: GPS coordinates, camera model, date taken — privacy angle: "check what your images reveal before you post them"; fits under the existing Images category)
+- [ ] Unit Converter (length, weight, temperature, volume, speed — broad long-tail coverage; one well-built tool beats dozens of thin single-unit pages)
+
+## 26. High-Utility Quick-Fix Tools (3)
 
 Context: target zero-click AI Overviews by providing immediate, definitive answers.
 
