@@ -6,33 +6,149 @@
     "/contact/"
   ],
   "links": [
-    { "phrase": "Broadband Bandwidth Calculator", "url": "/calculators/broadband/broadband-bandwidth-calculator/" },
-    { "phrase": "bandwidth calculator", "url": "/calculators/broadband/broadband-bandwidth-calculator/" },
-    { "phrase": "broadband calculators", "url": "/calculators/broadband/" },
-    { "phrase": "Percentage Calculator", "url": "/calculators/math/percentage-calculator/" },
-    { "phrase": "percentage calculator", "url": "/calculators/math/percentage-calculator/" },
-    { "phrase": "math calculators", "url": "/calculators/math/" },
-    { "phrase": "Photo Resizer", "url": "/calculators/images/photo-resizer/" },
-    { "phrase": "photo resizer", "url": "/calculators/images/photo-resizer/" },
-    { "phrase": "image tools", "url": "/calculators/images/" },
-    { "phrase": "BMI Calculator", "url": "/calculators/health/bmi-calculator/" },
-    { "phrase": "BMI calculator", "url": "/calculators/health/bmi-calculator/" },
-    { "phrase": "health calculators", "url": "/calculators/health/" },
-    { "phrase": "US Mortgage Calculator", "url": "/calculators/finance/mortgage-calculator/" },
-    { "phrase": "US mortgage calculator", "url": "/calculators/finance/mortgage-calculator/" },
-    { "phrase": "UK Mortgage Calculator", "url": "/calculators/finance/uk-mortgage-calculator/" },
-    { "phrase": "UK mortgage calculator", "url": "/calculators/finance/uk-mortgage-calculator/" },
-    { "phrase": "Loan Calculator", "url": "/calculators/finance/loan-calculator/" },
-    { "phrase": "loan calculator", "url": "/calculators/finance/loan-calculator/" },
-    { "phrase": "Compound Interest Calculator", "url": "/calculators/finance/compound-interest-calculator/" },
-    { "phrase": "compound interest calculator", "url": "/calculators/finance/compound-interest-calculator/" },
-    { "phrase": "ROI Calculator", "url": "/calculators/finance/roi-calculator/" },
-    { "phrase": "ROI calculator", "url": "/calculators/finance/roi-calculator/" },
-    { "phrase": "SEO ROI Calculator", "url": "/calculators/finance/seo-roi-calculator/" },
-    { "phrase": "SEO ROI calculator", "url": "/calculators/finance/seo-roi-calculator/" },
-    { "phrase": "finance calculators", "url": "/calculators/finance/" },
-    { "phrase": "privacy policy", "url": "/privacy/" },
-    { "phrase": "terms of use", "url": "/terms/" },
-    { "phrase": "About page", "url": "/about/" }
+    {
+      "phrase": "Broadband Bandwidth Calculator",
+      "url": "/calculators/broadband/broadband-bandwidth-calculator/"
+    },
+    {
+      "phrase": "bandwidth calculator",
+      "url": "/calculators/broadband/broadband-bandwidth-calculator/"
+    },
+    {
+      "phrase": "broadband calculators",
+      "url": "/calculators/broadband/"
+    },
+    {
+      "phrase": "Percentage Calculator",
+      "url": "/calculators/math/percentage-calculator/"
+    },
+    {
+      "phrase": "percentage calculator",
+      "url": "/calculators/math/percentage-calculator/"
+    },
+    {
+      "phrase": "math calculators",
+      "url": "/calculators/math/"
+    },
+    {
+      "phrase": "Photo Resizer",
+      "url": "/calculators/images/photo-resizer/"
+    },
+    {
+      "phrase": "photo resizer",
+      "url": "/calculators/images/photo-resizer/"
+    },
+    {
+      "phrase": "image tools",
+      "url": "/calculators/images/"
+    },
+    {
+      "phrase": "BMI Calculator",
+      "url": "/calculators/health/bmi-calculator/"
+    },
+    {
+      "phrase": "BMI calculator",
+      "url": "/calculators/health/bmi-calculator/"
+    },
+    {
+      "phrase": "health calculators",
+      "url": "/calculators/health/"
+    },
+    {
+      "phrase": "US Mortgage Calculator",
+      "url": "/calculators/finance/mortgage-calculator/"
+    },
+    {
+      "phrase": "US mortgage calculator",
+      "url": "/calculators/finance/mortgage-calculator/"
+    },
+    {
+      "phrase": "UK Mortgage Calculator",
+      "url": "/calculators/finance/uk-mortgage-calculator/"
+    },
+    {
+      "phrase": "UK mortgage calculator",
+      "url": "/calculators/finance/uk-mortgage-calculator/"
+    },
+    {
+      "phrase": "Loan Calculator",
+      "url": "/calculators/finance/loan-calculator/"
+    },
+    {
+      "phrase": "loan calculator",
+      "url": "/calculators/finance/loan-calculator/"
+    },
+    {
+      "phrase": "Compound Interest Calculator",
+      "url": "/calculators/finance/compound-interest-calculator/"
+    },
+    {
+      "phrase": "compound interest calculator",
+      "url": "/calculators/finance/compound-interest-calculator/"
+    },
+    {
+      "phrase": "ROI Calculator",
+      "url": "/calculators/business/roi-calculator/"
+    },
+    {
+      "phrase": "ROI calculator",
+      "url": "/calculators/business/roi-calculator/"
+    },
+    {
+      "phrase": "SEO ROI Calculator",
+      "url": "/calculators/business/seo-roi-calculator/"
+    },
+    {
+      "phrase": "SEO ROI calculator",
+      "url": "/calculators/business/seo-roi-calculator/"
+    },
+    {
+      "phrase": "Email Marketing ROI Calculator",
+      "url": "/calculators/business/email-marketing-roi-calculator/"
+    },
+    {
+      "phrase": "Email Marketing ROI calculator",
+      "url": "/calculators/business/email-marketing-roi-calculator/"
+    },
+    {
+      "phrase": "UK VAT Calculator",
+      "url": "/calculators/business/uk-vat-calculator/"
+    },
+    {
+      "phrase": "UK VAT calculator",
+      "url": "/calculators/business/uk-vat-calculator/"
+    },
+    {
+      "phrase": "Website Performance Budget Calculator",
+      "url": "/calculators/business/website-speed-budget-calculator/"
+    },
+    {
+      "phrase": "UK Salary Tax Calculator",
+      "url": "/calculators/finance/uk-salary-tax-calculator/"
+    },
+    {
+      "phrase": "Calorie and BMR Calculator",
+      "url": "/calculators/health/calorie-calculator/"
+    },
+    {
+      "phrase": "business calculators",
+      "url": "/calculators/business/"
+    },
+    {
+      "phrase": "finance calculators",
+      "url": "/calculators/finance/"
+    },
+    {
+      "phrase": "privacy policy",
+      "url": "/privacy/"
+    },
+    {
+      "phrase": "terms of use",
+      "url": "/terms/"
+    },
+    {
+      "phrase": "About page",
+      "url": "/about/"
+    }
   ]
 }
