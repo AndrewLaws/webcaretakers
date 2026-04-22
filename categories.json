@@ -97,6 +97,18 @@
       ]
     },
     {
+      "slug": "fun",
+      "name": "Fun",
+      "tagline": "Calculators that don't pretend to be useful.",
+      "tools": [
+        {
+          "slug": "age-in-months-calculator",
+          "name": "Age in Months Calculator",
+          "summary": "Enter a date of birth and find out exactly how many months old you are. A reference to the Parenting Hell podcast bit about adults reporting their age the way parents of toddlers do."
+        }
+      ]
+    },
+    {
       "slug": "productivity",
       "name": "Productivity",
       "tagline": "Browser-based tools for everyday tasks. Nothing uploaded, nothing stored.",

@@ -482,7 +482,7 @@ Context: highly shareable on LinkedIn and Reddit, drives natural pull traffic.
 
 Context: high search volume, general audience, no backend required. These sit outside the core web/marketing/tech focus but fit naturally on a calculator hub and pull broad organic traffic. Privacy angle ("everything stays in your browser") is a genuine differentiator over ad-heavy sites that do the same job badly.
 
-- [ ] Age Calculator (enter a date of birth, get exact age in years, months, and days — one of the most searched calculator queries globally)
+- [x] Age in Months Calculator (ships as a Fun-category tool with a Parenting Hell podcast framing; doubles as the canonical age-calculator answer for anyone searching years/months/days between two dates) — `/calculators/fun/age-in-months-calculator/`
 - [ ] Date Difference Calculator (how many days, weeks, or months between two dates — project planning, legal deadlines, anniversaries)
 - [ ] Tip Calculator (enter a bill total, choose a percentage, split between people — high US search volume, also relevant to UK service charges)
 - [ ] Savings Goal Calculator (how much to save per month to reach a target amount by a given date — natural extension of the existing finance tools)

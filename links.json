@@ -197,6 +197,18 @@
     {
       "phrase": "running pace calculator",
       "url": "/calculators/health/running-pace-calculator/"
+    },
+    {
+      "phrase": "Age in Months Calculator",
+      "url": "/calculators/fun/age-in-months-calculator/"
+    },
+    {
+      "phrase": "age in months calculator",
+      "url": "/calculators/fun/age-in-months-calculator/"
+    },
+    {
+      "phrase": "fun calculators",
+      "url": "/calculators/fun/"
     }
   ]
 }

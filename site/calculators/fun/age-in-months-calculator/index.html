@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Age in Months Calculator | WebCaretakers</title>
+  <meta name="description" content="Enter a date of birth and find out exactly how many months old you are. Plus years, days, weeks and hours, in case you want to really lean into it.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/fun/age-in-months-calculator/">
+  <meta property="og:title" content="Age in Months Calculator | WebCaretakers">
+  <meta property="og:description" content="Work out how many months old you (or anyone else) are. Inspired by every parent of a small child.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/fun/age-in-months-calculator/">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var _stored = null;
+    try { _stored = localStorage.getItem('cookie-consent'); } catch (e) {}
+    var _initial = _stored === 'granted' ? 'granted' : 'denied';
+    gtag('consent', 'default', {
+      ad_storage: _initial, analytics_storage: _initial,
+      ad_user_data: _initial, ad_personalization: _initial,
+      functionality_storage: 'granted', security_storage: 'granted',
+      wait_for_update: 500
+    });
+  </script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Age in Months Calculator",
+    "url": "https://webcaretakers.com/calculators/fun/age-in-months-calculator/",
+    "description": "Enter a date of birth and get your age in months, plus a years/months/days breakdown and totals in days, weeks and hours.",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "WebCaretakers",
+      "url": "https://webcaretakers.com/"
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How do you calculate age in months?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Count the complete months between the date of birth and today. A person born on 20 June 1990 is exactly 35 years and 11 months old on 20 May 2026, which is 35 × 12 + 11 = 431 months. If the current day is before the birth day in the month, you subtract one month and add the borrowed days, the same way you'd work out any age in years."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why would anyone want their age in months?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Parents of small children talk about age in months because the difference between a 14-month-old and an 18-month-old is enormous. The gag, popularised by the Parenting Hell podcast, is that adults should do the same. Saying you're 494 months old is objectively funnier than saying you're 41."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is the calculation accurate?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. The calculator handles leap years correctly, handles the case where your birthday hasn't yet happened this month (it borrows a month of days), and uses UTC dates for the total-days figure so timezones don't nudge the answer by one."
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-banner-heading" aria-describedby="cookie-banner-text" hidden>
+    <div class="cookie-banner__inner">
+      <h2 id="cookie-banner-heading" class="cookie-banner__heading">A quick word about cookies</h2>
+      <p id="cookie-banner-text" class="cookie-banner__text">
+        We use cookies for analytics, so we can see which calculators people actually use and which ones need work. Nothing creepy, nothing sold on. You can say yes, say no, or read the <a href="/privacy/">privacy policy</a> first. Your choice sticks.
+      </p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-reject>Reject</button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>Accept</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var KEY = 'cookie-consent';
+      var banner = document.querySelector('[data-cookie-banner]');
+      if (!banner) return;
+      var stored = null;
+      try { stored = localStorage.getItem(KEY); } catch (e) {}
+      if (stored !== 'granted' && stored !== 'denied') { banner.hidden = false; }
+      function record(choice) {
+        try { localStorage.setItem(KEY, choice); } catch (e) {}
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('consent', 'update', {
+          ad_storage: choice, analytics_storage: choice,
+          ad_user_data: choice, ad_personalization: choice
+        });
+        banner.hidden = true;
+      }
+      var accept = banner.querySelector('[data-cookie-accept]');
+      var reject = banner.querySelector('[data-cookie-reject]');
+      if (accept) accept.addEventListener('click', function () { record('granted'); });
+      if (reject) reject.addEventListener('click', function () { record('denied'); });
+    })();
+  </script>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">WebCaretakers</a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <ul class="primary-nav__list">
+          <li class="primary-nav__item primary-nav__item--has-menu">
+            <button type="button" class="primary-nav__link" data-menu-toggle aria-haspopup="true" aria-expanded="false">Calculators <span class="primary-nav__caret" aria-hidden="true">▾</span></button>
+            <ul class="primary-nav__submenu">
+              <li><a href="/calculators/broadband/">Broadband</a></li>
+              <li><a href="/calculators/business/">Business</a></li>
+              <li><a href="/calculators/finance/">Finance</a></li>
+              <li><a href="/calculators/fun/">Fun</a></li>
+              <li><a href="/calculators/health/">Health</a></li>
+              <li><a href="/calculators/images/">Images</a></li>
+              <li><a href="/calculators/math/">Math</a></li>
+              <li><a href="/calculators/productivity/">Productivity</a></li>
+              <li><a href="/calculators/wedding/">Wedding</a></li>
+              <li class="primary-nav__submenu-sep"><a href="/calculators/">See all calculators</a></li>
+            </ul>
+          </li>
+          <li class="primary-nav__item"><a href="/about/" class="primary-nav__link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <main id="main-content">
+      <div class="container">
+        <nav aria-label="Breadcrumb" class="breadcrumbs">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/calculators/">Calculators</a></li>
+            <li><a href="/calculators/fun/">Fun</a></li>
+            <li aria-current="page">Age in Months Calculator</li>
+          </ol>
+        </nav>
+
+        <h1>Age in Months Calculator</h1>
+
+        <div class="eli5">
+          <h2>Explain like I'm 5</h2>
+          <p>If you've ever listened to the Parenting Hell podcast, you'll recognise the joke: parents of small children describe their kids' ages in months because every month is a huge developmental leap. "Oh, he's 19 months now, is he sleeping through?" Rob Beckett and Josh Widdicombe suggested adults should do the same. Tell someone you're 494 months old, see what happens. This calculator gives you the number.</p>
+        </div>
+
+        <section data-calculator class="calculator-card">
+          <form class="calc-form" novalidate>
+            <div class="calc-row">
+              <label for="dob">Date of birth</label>
+              <input type="date" id="dob" data-dob required>
+            </div>
+            <div class="calc-row">
+              <label for="today">Measure up to<span class="calc-hint">Defaults to today. Change it if you want age at a specific date.</span></label>
+              <input type="date" id="today" data-today>
+            </div>
+
+            <button type="button" data-calculate>Calculate</button>
+            <p class="calc-error" data-error hidden></p>
+          </form>
+
+          <div class="calculator-results" data-breakdown hidden>
+            <h2>You are</h2>
+            <p class="result-display" data-result>—</p>
+
+            <div class="mort-breakdown">
+              <h3>Breakdown</h3>
+              <ul>
+                <li class="mort-breakdown__total"><span>Total months</span><strong data-line-total-months>—</strong></li>
+                <li><span>Years, months, days</span><strong data-line-ymd>—</strong></li>
+                <li><span>Total days</span><strong data-line-total-days>—</strong></li>
+                <li><span>Total weeks</span><strong data-line-total-weeks>—</strong></li>
+                <li><span>Total hours</span><strong data-line-total-hours>—</strong></li>
+              </ul>
+            </div>
+
+            <details class="prove-it">
+              <summary>Show workings</summary>
+              <div data-prove-it-body class="prove-it__body"></div>
+            </details>
+          </div>
+        </section>
+
+        <section class="long-form">
+          <h2>Why parents do this</h2>
+          <p>Between 0 and 24 months, children change so fast that reporting age in years is useless. A 12-month-old and an 18-month-old are barely the same species. Months are the right unit. Parents get used to it, conversations with other parents default to it, and eventually the habit leaks into contexts it has no business being in.</p>
+          <p>The Parenting Hell podcast (Rob Beckett and Josh Widdicombe) made a running gag out of adults using the same unit. It's objectively funnier than the correct answer. You're not 35; you're 420 months, which sounds like it ought to mean something. It doesn't. That's the point.</p>
+
+          <h2>How the calculation works</h2>
+          <p>The calculator subtracts the birth date from the target date, producing a clean years/months/days breakdown. If the target date is earlier in the month than the birth date, it borrows a month's worth of days — the same mental arithmetic you'd do by hand. Leap years are handled correctly. The total-days figure uses UTC internally so timezones don't push the answer off by one.</p>
+
+          <h2>Other places this number is useful</h2>
+          <p>Infant development charts, medication dosing for small children, and some sports age-group eligibility rules all use months as the primary unit. If you're here for any of those, welcome — and also consider actually reading the relevant official guidance rather than trusting a calculator called Fun.</p>
+        </section>
+
+        <section class="faq">
+          <h2>Common questions</h2>
+          <details>
+            <summary>How do you calculate age in months?</summary>
+            <p>Count the complete months between date of birth and today. A person born on 20 June 1990 is exactly 35 years and 11 months old on 20 May 2026, which is 35 × 12 + 11 = 431 months. If the current day is before the birth day in the month, subtract one month and add the borrowed days.</p>
+          </details>
+          <details>
+            <summary>Why would anyone want their age in months?</summary>
+            <p>Parents of small children do it because the difference between a 14-month-old and an 18-month-old is vast. The running joke from the Parenting Hell podcast is that adults should do the same. Saying you're 494 months old is objectively funnier than saying you're 41.</p>
+          </details>
+          <details>
+            <summary>Is the calculation accurate?</summary>
+            <p>Yes. Leap years are handled. If your birthday hasn't happened yet this month, it borrows a month of days. The total-days figure uses UTC so timezones don't shift the answer.</p>
+          </details>
+          <details>
+            <summary>Is this calculator affiliated with the Parenting Hell podcast?</summary>
+            <p>No. It's a cultural reference, nothing more. Go and listen to the podcast; they have nothing to do with this calculator or with us, and we'd rather they heard about it via a good review than a lawyer's letter.</p>
+          </details>
+        </section>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="ad-slot" data-ad-slot="sidebar" aria-hidden="true"></div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="site-footer-nav" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/calculators/">All calculators</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+      <section class="site-disclaimer" data-disclaimer aria-labelledby="disclaimer-heading">
+        <h2 id="disclaimer-heading">A quick, necessary word</h2>
+        <p>Every calculator on this site is built to give you a sensible, well-reasoned estimate. It is, however, exactly that: an estimate, for general information only. Nothing you see here is professional, legal, financial, medical, or tax advice, and it should not be treated as such.</p>
+        <p>Before you make a decision that actually matters, talk to a qualified professional who knows your specific situation: an accountant, a solicitor, a doctor, an IT consultant, whoever fits the question. They can factor in the bits a generic tool can't.</p>
+        <p>We take no liability and accept no responsibility for any loss, damage, or questionable life choice arising from acting on the numbers you see here. Use the results as a starting point for a better conversation, not as the final word.</p>
+        <p><strong>Affiliate disclosure:</strong> some links on this site are affiliate links. If you click through and buy or sign up for something, we may earn a small commission at no extra cost to you. It helps keep the calculators free and ad-light. We only recommend things we'd point a friend towards.</p>
+      </section>
+      <p class="site-copyright">&copy; 2026 WebCaretakers. All rights reserved.</p>
+      <p class="site-legal">WebCaretakers is a trading name of <a href="https://yeseo.io/" rel="noopener">Andrew Laws Associates Ltd</a>, registered in England and Wales (company no. 08602332). ICO registration ZA726704.</p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/calculators/age-in-months.js"></script>
+  <script>
+  (function () {
+    'use strict';
+
+    var calcBtn     = document.querySelector('[data-calculate]');
+    var breakdown   = document.querySelector('[data-breakdown]');
+    var errorEl     = document.querySelector('[data-error]');
+    var resultEl    = document.querySelector('[data-result]');
+    var proveItBody = document.querySelector('[data-prove-it-body]');
+
+    // Default "today" input to today's date, so the form is usable from the first render.
+    var todayInput = document.querySelector('[data-today]');
+    (function () {
+      var n = new Date();
+      var mm = String(n.getMonth() + 1).padStart(2, '0');
+      var dd = String(n.getDate()).padStart(2, '0');
+      todayInput.value = n.getFullYear() + '-' + mm + '-' + dd;
+    })();
+
+    function showError(msg) { errorEl.textContent = msg; errorEl.hidden = false; breakdown.hidden = true; }
+    function clearError()   { errorEl.hidden = true; errorEl.textContent = ''; }
+    function fmt(n)         { return n.toLocaleString('en-GB'); }
+
+    calcBtn.addEventListener('click', function () {
+      clearError();
+      var dob   = document.querySelector('[data-dob]').value;
+      var today = todayInput.value;
+
+      if (!dob) { showError('Enter a date of birth.'); return; }
+
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event: 'calculator_interaction', calculator_name: 'Age in Months Calculator' });
+
+      try {
+        var r = AgeInMonths.calculateAgeInMonths({ dob: dob, today: today });
+
+        resultEl.textContent = fmt(r.totalMonths) + ' months old';
+
+        var ymd = r.years + ' year' + (r.years !== 1 ? 's' : '')
+                + ', ' + r.monthsOnly + ' month' + (r.monthsOnly !== 1 ? 's' : '')
+                + ', ' + r.days + ' day' + (r.days !== 1 ? 's' : '');
+
+        document.querySelector('[data-line-total-months]').textContent = fmt(r.totalMonths) + ' months';
+        document.querySelector('[data-line-ymd]').textContent          = ymd;
+        document.querySelector('[data-line-total-days]').textContent   = fmt(r.totalDays) + ' days';
+        document.querySelector('[data-line-total-weeks]').textContent  = fmt(r.totalWeeks) + ' weeks';
+        document.querySelector('[data-line-total-hours]').textContent  = fmt(r.totalHours) + ' hours';
+
+        proveItBody.textContent =
+            'Born: ' + r.dob + '\n'
+          + 'Measured at: ' + r.today + '\n'
+          + 'Years component: ' + r.years + '\n'
+          + 'Months component: ' + r.monthsOnly + '\n'
+          + 'Days component: ' + r.days + '\n'
+          + 'Total months = ' + r.years + ' × 12 + ' + r.monthsOnly + ' = ' + r.totalMonths;
+
+        window.dataLayer.push({
+          event:           'calculator_result',
+          calculator_name: 'Age in Months Calculator',
+          total_months:    r.totalMonths,
+          total_days:      r.totalDays,
+        });
+
+        breakdown.hidden = false;
+      } catch (err) {
+        showError(err.message);
+      }
+    });
+  })();
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>
