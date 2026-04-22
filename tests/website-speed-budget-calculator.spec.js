@@ -1,7 +1,7 @@
 'use strict';
 
 const { test, expect } = require('@playwright/test');
-const URL = '/calculators/productivity/website-speed-budget-calculator/';
+const URL = '/calculators/business/website-speed-budget-calculator/';
 
 test('has correct h1', async ({ page }) => {
   await page.goto(URL);
@@ -13,13 +13,13 @@ test('has ELI5 section', async ({ page }) => {
   await expect(page.locator('.eli5')).toBeVisible();
 });
 
-test('has breadcrumbs: Home > Calculators > Productivity > Website Performance Budget Calculator', async ({ page }) => {
+test('has breadcrumbs: Home > Calculators > Business > Website Performance Budget Calculator', async ({ page }) => {
   await page.goto(URL);
   const crumbs = page.locator('.breadcrumbs ol li');
   await expect(crumbs).toHaveCount(4);
   await expect(crumbs.nth(0)).toContainText('Home');
   await expect(crumbs.nth(1)).toContainText('Calculators');
-  await expect(crumbs.nth(2)).toContainText('Productivity');
+  await expect(crumbs.nth(2)).toContainText('Business');
   await expect(crumbs.nth(3)).toContainText('Performance Budget');
 });
 
@@ -135,12 +135,12 @@ test('has FAQPage JSON-LD with at least 3 questions', async ({ page }) => {
   expect(faq.mainEntity.length).toBeGreaterThanOrEqual(3);
 });
 
-test('primary nav includes Productivity link', async ({ page }) => {
+test('primary nav includes Business link', async ({ page }) => {
   await page.goto(URL);
-  await expect(page.locator('.primary-nav__submenu a[href="/calculators/productivity/"]')).toBeVisible();
+  await expect(page.locator('.primary-nav__submenu a[href="/calculators/business/"]')).toBeVisible();
 });
 
-test('productivity hub lists this calculator', async ({ page }) => {
-  await page.goto('/calculators/productivity/');
+test('business hub lists this calculator', async ({ page }) => {
+  await page.goto('/calculators/business/');
   await expect(page.locator('.category-grid')).toContainText('Performance Budget');
 });

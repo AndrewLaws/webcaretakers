@@ -1,7 +1,7 @@
 'use strict';
 
 const { test, expect } = require('@playwright/test');
-const URL = '/calculators/finance/uk-vat-calculator/';
+const URL = '/calculators/business/uk-vat-calculator/';
 
 test('has correct h1', async ({ page }) => {
   await page.goto(URL);
@@ -13,13 +13,13 @@ test('has ELI5 section', async ({ page }) => {
   await expect(page.locator('.eli5')).toBeVisible();
 });
 
-test('has breadcrumbs: Home > Calculators > Finance > UK VAT Calculator', async ({ page }) => {
+test('has breadcrumbs: Home > Calculators > Business > UK VAT Calculator', async ({ page }) => {
   await page.goto(URL);
   const crumbs = page.locator('.breadcrumbs ol li');
   await expect(crumbs).toHaveCount(4);
   await expect(crumbs.nth(0)).toContainText('Home');
   await expect(crumbs.nth(1)).toContainText('Calculators');
-  await expect(crumbs.nth(2)).toContainText('Finance');
+  await expect(crumbs.nth(2)).toContainText('Business');
   await expect(crumbs.nth(3)).toContainText('UK VAT Calculator');
 });
 
@@ -123,12 +123,12 @@ test('has FAQPage JSON-LD with at least 3 questions', async ({ page }) => {
   expect(faq.mainEntity.length).toBeGreaterThanOrEqual(3);
 });
 
-test('primary nav includes Finance link', async ({ page }) => {
+test('primary nav includes Business link', async ({ page }) => {
   await page.goto(URL);
-  await expect(page.locator('.primary-nav__submenu a[href="/calculators/finance/"]')).toBeVisible();
+  await expect(page.locator('.primary-nav__submenu a[href="/calculators/business/"]')).toBeVisible();
 });
 
-test('finance hub lists this calculator', async ({ page }) => {
-  await page.goto('/calculators/finance/');
+test('business hub lists this calculator', async ({ page }) => {
+  await page.goto('/calculators/business/');
   await expect(page.locator('.category-grid')).toContainText('VAT');
 });

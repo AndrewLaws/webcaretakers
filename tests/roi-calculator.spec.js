@@ -2,7 +2,7 @@ const { test, expect } = require('@playwright/test');
 
 test.describe('ROI Calculator page', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('/calculators/finance/roi-calculator/');
+    await page.goto('/calculators/business/roi-calculator/');
   });
 
   test('has the expected h1', async ({ page }) => {
@@ -15,10 +15,10 @@ test.describe('ROI Calculator page', () => {
     await expect(eli5).toContainText("Explain like I'm 5");
   });
 
-  test('breadcrumb routes through Calculators > Finance', async ({ page }) => {
+  test('breadcrumb routes through Calculators > Business', async ({ page }) => {
     const crumbs = page.locator('.breadcrumbs');
     await expect(crumbs.getByRole('link', { name: 'Calculators' })).toHaveAttribute('href', '/calculators/');
-    await expect(crumbs.getByRole('link', { name: 'Finance' })).toHaveAttribute('href', '/calculators/finance/');
+    await expect(crumbs.getByRole('link', { name: 'Business' })).toHaveAttribute('href', '/calculators/business/');
   });
 
   test('default inputs produce an ROI result', async ({ page }) => {
@@ -97,15 +97,15 @@ test.describe('ROI Calculator page', () => {
     expect(types).toContain('FAQPage');
   });
 
-  test('primary nav contains Finance link', async ({ page }) => {
+  test('primary nav contains Business link', async ({ page }) => {
     const nav = page.locator('.primary-nav');
-    await expect(nav.getByRole('link', { name: 'Finance' })).toHaveAttribute('href', '/calculators/finance/');
+    await expect(nav.getByRole('link', { name: 'Business' })).toHaveAttribute('href', '/calculators/business/');
   });
 });
 
-test.describe('Finance hub lists the ROI Calculator', () => {
-  test('ROI Calculator shows on the Finance hub', async ({ page }) => {
-    await page.goto('/calculators/finance/');
+test.describe('Business hub lists the ROI Calculator', () => {
+  test('ROI Calculator shows on the Business hub', async ({ page }) => {
+    await page.goto('/calculators/business/');
     await expect(page.getByRole('link', { name: 'ROI Calculator' }).first()).toBeVisible();
   });
 });
