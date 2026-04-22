@@ -181,116 +181,119 @@
           <p>If you sell lemonade for £1 and the lemons and cups cost 60p, you made 40p profit. That 40p is 40% of your £1 selling price — that's your margin. But it's 66.67% of your 60p cost — that's your markup. Same £1 sale, same 40p profit, two different percentages depending on what you divide by.</p>
         </div>
 
-        <div class="calculator-form">
-          <fieldset>
-            <legend>What do you want to calculate?</legend>
-            <div class="radio-group">
-              <label><input type="radio" name="mode" value="margin" data-mode checked> Calculate margin from revenue and costs</label>
-              <label><input type="radio" name="mode" value="price_from_margin" data-mode> Find selling price from cost and target margin %</label>
-              <label><input type="radio" name="mode" value="price_from_markup" data-mode> Find selling price from cost and target markup %</label>
-            </div>
-          </fieldset>
+        <section data-calculator class="calculator-card">
+          <form class="calc-form" novalidate>
+            <fieldset class="calc-fieldset">
+              <legend>What do you want to calculate?</legend>
+              <div class="calc-row calc-row--radio">
+                <div class="calc-radio-options">
+                  <label><input type="radio" name="mode" value="margin" data-mode checked> Calculate margin from revenue and costs</label>
+                  <label><input type="radio" name="mode" value="price_from_margin" data-mode> Find selling price from cost and target margin %</label>
+                  <label><input type="radio" name="mode" value="price_from_markup" data-mode> Find selling price from cost and target markup %</label>
+                </div>
+              </div>
+            </fieldset>
 
-          <!-- Mode: calculate margin -->
-          <div data-panel="margin">
-            <div class="form-group">
-              <label for="revenue">Revenue / selling price (£)</label>
-              <input type="number" id="revenue" data-revenue min="0.01" step="0.01" value="10000" placeholder="e.g. 10000">
+            <!-- Mode: calculate margin -->
+            <div data-panel="margin">
+              <div class="calc-row">
+                <label for="revenue">Revenue / selling price (£)</label>
+                <input type="number" id="revenue" data-revenue min="0.01" step="0.01" value="10000" placeholder="e.g. 10000">
+              </div>
+              <div class="calc-row">
+                <label for="cogs">Cost of goods sold (£)<span class="calc-hint">Direct costs to produce or buy what you sold</span></label>
+                <input type="number" id="cogs" data-cogs min="0" step="0.01" value="6000" placeholder="e.g. 6000">
+              </div>
+              <div class="calc-row">
+                <label for="opex">Operating expenses (£)<span class="calc-hint">Optional: rent, salaries, overheads. Leave blank for gross margin only.</span></label>
+                <input type="number" id="opex" data-opex min="0" step="0.01" placeholder="e.g. 2000">
+              </div>
             </div>
-            <div class="form-group">
-              <label for="cogs">Cost of goods sold (£) <span class="label-hint">Direct costs to produce or buy what you sold</span></label>
-              <input type="number" id="cogs" data-cogs min="0" step="0.01" value="6000" placeholder="e.g. 6000">
+
+            <!-- Mode: price from margin -->
+            <div data-panel="price_from_margin" hidden>
+              <div class="calc-row">
+                <label for="cost-margin">Your cost (£)</label>
+                <input type="number" id="cost-margin" data-cost-margin min="0.01" step="0.01" value="60" placeholder="e.g. 60">
+              </div>
+              <div class="calc-row">
+                <label for="target-margin">Target gross margin (%)</label>
+                <input type="number" id="target-margin" data-target-margin min="0.01" max="99.99" step="0.01" value="40" placeholder="e.g. 40">
+              </div>
             </div>
-            <div class="form-group">
-              <label for="opex">Operating expenses (£) <span class="label-hint">Optional — rent, salaries, overheads. Leave blank for gross margin only.</span></label>
-              <input type="number" id="opex" data-opex min="0" step="0.01" placeholder="e.g. 2000">
+
+            <!-- Mode: price from markup -->
+            <div data-panel="price_from_markup" hidden>
+              <div class="calc-row">
+                <label for="cost-markup">Your cost (£)</label>
+                <input type="number" id="cost-markup" data-cost-markup min="0.01" step="0.01" value="60" placeholder="e.g. 60">
+              </div>
+              <div class="calc-row">
+                <label for="target-markup">Target markup (%)</label>
+                <input type="number" id="target-markup" data-target-markup min="0.01" step="0.01" value="66.67" placeholder="e.g. 66.67">
+              </div>
             </div>
+
+            <button type="button" data-calculate>Calculate</button>
+            <p class="calc-error" data-error hidden></p>
+          </form>
+
+          <div class="calculator-results" data-breakdown hidden>
+            <h2>Results</h2>
+
+            <!-- Margin mode results -->
+            <div data-result-panel="margin" hidden>
+              <div class="mort-breakdown">
+                <ul>
+                  <li><span>Revenue</span><strong data-line-revenue>—</strong></li>
+                  <li><span>Cost of goods sold</span><strong data-line-cogs>—</strong></li>
+                  <li class="mort-breakdown__total"><span>Gross profit</span><strong data-line-gross-profit>—</strong></li>
+                  <li class="mort-breakdown__total"><span>Gross margin</span><strong data-line-gross-margin>—</strong></li>
+                  <li><span>Markup</span><strong data-line-markup>—</strong></li>
+                </ul>
+                <div data-net-block hidden>
+                  <h3>Net profit</h3>
+                  <ul>
+                    <li><span>Operating expenses</span><strong data-line-opex>—</strong></li>
+                    <li class="mort-breakdown__total"><span>Net profit</span><strong data-line-net-profit>—</strong></li>
+                    <li class="mort-breakdown__total"><span>Net margin</span><strong data-line-net-margin>—</strong></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- Price from margin results -->
+            <div data-result-panel="price_from_margin" hidden>
+              <div class="mort-breakdown">
+                <ul>
+                  <li><span>Your cost</span><strong data-line-pfm-cost>—</strong></li>
+                  <li><span>Target margin</span><strong data-line-pfm-target>—</strong></li>
+                  <li class="mort-breakdown__total"><span>Selling price needed</span><strong data-line-pfm-price>—</strong></li>
+                  <li class="mort-breakdown__total"><span>Profit per unit</span><strong data-line-pfm-profit>—</strong></li>
+                  <li><span>Equivalent markup</span><strong data-line-pfm-markup>—</strong></li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Price from markup results -->
+            <div data-result-panel="price_from_markup" hidden>
+              <div class="mort-breakdown">
+                <ul>
+                  <li><span>Your cost</span><strong data-line-pfu-cost>—</strong></li>
+                  <li><span>Target markup</span><strong data-line-pfu-target>—</strong></li>
+                  <li class="mort-breakdown__total"><span>Selling price needed</span><strong data-line-pfu-price>—</strong></li>
+                  <li class="mort-breakdown__total"><span>Profit per unit</span><strong data-line-pfu-profit>—</strong></li>
+                  <li><span>Equivalent margin</span><strong data-line-pfu-margin>—</strong></li>
+                </ul>
+              </div>
+            </div>
+
+            <details class="prove-it">
+              <summary>Show workings</summary>
+              <div data-prove-it-body class="prove-it__body"></div>
+            </details>
           </div>
-
-          <!-- Mode: price from margin -->
-          <div data-panel="price_from_margin" hidden>
-            <div class="form-group">
-              <label for="cost-margin">Your cost (£)</label>
-              <input type="number" id="cost-margin" data-cost-margin min="0.01" step="0.01" value="60" placeholder="e.g. 60">
-            </div>
-            <div class="form-group">
-              <label for="target-margin">Target gross margin (%)</label>
-              <input type="number" id="target-margin" data-target-margin min="0.01" max="99.99" step="0.01" value="40" placeholder="e.g. 40">
-            </div>
-          </div>
-
-          <!-- Mode: price from markup -->
-          <div data-panel="price_from_markup" hidden>
-            <div class="form-group">
-              <label for="cost-markup">Your cost (£)</label>
-              <input type="number" id="cost-markup" data-cost-markup min="0.01" step="0.01" value="60" placeholder="e.g. 60">
-            </div>
-            <div class="form-group">
-              <label for="target-markup">Target markup (%)</label>
-              <input type="number" id="target-markup" data-target-markup min="0.01" step="0.01" value="66.67" placeholder="e.g. 66.67">
-            </div>
-          </div>
-
-          <button type="button" class="btn btn--primary" data-calculate>Calculate</button>
-          <p class="form-error" data-error hidden></p>
-        </div>
-
-        <div class="results-panel" data-breakdown hidden>
-          <h2>Results</h2>
-
-          <!-- Margin mode results -->
-          <div data-result-panel="margin" hidden>
-            <table class="results-table">
-              <tbody>
-                <tr><th>Revenue</th><td data-line-revenue>—</td></tr>
-                <tr><th>Cost of goods sold</th><td data-line-cogs>—</td></tr>
-                <tr class="results-table__highlight"><th>Gross profit</th><td data-line-gross-profit>—</td></tr>
-                <tr class="results-table__highlight"><th>Gross margin</th><td data-line-gross-margin>—</td></tr>
-                <tr><th>Markup</th><td data-line-markup>—</td></tr>
-              </tbody>
-            </table>
-            <div data-net-block hidden>
-              <table class="results-table" style="margin-top:1rem">
-                <tbody>
-                  <tr><th>Operating expenses</th><td data-line-opex>—</td></tr>
-                  <tr class="results-table__highlight"><th>Net profit</th><td data-line-net-profit>—</td></tr>
-                  <tr class="results-table__highlight"><th>Net margin</th><td data-line-net-margin>—</td></tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-
-          <!-- Price from margin results -->
-          <div data-result-panel="price_from_margin" hidden>
-            <table class="results-table">
-              <tbody>
-                <tr><th>Your cost</th><td data-line-pfm-cost>—</td></tr>
-                <tr><th>Target margin</th><td data-line-pfm-target>—</td></tr>
-                <tr class="results-table__highlight"><th>Selling price needed</th><td data-line-pfm-price>—</td></tr>
-                <tr class="results-table__highlight"><th>Profit per unit</th><td data-line-pfm-profit>—</td></tr>
-                <tr><th>Equivalent markup</th><td data-line-pfm-markup>—</td></tr>
-              </tbody>
-            </table>
-          </div>
-
-          <!-- Price from markup results -->
-          <div data-result-panel="price_from_markup" hidden>
-            <table class="results-table">
-              <tbody>
-                <tr><th>Your cost</th><td data-line-pfu-cost>—</td></tr>
-                <tr><th>Target markup</th><td data-line-pfu-target>—</td></tr>
-                <tr class="results-table__highlight"><th>Selling price needed</th><td data-line-pfu-price>—</td></tr>
-                <tr class="results-table__highlight"><th>Profit per unit</th><td data-line-pfu-profit>—</td></tr>
-                <tr><th>Equivalent margin</th><td data-line-pfu-margin>—</td></tr>
-              </tbody>
-            </table>
-          </div>
-
-          <details class="prove-it">
-            <summary>Show workings</summary>
-            <div data-prove-it-body class="prove-it__body"></div>
-          </details>
-        </div>
+        </section>
 
         <section class="long-form">
           <h2>Margin vs markup: why the difference matters</h2>

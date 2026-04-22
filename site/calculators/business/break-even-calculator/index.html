@@ -181,72 +181,71 @@
           <p>Imagine your lemonade stand costs £10 to set up (the table, sign, cups) — that is your fixed cost. Each cup of lemonade costs 20p to make — that is your variable cost. You sell each cup for £1. Every cup earns you 80p toward your £10. After 13 cups you have covered your costs. Cup 14 is where you start making actual profit. That is your break-even point.</p>
         </div>
 
-        <div class="calculator-form">
-          <div class="form-group">
-            <label for="fixed-costs">Fixed costs per period (£) <span class="label-hint">Rent, salaries, subscriptions — costs that don't change with output</span></label>
-            <input type="number" id="fixed-costs" data-fixed-costs min="0" step="0.01" value="10000" placeholder="e.g. 10000">
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label for="var-cost">Variable cost per unit (£) <span class="label-hint">Materials, packaging — costs that rise with each sale</span></label>
+        <section data-calculator class="calculator-card">
+          <form class="calc-form" novalidate>
+            <div class="calc-row">
+              <label for="fixed-costs">Fixed costs per period (£)<span class="calc-hint">Rent, salaries, subscriptions: costs that don't change with output</span></label>
+              <input type="number" id="fixed-costs" data-fixed-costs min="0" step="0.01" value="10000" placeholder="e.g. 10000">
+            </div>
+            <div class="calc-row">
+              <label for="var-cost">Variable cost per unit (£)<span class="calc-hint">Materials, packaging: costs that rise with each sale</span></label>
               <input type="number" id="var-cost" data-var-cost min="0" step="0.01" value="5" placeholder="e.g. 5">
             </div>
-            <div class="form-group">
+            <div class="calc-row">
               <label for="price">Selling price per unit (£)</label>
               <input type="number" id="price" data-price min="0.01" step="0.01" value="15" placeholder="e.g. 15">
             </div>
+            <div class="calc-row">
+              <label for="target-profit">Profit target per period (£)<span class="calc-hint">Optional: leave blank for break-even only</span></label>
+              <input type="number" id="target-profit" data-target-profit min="0" step="0.01" placeholder="e.g. 5000">
+            </div>
+
+            <button type="button" data-calculate>Calculate break-even</button>
+            <p class="calc-error" data-error hidden></p>
+          </form>
+
+          <div class="calculator-results" data-breakdown hidden>
+            <h2>Break-even results</h2>
+            <div class="mort-breakdown">
+              <ul>
+                <li><span>Contribution margin per unit</span><strong data-line-contribution>—</strong></li>
+                <li><span>Contribution margin %</span><strong data-line-contribution-pct>—</strong></li>
+                <li class="mort-breakdown__total"><span>Break-even units</span><strong data-line-be-units>—</strong></li>
+                <li class="mort-breakdown__total"><span>Break-even revenue</span><strong data-line-be-revenue>—</strong></li>
+              </ul>
+
+              <div data-target-block hidden>
+                <h3>Profit target</h3>
+                <ul>
+                  <li><span>Units to hit profit target</span><strong data-line-target-units>—</strong></li>
+                  <li><span>Revenue to hit profit target</span><strong data-line-target-revenue>—</strong></li>
+                </ul>
+              </div>
+            </div>
+
+            <h3>Volume scenarios</h3>
+            <div class="table-scroll">
+              <table class="scenarios-table">
+                <thead>
+                  <tr>
+                    <th>Volume</th>
+                    <th>Units</th>
+                    <th>Revenue</th>
+                    <th>Variable costs</th>
+                    <th>Profit / Loss</th>
+                  </tr>
+                </thead>
+                <tbody data-scenarios-body>
+                </tbody>
+              </table>
+            </div>
+
+            <details class="prove-it">
+              <summary>Show workings</summary>
+              <div data-prove-it-body class="prove-it__body"></div>
+            </details>
           </div>
-          <div class="form-group">
-            <label for="target-profit">Profit target per period (£) <span class="label-hint">Optional — leave blank for break-even only</span></label>
-            <input type="number" id="target-profit" data-target-profit min="0" step="0.01" placeholder="e.g. 5000">
-          </div>
-
-          <button type="button" class="btn btn--primary" data-calculate>Calculate break-even</button>
-          <p class="form-error" data-error hidden></p>
-        </div>
-
-        <div class="results-panel" data-breakdown hidden>
-          <h2>Break-even results</h2>
-          <table class="results-table">
-            <tbody>
-              <tr><th>Contribution margin per unit</th><td data-line-contribution>—</td></tr>
-              <tr><th>Contribution margin %</th><td data-line-contribution-pct>—</td></tr>
-              <tr class="results-table__highlight"><th>Break-even units</th><td data-line-be-units>—</td></tr>
-              <tr class="results-table__highlight"><th>Break-even revenue</th><td data-line-be-revenue>—</td></tr>
-            </tbody>
-          </table>
-
-          <div data-target-block hidden style="margin-top:1rem">
-            <table class="results-table">
-              <tbody>
-                <tr><th>Units to hit profit target</th><td data-line-target-units>—</td></tr>
-                <tr><th>Revenue to hit profit target</th><td data-line-target-revenue>—</td></tr>
-              </tbody>
-            </table>
-          </div>
-
-          <h3 style="margin-top:1.5rem">Volume scenarios</h3>
-          <div class="table-scroll">
-            <table class="results-table results-table--scenarios">
-              <thead>
-                <tr>
-                  <th>Volume</th>
-                  <th>Units</th>
-                  <th>Revenue</th>
-                  <th>Variable costs</th>
-                  <th>Profit / Loss</th>
-                </tr>
-              </thead>
-              <tbody data-scenarios-body>
-              </tbody>
-            </table>
-          </div>
-
-          <details class="prove-it">
-            <summary>Show workings</summary>
-            <div data-prove-it-body class="prove-it__body"></div>
-          </details>
-        </div>
+        </section>
 
         <section class="long-form">
           <h2>How to use break-even analysis</h2>

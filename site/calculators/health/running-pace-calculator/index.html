@@ -181,23 +181,25 @@
           <p>Pace, distance, and time are three numbers that always travel together. Know any two and you can work out the third. Ran 5 km in 25 minutes? Your pace was 5:00 per km. Planning to run at 6:00 per km for a half marathon? This calculator will tell you the finish time — and what that implies for a full marathon at the same effort.</p>
         </div>
 
-        <div class="calculator-form">
-          <fieldset>
-            <legend>What do you want to calculate?</legend>
-            <div class="radio-group">
-              <label><input type="radio" name="mode" value="pace" data-mode checked> My pace (enter distance and time)</label>
-              <label><input type="radio" name="mode" value="time" data-mode> My finish time (enter distance and pace)</label>
-              <label><input type="radio" name="mode" value="distance" data-mode> Distance covered (enter pace and time)</label>
-            </div>
-          </fieldset>
+        <section data-calculator class="calculator-card">
+          <form class="calc-form" novalidate>
+            <fieldset class="calc-fieldset">
+              <legend>What do you want to calculate?</legend>
+              <div class="calc-row calc-row--radio">
+                <div class="calc-radio-options">
+                  <label><input type="radio" name="mode" value="pace" data-mode checked> My pace (enter distance and time)</label>
+                  <label><input type="radio" name="mode" value="time" data-mode> My finish time (enter distance and pace)</label>
+                  <label><input type="radio" name="mode" value="distance" data-mode> Distance covered (enter pace and time)</label>
+                </div>
+              </div>
+            </fieldset>
 
-          <div data-group-distance>
-            <div class="form-row">
-              <div class="form-group">
+            <div data-group-distance>
+              <div class="calc-row">
                 <label for="distance">Distance (km)</label>
                 <input type="number" id="distance" data-input-distance min="0.01" step="0.001" value="10" placeholder="e.g. 10">
               </div>
-              <div class="form-group">
+              <div class="calc-row">
                 <label for="preset">Or pick a race</label>
                 <select id="preset" data-preset>
                   <option value="">Custom distance</option>
@@ -208,54 +210,54 @@
                 </select>
               </div>
             </div>
-          </div>
 
-          <div data-group-pace hidden>
-            <div class="form-group">
-              <label for="pace">Pace per km (MM:SS)</label>
-              <input type="text" id="pace" data-input-pace placeholder="e.g. 5:30" value="5:00">
+            <div data-group-pace hidden>
+              <div class="calc-row">
+                <label for="pace">Pace per km (MM:SS)</label>
+                <input type="text" id="pace" data-input-pace placeholder="e.g. 5:30" value="5:00">
+              </div>
             </div>
-          </div>
 
-          <div data-group-time>
-            <div class="form-group">
-              <label for="time">Time (MM:SS or H:MM:SS)</label>
-              <input type="text" id="time" data-input-time placeholder="e.g. 50:00" value="50:00">
+            <div data-group-time>
+              <div class="calc-row">
+                <label for="time">Time (MM:SS or H:MM:SS)</label>
+                <input type="text" id="time" data-input-time placeholder="e.g. 50:00" value="50:00">
+              </div>
             </div>
+
+            <button type="button" data-calculate>Calculate</button>
+            <p class="calc-error" data-error hidden></p>
+          </form>
+
+          <div class="calculator-results" data-breakdown hidden>
+            <h2>Results</h2>
+            <div class="mort-breakdown">
+              <ul>
+                <li class="mort-breakdown__total"><span>Pace</span><strong data-line-pace>—</strong></li>
+                <li><span>Pace per mile</span><strong data-line-pace-mile>—</strong></li>
+                <li class="mort-breakdown__total"><span>Finish time</span><strong data-line-time>—</strong></li>
+                <li><span>Distance</span><strong data-line-distance>—</strong></li>
+                <li><span>Speed</span><strong data-line-speed-kmh>—</strong></li>
+                <li><span>Speed (mph)</span><strong data-line-speed-mph>—</strong></li>
+              </ul>
+            </div>
+
+            <h3>Race time predictions at this pace</h3>
+            <div class="table-scroll">
+              <table class="scenarios-table">
+                <thead>
+                  <tr><th>Race</th><th>Distance</th><th>Predicted time</th></tr>
+                </thead>
+                <tbody data-predictions-body></tbody>
+              </table>
+            </div>
+
+            <details class="prove-it">
+              <summary>Show workings</summary>
+              <div data-prove-it-body class="prove-it__body"></div>
+            </details>
           </div>
-
-          <button type="button" class="btn btn--primary" data-calculate>Calculate</button>
-          <p class="form-error" data-error hidden></p>
-        </div>
-
-        <div class="results-panel" data-breakdown hidden>
-          <h2>Results</h2>
-          <table class="results-table">
-            <tbody>
-              <tr class="results-table__highlight"><th>Pace</th><td data-line-pace>—</td></tr>
-              <tr><th>Pace per mile</th><td data-line-pace-mile>—</td></tr>
-              <tr class="results-table__highlight"><th>Finish time</th><td data-line-time>—</td></tr>
-              <tr><th>Distance</th><td data-line-distance>—</td></tr>
-              <tr><th>Speed</th><td data-line-speed-kmh>—</td></tr>
-              <tr><th>Speed (mph)</th><td data-line-speed-mph>—</td></tr>
-            </tbody>
-          </table>
-
-          <h3 style="margin-top:1.5rem">Race time predictions at this pace</h3>
-          <div class="table-scroll">
-            <table class="results-table">
-              <thead>
-                <tr><th>Race</th><th>Distance</th><th>Predicted time</th></tr>
-              </thead>
-              <tbody data-predictions-body></tbody>
-            </table>
-          </div>
-
-          <details class="prove-it">
-            <summary>Show workings</summary>
-            <div data-prove-it-body class="prove-it__body"></div>
-          </details>
-        </div>
+        </section>
 
         <section class="long-form">
           <h2>How pace, distance, and time relate</h2>

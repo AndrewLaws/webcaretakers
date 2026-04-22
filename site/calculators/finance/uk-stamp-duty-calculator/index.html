@@ -186,59 +186,63 @@
           <p>When you buy a house in England, the government takes a slice called Stamp Duty. But it works in bands, not a flat percentage. The first £125,000 is free. The next bit gets taxed at 2%. Then 5% above £250,000. So a £300,000 house does not cost 5% of £300,000 — it costs 0% of the first chunk, 2% of the middle chunk, and 5% of the top bit, which adds up to £5,000 total.</p>
         </div>
 
-        <div class="calculator-form">
-          <div class="form-group">
-            <label for="purchase-price">Purchase price (£)</label>
-            <input type="number" id="purchase-price" data-purchase-price min="1" step="1" value="350000" placeholder="e.g. 350000">
-          </div>
-
-          <fieldset>
-            <legend>Buyer type</legend>
-            <div class="radio-group">
-              <label><input type="radio" name="buyer-type" value="standard" data-buyer-type checked> Standard residential purchase</label>
-              <label><input type="radio" name="buyer-type" value="first_time_buyer" data-buyer-type> First-time buyer</label>
-              <label><input type="radio" name="buyer-type" value="additional" data-buyer-type> Additional property / buy-to-let (extra 5% surcharge)</label>
+        <section data-calculator class="calculator-card">
+          <form class="calc-form" novalidate>
+            <div class="calc-row">
+              <label for="purchase-price">Purchase price (£)</label>
+              <input type="number" id="purchase-price" data-purchase-price min="1" step="1" value="350000" placeholder="e.g. 350000">
             </div>
-          </fieldset>
 
-          <div data-ftb-notice hidden class="notice notice--info">
-            <strong>First-time buyer relief</strong> applies only if the purchase price is £500,000 or below. Above that, the relief is withdrawn and standard rates apply.
+            <fieldset class="calc-fieldset">
+              <legend>Buyer type</legend>
+              <div class="calc-row calc-row--radio">
+                <div class="calc-radio-options">
+                  <label><input type="radio" name="buyer-type" value="standard" data-buyer-type checked> Standard residential purchase</label>
+                  <label><input type="radio" name="buyer-type" value="first_time_buyer" data-buyer-type> First-time buyer</label>
+                  <label><input type="radio" name="buyer-type" value="additional" data-buyer-type> Additional property / buy-to-let (extra 5% surcharge)</label>
+                </div>
+              </div>
+            </fieldset>
+
+            <div data-ftb-notice hidden class="calc-notice">
+              <strong>First-time buyer relief</strong> applies only if the purchase price is £500,000 or below. Above that, the relief is withdrawn and standard rates apply.
+            </div>
+
+            <button type="button" data-calculate>Calculate stamp duty</button>
+            <p class="calc-error" data-error hidden></p>
+          </form>
+
+          <div class="calculator-results" data-breakdown hidden>
+            <h2>Stamp duty due</h2>
+
+            <div data-ftb-ineligible-notice hidden class="calc-notice calc-notice--warn">
+              Your purchase price exceeds £500,000, so first-time buyer relief does not apply. Standard rates are used.
+            </div>
+
+            <div class="mort-breakdown">
+              <ul>
+                <li><span>Purchase price</span><strong data-line-price>—</strong></li>
+                <li class="mort-breakdown__total"><span>Total stamp duty</span><strong data-line-total>—</strong></li>
+                <li><span>Effective rate</span><strong data-line-eff-rate>—</strong></li>
+              </ul>
+            </div>
+
+            <h3>Band breakdown</h3>
+            <div class="table-scroll">
+              <table class="scenarios-table">
+                <thead>
+                  <tr><th>Band</th><th>Taxable amount</th><th>Rate</th><th>Tax</th></tr>
+                </thead>
+                <tbody data-bands-body></tbody>
+              </table>
+            </div>
+
+            <details class="prove-it">
+              <summary>Show workings</summary>
+              <div data-prove-it-body class="prove-it__body"></div>
+            </details>
           </div>
-
-          <button type="button" class="btn btn--primary" data-calculate>Calculate stamp duty</button>
-          <p class="form-error" data-error hidden></p>
-        </div>
-
-        <div class="results-panel" data-breakdown hidden>
-          <h2>Stamp duty due</h2>
-
-          <div data-ftb-ineligible-notice hidden class="notice notice--warn">
-            Your purchase price exceeds £500,000, so first-time buyer relief does not apply. Standard rates are used.
-          </div>
-
-          <table class="results-table">
-            <tbody>
-              <tr><th>Purchase price</th><td data-line-price>—</td></tr>
-              <tr class="results-table__highlight"><th>Total stamp duty</th><td data-line-total>—</td></tr>
-              <tr><th>Effective rate</th><td data-line-eff-rate>—</td></tr>
-            </tbody>
-          </table>
-
-          <h3 style="margin-top:1.5rem">Band breakdown</h3>
-          <div class="table-scroll">
-            <table class="results-table results-table--bands">
-              <thead>
-                <tr><th>Band</th><th>Taxable amount</th><th>Rate</th><th>Tax</th></tr>
-              </thead>
-              <tbody data-bands-body></tbody>
-            </table>
-          </div>
-
-          <details class="prove-it">
-            <summary>Show workings</summary>
-            <div data-prove-it-body class="prove-it__body"></div>
-          </details>
-        </div>
+        </section>
 
         <section class="long-form">
           <h2>2025/26 rates: what changed from 2024/25</h2>

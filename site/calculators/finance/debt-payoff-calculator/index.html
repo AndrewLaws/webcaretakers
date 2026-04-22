@@ -181,62 +181,58 @@
           <p>Imagine you owe £3,000 on a credit card and you pay £100 a month. Some of that payment goes to interest first, and only the rest chips away at the actual debt. The calculator works out exactly how many months until it's gone, how much you'll have paid in interest, and — most importantly — how much faster you'd be done if you paid just a bit extra each month.</p>
         </div>
 
-        <div class="calculator-form">
-          <div class="form-row">
-            <div class="form-group">
+        <section data-calculator class="calculator-card">
+          <form class="calc-form" novalidate>
+            <div class="calc-row">
               <label for="balance">Current balance (£)</label>
               <input type="number" id="balance" data-balance min="1" step="0.01" value="5000" placeholder="e.g. 5000">
             </div>
-            <div class="form-group">
-              <label for="apr">Interest rate — APR (%)</label>
+            <div class="calc-row">
+              <label for="apr">Interest rate: APR (%)</label>
               <input type="number" id="apr" data-apr min="0" step="0.1" value="18" placeholder="e.g. 18">
             </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group">
+            <div class="calc-row">
               <label for="monthly-payment">Monthly payment (£)</label>
               <input type="number" id="monthly-payment" data-monthly-payment min="1" step="0.01" value="150" placeholder="e.g. 150">
             </div>
-            <div class="form-group">
-              <label for="extra-payment">Extra monthly payment (£) <span class="label-hint">Optional — see how much you save</span></label>
+            <div class="calc-row">
+              <label for="extra-payment">Extra monthly payment (£)<span class="calc-hint">Optional: see how much you save</span></label>
               <input type="number" id="extra-payment" data-extra-payment min="0" step="0.01" placeholder="e.g. 50">
             </div>
+
+            <button type="button" data-calculate>Calculate payoff</button>
+            <p class="calc-error" data-error hidden></p>
+          </form>
+
+          <div class="calculator-results" data-breakdown hidden>
+            <h2>Payoff results</h2>
+            <div class="mort-breakdown">
+              <ul>
+                <li><span>First month: interest</span><strong data-line-first-interest>—</strong></li>
+                <li><span>First month: principal</span><strong data-line-first-principal>—</strong></li>
+                <li class="mort-breakdown__total"><span>Months to pay off</span><strong data-line-months>—</strong></li>
+                <li><span>Total interest paid</span><strong data-line-interest>—</strong></li>
+                <li><span>Total amount paid</span><strong data-line-total>—</strong></li>
+              </ul>
+
+              <div data-extra-block hidden>
+                <h3>With extra monthly payment</h3>
+                <ul>
+                  <li class="mort-breakdown__total"><span>Months to pay off</span><strong data-line-extra-months>—</strong></li>
+                  <li class="mort-breakdown__total"><span>Months saved</span><strong data-line-months-saved>—</strong></li>
+                  <li class="mort-breakdown__total"><span>Interest saved</span><strong data-line-interest-saved>—</strong></li>
+                  <li><span>Total interest paid</span><strong data-line-extra-interest>—</strong></li>
+                  <li><span>Total amount paid</span><strong data-line-extra-total>—</strong></li>
+                </ul>
+              </div>
+            </div>
+
+            <details class="prove-it">
+              <summary>Show workings</summary>
+              <div data-prove-it-body class="prove-it__body"></div>
+            </details>
           </div>
-
-          <button type="button" class="btn btn--primary" data-calculate>Calculate payoff</button>
-          <p class="form-error" data-error hidden></p>
-        </div>
-
-        <div class="results-panel" data-breakdown hidden>
-          <h2>Payoff results</h2>
-          <table class="results-table">
-            <tbody>
-              <tr><th>First month: interest</th><td data-line-first-interest>—</td></tr>
-              <tr><th>First month: principal</th><td data-line-first-principal>—</td></tr>
-              <tr class="results-table__highlight"><th>Months to pay off</th><td data-line-months>—</td></tr>
-              <tr><th>Total interest paid</th><td data-line-interest>—</td></tr>
-              <tr><th>Total amount paid</th><td data-line-total>—</td></tr>
-            </tbody>
-          </table>
-
-          <div data-extra-block hidden style="margin-top:1.5rem">
-            <h3>With extra monthly payment</h3>
-            <table class="results-table">
-              <tbody>
-                <tr class="results-table__highlight"><th>Months to pay off</th><td data-line-extra-months>—</td></tr>
-                <tr class="results-table__highlight"><th>Months saved</th><td data-line-months-saved>—</td></tr>
-                <tr class="results-table__highlight"><th>Interest saved</th><td data-line-interest-saved>—</td></tr>
-                <tr><th>Total interest paid</th><td data-line-extra-interest>—</td></tr>
-                <tr><th>Total amount paid</th><td data-line-extra-total>—</td></tr>
-              </tbody>
-            </table>
-          </div>
-
-          <details class="prove-it">
-            <summary>Show workings</summary>
-            <div data-prove-it-body class="prove-it__body"></div>
-          </details>
-        </div>
+        </section>
 
         <section class="long-form">
           <h2>Why minimum payments are expensive</h2>

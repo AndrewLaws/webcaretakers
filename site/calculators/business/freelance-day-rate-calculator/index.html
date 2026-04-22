@@ -181,69 +181,63 @@
           <p>Imagine you want to earn £50,000 a year. But you only work 220 days (the rest are weekends, holidays, and admin days). And sometimes you have no client for a couple of weeks. And you want some money in a pension. Add all that up, then divide by 220, and you get the daily price you need to charge.</p>
         </div>
 
-        <div class="calculator-form">
-          <div class="form-group">
-            <label for="income-target">Desired annual gross income (£) <span class="label-hint">What your business needs to earn before tax</span></label>
-            <input type="number" id="income-target" data-income-target min="1" step="1" value="50000" placeholder="e.g. 50000">
-          </div>
-
-          <div class="form-row">
-            <div class="form-group">
-              <label for="working-days">Working days per year <span class="label-hint">Default: 260 (52 weeks × 5 days)</span></label>
+        <section data-calculator class="calculator-card">
+          <form class="calc-form" novalidate>
+            <div class="calc-row">
+              <label for="income-target">Desired annual gross income (£)<span class="calc-hint">What your business needs to earn before tax</span></label>
+              <input type="number" id="income-target" data-income-target min="1" step="1" value="50000" placeholder="e.g. 50000">
+            </div>
+            <div class="calc-row">
+              <label for="working-days">Working days per year<span class="calc-hint">Default: 260 (52 weeks × 5 days)</span></label>
               <input type="number" id="working-days" data-working-days min="1" max="365" step="1" value="260">
             </div>
-            <div class="form-group">
-              <label for="non-billable">Non-billable days <span class="label-hint">Holiday, training, admin (default 40)</span></label>
+            <div class="calc-row">
+              <label for="non-billable">Non-billable days<span class="calc-hint">Holiday, training, admin (default 40)</span></label>
               <input type="number" id="non-billable" data-non-billable min="0" step="1" value="40">
             </div>
-          </div>
-
-          <div class="form-group">
-            <label for="expenses">Annual business expenses (£) <span class="label-hint">Software, equipment, accountant, insurance</span></label>
-            <input type="number" id="expenses" data-expenses min="0" step="1" value="0" placeholder="e.g. 3000">
-          </div>
-
-          <div class="form-row">
-            <div class="form-group">
-              <label for="pension-pct">Pension contribution (%) <span class="label-hint">% of income to set aside (default 5%)</span></label>
+            <div class="calc-row">
+              <label for="expenses">Annual business expenses (£)<span class="calc-hint">Software, equipment, accountant, insurance</span></label>
+              <input type="number" id="expenses" data-expenses min="0" step="1" value="0" placeholder="e.g. 3000">
+            </div>
+            <div class="calc-row">
+              <label for="pension-pct">Pension contribution (%)<span class="calc-hint">% of income to set aside (default 5%)</span></label>
               <input type="number" id="pension-pct" data-pension-pct min="0" max="99" step="0.5" value="5">
             </div>
-            <div class="form-group">
-              <label for="downtime-pct">Downtime buffer (%) <span class="label-hint">% allowance for gaps between clients (default 15%)</span></label>
+            <div class="calc-row">
+              <label for="downtime-pct">Downtime buffer (%)<span class="calc-hint">% allowance for gaps between clients (default 15%)</span></label>
               <input type="number" id="downtime-pct" data-downtime-pct min="0" max="99" step="1" value="15">
             </div>
+
+            <button type="button" data-calculate>Calculate day rate</button>
+            <p class="calc-error" data-error hidden></p>
+          </form>
+
+          <div class="calculator-results" data-breakdown hidden>
+            <h2>Your required day rate</h2>
+            <div class="mort-breakdown">
+              <ul>
+                <li><span>Billable days per year</span><strong data-line-billable-days>—</strong></li>
+                <li><span>Pension contribution</span><strong data-line-pension>—</strong></li>
+                <li><span>Annual expenses</span><strong data-line-expenses>—</strong></li>
+                <li><span>Subtotal needed</span><strong data-line-subtotal>—</strong></li>
+                <li><span>Downtime buffer</span><strong data-line-downtime-buffer>—</strong></li>
+                <li><span>Total revenue required</span><strong data-line-total-required>—</strong></li>
+              </ul>
+              <h3>Rate summary</h3>
+              <ul>
+                <li class="mort-breakdown__total"><span>Day rate</span><strong data-line-day-rate>—</strong></li>
+                <li><span>Half-day rate</span><strong data-line-half-day>—</strong></li>
+                <li class="mort-breakdown__total"><span>Hourly rate (8hr day)</span><strong data-line-hourly>—</strong></li>
+                <li><span>Weekly rate (5 days)</span><strong data-line-weekly>—</strong></li>
+                <li><span>Monthly equivalent</span><strong data-line-monthly>—</strong></li>
+              </ul>
+            </div>
+            <details class="prove-it">
+              <summary>Show workings</summary>
+              <div data-prove-it-body class="prove-it__body"></div>
+            </details>
           </div>
-
-          <button type="button" class="btn btn--primary" data-calculate>Calculate day rate</button>
-          <p class="form-error" data-error hidden></p>
-        </div>
-
-        <div class="results-panel" data-breakdown hidden>
-          <h2>Your required day rate</h2>
-          <table class="results-table">
-            <tbody>
-              <tr><th>Billable days per year</th><td data-line-billable-days>—</td></tr>
-              <tr><th>Pension contribution</th><td data-line-pension>—</td></tr>
-              <tr><th>Annual expenses</th><td data-line-expenses>—</td></tr>
-              <tr><th>Subtotal needed</th><td data-line-subtotal>—</td></tr>
-              <tr><th>Downtime buffer</th><td data-line-downtime-buffer>—</td></tr>
-              <tr><th>Total revenue required</th><td data-line-total-required>—</td></tr>
-            </tbody>
-          </table>
-          <table class="results-table results-table--rates" style="margin-top:1rem">
-            <tbody>
-              <tr class="results-table__highlight"><th>Day rate</th><td data-line-day-rate>—</td></tr>
-              <tr><th>Half-day rate</th><td data-line-half-day>—</td></tr>
-              <tr class="results-table__highlight"><th>Hourly rate (8hr day)</th><td data-line-hourly>—</td></tr>
-              <tr><th>Weekly rate (5 days)</th><td data-line-weekly>—</td></tr>
-              <tr><th>Monthly equivalent</th><td data-line-monthly>—</td></tr>
-            </tbody>
-          </table>
-          <details class="prove-it">
-            <summary>Show workings</summary>
-            <div data-prove-it-body class="prove-it__body"></div>
-          </details>
-        </div>
+        </section>
 
         <section class="long-form">
           <h2>Why most freelancers undercharge</h2>
