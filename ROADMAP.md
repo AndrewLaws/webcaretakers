@@ -484,7 +484,7 @@ Context: high search volume, general audience, no backend required. These sit ou
 
 - [x] Age in Months Calculator (ships as a Fun-category tool with a Parenting Hell podcast framing; doubles as the canonical age-calculator answer for anyone searching years/months/days between two dates) — `/calculators/fun/age-in-months-calculator/`
 - [x] Date Difference Calculator (ships in the Fun category as the canonical "gap between two dates" tool; covers years, months, days, weeks, hours and Mon-Fri business days) — `/calculators/fun/date-difference-calculator/`
-- [ ] Tip Calculator (enter a bill total, choose a percentage, split between people — high US search volume, also relevant to UK service charges)
+- [x] Tip Calculator (ships in the Finance category with a currency toggle and an optional round-up-per-person mode for awkward splits) — `/calculators/finance/tip-calculator/`
 - [ ] Savings Goal Calculator (how much to save per month to reach a target amount by a given date — natural extension of the existing finance tools)
 - [ ] Password Generator (configurable length and character sets; also listed under Cybersecurity — whichever category fits the URL better wins; client-side only)
 - [ ] EXIF Data Viewer (drag in a photo, see all embedded metadata: GPS coordinates, camera model, date taken — privacy angle: "check what your images reveal before you post them"; fits under the existing Images category)
