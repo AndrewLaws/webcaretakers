@@ -173,6 +173,30 @@
     {
       "phrase": "break-even calculator",
       "url": "/calculators/business/break-even-calculator/"
+    },
+    {
+      "phrase": "UK Stamp Duty Calculator",
+      "url": "/calculators/finance/uk-stamp-duty-calculator/"
+    },
+    {
+      "phrase": "stamp duty calculator",
+      "url": "/calculators/finance/uk-stamp-duty-calculator/"
+    },
+    {
+      "phrase": "Debt Payoff Calculator",
+      "url": "/calculators/finance/debt-payoff-calculator/"
+    },
+    {
+      "phrase": "debt payoff calculator",
+      "url": "/calculators/finance/debt-payoff-calculator/"
+    },
+    {
+      "phrase": "Running Pace Calculator",
+      "url": "/calculators/health/running-pace-calculator/"
+    },
+    {
+      "phrase": "running pace calculator",
+      "url": "/calculators/health/running-pace-calculator/"
     }
   ]
 }

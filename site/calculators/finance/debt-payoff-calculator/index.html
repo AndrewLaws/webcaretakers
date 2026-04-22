@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Debt Payoff Calculator | WebCaretakers</title>
+  <meta name="description" content="Calculate how long it takes to pay off a debt and how much interest you'll pay. Add an extra monthly payment to see exactly how much time and interest you save.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/finance/debt-payoff-calculator/">
+  <meta property="og:title" content="Debt Payoff Calculator | WebCaretakers">
+  <meta property="og:description" content="Work out your debt payoff date and total interest. See how much an extra monthly payment saves you.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/finance/debt-payoff-calculator/">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var _stored = null;
+    try { _stored = localStorage.getItem('cookie-consent'); } catch (e) {}
+    var _initial = _stored === 'granted' ? 'granted' : 'denied';
+    gtag('consent', 'default', {
+      ad_storage: _initial, analytics_storage: _initial,
+      ad_user_data: _initial, ad_personalization: _initial,
+      functionality_storage: 'granted', security_storage: 'granted',
+      wait_for_update: 500
+    });
+  </script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Debt Payoff Calculator",
+    "url": "https://webcaretakers.com/calculators/finance/debt-payoff-calculator/",
+    "description": "Calculate how long it takes to pay off a debt and how much interest you pay. Shows the effect of an extra monthly payment on payoff time and total interest.",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "WebCaretakers",
+      "url": "https://webcaretakers.com/"
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How is debt payoff time calculated?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The formula is: n = −log(1 − r × P ÷ M) ÷ log(1 + r), where P is the balance, r is the monthly interest rate (APR ÷ 12 ÷ 100), and M is the monthly payment. This gives the exact number of months needed. The total interest paid is then (months × payment) − original balance."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What happens if my payment only covers the interest?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "If your monthly payment is equal to or less than the monthly interest charge, you never reduce the principal. The balance stays the same or grows. This calculator will flag this situation — you need to increase your payment above the monthly interest to make any progress."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How much does an extra payment save?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Even a small extra payment makes a disproportionately large difference early in the life of a debt when most of each payment goes to interest. Enter an extra monthly payment in the calculator to see the exact time and interest saved for your balance and rate."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is APR?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "APR stands for Annual Percentage Rate. It represents the yearly cost of a debt including interest and certain fees, expressed as a percentage. For this calculator, enter the APR from your credit card, loan, or overdraft statement."
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-banner-heading" aria-describedby="cookie-banner-text" hidden>
+    <div class="cookie-banner__inner">
+      <h2 id="cookie-banner-heading" class="cookie-banner__heading">A quick word about cookies</h2>
+      <p id="cookie-banner-text" class="cookie-banner__text">
+        We use cookies for analytics, so we can see which calculators people actually use and which ones need work. Nothing creepy, nothing sold on. You can say yes, say no, or read the <a href="/privacy/">privacy policy</a> first. Your choice sticks.
+      </p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-reject>Reject</button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>Accept</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var KEY = 'cookie-consent';
+      var banner = document.querySelector('[data-cookie-banner]');
+      if (!banner) return;
+      var stored = null;
+      try { stored = localStorage.getItem(KEY); } catch (e) {}
+      if (stored !== 'granted' && stored !== 'denied') { banner.hidden = false; }
+      function record(choice) {
+        try { localStorage.setItem(KEY, choice); } catch (e) {}
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('consent', 'update', {
+          ad_storage: choice, analytics_storage: choice,
+          ad_user_data: choice, ad_personalization: choice
+        });
+        banner.hidden = true;
+      }
+      var accept = banner.querySelector('[data-cookie-accept]');
+      var reject = banner.querySelector('[data-cookie-reject]');
+      if (accept) accept.addEventListener('click', function () { record('granted'); });
+      if (reject) reject.addEventListener('click', function () { record('denied'); });
+    })();
+  </script>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">WebCaretakers</a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <ul class="primary-nav__list">
+          <li class="primary-nav__item primary-nav__item--has-menu">
+            <button type="button" class="primary-nav__link" data-menu-toggle aria-haspopup="true" aria-expanded="false">Calculators <span class="primary-nav__caret" aria-hidden="true">▾</span></button>
+            <ul class="primary-nav__submenu">
+              <li><a href="/calculators/broadband/">Broadband</a></li>
+              <li><a href="/calculators/business/">Business</a></li>
+              <li><a href="/calculators/finance/">Finance</a></li>
+              <li><a href="/calculators/health/">Health</a></li>
+              <li><a href="/calculators/images/">Images</a></li>
+              <li><a href="/calculators/math/">Math</a></li>
+              <li><a href="/calculators/productivity/">Productivity</a></li>
+              <li><a href="/calculators/wedding/">Wedding</a></li>
+              <li class="primary-nav__submenu-sep"><a href="/calculators/">See all calculators</a></li>
+            </ul>
+          </li>
+          <li class="primary-nav__item"><a href="/about/" class="primary-nav__link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <main id="main-content">
+      <div class="container">
+        <nav aria-label="Breadcrumb" class="breadcrumbs">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/calculators/">Calculators</a></li>
+            <li><a href="/calculators/finance/">Finance</a></li>
+            <li aria-current="page">Debt Payoff Calculator</li>
+          </ol>
+        </nav>
+
+        <h1>Debt Payoff Calculator</h1>
+
+        <div class="eli5">
+          <h2>Explain like I'm 5</h2>
+          <p>Imagine you owe £3,000 on a credit card and you pay £100 a month. Some of that payment goes to interest first, and only the rest chips away at the actual debt. The calculator works out exactly how many months until it's gone, how much you'll have paid in interest, and — most importantly — how much faster you'd be done if you paid just a bit extra each month.</p>
+        </div>
+
+        <div class="calculator-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="balance">Current balance (£)</label>
+              <input type="number" id="balance" data-balance min="1" step="0.01" value="5000" placeholder="e.g. 5000">
+            </div>
+            <div class="form-group">
+              <label for="apr">Interest rate — APR (%)</label>
+              <input type="number" id="apr" data-apr min="0" step="0.1" value="18" placeholder="e.g. 18">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="monthly-payment">Monthly payment (£)</label>
+              <input type="number" id="monthly-payment" data-monthly-payment min="1" step="0.01" value="150" placeholder="e.g. 150">
+            </div>
+            <div class="form-group">
+              <label for="extra-payment">Extra monthly payment (£) <span class="label-hint">Optional — see how much you save</span></label>
+              <input type="number" id="extra-payment" data-extra-payment min="0" step="0.01" placeholder="e.g. 50">
+            </div>
+          </div>
+
+          <button type="button" class="btn btn--primary" data-calculate>Calculate payoff</button>
+          <p class="form-error" data-error hidden></p>
+        </div>
+
+        <div class="results-panel" data-breakdown hidden>
+          <h2>Payoff results</h2>
+          <table class="results-table">
+            <tbody>
+              <tr><th>First month: interest</th><td data-line-first-interest>—</td></tr>
+              <tr><th>First month: principal</th><td data-line-first-principal>—</td></tr>
+              <tr class="results-table__highlight"><th>Months to pay off</th><td data-line-months>—</td></tr>
+              <tr><th>Total interest paid</th><td data-line-interest>—</td></tr>
+              <tr><th>Total amount paid</th><td data-line-total>—</td></tr>
+            </tbody>
+          </table>
+
+          <div data-extra-block hidden style="margin-top:1.5rem">
+            <h3>With extra monthly payment</h3>
+            <table class="results-table">
+              <tbody>
+                <tr class="results-table__highlight"><th>Months to pay off</th><td data-line-extra-months>—</td></tr>
+                <tr class="results-table__highlight"><th>Months saved</th><td data-line-months-saved>—</td></tr>
+                <tr class="results-table__highlight"><th>Interest saved</th><td data-line-interest-saved>—</td></tr>
+                <tr><th>Total interest paid</th><td data-line-extra-interest>—</td></tr>
+                <tr><th>Total amount paid</th><td data-line-extra-total>—</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <details class="prove-it">
+            <summary>Show workings</summary>
+            <div data-prove-it-body class="prove-it__body"></div>
+          </details>
+        </div>
+
+        <section class="long-form">
+          <h2>Why minimum payments are expensive</h2>
+          <p>Credit card minimum payments are typically 1–2% of the balance, or a set amount — whichever is higher. At those levels, most of each payment goes to interest. Pay £50 on a £3,000 debt at 22% APR and around £55 of that month's interest is due — so you are not reducing the balance at all. Increasing to even £100 a month makes a dramatic difference.</p>
+          <p>The reason is compound interest working in reverse. The less principal you carry, the less interest accrues. Every pound of principal you eliminate early saves you multiple pounds in future interest.</p>
+
+          <h2>The case for a small extra payment</h2>
+          <p>An extra £50 a month on a £5,000 debt at 18% APR cuts around a year off the payoff time and saves several hundred pounds in interest. The benefit is front-loaded: those extra payments in the early months, when the balance is highest, prevent the most interest from ever accruing.</p>
+
+          <h2>This calculator is for a single debt</h2>
+          <p>If you have multiple debts, the two common approaches are the avalanche method (pay off highest-rate debt first — mathematically optimal) and the snowball method (pay off smallest balance first — psychologically easier to sustain). For now, run each debt separately and focus your extra payment on whichever balance has the highest interest rate.</p>
+        </section>
+
+        <section class="faq">
+          <h2>Common questions</h2>
+          <details>
+            <summary>How is debt payoff time calculated?</summary>
+            <p>The formula is: n = −log(1 − r × P ÷ M) ÷ log(1 + r), where P is the balance, r is the monthly interest rate (APR ÷ 12 ÷ 100), and M is the monthly payment. This calculator simulates each month to give an exact total interest figure.</p>
+          </details>
+          <details>
+            <summary>What happens if my payment only covers the interest?</summary>
+            <p>You never reduce the principal. The balance stays the same or grows. The calculator will flag this situation — increase your payment above the monthly interest figure to make progress.</p>
+          </details>
+          <details>
+            <summary>How much does an extra payment save?</summary>
+            <p>Even a small extra payment makes a disproportionately large difference early on, when most of each payment goes to interest. Enter an extra monthly payment to see the exact time and interest saved.</p>
+          </details>
+          <details>
+            <summary>What is APR?</summary>
+            <p>Annual Percentage Rate. It represents the yearly cost of a debt including interest and certain fees, expressed as a percentage. Find it on your credit card, loan, or overdraft statement.</p>
+          </details>
+        </section>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="ad-slot" data-ad-slot="sidebar" aria-hidden="true"></div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="site-footer-nav" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/calculators/">All calculators</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+      <section class="site-disclaimer" data-disclaimer aria-labelledby="disclaimer-heading">
+        <h2 id="disclaimer-heading">A quick, necessary word</h2>
+        <p>Every calculator on this site is built to give you a sensible, well-reasoned estimate. It is, however, exactly that: an estimate, for general information only. Nothing you see here is professional, legal, financial, medical, or tax advice, and it should not be treated as such.</p>
+        <p>Before you make a decision that actually matters, talk to a qualified professional who knows your specific situation: an accountant, a solicitor, a doctor, an IT consultant, whoever fits the question. They can factor in the bits a generic tool can't.</p>
+        <p>We take no liability and accept no responsibility for any loss, damage, or questionable life choice arising from acting on the numbers you see here. Use the results as a starting point for a better conversation, not as the final word.</p>
+        <p><strong>Affiliate disclosure:</strong> some links on this site are affiliate links. If you click through and buy or sign up for something, we may earn a small commission at no extra cost to you. It helps keep the calculators free and ad-light. We only recommend things we'd point a friend towards.</p>
+      </section>
+      <p class="site-copyright">&copy; 2026 WebCaretakers. All rights reserved.</p>
+      <p class="site-legal">WebCaretakers is a trading name of <a href="https://yeseo.io/" rel="noopener">Andrew Laws Associates Ltd</a>, registered in England and Wales (company no. 08602332). ICO registration ZA726704.</p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/calculators/debt-payoff.js"></script>
+  <script>
+  (function () {
+    'use strict';
+
+    var calcBtn     = document.querySelector('[data-calculate]');
+    var breakdown   = document.querySelector('[data-breakdown]');
+    var errorEl     = document.querySelector('[data-error]');
+    var proveItBody = document.querySelector('[data-prove-it-body]');
+    var extraBlock  = document.querySelector('[data-extra-block]');
+
+    function fmt(n)  { return '£' + n.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+    function fmtDuration(months) {
+      var y = Math.floor(months / 12), m = months % 12;
+      var parts = [];
+      if (y) parts.push(y + ' year' + (y !== 1 ? 's' : ''));
+      if (m) parts.push(m + ' month' + (m !== 1 ? 's' : ''));
+      return parts.join(' ') || '0 months';
+    }
+    function val(sel) { return parseFloat(document.querySelector(sel).value); }
+    function showError(msg) { errorEl.textContent = msg; errorEl.hidden = false; breakdown.hidden = true; }
+    function clearError()   { errorEl.hidden = true; errorEl.textContent = ''; }
+
+    calcBtn.addEventListener('click', function () {
+      clearError();
+      var extra = val('[data-extra-payment]');
+
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event: 'calculator_interaction', calculator_name: 'Debt Payoff Calculator' });
+
+      try {
+        var r = DebtPayoff.calculateDebtPayoff({
+          balance:        val('[data-balance]'),
+          apr:            val('[data-apr]'),
+          monthlyPayment: val('[data-monthly-payment]'),
+          extraPayment:   isNaN(extra) ? 0 : extra,
+        });
+
+        document.querySelector('[data-line-first-interest]').textContent  = fmt(r.firstMonthInterest);
+        document.querySelector('[data-line-first-principal]').textContent = fmt(r.firstMonthPrincipal);
+        document.querySelector('[data-line-months]').textContent          = fmtDuration(r.months);
+        document.querySelector('[data-line-interest]').textContent        = fmt(r.totalInterest);
+        document.querySelector('[data-line-total]').textContent           = fmt(r.totalPaid);
+
+        if (r.withExtra) {
+          extraBlock.hidden = false;
+          var e = r.withExtra;
+          document.querySelector('[data-line-extra-months]').textContent    = fmtDuration(e.months);
+          document.querySelector('[data-line-months-saved]').textContent    = fmtDuration(e.monthsSaved);
+          document.querySelector('[data-line-interest-saved]').textContent  = fmt(e.interestSaved);
+          document.querySelector('[data-line-extra-interest]').textContent  = fmt(e.totalInterest);
+          document.querySelector('[data-line-extra-total]').textContent     = fmt(e.totalPaid);
+        } else {
+          extraBlock.hidden = true;
+        }
+
+        var workings = 'Monthly rate r = ' + r.apr + '% ÷ 12 ÷ 100 = ' + (r.monthlyRate).toFixed(4) + '%\n'
+                     + 'n = −log(1 − r × balance ÷ payment) ÷ log(1 + r)\n'
+                     + 'n = ' + r.months + ' months\n'
+                     + 'Total interest = simulated month-by-month = ' + fmt(r.totalInterest);
+        proveItBody.textContent = workings;
+
+        window.dataLayer.push({
+          event:             'calculator_result',
+          calculator_name:   'Debt Payoff Calculator',
+          balance:           r.balance,
+          apr:               r.apr,
+          months:            r.months,
+          total_interest:    r.totalInterest,
+          months_saved:      r.withExtra ? r.withExtra.monthsSaved : 0,
+          interest_saved:    r.withExtra ? r.withExtra.interestSaved : 0,
+        });
+
+        breakdown.hidden = false;
+      } catch (err) {
+        showError(err.message);
+      }
+    });
+  })();
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

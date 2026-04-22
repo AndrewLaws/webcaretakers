@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Running Pace Calculator | WebCaretakers</title>
+  <meta name="description" content="Calculate your running pace, total finish time, or distance covered. Enter any two of pace, distance, and time. Metric and imperial. Race time predictions for 5K, 10K, half marathon and marathon.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/health/running-pace-calculator/">
+  <meta property="og:title" content="Running Pace Calculator | WebCaretakers">
+  <meta property="og:description" content="Work out your running pace, finish time, or distance. Metric and imperial, with race time predictions for 5K, 10K, half marathon and marathon.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/health/running-pace-calculator/">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var _stored = null;
+    try { _stored = localStorage.getItem('cookie-consent'); } catch (e) {}
+    var _initial = _stored === 'granted' ? 'granted' : 'denied';
+    gtag('consent', 'default', {
+      ad_storage: _initial, analytics_storage: _initial,
+      ad_user_data: _initial, ad_personalization: _initial,
+      functionality_storage: 'granted', security_storage: 'granted',
+      wait_for_update: 500
+    });
+  </script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Running Pace Calculator",
+    "url": "https://webcaretakers.com/calculators/health/running-pace-calculator/",
+    "description": "Calculate running pace from distance and time, finish time from pace and distance, or distance from pace and time. Includes race time predictions for 5K, 10K, half marathon and marathon.",
+    "applicationCategory": "HealthApplication",
+    "operatingSystem": "Any",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "WebCaretakers",
+      "url": "https://webcaretakers.com/"
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How is running pace calculated?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Pace is time divided by distance. If you run 10 km in 50 minutes, your pace is 50 ÷ 10 = 5 minutes per km. Conversely, time = pace × distance, and distance = time ÷ pace. This calculator works all three ways: fill in any two values and it calculates the third."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is a good running pace per km for beginners?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A comfortable beginner pace is typically 7:00 to 9:00 minutes per km, which is around 6.5 to 8.5 km/h. What matters more than the number is running at a pace where you can hold a conversation. Your pace will naturally improve with consistent training."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the difference between pace per km and pace per mile?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "One mile is 1.60934 km, so pace per mile is always longer than pace per km. A 5:00 /km pace equals roughly 8:03 /mile. Road races in the UK are measured in km; in the US, many runners use miles. This calculator shows both so you can compare times regardless of which system your race uses."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does the race time prediction work?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The predictions assume you maintain exactly the same pace for the entire race. In practice, most runners slow slightly over longer distances due to fatigue. The predictions are a useful starting point for planning race strategy, but treat them as a ceiling rather than a guarantee for longer events."
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-banner-heading" aria-describedby="cookie-banner-text" hidden>
+    <div class="cookie-banner__inner">
+      <h2 id="cookie-banner-heading" class="cookie-banner__heading">A quick word about cookies</h2>
+      <p id="cookie-banner-text" class="cookie-banner__text">
+        We use cookies for analytics, so we can see which calculators people actually use and which ones need work. Nothing creepy, nothing sold on. You can say yes, say no, or read the <a href="/privacy/">privacy policy</a> first. Your choice sticks.
+      </p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-reject>Reject</button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>Accept</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var KEY = 'cookie-consent';
+      var banner = document.querySelector('[data-cookie-banner]');
+      if (!banner) return;
+      var stored = null;
+      try { stored = localStorage.getItem(KEY); } catch (e) {}
+      if (stored !== 'granted' && stored !== 'denied') { banner.hidden = false; }
+      function record(choice) {
+        try { localStorage.setItem(KEY, choice); } catch (e) {}
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('consent', 'update', {
+          ad_storage: choice, analytics_storage: choice,
+          ad_user_data: choice, ad_personalization: choice
+        });
+        banner.hidden = true;
+      }
+      var accept = banner.querySelector('[data-cookie-accept]');
+      var reject = banner.querySelector('[data-cookie-reject]');
+      if (accept) accept.addEventListener('click', function () { record('granted'); });
+      if (reject) reject.addEventListener('click', function () { record('denied'); });
+    })();
+  </script>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">WebCaretakers</a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <ul class="primary-nav__list">
+          <li class="primary-nav__item primary-nav__item--has-menu">
+            <button type="button" class="primary-nav__link" data-menu-toggle aria-haspopup="true" aria-expanded="false">Calculators <span class="primary-nav__caret" aria-hidden="true">▾</span></button>
+            <ul class="primary-nav__submenu">
+              <li><a href="/calculators/broadband/">Broadband</a></li>
+              <li><a href="/calculators/business/">Business</a></li>
+              <li><a href="/calculators/finance/">Finance</a></li>
+              <li><a href="/calculators/health/">Health</a></li>
+              <li><a href="/calculators/images/">Images</a></li>
+              <li><a href="/calculators/math/">Math</a></li>
+              <li><a href="/calculators/productivity/">Productivity</a></li>
+              <li><a href="/calculators/wedding/">Wedding</a></li>
+              <li class="primary-nav__submenu-sep"><a href="/calculators/">See all calculators</a></li>
+            </ul>
+          </li>
+          <li class="primary-nav__item"><a href="/about/" class="primary-nav__link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <main id="main-content">
+      <div class="container">
+        <nav aria-label="Breadcrumb" class="breadcrumbs">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/calculators/">Calculators</a></li>
+            <li><a href="/calculators/health/">Health</a></li>
+            <li aria-current="page">Running Pace Calculator</li>
+          </ol>
+        </nav>
+
+        <h1>Running Pace Calculator</h1>
+
+        <div class="eli5">
+          <h2>Explain like I'm 5</h2>
+          <p>Pace, distance, and time are three numbers that always travel together. Know any two and you can work out the third. Ran 5 km in 25 minutes? Your pace was 5:00 per km. Planning to run at 6:00 per km for a half marathon? This calculator will tell you the finish time — and what that implies for a full marathon at the same effort.</p>
+        </div>
+
+        <div class="calculator-form">
+          <fieldset>
+            <legend>What do you want to calculate?</legend>
+            <div class="radio-group">
+              <label><input type="radio" name="mode" value="pace" data-mode checked> My pace (enter distance and time)</label>
+              <label><input type="radio" name="mode" value="time" data-mode> My finish time (enter distance and pace)</label>
+              <label><input type="radio" name="mode" value="distance" data-mode> Distance covered (enter pace and time)</label>
+            </div>
+          </fieldset>
+
+          <div data-group-distance>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="distance">Distance (km)</label>
+                <input type="number" id="distance" data-input-distance min="0.01" step="0.001" value="10" placeholder="e.g. 10">
+              </div>
+              <div class="form-group">
+                <label for="preset">Or pick a race</label>
+                <select id="preset" data-preset>
+                  <option value="">Custom distance</option>
+                  <option value="5">5K (5 km)</option>
+                  <option value="10">10K (10 km)</option>
+                  <option value="21.0975">Half Marathon (21.0975 km)</option>
+                  <option value="42.195">Marathon (42.195 km)</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div data-group-pace hidden>
+            <div class="form-group">
+              <label for="pace">Pace per km (MM:SS)</label>
+              <input type="text" id="pace" data-input-pace placeholder="e.g. 5:30" value="5:00">
+            </div>
+          </div>
+
+          <div data-group-time>
+            <div class="form-group">
+              <label for="time">Time (MM:SS or H:MM:SS)</label>
+              <input type="text" id="time" data-input-time placeholder="e.g. 50:00" value="50:00">
+            </div>
+          </div>
+
+          <button type="button" class="btn btn--primary" data-calculate>Calculate</button>
+          <p class="form-error" data-error hidden></p>
+        </div>
+
+        <div class="results-panel" data-breakdown hidden>
+          <h2>Results</h2>
+          <table class="results-table">
+            <tbody>
+              <tr class="results-table__highlight"><th>Pace</th><td data-line-pace>—</td></tr>
+              <tr><th>Pace per mile</th><td data-line-pace-mile>—</td></tr>
+              <tr class="results-table__highlight"><th>Finish time</th><td data-line-time>—</td></tr>
+              <tr><th>Distance</th><td data-line-distance>—</td></tr>
+              <tr><th>Speed</th><td data-line-speed-kmh>—</td></tr>
+              <tr><th>Speed (mph)</th><td data-line-speed-mph>—</td></tr>
+            </tbody>
+          </table>
+
+          <h3 style="margin-top:1.5rem">Race time predictions at this pace</h3>
+          <div class="table-scroll">
+            <table class="results-table">
+              <thead>
+                <tr><th>Race</th><th>Distance</th><th>Predicted time</th></tr>
+              </thead>
+              <tbody data-predictions-body></tbody>
+            </table>
+          </div>
+
+          <details class="prove-it">
+            <summary>Show workings</summary>
+            <div data-prove-it-body class="prove-it__body"></div>
+          </details>
+        </div>
+
+        <section class="long-form">
+          <h2>How pace, distance, and time relate</h2>
+          <p>The three are linked by a simple formula: pace = time ÷ distance. The same relationship rearranged gives time = pace × distance, and distance = time ÷ pace. This calculator applies whichever version of the formula you need based on which two inputs you provide.</p>
+          <p>Pace is expressed in minutes and seconds per kilometre (or per mile), which is more intuitive for runners than speed in km/h. A pace of 5:00 per km means you cover one kilometre every five minutes. Speed and pace are the inverse of each other: 5:00 /km equals 12 km/h.</p>
+
+          <h2>Pace per km vs pace per mile</h2>
+          <p>One mile is 1.60934 km, so pace per mile is always longer than pace per km. A 5:00 /km runner is doing 8:03 /mile. Road races in the UK are measured in kilometres; in the US and some older UK races, miles are used. The calculator shows both so you can compare results regardless of the system used on race day.</p>
+
+          <h2>What race time predictions assume</h2>
+          <p>The predictions in the table assume you maintain exactly the same pace for every kilometre of every race. That is a reasonable assumption for shorter distances but less realistic for a marathon, where most runners slow in the second half. Treat the marathon and half marathon predictions as targets rather than guarantees unless you have race experience to back them up.</p>
+        </section>
+
+        <section class="faq">
+          <h2>Common questions</h2>
+          <details>
+            <summary>How is running pace calculated?</summary>
+            <p>Pace = time ÷ distance. Ran 10 km in 50 minutes? Pace = 50 ÷ 10 = 5:00 per km. Time = pace × distance, and distance = time ÷ pace.</p>
+          </details>
+          <details>
+            <summary>What is a good running pace for beginners?</summary>
+            <p>A comfortable beginner pace is typically 7:00 to 9:00 per km (6.5 to 8.5 km/h). The right pace is one where you can hold a short conversation — if you cannot, slow down.</p>
+          </details>
+          <details>
+            <summary>What is the difference between pace per km and pace per mile?</summary>
+            <p>One mile is 1.60934 km, so pace per mile is always longer. A 5:00 /km pace equals approximately 8:03 /mile. Both are shown in the results.</p>
+          </details>
+          <details>
+            <summary>How accurate are the race time predictions?</summary>
+            <p>They assume a constant pace for the full distance. This is realistic for shorter distances. For half marathons and marathons, most runners slow — so treat the prediction as a pace-effort target rather than a guaranteed finish time.</p>
+          </details>
+        </section>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="ad-slot" data-ad-slot="sidebar" aria-hidden="true"></div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="site-footer-nav" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/calculators/">All calculators</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+      <section class="site-disclaimer" data-disclaimer aria-labelledby="disclaimer-heading">
+        <h2 id="disclaimer-heading">A quick, necessary word</h2>
+        <p>Every calculator on this site is built to give you a sensible, well-reasoned estimate. It is, however, exactly that: an estimate, for general information only. Nothing you see here is professional, legal, financial, medical, or tax advice, and it should not be treated as such.</p>
+        <p>Before you make a decision that actually matters, talk to a qualified professional who knows your specific situation: an accountant, a solicitor, a doctor, an IT consultant, whoever fits the question. They can factor in the bits a generic tool can't.</p>
+        <p>We take no liability and accept no responsibility for any loss, damage, or questionable life choice arising from acting on the numbers you see here. Use the results as a starting point for a better conversation, not as the final word.</p>
+        <p><strong>Affiliate disclosure:</strong> some links on this site are affiliate links. If you click through and buy or sign up for something, we may earn a small commission at no extra cost to you. It helps keep the calculators free and ad-light. We only recommend things we'd point a friend towards.</p>
+      </section>
+      <p class="site-copyright">&copy; 2026 WebCaretakers. All rights reserved.</p>
+      <p class="site-legal">WebCaretakers is a trading name of <a href="https://yeseo.io/" rel="noopener">Andrew Laws Associates Ltd</a>, registered in England and Wales (company no. 08602332). ICO registration ZA726704.</p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/calculators/running-pace.js"></script>
+  <script>
+  (function () {
+    'use strict';
+
+    var calcBtn         = document.querySelector('[data-calculate]');
+    var breakdown       = document.querySelector('[data-breakdown]');
+    var errorEl         = document.querySelector('[data-error]');
+    var proveItBody     = document.querySelector('[data-prove-it-body]');
+    var predictionsBody = document.querySelector('[data-predictions-body]');
+    var presetSel       = document.querySelector('[data-preset]');
+    var groupDistance   = document.querySelector('[data-group-distance]');
+    var groupPace       = document.querySelector('[data-group-pace]');
+    var groupTime       = document.querySelector('[data-group-time]');
+
+    function getMode() {
+      var radios = document.querySelectorAll('[data-mode]');
+      for (var i = 0; i < radios.length; i++) {
+        if (radios[i].checked) return radios[i].value;
+      }
+      return 'pace';
+    }
+
+    function updateGroups() {
+      var mode = getMode();
+      groupDistance.hidden = (mode === 'distance');
+      groupPace.hidden     = (mode === 'pace');
+      groupTime.hidden     = (mode === 'time');
+    }
+
+    document.querySelectorAll('[data-mode]').forEach(function (r) {
+      r.addEventListener('change', function () {
+        updateGroups();
+        breakdown.hidden = true;
+      });
+    });
+
+    presetSel.addEventListener('change', function () {
+      if (presetSel.value) {
+        document.querySelector('[data-input-distance]').value = presetSel.value;
+      }
+    });
+
+    function showError(msg) { errorEl.textContent = msg; errorEl.hidden = false; breakdown.hidden = true; }
+    function clearError()   { errorEl.hidden = true; errorEl.textContent = ''; }
+
+    calcBtn.addEventListener('click', function () {
+      clearError();
+      var mode     = getMode();
+      var distVal  = parseFloat(document.querySelector('[data-input-distance]').value);
+      var paceStr  = document.querySelector('[data-input-pace]').value.trim();
+      var timeStr  = document.querySelector('[data-input-time]').value.trim();
+      var paceSecs = RunningPace.parseTime(paceStr);
+      var timeSecs = RunningPace.parseTime(timeStr);
+      var opts     = {};
+
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event: 'calculator_interaction', calculator_name: 'Running Pace Calculator', mode: mode });
+
+      try {
+        if (mode === 'pace') {
+          if (isNaN(distVal) || distVal <= 0) throw new Error('Enter a valid distance in km.');
+          if (isNaN(timeSecs) || timeSecs <= 0) throw new Error('Enter a valid time, e.g. 50:00 or 1:45:30.');
+          opts = { distanceKm: distVal, timeSecs: timeSecs };
+        } else if (mode === 'time') {
+          if (isNaN(distVal) || distVal <= 0) throw new Error('Enter a valid distance in km.');
+          if (isNaN(paceSecs) || paceSecs <= 0) throw new Error('Enter a valid pace, e.g. 5:30.');
+          opts = { distanceKm: distVal, paceSecsPerKm: paceSecs };
+        } else {
+          if (isNaN(paceSecs) || paceSecs <= 0) throw new Error('Enter a valid pace, e.g. 5:30.');
+          if (isNaN(timeSecs) || timeSecs <= 0) throw new Error('Enter a valid time, e.g. 50:00 or 1:45:30.');
+          opts = { paceSecsPerKm: paceSecs, timeSecs: timeSecs };
+        }
+
+        var r = RunningPace.calculateRunningPace(opts);
+
+        document.querySelector('[data-line-pace]').textContent       = r.paceFormatted + ' /km';
+        document.querySelector('[data-line-pace-mile]').textContent  = r.pacePerMileFormatted + ' /mi';
+        document.querySelector('[data-line-time]').textContent       = r.timeFormatted;
+        document.querySelector('[data-line-distance]').textContent   = r.distanceKm + ' km';
+        document.querySelector('[data-line-speed-kmh]').textContent  = r.speedKmh + ' km/h';
+        document.querySelector('[data-line-speed-mph]').textContent  = r.speedMph + ' mph';
+
+        // Race predictions table
+        predictionsBody.innerHTML = '';
+        ['5k', '10k', 'half', 'marathon'].forEach(function (key) {
+          var pred = r.predictions[key];
+          var row  = document.createElement('tr');
+          row.innerHTML = '<td>' + pred.label + '</td>'
+                        + '<td>' + pred.distKm + ' km</td>'
+                        + '<td>' + pred.timeFormatted + '</td>';
+          predictionsBody.appendChild(row);
+        });
+
+        // Show workings
+        var modeLabel = mode === 'pace'     ? 'Pace = time ÷ distance'
+                      : mode === 'time'     ? 'Time = pace × distance'
+                      : 'Distance = time ÷ pace';
+        proveItBody.textContent = 'Mode: ' + modeLabel + '\n'
+          + 'Distance: ' + r.distanceKm + ' km\n'
+          + 'Time: ' + r.timeFormatted + '\n'
+          + 'Pace: ' + r.paceSecsPerKm + ' s/km = ' + r.paceFormatted + ' /km\n'
+          + 'Pace per mile: ' + r.pacePerMileFormatted + ' /mi\n'
+          + 'Speed: 3600 ÷ ' + r.paceSecsPerKm + ' = ' + r.speedKmh + ' km/h';
+
+        window.dataLayer.push({
+          event:            'calculator_result',
+          calculator_name:  'Running Pace Calculator',
+          mode:             mode,
+          pace_secs_per_km: r.paceSecsPerKm,
+          distance_km:      r.distanceKm,
+          time_secs:        r.timeSecs,
+          speed_kmh:        r.speedKmh,
+        });
+
+        breakdown.hidden = false;
+      } catch (err) {
+        showError(err.message);
+      }
+    });
+
+    // Initialise group visibility on load
+    updateGroups();
+  })();
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>
