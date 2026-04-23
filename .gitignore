@@ -28,3 +28,4 @@ tmp/
 # Test output
 test-results/
 playwright-report/
+.claude/

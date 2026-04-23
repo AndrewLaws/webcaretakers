@@ -150,6 +150,11 @@
           "slug": "website-speed-budget-calculator",
           "name": "Website Performance Budget Calculator",
           "summary": "Set realistic page-weight and Core Web Vitals targets for your site type and audience. See what a slow site is costing you in lost revenue."
+        },
+        {
+          "slug": "it-support-build-vs-buy-calculator",
+          "name": "IT Support Build vs Buy Calculator",
+          "summary": "Compare the annual cost of hiring in-house IT support against an outsourced managed service. Shows annual totals, monthly equivalents, the verdict at your headcount, and the break-even users."
         }
       ]
     },
