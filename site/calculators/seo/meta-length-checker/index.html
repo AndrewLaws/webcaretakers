@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>URL Slug Generator | WebCaretakers</title>
-  <meta name="description" content="Turn any heading into a clean URL slug: lowercase, hyphenated, ASCII-safe, optionally trimmed to length. Runs in your browser, nothing uploaded.">
-  <link rel="canonical" href="https://webcaretakers.com/calculators/seo/url-slug-generator/">
-  <meta property="og:title" content="URL Slug Generator | WebCaretakers">
-  <meta property="og:description" content="Clean, ASCII-safe URL slugs from any heading, with optional stop-word removal and length cap.">
+  <title>Meta Title and Description Length Checker | WebCaretakers</title>
+  <meta name="description" content="Check whether your SEO title and meta description fit inside Google's display limits in characters and approximate pixels. Live feedback, nothing uploaded.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/seo/meta-length-checker/">
+  <meta property="og:title" content="Meta Title and Description Length Checker | WebCaretakers">
+  <meta property="og:description" content="Check SEO title and meta description against Google's display limits in characters and pixels.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://webcaretakers.com/calculators/seo/url-slug-generator/">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/seo/meta-length-checker/">
   <meta name="robots" content="index, follow">
   <link rel="stylesheet" href="/assets/css/main.css">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -39,9 +39,9 @@
   {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    "name": "URL Slug Generator",
-    "url": "https://webcaretakers.com/calculators/seo/url-slug-generator/",
-    "description": "Turn any heading into a clean, ASCII-safe URL slug with optional stop-word removal and length cap.",
+    "name": "Meta Title and Description Length Checker",
+    "url": "https://webcaretakers.com/calculators/seo/meta-length-checker/",
+    "description": "Check SEO title and meta description against Google's display limits in characters and approximate pixel width.",
     "applicationCategory": "UtilitiesApplication",
     "operatingSystem": "Any",
     "isPartOf": {
@@ -59,26 +59,26 @@
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "What makes a good URL slug?",
+        "name": "How long should a meta title be?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Short, lowercase, descriptive, hyphen-separated, ASCII-only, and stable. Google prefers readable slugs over opaque IDs. Three to five meaningful words is usually enough. Strip stop words (the, a, of, and) and any punctuation. Keep numbers if they carry meaning."
+          "text": "Google truncates titles at roughly 600 pixels on desktop, which works out to around 60 characters depending on the letters used. A title of narrow characters (lots of i's and l's) can go longer; a title of wide characters (lots of M's and W's) should stay shorter. Aim for 50 to 60 characters."
         }
       },
       {
         "@type": "Question",
-        "name": "Hyphens or underscores?",
+        "name": "How long should a meta description be?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Hyphens. Google has been explicit about this for years: hyphens separate words, underscores do not. A slug with underscores reads as one long word to the crawler. Use hyphens unless you have a platform reason not to."
+          "text": "Google truncates descriptions at roughly 920 pixels on desktop (about 155 to 160 characters). Mobile is slightly tighter. Aim for 140 to 160 characters. Descriptions shorter than about 70 characters leave search snippet space unused, which is a missed opportunity to pitch the click."
         }
       },
       {
         "@type": "Question",
-        "name": "How long should a slug be?",
+        "name": "Why do you measure in pixels as well as characters?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Aim for 50 to 60 characters or fewer. Long slugs get truncated in search results and are harder to share. The tool has a length cap that trims on a word boundary so you never end on a partial word."
+          "text": "Because Google truncates on pixel width, not character count. A title of 60 narrow characters and a title of 60 wide characters are not the same size on screen. The pixel estimate uses an approximate width per character close to Google's SERP font; it is a heuristic, not a render-perfect measure, but it is the standard approach in SEO tools."
         }
       }
     ]
@@ -165,52 +165,52 @@
             <li><a href="/">Home</a></li>
             <li><a href="/calculators/">Calculators</a></li>
             <li><a href="/calculators/seo/">SEO</a></li>
-            <li aria-current="page">URL Slug Generator</li>
+            <li aria-current="page">Meta Length Checker</li>
           </ol>
         </nav>
 
-        <h1>URL Slug Generator</h1>
+        <h1>Meta Title and Description Length Checker</h1>
 
         <div class="eli5">
           <h2>Explain like I'm 5 (what even is this tool?)</h2>
-          <p>Type or paste a heading. It gives you back the bit that goes on the end of a web address: lowercase, joined with hyphens, no weird characters, no accents. The thing that would turn "The Best Cafés in London" into "best-cafes-in-london".</p>
+          <p>Paste your page title and description in. It tells you whether they'll fit inside the space Google shows in the search results, before Google adds an ellipsis and cuts off the bit you care about. Measured in characters and in approximate pixel width, because Google truncates on pixels.</p>
         </div>
 
         <section data-calculator class="calculator-card">
           <form class="calc-form" novalidate>
             <div class="calc-row">
-              <label for="slug-text">Heading or title<span class="calc-hint">Type or paste in. Slug updates live.</span></label>
-              <input type="text" id="slug-text" data-text placeholder="e.g. How to Write a Great Blog Post in 2025">
+              <label for="meta-title">Meta title<span class="calc-hint">Updates as you type. Target: under 60 characters / 600 px.</span></label>
+              <input type="text" id="meta-title" data-title placeholder="e.g. How to Write a Good Meta Description in 2025">
             </div>
-            <div class="calc-row calc-row--inline">
-              <label for="slug-sep">Separator</label>
-              <select id="slug-sep" data-separator>
-                <option value="-" selected>Hyphen (-)</option>
-                <option value="_">Underscore (_)</option>
-              </select>
-            </div>
-            <div class="calc-row calc-row--inline">
-              <label for="slug-max">Maximum length (characters)</label>
-              <input type="number" id="slug-max" min="0" step="1" value="60" data-max-length>
-            </div>
-            <div class="calc-row calc-row--checkbox">
-              <label><input type="checkbox" data-remove-stops> Remove common stop words (the, a, of, and, etc.)</label>
+            <div class="calc-row">
+              <label for="meta-desc">Meta description<span class="calc-hint">Target: 140 to 160 characters / under 920 px.</span></label>
+              <textarea id="meta-desc" rows="4" data-description placeholder="e.g. Clear, honest guidance on writing meta descriptions that earn the click in Google search results, with examples and length targets."></textarea>
             </div>
             <p class="calc-error" data-error hidden></p>
           </form>
 
           <div class="calculator-results" data-breakdown>
-            <h2>Your slug</h2>
-            <p class="result-display"><code data-slug-out>—</code></p>
-
+            <h2>Title</h2>
+            <p class="result-display"><strong data-title-status>—</strong> · <span data-title-chars>0</span> chars · <span data-title-px>0</span> px</p>
             <div class="mort-breakdown">
-              <h3>Details</h3>
               <ul>
-                <li class="mort-breakdown__total"><span>Slug</span><strong data-line-slug>—</strong></li>
-                <li><span>Length</span><strong data-line-length>0 characters</strong></li>
-                <li><span>Words kept</span><strong data-line-words>0</strong></li>
-                <li><span>Words dropped</span><strong data-line-dropped>0</strong></li>
-                <li><span>Truncated?</span><strong data-line-truncated>No</strong></li>
+                <li class="mort-breakdown__total"><span>Status</span><strong data-title-note>Nothing to check yet.</strong></li>
+                <li><span>Characters used</span><strong data-title-chars-line>0 / 60</strong></li>
+                <li><span>Pixels used</span><strong data-title-px-line>0 / 600</strong></li>
+                <li><span>Characters remaining</span><strong data-title-chars-rem>60</strong></li>
+                <li><span>Pixels remaining</span><strong data-title-px-rem>600</strong></li>
+              </ul>
+            </div>
+
+            <h2>Description</h2>
+            <p class="result-display"><strong data-desc-status>—</strong> · <span data-desc-chars>0</span> chars · <span data-desc-px>0</span> px</p>
+            <div class="mort-breakdown">
+              <ul>
+                <li class="mort-breakdown__total"><span>Status</span><strong data-desc-note>Nothing to check yet.</strong></li>
+                <li><span>Characters used</span><strong data-desc-chars-line>0 / 160</strong></li>
+                <li><span>Pixels used</span><strong data-desc-px-line>0 / 920</strong></li>
+                <li><span>Characters remaining</span><strong data-desc-chars-rem>160</strong></li>
+                <li><span>Pixels remaining</span><strong data-desc-px-rem>920</strong></li>
               </ul>
             </div>
 
@@ -222,37 +222,34 @@
         </section>
 
         <section class="long-form">
-          <h2>Writing a slug that earns its keep</h2>
-          <p>A good URL slug is short, readable, and describes the page in three to five meaningful words. It should be stable: once indexed, changing a slug costs you link equity unless you manage the redirect carefully. Don't stuff keywords, and don't be cute. "best-running-shoes-2025" beats "top-10-must-have-amazing-running-shoes-you-need-now".</p>
-          <p>Stop words (the, a, of, and, with, for) add length without adding meaning in slug form. Strip them unless the meaning depends on them. "cat-in-the-hat" needs the stop words; "history-of-rome" does not.</p>
+          <h2>What Google actually shows</h2>
+          <p>On desktop search, Google reserves roughly 600 pixels for the blue title link and 920 pixels across two lines for the description snippet. Anything longer gets an ellipsis. On mobile, both figures are tighter. Because it's a pixel limit and not a character limit, the same 60-character title can fit or get cut depending on which letters you used. A title full of narrow letters ("illicit litigation") is much smaller on screen than one full of wide ones ("WOMAN MAKES MOVES").</p>
 
-          <h2>Hyphens, underscores and the Google line</h2>
-          <p>Use hyphens. Google's position on this has been public for well over a decade: hyphens separate words, underscores do not. Underscores exist in the tool because some platforms (notably certain older CMSes) require them for legacy reasons. If you have a choice, pick the hyphen.</p>
-
-          <h2>Accented characters and transliteration</h2>
-          <p>Browsers and modern servers handle Unicode URLs, but a slug like /café-münster/ will render as percent-encoded noise in shares, email clients, and old software. The tool transliterates accents to their nearest ASCII equivalent (café → cafe, Münster → munster), keeping the slug portable and readable.</p>
+          <h2>Target lengths in plain English</h2>
+          <p>Titles: aim for 50 to 60 characters. Under 50 and you're wasting space. Over 60 and you risk truncation. Descriptions: aim for 140 to 160 characters. Under 70 and Google may rewrite the description for you. Over 160 and the tail gets cut.</p>
+          <p>Neither figure matters more than the content itself. A mediocre title that fits perfectly will lose to a great title that just scrapes the line. Write for the human first, then check it fits.</p>
 
           <h2>Related tools</h2>
-          <p>For checking title and meta description lengths, see the <a href="/calculators/seo/meta-length-checker/">meta length checker</a> (coming soon). For pure word and character counting, use the <a href="/calculators/writing/word-count/">Word Count Tool</a>.</p>
+          <p>For cleaning up the URL slug that goes with this page, see the <a href="/calculators/seo/url-slug-generator/">URL Slug Generator</a>. For a general-purpose word and character counter with fit-checks for social platforms, see the <a href="/calculators/writing/word-count/">Word Count Tool</a>.</p>
         </section>
 
         <section class="faq">
           <h2>Common questions</h2>
           <details>
-            <summary>What makes a good URL slug?</summary>
-            <p>Short, lowercase, hyphen-separated, three to five meaningful words, no punctuation. Google prefers readable slugs.</p>
+            <summary>How long should a meta title be?</summary>
+            <p>Around 50 to 60 characters. Google's desktop SERP title caps at roughly 600 pixels wide, which is character-width dependent.</p>
           </details>
           <details>
-            <summary>Hyphens or underscores?</summary>
-            <p>Hyphens. Google treats them as word separators; underscores are read as part of the word.</p>
+            <summary>How long should a meta description be?</summary>
+            <p>140 to 160 characters. Shorter than 70 and Google often rewrites it. Longer than 160 gets truncated.</p>
           </details>
           <details>
-            <summary>How long should a slug be?</summary>
-            <p>50 to 60 characters or fewer. The tool trims on a word boundary so you never end on a partial word.</p>
+            <summary>Why measure pixels?</summary>
+            <p>Because Google truncates on pixel width, not character count. The pixel estimate uses average widths for the SERP font; it's close but not identical to how Google renders it.</p>
           </details>
           <details>
-            <summary>Will this change my existing URLs?</summary>
-            <p>No. It only generates slug text. Applying it to a live page is a platform job, and changing a published URL means setting up a 301 redirect so you don't lose traffic.</p>
+            <summary>Does Google always use my description?</summary>
+            <p>No. Google may rewrite a description based on the query, especially if your description is short or missing keywords. Writing a good one still helps.</p>
           </details>
         </section>
       </div>
@@ -287,55 +284,63 @@
     </div>
   </footer>
 
-  <script src="/assets/js/calculators/url-slug.js"></script>
+  <script src="/assets/js/calculators/meta-length.js"></script>
   <script>
   (function () {
     'use strict';
 
-    var textIn    = document.querySelector('[data-text]');
-    var sepIn     = document.querySelector('[data-separator]');
-    var maxIn     = document.querySelector('[data-max-length]');
-    var stopsIn   = document.querySelector('[data-remove-stops]');
-    var errorEl   = document.querySelector('[data-error]');
+    var titleIn  = document.querySelector('[data-title]');
+    var descIn   = document.querySelector('[data-description]');
+    var errorEl  = document.querySelector('[data-error]');
     var proveBody = document.querySelector('[data-prove-it-body]');
 
     var fired = false;
 
+    function paintTitle(r) {
+      document.querySelector('[data-title-status]').textContent = r.status;
+      document.querySelector('[data-title-note]').textContent   = r.note;
+      document.querySelector('[data-title-chars]').textContent  = r.characters;
+      document.querySelector('[data-title-px]').textContent     = r.pixelWidth;
+      document.querySelector('[data-title-chars-line]').textContent = r.characters + ' / ' + r.charCap;
+      document.querySelector('[data-title-px-line]').textContent    = r.pixelWidth + ' / ' + r.pxCap;
+      document.querySelector('[data-title-chars-rem]').textContent  = r.remainingChars;
+      document.querySelector('[data-title-px-rem]').textContent     = r.remainingPx;
+    }
+    function paintDesc(r) {
+      document.querySelector('[data-desc-status]').textContent = r.status;
+      document.querySelector('[data-desc-note]').textContent   = r.note;
+      document.querySelector('[data-desc-chars]').textContent  = r.characters;
+      document.querySelector('[data-desc-px]').textContent     = r.pixelWidth;
+      document.querySelector('[data-desc-chars-line]').textContent = r.characters + ' / ' + r.charCap;
+      document.querySelector('[data-desc-px-line]').textContent    = r.pixelWidth + ' / ' + r.pxCap;
+      document.querySelector('[data-desc-chars-rem]').textContent  = r.remainingChars;
+      document.querySelector('[data-desc-px-rem]').textContent     = r.remainingPx;
+    }
+
     function run() {
       errorEl.hidden = true;
       try {
-        var r = UrlSlug.generateSlug({
-          text:            textIn.value,
-          separator:       sepIn.value,
-          maxLength:       parseInt(maxIn.value, 10) || 0,
-          removeStopWords: stopsIn.checked,
+        var r = MetaLength.checkMeta({
+          title:       titleIn.value,
+          description: descIn.value,
         });
-
-        var display = r.slug || '—';
-        document.querySelector('[data-slug-out]').textContent = display;
-        document.querySelector('[data-line-slug]').textContent = display;
-        document.querySelector('[data-line-length]').textContent = r.slug.length + ' character' + (r.slug.length === 1 ? '' : 's');
-        document.querySelector('[data-line-words]').textContent = r.wordCount.toLocaleString('en-GB');
-        document.querySelector('[data-line-dropped]').textContent = r.dropped.length + (r.dropped.length ? ' (' + r.dropped.join(', ') + ')' : '');
-        document.querySelector('[data-line-truncated]').textContent = r.truncated ? 'Yes' : 'No';
+        paintTitle(r.title);
+        paintDesc(r.description);
 
         proveBody.textContent =
-            'Input:        ' + (r.original || '(empty)') + '\n'
-          + 'Separator:    ' + sepIn.value + '\n'
-          + 'Max length:   ' + (parseInt(maxIn.value, 10) || 0) + '\n'
-          + 'Stop-words:   ' + (stopsIn.checked ? 'removed' : 'kept') + '\n'
-          + 'Words kept:   ' + r.wordCount + '\n'
-          + 'Words dropped:' + (r.dropped.length ? ' ' + r.dropped.join(', ') : ' none') + '\n'
-          + 'Slug:         ' + (r.slug || '(empty)');
+            'Title:       ' + r.title.characters + ' chars, ' + r.title.pixelWidth + ' px — ' + r.title.status + '\n'
+          + 'Description: ' + r.description.characters + ' chars, ' + r.description.pixelWidth + ' px — ' + r.description.status + '\n\n'
+          + 'Caps: title 60 chars / 600 px; description 160 chars / 920 px.';
 
         window.dataLayer = window.dataLayer || [];
-        if (!fired && r.slug.length > 0) {
+        if (!fired && (r.title.characters > 0 || r.description.characters > 0)) {
           fired = true;
-          window.dataLayer.push({ event: 'calculator_interaction', calculator_name: 'URL Slug Generator' });
+          window.dataLayer.push({ event: 'calculator_interaction', calculator_name: 'Meta Length Checker' });
           window.dataLayer.push({
             event:           'calculator_result',
-            calculator_name: 'URL Slug Generator',
-            slug_length:     r.slug.length,
+            calculator_name: 'Meta Length Checker',
+            title_chars:     r.title.characters,
+            desc_chars:      r.description.characters,
           });
         }
       } catch (err) {
@@ -344,10 +349,8 @@
       }
     }
 
-    textIn.addEventListener('input', run);
-    sepIn.addEventListener('change', run);
-    maxIn.addEventListener('input', run);
-    stopsIn.addEventListener('change', run);
+    titleIn.addEventListener('input', run);
+    descIn.addEventListener('input', run);
     run();
   })();
   </script>

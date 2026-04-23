@@ -144,6 +144,11 @@
           "slug": "url-slug-generator",
           "name": "URL Slug Generator",
           "summary": "Turn any heading into a clean, ASCII-safe, hyphen-separated URL slug. Optional stop-word stripping and length cap."
+        },
+        {
+          "slug": "meta-length-checker",
+          "name": "Meta Length Checker",
+          "summary": "Check SEO title and meta description against Google's display limits in characters and approximate pixel width."
         }
       ]
     },

@@ -265,6 +265,14 @@
     {
       "phrase": "SEO calculators",
       "url": "/calculators/seo/"
+    },
+    {
+      "phrase": "Meta Length Checker",
+      "url": "/calculators/seo/meta-length-checker/"
+    },
+    {
+      "phrase": "meta length checker",
+      "url": "/calculators/seo/meta-length-checker/"
     }
   ]
 }

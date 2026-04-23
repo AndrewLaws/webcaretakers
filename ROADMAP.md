@@ -432,7 +432,7 @@ Note: developer-centric utilities (Base64, JSON formatter, Unix timestamp, JWT d
 - [ ] Text Case Converter (camelCase, snake_case, UPPER CASE, Title Case, sentence case — writer and developer crossover)
 - [ ] Text Diff Tool (paste two blocks of text, see what changed — proofreading, contract revisions, code review)
 - [x] URL Slug Generator and Validator - `/calculators/seo/url-slug-generator/`
-- [ ] Meta Title and Description Length Checker
+- [x] Meta Title and Description Length Checker - `/calculators/seo/meta-length-checker/`
 - [ ] Colour Contrast Ratio Checker (WCAG)
 - [ ] Base64 Encoder and Decoder (lower priority — see note above)
 - [ ] Unix Timestamp to Human-Readable Date Converter (lower priority — see note above)
