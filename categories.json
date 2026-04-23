@@ -80,19 +80,19 @@
           "summary": "See how a starting balance and regular contributions grow with compound interest, with optional inflation adjustment and a year-by-year breakdown. Currency is a toggle."
         },
         {
-          "slug": "roi-calculator",
-          "name": "ROI Calculator",
-          "summary": "Work out the return on any investment as a percentage, net profit and annualised return (CAGR). Works for property, shares, business investments, ad spend and anything else with a cost and a return."
+          "slug": "debt-payoff-calculator",
+          "name": "Debt Payoff Calculator",
+          "summary": "Work out how long it takes to clear a debt and how much interest you pay. Add an extra monthly payment to see exactly how much time and interest you save."
         },
         {
-          "slug": "seo-roi-calculator",
-          "name": "SEO ROI Calculator",
-          "summary": "Enter your monthly SEO cost, current and projected organic traffic, and conversion data to see ROI, monthly profit, and the minimum sessions needed to break even."
+          "slug": "uk-salary-tax-calculator",
+          "name": "UK Salary Tax Calculator",
+          "summary": "UK take-home pay calculator for 2025/26. Enter your gross salary to see income tax, National Insurance, student loan deductions and monthly take-home. England, Wales and Northern Ireland rates."
         },
         {
-          "slug": "email-marketing-roi-calculator",
-          "name": "Email Marketing ROI Calculator",
-          "summary": "Enter your list size, send frequency, open and click rates, and conversion data to see ROI, monthly profit, cost per conversion, and the minimum list size needed to cover your costs."
+          "slug": "uk-stamp-duty-calculator",
+          "name": "UK Stamp Duty Calculator",
+          "summary": "UK Stamp Duty Land Tax calculator for England and Northern Ireland, 2025/26 rates. Covers standard purchases, first-time buyers and additional properties, with the full band breakdown."
         },
         {
           "slug": "tip-calculator",
@@ -107,6 +107,53 @@
       ]
     },
     {
+      "slug": "business",
+      "name": "Business",
+      "tagline": "Numbers for running, pricing, and growing a business.",
+      "tools": [
+        {
+          "slug": "break-even-calculator",
+          "name": "Break-Even Calculator",
+          "summary": "Calculate your break-even point in units and revenue. Enter fixed costs, variable cost per unit, and selling price to see exactly how many sales you need before you start making a profit."
+        },
+        {
+          "slug": "profit-margin-calculator",
+          "name": "Profit Margin Calculator",
+          "summary": "Calculate gross and net profit margin from revenue and costs, or find the selling price needed to hit a target margin. Shows markup versus margin clearly."
+        },
+        {
+          "slug": "freelance-day-rate-calculator",
+          "name": "Freelance Day Rate Calculator",
+          "summary": "Work out the day rate you need to charge as a freelancer or contractor. Enter your income target, billable days, expenses, pension, and downtime to get a realistic day and hourly rate."
+        },
+        {
+          "slug": "uk-vat-calculator",
+          "name": "UK VAT Calculator",
+          "summary": "Add or remove UK VAT at standard (20%), reduced (5%) or zero (0%) rates. See the net, VAT amount and gross instantly."
+        },
+        {
+          "slug": "roi-calculator",
+          "name": "ROI Calculator",
+          "summary": "Work out your return on investment as a percentage, net profit and annualised return (CAGR). Works for property, shares, business investments, ad spend and anything else with a cost and a return."
+        },
+        {
+          "slug": "seo-roi-calculator",
+          "name": "SEO ROI Calculator",
+          "summary": "Enter your monthly SEO cost, current and projected organic traffic, and conversion data to see ROI, monthly profit, and the minimum sessions needed to break even."
+        },
+        {
+          "slug": "email-marketing-roi-calculator",
+          "name": "Email Marketing ROI Calculator",
+          "summary": "Enter your list size, send frequency, open and click rates, and conversion data to see ROI, monthly profit, cost per conversion, and the minimum list size needed to cover your costs."
+        },
+        {
+          "slug": "website-speed-budget-calculator",
+          "name": "Website Performance Budget Calculator",
+          "summary": "Set realistic page-weight and Core Web Vitals targets for your site type and audience. See what a slow site is costing you in lost revenue."
+        }
+      ]
+    },
+    {
       "slug": "health",
       "name": "Health",
       "tagline": "Quick health and fitness numbers, with the caveats made plain.",
@@ -115,6 +162,16 @@
           "slug": "bmi-calculator",
           "name": "BMI Calculator",
           "summary": "Work out your body mass index in metric or imperial units, with the WHO category and an honest note on what BMI can and cannot tell you."
+        },
+        {
+          "slug": "calorie-calculator",
+          "name": "Calorie Calculator",
+          "summary": "Calculate your Basal Metabolic Rate (BMR) and daily calorie needs based on your age, weight, height and activity level. See how many calories to eat to lose, maintain or gain weight."
+        },
+        {
+          "slug": "running-pace-calculator",
+          "name": "Running Pace Calculator",
+          "summary": "Calculate your running pace, total finish time, or distance covered. Enter any two of pace, distance, and time. Metric and imperial, with race time predictions for 5K, 10K, half marathon and marathon."
         }
       ]
     },
