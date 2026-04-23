@@ -285,6 +285,14 @@
     {
       "phrase": "conversion calculators",
       "url": "/calculators/conversions/"
+    },
+    {
+      "phrase": "Suffolk Lorem Ipsum Generator",
+      "url": "/calculators/writing/suffolk-lorem-ipsum/"
+    },
+    {
+      "phrase": "Suffolk lorem ipsum",
+      "url": "/calculators/writing/suffolk-lorem-ipsum/"
     }
   ]
 }

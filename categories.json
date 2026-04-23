@@ -226,6 +226,11 @@
           "slug": "word-count",
           "name": "Word Count Tool",
           "summary": "Live word, character, sentence and paragraph counts for pasted text, with fit-checks for tweet, meta description, SMS and SEO title limits."
+        },
+        {
+          "slug": "suffolk-lorem-ipsum",
+          "name": "Suffolk Lorem Ipsum Generator",
+          "summary": "Placeholder text in Suffolk dialect, drawn from Charlie Haylock's work and the East Anglian dialect tradition."
         }
       ]
     }
