@@ -182,6 +182,18 @@
           "summary": "Enter your wedding date to find out which anniversary you are celebrating, the traditional and modern gift themes, and your upcoming milestone anniversaries."
         }
       ]
+    },
+    {
+      "slug": "writing",
+      "name": "Writing",
+      "tagline": "Tools for writers, editors, and anyone working with words.",
+      "tools": [
+        {
+          "slug": "read-time-calculator",
+          "name": "Read Time Calculator",
+          "summary": "Paste any text to see word count, character count, sentence count, and estimated reading time silently and aloud. Useful for blog posts, scripts, speeches, and podcast outlines."
+        }
+      ]
     }
   ]
 }

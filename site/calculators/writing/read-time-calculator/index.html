@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Date Difference Calculator | WebCaretakers</title>
-  <meta name="description" content="Work out how many days, weeks, months or years sit between two dates. Handy for project deadlines, anniversaries, and any other 'how long?' question.">
-  <link rel="canonical" href="https://webcaretakers.com/calculators/fun/date-difference-calculator/">
-  <meta property="og:title" content="Date Difference Calculator | WebCaretakers">
-  <meta property="og:description" content="How many days, weeks or months between two dates? Put them in, get the answer.">
+  <title>Read Time Calculator | WebCaretakers</title>
+  <meta name="description" content="Paste any text and see how long it takes to read silently or aloud. Plus word, character and sentence counts. Nothing uploaded, all in your browser.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/writing/read-time-calculator/">
+  <meta property="og:title" content="Read Time Calculator | WebCaretakers">
+  <meta property="og:description" content="Estimate read time for any text, silent or aloud, with word and character counts.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://webcaretakers.com/calculators/fun/date-difference-calculator/">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/writing/read-time-calculator/">
   <meta name="robots" content="index, follow">
   <link rel="stylesheet" href="/assets/css/main.css">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -39,9 +39,9 @@
   {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    "name": "Date Difference Calculator",
-    "url": "https://webcaretakers.com/calculators/fun/date-difference-calculator/",
-    "description": "Work out the difference between two dates in years, months, days, weeks, hours and business days.",
+    "name": "Read Time Calculator",
+    "url": "https://webcaretakers.com/calculators/writing/read-time-calculator/",
+    "description": "Estimate read time for any pasted text, silent and aloud, with configurable words-per-minute. Also shows word, character and sentence counts.",
     "applicationCategory": "UtilitiesApplication",
     "operatingSystem": "Any",
     "isPartOf": {
@@ -59,26 +59,26 @@
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "How do I count the days between two dates?",
+        "name": "How fast does the average person read?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Subtract the earlier date from the later date. This calculator does it for you and gives the answer in days, weeks, months, years, hours, and Monday-to-Friday business days. It uses UTC internally so daylight saving transitions and timezones don't nudge the count by one."
+          "text": "Adult silent reading speeds cluster between 200 and 300 words per minute for typical prose, with 250 WPM as a near-universal default. Reading aloud or working through dense technical material drops to roughly 130 to 180 WPM; 150 is a reasonable default. This calculator uses 250 silent and 150 aloud unless you override them."
         }
       },
       {
         "@type": "Question",
-        "name": "Does it count the start date, the end date, or both?",
+        "name": "Why are read-time figures always slightly off?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "The total-days figure is the number of whole days between the two dates: from Monday to Wednesday is 2 days. The business-days figure is inclusive of both endpoints when they are weekdays: Monday to Friday of the same week counts as 5 business days."
+          "text": "Because reading speed varies with material, reader, and mood. A news story at 250 WPM is not the same thing as a legal contract at 250 WPM. Treat the number as a useful estimate rather than a stopwatch reading. If you need it to be more precise for a specific audience, time a representative sample and set the WPM to match."
         }
       },
       {
         "@type": "Question",
-        "name": "What if I put the dates in the wrong order?",
+        "name": "Where does the text go?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "The calculator flips them automatically and tells you it did. The numbers are always positive. Handy if you're working out how long until a date and how long since one in quick succession."
+          "text": "Nowhere. The entire calculation runs in your browser. Nothing is sent to our servers, logged, or retained. You can paste a confidential draft into this tool with no more risk than typing it into a private document."
         }
       }
     ]
@@ -163,47 +163,48 @@
           <ol>
             <li><a href="/">Home</a></li>
             <li><a href="/calculators/">Calculators</a></li>
-            <li><a href="/calculators/fun/">Fun</a></li>
-            <li aria-current="page">Date Difference Calculator</li>
+            <li><a href="/calculators/writing/">Writing</a></li>
+            <li aria-current="page">Read Time Calculator</li>
           </ol>
         </nav>
 
-        <h1>Date Difference Calculator</h1>
+        <h1>Read Time Calculator</h1>
 
         <div class="eli5">
           <h2>Explain like I'm 5 (what even is this calculator?)</h2>
-          <p>Pick two dates. Get the gap between them, in every unit that makes sense: years, months, days, weeks, hours, and weekdays. Useful for deadlines, anniversaries, and answering "how long has it been since…" without doing sums in your head on a Monday morning.</p>
+          <p>Paste a bit of writing in. It counts the words and gives you an estimated reading time, silent and out loud, using typical reading speeds. Handy for working out whether a blog post, a speech, a script, or an email is the right length for the job.</p>
         </div>
 
         <section data-calculator class="calculator-card">
           <form class="calc-form" novalidate>
             <div class="calc-row">
-              <label for="from">Start date</label>
-              <input type="date" id="from" data-from required>
+              <label for="rt-text">Paste or type your text<span class="calc-hint">Numbers update as you type.</span></label>
+              <textarea id="rt-text" rows="10" data-text placeholder="Start typing or paste a piece of writing here…"></textarea>
             </div>
             <div class="calc-row">
-              <label for="to">End date</label>
-              <input type="date" id="to" data-to required>
+              <label for="rt-silent">Silent reading speed (words per minute)</label>
+              <input type="number" id="rt-silent" min="1" step="1" value="250" data-silent-wpm>
             </div>
-
-            <button type="button" data-calculate>Calculate</button>
+            <div class="calc-row">
+              <label for="rt-aloud">Reading aloud speed (words per minute)</label>
+              <input type="number" id="rt-aloud" min="1" step="1" value="150" data-aloud-wpm>
+            </div>
             <p class="calc-error" data-error hidden></p>
           </form>
 
-          <div class="calculator-results" data-breakdown hidden>
-            <h2>The gap is</h2>
-            <p class="result-display" data-result>—</p>
-            <p class="calc-hint" data-reversed-note hidden>We flipped the dates so the answer came out positive.</p>
+          <div class="calculator-results" data-breakdown>
+            <h2>Read time</h2>
+            <p class="result-display"><span data-result-silent>0 sec</span> silent, <span data-result-aloud>0 sec</span> aloud</p>
 
             <div class="mort-breakdown">
-              <h3>Every which way</h3>
+              <h3>Counts</h3>
               <ul>
-                <li class="mort-breakdown__total"><span>Years, months, days</span><strong data-line-ymd>—</strong></li>
-                <li><span>Total days</span><strong data-line-total-days>—</strong></li>
-                <li><span>Total weeks</span><strong data-line-total-weeks>—</strong></li>
-                <li><span>Total months</span><strong data-line-total-months>—</strong></li>
-                <li><span>Total hours</span><strong data-line-total-hours>—</strong></li>
-                <li><span>Business days (Mon-Fri)</span><strong data-line-business-days>—</strong></li>
+                <li class="mort-breakdown__total"><span>Words</span><strong data-line-words>0</strong></li>
+                <li><span>Characters (with spaces)</span><strong data-line-chars>0</strong></li>
+                <li><span>Characters (no spaces)</span><strong data-line-chars-no-ws>0</strong></li>
+                <li><span>Sentences</span><strong data-line-sentences>0</strong></li>
+                <li><span>Silent read time</span><strong data-line-silent>0 sec</strong></li>
+                <li><span>Aloud read time</span><strong data-line-aloud>0 sec</strong></li>
               </ul>
             </div>
 
@@ -215,34 +216,34 @@
         </section>
 
         <section class="long-form">
-          <h2>What this is good for</h2>
-          <p>Three things really: counting down (how long until the wedding, the holiday, the mortgage clearing), counting up (how long since a house move, a sobriety date, a contract started) and settling project-planning arguments ("can we launch in six weeks? Depends on what six weeks means on a calendar, doesn't it").</p>
-          <p>The business-days figure is the one project managers want. It counts Monday to Friday only, ignores weekends, and does not know about your national holidays. If you need bank holidays stripped out too, subtract them from the business-day figure by hand. Building a proper calendar-aware holiday subtraction is more calculator than this one wants to be.</p>
+          <h2>How long should a thing be?</h2>
+          <p>Rough guidance, not rules. A blog post that earns its keep in search is usually 800 to 2,000 words (4 to 10 minutes silent). A conference talk is roughly 140 to 160 words per minute of slot, so a 20-minute talk is about 3,000 words of script, a 45-minute keynote around 6,500. A best-man speech is best under 5 minutes (about 700 words). An email newsletter that gets read is closer to 300 words than 1,500. A single tweet, well, you know the limit.</p>
+          <p>Reading for comprehension of dense material, technical documentation or legal text, is slower than reading a novel. If your audience is working through something serious, halve your silent WPM and the estimate will be closer to the truth.</p>
 
-          <h2>How the maths works</h2>
-          <p>Years, months and days come out of straightforward date subtraction with the same borrow-from-the-previous-month trick you'd use by hand. Total days uses UTC midnight on both dates, so daylight saving transitions and timezones cannot shunt the answer by one. Total weeks is the floor of total days divided by seven. Total hours is total days times twenty four, which is an approximation on the two days of the year that have twenty three or twenty five hours, but unless you're timing something to the exact minute that won't matter.</p>
+          <h2>Where the default numbers come from</h2>
+          <p>Research on adult reading speeds (Brysbaert 2019 meta-analysis among others) puts silent reading of typical prose in the 200 to 300 WPM range, with the mean around 238 WPM. Reading aloud is 130 to 180 WPM; professional voiceover work and newsreaders tend to sit at the upper end of that, and audiobook narration at the lower. The defaults here (250 silent, 150 aloud) are the round numbers most publishing tools have converged on.</p>
 
           <h2>Related tools</h2>
-          <p>If you're counting how old someone is, the <a href="/calculators/fun/age-in-months-calculator/">Age in Months Calculator</a> gives you the Parenting Hell answer. For money over time rather than time over time, try the <a href="/calculators/finance/compound-interest-calculator/">Compound Interest Calculator</a>.</p>
+          <p>If you're writing meta descriptions or SEO titles and need a character count, that lives in the <a href="/calculators/seo/">SEO tools</a> (coming soon). For a more granular look at the text itself, see the forthcoming word-count tool on this page's parent category.</p>
         </section>
 
         <section class="faq">
           <h2>Common questions</h2>
           <details>
-            <summary>Does it count the start date, the end date, or both?</summary>
-            <p>The total-days figure counts the number of whole days between the two dates (Monday to Wednesday is 2). Business days are inclusive on both ends when those days are weekdays (Monday to Friday of the same week is 5).</p>
+            <summary>How fast does the average person read?</summary>
+            <p>Adult silent reading lands between 200 and 300 WPM for typical prose (mean around 238 WPM). Reading aloud is 130-180 WPM. Technical material is slower.</p>
           </details>
           <details>
-            <summary>What about bank holidays?</summary>
-            <p>Not subtracted. Business days is strictly Mon-Fri. If you need a holiday-aware figure, knock the relevant bank holidays off by hand.</p>
+            <summary>Why are read-time estimates always slightly off?</summary>
+            <p>Reading speed varies with material, reader, and mood. Treat the number as an estimate, not a stopwatch. If you need precision for a specific audience, time a sample and match the WPM.</p>
           </details>
           <details>
-            <summary>What if the end date is before the start date?</summary>
-            <p>The calculator flips them, gives you a positive answer, and tells you it flipped them. No negative numbers to squint at.</p>
+            <summary>Where does my text go?</summary>
+            <p>Nowhere. Everything runs in your browser. Paste a confidential draft in safely.</p>
           </details>
           <details>
-            <summary>Is any of my data sent anywhere?</summary>
-            <p>No. Everything is worked out in your browser. The dates never leave your device.</p>
+            <summary>Does it handle Markdown, HTML or formatting?</summary>
+            <p>It counts words, not tags. Markdown, HTML and other plain-text formatting are all counted as tokens, so very heavy formatting may slightly inflate the count. For almost all use cases this is close enough.</p>
           </details>
         </section>
       </div>
@@ -277,72 +278,64 @@
     </div>
   </footer>
 
-  <script src="/assets/js/calculators/date-difference.js"></script>
+  <script src="/assets/js/calculators/read-time.js"></script>
   <script>
   (function () {
     'use strict';
 
-    var calcBtn     = document.querySelector('[data-calculate]');
-    var breakdown   = document.querySelector('[data-breakdown]');
-    var errorEl     = document.querySelector('[data-error]');
-    var resultEl    = document.querySelector('[data-result]');
-    var reversedNote = document.querySelector('[data-reversed-note]');
-    var proveItBody = document.querySelector('[data-prove-it-body]');
+    var textIn       = document.querySelector('[data-text]');
+    var silentIn     = document.querySelector('[data-silent-wpm]');
+    var aloudIn      = document.querySelector('[data-aloud-wpm]');
+    var errorEl      = document.querySelector('[data-error]');
+    var proveItBody  = document.querySelector('[data-prove-it-body]');
 
-    function showError(msg) { errorEl.textContent = msg; errorEl.hidden = false; breakdown.hidden = true; }
-    function clearError()   { errorEl.hidden = true; errorEl.textContent = ''; }
-    function fmt(n)         { return n.toLocaleString('en-GB'); }
-    function plural(n, s)   { return n + ' ' + s + (n === 1 ? '' : 's'); }
+    var fired = false;
 
-    calcBtn.addEventListener('click', function () {
-      clearError();
-      var from = document.querySelector('[data-from]').value;
-      var to   = document.querySelector('[data-to]').value;
-
-      if (!from) { showError('Enter a start date.'); return; }
-      if (!to)   { showError('Enter an end date.');   return; }
-
-      window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push({ event: 'calculator_interaction', calculator_name: 'Date Difference Calculator' });
-
+    function run() {
+      errorEl.hidden = true;
       try {
-        var r = DateDifference.calculateDateDifference({ from: from, to: to });
-
-        var ymd = plural(r.years, 'year') + ', ' + plural(r.monthsOnly, 'month') + ', ' + plural(r.days, 'day');
-        resultEl.textContent = ymd;
-        reversedNote.hidden = !r.reversed;
-
-        document.querySelector('[data-line-ymd]').textContent            = ymd;
-        document.querySelector('[data-line-total-days]').textContent     = fmt(r.totalDays)  + ' days';
-        document.querySelector('[data-line-total-weeks]').textContent    = fmt(r.totalWeeks) + ' weeks';
-        document.querySelector('[data-line-total-months]').textContent   = fmt(r.totalMonths) + ' months';
-        document.querySelector('[data-line-total-hours]').textContent    = fmt(r.totalHours) + ' hours';
-        document.querySelector('[data-line-business-days]').textContent  = fmt(r.businessDays) + ' days';
-
-        proveItBody.textContent =
-            'From: ' + r.from + '\n'
-          + 'To:   ' + r.to + '\n'
-          + (r.reversed ? '(Dates were entered in reverse order and flipped.)\n' : '')
-          + 'Years component:  ' + r.years + '\n'
-          + 'Months component: ' + r.monthsOnly + '\n'
-          + 'Days component:   ' + r.days + '\n'
-          + 'Total days = (end - start) in UTC milliseconds ÷ 86,400,000 = ' + r.totalDays + '\n'
-          + 'Total weeks = floor(' + r.totalDays + ' ÷ 7) = ' + r.totalWeeks + '\n'
-          + 'Total hours = ' + r.totalDays + ' × 24 = ' + r.totalHours + '\n'
-          + 'Business days (Mon-Fri, inclusive both ends): ' + r.businessDays;
-
-        window.dataLayer.push({
-          event:           'calculator_result',
-          calculator_name: 'Date Difference Calculator',
-          total_days:      r.totalDays,
-          total_months:    r.totalMonths,
+        var r = ReadTime.calculateReadTime({
+          text:      textIn.value,
+          silentWpm: parseFloat(silentIn.value),
+          aloudWpm:  parseFloat(aloudIn.value),
         });
 
-        breakdown.hidden = false;
+        document.querySelector('[data-result-silent]').textContent = r.silent.label;
+        document.querySelector('[data-result-aloud]').textContent  = r.aloud.label;
+        document.querySelector('[data-line-words]').textContent       = r.words.toLocaleString('en-GB');
+        document.querySelector('[data-line-chars]').textContent       = r.characters.toLocaleString('en-GB');
+        document.querySelector('[data-line-chars-no-ws]').textContent = r.charactersNoSpaces.toLocaleString('en-GB');
+        document.querySelector('[data-line-sentences]').textContent   = r.sentences.toLocaleString('en-GB');
+        document.querySelector('[data-line-silent]').textContent      = r.silent.label;
+        document.querySelector('[data-line-aloud]').textContent       = r.aloud.label;
+
+        proveItBody.textContent =
+            'Words: ' + r.words + '\n'
+          + 'Silent WPM: ' + r.silentWpm + '\n'
+          + 'Aloud WPM:  ' + r.aloudWpm  + '\n'
+          + 'Silent minutes = ' + r.words + ' ÷ ' + r.silentWpm + ' = ' + r.silentMinutes.toFixed(2) + '\n'
+          + 'Aloud minutes  = ' + r.words + ' ÷ ' + r.aloudWpm  + ' = ' + r.aloudMinutes.toFixed(2);
+
+        window.dataLayer = window.dataLayer || [];
+        if (!fired && r.words > 0) {
+          fired = true;
+          window.dataLayer.push({ event: 'calculator_interaction', calculator_name: 'Read Time Calculator' });
+          window.dataLayer.push({
+            event:           'calculator_result',
+            calculator_name: 'Read Time Calculator',
+            word_count:      r.words,
+          });
+        }
       } catch (err) {
-        showError(err.message);
+        errorEl.textContent = err.message;
+        errorEl.hidden = false;
       }
-    });
+    }
+
+    textIn.addEventListener('input', run);
+    silentIn.addEventListener('input', run);
+    aloudIn.addEventListener('input', run);
+    run();
   })();
   </script>
   <script src="/assets/js/main.js"></script>

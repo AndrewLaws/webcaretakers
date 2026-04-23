@@ -233,6 +233,18 @@
     {
       "phrase": "savings goal calculator",
       "url": "/calculators/finance/savings-goal-calculator/"
+    },
+    {
+      "phrase": "Read Time Calculator",
+      "url": "/calculators/writing/read-time-calculator/"
+    },
+    {
+      "phrase": "read time calculator",
+      "url": "/calculators/writing/read-time-calculator/"
+    },
+    {
+      "phrase": "writing calculators",
+      "url": "/calculators/writing/"
     }
   ]
 }
