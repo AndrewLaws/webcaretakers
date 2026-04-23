@@ -55,7 +55,7 @@
       {
         "@type": "Question",
         "name": "What is a performance budget?",
-        "acceptedAnswer": { "@type": "Answer", "text": "A performance budget is a set of limits you impose on your website's size and speed metrics before you build or ship anything. Setting a budget of 300 KB for JavaScript, for example, forces a deliberate conversation whenever someone wants to add a new library. Without a budget, sites tend to bloat incrementally until the slowdown becomes obvious — and by then it is expensive to fix." }
+        "acceptedAnswer": { "@type": "Answer", "text": "A performance budget is a set of limits you impose on your website's size and speed metrics before you build or ship anything. Setting a budget of 300 KB for JavaScript, for example, forces a deliberate conversation whenever someone wants to add a new library. Without a budget, sites tend to bloat incrementally until the slowdown becomes obvious, and by then it is expensive to fix." }
       },
       {
         "@type": "Question",
@@ -195,7 +195,7 @@
               </select>
             </div>
 
-            <p class="calc-section-label">Revenue impact (optional — fill in all four for an estimate)</p>
+            <p class="calc-section-label">Revenue impact (optional, fill in all four for an estimate)</p>
 
             <div class="calc-row">
               <label for="monthly-visitors">Monthly visitors</label>
@@ -271,7 +271,7 @@
 
         <section class="long-form">
           <h2>Why performance budgets matter</h2>
-          <p>The median web page has grown considerably over the past decade. What shipped in a few hundred kilobytes in 2012 often ships as several megabytes today. Most of that growth is not deliberate — it is the accumulation of one reasonable decision after another, made without any constraint on the total.</p>
+          <p>The median web page has grown considerably over the past decade. What shipped in a few hundred kilobytes in 2012 often ships as several megabytes today. Most of that growth is not deliberate: it is the accumulation of one reasonable decision after another, made without any constraint on the total.</p>
           <p>A performance budget changes that. By agreeing upfront that the JavaScript bundle cannot exceed 300 KB, or that LCP must stay under 2 seconds, you force trade-offs to happen explicitly rather than silently. When a proposed feature would break the budget, you have to decide whether to skip it, optimise it, or consciously accept the cost.</p>
 
           <h2>How to use these numbers</h2>
@@ -279,7 +279,7 @@
           <p>Typical quick wins: compress and convert images to WebP or AVIF, defer non-critical JavaScript, remove unused CSS, self-host fonts. These often cut 30–50% of page weight without changing any functionality.</p>
 
           <h2>About the revenue impact estimate</h2>
-          <p>The revenue calculation uses research from Google, Portent and Deloitte that consistently shows conversion rates decline as load time increases. For e-commerce, the effect is largest: roughly 7% conversion loss per extra second above a 2-second baseline. For content sites it is closer to 2%. These are industry averages — your actual numbers depend on your audience, device mix, and what you are selling. Treat the output as a directional estimate for business cases, not an exact forecast.</p>
+          <p>The revenue calculation uses research from Google, Portent and Deloitte that consistently shows conversion rates decline as load time increases. For e-commerce, the effect is largest: roughly 7% conversion loss per extra second above a 2-second baseline. For content sites it is closer to 2%. These are industry averages,your actual numbers depend on your audience, device mix, and what you are selling. Treat the output as a directional estimate for business cases, not an exact forecast.</p>
         </section>
 
         <section class="faq" aria-labelledby="faq-heading">

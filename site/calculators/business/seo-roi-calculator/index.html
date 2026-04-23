@@ -268,7 +268,7 @@
             <details class="prove-it" data-prove-it>
               <summary>Prove it</summary>
               <div data-prove-it-body></div>
-              <p class="prove-it-source">Additional monthly conversions = additional sessions × (conversion rate ÷ 100). Additional monthly revenue = additional conversions × value per conversion. Monthly net profit = additional revenue − monthly cost. ROI = (total net profit ÷ total investment) × 100. Break-even sessions = monthly cost ÷ (conversion rate ÷ 100 ÷ value per conversion) — the minimum additional sessions needed for revenue to equal cost. Revenue per unit invested = additional monthly revenue ÷ monthly cost.</p>
+              <p class="prove-it-source">Additional monthly conversions = additional sessions × (conversion rate ÷ 100). Additional monthly revenue = additional conversions × value per conversion. Monthly net profit = additional revenue − monthly cost. ROI = (total net profit ÷ total investment) × 100. Break-even sessions = monthly cost ÷ (conversion rate ÷ 100 ÷ value per conversion),the minimum additional sessions needed for revenue to equal cost. Revenue per unit invested = additional monthly revenue ÷ monthly cost.</p>
             </details>
           </div>
 
@@ -287,7 +287,7 @@
           <p>Add up everything you spend on SEO each month: agency or consultant fees, SEO tools and subscriptions, and any content you are paying to produce specifically for search. If your costs vary, use a three-month average. Do not include general website hosting or design costs unless they are directly tied to the SEO work.</p>
 
           <h3>Current monthly organic sessions</h3>
-          <p>Pull this from Google Analytics. Go to Acquisition &gt; Traffic Acquisition, filter by Organic Search, and read the session count for the last 30 days. Use a recent, representative month — avoid months with unusual spikes or known tracking issues.</p>
+          <p>Pull this from Google Analytics. Go to Acquisition &gt; Traffic Acquisition, filter by Organic Search, and read the session count for the last 30 days. Use a recent, representative month, avoiding months with unusual spikes or known tracking issues.</p>
 
           <h3>Projected monthly organic sessions</h3>
           <p>This is the harder number. If you are working with an SEO consultant or agency, use their traffic projection. If not, look at competitors who rank for your target keywords using a tool like Ahrefs or SEMrush, and estimate realistically where you could reach in 12 months. Being conservative here gives you a more honest result.</p>
@@ -493,7 +493,7 @@
           lineBreakeven.textContent = fmtNum(r.breakEvenSessionsPerMonth) + ' sessions/month';
           lineStatus.textContent    = r.isProfitable
             ? 'Profitable at projected traffic'
-            : 'Not yet profitable — projected traffic is below break-even';
+            : 'Not yet profitable: projected traffic is below break-even';
 
           var sym = currentCurrency().symbol;
           proveBody.innerHTML = '<ul>' +

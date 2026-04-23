@@ -364,7 +364,7 @@
         try {
           var r = window.WeddingBudget.calculateWeddingBudget(opts);
           var sym = currentCurrency().symbol;
-          resultEl.textContent = sym + r.totalBudget.toLocaleString() + ' for ' + r.guestCount + ' guests — ' + fmtMoney(r.perHeadCost) + ' per head';
+          resultEl.textContent = sym + r.totalBudget.toLocaleString() + ' for ' + r.guestCount + ' guests, ' + fmtMoney(r.perHeadCost) + ' per head';
           breakdown.hidden = false;
 
           var html = '';

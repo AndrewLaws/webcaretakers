@@ -310,7 +310,7 @@
           <p>Check a few different page types: your homepage, a typical content page, and a product or landing page if you have them. Average those figures. Most pages on a well-optimised site fall between 500 KB and 3,000 KB. If yours is significantly higher, image compression and lazy loading are usually the first levers to pull.</p>
 
           <h2>What counts as media files</h2>
-          <p>Media files are anything stored on your server that is embedded into your pages: photos, illustrations, background images, short video clips, audio files. They contribute to storage but not necessarily bandwidth in a straightforward way — images already embedded in pages are counted in the page weight calculation. Use this section for files that sit in your media library but may not all be loaded on every page, such as a large image archive.</p>
+          <p>Media files are anything stored on your server that is embedded into your pages: photos, illustrations, background images, short video clips, audio files. They contribute to storage but not necessarily bandwidth in a straightforward way: images already embedded in pages are counted in the page weight calculation. Use this section for files that sit in your media library but may not all be loaded on every page, such as a large image archive.</p>
           <p>If you use a CDN (Content Delivery Network) or a third-party image host, those files are stored and served from there, not from your main hosting account. Only count files that sit on your hosting plan's server.</p>
 
           <h2>What counts as downloadable files</h2>
@@ -489,7 +489,7 @@
           if (labelBuffer)        labelBuffer.textContent        = buf;
           if (labelBufferStorage) labelBufferStorage.textContent = buf;
 
-          resultEl.textContent = TIER_LABELS[r.tier] + ' — ' + fmtGB(r.totalBandwidthWithBufferGB) + '/month bandwidth, ' + fmtGB(r.totalStorageWithBufferGB) + ' storage';
+          resultEl.textContent = TIER_LABELS[r.tier] + ',' + fmtGB(r.totalBandwidthWithBufferGB) + '/month bandwidth, ' + fmtGB(r.totalStorageWithBufferGB) + ' storage';
           breakdown.hidden = false;
 
           linePageviews.textContent       = fmtNum(r.monthlyPageviews) + ' pageviews/month';

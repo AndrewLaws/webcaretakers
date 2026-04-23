@@ -44,6 +44,7 @@
     "description": "Check SEO title and meta description against Google's display limits in characters and approximate pixel width.",
     "applicationCategory": "UtilitiesApplication",
     "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0" },
     "isPartOf": {
       "@type": "WebSite",
       "name": "WebCaretakers",
@@ -330,8 +331,8 @@
         paintDesc(r.description);
 
         proveBody.textContent =
-            'Title:       ' + r.title.characters + ' chars, ' + r.title.pixelWidth + ' px — ' + r.title.status + '\n'
-          + 'Description: ' + r.description.characters + ' chars, ' + r.description.pixelWidth + ' px — ' + r.description.status + '\n\n'
+            'Title:       ' + r.title.characters + ' chars, ' + r.title.pixelWidth + ' px,' + r.title.status + '\n'
+          + 'Description: ' + r.description.characters + ' chars, ' + r.description.pixelWidth + ' px,' + r.description.status + '\n\n'
           + 'Caps: title 60 chars / 600 px; description 160 chars / 920 px.';
 
         window.dataLayer = window.dataLayer || [];

@@ -309,10 +309,10 @@
           <p>Use your active subscriber count, not your total list. Most email platforms let you filter by engagement status. A list of 10,000 with 3,000 unengaged subscribers sitting at the bottom is not a list of 10,000 for the purposes of this calculation. Use the number who are likely to see your emails.</p>
 
           <h3>Campaigns per month</h3>
-          <p>How many separate emails do you send to your full list each month? Automated sequences sent to segments count separately, but if you are not sure, start with your broadcast campaigns and add automation later once you have a clear picture of those numbers.</p>
+          <p>How many separate emails do you send to your full list each month? Triggered sequences sent to segments count separately, but if you are not sure, start with your broadcast campaigns and add sequences later once you have a clear picture of those numbers.</p>
 
           <h3>Open rate</h3>
-          <p>Pull this from your email platform's reporting. Bear in mind that open tracking has become less reliable since Apple Mail Privacy Protection launched in 2021 — iOS devices now pre-load images, which inflates open rates for lists with a lot of iPhone users. Use it as a directional number, not a precise one. Industry averages sit around 20–25% for B2C and 15–20% for B2B, though these vary widely by sector and list quality.</p>
+          <p>Pull this from your email platform's reporting. Bear in mind that open tracking has become less reliable since Apple Mail Privacy Protection launched in 2021,iOS devices now pre-load images, which inflates open rates for lists with a lot of iPhone users. Use it as a directional number, not a precise one. Industry averages sit around 20–25% for B2C and 15–20% for B2B, though these vary widely by sector and list quality.</p>
 
           <h3>Click rate</h3>
           <p>This is clicks as a percentage of total emails sent (not opens). Your platform may also show click-to-open rate (CTOR), which is clicks as a percentage of opens. This calculator uses click rate as a percentage of sends. If your platform only shows CTOR, multiply it by your open rate and divide by 100 to convert. Typical click rates sit between 1–5% for most lists.</p>
@@ -537,7 +537,7 @@
           lineBreakeven.textContent = r.breakEvenListSize !== null ? fmtNum(r.breakEvenListSize) + ' subscribers' : 'n/a';
           lineStatus.textContent    = r.isProfitable
             ? 'Profitable at current list size'
-            : 'Not yet profitable — list size is below break-even';
+            : 'Not yet profitable: list size is below break-even';
 
           var sym = currentCurrency().symbol;
           proveBody.innerHTML = '<ul>' +

@@ -403,7 +403,7 @@
           resultEl.textContent = 'Timeline for ' + formatted + (isDestination ? ' (destination wedding)' : '');
           breakdown.hidden = false;
 
-          // Group milestones by category for display (flat list — category labels are li items)
+          // Group milestones by category for display (flat list, category labels are li items)
           var lastCategory = null;
           var html = '';
           r.milestones.forEach(function (m) {
