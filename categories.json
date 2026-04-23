@@ -231,6 +231,11 @@
           "slug": "suffolk-lorem-ipsum",
           "name": "Suffolk Lorem Ipsum Generator",
           "summary": "Placeholder text in Suffolk dialect, drawn from Charlie Haylock's work and the East Anglian dialect tradition."
+        },
+        {
+          "slug": "english-to-suffolk-translator",
+          "name": "English to Suffolk Translator",
+          "summary": "Paste English text and see it transformed into Suffolk dialect, word by word, using the same vocabulary as the Suffolk Lorem Ipsum generator."
         }
       ]
     }
