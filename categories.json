@@ -86,6 +86,11 @@
           "slug": "tip-calculator",
           "name": "Tip Calculator",
           "summary": "Work out the tip, grand total and per-person share for any bill. Optional round-up-per-person mode keeps the numbers clean when the split is awkward. Currency toggle covers USD, GBP, EUR, CAD and AUD."
+        },
+        {
+          "slug": "savings-goal-calculator",
+          "name": "Savings Goal Calculator",
+          "summary": "Work out the monthly number you need to put aside to hit a target amount by a target date. Factors in starting balance and optional interest. Currency toggle covers USD, GBP, EUR, CAD and AUD."
         }
       ]
     },
