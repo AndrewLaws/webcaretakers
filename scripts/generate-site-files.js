@@ -84,6 +84,44 @@ function buildRobots(baseUrl) {
   ].join('\n');
 }
 
+// Build a lightweight client-side search index from categories.json.
+// Each category and each tool becomes one searchable entry.
+function buildSearchIndex(categoriesJsonPath) {
+  const raw = fs.readFileSync(categoriesJsonPath, 'utf8');
+  const data = JSON.parse(raw);
+  const entries = [];
+  for (const cat of data.categories || []) {
+    if (!cat.tools || cat.tools.length === 0) continue;
+    // Category hub entry
+    entries.push({
+      type: 'category',
+      name: cat.name + ' calculators',
+      summary: cat.tagline || '',
+      url: '/calculators/' + cat.slug + '/',
+      category: cat.name,
+    });
+    // Per-tool entries
+    for (const tool of cat.tools) {
+      entries.push({
+        type: 'tool',
+        name: tool.name,
+        summary: tool.summary || '',
+        url: '/calculators/' + cat.slug + '/' + tool.slug + '/',
+        category: cat.name,
+      });
+    }
+  }
+  // Top-level "all calculators" hub entry.
+  entries.unshift({
+    type: 'hub',
+    name: 'All calculators',
+    summary: 'Every calculator on the site, grouped by category.',
+    url: '/calculators/',
+    category: 'All',
+  });
+  return entries;
+}
+
 function buildLlmsTxt(pages, siteName, siteDescription, baseUrl) {
   const lines = [
     `# ${siteName}`,
@@ -112,6 +150,16 @@ function generate() {
     path.join(SITE_DIR, 'llms.txt'),
     buildLlmsTxt(pages, SITE_NAME, SITE_DESCRIPTION, BASE_URL),
   );
+  const categoriesPath = path.join(__dirname, '..', 'categories.json');
+  if (fs.existsSync(categoriesPath)) {
+    const searchIndex = buildSearchIndex(categoriesPath);
+    const assetsDir = path.join(SITE_DIR, 'assets');
+    if (!fs.existsSync(assetsDir)) fs.mkdirSync(assetsDir, { recursive: true });
+    fs.writeFileSync(
+      path.join(assetsDir, 'search-index.json'),
+      JSON.stringify(searchIndex),
+    );
+  }
   return pages.length;
 }
 
@@ -120,6 +168,7 @@ module.exports = {
   buildSitemap,
   buildRobots,
   buildLlmsTxt,
+  buildSearchIndex,
   generate,
   SITE_DIR,
   BASE_URL,
@@ -129,5 +178,5 @@ module.exports = {
 
 if (require.main === module) {
   const count = generate();
-  console.log(`Generated sitemap.xml, robots.txt, llms.txt (${count} page${count === 1 ? '' : 's'})`);
+  console.log(`Generated sitemap.xml, robots.txt, llms.txt, search-index.json (${count} page${count === 1 ? '' : 's'})`);
 }
