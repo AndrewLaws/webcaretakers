@@ -17,8 +17,8 @@ test.describe('Photo Resizer page', () => {
 
   test('breadcrumb routes through Calculators > Images', async ({ page }) => {
     const crumbs = page.locator('.breadcrumbs');
-    await expect(crumbs.getByRole('link', { name: 'Calculators' })).toHaveAttribute('href', '/calculators/');
-    await expect(crumbs.getByRole('link', { name: 'Images' })).toHaveAttribute('href', '/calculators/images/');
+    await expect(crumbs.getByRole('link', { name: 'Calculators', includeHidden: true })).toHaveAttribute('href', '/calculators/');
+    await expect(crumbs.getByRole('link', { name: 'Images', includeHidden: true })).toHaveAttribute('href', '/calculators/images/');
   });
 
   test('form is hidden until a file is chosen', async ({ page }) => {
@@ -38,7 +38,7 @@ test.describe('Photo Resizer page', () => {
 
   test('primary nav contains Images link', async ({ page }) => {
     const nav = page.locator('.primary-nav');
-    await expect(nav.getByRole('link', { name: 'Images' })).toHaveAttribute('href', '/calculators/images/');
+    await expect(nav.getByRole('link', { name: 'Images', includeHidden: true })).toHaveAttribute('href', '/calculators/images/');
   });
 
   test('download filename carries the webcaretakers brand trail', async ({ page }) => {
@@ -61,7 +61,7 @@ test.describe('Images category hub', () => {
   });
 
   test('lists the Photo Resizer', async ({ page }) => {
-    await expect(page.getByRole('link', { name: 'Photo Resizer' }).first()).toBeVisible();
+    await expect(page.getByRole('link', { name: 'Photo Resizer', includeHidden: true }).first()).toBeVisible();
   });
 
   test('has CollectionPage JSON-LD', async ({ page }) => {

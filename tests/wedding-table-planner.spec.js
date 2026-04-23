@@ -122,6 +122,7 @@ test('has FAQPage JSON-LD with at least 3 questions', async ({ page }) => {
 
 test('primary nav includes Wedding link', async ({ page }) => {
   await page.goto(URL);
+  await page.click('[data-menu-toggle]');
   await expect(page.locator('.primary-nav__submenu a[href="/calculators/wedding/"]')).toBeVisible();
 });
 

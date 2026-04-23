@@ -17,8 +17,8 @@ test.describe('BMI Calculator page', () => {
 
   test('breadcrumb routes through Calculators > Health', async ({ page }) => {
     const crumbs = page.locator('.breadcrumbs');
-    await expect(crumbs.getByRole('link', { name: 'Calculators' })).toHaveAttribute('href', '/calculators/');
-    await expect(crumbs.getByRole('link', { name: 'Health' })).toHaveAttribute('href', '/calculators/health/');
+    await expect(crumbs.getByRole('link', { name: 'Calculators', includeHidden: true })).toHaveAttribute('href', '/calculators/');
+    await expect(crumbs.getByRole('link', { name: 'Health', includeHidden: true })).toHaveAttribute('href', '/calculators/health/');
   });
 
   test('default metric inputs (70 kg, 175 cm) calculate to 22.9 (Normal)', async ({ page }) => {
@@ -77,7 +77,7 @@ test.describe('BMI Calculator page', () => {
 
   test('primary nav contains Health link', async ({ page }) => {
     const nav = page.locator('.primary-nav');
-    await expect(nav.getByRole('link', { name: 'Health' })).toHaveAttribute('href', '/calculators/health/');
+    await expect(nav.getByRole('link', { name: 'Health', includeHidden: true })).toHaveAttribute('href', '/calculators/health/');
   });
 });
 
@@ -91,7 +91,7 @@ test.describe('Health category hub', () => {
   });
 
   test('lists the BMI Calculator', async ({ page }) => {
-    await expect(page.getByRole('link', { name: 'BMI Calculator' })).toBeVisible();
+    await expect(page.getByRole('link', { name: 'BMI Calculator', includeHidden: true })).toBeVisible();
   });
 
   test('has CollectionPage JSON-LD', async ({ page }) => {

@@ -107,7 +107,8 @@ test('fun hub lists this calculator', async ({ page }) => {
 
 test('primary nav includes Fun link between Finance and Health', async ({ page }) => {
   await page.goto(URL);
+await page.click('[data-menu-toggle]');
   const submenuItems = page.locator('.primary-nav__submenu > li a');
-  // Order: Broadband, Business, Finance, Fun, Health, ...
-  await expect(submenuItems.nth(3)).toHaveAttribute('href', '/calculators/fun/');
+  // Order: Broadband, Business, Conversions, Finance, Fun, Health, ...
+  await expect(submenuItems.nth(4)).toHaveAttribute('href', '/calculators/fun/');
 });

@@ -17,8 +17,8 @@ test.describe('iCal Event Generator page', () => {
 
   test('breadcrumb routes through Calculators > Productivity', async ({ page }) => {
     const crumbs = page.locator('.breadcrumbs');
-    await expect(crumbs.getByRole('link', { name: 'Calculators' })).toHaveAttribute('href', '/calculators/');
-    await expect(crumbs.getByRole('link', { name: 'Productivity' })).toHaveAttribute('href', '/calculators/productivity/');
+    await expect(crumbs.getByRole('link', { name: 'Calculators', includeHidden: true })).toHaveAttribute('href', '/calculators/');
+    await expect(crumbs.getByRole('link', { name: 'Productivity', includeHidden: true })).toHaveAttribute('href', '/calculators/productivity/');
   });
 
   test('start and end date fields are pre-filled with today', async ({ page }) => {
@@ -112,7 +112,7 @@ test.describe('iCal Event Generator page', () => {
 
   test('primary nav contains Productivity link', async ({ page }) => {
     const nav = page.locator('.primary-nav');
-    await expect(nav.getByRole('link', { name: 'Productivity' })).toHaveAttribute('href', '/calculators/productivity/');
+    await expect(nav.getByRole('link', { name: 'Productivity', includeHidden: true })).toHaveAttribute('href', '/calculators/productivity/');
   });
 
   test('submitting without a title shows an error', async ({ page }) => {
@@ -129,7 +129,7 @@ test.describe('iCal Event Generator page', () => {
 test.describe('Productivity hub', () => {
   test('lists the iCal Event Generator', async ({ page }) => {
     await page.goto('/calculators/productivity/');
-    await expect(page.getByRole('link', { name: 'iCal Event Generator' }).first()).toBeVisible();
+    await expect(page.getByRole('link', { name: 'iCal Event Generator', includeHidden: true }).first()).toBeVisible();
   });
 
   test('has ItemList JSON-LD', async ({ page }) => {

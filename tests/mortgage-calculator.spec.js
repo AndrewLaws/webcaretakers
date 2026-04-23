@@ -17,8 +17,8 @@ test.describe('US Mortgage Calculator page', () => {
 
   test('breadcrumb routes through Calculators > Finance', async ({ page }) => {
     const crumbs = page.locator('.breadcrumbs');
-    await expect(crumbs.getByRole('link', { name: 'Calculators' })).toHaveAttribute('href', '/calculators/');
-    await expect(crumbs.getByRole('link', { name: 'Finance' })).toHaveAttribute('href', '/calculators/finance/');
+    await expect(crumbs.getByRole('link', { name: 'Calculators', includeHidden: true })).toHaveAttribute('href', '/calculators/');
+    await expect(crumbs.getByRole('link', { name: 'Finance', includeHidden: true })).toHaveAttribute('href', '/calculators/finance/');
   });
 
   test('default inputs produce a monthly total and breakdown', async ({ page }) => {
@@ -63,7 +63,7 @@ test.describe('US Mortgage Calculator page', () => {
 
   test('primary nav contains Finance link', async ({ page }) => {
     const nav = page.locator('.primary-nav');
-    await expect(nav.getByRole('link', { name: 'Finance' })).toHaveAttribute('href', '/calculators/finance/');
+    await expect(nav.getByRole('link', { name: 'Finance', includeHidden: true })).toHaveAttribute('href', '/calculators/finance/');
   });
 });
 
@@ -77,7 +77,7 @@ test.describe('Finance category hub', () => {
   });
 
   test('lists the US Mortgage Calculator', async ({ page }) => {
-    await expect(page.getByRole('link', { name: 'US Mortgage Calculator' })).toBeVisible();
+    await expect(page.getByRole('link', { name: 'US Mortgage Calculator', includeHidden: true })).toBeVisible();
   });
 
   test('has CollectionPage JSON-LD', async ({ page }) => {

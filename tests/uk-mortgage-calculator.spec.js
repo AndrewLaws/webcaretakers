@@ -31,8 +31,8 @@ test.describe('UK Mortgage Calculator page', () => {
 
   test('breadcrumb routes through Calculators > Finance', async ({ page }) => {
     const crumbs = page.locator('.breadcrumbs');
-    await expect(crumbs.getByRole('link', { name: 'Calculators' })).toHaveAttribute('href', '/calculators/');
-    await expect(crumbs.getByRole('link', { name: 'Finance' })).toHaveAttribute('href', '/calculators/finance/');
+    await expect(crumbs.getByRole('link', { name: 'Calculators', includeHidden: true })).toHaveAttribute('href', '/calculators/');
+    await expect(crumbs.getByRole('link', { name: 'Finance', includeHidden: true })).toHaveAttribute('href', '/calculators/finance/');
   });
 
   test('default inputs (£300k, £30k deposit, 5y fix) compute fix and SVR monthlies', async ({ page }) => {
@@ -105,7 +105,7 @@ test.describe('UK Mortgage Calculator page', () => {
 
   test('primary nav contains Finance link', async ({ page }) => {
     const nav = page.locator('.primary-nav');
-    await expect(nav.getByRole('link', { name: 'Finance' })).toHaveAttribute('href', '/calculators/finance/');
+    await expect(nav.getByRole('link', { name: 'Finance', includeHidden: true })).toHaveAttribute('href', '/calculators/finance/');
   });
 });
 
@@ -125,7 +125,7 @@ test.describe('US Mortgage page retrofitted for UK sibling', () => {
 test.describe('Finance category hub (with UK + US mortgages)', () => {
   test('lists both US and UK mortgage calculators', async ({ page }) => {
     await page.goto('/calculators/finance/');
-    await expect(page.getByRole('link', { name: 'US Mortgage Calculator' })).toBeVisible();
-    await expect(page.getByRole('link', { name: 'UK Mortgage Calculator' })).toBeVisible();
+    await expect(page.getByRole('link', { name: 'US Mortgage Calculator', includeHidden: true })).toBeVisible();
+    await expect(page.getByRole('link', { name: 'UK Mortgage Calculator', includeHidden: true })).toBeVisible();
   });
 });

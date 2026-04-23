@@ -134,6 +134,7 @@ test('has FAQPage JSON-LD with at least 3 questions', async ({ page }) => {
 
 test('primary nav includes Broadband link', async ({ page }) => {
   await page.goto(URL);
+await page.click('[data-menu-toggle]');
   const navItems = page.locator('.primary-nav__submenu a');
   await expect(navItems.filter({ hasText: 'Broadband' })).toBeVisible();
 });

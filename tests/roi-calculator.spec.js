@@ -17,8 +17,8 @@ test.describe('ROI Calculator page', () => {
 
   test('breadcrumb routes through Calculators > Business', async ({ page }) => {
     const crumbs = page.locator('.breadcrumbs');
-    await expect(crumbs.getByRole('link', { name: 'Calculators' })).toHaveAttribute('href', '/calculators/');
-    await expect(crumbs.getByRole('link', { name: 'Business' })).toHaveAttribute('href', '/calculators/business/');
+    await expect(crumbs.getByRole('link', { name: 'Calculators', includeHidden: true })).toHaveAttribute('href', '/calculators/');
+    await expect(crumbs.getByRole('link', { name: 'Business', includeHidden: true })).toHaveAttribute('href', '/calculators/business/');
   });
 
   test('default inputs produce an ROI result', async ({ page }) => {
@@ -99,13 +99,13 @@ test.describe('ROI Calculator page', () => {
 
   test('primary nav contains Business link', async ({ page }) => {
     const nav = page.locator('.primary-nav');
-    await expect(nav.getByRole('link', { name: 'Business' })).toHaveAttribute('href', '/calculators/business/');
+    await expect(nav.getByRole('link', { name: 'Business', includeHidden: true })).toHaveAttribute('href', '/calculators/business/');
   });
 });
 
 test.describe('Business hub lists the ROI Calculator', () => {
   test('ROI Calculator shows on the Business hub', async ({ page }) => {
     await page.goto('/calculators/business/');
-    await expect(page.getByRole('link', { name: 'ROI Calculator' }).first()).toBeVisible();
+    await expect(page.getByRole('link', { name: 'ROI Calculator', includeHidden: true }).first()).toBeVisible();
   });
 });

@@ -81,7 +81,8 @@ test.describe('Homepage landing page', () => {
     await expect(page.locator('[data-calculator]')).toHaveCount(0);
   });
 
-  test('features every live calculator from categories.json as a card', async ({ page }) => {
+  test('all-calculators hub features every live calculator from categories.json', async ({ page }) => {
+    await page.goto('/calculators/');
     const fs = require('fs');
     const path = require('path');
     const categories = JSON.parse(

@@ -33,7 +33,8 @@ test('shows page weight budget after submit', async ({ page }) => {
   await page.selectOption('[data-site-type]', 'ecommerce');
   await page.selectOption('[data-connection-target]', 'mobile_fast');
   await page.click('[data-calculate]');
-  await expect(page.locator('[data-line-total]')).toContainText('KB');
+  // Total crosses into MB for heavier site types; individual lines stay in KB.
+  await expect(page.locator('[data-line-total]')).toContainText(/KB|MB/);
   await expect(page.locator('[data-line-js]')).toContainText('KB');
   await expect(page.locator('[data-line-images]')).toContainText('KB');
 });
@@ -58,7 +59,11 @@ test('mobile_slow budget is smaller than desktop', async ({ page }) => {
   await page.click('[data-calculate]');
   const desktopText = await page.locator('[data-line-total]').innerText();
 
-  const parseKb = s => parseFloat(s.replace(/[^0-9.]/g, ''));
+  // Normalise "1.5 MB" / "200 KB" into KB for comparison.
+  const parseKb = s => {
+    const n = parseFloat(s.replace(/[^0-9.]/g, ''));
+    return /MB/i.test(s) ? n * 1000 : n;
+  };
   expect(parseKb(slowText)).toBeLessThan(parseKb(desktopText));
 });
 
@@ -137,6 +142,7 @@ test('has FAQPage JSON-LD with at least 3 questions', async ({ page }) => {
 
 test('primary nav includes Business link', async ({ page }) => {
   await page.goto(URL);
+  await page.click('[data-menu-toggle]');
   await expect(page.locator('.primary-nav__submenu a[href="/calculators/business/"]')).toBeVisible();
 });
 
