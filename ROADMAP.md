@@ -431,7 +431,7 @@ Note: developer-centric utilities (Base64, JSON formatter, Unix timestamp, JWT d
 - [x] Reading Time Estimator (paste any text, get estimated minutes to read, useful for writers, editors, and marketers) - `/calculators/writing/read-time-calculator/`
 - [ ] Text Case Converter (camelCase, snake_case, UPPER CASE, Title Case, sentence case — writer and developer crossover)
 - [ ] Text Diff Tool (paste two blocks of text, see what changed — proofreading, contract revisions, code review)
-- [ ] URL Slug Generator and Validator
+- [x] URL Slug Generator and Validator - `/calculators/seo/url-slug-generator/`
 - [ ] Meta Title and Description Length Checker
 - [ ] Colour Contrast Ratio Checker (WCAG)
 - [ ] Base64 Encoder and Decoder (lower priority — see note above)

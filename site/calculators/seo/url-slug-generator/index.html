@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Date Difference Calculator | WebCaretakers</title>
-  <meta name="description" content="Work out how many days, weeks, months or years sit between two dates. Handy for project deadlines, anniversaries, and any other 'how long?' question.">
-  <link rel="canonical" href="https://webcaretakers.com/calculators/fun/date-difference-calculator/">
-  <meta property="og:title" content="Date Difference Calculator | WebCaretakers">
-  <meta property="og:description" content="How many days, weeks or months between two dates? Put them in, get the answer.">
+  <title>URL Slug Generator | WebCaretakers</title>
+  <meta name="description" content="Turn any heading into a clean URL slug: lowercase, hyphenated, ASCII-safe, optionally trimmed to length. Runs in your browser, nothing uploaded.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/seo/url-slug-generator/">
+  <meta property="og:title" content="URL Slug Generator | WebCaretakers">
+  <meta property="og:description" content="Clean, ASCII-safe URL slugs from any heading, with optional stop-word removal and length cap.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://webcaretakers.com/calculators/fun/date-difference-calculator/">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/seo/url-slug-generator/">
   <meta name="robots" content="index, follow">
   <link rel="stylesheet" href="/assets/css/main.css">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -39,9 +39,9 @@
   {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    "name": "Date Difference Calculator",
-    "url": "https://webcaretakers.com/calculators/fun/date-difference-calculator/",
-    "description": "Work out the difference between two dates in years, months, days, weeks, hours and business days.",
+    "name": "URL Slug Generator",
+    "url": "https://webcaretakers.com/calculators/seo/url-slug-generator/",
+    "description": "Turn any heading into a clean, ASCII-safe URL slug with optional stop-word removal and length cap.",
     "applicationCategory": "UtilitiesApplication",
     "operatingSystem": "Any",
     "isPartOf": {
@@ -59,26 +59,26 @@
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "How do I count the days between two dates?",
+        "name": "What makes a good URL slug?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Subtract the earlier date from the later date. This calculator does it for you and gives the answer in days, weeks, months, years, hours, and Monday-to-Friday business days. It uses UTC internally so daylight saving transitions and timezones don't nudge the count by one."
+          "text": "Short, lowercase, descriptive, hyphen-separated, ASCII-only, and stable. Google prefers readable slugs over opaque IDs. Three to five meaningful words is usually enough. Strip stop words (the, a, of, and) and any punctuation. Keep numbers if they carry meaning."
         }
       },
       {
         "@type": "Question",
-        "name": "Does it count the start date, the end date, or both?",
+        "name": "Hyphens or underscores?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "The total-days figure is the number of whole days between the two dates: from Monday to Wednesday is 2 days. The business-days figure is inclusive of both endpoints when they are weekdays: Monday to Friday of the same week counts as 5 business days."
+          "text": "Hyphens. Google has been explicit about this for years: hyphens separate words, underscores do not. A slug with underscores reads as one long word to the crawler. Use hyphens unless you have a platform reason not to."
         }
       },
       {
         "@type": "Question",
-        "name": "What if I put the dates in the wrong order?",
+        "name": "How long should a slug be?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "The calculator flips them automatically and tells you it did. The numbers are always positive. Handy if you're working out how long until a date and how long since one in quick succession."
+          "text": "Aim for 50 to 60 characters or fewer. Long slugs get truncated in search results and are harder to share. The tool has a length cap that trims on a word boundary so you never end on a partial word."
         }
       }
     ]
@@ -164,47 +164,53 @@
           <ol>
             <li><a href="/">Home</a></li>
             <li><a href="/calculators/">Calculators</a></li>
-            <li><a href="/calculators/fun/">Fun</a></li>
-            <li aria-current="page">Date Difference Calculator</li>
+            <li><a href="/calculators/seo/">SEO</a></li>
+            <li aria-current="page">URL Slug Generator</li>
           </ol>
         </nav>
 
-        <h1>Date Difference Calculator</h1>
+        <h1>URL Slug Generator</h1>
 
         <div class="eli5">
-          <h2>Explain like I'm 5 (what even is this calculator?)</h2>
-          <p>Pick two dates. Get the gap between them, in every unit that makes sense: years, months, days, weeks, hours, and weekdays. Useful for deadlines, anniversaries, and answering "how long has it been since…" without doing sums in your head on a Monday morning.</p>
+          <h2>Explain like I'm 5 (what even is this tool?)</h2>
+          <p>Type or paste a heading. It gives you back the bit that goes on the end of a web address: lowercase, joined with hyphens, no weird characters, no accents. The thing that would turn "The Best Cafés in London" into "best-cafes-in-london".</p>
         </div>
 
         <section data-calculator class="calculator-card">
           <form class="calc-form" novalidate>
             <div class="calc-row">
-              <label for="from">Start date</label>
-              <input type="date" id="from" data-from required>
+              <label for="slug-text">Heading or title<span class="calc-hint">Type or paste in. Slug updates live.</span></label>
+              <input type="text" id="slug-text" data-text placeholder="e.g. How to Write a Great Blog Post in 2025">
             </div>
-            <div class="calc-row">
-              <label for="to">End date</label>
-              <input type="date" id="to" data-to required>
+            <div class="calc-row calc-row--inline">
+              <label for="slug-sep">Separator</label>
+              <select id="slug-sep" data-separator>
+                <option value="-" selected>Hyphen (-)</option>
+                <option value="_">Underscore (_)</option>
+              </select>
             </div>
-
-            <button type="button" data-calculate>Calculate</button>
+            <div class="calc-row calc-row--inline">
+              <label for="slug-max">Maximum length (characters)</label>
+              <input type="number" id="slug-max" min="0" step="1" value="60" data-max-length>
+            </div>
+            <div class="calc-row calc-row--checkbox">
+              <label><input type="checkbox" data-remove-stops> Remove common stop words (the, a, of, and, etc.)</label>
+            </div>
             <p class="calc-error" data-error hidden></p>
           </form>
 
-          <div class="calculator-results" data-breakdown hidden>
-            <h2>The gap is</h2>
-            <p class="result-display" data-result>—</p>
-            <p class="calc-hint" data-reversed-note hidden>We flipped the dates so the answer came out positive.</p>
+          <div class="calculator-results" data-breakdown>
+            <h2>Your slug</h2>
+            <p class="result-display"><code data-slug-out>—</code></p>
 
             <div class="mort-breakdown">
-              <h3>Every which way</h3>
+              <h3>Details</h3>
               <ul>
-                <li class="mort-breakdown__total"><span>Years, months, days</span><strong data-line-ymd>—</strong></li>
-                <li><span>Total days</span><strong data-line-total-days>—</strong></li>
-                <li><span>Total weeks</span><strong data-line-total-weeks>—</strong></li>
-                <li><span>Total months</span><strong data-line-total-months>—</strong></li>
-                <li><span>Total hours</span><strong data-line-total-hours>—</strong></li>
-                <li><span>Business days (Mon-Fri)</span><strong data-line-business-days>—</strong></li>
+                <li class="mort-breakdown__total"><span>Slug</span><strong data-line-slug>—</strong></li>
+                <li><span>Length</span><strong data-line-length>0 characters</strong></li>
+                <li><span>Words kept</span><strong data-line-words>0</strong></li>
+                <li><span>Words dropped</span><strong data-line-dropped>0</strong></li>
+                <li><span>Truncated?</span><strong data-line-truncated>No</strong></li>
               </ul>
             </div>
 
@@ -216,34 +222,37 @@
         </section>
 
         <section class="long-form">
-          <h2>What this is good for</h2>
-          <p>Three things really: counting down (how long until the wedding, the holiday, the mortgage clearing), counting up (how long since a house move, a sobriety date, a contract started) and settling project-planning arguments ("can we launch in six weeks? Depends on what six weeks means on a calendar, doesn't it").</p>
-          <p>The business-days figure is the one project managers want. It counts Monday to Friday only, ignores weekends, and does not know about your national holidays. If you need bank holidays stripped out too, subtract them from the business-day figure by hand. Building a proper calendar-aware holiday subtraction is more calculator than this one wants to be.</p>
+          <h2>Writing a slug that earns its keep</h2>
+          <p>A good URL slug is short, readable, and describes the page in three to five meaningful words. It should be stable: once indexed, changing a slug costs you link equity unless you manage the redirect carefully. Don't stuff keywords, and don't be cute. "best-running-shoes-2025" beats "top-10-must-have-amazing-running-shoes-you-need-now".</p>
+          <p>Stop words (the, a, of, and, with, for) add length without adding meaning in slug form. Strip them unless the meaning depends on them. "cat-in-the-hat" needs the stop words; "history-of-rome" does not.</p>
 
-          <h2>How the maths works</h2>
-          <p>Years, months and days come out of straightforward date subtraction with the same borrow-from-the-previous-month trick you'd use by hand. Total days uses UTC midnight on both dates, so daylight saving transitions and timezones cannot shunt the answer by one. Total weeks is the floor of total days divided by seven. Total hours is total days times twenty four, which is an approximation on the two days of the year that have twenty three or twenty five hours, but unless you're timing something to the exact minute that won't matter.</p>
+          <h2>Hyphens, underscores and the Google line</h2>
+          <p>Use hyphens. Google's position on this has been public for well over a decade: hyphens separate words, underscores do not. Underscores exist in the tool because some platforms (notably certain older CMSes) require them for legacy reasons. If you have a choice, pick the hyphen.</p>
+
+          <h2>Accented characters and transliteration</h2>
+          <p>Browsers and modern servers handle Unicode URLs, but a slug like /café-münster/ will render as percent-encoded noise in shares, email clients, and old software. The tool transliterates accents to their nearest ASCII equivalent (café → cafe, Münster → munster), keeping the slug portable and readable.</p>
 
           <h2>Related tools</h2>
-          <p>If you're counting how old someone is, the <a href="/calculators/fun/age-in-months-calculator/">Age in Months Calculator</a> gives you the Parenting Hell answer. For money over time rather than time over time, try the <a href="/calculators/finance/compound-interest-calculator/">Compound Interest Calculator</a>.</p>
+          <p>For checking title and meta description lengths, see the meta length checker (coming soon). For pure word and character counting, use the <a href="/calculators/writing/word-count/">Word Count Tool</a>.</p>
         </section>
 
         <section class="faq">
           <h2>Common questions</h2>
           <details>
-            <summary>Does it count the start date, the end date, or both?</summary>
-            <p>The total-days figure counts the number of whole days between the two dates (Monday to Wednesday is 2). Business days are inclusive on both ends when those days are weekdays (Monday to Friday of the same week is 5).</p>
+            <summary>What makes a good URL slug?</summary>
+            <p>Short, lowercase, hyphen-separated, three to five meaningful words, no punctuation. Google prefers readable slugs.</p>
           </details>
           <details>
-            <summary>What about bank holidays?</summary>
-            <p>Not subtracted. Business days is strictly Mon-Fri. If you need a holiday-aware figure, knock the relevant bank holidays off by hand.</p>
+            <summary>Hyphens or underscores?</summary>
+            <p>Hyphens. Google treats them as word separators; underscores are read as part of the word.</p>
           </details>
           <details>
-            <summary>What if the end date is before the start date?</summary>
-            <p>The calculator flips them, gives you a positive answer, and tells you it flipped them. No negative numbers to squint at.</p>
+            <summary>How long should a slug be?</summary>
+            <p>50 to 60 characters or fewer. The tool trims on a word boundary so you never end on a partial word.</p>
           </details>
           <details>
-            <summary>Is any of my data sent anywhere?</summary>
-            <p>No. Everything is worked out in your browser. The dates never leave your device.</p>
+            <summary>Will this change my existing URLs?</summary>
+            <p>No. It only generates slug text. Applying it to a live page is a platform job, and changing a published URL means setting up a 301 redirect so you don't lose traffic.</p>
           </details>
         </section>
       </div>
@@ -278,72 +287,68 @@
     </div>
   </footer>
 
-  <script src="/assets/js/calculators/date-difference.js"></script>
+  <script src="/assets/js/calculators/url-slug.js"></script>
   <script>
   (function () {
     'use strict';
 
-    var calcBtn     = document.querySelector('[data-calculate]');
-    var breakdown   = document.querySelector('[data-breakdown]');
-    var errorEl     = document.querySelector('[data-error]');
-    var resultEl    = document.querySelector('[data-result]');
-    var reversedNote = document.querySelector('[data-reversed-note]');
-    var proveItBody = document.querySelector('[data-prove-it-body]');
+    var textIn    = document.querySelector('[data-text]');
+    var sepIn     = document.querySelector('[data-separator]');
+    var maxIn     = document.querySelector('[data-max-length]');
+    var stopsIn   = document.querySelector('[data-remove-stops]');
+    var errorEl   = document.querySelector('[data-error]');
+    var proveBody = document.querySelector('[data-prove-it-body]');
 
-    function showError(msg) { errorEl.textContent = msg; errorEl.hidden = false; breakdown.hidden = true; }
-    function clearError()   { errorEl.hidden = true; errorEl.textContent = ''; }
-    function fmt(n)         { return n.toLocaleString('en-GB'); }
-    function plural(n, s)   { return n + ' ' + s + (n === 1 ? '' : 's'); }
+    var fired = false;
 
-    calcBtn.addEventListener('click', function () {
-      clearError();
-      var from = document.querySelector('[data-from]').value;
-      var to   = document.querySelector('[data-to]').value;
-
-      if (!from) { showError('Enter a start date.'); return; }
-      if (!to)   { showError('Enter an end date.');   return; }
-
-      window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push({ event: 'calculator_interaction', calculator_name: 'Date Difference Calculator' });
-
+    function run() {
+      errorEl.hidden = true;
       try {
-        var r = DateDifference.calculateDateDifference({ from: from, to: to });
-
-        var ymd = plural(r.years, 'year') + ', ' + plural(r.monthsOnly, 'month') + ', ' + plural(r.days, 'day');
-        resultEl.textContent = ymd;
-        reversedNote.hidden = !r.reversed;
-
-        document.querySelector('[data-line-ymd]').textContent            = ymd;
-        document.querySelector('[data-line-total-days]').textContent     = fmt(r.totalDays)  + ' days';
-        document.querySelector('[data-line-total-weeks]').textContent    = fmt(r.totalWeeks) + ' weeks';
-        document.querySelector('[data-line-total-months]').textContent   = fmt(r.totalMonths) + ' months';
-        document.querySelector('[data-line-total-hours]').textContent    = fmt(r.totalHours) + ' hours';
-        document.querySelector('[data-line-business-days]').textContent  = fmt(r.businessDays) + ' days';
-
-        proveItBody.textContent =
-            'From: ' + r.from + '\n'
-          + 'To:   ' + r.to + '\n'
-          + (r.reversed ? '(Dates were entered in reverse order and flipped.)\n' : '')
-          + 'Years component:  ' + r.years + '\n'
-          + 'Months component: ' + r.monthsOnly + '\n'
-          + 'Days component:   ' + r.days + '\n'
-          + 'Total days = (end - start) in UTC milliseconds ÷ 86,400,000 = ' + r.totalDays + '\n'
-          + 'Total weeks = floor(' + r.totalDays + ' ÷ 7) = ' + r.totalWeeks + '\n'
-          + 'Total hours = ' + r.totalDays + ' × 24 = ' + r.totalHours + '\n'
-          + 'Business days (Mon-Fri, inclusive both ends): ' + r.businessDays;
-
-        window.dataLayer.push({
-          event:           'calculator_result',
-          calculator_name: 'Date Difference Calculator',
-          total_days:      r.totalDays,
-          total_months:    r.totalMonths,
+        var r = UrlSlug.generateSlug({
+          text:            textIn.value,
+          separator:       sepIn.value,
+          maxLength:       parseInt(maxIn.value, 10) || 0,
+          removeStopWords: stopsIn.checked,
         });
 
-        breakdown.hidden = false;
+        var display = r.slug || '—';
+        document.querySelector('[data-slug-out]').textContent = display;
+        document.querySelector('[data-line-slug]').textContent = display;
+        document.querySelector('[data-line-length]').textContent = r.slug.length + ' character' + (r.slug.length === 1 ? '' : 's');
+        document.querySelector('[data-line-words]').textContent = r.wordCount.toLocaleString('en-GB');
+        document.querySelector('[data-line-dropped]').textContent = r.dropped.length + (r.dropped.length ? ' (' + r.dropped.join(', ') + ')' : '');
+        document.querySelector('[data-line-truncated]').textContent = r.truncated ? 'Yes' : 'No';
+
+        proveBody.textContent =
+            'Input:        ' + (r.original || '(empty)') + '\n'
+          + 'Separator:    ' + sepIn.value + '\n'
+          + 'Max length:   ' + (parseInt(maxIn.value, 10) || 0) + '\n'
+          + 'Stop-words:   ' + (stopsIn.checked ? 'removed' : 'kept') + '\n'
+          + 'Words kept:   ' + r.wordCount + '\n'
+          + 'Words dropped:' + (r.dropped.length ? ' ' + r.dropped.join(', ') : ' none') + '\n'
+          + 'Slug:         ' + (r.slug || '(empty)');
+
+        window.dataLayer = window.dataLayer || [];
+        if (!fired && r.slug.length > 0) {
+          fired = true;
+          window.dataLayer.push({ event: 'calculator_interaction', calculator_name: 'URL Slug Generator' });
+          window.dataLayer.push({
+            event:           'calculator_result',
+            calculator_name: 'URL Slug Generator',
+            slug_length:     r.slug.length,
+          });
+        }
       } catch (err) {
-        showError(err.message);
+        errorEl.textContent = err.message;
+        errorEl.hidden = false;
       }
-    });
+    }
+
+    textIn.addEventListener('input', run);
+    sepIn.addEventListener('change', run);
+    maxIn.addEventListener('input', run);
+    stopsIn.addEventListener('change', run);
+    run();
   })();
   </script>
   <script src="/assets/js/main.js"></script>

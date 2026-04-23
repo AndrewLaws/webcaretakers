@@ -253,6 +253,18 @@
     {
       "phrase": "word count tool",
       "url": "/calculators/writing/word-count/"
+    },
+    {
+      "phrase": "URL Slug Generator",
+      "url": "/calculators/seo/url-slug-generator/"
+    },
+    {
+      "phrase": "url slug generator",
+      "url": "/calculators/seo/url-slug-generator/"
+    },
+    {
+      "phrase": "SEO calculators",
+      "url": "/calculators/seo/"
     }
   ]
 }

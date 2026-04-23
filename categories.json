@@ -136,6 +136,18 @@
       ]
     },
     {
+      "slug": "seo",
+      "name": "SEO",
+      "tagline": "Practical SEO tools that run in your browser.",
+      "tools": [
+        {
+          "slug": "url-slug-generator",
+          "name": "URL Slug Generator",
+          "summary": "Turn any heading into a clean, ASCII-safe, hyphen-separated URL slug. Optional stop-word stripping and length cap."
+        }
+      ]
+    },
+    {
       "slug": "property",
       "name": "Property",
       "tagline": "Figures for buying, renting, moving, and maintaining a home.",
