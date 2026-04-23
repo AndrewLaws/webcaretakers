@@ -192,6 +192,11 @@
           "slug": "read-time-calculator",
           "name": "Read Time Calculator",
           "summary": "Paste any text to see word count, character count, sentence count, and estimated reading time silently and aloud. Useful for blog posts, scripts, speeches, and podcast outlines."
+        },
+        {
+          "slug": "word-count",
+          "name": "Word Count Tool",
+          "summary": "Live word, character, sentence and paragraph counts for pasted text, with fit-checks for tweet, meta description, SMS and SEO title limits."
         }
       ]
     }

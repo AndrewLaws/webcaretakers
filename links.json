@@ -245,6 +245,14 @@
     {
       "phrase": "writing calculators",
       "url": "/calculators/writing/"
+    },
+    {
+      "phrase": "Word Count Tool",
+      "url": "/calculators/writing/word-count/"
+    },
+    {
+      "phrase": "word count tool",
+      "url": "/calculators/writing/word-count/"
     }
   ]
 }

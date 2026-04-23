@@ -427,7 +427,7 @@ These map directly to content that existed on webcaretakers.com between 2001-201
 
 Note: developer-centric utilities (Base64, JSON formatter, Unix timestamp, JWT decoder, regex tester) are deprioritised. Tech-savvy users reach for an LLM for these now rather than a web tool. The items below that remain are either non-developer in audience or have clear SEO demand from a broader audience.
 
-- [ ] Character and Word Count Tool (already in roadmap; broad audience beyond developers)
+- [x] Character and Word Count Tool (already in roadmap; broad audience beyond developers) - `/calculators/writing/word-count/`
 - [x] Reading Time Estimator (paste any text, get estimated minutes to read, useful for writers, editors, and marketers) - `/calculators/writing/read-time-calculator/`
 - [ ] Text Case Converter (camelCase, snake_case, UPPER CASE, Title Case, sentence case — writer and developer crossover)
 - [ ] Text Diff Tool (paste two blocks of text, see what changed — proofreading, contract revisions, code review)

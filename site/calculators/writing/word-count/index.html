@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Word Count Tool | WebCaretakers</title>
+  <meta name="description" content="Paste any text and see word count, character count, sentences, paragraphs, and whether it fits inside tweet, meta description, SMS or SEO title limits.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/writing/word-count/">
+  <meta property="og:title" content="Word Count Tool | WebCaretakers">
+  <meta property="og:description" content="Live word, character, sentence and paragraph counts, plus fit-checks for tweet, meta, SMS and title limits.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/writing/word-count/">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var _stored = null;
+    try { _stored = localStorage.getItem('cookie-consent'); } catch (e) {}
+    var _initial = _stored === 'granted' ? 'granted' : 'denied';
+    gtag('consent', 'default', {
+      ad_storage: _initial, analytics_storage: _initial,
+      ad_user_data: _initial, ad_personalization: _initial,
+      functionality_storage: 'granted', security_storage: 'granted',
+      wait_for_update: 500
+    });
+  </script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Word Count Tool",
+    "url": "https://webcaretakers.com/calculators/writing/word-count/",
+    "description": "Live word, character, sentence and paragraph counts for any pasted text, with fit-checks for tweet, meta description, SMS and SEO title limits.",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "WebCaretakers",
+      "url": "https://webcaretakers.com/"
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How does this tool count words?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "It splits your text on whitespace and counts the runs of non-space characters. That matches what Word, Google Docs and most editors return. Hyphenated compounds like 'well-known' count as one word."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What are the character limits for?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Common platforms cap length: X (Twitter) at 280, SMS at 160, SEO meta descriptions truncate around 160, SEO page titles around 60, Open Graph titles around 70, Instagram captions at 2,200, LinkedIn posts at 3,000, and Facebook posts visibly truncate at roughly 477. Paste your draft and the tool tells you how many characters you have left or how far over you are."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does my text get uploaded anywhere?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. All counting happens in your browser. Nothing is sent to a server, logged, or retained. You can paste confidential drafts in safely."
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-banner-heading" aria-describedby="cookie-banner-text" hidden>
+    <div class="cookie-banner__inner">
+      <h2 id="cookie-banner-heading" class="cookie-banner__heading">A quick word about cookies</h2>
+      <p id="cookie-banner-text" class="cookie-banner__text">
+        We use cookies for analytics, so we can see which calculators people actually use and which ones need work. Nothing creepy, nothing sold on. You can say yes, say no, or read the <a href="/privacy/">privacy policy</a> first. Your choice sticks.
+      </p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-reject>Reject</button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>Accept</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var KEY = 'cookie-consent';
+      var banner = document.querySelector('[data-cookie-banner]');
+      if (!banner) return;
+      var stored = null;
+      try { stored = localStorage.getItem(KEY); } catch (e) {}
+      if (stored !== 'granted' && stored !== 'denied') { banner.hidden = false; }
+      function record(choice) {
+        try { localStorage.setItem(KEY, choice); } catch (e) {}
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('consent', 'update', {
+          ad_storage: choice, analytics_storage: choice,
+          ad_user_data: choice, ad_personalization: choice
+        });
+        banner.hidden = true;
+      }
+      var accept = banner.querySelector('[data-cookie-accept]');
+      var reject = banner.querySelector('[data-cookie-reject]');
+      if (accept) accept.addEventListener('click', function () { record('granted'); });
+      if (reject) reject.addEventListener('click', function () { record('denied'); });
+    })();
+  </script>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">WebCaretakers</a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <ul class="primary-nav__list">
+          <li class="primary-nav__item primary-nav__item--has-menu">
+            <button type="button" class="primary-nav__link" data-menu-toggle aria-haspopup="true" aria-expanded="false">Calculators <span class="primary-nav__caret" aria-hidden="true">▾</span></button>
+            <ul class="primary-nav__submenu">
+              <li><a href="/calculators/broadband/">Broadband</a></li>
+              <li><a href="/calculators/business/">Business</a></li>
+              <li><a href="/calculators/finance/">Finance</a></li>
+              <li><a href="/calculators/fun/">Fun</a></li>
+              <li><a href="/calculators/health/">Health</a></li>
+              <li><a href="/calculators/images/">Images</a></li>
+              <li><a href="/calculators/math/">Math</a></li>
+              <li><a href="/calculators/productivity/">Productivity</a></li>
+              <li><a href="/calculators/wedding/">Wedding</a></li>
+              <li><a href="/calculators/writing/">Writing</a></li>
+              <li class="primary-nav__submenu-sep"><a href="/calculators/">See all calculators</a></li>
+            </ul>
+          </li>
+          <li class="primary-nav__item"><a href="/about/" class="primary-nav__link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <main id="main-content">
+      <div class="container">
+        <nav aria-label="Breadcrumb" class="breadcrumbs">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/calculators/">Calculators</a></li>
+            <li><a href="/calculators/writing/">Writing</a></li>
+            <li aria-current="page">Word Count Tool</li>
+          </ol>
+        </nav>
+
+        <h1>Word Count Tool</h1>
+
+        <div class="eli5">
+          <h2>Explain like I'm 5 (what even is this tool?)</h2>
+          <p>Paste your writing in. It counts the words, the characters, the sentences and the paragraphs, and tells you whether it fits inside the length limits for things like tweets, SMS messages, and SEO titles. Useful when a bit of writing has to be a particular size.</p>
+        </div>
+
+        <section data-calculator class="calculator-card">
+          <form class="calc-form" novalidate>
+            <div class="calc-row">
+              <label for="wc-text">Paste or type your text<span class="calc-hint">Numbers update as you type.</span></label>
+              <textarea id="wc-text" rows="10" data-text placeholder="Start typing or paste a piece of writing here…"></textarea>
+            </div>
+            <p class="calc-error" data-error hidden></p>
+          </form>
+
+          <div class="calculator-results" data-breakdown>
+            <h2>Counts</h2>
+            <p class="result-display"><span data-result-words>0</span> words, <span data-result-chars>0</span> characters</p>
+
+            <div class="mort-breakdown">
+              <h3>Full breakdown</h3>
+              <ul>
+                <li class="mort-breakdown__total"><span>Words</span><strong data-line-words>0</strong></li>
+                <li><span>Characters (with spaces)</span><strong data-line-chars>0</strong></li>
+                <li><span>Characters (no spaces)</span><strong data-line-chars-no-ws>0</strong></li>
+                <li><span>Sentences</span><strong data-line-sentences>0</strong></li>
+                <li><span>Paragraphs</span><strong data-line-paragraphs>0</strong></li>
+                <li><span>Average word length</span><strong data-line-avg-word>0</strong></li>
+              </ul>
+            </div>
+
+            <div class="mort-breakdown">
+              <h3>Will it fit?</h3>
+              <ul>
+                <li><span>Page title (60)</span><strong data-limit-title>—</strong></li>
+                <li><span>Open Graph title (70)</span><strong data-limit-ogTitle>—</strong></li>
+                <li><span>Meta description (160)</span><strong data-limit-meta>—</strong></li>
+                <li><span>SMS message (160)</span><strong data-limit-sms>—</strong></li>
+                <li><span>Tweet / X post (280)</span><strong data-limit-tweet>—</strong></li>
+                <li><span>Facebook visible (477)</span><strong data-limit-facebook>—</strong></li>
+                <li><span>Instagram caption (2,200)</span><strong data-limit-instagram>—</strong></li>
+                <li><span>LinkedIn post (3,000)</span><strong data-limit-linkedin>—</strong></li>
+              </ul>
+            </div>
+
+            <details class="prove-it">
+              <summary>Show workings</summary>
+              <div data-prove-it-body class="prove-it__body"></div>
+            </details>
+          </div>
+        </section>
+
+        <section class="long-form">
+          <h2>When word count actually matters</h2>
+          <p>Most of the time, "write until you're done" is the right advice. But some formats enforce hard limits. SEO page titles beyond about 60 characters get truncated in Google's listings. Meta descriptions past 160 characters get cut off with an ellipsis. A tweet at 281 characters simply will not post. An SMS past 160 characters splits into two messages and costs you twice. This tool checks those limits live so you can trim before it's a problem.</p>
+
+          <h2>How the counting works</h2>
+          <p>Words are runs of non-whitespace separated by spaces, tabs or line breaks, which matches Word, Google Docs and almost every other editor. Hyphenated compounds like "well-known" count as one. Sentences are counted by full stops, question marks and exclamation marks followed by whitespace or end-of-text. Paragraphs are separated by blank lines. Average word length strips punctuation before measuring, so "don't." counts as a five-letter word.</p>
+
+          <h2>Related tools</h2>
+          <p>If you're after reading time rather than length, use the <a href="/calculators/writing/read-time-calculator/">Read Time Calculator</a>. SEO-specific checks (title, meta description, slug) live in the SEO tools.</p>
+        </section>
+
+        <section class="faq">
+          <h2>Common questions</h2>
+          <details>
+            <summary>How does the tool count words?</summary>
+            <p>Runs of non-whitespace, same as Word and Google Docs. "well-known" is one word, not two.</p>
+          </details>
+          <details>
+            <summary>Where do the character limits come from?</summary>
+            <p>Platform conventions. Twitter/X 280, SMS 160, meta description truncated around 160, SEO title around 60, Open Graph title 70, Instagram 2,200, LinkedIn 3,000, Facebook visible around 477.</p>
+          </details>
+          <details>
+            <summary>Does my text go anywhere?</summary>
+            <p>No. Everything runs in your browser. Paste confidential drafts safely.</p>
+          </details>
+          <details>
+            <summary>Does it count Markdown and HTML tags?</summary>
+            <p>Yes. Tags and syntax characters are treated as tokens. For most purposes this is close enough. If your text is very heavy on formatting, strip tags first.</p>
+          </details>
+        </section>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="ad-slot" data-ad-slot="sidebar" aria-hidden="true"></div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="site-footer-nav" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/calculators/">All calculators</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+      <section class="site-disclaimer" data-disclaimer aria-labelledby="disclaimer-heading">
+        <h2 id="disclaimer-heading">A quick, necessary word</h2>
+        <p>Every calculator on this site is built to give you a sensible, well-reasoned estimate. It is, however, exactly that: an estimate, for general information only. Nothing you see here is professional, legal, financial, medical, or tax advice, and it should not be treated as such.</p>
+        <p>Before you make a decision that actually matters, talk to a qualified professional who knows your specific situation: an accountant, a solicitor, a doctor, an IT consultant, whoever fits the question. They can factor in the bits a generic tool can't.</p>
+        <p>We take no liability and accept no responsibility for any loss, damage, or questionable life choice arising from acting on the numbers you see here. Use the results as a starting point for a better conversation, not as the final word.</p>
+        <p><strong>Affiliate disclosure:</strong> some links on this site are affiliate links. If you click through and buy or sign up for something, we may earn a small commission at no extra cost to you. It helps keep the calculators free and ad-light. We only recommend things we'd point a friend towards.</p>
+      </section>
+      <p class="site-copyright">&copy; 2026 WebCaretakers. All rights reserved.</p>
+      <p class="site-legal">WebCaretakers is a trading name of <a href="https://yeseo.io/" rel="noopener">Andrew Laws Associates Ltd</a>, registered in England and Wales (company no. 08602332). ICO registration ZA726704.</p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/calculators/word-count.js"></script>
+  <script>
+  (function () {
+    'use strict';
+
+    var textIn      = document.querySelector('[data-text]');
+    var errorEl     = document.querySelector('[data-error]');
+    var proveItBody = document.querySelector('[data-prove-it-body]');
+
+    var LIMIT_KEYS = ['title', 'ogTitle', 'meta', 'sms', 'tweet', 'facebook', 'instagram', 'linkedin'];
+
+    var fired = false;
+
+    function statusLabel(L) {
+      if (L.status === 'empty')  return '—';
+      if (L.status === 'over')   return 'over by ' + L.overBy.toLocaleString('en-GB');
+      if (L.status === 'near')   return L.remaining.toLocaleString('en-GB') + ' left';
+      return L.remaining.toLocaleString('en-GB') + ' left';
+    }
+
+    function run() {
+      errorEl.hidden = true;
+      try {
+        var r = WordCount.analyseText({ text: textIn.value });
+
+        document.querySelector('[data-result-words]').textContent = r.words.toLocaleString('en-GB');
+        document.querySelector('[data-result-chars]').textContent = r.characters.toLocaleString('en-GB');
+
+        document.querySelector('[data-line-words]').textContent        = r.words.toLocaleString('en-GB');
+        document.querySelector('[data-line-chars]').textContent        = r.characters.toLocaleString('en-GB');
+        document.querySelector('[data-line-chars-no-ws]').textContent  = r.charactersNoSpaces.toLocaleString('en-GB');
+        document.querySelector('[data-line-sentences]').textContent    = r.sentences.toLocaleString('en-GB');
+        document.querySelector('[data-line-paragraphs]').textContent   = r.paragraphs.toLocaleString('en-GB');
+        document.querySelector('[data-line-avg-word]').textContent     = r.averageWordLength.toFixed(1);
+
+        for (var i = 0; i < LIMIT_KEYS.length; i++) {
+          var k = LIMIT_KEYS[i];
+          var el = document.querySelector('[data-limit-' + k + ']');
+          if (el) el.textContent = statusLabel(r.limits[k]);
+        }
+
+        proveItBody.textContent =
+            'Words:      ' + r.words + '\n'
+          + 'Chars:      ' + r.characters + ' (with spaces), ' + r.charactersNoSpaces + ' (without)\n'
+          + 'Sentences:  ' + r.sentences + '\n'
+          + 'Paragraphs: ' + r.paragraphs + '\n'
+          + 'Avg word:   ' + r.averageWordLength.toFixed(2) + ' chars';
+
+        window.dataLayer = window.dataLayer || [];
+        if (!fired && r.words > 0) {
+          fired = true;
+          window.dataLayer.push({ event: 'calculator_interaction', calculator_name: 'Word Count Tool' });
+          window.dataLayer.push({
+            event:           'calculator_result',
+            calculator_name: 'Word Count Tool',
+            word_count:      r.words,
+          });
+        }
+      } catch (err) {
+        errorEl.textContent = err.message;
+        errorEl.hidden = false;
+      }
+    }
+
+    textIn.addEventListener('input', run);
+    run();
+  })();
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>
