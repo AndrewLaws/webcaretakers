@@ -301,6 +301,18 @@
     {
       "phrase": "English to Suffolk translator",
       "url": "/calculators/writing/english-to-suffolk-translator/"
+    },
+    {
+      "phrase": "Rental Yield Calculator",
+      "url": "/calculators/property/rental-yield-calculator/"
+    },
+    {
+      "phrase": "rental yield calculator",
+      "url": "/calculators/property/rental-yield-calculator/"
+    },
+    {
+      "phrase": "property calculators",
+      "url": "/calculators/property/"
     }
   ]
 }

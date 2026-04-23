@@ -225,7 +225,13 @@
       "slug": "property",
       "name": "Property",
       "tagline": "Figures for buying, renting, moving, and maintaining a home.",
-      "tools": []
+      "tools": [
+        {
+          "slug": "rental-yield-calculator",
+          "name": "Rental Yield Calculator",
+          "summary": "Gross yield, net yield, monthly cash flow and return on deposit for any rental property. Currency toggle, workings shown."
+        }
+      ]
     },
     {
       "slug": "wedding",

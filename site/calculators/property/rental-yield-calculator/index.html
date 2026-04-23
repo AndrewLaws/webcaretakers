@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rental Yield Calculator | WebCaretakers</title>
+  <meta name="description" content="Calculate gross and net rental yield on a buy-to-let property. Optional cash-on-cash return based on your deposit and mortgage payment. Currency toggle, workings shown.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/property/rental-yield-calculator/">
+  <meta property="og:title" content="Rental Yield Calculator | WebCaretakers">
+  <meta property="og:description" content="Gross yield, net yield, monthly cash flow and return on deposit for any rental property.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/property/rental-yield-calculator/">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var _stored = null;
+    try { _stored = localStorage.getItem('cookie-consent'); } catch (e) {}
+    var _initial = _stored === 'granted' ? 'granted' : 'denied';
+    gtag('consent', 'default', {
+      ad_storage: _initial, analytics_storage: _initial,
+      ad_user_data: _initial, ad_personalization: _initial,
+      functionality_storage: 'granted', security_storage: 'granted',
+      wait_for_update: 500
+    });
+  </script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Rental Yield Calculator",
+    "url": "https://webcaretakers.com/calculators/property/rental-yield-calculator/",
+    "description": "Calculate gross yield, net yield, monthly cash flow and return on deposit for any rental property. Currency toggle, workings shown.",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any",
+    "inLanguage": "en-GB",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "WebCaretakers",
+      "url": "https://webcaretakers.com/"
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is a good rental yield?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "As a rough benchmark, a gross yield of 5% to 8% is often considered healthy for UK buy-to-let, depending on the area. High-demand southern cities tend to come in lower (3% to 5%) because capital values are high; northern cities and regional towns often show higher yields (6% to 10%+). Net yield, after running costs, is typically 1.5 to 2.5 percentage points below gross."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the difference between gross and net yield?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Gross yield is annual rent divided by property value. Net yield subtracts annual running costs (letting fees, maintenance, insurance, void allowance, ground rent, service charges) before dividing. Gross is useful for quick comparisons between properties. Net is what you actually earn before mortgage and tax."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Should mortgage interest be included in yield?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Yield measures the return the property itself generates, not how it is financed. Two investors can buy the same property, one cash and one with a 75% mortgage, and the property has the same yield for both. The mortgage affects cash flow and return on cash invested, not yield. This calculator keeps them separate."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is cash-on-cash return?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Cash-on-cash return is annual cash flow divided by the cash you actually put in (deposit plus stamp duty, legal fees and any refurb). It tells you the percentage return on your invested capital, factoring in the mortgage. This is usually the number property investors care about most, because it shows the real return on the money they put at risk."
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-banner-heading" aria-describedby="cookie-banner-text" hidden>
+    <div class="cookie-banner__inner">
+      <h2 id="cookie-banner-heading" class="cookie-banner__heading">A quick word about cookies</h2>
+      <p id="cookie-banner-text" class="cookie-banner__text">
+        We use cookies for analytics, so we can see which calculators people actually use and which ones need work. Nothing creepy, nothing sold on. You can say yes, say no, or read the <a href="/privacy/">privacy policy</a> first. Your choice sticks.
+      </p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-reject>Reject</button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>Accept</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var KEY = 'cookie-consent';
+      var banner = document.querySelector('[data-cookie-banner]');
+      if (!banner) return;
+      var stored = null;
+      try { stored = localStorage.getItem(KEY); } catch (e) {}
+      if (stored !== 'granted' && stored !== 'denied') { banner.hidden = false; }
+      function record(choice) {
+        try { localStorage.setItem(KEY, choice); } catch (e) {}
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('consent', 'update', {
+          ad_storage: choice, analytics_storage: choice,
+          ad_user_data: choice, ad_personalization: choice
+        });
+        banner.hidden = true;
+      }
+      var accept = banner.querySelector('[data-cookie-accept]');
+      var reject = banner.querySelector('[data-cookie-reject]');
+      if (accept) accept.addEventListener('click', function () { record('granted'); });
+      if (reject) reject.addEventListener('click', function () { record('denied'); });
+    })();
+  </script>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">WebCaretakers</a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <ul class="primary-nav__list">
+          <li class="primary-nav__item primary-nav__item--has-menu">
+            <button type="button" class="primary-nav__link" data-menu-toggle aria-haspopup="true" aria-expanded="false">Calculators <span class="primary-nav__caret" aria-hidden="true">▾</span></button>
+            <ul class="primary-nav__submenu">
+              <li><a href="/calculators/broadband/">Broadband</a></li>
+              <li><a href="/calculators/business/">Business</a></li>
+              <li><a href="/calculators/conversions/">Conversions</a></li>
+              <li><a href="/calculators/finance/">Finance</a></li>
+              <li><a href="/calculators/fun/">Fun</a></li>
+              <li><a href="/calculators/health/">Health</a></li>
+              <li><a href="/calculators/images/">Images</a></li>
+              <li><a href="/calculators/math/">Math</a></li>
+              <li><a href="/calculators/productivity/">Productivity</a></li>
+              <li><a href="/calculators/property/">Property</a></li>
+              <li><a href="/calculators/seo/">SEO</a></li>
+              <li><a href="/calculators/wedding/">Wedding</a></li>
+              <li><a href="/calculators/writing/">Writing</a></li>
+              <li class="primary-nav__submenu-sep"><a href="/calculators/">See all calculators</a></li>
+            </ul>
+          </li>
+          <li class="primary-nav__item"><a href="/about/" class="primary-nav__link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <main id="main-content">
+      <div class="container">
+        <nav aria-label="Breadcrumb" class="breadcrumbs">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/calculators/">Calculators</a></li>
+            <li><a href="/calculators/property/">Property</a></li>
+            <li aria-current="page">Rental Yield Calculator</li>
+          </ol>
+        </nav>
+
+        <h1>Rental Yield Calculator</h1>
+        <p class="intro">Work out the gross yield, net yield and monthly cash flow on any rental property. Add a deposit and mortgage payment to see the return on the cash you actually put in.</p>
+
+        <div class="eli5">
+          <h2>Explain like I'm 5</h2>
+          <p>You own a flat worth £200,000. It rents for £1,000 a month, so £12,000 a year. Gross yield is £12,000 ÷ £200,000 = 6%. Out of that £12,000, you spend £2,000 on insurance, repairs, letting agent and the odd empty month. So you actually keep £10,000, which is 5% of the flat's value. That 5% is your net yield.</p>
+        </div>
+
+        <section data-calculator class="calculator-card">
+          <form class="calc-form" novalidate>
+            <fieldset class="calc-fieldset">
+              <legend>Currency</legend>
+              <div class="calc-row calc-row--radio">
+                <div class="calc-radio-options">
+                  <label><input type="radio" name="currency" value="GBP" data-currency checked> GBP (£)</label>
+                  <label><input type="radio" name="currency" value="USD" data-currency> USD ($)</label>
+                  <label><input type="radio" name="currency" value="EUR" data-currency> EUR (€)</label>
+                </div>
+              </div>
+            </fieldset>
+
+            <div class="calc-row">
+              <label for="property-value">Property value <span data-currency-label>(£)</span></label>
+              <input type="number" id="property-value" data-property-value min="1" step="1" value="250000" placeholder="e.g. 250000">
+            </div>
+            <div class="calc-row">
+              <label for="monthly-rent">Monthly rent <span data-currency-label>(£)</span></label>
+              <input type="number" id="monthly-rent" data-monthly-rent min="0" step="1" value="1200" placeholder="e.g. 1200">
+            </div>
+
+            <fieldset class="calc-fieldset">
+              <legend>Annual running costs <span data-currency-label>(£)</span></legend>
+              <div class="calc-row">
+                <label for="cost-management">Management / letting fees</label>
+                <input type="number" id="cost-management" data-cost-management min="0" step="1" value="1440" placeholder="e.g. 1440">
+              </div>
+              <div class="calc-row">
+                <label for="cost-maintenance">Maintenance and repairs</label>
+                <input type="number" id="cost-maintenance" data-cost-maintenance min="0" step="1" value="1000" placeholder="e.g. 1000">
+              </div>
+              <div class="calc-row">
+                <label for="cost-insurance">Landlord insurance</label>
+                <input type="number" id="cost-insurance" data-cost-insurance min="0" step="1" value="300" placeholder="e.g. 300">
+              </div>
+              <div class="calc-row">
+                <label for="cost-void">Void allowance (empty months)</label>
+                <input type="number" id="cost-void" data-cost-void min="0" step="1" value="1200" placeholder="e.g. 1200">
+              </div>
+              <div class="calc-row">
+                <label for="cost-other">Ground rent, service charge, other</label>
+                <input type="number" id="cost-other" data-cost-other min="0" step="1" value="0" placeholder="e.g. 0">
+              </div>
+            </fieldset>
+
+            <fieldset class="calc-fieldset">
+              <legend>Optional: financing</legend>
+              <p class="calc-hint">Leave blank for an all-cash purchase. Fill both fields to see monthly cash flow and return on deposit.</p>
+              <div class="calc-row">
+                <label for="deposit">Deposit and buying costs <span data-currency-label>(£)</span></label>
+                <input type="number" id="deposit" data-deposit min="0" step="1" value="62500" placeholder="e.g. 62500">
+              </div>
+              <div class="calc-row">
+                <label for="monthly-mortgage">Monthly mortgage payment <span data-currency-label>(£)</span></label>
+                <input type="number" id="monthly-mortgage" data-monthly-mortgage min="0" step="1" value="800" placeholder="e.g. 800">
+              </div>
+            </fieldset>
+
+            <button type="button" data-calculate>Calculate yield</button>
+            <p class="calc-error" data-error hidden></p>
+          </form>
+
+          <div class="calculator-results" data-breakdown hidden>
+            <h2>Rental yield and cash flow</h2>
+
+            <div class="mort-breakdown">
+              <ul>
+                <li><span>Annual rent</span><strong data-line-annual-rent>—</strong></li>
+                <li><span>Annual running costs</span><strong data-line-annual-costs>—</strong></li>
+                <li><span>Net annual income (before mortgage)</span><strong data-line-net-annual>—</strong></li>
+                <li class="mort-breakdown__total"><span>Gross yield</span><strong data-line-gross-yield>—</strong></li>
+                <li class="mort-breakdown__total"><span>Net yield</span><strong data-line-net-yield>—</strong></li>
+              </ul>
+            </div>
+
+            <div data-cash-flow-section hidden>
+              <h3>Cash-on-cash return</h3>
+              <div class="mort-breakdown">
+                <ul>
+                  <li><span>Annual mortgage payments</span><strong data-line-annual-mortgage>—</strong></li>
+                  <li><span>Monthly cash flow (after mortgage)</span><strong data-line-monthly-cash>—</strong></li>
+                  <li><span>Annual cash flow</span><strong data-line-annual-cash>—</strong></li>
+                  <li class="mort-breakdown__total"><span>Return on deposit</span><strong data-line-roi>—</strong></li>
+                </ul>
+              </div>
+            </div>
+
+            <details class="prove-it">
+              <summary>Show workings</summary>
+              <div data-prove-it-body class="prove-it__body"></div>
+            </details>
+          </div>
+        </section>
+
+        <section class="long-form">
+          <h2>Gross versus net versus cash-on-cash</h2>
+          <p>Three different numbers, three different jobs. Gross yield is the fastest filter: annual rent divided by property value. It lets you compare a dozen listings in a couple of minutes. Net yield subtracts the running costs that come with being a landlord. Cash-on-cash goes one step further and measures the return on the actual cash you put into the deal, factoring in the mortgage. A property can have a middling net yield but a very strong cash-on-cash return if you are leveraged sensibly, and vice versa.</p>
+
+          <h2>Which costs to include</h2>
+          <p>The costs field is where most back-of-envelope rental yield calculations quietly lie. Realistic annual costs for a UK let usually include: letting agent fees (10% to 15% of rent if fully managed), maintenance and repairs (budget roughly 1% of property value per year), landlord insurance (a few hundred pounds), a void allowance for empty months between tenants, ground rent and service charges if leasehold, gas safety and electrical certificates, and any mortgage product fees amortised over the fixed term. Leave any of these out and your yield number flatters reality.</p>
+
+          <h2>Mortgage stays out of yield</h2>
+          <p>Yield is a property-level metric, not a deal-level one. Two landlords can buy the same flat, one cash and one with a 75% buy-to-let mortgage, and the property's yield is identical for both. What differs is their cash flow and return on cash invested. This calculator keeps mortgage out of gross and net yield and puts it in the optional cash-on-cash section instead. That split is deliberate: it stops you from double-counting interest and lets you compare yields across properties on the same footing.</p>
+
+          <h2>Related tools</h2>
+          <p>Buying? Start with the <a href="/calculators/finance/uk-stamp-duty-calculator/">UK Stamp Duty Calculator</a> to size the upfront tax, and the <a href="/calculators/finance/uk-mortgage-calculator/">UK Mortgage Calculator</a> to price the monthly payment you would enter above. For the long-term return on capital, <a href="/calculators/business/roi-calculator/">the ROI Calculator</a> handles the multi-year CAGR view.</p>
+        </section>
+
+        <section class="faq">
+          <h2>Common questions</h2>
+          <details>
+            <summary>What is a good rental yield?</summary>
+            <p>5% to 8% gross is a reasonable benchmark for UK buy-to-let. High-value southern cities often come in lower (3% to 5%), regional towns and northern cities higher (6% to 10%+). Net yield is usually 1.5 to 2.5 percentage points below gross once running costs are subtracted.</p>
+          </details>
+          <details>
+            <summary>What is the difference between gross and net yield?</summary>
+            <p>Gross yield is annual rent ÷ property value. Net yield subtracts annual running costs first. Gross is a quick comparison metric. Net is closer to what you actually earn before mortgage and tax.</p>
+          </details>
+          <details>
+            <summary>Should mortgage interest be included in yield?</summary>
+            <p>No. Yield measures what the property itself returns, independent of how the deal is financed. Mortgage payments affect cash flow and return on deposit, which are separate numbers. This calculator keeps them apart so you can compare properties fairly.</p>
+          </details>
+          <details>
+            <summary>What is cash-on-cash return?</summary>
+            <p>It is the annual cash flow (net rent minus mortgage) divided by the cash you put into the deal (deposit plus stamp duty, legal fees and any refurb). It shows the percentage return on the money you actually risked. Usually the number investors care about most.</p>
+          </details>
+          <details>
+            <summary>Does this calculator handle tax?</summary>
+            <p>No. Income tax, the Section 24 mortgage interest restriction for individual landlords, and capital gains on sale are all separate and depend on your personal situation. Ask an accountant before buying.</p>
+          </details>
+        </section>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="ad-slot" data-ad-slot="sidebar" aria-hidden="true"></div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="site-footer-nav" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/calculators/">All calculators</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+      <section class="site-disclaimer" data-disclaimer aria-labelledby="disclaimer-heading">
+        <h2 id="disclaimer-heading">A quick, necessary word</h2>
+        <p>Every calculator on this site is built to give you a sensible, well-reasoned estimate. It is, however, exactly that: an estimate, for general information only. Nothing you see here is professional, legal, financial, medical, or tax advice, and it should not be treated as such.</p>
+        <p>Before you make a decision that actually matters, talk to a qualified professional who knows your specific situation: an accountant, a solicitor, a doctor, an IT consultant, whoever fits the question. They can factor in the bits a generic tool can't.</p>
+        <p>We take no liability and accept no responsibility for any loss, damage, or questionable life choice arising from acting on the numbers you see here. Use the results as a starting point for a better conversation, not as the final word.</p>
+        <p><strong>Affiliate disclosure:</strong> some links on this site are affiliate links. If you click through and buy or sign up for something, we may earn a small commission at no extra cost to you. It helps keep the calculators free and ad-light. We only recommend things we'd point a friend towards.</p>
+      </section>
+      <p class="site-copyright">&copy; 2026 WebCaretakers. All rights reserved.</p>
+      <p class="site-legal">WebCaretakers is a trading name of <a href="https://yeseo.io/" rel="noopener">Andrew Laws Associates Ltd</a>, registered in England and Wales (company no. 08602332). ICO registration ZA726704.</p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/calculators/rental-yield.js"></script>
+  <script>
+  (function () {
+    'use strict';
+
+    var CURRENCY_SYMBOLS = { GBP: '£', USD: '$', EUR: '€' };
+    var CURRENCY_LOCALES = { GBP: 'en-GB', USD: 'en-US', EUR: 'en-IE' };
+
+    var calcBtn    = document.querySelector('[data-calculate]');
+    var breakdown  = document.querySelector('[data-breakdown]');
+    var errorEl    = document.querySelector('[data-error]');
+    var proveBody  = document.querySelector('[data-prove-it-body]');
+    var cashWrap   = document.querySelector('[data-cash-flow-section]');
+
+    function currency() {
+      var radios = document.querySelectorAll('[data-currency]');
+      for (var i = 0; i < radios.length; i++) if (radios[i].checked) return radios[i].value;
+      return 'GBP';
+    }
+
+    function fmtMoney(n, code) {
+      var sym = CURRENCY_SYMBOLS[code] || '£';
+      var loc = CURRENCY_LOCALES[code] || 'en-GB';
+      var sign = n < 0 ? '-' : '';
+      var abs  = Math.abs(n).toLocaleString(loc, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      return sign + sym + abs;
+    }
+    function fmtPct(n) { return n.toFixed(2) + '%'; }
+
+    function num(sel) {
+      var v = parseFloat(document.querySelector(sel).value);
+      return isNaN(v) ? 0 : v;
+    }
+
+    function updateCurrencyLabels() {
+      var sym = CURRENCY_SYMBOLS[currency()] || '£';
+      document.querySelectorAll('[data-currency-label]').forEach(function (el) {
+        el.textContent = '(' + sym + ')';
+      });
+    }
+
+    document.querySelectorAll('[data-currency]').forEach(function (r) {
+      r.addEventListener('change', function () {
+        updateCurrencyLabels();
+        breakdown.hidden = true;
+      });
+    });
+    updateCurrencyLabels();
+
+    function showError(msg) { errorEl.textContent = msg; errorEl.hidden = false; breakdown.hidden = true; }
+    function clearError()   { errorEl.hidden = true; errorEl.textContent = ''; }
+
+    calcBtn.addEventListener('click', function () {
+      clearError();
+
+      var currencyCode = currency();
+      var propertyValue = num('[data-property-value]');
+      var monthlyRent   = num('[data-monthly-rent]');
+      var annualCosts   = num('[data-cost-management]')
+                        + num('[data-cost-maintenance]')
+                        + num('[data-cost-insurance]')
+                        + num('[data-cost-void]')
+                        + num('[data-cost-other]');
+      var deposit       = num('[data-deposit]');
+      var monthlyMort   = num('[data-monthly-mortgage]');
+
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: 'calculator_interaction',
+        calculator_name: 'Rental Yield Calculator',
+        currency: currencyCode,
+      });
+
+      try {
+        var opts = {
+          propertyValue: propertyValue,
+          monthlyRent: monthlyRent,
+          annualCosts: annualCosts,
+        };
+        if (deposit > 0) {
+          opts.deposit = deposit;
+          if (monthlyMort > 0) opts.monthlyMortgagePayment = monthlyMort;
+        }
+
+        var r = RentalYield.calculateYield(opts);
+
+        document.querySelector('[data-line-annual-rent]').textContent  = fmtMoney(r.annualRent, currencyCode);
+        document.querySelector('[data-line-annual-costs]').textContent = fmtMoney(r.annualCosts, currencyCode);
+        document.querySelector('[data-line-net-annual]').textContent   = fmtMoney(r.netAnnualIncome, currencyCode);
+        document.querySelector('[data-line-gross-yield]').textContent  = fmtPct(r.grossYield);
+        document.querySelector('[data-line-net-yield]').textContent    = fmtPct(r.netYield);
+
+        var workings = [
+          'Annual rent: ' + fmtMoney(r.monthlyRent, currencyCode) + ' × 12 = ' + fmtMoney(r.annualRent, currencyCode),
+          'Gross yield: ' + fmtMoney(r.annualRent, currencyCode) + ' ÷ ' + fmtMoney(r.propertyValue, currencyCode) + ' × 100 = ' + fmtPct(r.grossYield),
+          'Net annual income: ' + fmtMoney(r.annualRent, currencyCode) + ' − ' + fmtMoney(r.annualCosts, currencyCode) + ' = ' + fmtMoney(r.netAnnualIncome, currencyCode),
+          'Net yield: ' + fmtMoney(r.netAnnualIncome, currencyCode) + ' ÷ ' + fmtMoney(r.propertyValue, currencyCode) + ' × 100 = ' + fmtPct(r.netYield),
+        ];
+
+        if (typeof r.roiOnDeposit === 'number') {
+          cashWrap.hidden = false;
+          document.querySelector('[data-line-annual-mortgage]').textContent = fmtMoney(r.annualMortgage, currencyCode);
+          document.querySelector('[data-line-monthly-cash]').textContent    = fmtMoney(r.monthlyCashFlow, currencyCode);
+          document.querySelector('[data-line-annual-cash]').textContent     = fmtMoney(r.annualCashFlow, currencyCode);
+          document.querySelector('[data-line-roi]').textContent             = fmtPct(r.roiOnDeposit);
+          workings.push('Annual mortgage: ' + fmtMoney(r.monthlyMortgagePayment, currencyCode) + ' × 12 = ' + fmtMoney(r.annualMortgage, currencyCode));
+          workings.push('Annual cash flow: ' + fmtMoney(r.netAnnualIncome, currencyCode) + ' − ' + fmtMoney(r.annualMortgage, currencyCode) + ' = ' + fmtMoney(r.annualCashFlow, currencyCode));
+          workings.push('Return on deposit: ' + fmtMoney(r.annualCashFlow, currencyCode) + ' ÷ ' + fmtMoney(r.deposit, currencyCode) + ' × 100 = ' + fmtPct(r.roiOnDeposit));
+        } else {
+          cashWrap.hidden = true;
+        }
+
+        proveBody.textContent = workings.join('\n');
+
+        window.dataLayer.push({
+          event: 'calculator_result',
+          calculator_name: 'Rental Yield Calculator',
+          currency: currencyCode,
+          property_value: r.propertyValue,
+          gross_yield: r.grossYield,
+          net_yield: r.netYield,
+          roi_on_deposit: r.roiOnDeposit || null,
+        });
+
+        breakdown.hidden = false;
+      } catch (err) {
+        showError(err.message);
+      }
+    });
+  })();
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>
