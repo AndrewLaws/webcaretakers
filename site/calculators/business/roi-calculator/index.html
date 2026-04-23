@@ -220,23 +220,23 @@
             <div class="mort-breakdown" data-breakdown hidden>
               <h3>Results</h3>
               <ul>
-                <li><span>ROI</span><strong data-line-roi>—</strong></li>
-                <li><span>Net profit / loss</span><strong data-line-profit>—</strong></li>
-                <li class="mort-breakdown__total"><span>Multiple of money</span><strong data-line-multiple>—</strong></li>
+                <li><span>ROI</span><strong data-line-roi>–</strong></li>
+                <li><span>Net profit / loss</span><strong data-line-profit>–</strong></li>
+                <li class="mort-breakdown__total"><span>Multiple of money</span><strong data-line-multiple>–</strong></li>
               </ul>
 
               <div data-annualised-block hidden>
                 <h3>Annualised return (CAGR)</h3>
                 <ul>
-                  <li><span>Period</span><strong data-line-period>—</strong></li>
-                  <li class="mort-breakdown__total"><span>CAGR</span><strong data-line-cagr>—</strong></li>
+                  <li><span>Period</span><strong data-line-period>–</strong></li>
+                  <li class="mort-breakdown__total"><span>CAGR</span><strong data-line-cagr>–</strong></li>
                 </ul>
               </div>
 
               <div data-breakeven-block hidden>
                 <h3>Recovery from current position</h3>
                 <ul>
-                  <li class="mort-breakdown__total"><span>Gain needed to break even</span><strong data-line-breakeven>—</strong></li>
+                  <li class="mort-breakdown__total"><span>Gain needed to break even</span><strong data-line-breakeven>–</strong></li>
                 </ul>
               </div>
             </div>
@@ -408,7 +408,7 @@
         var parts = [];
         if (y > 0) parts.push(y + (y === 1 ? ' year' : ' years'));
         if (m > 0) parts.push(m + (m === 1 ? ' month' : ' months'));
-        return parts.join(' ') || '—';
+        return parts.join(' ') || '–';
       }
 
       [currencyIn, costIn, finalIn, periodYearsIn, periodMonthsIn].forEach(function (el) {

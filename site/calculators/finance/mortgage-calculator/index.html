@@ -248,18 +248,18 @@
             <div class="mort-breakdown" data-breakdown hidden>
               <h3>Monthly breakdown</h3>
               <ul>
-                <li><span>Principal and interest</span><strong data-line-pi>—</strong></li>
-                <li><span>Property tax</span><strong data-line-tax>—</strong></li>
-                <li><span>Home insurance</span><strong data-line-ins>—</strong></li>
-                <li><span>HOA</span><strong data-line-hoa>—</strong></li>
-                <li><span>PMI</span><strong data-line-pmi>—</strong></li>
-                <li class="mort-breakdown__total"><span>Monthly total</span><strong data-line-total>—</strong></li>
+                <li><span>Principal and interest</span><strong data-line-pi>–</strong></li>
+                <li><span>Property tax</span><strong data-line-tax>–</strong></li>
+                <li><span>Home insurance</span><strong data-line-ins>–</strong></li>
+                <li><span>HOA</span><strong data-line-hoa>–</strong></li>
+                <li><span>PMI</span><strong data-line-pmi>–</strong></li>
+                <li class="mort-breakdown__total"><span>Monthly total</span><strong data-line-total>–</strong></li>
               </ul>
               <h3>Life of loan</h3>
               <ul>
-                <li><span>Loan principal</span><strong data-line-principal>—</strong></li>
-                <li><span>Total interest</span><strong data-line-interest>—</strong></li>
-                <li><span>Total cost (principal + interest)</span><strong data-line-cost>—</strong></li>
+                <li><span>Loan principal</span><strong data-line-principal>–</strong></li>
+                <li><span>Total interest</span><strong data-line-interest>–</strong></li>
+                <li><span>Total cost (principal + interest)</span><strong data-line-cost>–</strong></li>
               </ul>
             </div>
 
@@ -398,7 +398,7 @@
       var lineCost     = document.querySelector('[data-line-cost]');
 
       function fmt(n) {
-        if (typeof n !== 'number' || !isFinite(n)) return '—';
+        if (typeof n !== 'number' || !isFinite(n)) return '–';
         return '$' + n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
       }
 

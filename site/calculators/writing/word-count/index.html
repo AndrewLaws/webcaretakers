@@ -207,14 +207,14 @@
             <div class="mort-breakdown">
               <h3>Will it fit?</h3>
               <ul>
-                <li><span>Page title (60)</span><strong data-limit-title>—</strong></li>
-                <li><span>Open Graph title (70)</span><strong data-limit-ogTitle>—</strong></li>
-                <li><span>Meta description (160)</span><strong data-limit-meta>—</strong></li>
-                <li><span>SMS message (160)</span><strong data-limit-sms>—</strong></li>
-                <li><span>Tweet / X post (280)</span><strong data-limit-tweet>—</strong></li>
-                <li><span>Facebook visible (477)</span><strong data-limit-facebook>—</strong></li>
-                <li><span>Instagram caption (2,200)</span><strong data-limit-instagram>—</strong></li>
-                <li><span>LinkedIn post (3,000)</span><strong data-limit-linkedin>—</strong></li>
+                <li><span>Page title (60)</span><strong data-limit-title>–</strong></li>
+                <li><span>Open Graph title (70)</span><strong data-limit-ogTitle>–</strong></li>
+                <li><span>Meta description (160)</span><strong data-limit-meta>–</strong></li>
+                <li><span>SMS message (160)</span><strong data-limit-sms>–</strong></li>
+                <li><span>Tweet / X post (280)</span><strong data-limit-tweet>–</strong></li>
+                <li><span>Facebook visible (477)</span><strong data-limit-facebook>–</strong></li>
+                <li><span>Instagram caption (2,200)</span><strong data-limit-instagram>–</strong></li>
+                <li><span>LinkedIn post (3,000)</span><strong data-limit-linkedin>–</strong></li>
               </ul>
             </div>
 
@@ -308,7 +308,7 @@
     var fired = false;
 
     function statusLabel(L) {
-      if (L.status === 'empty')  return '—';
+      if (L.status === 'empty')  return '–';
       if (L.status === 'over')   return 'over by ' + L.overBy.toLocaleString('en-GB');
       if (L.status === 'near')   return L.remaining.toLocaleString('en-GB') + ' left';
       return L.remaining.toLocaleString('en-GB') + ' left';

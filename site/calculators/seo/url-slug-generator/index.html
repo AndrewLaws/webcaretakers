@@ -204,12 +204,12 @@
 
           <div class="calculator-results" data-breakdown>
             <h2>Your slug</h2>
-            <p class="result-display"><code data-slug-out>—</code></p>
+            <p class="result-display"><code data-slug-out>–</code></p>
 
             <div class="mort-breakdown">
               <h3>Details</h3>
               <ul>
-                <li class="mort-breakdown__total"><span>Slug</span><strong data-line-slug>—</strong></li>
+                <li class="mort-breakdown__total"><span>Slug</span><strong data-line-slug>–</strong></li>
                 <li><span>Length</span><strong data-line-length>0 characters</strong></li>
                 <li><span>Words kept</span><strong data-line-words>0</strong></li>
                 <li><span>Words dropped</span><strong data-line-dropped>0</strong></li>
@@ -321,7 +321,7 @@
           removeStopWords: stopsIn.checked,
         });
 
-        var display = r.slug || '—';
+        var display = r.slug || '–';
         document.querySelector('[data-slug-out]').textContent = display;
         document.querySelector('[data-line-slug]').textContent = display;
         document.querySelector('[data-line-length]').textContent = r.slug.length + ' character' + (r.slug.length === 1 ? '' : 's');
