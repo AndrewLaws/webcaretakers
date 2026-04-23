@@ -273,6 +273,18 @@
     {
       "phrase": "meta length checker",
       "url": "/calculators/seo/meta-length-checker/"
+    },
+    {
+      "phrase": "Unit Converter",
+      "url": "/calculators/conversions/unit-converter/"
+    },
+    {
+      "phrase": "unit converter",
+      "url": "/calculators/conversions/unit-converter/"
+    },
+    {
+      "phrase": "conversion calculators",
+      "url": "/calculators/conversions/"
     }
   ]
 }

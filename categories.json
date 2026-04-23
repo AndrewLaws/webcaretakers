@@ -43,6 +43,18 @@
       ]
     },
     {
+      "slug": "conversions",
+      "name": "Conversions",
+      "tagline": "Metric-imperial converters for everyday units.",
+      "tools": [
+        {
+          "slug": "unit-converter",
+          "name": "Unit Converter",
+          "summary": "Length, mass, volume, temperature, speed and area. Pick a category, enter a value, see every common unit at once. Metric and imperial side by side."
+        }
+      ]
+    },
+    {
       "slug": "finance",
       "name": "Finance",
       "tagline": "Sensible estimates for everyday money decisions.",

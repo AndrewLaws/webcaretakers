@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>URL Slug Generator | WebCaretakers</title>
-  <meta name="description" content="Turn any heading into a clean URL slug: lowercase, hyphenated, ASCII-safe, optionally trimmed to length. Runs in your browser, nothing uploaded.">
-  <link rel="canonical" href="https://webcaretakers.com/calculators/seo/url-slug-generator/">
-  <meta property="og:title" content="URL Slug Generator | WebCaretakers">
-  <meta property="og:description" content="Clean, ASCII-safe URL slugs from any heading, with optional stop-word removal and length cap.">
+  <title>Unit Converter | WebCaretakers</title>
+  <meta name="description" content="Convert between metric and imperial units: length, mass, volume, temperature, speed, area. Enter a value and see every common unit at once.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/conversions/unit-converter/">
+  <meta property="og:title" content="Unit Converter | WebCaretakers">
+  <meta property="og:description" content="Enter a value once. See every common metric and imperial unit at the same time.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://webcaretakers.com/calculators/seo/url-slug-generator/">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/conversions/unit-converter/">
   <meta name="robots" content="index, follow">
   <link rel="stylesheet" href="/assets/css/main.css">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -39,9 +39,9 @@
   {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    "name": "URL Slug Generator",
-    "url": "https://webcaretakers.com/calculators/seo/url-slug-generator/",
-    "description": "Turn any heading into a clean, ASCII-safe URL slug with optional stop-word removal and length cap.",
+    "name": "Unit Converter",
+    "url": "https://webcaretakers.com/calculators/conversions/unit-converter/",
+    "description": "Convert between metric and imperial units across length, mass, volume, temperature, speed and area.",
     "applicationCategory": "UtilitiesApplication",
     "operatingSystem": "Any",
     "isPartOf": {
@@ -59,26 +59,26 @@
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "What makes a good URL slug?",
+        "name": "Why do imperial volume units differ between the UK and US?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Short, lowercase, descriptive, hyphen-separated, ASCII-only, and stable. Google prefers readable slugs over opaque IDs. Three to five meaningful words is usually enough. Strip stop words (the, a, of, and) and any punctuation. Keep numbers if they carry meaning."
+          "text": "Because the two countries ended up with different gallon sizes. A US gallon is 3.785 litres; a UK (imperial) gallon is 4.546 litres. That flows through to pints, quarts and fluid ounces. Recipes labelled just 'cup' usually mean US cups (237 ml). When it matters, this tool lists both."
         }
       },
       {
         "@type": "Question",
-        "name": "Hyphens or underscores?",
+        "name": "Is the conversion exact?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Hyphens. Google has been explicit about this for years: hyphens separate words, underscores do not. A slug with underscores reads as one long word to the crawler. Use hyphens unless you have a platform reason not to."
+          "text": "Yes, to the precision of the factors used. Length and mass use the international agreed exact values (one inch = 0.0254 metres; one pound = 0.45359237 kilograms). Volume and area derive from those. Temperature is calculated with the exact °C↔°F formulas. Results are shown rounded for readability; the internal calculation is full-precision."
         }
       },
       {
         "@type": "Question",
-        "name": "How long should a slug be?",
+        "name": "Why both metric and imperial?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Aim for 50 to 60 characters or fewer. Long slugs get truncated in search results and are harder to share. The tool has a length cap that trims on a word boundary so you never end on a partial word."
+          "text": "Because real life is mixed. You weigh babies in pounds and ounces but road signs in the UK use miles. Recipes use grams or cups depending on the cookbook. Running distances are metric but you still hear 'six-foot-two' in the pub. One tool that covers both saves a step."
         }
       }
     ]
@@ -165,54 +165,46 @@
           <ol>
             <li><a href="/">Home</a></li>
             <li><a href="/calculators/">Calculators</a></li>
-            <li><a href="/calculators/seo/">SEO</a></li>
-            <li aria-current="page">URL Slug Generator</li>
+            <li><a href="/calculators/conversions/">Conversions</a></li>
+            <li aria-current="page">Unit Converter</li>
           </ol>
         </nav>
 
-        <h1>URL Slug Generator</h1>
+        <h1>Unit Converter</h1>
 
         <div class="eli5">
           <h2>Explain like I'm 5 (what even is this tool?)</h2>
-          <p>Type or paste a heading. It gives you back the bit that goes on the end of a web address: lowercase, joined with hyphens, no weird characters, no accents. The thing that would turn "The Best Cafés in London" into "best-cafes-in-london".</p>
+          <p>Pick what you want to convert (length, weight, temperature, and so on). Type a number and pick the unit it's in. The tool shows you that value in every other common unit at once. No guessing which way round to do it.</p>
         </div>
 
         <section data-calculator class="calculator-card">
           <form class="calc-form" novalidate>
-            <div class="calc-row">
-              <label for="slug-text">Heading or title<span class="calc-hint">Type or paste in. Slug updates live.</span></label>
-              <input type="text" id="slug-text" data-text placeholder="e.g. How to Write a Great Blog Post in 2025">
-            </div>
             <div class="calc-row calc-row--inline">
-              <label for="slug-sep">Separator</label>
-              <select id="slug-sep" data-separator>
-                <option value="-" selected>Hyphen (-)</option>
-                <option value="_">Underscore (_)</option>
+              <label for="uc-cat">Category</label>
+              <select id="uc-cat" data-category>
+                <option value="length">Length</option>
+                <option value="mass">Mass / weight</option>
+                <option value="volume">Volume</option>
+                <option value="temperature">Temperature</option>
+                <option value="speed">Speed</option>
+                <option value="area">Area</option>
               </select>
             </div>
             <div class="calc-row calc-row--inline">
-              <label for="slug-max">Maximum length (characters)</label>
-              <input type="number" id="slug-max" min="0" step="1" value="60" data-max-length>
+              <label for="uc-value">Value</label>
+              <input type="number" id="uc-value" step="any" value="1" data-value>
             </div>
-            <div class="calc-row calc-row--checkbox">
-              <label><input type="checkbox" data-remove-stops> Remove common stop words (the, a, of, and, etc.)</label>
+            <div class="calc-row calc-row--inline">
+              <label for="uc-from">From</label>
+              <select id="uc-from" data-from></select>
             </div>
             <p class="calc-error" data-error hidden></p>
           </form>
 
           <div class="calculator-results" data-breakdown>
-            <h2>Your slug</h2>
-            <p class="result-display"><code data-slug-out>—</code></p>
-
+            <h2>Converted values</h2>
             <div class="mort-breakdown">
-              <h3>Details</h3>
-              <ul>
-                <li class="mort-breakdown__total"><span>Slug</span><strong data-line-slug>—</strong></li>
-                <li><span>Length</span><strong data-line-length>0 characters</strong></li>
-                <li><span>Words kept</span><strong data-line-words>0</strong></li>
-                <li><span>Words dropped</span><strong data-line-dropped>0</strong></li>
-                <li><span>Truncated?</span><strong data-line-truncated>No</strong></li>
-              </ul>
+              <ul data-results></ul>
             </div>
 
             <details class="prove-it">
@@ -223,37 +215,31 @@
         </section>
 
         <section class="long-form">
-          <h2>Writing a slug that earns its keep</h2>
-          <p>A good URL slug is short, readable, and describes the page in three to five meaningful words. It should be stable: once indexed, changing a slug costs you link equity unless you manage the redirect carefully. Don't stuff keywords, and don't be cute. "best-running-shoes-2025" beats "top-10-must-have-amazing-running-shoes-you-need-now".</p>
-          <p>Stop words (the, a, of, and, with, for) add length without adding meaning in slug form. Strip them unless the meaning depends on them. "cat-in-the-hat" needs the stop words; "history-of-rome" does not.</p>
-
-          <h2>Hyphens, underscores and the Google line</h2>
-          <p>Use hyphens. Google's position on this has been public for well over a decade: hyphens separate words, underscores do not. Underscores exist in the tool because some platforms (notably certain older CMSes) require them for legacy reasons. If you have a choice, pick the hyphen.</p>
-
-          <h2>Accented characters and transliteration</h2>
-          <p>Browsers and modern servers handle Unicode URLs, but a slug like /café-münster/ will render as percent-encoded noise in shares, email clients, and old software. The tool transliterates accents to their nearest ASCII equivalent (café → cafe, Münster → munster), keeping the slug portable and readable.</p>
+          <h2>Notes on the numbers</h2>
+          <p>Length and mass conversions use the internationally agreed exact factors: one inch is exactly 0.0254 metres, one pound exactly 0.45359237 kilograms. Volume and area conversions derive from those. Temperature uses the exact formulas for °C, °F and K. Nothing here is rounded until the point of display.</p>
+          <p>UK and US imperial volumes are not the same. A US gallon is 3.785 litres; a UK gallon is 4.546 litres. Both are listed so you can pick the right one. Recipe "cup" defaults to US (237 ml) unless the recipe says otherwise.</p>
 
           <h2>Related tools</h2>
-          <p>For checking title and meta description lengths, see the <a href="/calculators/seo/meta-length-checker/">meta length checker</a> (coming soon). For pure word and character counting, use the <a href="/calculators/writing/word-count/">Word Count Tool</a>.</p>
+          <p>For a specific area of conversion with deeper features, the <a href="/calculators/broadband/broadband-bandwidth-calculator/">Broadband Bandwidth Calculator</a> covers data units, and the <a href="/calculators/finance/loan-calculator/">Loan Calculator</a> handles currency conversion alongside repayment maths.</p>
         </section>
 
         <section class="faq">
           <h2>Common questions</h2>
           <details>
-            <summary>What makes a good URL slug?</summary>
-            <p>Short, lowercase, hyphen-separated, three to five meaningful words, no punctuation. Google prefers readable slugs.</p>
+            <summary>Why are UK and US imperial volumes different?</summary>
+            <p>Different historical definitions. A UK gallon is 4.546 litres; a US gallon is 3.785 litres. The tool lists both.</p>
           </details>
           <details>
-            <summary>Hyphens or underscores?</summary>
-            <p>Hyphens. Google treats them as word separators; underscores are read as part of the word.</p>
+            <summary>Are the conversions exact?</summary>
+            <p>Yes, to full floating-point precision. The factors are the internationally agreed exact values.</p>
           </details>
           <details>
-            <summary>How long should a slug be?</summary>
-            <p>50 to 60 characters or fewer. The tool trims on a word boundary so you never end on a partial word.</p>
+            <summary>Why metric and imperial?</summary>
+            <p>Because real life is mixed. Road signs in the UK are in miles; science is metric; cooking straddles both; babies are weighed in pounds and ounces. One tool, both systems.</p>
           </details>
           <details>
-            <summary>Will this change my existing URLs?</summary>
-            <p>No. It only generates slug text. Applying it to a live page is a platform job, and changing a published URL means setting up a 301 redirect so you don't lose traffic.</p>
+            <summary>Can you add a unit?</summary>
+            <p>Ask. If it's common, it probably belongs here.</p>
           </details>
         </section>
       </div>
@@ -288,55 +274,79 @@
     </div>
   </footer>
 
-  <script src="/assets/js/calculators/url-slug.js"></script>
+  <script src="/assets/js/calculators/unit-converter.js"></script>
   <script>
   (function () {
     'use strict';
 
-    var textIn    = document.querySelector('[data-text]');
-    var sepIn     = document.querySelector('[data-separator]');
-    var maxIn     = document.querySelector('[data-max-length]');
-    var stopsIn   = document.querySelector('[data-remove-stops]');
-    var errorEl   = document.querySelector('[data-error]');
+    var catIn    = document.querySelector('[data-category]');
+    var valIn    = document.querySelector('[data-value]');
+    var fromIn   = document.querySelector('[data-from]');
+    var resultsList = document.querySelector('[data-results]');
+    var errorEl  = document.querySelector('[data-error]');
     var proveBody = document.querySelector('[data-prove-it-body]');
 
     var fired = false;
 
+    function formatNumber(n) {
+      if (!isFinite(n)) return String(n);
+      var absN = Math.abs(n);
+      var decimals;
+      if (absN === 0)           decimals = 0;
+      else if (absN >= 1000)    decimals = 2;
+      else if (absN >= 1)       decimals = 4;
+      else if (absN >= 0.01)    decimals = 6;
+      else                      decimals = 8;
+      return parseFloat(n.toFixed(decimals)).toLocaleString('en-GB', { maximumFractionDigits: decimals });
+    }
+
+    function populateFromUnits() {
+      var cat = catIn.value;
+      var units = UnitConverter.listUnits(cat);
+      fromIn.innerHTML = '';
+      for (var i = 0; i < units.length; i++) {
+        var opt = document.createElement('option');
+        opt.value = units[i].key;
+        opt.textContent = units[i].label;
+        fromIn.appendChild(opt);
+      }
+      // Prefer the base unit as default where sensible.
+      var base = UnitConverter.CATEGORIES[cat].base;
+      if (base) fromIn.value = base;
+    }
+
     function run() {
       errorEl.hidden = true;
       try {
-        var r = UrlSlug.generateSlug({
-          text:            textIn.value,
-          separator:       sepIn.value,
-          maxLength:       parseInt(maxIn.value, 10) || 0,
-          removeStopWords: stopsIn.checked,
-        });
+        var cat  = catIn.value;
+        var from = fromIn.value;
+        var value = parseFloat(valIn.value);
+        var units = UnitConverter.listUnits(cat);
 
-        var display = r.slug || '—';
-        document.querySelector('[data-slug-out]').textContent = display;
-        document.querySelector('[data-line-slug]').textContent = display;
-        document.querySelector('[data-line-length]').textContent = r.slug.length + ' character' + (r.slug.length === 1 ? '' : 's');
-        document.querySelector('[data-line-words]').textContent = r.wordCount.toLocaleString('en-GB');
-        document.querySelector('[data-line-dropped]').textContent = r.dropped.length + (r.dropped.length ? ' (' + r.dropped.join(', ') + ')' : '');
-        document.querySelector('[data-line-truncated]').textContent = r.truncated ? 'Yes' : 'No';
+        resultsList.innerHTML = '';
+        for (var i = 0; i < units.length; i++) {
+          var u = units[i];
+          var li = document.createElement('li');
+          if (u.key === from) li.className = 'mort-breakdown__total';
+          var out = UnitConverter.convert({ category: cat, from: from, to: u.key, value: value });
+          li.innerHTML = '<span>' + u.label + '</span><strong>' + formatNumber(out) + '</strong>';
+          resultsList.appendChild(li);
+        }
 
         proveBody.textContent =
-            'Input:        ' + (r.original || '(empty)') + '\n'
-          + 'Separator:    ' + sepIn.value + '\n'
-          + 'Max length:   ' + (parseInt(maxIn.value, 10) || 0) + '\n'
-          + 'Stop-words:   ' + (stopsIn.checked ? 'removed' : 'kept') + '\n'
-          + 'Words kept:   ' + r.wordCount + '\n'
-          + 'Words dropped:' + (r.dropped.length ? ' ' + r.dropped.join(', ') : ' none') + '\n'
-          + 'Slug:         ' + (r.slug || '(empty)');
+            'Category: ' + cat + '\n'
+          + 'From:     ' + from + '\n'
+          + 'Value:    ' + value + '\n'
+          + 'Converted to every listed unit in the category using the canonical factor for each.';
 
         window.dataLayer = window.dataLayer || [];
-        if (!fired && r.slug.length > 0) {
+        if (!fired && isFinite(value)) {
           fired = true;
-          window.dataLayer.push({ event: 'calculator_interaction', calculator_name: 'URL Slug Generator' });
+          window.dataLayer.push({ event: 'calculator_interaction', calculator_name: 'Unit Converter' });
           window.dataLayer.push({
             event:           'calculator_result',
-            calculator_name: 'URL Slug Generator',
-            slug_length:     r.slug.length,
+            calculator_name: 'Unit Converter',
+            category:        cat,
           });
         }
       } catch (err) {
@@ -345,10 +355,11 @@
       }
     }
 
-    textIn.addEventListener('input', run);
-    sepIn.addEventListener('change', run);
-    maxIn.addEventListener('input', run);
-    stopsIn.addEventListener('change', run);
+    catIn.addEventListener('change', function () { populateFromUnits(); run(); });
+    valIn.addEventListener('input', run);
+    fromIn.addEventListener('change', run);
+
+    populateFromUnits();
     run();
   })();
   </script>

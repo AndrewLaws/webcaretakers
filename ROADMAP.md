@@ -488,7 +488,7 @@ Context: high search volume, general audience, no backend required. These sit ou
 - [x] Savings Goal Calculator (ships in the Finance category; solves the annuity-future-value formula for the monthly contribution, factors in starting balance and optional interest) — `/calculators/finance/savings-goal-calculator/`
 - [ ] Password Generator (configurable length and character sets; also listed under Cybersecurity — whichever category fits the URL better wins; client-side only)
 - [ ] EXIF Data Viewer (drag in a photo, see all embedded metadata: GPS coordinates, camera model, date taken — privacy angle: "check what your images reveal before you post them"; fits under the existing Images category)
-- [ ] Unit Converter (length, weight, temperature, volume, speed — broad long-tail coverage; one well-built tool beats dozens of thin single-unit pages)
+- [x] Unit Converter — `/calculators/conversions/unit-converter/` (length, mass, volume, temperature, speed, area; all common units shown at once)
 
 ## 26. High-Utility Quick-Fix Tools (3)
 
