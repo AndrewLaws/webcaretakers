@@ -181,7 +181,7 @@
         <section data-calculator class="calculator-card">
           <form class="calc-form" novalidate>
             <div class="calc-row">
-              <label for="ts-in">English text<span class="calc-hint">Paste or type. Converts as you type.</span></label>
+              <label for="ts-in">English text<span class="calc-hint">Paste or type at least five words. Converts as you type.</span></label>
               <textarea id="ts-in" rows="8" data-input placeholder="Hello friend, what's that old thing you're doing?"></textarea>
             </div>
             <div class="calc-row calc-row--inline">
@@ -296,6 +296,7 @@
     var proveBody= document.querySelector('[data-prove-it-body]');
 
     var fired = false;
+    var MIN_WORDS = 5;
 
     var SAMPLE = "Hello friend, what's that old thing you're doing? I've been working all afternoon, and I'm cold and tired. Let's get something to drink and have a chat.";
 
@@ -331,10 +332,26 @@
       errorEl.hidden = true;
       try {
         var input = inEl.value;
+        var total = countWords(input);
+
+        if (total < MIN_WORDS) {
+          outEl.innerHTML = '';
+          var hint = document.createElement('p');
+          hint.className = 'suffolk-output__hint';
+          hint.textContent = total === 0
+            ? 'Enter at least ' + MIN_WORDS + ' words to see the Suffolk translation.'
+            : 'Keep going. ' + (MIN_WORDS - total) + ' more word' + (MIN_WORDS - total === 1 ? '' : 's') + ' needed before the Suffolk translation appears.';
+          outEl.appendChild(hint);
+          document.querySelector('[data-words-total]').textContent   = total.toLocaleString('en-GB');
+          document.querySelector('[data-words-changed]').textContent = '0';
+          document.querySelector('[data-words-pct]').textContent     = '0%';
+          proveBody.textContent = 'Waiting for at least ' + MIN_WORDS + ' words.';
+          return;
+        }
+
         var output = Suffolk.translate(input);
         render(output);
 
-        var total   = countWords(input);
         var changed = diffChangedWords(input, output);
         var pct     = total > 0 ? Math.round((changed / total) * 100) : 0;
 

@@ -26,38 +26,45 @@ test('starts empty', async ({ page }) => {
 
 test('translates "the old man" correctly', async ({ page }) => {
   await page.goto(URL);
-  await page.locator('[data-input]').fill('the old man');
+  await page.locator('[data-input]').fill('the old man and woman');
   const out = await page.locator('[data-output]').textContent();
   expect(out).toMatch(/tha owd bor/);
 });
 
 test('preserves leading capital', async ({ page }) => {
   await page.goto(URL);
-  await page.locator('[data-input]').fill('The old friend');
+  await page.locator('[data-input]').fill('The old friend came today');
   const out = await page.locator('[data-output]').textContent();
   expect(out).toMatch(/^Tha\b/);
 });
 
 test('translates contraction "what\'s"', async ({ page }) => {
   await page.goto(URL);
-  await page.locator('[data-input]').fill("what's that");
+  await page.locator('[data-input]').fill("what's that you are doing");
   const out = await page.locator('[data-output]').textContent();
   expect(out).toMatch(/woss/);
 });
 
 test('translates "I" to "Oi"', async ({ page }) => {
   await page.goto(URL);
-  await page.locator('[data-input]').fill('I am going home');
+  await page.locator('[data-input]').fill('I am going home now friend');
   const out = await page.locator('[data-output]').textContent();
   expect(out).toMatch(/^Oi /);
 });
 
 test('counts words translated', async ({ page }) => {
   await page.goto(URL);
-  await page.locator('[data-input]').fill('the old man');
-  await expect(page.locator('[data-words-total]')).toHaveText('3');
+  await page.locator('[data-input]').fill('the old man and woman');
+  await expect(page.locator('[data-words-total]')).toHaveText('5');
   const changed = await page.locator('[data-words-changed]').textContent();
   expect(parseInt(changed, 10)).toBeGreaterThanOrEqual(2);
+});
+
+test('shows hint when fewer than 5 words entered', async ({ page }) => {
+  await page.goto(URL);
+  await page.locator('[data-input]').fill('hello friend');
+  const out = await page.locator('[data-output]').textContent();
+  expect(out).toMatch(/more words? needed/i);
 });
 
 test('sample button populates input and output', async ({ page }) => {
@@ -70,14 +77,15 @@ test('sample button populates input and output', async ({ page }) => {
 
 test('does not partially translate "together"', async ({ page }) => {
   await page.goto(URL);
-  await page.locator('[data-input]').fill('together');
+  await page.locator('[data-input]').fill('together we stand as one');
   const out = await page.locator('[data-output]').textContent();
-  expect(out.trim()).toBe('together');
+  expect(out).toMatch(/\btogether\b/);
+  expect(out).not.toMatch(/tagether|tawgether/);
 });
 
 test('dataLayer fires on first input', async ({ page }) => {
   await page.goto(URL);
-  await page.locator('[data-input]').fill('hello');
+  await page.locator('[data-input]').fill('hello friend how are you');
   const dl = await page.evaluate(() => window.dataLayer);
   const hit = dl.find(e => e.event === 'calculator_interaction' && e.calculator_name === 'English to Suffolk Translator');
   expect(hit).toBeTruthy();
