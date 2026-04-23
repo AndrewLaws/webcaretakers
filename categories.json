@@ -155,6 +155,11 @@
           "slug": "it-support-build-vs-buy-calculator",
           "name": "IT Support Build vs Buy Calculator",
           "summary": "Compare the annual cost of hiring in-house IT support against an outsourced managed service. Shows annual totals, monthly equivalents, the verdict at your headcount, and the break-even users."
+        },
+        {
+          "slug": "domain-renewal-true-cost-calculator",
+          "name": "Domain Renewal True Cost Calculator",
+          "summary": "See the real multi-year cost of a domain once the promo first-year price is gone and add-ons (privacy, email, DNS, SSL) are stacked up. Optional comparison against a cheaper registrar."
         }
       ]
     },
