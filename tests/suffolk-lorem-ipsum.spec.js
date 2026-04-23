@@ -73,7 +73,7 @@ test('dataLayer fires on first generate', async ({ page }) => {
 
 test('Writing hub lists Suffolk Lorem Ipsum', async ({ page }) => {
   await page.goto('/calculators/writing/');
-  await expect(page.locator('a[href="/calculators/writing/suffolk-lorem-ipsum/"]')).toBeVisible();
+  await expect(page.locator('a[href="/calculators/writing/suffolk-lorem-ipsum/"]').first()).toBeVisible();
 });
 
 test('prove-it workings populated', async ({ page }) => {
