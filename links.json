@@ -337,6 +337,14 @@
     {
       "phrase": "pregnancy due date calculator",
       "url": "/calculators/health/pregnancy-due-date-calculator/"
+    },
+    {
+      "phrase": "TDEE Calculator",
+      "url": "/calculators/health/tdee-calculator/"
+    },
+    {
+      "phrase": "TDEE calculator",
+      "url": "/calculators/health/tdee-calculator/"
     }
   ]
 }

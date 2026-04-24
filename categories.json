@@ -187,6 +187,11 @@
           "slug": "pregnancy-due-date-calculator",
           "name": "Pregnancy Due Date Calculator",
           "summary": "Work out your estimated due date from your last period, conception date, or IVF transfer date. Shows current gestational age, trimester, and key milestone dates."
+        },
+        {
+          "slug": "tdee-calculator",
+          "name": "TDEE Calculator",
+          "summary": "Work out Total Daily Energy Expenditure and BMR using Mifflin-St Jeor, Harris-Benedict or Katch-McArdle. Includes cut and bulk targets and a starting macro split."
         }
       ]
     },

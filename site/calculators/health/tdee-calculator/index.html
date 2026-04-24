@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TDEE Calculator: Total Daily Energy Expenditure | WebCaretakers</title>
+  <meta name="description" content="Work out your Total Daily Energy Expenditure (TDEE) and BMR using Mifflin-St Jeor, Harris-Benedict or Katch-McArdle. Calorie targets for cutting, maintenance and bulking, plus a starting macro split.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/health/tdee-calculator/">
+  <meta property="og:title" content="TDEE Calculator | WebCaretakers">
+  <meta property="og:description" content="Total Daily Energy Expenditure with three formulas, cut and bulk targets, and a macro starting point.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/health/tdee-calculator/">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var _stored = null;
+    try { _stored = localStorage.getItem('cookie-consent'); } catch (e) {}
+    var _initial = _stored === 'granted' ? 'granted' : 'denied';
+    gtag('consent', 'default', {
+      ad_storage: _initial, analytics_storage: _initial,
+      ad_user_data: _initial, ad_personalization: _initial,
+      functionality_storage: 'granted', security_storage: 'granted',
+      wait_for_update: 500
+    });
+  </script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "TDEE Calculator",
+    "url": "https://webcaretakers.com/calculators/health/tdee-calculator/",
+    "description": "Total Daily Energy Expenditure and BMR calculator with Mifflin-St Jeor, Harris-Benedict (revised) and Katch-McArdle formulas. Produces calorie targets for cutting, maintenance and bulking, plus a starting macro split.",
+    "applicationCategory": "HealthApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0" },
+    "author": { "@type": "Person", "name": "Andrew Laws", "url": "https://yeseo.io/" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Which TDEE formula is most accurate?",
+        "acceptedAnswer": { "@type": "Answer", "text": "For most adults, Mifflin-St Jeor is the modern default and has performed best in validation studies against measured BMR. Harris-Benedict (revised) tends to overestimate slightly, especially for heavier individuals. Katch-McArdle is the most accurate of the three if you know your body fat percentage reasonably well, because it works from lean body mass rather than total weight. If you have a decent body fat reading from DEXA, a good set of callipers or a smart scale you trust, use Katch-McArdle. Otherwise, stick with Mifflin-St Jeor." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why is my weight not changing at my calculated TDEE?",
+        "acceptedAnswer": { "@type": "Answer", "text": "TDEE calculators give you a starting estimate. Real burn varies by muscle mass, non-exercise movement (fidgeting counts), sleep, hormones and how accurately you judge your activity level. Track your weight and food intake for two to three weeks, then adjust your calories up or down by 100 to 200 kcal based on what actually happened. The calculator gets you in the ballpark. Your scale and the tape measure decide the rest." }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I work out my macros?",
+        "acceptedAnswer": { "@type": "Answer", "text": "A sensible starting point is protein at 1.6 to 2.2 grams per kilo of body weight (higher end if you lift), fat at around 25% of total calories (no lower than 0.6 g/kg for hormonal health), and carbohydrates filling in the rest. The calculator shows one reasonable split. Adjust to taste, performance and how you feel. Hitting your calorie target and your protein target matter far more than the exact carb and fat ratio." }
+      },
+      {
+        "@type": "Question",
+        "name": "Should I eat back exercise calories?",
+        "acceptedAnswer": { "@type": "Answer", "text": "If you picked an activity multiplier that already includes your training (moderate, heavy, athlete), no. Eating back calories your fitness watch logged would be double-counting. If you set yourself to sedentary because you have a desk job and then did a long run, you can eat back a portion of those calories, but treat watch estimates as optimistic by roughly 20 to 30%. The cleaner approach is to pick the multiplier that reflects your typical week and then leave it alone." }
+      },
+      {
+        "@type": "Question",
+        "name": "What do the activity multipliers actually mean?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Sedentary (1.2) is a desk job and light walking, no formal exercise. Lightly active (1.375) is one to three short sessions a week. Moderately active (1.55) is three to five sessions a week of real effort. Heavy (1.725) is six or seven hard sessions, or a physical job plus training. Athlete (1.9) is twice-daily training or a very physical job on top of serious training. Most people overestimate by one tier. When in doubt, go one step down." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-banner-heading" aria-describedby="cookie-banner-text" hidden>
+    <div class="cookie-banner__inner">
+      <h2 id="cookie-banner-heading" class="cookie-banner__heading">A quick word about cookies</h2>
+      <p id="cookie-banner-text" class="cookie-banner__text">
+        We use cookies for analytics, so we can see which calculators people actually use and which ones need work. Nothing creepy, nothing sold on. You can say yes, say no, or read the <a href="/privacy/">privacy policy</a> first. Your choice sticks.
+      </p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-reject>Reject</button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>Accept</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var KEY = 'cookie-consent';
+      var banner = document.querySelector('[data-cookie-banner]');
+      if (!banner) return;
+      var stored = null;
+      try { stored = localStorage.getItem(KEY); } catch (e) {}
+      if (stored !== 'granted' && stored !== 'denied') { banner.hidden = false; }
+      function record(choice) {
+        try { localStorage.setItem(KEY, choice); } catch (e) {}
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('consent', 'update', {
+          ad_storage: choice, analytics_storage: choice,
+          ad_user_data: choice, ad_personalization: choice
+        });
+        banner.hidden = true;
+      }
+      var accept = banner.querySelector('[data-cookie-accept]');
+      var reject = banner.querySelector('[data-cookie-reject]');
+      if (accept) accept.addEventListener('click', function () { record('granted'); });
+      if (reject) reject.addEventListener('click', function () { record('denied'); });
+    })();
+  </script>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">WebCaretakers</a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <ul class="primary-nav__list">
+          <li class="primary-nav__item primary-nav__item--has-menu">
+            <button type="button" class="primary-nav__link" data-menu-toggle aria-haspopup="true" aria-expanded="false">Calculators <span class="primary-nav__caret" aria-hidden="true">&#9662;</span></button>
+            <ul class="primary-nav__submenu">
+              <li><a href="/calculators/broadband/">Broadband</a></li>
+              <li><a href="/calculators/business/">Business</a></li>
+              <li><a href="/calculators/conversions/">Conversions</a></li>
+              <li><a href="/calculators/finance/">Finance</a></li>
+              <li><a href="/calculators/fun/">Fun</a></li>
+              <li><a href="/calculators/health/">Health</a></li>
+              <li><a href="/calculators/images/">Images</a></li>
+              <li><a href="/calculators/math/">Math</a></li>
+              <li><a href="/calculators/productivity/">Productivity</a></li>
+              <li><a href="/calculators/property/">Property</a></li>
+              <li><a href="/calculators/seo/">SEO</a></li>
+              <li><a href="/calculators/wedding/">Wedding</a></li>
+              <li><a href="/calculators/writing/">Writing</a></li>
+              <li class="primary-nav__submenu-sep"><a href="/calculators/">See all calculators</a></li>
+            </ul>
+          </li>
+          <li class="primary-nav__item"><a href="/about/" class="primary-nav__link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <main id="main-content">
+      <div class="container">
+        <nav aria-label="Breadcrumb" class="breadcrumbs">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/calculators/">Calculators</a></li>
+            <li><a href="/calculators/health/">Health</a></li>
+            <li aria-current="page">TDEE Calculator</li>
+          </ol>
+        </nav>
+
+        <h1>TDEE Calculator</h1>
+        <p class="intro">Work out your Total Daily Energy Expenditure: the calories your body burns in a typical day once activity is factored in. Pick a formula (Mifflin-St Jeor is the modern default), set your activity tier honestly, and you get your BMR, TDEE, cut and bulk targets, and a starting macro split.</p>
+
+        <section class="eli5" aria-label="Plain-English explanation">
+          <h2>Explain like I'm 5 (what TDEE actually is)</h2>
+          <p>Your body burns fuel in two ways: the background tick-over that keeps you alive (BMR), and everything you do on top of it (walking, typing, training, fidgeting). Add those together and you get TDEE, your total daily burn. Eat that number and your weight holds. Eat below it consistently and you lose fat. Eat above it and you gain. That is the whole game, give or take a bit of water weight.</p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="in-content" aria-hidden="true"></div>
+
+        <section data-calculator class="calculator-card">
+          <h2>Calculate</h2>
+          <form id="tdee-form" class="calc-form" novalidate>
+
+            <fieldset class="calc-fieldset">
+              <legend>Sex</legend>
+              <div class="calc-row calc-row--radios">
+                <label><input type="radio" name="sex" value="male" checked data-sex> Male</label>
+                <label><input type="radio" name="sex" value="female" data-sex> Female</label>
+              </div>
+            </fieldset>
+
+            <div class="calc-row">
+              <label for="tdee-age">Age (years)</label>
+              <input type="number" id="tdee-age" name="age" min="15" max="120" step="1" value="30" data-age>
+            </div>
+
+            <fieldset class="calc-fieldset">
+              <legend>Height</legend>
+              <div class="calc-row calc-row--radios">
+                <label><input type="radio" name="heightUnit" value="metric" checked data-height-unit> Metric (cm)</label>
+                <label><input type="radio" name="heightUnit" value="imperial" data-height-unit> Imperial (ft + in)</label>
+              </div>
+              <div class="calc-row" data-height-metric-row>
+                <label for="tdee-height-cm">Height (cm)</label>
+                <input type="number" id="tdee-height-cm" name="heightCm" min="100" max="250" step="1" value="180" data-height-cm>
+              </div>
+              <div class="calc-row" data-height-imperial-row hidden>
+                <label for="tdee-height-ft">Height</label>
+                <div class="calc-inline-inputs">
+                  <input type="number" id="tdee-height-ft" name="heightFt" min="3" max="8" step="1" placeholder="ft" data-height-ft>
+                  <span>ft</span>
+                  <input type="number" id="tdee-height-in" name="heightIn" min="0" max="11" step="1" placeholder="in" data-height-in>
+                  <span>in</span>
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset class="calc-fieldset">
+              <legend>Weight</legend>
+              <div class="calc-row calc-row--radios">
+                <label><input type="radio" name="weightUnit" value="metric" checked data-weight-unit> Metric (kg)</label>
+                <label><input type="radio" name="weightUnit" value="imperial" data-weight-unit> Imperial (st + lbs)</label>
+              </div>
+              <div class="calc-row" data-weight-metric-row>
+                <label for="tdee-weight-kg">Weight (kg)</label>
+                <input type="number" id="tdee-weight-kg" name="weightKg" min="20" max="300" step="0.1" value="80" data-weight-kg>
+              </div>
+              <div class="calc-row" data-weight-imperial-row hidden>
+                <label for="tdee-weight-st">Weight</label>
+                <div class="calc-inline-inputs">
+                  <input type="number" id="tdee-weight-st" name="weightSt" min="0" max="50" step="1" placeholder="st" data-weight-st>
+                  <span>st</span>
+                  <input type="number" id="tdee-weight-lbs" name="weightLbs" min="0" max="13" step="0.1" placeholder="lbs" data-weight-lbs>
+                  <span>lbs</span>
+                </div>
+              </div>
+            </fieldset>
+
+            <div class="calc-row">
+              <label for="tdee-activity">Activity level</label>
+              <select id="tdee-activity" name="activity" data-activity>
+                <option value="1.2">Sedentary (1.2): desk job, little or no formal exercise</option>
+                <option value="1.375">Lightly active (1.375): 1 to 3 sessions a week</option>
+                <option value="1.55" selected>Moderately active (1.55): 3 to 5 sessions a week</option>
+                <option value="1.725">Heavy (1.725): 6 to 7 hard sessions, or physical job plus training</option>
+                <option value="1.9">Athlete (1.9): twice-daily training or very physical job plus training</option>
+              </select>
+            </div>
+
+            <div class="calc-row">
+              <label for="tdee-formula">Formula</label>
+              <select id="tdee-formula" name="formula" data-formula>
+                <option value="mifflin" selected>Mifflin-St Jeor (recommended default)</option>
+                <option value="harris">Harris-Benedict (revised)</option>
+                <option value="katch">Katch-McArdle (needs body fat %)</option>
+              </select>
+            </div>
+
+            <div class="calc-row" data-bodyfat-row hidden>
+              <label for="tdee-bodyfat">Body fat (%)</label>
+              <input type="number" id="tdee-bodyfat" name="bodyfat" min="3" max="60" step="0.1" placeholder="e.g. 20" data-bodyfat>
+            </div>
+
+            <button type="submit" data-calculate>Calculate</button>
+          </form>
+
+          <div data-calculator-results class="calculator-results">
+            <div class="result-summary">
+              <p class="result-display" data-result>Enter your details and press Calculate.</p>
+            </div>
+
+            <div class="mort-breakdown" data-breakdown hidden>
+              <h3>Your numbers</h3>
+              <ul>
+                <li><span>BMR (calories at rest)</span><strong data-line-bmr>&mdash;</strong></li>
+                <li class="mort-breakdown__total"><span>TDEE (daily burn)</span><strong data-line-tdee>&mdash;</strong></li>
+              </ul>
+
+              <h3>Calorie targets</h3>
+              <ul>
+                <li><span>Aggressive cut (&minus;750)</span><strong data-line-aggressive-cut>&mdash;</strong></li>
+                <li><span>Cut (&minus;500)</span><strong data-line-cut>&mdash;</strong></li>
+                <li><span>Mild cut (&minus;250)</span><strong data-line-mild-cut>&mdash;</strong></li>
+                <li class="mort-breakdown__total"><span>Maintenance</span><strong data-line-maintain>&mdash;</strong></li>
+                <li><span>Mild bulk (+250)</span><strong data-line-mild-bulk>&mdash;</strong></li>
+                <li><span>Bulk (+500)</span><strong data-line-bulk>&mdash;</strong></li>
+              </ul>
+
+              <h3>Macro starting point (at maintenance)</h3>
+              <ul>
+                <li><span>Protein</span><strong data-line-protein>&mdash;</strong></li>
+                <li><span>Fat</span><strong data-line-fat>&mdash;</strong></li>
+                <li><span>Carbohydrates</span><strong data-line-carbs>&mdash;</strong></li>
+              </ul>
+              <p class="calc-note">Protein at roughly 1.8 g per kg of body weight (or lean mass, for Katch-McArdle), fat at 25% of calories, carbs filling the rest. Adjust to taste and training. This is a starting point, not a prescription.</p>
+            </div>
+
+            <details class="prove-it" data-prove-it>
+              <summary>Prove it</summary>
+              <div data-prove-it-body></div>
+              <p class="prove-it-source">Mifflin-St Jeor: male BMR = 10W + 6.25H &minus; 5A + 5; female = 10W + 6.25H &minus; 5A &minus; 161. Harris-Benedict (revised Roza): male = 88.362 + 13.397W + 4.799H &minus; 5.677A; female = 447.593 + 9.247W + 3.098H &minus; 4.330A. Katch-McArdle: BMR = 370 + 21.6 &times; LBM(kg), where LBM = weight &times; (1 &minus; body fat %). TDEE = BMR &times; activity multiplier (1.2, 1.375, 1.55, 1.725, 1.9).</p>
+            </details>
+          </div>
+
+          <p class="bookmark-nudge">
+            Useful? Press <kbd data-bookmark-shortcut>Ctrl</kbd> + <kbd>D</kbd> to bookmark.
+          </p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="below-results" aria-hidden="true"></div>
+
+        <section class="long-form">
+          <h2>Why TDEE is the number that actually matters</h2>
+          <p>If you care about cutting fat, holding your weight, or putting muscle on, TDEE is the number you are working against. Everything else (meal timing, macro splits, training splits, the brand of protein powder your cousin swears by) is detail stacked on top of calories in versus calories out. Get TDEE roughly right and you have a target to aim at. Get it wrong by a few hundred calories and you will spend weeks confused about why the scale is not moving.</p>
+          <p>The calculator above does the arithmetic. It cannot, however, watch you eyeball a tablespoon of peanut butter, pour four, and then blame your thyroid. That part is on you.</p>
+
+          <h2>Mifflin-St Jeor, Harris-Benedict, Katch-McArdle: which to pick</h2>
+          <p><strong>Mifflin-St Jeor (1990)</strong> is the modern default. It was derived from a larger and more representative sample than Harris-Benedict, and in validation studies it gets closer to measured BMR for most adults. If you do not know your body fat percentage, this is the one to use.</p>
+          <p><strong>Harris-Benedict (revised by Roza and Shetty, 1984)</strong> is the older formula, still widely cited. It tends to run slightly high, particularly for heavier or older individuals, which means it can overshoot maintenance calories by 100 to 200 kcal. Useful for comparison, not usually the best primary choice.</p>
+          <p><strong>Katch-McArdle</strong> works from lean body mass rather than total weight, which is why it needs a body fat percentage. For a lean, muscular person it gives a meaningfully higher BMR than Mifflin would, because muscle is metabolically active and fat mostly is not. For someone carrying more body fat, it gives a lower number. If your body fat reading is accurate (DEXA, good callipers done by someone who knows what they are doing, or a smart scale you have sense-checked), Katch-McArdle is the most personalised of the three. If your body fat number is a guess, stick with Mifflin.</p>
+
+          <h2>Activity multipliers: most people pick one too high</h2>
+          <p>This is where TDEE estimates go wrong. People read "moderately active, 3 to 5 sessions a week" and think that sounds like them, forgetting that the remaining 160 or so waking hours a week are spent sitting at a desk and then on a sofa. Sedentary (1.2) is the right multiplier for a desk worker who does not formally exercise. If you do a couple of short runs and some light yoga, you are lightly active at best. True "heavy" territory means you genuinely feel battered by training volume, or you are on your feet all day and then train.</p>
+          <p>When in doubt, go one tier lower than you think. You will hit your calorie target more reliably and can always adjust upward if the scale tells you to.</p>
+
+          <h2>What to do with your TDEE number</h2>
+          <p>For fat loss, a deficit of 250 to 500 kcal a day is the sustainable range. 250 is a gentler cut that leaves energy for training and is easier to stick to. 500 is the classic rate, roughly half a kilo of fat lost per week on paper. 750 is aggressive, useful for short runs but not something to do for months, because it tends to cost you muscle and sleep as well as fat.</p>
+          <p>For muscle gain, a surplus of 250 to 500 kcal a day is the range. Most of the extra growth happens in the first few hundred calories over maintenance. Beyond that, you are mostly adding fat and work for a future cut.</p>
+
+          <h2>Honest caveats</h2>
+          <p>Every calorie calculator is an estimate. BMR varies by muscle mass, sleep, stress, hormonal status, medications and recent dieting history. Activity multipliers are based on self-reported behaviour, which is notoriously optimistic. The single best source of ground truth is your own data over two to three weeks: if you eat your calculated maintenance number and your weight holds steady, the calculator was right. If you gain or lose, adjust by 100 to 200 kcal and try again.</p>
+          <p>And if you are seriously under-eating, dealing with an eating disorder, or have a condition that affects metabolism (thyroid, diabetes, PCOS), talk to a GP or a registered dietitian. A tool in a browser cannot see what is actually going on.</p>
+
+          <!-- related-calculators-block -->
+          <h2>Related calculators</h2>
+          <p>The rest of the health stack.</p>
+          <ul class="related-calculators">
+            <li><a href="/calculators/health/bmi-calculator/">Check your BMI</a></li>
+            <li><a href="/calculators/health/calorie-calculator/">Calorie Calculator with goal-based targets</a></li>
+            <li><a href="/calculators/health/running-pace-calculator/">Plan a Running Pace and splits</a></li>
+            <li><a href="/calculators/health/pregnancy-due-date-calculator/">Pregnancy Due Date Calculator</a></li>
+          </ul>
+        </section>
+
+        <section class="faq" aria-labelledby="faq-heading">
+          <h2 id="faq-heading">Frequently asked questions</h2>
+          <details>
+            <summary>Which TDEE formula is most accurate?</summary>
+            <p>Mifflin-St Jeor is the best general-purpose default. Katch-McArdle is more accurate if you have a reliable body fat reading. Harris-Benedict tends to overestimate slightly and is kept mostly for comparison.</p>
+          </details>
+          <details>
+            <summary>Why isn't my weight changing at my calculated TDEE?</summary>
+            <p>Calculators give a starting estimate. Track your weight and intake for two to three weeks, then adjust your calories by 100 to 200 kcal based on what actually happened. Activity multipliers in particular tend to be overestimated.</p>
+          </details>
+          <details>
+            <summary>How do I work out my macros?</summary>
+            <p>Protein at 1.6 to 2.2 g per kg of body weight. Fat at 25% of calories, and no lower than 0.6 g per kg for hormonal health. Carbs fill in the remainder. Hitting calories and protein matter far more than the exact carb-to-fat split.</p>
+          </details>
+          <details>
+            <summary>Should I eat back exercise calories?</summary>
+            <p>Not if your activity multiplier already includes your training. Eating back watch-estimated calories on top of "moderately active" is double-counting. Pick the tier that matches your typical week and leave it.</p>
+          </details>
+          <details>
+            <summary>What do the activity multipliers mean in practice?</summary>
+            <p>1.2 is a desk job and not much else. 1.375 is light training once or twice a week. 1.55 is three to five real sessions. 1.725 is hard training six or seven days, or a physical job plus training. 1.9 is twice-daily training or serious volume on top of a physical job.</p>
+          </details>
+        </section>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="ad-slot" data-ad-slot="sidebar" aria-hidden="true"></div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="site-footer-nav" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/calculators/">All calculators</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+      <section class="site-disclaimer" data-disclaimer aria-labelledby="disclaimer-heading">
+        <h2 id="disclaimer-heading">A quick, necessary word</h2>
+        <p>Every calculator on this site is built to give you a sensible, well-reasoned estimate. It is, however, exactly that: an estimate, for general information only. Nothing you see here is professional, legal, financial, medical, or tax advice, and it should not be treated as such.</p>
+        <p>Before you make a decision that actually matters, talk to a qualified professional who knows your specific situation: an accountant, a solicitor, a doctor, an IT consultant, whoever fits the question. They can factor in the bits a generic tool can't.</p>
+        <p>We take no liability and accept no responsibility for any loss, damage, or questionable life choice arising from acting on the numbers you see here. Use the results as a starting point for a better conversation, not as the final word.</p>
+        <p><strong>Affiliate disclosure:</strong> some links on this site are affiliate links. If you click through and buy or sign up for something, we may earn a small commission at no extra cost to you. It helps keep the calculators free and ad-light. We only recommend things we'd point a friend towards.</p>
+      </section>
+      <p class="site-copyright">&copy; 2026 WebCaretakers. All rights reserved.</p>
+      <p class="site-legal">WebCaretakers is a trading name of <a href="https://yeseo.io/" rel="noopener">Andrew Laws Associates Ltd</a>, registered in England and Wales (company no. 08602332). ICO registration ZA726704.</p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      'use strict';
+      var shortcutEl = document.querySelector('[data-bookmark-shortcut]');
+      if (shortcutEl) {
+        var isMac = /Mac|iPhone|iPad|iPod/i.test(navigator.platform || navigator.userAgent);
+        shortcutEl.textContent = isMac ? '\u2318' : 'Ctrl';
+      }
+
+      var form = document.getElementById('tdee-form');
+      if (!form) return;
+
+      var resultEl    = document.querySelector('[data-result]');
+      var breakdown   = document.querySelector('[data-breakdown]');
+      var proveBody   = document.querySelector('[data-prove-it-body]');
+
+      var lineBMR           = document.querySelector('[data-line-bmr]');
+      var lineTDEE          = document.querySelector('[data-line-tdee]');
+      var lineAggressiveCut = document.querySelector('[data-line-aggressive-cut]');
+      var lineCut           = document.querySelector('[data-line-cut]');
+      var lineMildCut       = document.querySelector('[data-line-mild-cut]');
+      var lineMaintain      = document.querySelector('[data-line-maintain]');
+      var lineMildBulk      = document.querySelector('[data-line-mild-bulk]');
+      var lineBulk          = document.querySelector('[data-line-bulk]');
+      var lineProtein       = document.querySelector('[data-line-protein]');
+      var lineFat           = document.querySelector('[data-line-fat]');
+      var lineCarbs         = document.querySelector('[data-line-carbs]');
+
+      var bodyfatRow        = document.querySelector('[data-bodyfat-row]');
+      var heightMetricRow   = document.querySelector('[data-height-metric-row]');
+      var heightImperialRow = document.querySelector('[data-height-imperial-row]');
+      var weightMetricRow   = document.querySelector('[data-weight-metric-row]');
+      var weightImperialRow = document.querySelector('[data-weight-imperial-row]');
+
+      function updateFormulaUI() {
+        var formula = form.querySelector('[data-formula]').value;
+        bodyfatRow.hidden = (formula !== 'katch');
+      }
+      function updateHeightUI() {
+        var unit = form.querySelector('[data-height-unit]:checked').value;
+        heightMetricRow.hidden = (unit !== 'metric');
+        heightImperialRow.hidden = (unit !== 'imperial');
+      }
+      function updateWeightUI() {
+        var unit = form.querySelector('[data-weight-unit]:checked').value;
+        weightMetricRow.hidden = (unit !== 'metric');
+        weightImperialRow.hidden = (unit !== 'imperial');
+      }
+
+      form.querySelectorAll('input, select').forEach(function (el) {
+        el.addEventListener('input', function () {
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({ event: 'calculator_interaction', calculator_name: 'TDEE Calculator', field_name: el.name || el.id });
+        });
+        el.addEventListener('change', function () {
+          if (el.getAttribute('data-formula') !== null) updateFormulaUI();
+          if (el.getAttribute('data-height-unit') !== null) updateHeightUI();
+          if (el.getAttribute('data-weight-unit') !== null) updateWeightUI();
+        });
+      });
+
+      updateFormulaUI();
+      updateHeightUI();
+      updateWeightUI();
+
+      function num(v) { var n = parseFloat(v); return isFinite(n) ? n : 0; }
+
+      function resolveHeightCm() {
+        var unit = form.querySelector('[data-height-unit]:checked').value;
+        if (unit === 'metric') return num(form.querySelector('[data-height-cm]').value);
+        var ft = num(form.querySelector('[data-height-ft]').value);
+        var inches = num(form.querySelector('[data-height-in]').value);
+        return (ft * 12 + inches) * 2.54;
+      }
+
+      function resolveWeightKg() {
+        var unit = form.querySelector('[data-weight-unit]:checked').value;
+        if (unit === 'metric') return num(form.querySelector('[data-weight-kg]').value);
+        var st  = num(form.querySelector('[data-weight-st]').value);
+        var lbs = num(form.querySelector('[data-weight-lbs]').value);
+        return (st * 14 + lbs) * 0.45359237;
+      }
+
+      function calcBMR(formula, sex, weightKg, heightCm, age, bodyfatPct) {
+        if (formula === 'harris') {
+          if (sex === 'male') return 88.362 + 13.397 * weightKg + 4.799 * heightCm - 5.677 * age;
+          return 447.593 + 9.247 * weightKg + 3.098 * heightCm - 4.330 * age;
+        }
+        if (formula === 'katch') {
+          var bf = bodyfatPct;
+          if (!(bf > 0 && bf < 70)) return null;
+          var lbm = weightKg * (1 - bf / 100);
+          return 370 + 21.6 * lbm;
+        }
+        // mifflin
+        if (sex === 'male')  return 10 * weightKg + 6.25 * heightCm - 5 * age + 5;
+        return 10 * weightKg + 6.25 * heightCm - 5 * age - 161;
+      }
+
+      function fmtKcal(n) { return Math.round(n).toLocaleString() + ' kcal/day'; }
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        var sexEl    = form.querySelector('[data-sex]:checked');
+        var sex      = sexEl ? sexEl.value : 'male';
+        var age      = num(form.querySelector('[data-age]').value);
+        var heightCm = resolveHeightCm();
+        var weightKg = resolveWeightKg();
+        var activity = num(form.querySelector('[data-activity]').value);
+        var formula  = form.querySelector('[data-formula]').value;
+        var bodyfat  = num(form.querySelector('[data-bodyfat]').value);
+
+        if (!(age > 0) || !(heightCm > 0) || !(weightKg > 0) || !(activity > 0)) {
+          resultEl.textContent = 'Please fill in age, height, weight and activity.';
+          breakdown.hidden = true;
+          return;
+        }
+        if (formula === 'katch' && !(bodyfat > 0 && bodyfat < 70)) {
+          resultEl.textContent = 'Katch-McArdle needs a body fat percentage. Enter one, or switch to Mifflin-St Jeor.';
+          breakdown.hidden = true;
+          return;
+        }
+
+        var bmrRaw = calcBMR(formula, sex, weightKg, heightCm, age, bodyfat);
+        if (bmrRaw == null || !isFinite(bmrRaw) || bmrRaw <= 0) {
+          resultEl.textContent = 'Could not calculate BMR from those inputs.';
+          breakdown.hidden = true;
+          return;
+        }
+        var bmr  = Math.round(bmrRaw);
+        var tdee = Math.round(bmrRaw * activity);
+
+        var aggCut  = tdee - 750;
+        var cut     = tdee - 500;
+        var mildCut = tdee - 250;
+        var mildBlk = tdee + 250;
+        var bulk    = tdee + 500;
+
+        // Macros at maintenance. Protein 1.8 g/kg of body mass (or LBM for Katch), fat 25% of kcal, carbs fill.
+        var proteinBasisKg = weightKg;
+        if (formula === 'katch') proteinBasisKg = weightKg * (1 - bodyfat / 100);
+        var proteinG = Math.round(proteinBasisKg * 1.8);
+        var proteinCal = proteinG * 4;
+        var fatCal = Math.round(tdee * 0.25);
+        var fatG = Math.round(fatCal / 9);
+        var carbCal = Math.max(0, tdee - proteinCal - fatCal);
+        var carbG = Math.round(carbCal / 4);
+
+        resultEl.textContent = 'TDEE: ' + tdee.toLocaleString() + ' kcal/day (BMR ' + bmr.toLocaleString() + ')';
+        breakdown.hidden = false;
+
+        lineBMR.textContent           = fmtKcal(bmr);
+        lineTDEE.textContent          = fmtKcal(tdee);
+        lineAggressiveCut.textContent = fmtKcal(aggCut);
+        lineCut.textContent           = fmtKcal(cut);
+        lineMildCut.textContent       = fmtKcal(mildCut);
+        lineMaintain.textContent      = fmtKcal(tdee);
+        lineMildBulk.textContent      = fmtKcal(mildBlk);
+        lineBulk.textContent          = fmtKcal(bulk);
+
+        lineProtein.textContent = proteinG + ' g (' + proteinCal.toLocaleString() + ' kcal)';
+        lineFat.textContent     = fatG + ' g (' + fatCal.toLocaleString() + ' kcal)';
+        lineCarbs.textContent   = carbG + ' g (' + carbCal.toLocaleString() + ' kcal)';
+
+        var formulaLabel = formula === 'mifflin' ? 'Mifflin-St Jeor' :
+                           formula === 'harris'  ? 'Harris-Benedict (revised)' :
+                                                   'Katch-McArdle';
+
+        proveBody.innerHTML = '<ul>' +
+          '<li><span>Formula</span><strong>' + formulaLabel + '</strong></li>' +
+          '<li><span>Sex</span><strong>' + sex + '</strong></li>' +
+          '<li><span>Age</span><strong>' + age + ' years</strong></li>' +
+          '<li><span>Weight</span><strong>' + (Math.round(weightKg * 10) / 10) + ' kg</strong></li>' +
+          '<li><span>Height</span><strong>' + (Math.round(heightCm * 10) / 10) + ' cm</strong></li>' +
+          (formula === 'katch' ? '<li><span>Body fat</span><strong>' + bodyfat + '%</strong></li>' : '') +
+          '<li><span>Activity multiplier</span><strong>&times;' + activity + '</strong></li>' +
+          '<li><span>BMR</span><strong>' + bmr.toLocaleString() + ' kcal</strong></li>' +
+          '<li><span>TDEE (BMR &times; activity)</span><strong>' + tdee.toLocaleString() + ' kcal</strong></li>' +
+          '</ul>';
+
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: 'calculator_result',
+          calculator_name: 'TDEE Calculator',
+          bmr: bmr,
+          tdee: tdee,
+          formula: formula,
+          activity: activity,
+          sex: sex
+        });
+      });
+
+      // CTA tracking for related links
+      document.querySelectorAll('.related-calculators a').forEach(function (a) {
+        a.addEventListener('click', function () {
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({ event: 'cta_click', calculator_name: 'TDEE Calculator', cta_target: a.getAttribute('href') });
+        });
+      });
+    })();
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>
