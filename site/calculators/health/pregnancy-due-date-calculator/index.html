@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pregnancy Due Date Calculator: LMP, Conception and IVF | WebCaretakers</title>
+  <meta name="description" content="Work out your estimated due date from your last menstrual period, conception date, or IVF transfer date. Gestational age, trimesters and key milestone dates included.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/health/pregnancy-due-date-calculator/">
+  <meta property="og:title" content="Pregnancy Due Date Calculator | WebCaretakers">
+  <meta property="og:description" content="Estimate your due date from LMP, conception, or IVF transfer, with gestational age and milestone dates.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/health/pregnancy-due-date-calculator/">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var _stored = null;
+    try { _stored = localStorage.getItem('cookie-consent'); } catch (e) {}
+    var _initial = _stored === 'granted' ? 'granted' : 'denied';
+    gtag('consent', 'default', {
+      ad_storage: _initial, analytics_storage: _initial,
+      ad_user_data: _initial, ad_personalization: _initial,
+      functionality_storage: 'granted', security_storage: 'granted',
+      wait_for_update: 500
+    });
+  </script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Pregnancy Due Date Calculator",
+    "url": "https://webcaretakers.com/calculators/health/pregnancy-due-date-calculator/",
+    "description": "Estimate a pregnancy due date from last menstrual period, conception date, or IVF transfer date. Shows gestational age, trimester, and milestone dates.",
+    "applicationCategory": "HealthApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0" },
+    "author": { "@type": "Person", "name": "Andrew Laws", "url": "https://yeseo.io/" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How accurate is a due date calculator?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Only about 5% of babies arrive on their estimated due date. Most arrive within two weeks either side. A first-trimester ultrasound is more accurate than a calculation based on your last period, especially if your cycle is irregular. Treat the result as a target window, not a deadline." }
+      },
+      {
+        "@type": "Question",
+        "name": "What if my cycle is not 28 days?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Naegele's rule assumes a 28-day cycle with ovulation on day 14. If your cycle is longer or shorter, the LMP-based date will be out by the same amount. For a 35-day cycle, add roughly 7 days. For a 21-day cycle, subtract 7. Your midwife or GP will usually confirm the date at the dating scan, which is more reliable than any calculation for irregular cycles." }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I use this after IVF?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. Pick the IVF option and enter your transfer date. The calculator adjusts for whether the embryo was a 3-day or 5-day (blastocyst) transfer, because those represent different stages of development and therefore different starting points." }
+      },
+      {
+        "@type": "Question",
+        "name": "When does each trimester start and end?",
+        "acceptedAnswer": { "@type": "Answer", "text": "The first trimester runs from week 1 to the end of week 12 (some define it to end of week 13). The second trimester covers weeks 13 to 27. The third trimester runs from week 28 to birth. 'Full term' starts at 37 weeks, 'late term' at 41, and anything beyond 42 is post-term." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the difference between gestational age and foetal age?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Gestational age is counted from the first day of your last period. Foetal (or embryonic) age is counted from conception, which is roughly two weeks later. A pregnancy that is 10 weeks gestational is about 8 weeks by foetal age. Clinicians almost always use gestational age." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-banner-heading" aria-describedby="cookie-banner-text" hidden>
+    <div class="cookie-banner__inner">
+      <h2 id="cookie-banner-heading" class="cookie-banner__heading">A quick word about cookies</h2>
+      <p id="cookie-banner-text" class="cookie-banner__text">
+        We use cookies for analytics, so we can see which calculators people actually use and which ones need work. Nothing creepy, nothing sold on. You can say yes, say no, or read the <a href="/privacy/">privacy policy</a> first. Your choice sticks.
+      </p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-reject>Reject</button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>Accept</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var KEY = 'cookie-consent';
+      var banner = document.querySelector('[data-cookie-banner]');
+      if (!banner) return;
+      var stored = null;
+      try { stored = localStorage.getItem(KEY); } catch (e) {}
+      if (stored !== 'granted' && stored !== 'denied') { banner.hidden = false; }
+      function record(choice) {
+        try { localStorage.setItem(KEY, choice); } catch (e) {}
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('consent', 'update', {
+          ad_storage: choice, analytics_storage: choice,
+          ad_user_data: choice, ad_personalization: choice
+        });
+        banner.hidden = true;
+      }
+      var accept = banner.querySelector('[data-cookie-accept]');
+      var reject = banner.querySelector('[data-cookie-reject]');
+      if (accept) accept.addEventListener('click', function () { record('granted'); });
+      if (reject) reject.addEventListener('click', function () { record('denied'); });
+    })();
+  </script>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">WebCaretakers</a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <ul class="primary-nav__list">
+          <li class="primary-nav__item primary-nav__item--has-menu">
+            <button type="button" class="primary-nav__link" data-menu-toggle aria-haspopup="true" aria-expanded="false">Calculators <span class="primary-nav__caret" aria-hidden="true">▾</span></button>
+            <ul class="primary-nav__submenu">
+              <li><a href="/calculators/broadband/">Broadband</a></li>
+              <li><a href="/calculators/business/">Business</a></li>
+              <li><a href="/calculators/conversions/">Conversions</a></li>
+              <li><a href="/calculators/finance/">Finance</a></li>
+              <li><a href="/calculators/fun/">Fun</a></li>
+              <li><a href="/calculators/health/">Health</a></li>
+              <li><a href="/calculators/images/">Images</a></li>
+              <li><a href="/calculators/math/">Math</a></li>
+              <li><a href="/calculators/productivity/">Productivity</a></li>
+              <li><a href="/calculators/property/">Property</a></li>
+              <li><a href="/calculators/seo/">SEO</a></li>
+              <li><a href="/calculators/wedding/">Wedding</a></li>
+              <li><a href="/calculators/writing/">Writing</a></li>
+              <li class="primary-nav__submenu-sep"><a href="/calculators/">See all calculators</a></li>
+            </ul>
+          </li>
+          <li class="primary-nav__item"><a href="/about/" class="primary-nav__link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <main id="main-content">
+      <div class="container">
+        <nav aria-label="Breadcrumb" class="breadcrumbs">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/calculators/">Calculators</a></li>
+            <li><a href="/calculators/health/">Health</a></li>
+            <li aria-current="page">Pregnancy Due Date Calculator</li>
+          </ol>
+        </nav>
+
+        <h1>Pregnancy Due Date Calculator</h1>
+        <p class="intro">Work out your estimated due date from your last period, the date of conception, or an IVF transfer date. You will also see your current gestational age in weeks and days, which trimester you are in, and the dates of the key milestones along the way.</p>
+
+        <section class="eli5" aria-label="Plain-English explanation">
+          <h2>Explain like I'm 5 (how the date is worked out)</h2>
+          <p>A human pregnancy is counted as 40 weeks long, measured from the first day of your last period. That is a slightly odd convention (you are not actually pregnant for the first two weeks of it), but it is the one every midwife and scan department uses. Add 280 days to the first day of your last period and you get your due date. The other methods (conception, IVF transfer) are just adjusted versions of the same sum.</p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="in-content" aria-hidden="true"></div>
+
+        <section data-calculator class="calculator-card">
+          <h2>Calculate</h2>
+          <form id="pregnancy-form" class="calc-form" novalidate>
+
+            <fieldset class="calc-fieldset">
+              <legend>How would you like to work it out?</legend>
+              <div class="calc-row calc-row--radios">
+                <label><input type="radio" name="method" value="lmp" checked data-method> First day of last period (LMP)</label>
+                <label><input type="radio" name="method" value="conception" data-method> Conception date</label>
+                <label><input type="radio" name="method" value="ivf" data-method> IVF transfer date</label>
+              </div>
+            </fieldset>
+
+            <div class="calc-row">
+              <label for="preg-date" data-date-label>First day of your last period</label>
+              <input type="date" id="preg-date" name="date" data-date>
+            </div>
+
+            <fieldset class="calc-fieldset" data-ivf-toggle hidden>
+              <legend>Embryo transfer type</legend>
+              <div class="calc-row calc-row--radios">
+                <label><input type="radio" name="embryoDay" value="5" checked data-embryo> 5-day (blastocyst) transfer</label>
+                <label><input type="radio" name="embryoDay" value="3" data-embryo> 3-day transfer</label>
+              </div>
+            </fieldset>
+
+            <button type="submit" data-calculate>Calculate</button>
+          </form>
+
+          <div data-calculator-results class="calculator-results">
+            <div class="result-summary">
+              <p class="result-display" data-result>Enter a date and press Calculate.</p>
+            </div>
+
+            <div class="mort-breakdown" data-breakdown hidden>
+              <h3>Your pregnancy at a glance</h3>
+              <ul>
+                <li class="mort-breakdown__total"><span>Estimated due date</span><strong data-line-due>&mdash;</strong></li>
+                <li><span>Current gestational age</span><strong data-line-gestational>&mdash;</strong></li>
+                <li><span>Current trimester</span><strong data-line-trimester>&mdash;</strong></li>
+              </ul>
+
+              <h3>Key milestone dates</h3>
+              <ul>
+                <li><span>End of first trimester (13 weeks)</span><strong data-line-t1>&mdash;</strong></li>
+                <li><span>Anatomy scan window (18 to 22 weeks)</span><strong data-line-anatomy>&mdash;</strong></li>
+                <li><span>Viability (24 weeks)</span><strong data-line-viability>&mdash;</strong></li>
+                <li><span>Glucose screening window (24 to 28 weeks)</span><strong data-line-glucose>&mdash;</strong></li>
+                <li><span>End of second trimester (27 weeks)</span><strong data-line-t2>&mdash;</strong></li>
+                <li><span>Full term (37 weeks)</span><strong data-line-fullterm>&mdash;</strong></li>
+                <li><span>Due date (40 weeks)</span><strong data-line-40>&mdash;</strong></li>
+                <li><span>Late term (41 weeks)</span><strong data-line-41>&mdash;</strong></li>
+              </ul>
+            </div>
+
+            <details class="prove-it" data-prove-it>
+              <summary>Prove it</summary>
+              <div data-prove-it-body></div>
+              <p class="prove-it-source">Naegele's rule: estimated due date = LMP + 280 days. Conception-based: conception date + 266 days. IVF 5-day (blastocyst) transfer: transfer date + 261 days. IVF 3-day transfer: transfer date + 263 days. Gestational age is the time elapsed since the LMP-equivalent date (due date minus 280 days).</p>
+            </details>
+          </div>
+
+          <p class="bookmark-nudge">
+            Useful? Press <kbd data-bookmark-shortcut>Ctrl</kbd> + <kbd>D</kbd> to bookmark.
+          </p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="below-results" aria-hidden="true"></div>
+
+        <section class="long-form">
+          <h2>How the due date is worked out</h2>
+          <p>The standard method is called Naegele's rule, named after the nineteenth-century German obstetrician Franz Naegele. You take the first day of the last menstrual period and add 280 days (40 weeks). The reasoning is that ovulation tends to happen roughly 14 days into a typical 28-day cycle, and a pregnancy runs for about 38 weeks from conception, so 14 + 266 = 280 days from the start of the last period.</p>
+          <p>If you know your conception date (for example, if you were tracking ovulation), the sum becomes conception + 266 days. For IVF, the transfer date is a known point in embryonic development, so a 5-day blastocyst transfer counts as the embryo already being 5 days old, and you add 261 days. A 3-day transfer adds 263. Either way, you end up at the same 280-day gestational age by the time the baby arrives.</p>
+
+          <h2>How accurate is any of this?</h2>
+          <p>Due dates are a best guess, not a booking. Only about one baby in twenty actually arrives on the estimated date. Most turn up within two weeks either side, which is why obstetric services treat 37 to 42 weeks as the normal range rather than singling out week 40 as the target. If your cycle is reliably 28 days, Naegele's rule is a reasonable first pass. If your cycle is irregular, or you are not sure when your last period started, the dating ultrasound your midwife arranges in the first trimester will be more accurate than any calculation. That scan measures the embryo directly, and before about 13 weeks that measurement is the most reliable dating method available.</p>
+          <p>For IVF pregnancies the transfer date is known to the day, so the calculated date is usually spot on. The only uncertainty is still the delivery itself, which is influenced by everything from genetics to whether it is your first baby (firstborns tend to run a few days late on average).</p>
+
+          <h2>Gestational age, foetal age, and a short glossary</h2>
+          <p>Clinicians talk about pregnancies in weeks and days, not months. A few terms worth knowing:</p>
+          <ul>
+            <li><strong>Gestational age:</strong> weeks counted from the first day of your last period. This is the number your midwife will use.</li>
+            <li><strong>Foetal age (or embryonic age):</strong> counted from conception, so roughly two weeks less than gestational age.</li>
+            <li><strong>First trimester:</strong> weeks 1 to 13 (some services define it as ending at week 12).</li>
+            <li><strong>Second trimester:</strong> weeks 14 to 27.</li>
+            <li><strong>Third trimester:</strong> week 28 onwards.</li>
+            <li><strong>Viability:</strong> around 24 weeks. Before this, survival outside the womb is very unlikely. After 24 weeks it rises sharply with each additional week.</li>
+            <li><strong>Early term:</strong> 37 to 38 weeks and 6 days.</li>
+            <li><strong>Full term:</strong> 39 to 40 weeks and 6 days.</li>
+            <li><strong>Late term:</strong> 41 to 41 weeks and 6 days.</li>
+            <li><strong>Post-term:</strong> 42 weeks and beyond.</li>
+          </ul>
+
+          <h2>What the milestone dates are for</h2>
+          <p>The milestone dates in the results give you a rough map of the pregnancy: when booking bloods and the dating scan tend to happen, when the anatomy (20-week) scan is done, when the baby reaches the point of likely survival if born early, when gestational diabetes screening is usually offered, and when you cross into full term. Your actual appointments will be set by your midwife and may fall slightly outside these windows depending on local NHS or private-care protocols, but the ranges here are the standard ones.</p>
+
+          <h2>A necessary note</h2>
+          <p>This calculator is informational. It does not replace antenatal care, a dating scan, or a conversation with your midwife or GP. If you are pregnant, or think you might be, get yourself booked into maternity care properly. That is where the real monitoring happens.</p>
+
+          <!-- related-calculators-block -->
+          <h2>Related calculators</h2>
+          <p>A few other things you might be counting.</p>
+          <ul class="related-calculators">
+            <li><a href="/calculators/health/bmi-calculator/">Check your BMI</a></li>
+            <li><a href="/calculators/health/calorie-calculator/">Work out daily calorie needs</a></li>
+            <li><a href="/calculators/health/running-pace-calculator/">Plan a running pace and splits</a></li>
+            <li><a href="/calculators/fun/date-difference-calculator/">Count the days between any two dates</a></li>
+          </ul>
+        </section>
+
+        <section class="faq" aria-labelledby="faq-heading">
+          <h2 id="faq-heading">Frequently asked questions</h2>
+          <details>
+            <summary>How accurate is a due date calculator?</summary>
+            <p>Only about 5% of babies arrive on the exact due date. Most turn up within two weeks either side, which is why the obstetric normal range is 37 to 42 weeks rather than a single day. A first-trimester dating scan is more accurate than any calculation, especially if your cycle is irregular.</p>
+          </details>
+          <details>
+            <summary>What if my cycle is not 28 days?</summary>
+            <p>Naegele's rule assumes a 28-day cycle with ovulation on day 14. Longer cycles shift the date later; shorter cycles shift it earlier. Roughly, add a day to the due date for every day your cycle is longer than 28, and subtract one for every day shorter. Your dating scan will correct for any mismatch.</p>
+          </details>
+          <details>
+            <summary>Can I use this after IVF?</summary>
+            <p>Yes. Pick the IVF option and enter your transfer date. The calculator adjusts for a 3-day or 5-day (blastocyst) transfer, because those are different points in embryonic development. IVF dates tend to be the most accurate of the three methods because the transfer date is known precisely.</p>
+          </details>
+          <details>
+            <summary>When does each trimester start and end?</summary>
+            <p>First trimester: weeks 1 to 13. Second trimester: weeks 14 to 27. Third trimester: week 28 to birth. Full term starts at 37 weeks, late term at 41, and anything beyond 42 is considered post-term.</p>
+          </details>
+          <details>
+            <summary>Gestational age versus foetal age, what's the difference?</summary>
+            <p>Gestational age is counted from the first day of your last period. Foetal age is counted from conception, which is about two weeks later. A 10-week gestational pregnancy is about 8 weeks by foetal age. Clinicians almost always use gestational age, so that is the one on your notes.</p>
+          </details>
+        </section>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="ad-slot" data-ad-slot="sidebar" aria-hidden="true"></div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="site-footer-nav" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/calculators/">All calculators</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+      <section class="site-disclaimer" data-disclaimer aria-labelledby="disclaimer-heading">
+        <h2 id="disclaimer-heading">A quick, necessary word</h2>
+        <p>Every calculator on this site is built to give you a sensible, well-reasoned estimate. It is, however, exactly that: an estimate, for general information only. Nothing you see here is professional, legal, financial, medical, or tax advice, and it should not be treated as such.</p>
+        <p>Before you make a decision that actually matters, talk to a qualified professional who knows your specific situation: an accountant, a solicitor, a doctor, an IT consultant, whoever fits the question. They can factor in the bits a generic tool can't.</p>
+        <p>We take no liability and accept no responsibility for any loss, damage, or questionable life choice arising from acting on the numbers you see here. Use the results as a starting point for a better conversation, not as the final word.</p>
+        <p><strong>Affiliate disclosure:</strong> some links on this site are affiliate links. If you click through and buy or sign up for something, we may earn a small commission at no extra cost to you. It helps keep the calculators free and ad-light. We only recommend things we'd point a friend towards.</p>
+      </section>
+      <p class="site-copyright">&copy; 2026 WebCaretakers. All rights reserved.</p>
+      <p class="site-legal">WebCaretakers is a trading name of <a href="https://yeseo.io/" rel="noopener">Andrew Laws Associates Ltd</a>, registered in England and Wales (company no. 08602332). ICO registration ZA726704.</p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      'use strict';
+      var shortcutEl = document.querySelector('[data-bookmark-shortcut]');
+      if (shortcutEl) {
+        var isMac = /Mac|iPhone|iPad|iPod/i.test(navigator.platform || navigator.userAgent);
+        shortcutEl.textContent = isMac ? '\u2318' : 'Ctrl';
+      }
+
+      var form = document.getElementById('pregnancy-form');
+      if (!form) return;
+
+      var resultEl     = document.querySelector('[data-result]');
+      var breakdown    = document.querySelector('[data-breakdown]');
+      var proveBody    = document.querySelector('[data-prove-it-body]');
+      var ivfToggle    = document.querySelector('[data-ivf-toggle]');
+      var dateLabel    = document.querySelector('[data-date-label]');
+
+      var lineDue         = document.querySelector('[data-line-due]');
+      var lineGest        = document.querySelector('[data-line-gestational]');
+      var lineTri         = document.querySelector('[data-line-trimester]');
+      var lineT1          = document.querySelector('[data-line-t1]');
+      var lineAnatomy     = document.querySelector('[data-line-anatomy]');
+      var lineViability   = document.querySelector('[data-line-viability]');
+      var lineGlucose     = document.querySelector('[data-line-glucose]');
+      var lineT2          = document.querySelector('[data-line-t2]');
+      var lineFullterm    = document.querySelector('[data-line-fullterm]');
+      var line40          = document.querySelector('[data-line-40]');
+      var line41          = document.querySelector('[data-line-41]');
+
+      var MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+      function parseISO(value) {
+        if (!value) return null;
+        var parts = value.split('-');
+        if (parts.length !== 3) return null;
+        var y = parseInt(parts[0], 10);
+        var m = parseInt(parts[1], 10) - 1;
+        var d = parseInt(parts[2], 10);
+        if (isNaN(y) || isNaN(m) || isNaN(d)) return null;
+        return new Date(Date.UTC(y, m, d));
+      }
+
+      function addDays(date, days) {
+        var d = new Date(date.getTime());
+        d.setUTCDate(d.getUTCDate() + days);
+        return d;
+      }
+
+      function formatLong(d) {
+        return d.getUTCDate() + ' ' + MONTHS[d.getUTCMonth()] + ' ' + d.getUTCFullYear();
+      }
+
+      function daysBetween(a, b) {
+        var MS = 24 * 60 * 60 * 1000;
+        return Math.floor((b.getTime() - a.getTime()) / MS);
+      }
+
+      function todayUTC() {
+        var now = new Date();
+        return new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()));
+      }
+
+      function updateMethodUI() {
+        var method = form.querySelector('[data-method]:checked').value;
+        if (method === 'ivf') {
+          ivfToggle.hidden = false;
+        } else {
+          ivfToggle.hidden = true;
+        }
+        if (method === 'lmp') dateLabel.textContent = 'First day of your last period';
+        else if (method === 'conception') dateLabel.textContent = 'Date of conception';
+        else dateLabel.textContent = 'IVF embryo transfer date';
+      }
+
+      form.querySelectorAll('input').forEach(function (el) {
+        el.addEventListener('input', function () {
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({ event: 'calculator_interaction', calculator_name: 'Pregnancy Due Date Calculator', field_name: el.name || el.id });
+        });
+        el.addEventListener('change', function () {
+          if (el.getAttribute('data-method') !== null) updateMethodUI();
+        });
+      });
+
+      updateMethodUI();
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        var method     = form.querySelector('[data-method]:checked').value;
+        var dateInput  = form.querySelector('[data-date]').value;
+        var inputDate  = parseISO(dateInput);
+        var embryoDay  = 5;
+        var embryoEl   = form.querySelector('[data-embryo]:checked');
+        if (embryoEl) embryoDay = parseInt(embryoEl.value, 10);
+
+        if (!inputDate) {
+          resultEl.textContent = 'Please enter a valid date.';
+          breakdown.hidden = true;
+          return;
+        }
+
+        // Work out LMP-equivalent so we can compute a consistent gestational age.
+        var lmpEquivalent;
+        var offset;
+        if (method === 'lmp') {
+          lmpEquivalent = inputDate;
+          offset = 280;
+        } else if (method === 'conception') {
+          lmpEquivalent = addDays(inputDate, -14);
+          offset = 266;
+        } else {
+          // IVF: 5-day blastocyst = embryo 5 days old, so LMP-equivalent was 19 days earlier (14 + 5)
+          // 3-day = 14 + 3 = 17 days earlier
+          var backDays = 14 + embryoDay;
+          lmpEquivalent = addDays(inputDate, -backDays);
+          offset = 280 - backDays; // 261 for 5-day, 263 for 3-day
+        }
+
+        var dueDate = addDays(lmpEquivalent, 280);
+
+        // Gestational age from today
+        var today = todayUTC();
+        var gestDays = daysBetween(lmpEquivalent, today);
+        var gestText = '—';
+        var trimesterText = '—';
+        if (gestDays >= 0 && gestDays <= 294) {
+          var weeks = Math.floor(gestDays / 7);
+          var days = gestDays % 7;
+          gestText = weeks + ' weeks ' + days + ' day' + (days === 1 ? '' : 's');
+          if (weeks < 13) trimesterText = 'First trimester';
+          else if (weeks < 27) trimesterText = 'Second trimester';
+          else trimesterText = 'Third trimester';
+        } else if (gestDays < 0) {
+          gestText = 'Not started yet';
+        } else {
+          gestText = 'Past due date';
+        }
+
+        resultEl.textContent = 'Estimated due date: ' + formatLong(dueDate);
+        breakdown.hidden = false;
+
+        lineDue.textContent       = formatLong(dueDate);
+        lineGest.textContent      = gestText;
+        lineTri.textContent       = trimesterText;
+        lineT1.textContent        = formatLong(addDays(lmpEquivalent, 13 * 7));
+        lineAnatomy.textContent   = formatLong(addDays(lmpEquivalent, 18 * 7)) + ' to ' + formatLong(addDays(lmpEquivalent, 22 * 7));
+        lineViability.textContent = formatLong(addDays(lmpEquivalent, 24 * 7));
+        lineGlucose.textContent   = formatLong(addDays(lmpEquivalent, 24 * 7)) + ' to ' + formatLong(addDays(lmpEquivalent, 28 * 7));
+        lineT2.textContent        = formatLong(addDays(lmpEquivalent, 27 * 7));
+        lineFullterm.textContent  = formatLong(addDays(lmpEquivalent, 37 * 7));
+        line40.textContent        = formatLong(addDays(lmpEquivalent, 40 * 7));
+        line41.textContent        = formatLong(addDays(lmpEquivalent, 41 * 7));
+
+        var methodLabel = method === 'lmp' ? 'Last menstrual period' :
+                          method === 'conception' ? 'Conception date' :
+                          ('IVF ' + embryoDay + '-day transfer');
+
+        proveBody.innerHTML = '<ul>' +
+          '<li><span>Method</span><strong>' + methodLabel + '</strong></li>' +
+          '<li><span>Input date</span><strong>' + formatLong(inputDate) + '</strong></li>' +
+          '<li><span>Days added</span><strong>' + offset + '</strong></li>' +
+          '<li><span>LMP-equivalent date</span><strong>' + formatLong(lmpEquivalent) + '</strong></li>' +
+          '<li><span>Due date (LMP + 280 days)</span><strong>' + formatLong(dueDate) + '</strong></li>' +
+          '</ul>';
+
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: 'calculator_result',
+          calculator_name: 'Pregnancy Due Date Calculator',
+          method: method,
+          due_date: dueDate.toISOString().slice(0, 10),
+          gestational_days: gestDays
+        });
+      });
+
+      // CTA tracking for related links
+      document.querySelectorAll('.related-calculators a').forEach(function (a) {
+        a.addEventListener('click', function () {
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({ event: 'cta_click', calculator_name: 'Pregnancy Due Date Calculator', cta_target: a.getAttribute('href') });
+        });
+      });
+    })();
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

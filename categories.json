@@ -182,6 +182,11 @@
           "slug": "running-pace-calculator",
           "name": "Running Pace Calculator",
           "summary": "Calculate your running pace, total finish time, or distance covered. Enter any two of pace, distance, and time. Metric and imperial, with race time predictions for 5K, 10K, half marathon and marathon."
+        },
+        {
+          "slug": "pregnancy-due-date-calculator",
+          "name": "Pregnancy Due Date Calculator",
+          "summary": "Work out your estimated due date from your last period, conception date, or IVF transfer date. Shows current gestational age, trimester, and key milestone dates."
         }
       ]
     },

@@ -329,6 +329,14 @@
     {
       "phrase": "property calculators",
       "url": "/calculators/property/"
+    },
+    {
+      "phrase": "Pregnancy Due Date Calculator",
+      "url": "/calculators/health/pregnancy-due-date-calculator/"
+    },
+    {
+      "phrase": "pregnancy due date calculator",
+      "url": "/calculators/health/pregnancy-due-date-calculator/"
     }
   ]
 }
