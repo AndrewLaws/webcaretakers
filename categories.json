@@ -44,6 +44,16 @@
           "slug": "photo-resizer",
           "name": "Photo Resizer",
           "summary": "Resize and convert photos in your browser. Pick a width, a height, a format and a quality. Your image never leaves your device."
+        },
+        {
+          "slug": "webp-to-jpg-converter",
+          "name": "WebP to JPG Converter",
+          "summary": "Convert WebP images to JPG or PNG in your browser. Drag and drop, bulk conversion, optional resize. Fixes the Chrome WebP problem in Word, Outlook and PowerPoint."
+        },
+        {
+          "slug": "image-compressor",
+          "name": "Image Compressor",
+          "summary": "Compress JPG, PNG and WebP photos to a target file size like 2 MB or 500 KB, or pick a quality. Multiple files at once, browser-only, no upload."
         }
       ]
     },

@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebP to JPG Converter | Free, browser-only WebP converter | WebCaretakers</title>
+  <meta name="description" content="Convert WebP images to JPG or PNG in your browser. Drag, drop, save. Bulk conversion, no upload, no sign-up. Fixes the Chrome WebP problem.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/images/webp-to-jpg-converter/">
+  <meta property="og:title" content="WebP to JPG Converter | WebCaretakers">
+  <meta property="og:description" content="Convert WebP images to JPG or PNG in your browser. No upload, no sign-up.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/images/webp-to-jpg-converter/">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var _stored = null;
+    try { _stored = localStorage.getItem('cookie-consent'); } catch (e) {}
+    var _initial = _stored === 'granted' ? 'granted' : 'denied';
+    gtag('consent', 'default', {
+      ad_storage: _initial, analytics_storage: _initial,
+      ad_user_data: _initial, ad_personalization: _initial,
+      functionality_storage: 'granted', security_storage: 'granted',
+      wait_for_update: 500
+    });
+  </script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "WebP to JPG Converter",
+    "url": "https://webcaretakers.com/calculators/images/webp-to-jpg-converter/",
+    "applicationCategory": "MultimediaApplication",
+    "operatingSystem": "Any",
+    "inLanguage": "en-GB",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "author": {
+      "@type": "Person",
+      "name": "Andrew Laws",
+      "url": "https://yeseo.io/"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Why does Chrome save images as WebP?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Chrome saves images in whatever format the website served them in. A growing share of sites now serve WebP because it is roughly 25 to 35 percent smaller than the equivalent JPEG, which makes pages load faster. Chrome is just keeping the format the page used. Edge, Firefox and Safari behave the same way." }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I convert WebP to JPG?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Drop the WebP file onto this page, choose JPG as the output format, and click Convert. The converted file appears with a download button. Nothing is uploaded; the conversion happens in your own browser tab." }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I open WebP in Word, Outlook, or PowerPoint?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Recent versions of Microsoft 365 (2021 onwards) do support WebP, but many people are still on older builds where WebP simply will not insert. Older Outlook clients are the worst offender. Converting to JPG or PNG fixes it everywhere." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does this upload my files anywhere?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. Decoding and re-encoding both happen in your browser, on your device, using the standard Canvas API. You can pull the network cable mid-conversion and the tool will still finish the job." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is WebP and why is it used?",
+        "acceptedAnswer": { "@type": "Answer", "text": "WebP is a Google-designed image format that compresses photographs and graphics more efficiently than JPEG or PNG. Smaller files mean faster page loads, which is why so many websites have switched to it. Every modern browser can display WebP, but a lot of desktop software still cannot." }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I stop Chrome saving images as WebP?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Honestly, you cannot, not directly. Chrome saves what the website sends. Some Chrome extensions claim to force JPEG by stripping the Accept header that requests WebP, but they break a lot of sites. The pragmatic fix is to save the file as WebP and run it through a converter like this one when you actually need a JPG." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-banner-heading" aria-describedby="cookie-banner-text" hidden>
+    <div class="cookie-banner__inner">
+      <h2 id="cookie-banner-heading" class="cookie-banner__heading">A quick word about cookies</h2>
+      <p id="cookie-banner-text" class="cookie-banner__text">
+        We use cookies for analytics, so we can see which calculators people actually use and which ones need work. Nothing creepy, nothing sold on. You can say yes, say no, or read the <a href="/privacy/">privacy policy</a> first. Your choice sticks.
+      </p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-reject>Reject</button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>Accept</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var KEY = 'cookie-consent';
+      var banner = document.querySelector('[data-cookie-banner]');
+      if (!banner) return;
+      var stored = null;
+      try { stored = localStorage.getItem(KEY); } catch (e) {}
+      if (stored !== 'granted' && stored !== 'denied') { banner.hidden = false; }
+      function record(choice) {
+        try { localStorage.setItem(KEY, choice); } catch (e) {}
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('consent', 'update', {
+          ad_storage: choice, analytics_storage: choice,
+          ad_user_data: choice, ad_personalization: choice
+        });
+        banner.hidden = true;
+      }
+      var accept = banner.querySelector('[data-cookie-accept]');
+      var reject = banner.querySelector('[data-cookie-reject]');
+      if (accept) accept.addEventListener('click', function () { record('granted'); });
+      if (reject) reject.addEventListener('click', function () { record('denied'); });
+    })();
+  </script>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">WebCaretakers</a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <ul class="primary-nav__list">
+          <li class="primary-nav__item primary-nav__item--has-menu">
+            <button type="button" class="primary-nav__link" data-menu-toggle aria-haspopup="true" aria-expanded="false">Calculators <span class="primary-nav__caret" aria-hidden="true">▾</span></button>
+            <ul class="primary-nav__submenu">
+              <li><a href="/calculators/broadband/">Broadband</a></li>
+              <li><a href="/calculators/business/">Business</a></li>
+              <li><a href="/calculators/conversions/">Conversions</a></li>
+              <li><a href="/calculators/finance/">Finance</a></li>
+              <li><a href="/calculators/fun/">Fun</a></li>
+              <li><a href="/calculators/health/">Health</a></li>
+              <li><a href="/calculators/images/">Images</a></li>
+              <li><a href="/calculators/math/">Math</a></li>
+              <li><a href="/calculators/productivity/">Productivity</a></li>
+              <li><a href="/calculators/property/">Property</a></li>
+              <li><a href="/calculators/seo/">SEO</a></li>
+              <li><a href="/calculators/wedding/">Wedding</a></li>
+              <li><a href="/calculators/writing/">Writing</a></li>
+              <li class="primary-nav__submenu-sep"><a href="/calculators/">See all calculators</a></li>
+            </ul>
+          </li>
+          <li class="primary-nav__item"><a href="/about/" class="primary-nav__link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <main id="main-content">
+      <div class="container">
+        <nav aria-label="Breadcrumb" class="breadcrumbs">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/calculators/">Calculators</a></li>
+            <li><a href="/calculators/images/">Images</a></li>
+            <li aria-current="page">WebP to JPG Converter</li>
+          </ol>
+        </nav>
+
+        <h1>WebP to JPG Converter</h1>
+        <p class="intro">Chrome and other modern browsers save images as WebP because they are smaller. Most people do not notice until they try to open one in Outlook, Word, or PowerPoint and it will not load. Drop your file in here and get a JPG (or PNG) back, with nothing uploaded anywhere.</p>
+
+        <section class="eli5" aria-label="Plain-English explanation">
+          <h2>Explain like I'm 5 (what even is this calculator?)</h2>
+          <p>You drop a WebP picture in. The tool reads it in your browser, paints it onto an invisible canvas, and saves a fresh copy as JPG or PNG. Your old software (Word, Outlook, that ancient photo viewer your dad still uses) can open the new file. The original is untouched, and the file is never sent anywhere.</p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="in-content" aria-hidden="true"></div>
+
+        <section class="calculator-card">
+          <h2>Convert</h2>
+
+          <label for="webp-file" class="resizer-dropzone" data-dropzone>
+            <p><strong>Choose images</strong> or drag them here</p>
+            <p class="resizer-dropzone__hint">WebP, JPG or PNG. You can drop several at once.</p>
+            <input type="file" id="webp-file" name="file" accept="image/webp,image/jpeg,image/png" multiple data-file>
+          </label>
+
+          <div class="resizer-status" data-status hidden></div>
+
+          <form id="webp-form" class="calc-form" novalidate data-form>
+            <div class="calc-row">
+              <label for="webp-format">Output format</label>
+              <select id="webp-format" name="format" data-format>
+                <option value="image/jpeg">JPG (smaller, lossy)</option>
+                <option value="image/png">PNG (lossless)</option>
+              </select>
+            </div>
+            <div class="calc-row resizer-quality" data-quality-row>
+              <label for="webp-quality">Quality <output for="webp-quality" data-quality-output>92</output></label>
+              <input type="range" id="webp-quality" name="quality" min="60" max="100" step="1" value="92" data-quality>
+            </div>
+            <div class="calc-row calc-row--checkbox">
+              <label for="webp-resize-on">Resize while converting</label>
+              <input type="checkbox" id="webp-resize-on" name="resize-on" data-resize-on>
+            </div>
+            <div class="calc-row" data-resize-row hidden>
+              <label for="webp-max-width">Max width (px, optional)</label>
+              <input type="number" id="webp-max-width" name="max-width" min="1" step="1" data-max-width>
+            </div>
+            <div class="calc-row" data-resize-row hidden>
+              <label for="webp-max-height">Max height (px, optional)</label>
+              <input type="number" id="webp-max-height" name="max-height" min="1" step="1" data-max-height>
+            </div>
+          </form>
+
+          <div class="calculator-results" data-results hidden>
+            <h3>Converted files</h3>
+            <ul class="webp-result-list" data-result-list></ul>
+          </div>
+
+          <p class="bookmark-nudge">
+            Useful? Save this calculator: press <kbd data-bookmark-shortcut>Ctrl</kbd> + <kbd>D</kbd> to bookmark it.
+          </p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="below-results" aria-hidden="true"></div>
+
+        <section class="long-form">
+          <h2>What is WebP, and why does it keep showing up on your computer?</h2>
+          <p>WebP is Google's image format. It came out in 2010, has been native to Chrome and Edge for years, and finally landed in Safari and Firefox too. Websites use it because the same photo, encoded as WebP, is roughly a third smaller than a JPEG. Smaller files mean faster pages, which means happier users and slightly better Google rankings. Hard to argue with.</p>
+          <p>The catch is that desktop software has not always kept up. Older Outlook installations, older Word, older PowerPoint, the photo viewer baked into a 2017 laptop, the company image library that still uses ImageMagick from 2014: they will all stare blankly at a WebP file and refuse to open it.</p>
+
+          <h2>The "Save image as JPG" trick that does not always work</h2>
+          <p>If you right-click an image in Chrome and pick Save image as, the file dialog sometimes offers a JPG option in a dropdown. Sometimes it does not. It depends on the image, the version of Chrome, and the phase of the moon. When the option is missing, this tool is the fix: save the WebP, drop it in, get a JPG out.</p>
+
+          <h2>Bulk conversion</h2>
+          <p>The dropzone accepts more than one file at a time. Pick a folder of WebPs, drag the lot in, and the tool processes them in order with a download button per file. There is no upload step, so the only ceiling is your device's memory.</p>
+
+          <h2>Privacy: nothing leaves your browser</h2>
+          <p>Every other "free WebP to JPG" website works by uploading your file, converting it on a server, and sending it back. Even when that is honest, it is an extra hop through the public internet for an image you might be reluctant to share. This tool does the work in your own browser tab, using the Canvas API. Open your developer tools and watch the Network panel: there are no requests when you press Convert.</p>
+
+          <h2>What this tool does not do</h2>
+          <p>If your WebP is animated (rare, but it happens), the tool takes the first frame and warns you. JPG cannot represent animation, and PNG can only with a lot of fiddling that is out of scope here. Re-encoding to JPG is also lossy by definition: you are throwing some quality away for a smaller, more compatible file. Going from a heavily compressed WebP to a JPG will not magically make it look sharper.</p>
+
+          <!-- related-calculators-block -->
+          <h2>Related calculators</h2>
+          <p>Other browser-only image tools on the site.</p>
+          <ul class="related-calculators">
+            <li><a href="/calculators/images/photo-resizer/">Photo Resizer (resize and convert in one step)</a></li>
+            <li><a href="/calculators/images/heic-to-jpg-converter/">HEIC to JPG Converter (for iPhone photos)</a></li>
+            <li><a href="/calculators/business/website-speed-budget-calculator/">Website Performance Budget Calculator</a></li>
+            <li><a href="/calculators/broadband/web-hosting-estimator/">Web Hosting Storage Estimator</a></li>
+          </ul>
+        </section>
+
+        <section class="faq" aria-labelledby="faq-heading">
+          <h2 id="faq-heading">Frequently asked questions</h2>
+          <details>
+            <summary>Why does Chrome save images as WebP?</summary>
+            <p>Chrome saves images in whatever format the website served them in. A growing share of sites now serve WebP because it is roughly 25 to 35 percent smaller than the equivalent JPEG, which makes pages load faster. Chrome is just keeping the format the page used. Edge, Firefox and Safari behave the same way.</p>
+          </details>
+          <details>
+            <summary>How do I convert WebP to JPG?</summary>
+            <p>Drop the WebP file onto this page, choose JPG as the output format, and click Convert. The converted file appears with a download button. Nothing is uploaded; the conversion happens in your own browser tab.</p>
+          </details>
+          <details>
+            <summary>Can I open WebP in Word, Outlook, or PowerPoint?</summary>
+            <p>Recent versions of Microsoft 365 (2021 onwards) do support WebP, but many people are still on older builds where WebP simply will not insert. Older Outlook clients are the worst offender. Converting to JPG or PNG fixes it everywhere.</p>
+          </details>
+          <details>
+            <summary>Does this upload my files anywhere?</summary>
+            <p>No. Decoding and re-encoding both happen in your browser, on your device, using the standard Canvas API. You can pull the network cable mid-conversion and the tool will still finish the job.</p>
+          </details>
+          <details>
+            <summary>What is WebP and why is it used?</summary>
+            <p>WebP is a Google-designed image format that compresses photographs and graphics more efficiently than JPEG or PNG. Smaller files mean faster page loads, which is why so many websites have switched to it. Every modern browser can display WebP, but a lot of desktop software still cannot.</p>
+          </details>
+          <details>
+            <summary>How do I stop Chrome saving images as WebP?</summary>
+            <p>Honestly, you cannot, not directly. Chrome saves what the website sends. Some Chrome extensions claim to force JPEG by stripping the Accept header that requests WebP, but they break a lot of sites. The pragmatic fix is to save the file as WebP and run it through a converter like this one when you actually need a JPG.</p>
+          </details>
+          <details>
+            <summary>Will the JPG be the same quality as the WebP?</summary>
+            <p>Close, not identical. JPG is a lossy format, so there is always a small quality cost when re-encoding. The default quality of 92 is high enough that the difference is invisible to almost everyone. Drop the slider lower if you want smaller files at the cost of a bit of fuzz.</p>
+          </details>
+        </section>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="ad-slot" data-ad-slot="sidebar" aria-hidden="true"></div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="site-footer-nav" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/calculators/">All calculators</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+
+      <section class="site-disclaimer" data-disclaimer aria-labelledby="disclaimer-heading">
+        <h2 id="disclaimer-heading">A quick, necessary word</h2>
+        <p>Every calculator on this site is built to give you a sensible, well-reasoned estimate. It is, however, exactly that: an estimate, for general information only. Nothing you see here is professional, legal, financial, medical, or tax advice, and it should not be treated as such.</p>
+        <p>Before you make a decision that actually matters, talk to a qualified professional who knows your specific situation: an accountant, a solicitor, a doctor, an IT consultant, whoever fits the question. They can factor in the bits a generic tool can't.</p>
+        <p>We take no liability and accept no responsibility for any loss, damage, or questionable life choice arising from acting on the numbers you see here. Use the results as a starting point for a better conversation, not as the final word.</p>
+        <p><strong>Affiliate disclosure:</strong> some links on this site are affiliate links. If you click through and buy or sign up for something, we may earn a small commission at no extra cost to you. It helps keep the calculators free and ad-light. We only recommend things we'd point a friend towards.</p>
+      </section>
+      <p class="site-copyright">&copy; 2026 WebCaretakers. All rights reserved.</p>
+      <p class="site-legal">WebCaretakers is a trading name of <a href="https://yeseo.io/" rel="noopener">Andrew Laws Associates Ltd</a>, registered in England and Wales (company no. 08602332). ICO registration ZA726704.</p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/calculators/webp-to-jpg-converter.js"></script>
+  <script>
+    (function () {
+      'use strict';
+
+      var shortcutEl = document.querySelector('[data-bookmark-shortcut]');
+      if (shortcutEl) {
+        var isMac = /Mac|iPhone|iPad|iPod/i.test(navigator.platform || navigator.userAgent);
+        shortcutEl.textContent = isMac ? '\u2318' : 'Ctrl';
+      }
+
+      var W = window.WebpToJpg;
+      var fileInput   = document.querySelector('[data-file]');
+      var dropzone    = document.querySelector('[data-dropzone]');
+      var formatIn    = document.querySelector('[data-format]');
+      var qualityIn   = document.querySelector('[data-quality]');
+      var qualityOut  = document.querySelector('[data-quality-output]');
+      var qualityRow  = document.querySelector('[data-quality-row]');
+      var resizeOn    = document.querySelector('[data-resize-on]');
+      var resizeRows  = document.querySelectorAll('[data-resize-row]');
+      var maxWidthIn  = document.querySelector('[data-max-width]');
+      var maxHeightIn = document.querySelector('[data-max-height]');
+      var statusEl    = document.querySelector('[data-status]');
+      var resultsEl   = document.querySelector('[data-results]');
+      var resultList  = document.querySelector('[data-result-list]');
+
+      var blobUrls = [];
+
+      function setStatus(msg, isError) {
+        if (!msg) { statusEl.hidden = true; statusEl.textContent = ''; statusEl.classList.remove('resizer-status--error'); return; }
+        statusEl.hidden = false;
+        statusEl.textContent = msg;
+        statusEl.classList.toggle('resizer-status--error', !!isError);
+      }
+
+      function track(event, extras) {
+        window.dataLayer = window.dataLayer || [];
+        var payload = Object.assign({ event: event, calculator_name: 'WebP to JPG Converter' }, extras || {});
+        window.dataLayer.push(payload);
+      }
+
+      function updateQualityRowVisibility() {
+        qualityRow.hidden = formatIn.value === 'image/png';
+      }
+      formatIn.addEventListener('change', updateQualityRowVisibility);
+      updateQualityRowVisibility();
+
+      qualityIn.addEventListener('input', function () {
+        qualityOut.textContent = qualityIn.value;
+      });
+
+      resizeOn.addEventListener('change', function () {
+        for (var i = 0; i < resizeRows.length; i++) {
+          resizeRows[i].hidden = !resizeOn.checked;
+        }
+      });
+
+      // Drag-and-drop
+      ['dragenter', 'dragover'].forEach(function (ev) {
+        dropzone.addEventListener(ev, function (e) {
+          e.preventDefault();
+          dropzone.classList.add('is-drag-over');
+        });
+      });
+      ['dragleave', 'drop'].forEach(function (ev) {
+        dropzone.addEventListener(ev, function (e) {
+          e.preventDefault();
+          dropzone.classList.remove('is-drag-over');
+        });
+      });
+      dropzone.addEventListener('drop', function (e) {
+        if (e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files.length) {
+          handleFiles(e.dataTransfer.files);
+        }
+      });
+      fileInput.addEventListener('change', function () {
+        if (fileInput.files && fileInput.files.length) handleFiles(fileInput.files);
+      });
+
+      function readHeader(file) {
+        return new Promise(function (resolve) {
+          var slice = file.slice(0, 64);
+          var reader = new FileReader();
+          reader.onload = function () { resolve(reader.result); };
+          reader.onerror = function () { resolve(null); };
+          reader.readAsArrayBuffer(slice);
+        });
+      }
+
+      function decodeImage(file) {
+        return new Promise(function (resolve, reject) {
+          var url = URL.createObjectURL(file);
+          var img = new Image();
+          img.onload = function () { resolve({ image: img, objectUrl: url }); };
+          img.onerror = function () {
+            URL.revokeObjectURL(url);
+            reject(new Error('decode failed'));
+          };
+          img.src = url;
+        });
+      }
+
+      function handleFiles(fileList) {
+        setStatus('');
+        resultsEl.hidden = false;
+        var files = Array.prototype.slice.call(fileList);
+        files.forEach(function (file) {
+          if (!W.isSupportedImageType(file.type)) {
+            appendError(file, 'Unsupported file type. WebP, JPG or PNG only.');
+            return;
+          }
+          track('calculator_interaction', { field_name: 'file_added', file_type: file.type, file_size: file.size });
+          processFile(file);
+        });
+      }
+
+      function appendError(file, message) {
+        var li = document.createElement('li');
+        li.className = 'webp-result-item webp-result-item--error';
+        li.innerHTML = '<strong>' + escapeHtml(file.name || 'image') + '</strong>: ' + escapeHtml(message);
+        resultList.appendChild(li);
+      }
+
+      function escapeHtml(s) {
+        return String(s).replace(/[&<>"']/g, function (c) {
+          return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+        });
+      }
+
+      function processFile(file) {
+        var li = document.createElement('li');
+        li.className = 'webp-result-item';
+        li.innerHTML = '<strong>' + escapeHtml(file.name) + '</strong> <span class="webp-result-status">Working...</span>';
+        resultList.appendChild(li);
+
+        readHeader(file).then(function (buf) {
+          var animated = buf && file.type === 'image/webp' ? W.isAnimatedWebp(buf) : false;
+          return decodeImage(file).then(function (decoded) {
+            return { decoded: decoded, animated: animated };
+          });
+        }).then(function (state) {
+          var img = state.decoded.image;
+          var objectUrl = state.decoded.objectUrl;
+
+          var dims = { width: img.naturalWidth, height: img.naturalHeight };
+          if (resizeOn.checked) {
+            dims = W.calculateResizeDimensions(
+              img.naturalWidth, img.naturalHeight,
+              parseInt(maxWidthIn.value, 10) || null,
+              parseInt(maxHeightIn.value, 10) || null
+            );
+          }
+
+          var canvas = document.createElement('canvas');
+          canvas.width = dims.width;
+          canvas.height = dims.height;
+          var ctx = canvas.getContext('2d');
+          if (formatIn.value === 'image/jpeg') {
+            // JPG has no alpha; paint a white background so transparency does
+            // not become black blocks.
+            ctx.fillStyle = '#ffffff';
+            ctx.fillRect(0, 0, dims.width, dims.height);
+          }
+          ctx.imageSmoothingEnabled = true;
+          ctx.imageSmoothingQuality = 'high';
+          ctx.drawImage(img, 0, 0, dims.width, dims.height);
+
+          var format = formatIn.value;
+          var quality = format === 'image/png' ? undefined : (parseInt(qualityIn.value, 10) / 100);
+
+          canvas.toBlob(function (blob) {
+            URL.revokeObjectURL(objectUrl);
+            if (!blob) {
+              li.querySelector('.webp-result-status').textContent = 'Conversion failed.';
+              li.classList.add('webp-result-item--error');
+              return;
+            }
+            var url = URL.createObjectURL(blob);
+            blobUrls.push(url);
+            var ext = format === 'image/png' ? 'png' : 'jpg';
+            var baseName = (file.name || 'image').replace(/\.[^.]+$/, '');
+            var outName = baseName + '-webcaretakers.' + ext;
+
+            var pct = Math.round((1 - blob.size / file.size) * 100);
+            var pctLabel = pct >= 0 ? pct + '% smaller' : Math.abs(pct) + '% larger';
+            var animatedNote = state.animated ? ' <em class="webp-result-warn">First frame only; animation dropped.</em>' : '';
+
+            li.innerHTML =
+              '<strong>' + escapeHtml(file.name) + '</strong> ' +
+              '<span class="webp-result-meta">' +
+                W.formatFileSize(file.size) + ' &rarr; ' + W.formatFileSize(blob.size) +
+                ' (' + pctLabel + '), ' + dims.width + '\u00d7' + dims.height + ' px' +
+              '</span>' +
+              animatedNote +
+              ' <a class="webp-result-download" href="' + url + '" download="' + escapeHtml(outName) + '">Download</a>';
+
+            track('calculator_result', {
+              output_format: format,
+              output_size_bytes: blob.size,
+              original_size_bytes: file.size,
+              animated_input: !!state.animated
+            });
+          }, format, quality);
+        }).catch(function () {
+          li.querySelector('.webp-result-status').textContent = 'Could not decode this file.';
+          li.classList.add('webp-result-item--error');
+        });
+      }
+    })();
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

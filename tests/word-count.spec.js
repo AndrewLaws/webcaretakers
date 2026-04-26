@@ -34,9 +34,11 @@ test('typing updates counts live', async ({ page }) => {
   await expect(page.locator('[data-line-chars-no-ws]')).toHaveText('10');
 });
 
-test('shows "—" for empty limit status', async ({ page }) => {
+test('shows an en-dash placeholder for empty limit status', async ({ page }) => {
   await page.goto(URL);
-  await expect(page.locator('[data-limit-tweet]')).toHaveText('—');
+  // En-dash is the project-wide empty-state glyph (em-dash banned in prose,
+  // and a sweep replaced UI placeholders with en-dash for consistency).
+  await expect(page.locator('[data-limit-tweet]')).toHaveText('–');
 });
 
 test('under-cap limits show remaining', async ({ page }) => {

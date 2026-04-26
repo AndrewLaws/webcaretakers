@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Compressor: get any photo under 2MB or 500KB | WebCaretakers</title>
+  <meta name="description" content="Compress JPG, PNG and WebP photos in your browser. Hit a target file size like 2MB or 500KB, or pick a quality. Multiple files, no upload, no sign-up.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/images/image-compressor/">
+  <meta property="og:title" content="Image Compressor | WebCaretakers">
+  <meta property="og:description" content="Compress photos to a target file size in your browser. JPG, PNG and WebP. Nothing uploaded.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/images/image-compressor/">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var _stored = null;
+    try { _stored = localStorage.getItem('cookie-consent'); } catch (e) {}
+    var _initial = _stored === 'granted' ? 'granted' : 'denied';
+    gtag('consent', 'default', {
+      ad_storage: _initial, analytics_storage: _initial,
+      ad_user_data: _initial, ad_personalization: _initial,
+      functionality_storage: 'granted', security_storage: 'granted',
+      wait_for_update: 500
+    });
+  </script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Image Compressor",
+    "url": "https://webcaretakers.com/calculators/images/image-compressor/",
+    "description": "Compress JPG, PNG and WebP images in your browser to a target file size or chosen quality. Useful for hitting upload limits on email, forms and forums.",
+    "applicationCategory": "MultimediaApplication",
+    "operatingSystem": "Any",
+    "inLanguage": "en-GB",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "author": { "@type": "Person", "name": "Andrew Laws", "url": "https://yeseo.io/" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How do I compress an image to under 2MB?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Drop the image in, choose Target file size, type 2 MB, and press Compress. The tool finds the highest quality that lands under your target by binary-searching the JPEG or WebP quality setting. If the image is large enough that no quality below 0.4 fits, it also reduces the dimensions in 10% steps until the file fits, and tells you what it changed." }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I compress a photo for email?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Most mail providers cap attachments at 25MB total, but recipients on older work systems sometimes have 5MB or even 2MB limits. Set a target of 2MB to be safe, or 500KB if you are sending several photos in one email. Cap the longest side at around 1600 pixels too: a 4000-pixel-wide photo opened on an inbox preview is overkill, and you save a lot of size that way." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does compressing an image lose quality?",
+        "acceptedAnswer": { "@type": "Answer", "text": "JPEG and WebP compression is lossy, so technically yes. In practice, dropping quality from 0.95 to 0.75 usually halves the file size with almost no visible difference on a screen. Below 0.6 you start to see blockiness in flat areas like skies. PNG compression is lossless: the pixels you put in are the pixels you get out, but the file does not get nearly as small." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does this upload my files anywhere?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. Compression happens entirely in your browser using HTML canvas. Nothing is uploaded, stored, or logged. You could pull your network cable out mid-compress and it would carry on working." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the best image format for small file size?",
+        "acceptedAnswer": { "@type": "Answer", "text": "For photographs, WebP is usually 25 to 35% smaller than JPEG at the same visible quality, and every modern browser supports it. JPEG is the safe choice if the file is going somewhere you do not control. PNG is for screenshots, logos and anything with sharp edges or transparency. For maximum shrinkage on a photo, choose WebP. For maximum compatibility, choose JPEG." }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I compress a PNG?",
+        "acceptedAnswer": { "@type": "Answer", "text": "PNG is lossless, so a re-saved PNG is rarely much smaller than the original. The honest answer for a photographic PNG is: convert it to JPEG or WebP and the file shrinks dramatically. The tool offers a JPG override on PNG inputs for exactly this. If the PNG has transparency you need to keep, stick with PNG output and reduce dimensions instead, which is the bigger lever anyway." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-banner-heading" aria-describedby="cookie-banner-text" hidden>
+    <div class="cookie-banner__inner">
+      <h2 id="cookie-banner-heading" class="cookie-banner__heading">A quick word about cookies</h2>
+      <p id="cookie-banner-text" class="cookie-banner__text">
+        We use cookies for analytics, so we can see which calculators people actually use and which ones need work. Nothing creepy, nothing sold on. You can say yes, say no, or read the <a href="/privacy/">privacy policy</a> first. Your choice sticks.
+      </p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-reject>Reject</button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>Accept</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var KEY = 'cookie-consent';
+      var banner = document.querySelector('[data-cookie-banner]');
+      if (!banner) return;
+      var stored = null;
+      try { stored = localStorage.getItem(KEY); } catch (e) {}
+      if (stored !== 'granted' && stored !== 'denied') { banner.hidden = false; }
+      function record(choice) {
+        try { localStorage.setItem(KEY, choice); } catch (e) {}
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('consent', 'update', {
+          ad_storage: choice, analytics_storage: choice,
+          ad_user_data: choice, ad_personalization: choice
+        });
+        banner.hidden = true;
+      }
+      var accept = banner.querySelector('[data-cookie-accept]');
+      var reject = banner.querySelector('[data-cookie-reject]');
+      if (accept) accept.addEventListener('click', function () { record('granted'); });
+      if (reject) reject.addEventListener('click', function () { record('denied'); });
+    })();
+  </script>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">WebCaretakers</a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <ul class="primary-nav__list">
+          <li class="primary-nav__item primary-nav__item--has-menu">
+            <button type="button" class="primary-nav__link" data-menu-toggle aria-haspopup="true" aria-expanded="false">Calculators <span class="primary-nav__caret" aria-hidden="true">&#9662;</span></button>
+            <ul class="primary-nav__submenu">
+              <li><a href="/calculators/broadband/">Broadband</a></li>
+              <li><a href="/calculators/business/">Business</a></li>
+              <li><a href="/calculators/conversions/">Conversions</a></li>
+              <li><a href="/calculators/finance/">Finance</a></li>
+              <li><a href="/calculators/fun/">Fun</a></li>
+              <li><a href="/calculators/health/">Health</a></li>
+              <li><a href="/calculators/images/">Images</a></li>
+              <li><a href="/calculators/math/">Math</a></li>
+              <li><a href="/calculators/productivity/">Productivity</a></li>
+              <li><a href="/calculators/property/">Property</a></li>
+              <li><a href="/calculators/seo/">SEO</a></li>
+              <li><a href="/calculators/wedding/">Wedding</a></li>
+              <li><a href="/calculators/writing/">Writing</a></li>
+              <li class="primary-nav__submenu-sep"><a href="/calculators/">See all calculators</a></li>
+            </ul>
+          </li>
+          <li class="primary-nav__item"><a href="/about/" class="primary-nav__link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <main id="main-content">
+      <div class="container">
+        <nav aria-label="Breadcrumb" class="breadcrumbs">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/calculators/">Calculators</a></li>
+            <li><a href="/calculators/images/">Images</a></li>
+            <li aria-current="page">Image Compressor</li>
+          </ol>
+        </nav>
+
+        <h1>Image Compressor</h1>
+        <p class="intro">Drag a photo in, pick a target file size (2 MB, 500 KB, whatever the form will accept), and the tool finds the best quality that fits. JPG, PNG and WebP, multiple files at once, no upload, no sign-up. Your photo never leaves your browser.</p>
+
+        <section class="eli5" aria-label="Plain-English explanation">
+          <h2>Explain like I'm 5 (what this does)</h2>
+          <p>You have a photo that is too big to send. You drop it in. You say how small it needs to be. The tool keeps trying slightly smaller versions until one fits, then hands you back a download. The original is untouched and the file never leaves your device.</p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="in-content" aria-hidden="true"></div>
+
+        <section class="calculator-card">
+          <h2>Compress</h2>
+
+          <label for="compressor-file" class="resizer-dropzone" data-dropzone>
+            <p><strong>Choose photos</strong> or drag them here</p>
+            <p class="resizer-dropzone__hint">JPEG, PNG or WebP. Multiple files at once. Everything stays on your device.</p>
+            <input type="file" id="compressor-file" name="file" accept="image/jpeg,image/png,image/webp" multiple data-file>
+          </label>
+
+          <div class="resizer-status" data-status hidden></div>
+
+          <form id="compressor-form" class="calc-form" novalidate data-form>
+            <div class="calc-row">
+              <label for="compressor-mode">Mode</label>
+              <select id="compressor-mode" name="mode" data-mode>
+                <option value="target" selected>Target file size (find best quality)</option>
+                <option value="quality">Quality slider (direct control)</option>
+              </select>
+            </div>
+
+            <div class="calc-row" data-target-row>
+              <label for="compressor-target">Target file size</label>
+              <input type="text" id="compressor-target" name="target" placeholder="2 MB" value="2 MB" data-target>
+            </div>
+
+            <div class="calc-row" data-quality-row hidden>
+              <label for="compressor-quality">Quality <output for="compressor-quality" data-quality-output>0.80</output></label>
+              <input type="range" id="compressor-quality" name="quality" min="0.4" max="0.95" step="0.01" value="0.80" data-quality>
+            </div>
+
+            <div class="calc-row">
+              <label for="compressor-maxdim">Cap longest side (px, optional)</label>
+              <input type="number" id="compressor-maxdim" name="maxdim" min="100" step="1" placeholder="e.g. 1920" data-maxdim>
+            </div>
+
+            <div class="calc-row">
+              <label for="compressor-format">Output format</label>
+              <select id="compressor-format" name="format" data-format>
+                <option value="auto" selected>Keep original (recommended)</option>
+                <option value="image/jpeg">JPG (smaller, good for photos)</option>
+                <option value="image/webp">WebP (smallest, modern)</option>
+                <option value="image/png">PNG (lossless, larger)</option>
+              </select>
+            </div>
+
+            <button type="submit" data-calculate>Compress</button>
+          </form>
+
+          <div class="calculator-results" hidden data-results>
+            <h3>Results</h3>
+            <table class="result-table" data-results-table>
+              <thead>
+                <tr>
+                  <th scope="col">File</th>
+                  <th scope="col">Original</th>
+                  <th scope="col">Compressed</th>
+                  <th scope="col">Saved</th>
+                  <th scope="col">Dimensions</th>
+                  <th scope="col">Download</th>
+                </tr>
+              </thead>
+              <tbody data-results-body>
+                <tr data-empty-row>
+                  <td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td>
+                </tr>
+              </tbody>
+            </table>
+            <p class="result-display" data-total>Total saving will appear here once you compress.</p>
+
+            <details class="prove-it" data-prove-it>
+              <summary>Prove it</summary>
+              <p class="prove-it-source">For target file size, the tool binary-searches the canvas encoder quality between 0.4 and 0.95, up to eight iterations. If even quality 0.4 stays over the target, it shrinks the longest side by 10% and retries, up to four shrinks. Encoding uses canvas.toBlob() with the chosen MIME type. Nothing is sent to a server.</p>
+            </details>
+          </div>
+
+          <p class="bookmark-nudge">
+            Useful? Press <kbd data-bookmark-shortcut>Ctrl</kbd> + <kbd>D</kbd> to bookmark.
+          </p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="below-results" aria-hidden="true"></div>
+
+        <section class="long-form">
+          <h2>Why people compress photos in the first place</h2>
+          <p>Almost nobody compresses an image because they want to. They compress because some upload box is rejecting their 8 MB phone snap. Recruitment portals cap CV photos at 2 MB. Government forms cap supporting documents at 5 MB. Forum avatars want under 100 KB. Old corporate email systems still cough up at attachments over 10 MB. The need is always the same: take a perfectly nice photo and make it small enough to slip past the bouncer.</p>
+          <p>That is what this tool is for. Pick a target, drop the file in, get a smaller file out. The clever bit is finding the highest quality that fits, so you do not throw away more pixel data than you have to.</p>
+
+          <h2>JPG, PNG and WebP, briefly and honestly</h2>
+          <p><strong>JPG</strong> is lossy and was designed for photographs. It is brilliant at smooth gradients (skies, skin tones) and rubbish at sharp edges and text. For a holiday photo at quality 0.8, JPG is usually the right answer.</p>
+          <p><strong>PNG</strong> is lossless. The pixels you put in come out identical. That makes it ideal for screenshots, diagrams, logos and anything with hard edges, but the file size on a photographic PNG is usually three to five times the equivalent JPG. If you have a PNG of a photo that needs to be smaller, the most useful thing you can do is convert it to JPG.</p>
+          <p><strong>WebP</strong> is Google's modern format, supported in every current browser. It typically gives JPG-like quality at 25 to 35% smaller files. The catch is older software (a 2018 Outlook install, say) might not open WebP, so use it where you control the destination.</p>
+
+          <h2>What "quality" actually means</h2>
+          <p>The quality number on a JPG or WebP encoder is not a percentage of how good the photo looks. It is a knob on how aggressively the encoder is allowed to throw away high-frequency detail. At 0.95 it barely throws anything away and the file is large. At 0.4 it throws a lot away and the file is small but blocky. The sweet spot for most photos sits between 0.7 and 0.85: you keep something close to 95% of perceived quality at roughly half the file size of the maximum-quality version. Below 0.6, you start to see blockiness in flat colour areas. Print work needs 0.85 or higher; screen work is happy at 0.7.</p>
+
+          <h2>Dimensions matter more than quality, usually</h2>
+          <p>Here is the bit most online compressors do not say out loud. A 4000 by 3000 photo saved at quality 0.95 is bigger than the same photo at 1920 by 1440 at quality 0.85, and on a screen you cannot tell them apart. If you are sending a photo to be looked at on a phone or a laptop, capping the longest side at 1600 to 2000 pixels is the single biggest lever you have. Quality is the fine adjustment after that. The "cap longest side" option in the form does this in one step.</p>
+
+          <h2>Privacy: nothing leaves your browser</h2>
+          <p>Most "free online image compressor" sites upload your file to their server, compress it there, and hand it back. That means every passport scan, child's school photo or confidential product shot you compress sits on someone else's hard drive for at least a moment. Some of those services keep copies for "improving the service". Some have been breached. Some quietly train models on the uploads.</p>
+          <p>This tool does the entire job inside your browser tab using the standard Canvas API. There is no server. You can disconnect from the internet halfway through and it will still finish. Open your browser's dev tools and watch the network tab if you want to check.</p>
+
+          <h2>What this tool does not do</h2>
+          <ul>
+            <li>It does not compress RAW camera files (.cr2, .nef, .arw, .dng). Those need dedicated software like Lightroom or darktable. Convert to JPG first, then compress here.</li>
+            <li>It does not compress PDFs. PDF is a different beast, with text, vectors and embedded fonts. There are dedicated PDF compressors for that.</li>
+            <li>It does not compress GIFs. Animated GIFs need a frame-aware tool like ezgif. A still GIF can be converted to PNG and brought here.</li>
+            <li>It does not strip EXIF metadata as a feature. Re-encoding usually drops it as a side effect, but if you need guaranteed metadata removal for a sensitive photo, use a dedicated EXIF stripper.</li>
+          </ul>
+
+          <!-- related-calculators-block -->
+          <h2>Related calculators</h2>
+          <p>Other browser-only image bits and pieces.</p>
+          <ul class="related-calculators">
+            <li><a href="/calculators/images/photo-resizer/">Photo Resizer for explicit width and height</a></li>
+            <li><a href="/calculators/images/heic-to-jpg-converter/">HEIC to JPG Converter for iPhone photos</a></li>
+            <li><a href="/calculators/images/webp-to-jpg-converter/">WebP to JPG Converter for stubborn old software</a></li>
+            <li><a href="/calculators/business/website-speed-budget-calculator/">Website Speed Budget for picking sensible image weights</a></li>
+          </ul>
+        </section>
+
+        <section class="faq" aria-labelledby="faq-heading">
+          <h2 id="faq-heading">Frequently asked questions</h2>
+          <details>
+            <summary>How do I compress an image to under 2MB?</summary>
+            <p>Drop the image in, choose Target file size, type 2 MB, and press Compress. The tool finds the highest quality that fits by binary-searching the JPG or WebP quality between 0.4 and 0.95. If the photo is so large that even minimum quality stays over 2 MB, it shrinks the dimensions in 10% steps until the file fits, and tells you what it changed.</p>
+          </details>
+          <details>
+            <summary>How do I compress a photo for email?</summary>
+            <p>For most modern mail, a 2 MB target is safe. For older work systems or recipients on dodgy connections, drop to 500 KB. While you are there, cap the longest side at 1600 pixels: a 4000-pixel-wide phone photo opened in a mail preview is wasted bytes.</p>
+          </details>
+          <details>
+            <summary>Does compressing an image lose quality?</summary>
+            <p>JPG and WebP are lossy, so technically yes. In practice, going from quality 0.95 to 0.75 usually halves the file size with no visible difference on a screen. Below 0.6 you start to see blockiness in skies and other flat areas. PNG is lossless: pixels in, pixels out, but the savings are much smaller.</p>
+          </details>
+          <details>
+            <summary>Does this upload my files anywhere?</summary>
+            <p>No. Compression runs entirely in your browser using HTML canvas. Nothing is uploaded, nothing is logged. Pull your network cable out mid-compress and it will carry on.</p>
+          </details>
+          <details>
+            <summary>What is the best image format for small file size?</summary>
+            <p>For photos, WebP wins, usually 25 to 35% smaller than JPG at the same visible quality. JPG is the safer choice if you do not control where the file ends up. PNG is for screenshots, logos and transparency, not for shrinking photos.</p>
+          </details>
+          <details>
+            <summary>How do I compress a PNG?</summary>
+            <p>If it is a photographic PNG, the honest answer is convert it to JPG or WebP. The tool offers a JPG override for PNG inputs for exactly this reason. If you need to keep transparency, stick with PNG output and reduce dimensions instead.</p>
+          </details>
+        </section>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="ad-slot" data-ad-slot="sidebar" aria-hidden="true"></div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="site-footer-nav" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/calculators/">All calculators</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+
+      <section class="site-disclaimer" data-disclaimer aria-labelledby="disclaimer-heading">
+        <h2 id="disclaimer-heading">A quick, necessary word</h2>
+        <p>Every calculator on this site is built to give you a sensible, well-reasoned estimate. It is, however, exactly that: an estimate, for general information only. Nothing you see here is professional, legal, financial, medical, or tax advice, and it should not be treated as such.</p>
+        <p>Before you make a decision that actually matters, talk to a qualified professional who knows your specific situation: an accountant, a solicitor, a doctor, an IT consultant, whoever fits the question. They can factor in the bits a generic tool can't.</p>
+        <p>We take no liability and accept no responsibility for any loss, damage, or questionable life choice arising from acting on the numbers you see here. Use the results as a starting point for a better conversation, not as the final word.</p>
+        <p><strong>Affiliate disclosure:</strong> some links on this site are affiliate links. If you click through and buy or sign up for something, we may earn a small commission at no extra cost to you. It helps keep the calculators free and ad-light. We only recommend things we'd point a friend towards.</p>
+      </section>
+      <p class="site-copyright">&copy; 2026 WebCaretakers. All rights reserved.</p>
+      <p class="site-legal">WebCaretakers is a trading name of <a href="https://yeseo.io/" rel="noopener">Andrew Laws Associates Ltd</a>, registered in England and Wales (company no. 08602332). ICO registration ZA726704.</p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/calculators/image-compressor.js"></script>
+  <script>
+    (function () {
+      'use strict';
+
+      var shortcutEl = document.querySelector('[data-bookmark-shortcut]');
+      if (shortcutEl) {
+        var isMac = /Mac|iPhone|iPad|iPod/i.test(navigator.platform || navigator.userAgent);
+        shortcutEl.textContent = isMac ? '\u2318' : 'Ctrl';
+      }
+
+      var IC = window.ImageCompressor;
+
+      var fileInput  = document.querySelector('[data-file]');
+      var dropzone   = document.querySelector('[data-dropzone]');
+      var form       = document.querySelector('[data-form]');
+      var modeIn     = document.querySelector('[data-mode]');
+      var targetIn   = document.querySelector('[data-target]');
+      var targetRow  = document.querySelector('[data-target-row]');
+      var qualityIn  = document.querySelector('[data-quality]');
+      var qualityOut = document.querySelector('[data-quality-output]');
+      var qualityRow = document.querySelector('[data-quality-row]');
+      var maxdimIn   = document.querySelector('[data-maxdim]');
+      var formatIn   = document.querySelector('[data-format]');
+      var statusEl   = document.querySelector('[data-status]');
+      var resultsEl  = document.querySelector('[data-results]');
+      var resultsBody= document.querySelector('[data-results-body]');
+      var totalEl    = document.querySelector('[data-total]');
+
+      var pendingFiles = [];
+
+      function setStatus(msg, isError) {
+        if (!msg) { statusEl.hidden = true; statusEl.textContent = ''; statusEl.classList.remove('resizer-status--error'); return; }
+        statusEl.hidden = false;
+        statusEl.textContent = msg;
+        statusEl.classList.toggle('resizer-status--error', !!isError);
+      }
+
+      function track(event, extras) {
+        window.dataLayer = window.dataLayer || [];
+        var payload = Object.assign({ event: event, calculator_name: 'Image Compressor' }, extras || {});
+        window.dataLayer.push(payload);
+      }
+
+      function updateModeUI() {
+        var mode = modeIn.value;
+        targetRow.hidden = (mode !== 'target');
+        qualityRow.hidden = (mode !== 'quality');
+      }
+      modeIn.addEventListener('change', updateModeUI);
+      updateModeUI();
+
+      qualityIn.addEventListener('input', function () {
+        qualityOut.textContent = parseFloat(qualityIn.value).toFixed(2);
+      });
+
+      ['dragenter', 'dragover'].forEach(function (ev) {
+        dropzone.addEventListener(ev, function (e) {
+          e.preventDefault();
+          dropzone.classList.add('is-drag-over');
+        });
+      });
+      ['dragleave', 'drop'].forEach(function (ev) {
+        dropzone.addEventListener(ev, function (e) {
+          e.preventDefault();
+          dropzone.classList.remove('is-drag-over');
+        });
+      });
+      dropzone.addEventListener('drop', function (e) {
+        if (e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files.length) {
+          acceptFiles(e.dataTransfer.files);
+        }
+      });
+      fileInput.addEventListener('change', function () {
+        if (fileInput.files && fileInput.files.length) acceptFiles(fileInput.files);
+      });
+
+      function acceptFiles(fileList) {
+        pendingFiles = [];
+        var rejected = 0;
+        for (var i = 0; i < fileList.length; i++) {
+          var f = fileList[i];
+          if (IC.isSupportedImageType(f.type)) pendingFiles.push(f);
+          else rejected++;
+        }
+        if (!pendingFiles.length) {
+          setStatus('No supported image files. Use JPEG, PNG or WebP.', true);
+          return;
+        }
+        if (rejected) {
+          setStatus(rejected + ' file(s) skipped (unsupported type). ' + pendingFiles.length + ' ready to compress.', false);
+        } else {
+          setStatus(pendingFiles.length + ' file(s) ready. Choose a mode and press Compress.', false);
+        }
+        track('calculator_interaction', { field_name: 'files_selected', file_count: pendingFiles.length });
+      }
+
+      // EXIF-aware decoding via createImageBitmap with imageOrientation: 'from-image'.
+      // Falls back to a plain HTMLImageElement if the browser is too old.
+      function decode(file) {
+        if (typeof createImageBitmap === 'function') {
+          try {
+            return createImageBitmap(file, { imageOrientation: 'from-image' })
+              .then(function (bmp) {
+                return { width: bmp.width, height: bmp.height, source: bmp };
+              })
+              .catch(function () { return decodeFallback(file); });
+          } catch (e) { /* fall through */ }
+        }
+        return decodeFallback(file);
+      }
+
+      function decodeFallback(file) {
+        return new Promise(function (resolve, reject) {
+          var url = URL.createObjectURL(file);
+          var img = new Image();
+          img.onload = function () {
+            resolve({ width: img.naturalWidth, height: img.naturalHeight, source: img, _objectUrl: url });
+          };
+          img.onerror = function () {
+            URL.revokeObjectURL(url);
+            reject(new Error('decode failed'));
+          };
+          img.src = url;
+        });
+      }
+
+      function drawTo(canvas, decoded, width, height) {
+        canvas.width = width;
+        canvas.height = height;
+        var ctx = canvas.getContext('2d');
+        ctx.imageSmoothingEnabled = true;
+        ctx.imageSmoothingQuality = 'high';
+        ctx.drawImage(decoded.source, 0, 0, width, height);
+      }
+
+      function toBlob(canvas, mime, quality) {
+        return new Promise(function (resolve) {
+          canvas.toBlob(function (blob) { resolve(blob); }, mime, quality);
+        });
+      }
+
+      function applyMaxDim(width, height, maxLongSide) {
+        if (!maxLongSide || maxLongSide <= 0) return { width: width, height: height };
+        var longest = Math.max(width, height);
+        if (longest <= maxLongSide) return { width: width, height: height };
+        var scale = maxLongSide / longest;
+        return {
+          width: Math.max(1, Math.round(width * scale)),
+          height: Math.max(1, Math.round(height * scale))
+        };
+      }
+
+      function compressOne(file, opts) {
+        return decode(file).then(function (decoded) {
+          var mime = IC.outputMimeFor(file.type, opts.formatOverride);
+          var canvas = document.createElement('canvas');
+
+          var startDims = applyMaxDim(decoded.width, decoded.height, opts.maxLongSide);
+
+          if (opts.mode === 'quality') {
+            drawTo(canvas, decoded, startDims.width, startDims.height);
+            var q = mime === 'image/png' ? undefined : opts.quality;
+            return toBlob(canvas, mime, q).then(function (blob) {
+              return { blob: blob, width: startDims.width, height: startDims.height, quality: q, scaledSteps: 0, mime: mime };
+            });
+          }
+
+          // Target mode. PNG cannot binary-search on quality, but the user can
+          // still cap dimensions: do that and report the result honestly.
+          if (mime === 'image/png') {
+            drawTo(canvas, decoded, startDims.width, startDims.height);
+            return toBlob(canvas, mime).then(function (blob) {
+              return { blob: blob, width: startDims.width, height: startDims.height, quality: undefined, scaledSteps: 0, mime: mime, pngLimited: true };
+            });
+          }
+
+          var target = opts.targetBytes;
+          var width = startDims.width;
+          var height = startDims.height;
+          var steps = IC.dimensionScaleSteps();
+          var scaledSteps = 0;
+
+          function attempt() {
+            drawTo(canvas, decoded, width, height);
+            var encode = function (qq) {
+              return toBlob(canvas, mime, qq).then(function (blob) { return { size: blob ? blob.size : Infinity, blob: blob, quality: qq }; });
+            };
+            return IC.searchQualityForTarget({ encode: encode, targetBytes: target }).then(function (search) {
+              return toBlob(canvas, mime, search.quality).then(function (blob) {
+                if (!blob) return { hit: false };
+                if (search.hit && blob.size <= target) {
+                  return { hit: true, blob: blob, quality: search.quality };
+                }
+                if (scaledSteps >= steps.length) {
+                  // Out of shrink budget. Return the best we have.
+                  return { hit: false, blob: blob, quality: search.quality };
+                }
+                scaledSteps++;
+                var s = steps[scaledSteps - 1];
+                width = Math.max(1, Math.round(startDims.width * s));
+                height = Math.max(1, Math.round(startDims.height * s));
+                return attempt();
+              });
+            });
+          }
+
+          return attempt().then(function (final) {
+            return {
+              blob: final.blob,
+              width: width,
+              height: height,
+              quality: final.quality,
+              scaledSteps: scaledSteps,
+              mime: mime,
+              hit: final.hit
+            };
+          });
+        });
+      }
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (!pendingFiles.length) {
+          setStatus('Choose at least one image first.', true);
+          return;
+        }
+
+        var opts = {
+          mode: modeIn.value,
+          targetBytes: IC.parseTargetBytes(targetIn.value),
+          quality: parseFloat(qualityIn.value),
+          maxLongSide: parseInt(maxdimIn.value, 10) || null,
+          formatOverride: formatIn.value === 'auto' ? null : formatIn.value
+        };
+
+        if (opts.mode === 'target' && !opts.targetBytes) {
+          setStatus('Target file size not understood. Try "2 MB" or "500 KB".', true);
+          return;
+        }
+
+        setStatus('Compressing ' + pendingFiles.length + ' file(s)...');
+        resultsBody.innerHTML = '';
+        resultsEl.hidden = false;
+
+        var totalIn = 0;
+        var totalOut = 0;
+        var sequence = Promise.resolve();
+        pendingFiles.forEach(function (file) {
+          sequence = sequence.then(function () {
+            return compressOne(file, opts).then(function (res) {
+              totalIn += file.size;
+              totalOut += res.blob ? res.blob.size : file.size;
+              renderRow(file, res);
+              track('calculator_result', {
+                file_type: file.type,
+                output_mime: res.mime,
+                output_size_bytes: res.blob ? res.blob.size : 0,
+                original_size_bytes: file.size,
+                quality: res.quality || null,
+                scaled_steps: res.scaledSteps,
+                hit_target: res.hit !== false
+              });
+            }).catch(function (err) {
+              renderError(file, err);
+            });
+          });
+        });
+
+        sequence.then(function () {
+          var saved = totalIn - totalOut;
+          var pct = IC.percentSaved(totalIn, totalOut);
+          totalEl.textContent = 'Total: ' + IC.formatFileSize(totalIn) + ' in, ' +
+            IC.formatFileSize(totalOut) + ' out, ' +
+            IC.formatFileSize(Math.max(0, saved)) + ' saved (' + pct + '%).';
+          setStatus('');
+        });
+      });
+
+      function renderRow(file, res) {
+        var tr = document.createElement('tr');
+        var blob = res.blob;
+        var saved = blob ? IC.percentSaved(file.size, blob.size) : 0;
+        var url = blob ? URL.createObjectURL(blob) : null;
+        var ext = IC.extensionFor(res.mime);
+        var baseName = (file.name || 'image').replace(/\.[^.]+$/, '');
+        var dlName = baseName + '-compressed-webcaretakers.' + ext;
+
+        var note = '';
+        if (res.scaledSteps > 0) {
+          note = ' (reduced dimensions to fit)';
+        }
+        if (res.pngLimited) {
+          note = ' (PNG: limited compression, consider JPG)';
+        }
+        if (res.hit === false) {
+          note = ' (could not hit target, returned best effort)';
+        }
+
+        tr.innerHTML =
+          '<td>' + escapeHtml(file.name || 'image') + '</td>' +
+          '<td>' + IC.formatFileSize(file.size) + '</td>' +
+          '<td>' + (blob ? IC.formatFileSize(blob.size) : '&mdash;') + note + '</td>' +
+          '<td>' + (blob ? saved + '%' : '&mdash;') + '</td>' +
+          '<td>' + res.width + '\u00d7' + res.height + '</td>' +
+          '<td>' + (url ? '<a href="' + url + '" download="' + escapeAttr(dlName) + '">Download</a>' : '&mdash;') + '</td>';
+        resultsBody.appendChild(tr);
+      }
+
+      function renderError(file, err) {
+        var tr = document.createElement('tr');
+        tr.innerHTML =
+          '<td>' + escapeHtml(file.name || 'image') + '</td>' +
+          '<td colspan="5">Could not process this file (' + escapeHtml(String(err && err.message || err)) + ').</td>';
+        resultsBody.appendChild(tr);
+      }
+
+      function escapeHtml(s) {
+        return String(s).replace(/[&<>"']/g, function (c) {
+          return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c];
+        });
+      }
+      function escapeAttr(s) { return escapeHtml(s); }
+    })();
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

@@ -43,6 +43,26 @@
       "url": "/calculators/images/"
     },
     {
+      "phrase": "Image Compressor",
+      "url": "/calculators/images/image-compressor/"
+    },
+    {
+      "phrase": "image compressor",
+      "url": "/calculators/images/image-compressor/"
+    },
+    {
+      "phrase": "WebP to JPG Converter",
+      "url": "/calculators/images/webp-to-jpg-converter/"
+    },
+    {
+      "phrase": "WebP to JPG converter",
+      "url": "/calculators/images/webp-to-jpg-converter/"
+    },
+    {
+      "phrase": "convert WebP to JPG",
+      "url": "/calculators/images/webp-to-jpg-converter/"
+    },
+    {
       "phrase": "BMI Calculator",
       "url": "/calculators/health/bmi-calculator/"
     },
