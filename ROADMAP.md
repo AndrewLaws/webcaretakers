@@ -1,6 +1,6 @@
 # Roadmap: WebCaretakers Calculator Hub
 
-Last updated: 2026-04-22
+Last updated: 2026-04-26
 
 ## Primary target market
 
@@ -99,7 +99,7 @@ Three-tier IA: **Home → Category hub → Calculator**. Primary nav shows categ
 - Sub-category grouping inside large category hubs (e.g. Broadband > Home, Broadband > Business)
 - Generator script that builds primary nav HTML from `categories.json` once the category count makes hand-maintenance error-prone
 
-**Status:** [x] v1 shipped (dropdown nav with Broadband and Math categories, three hub pages, hand-maintained nav across all pages, 16 Playwright tests, mobile-overflow fix at 375px)
+**Status:** [x] v1 shipped (dropdown nav with Broadband and Math categories, three hub pages, hand-maintained nav across all pages, 16 Playwright tests, mobile-overflow fix at 375px). Mobile hamburger toggle added 2026-04-26: nav collapses behind a button at ≤720px and expands via `[data-nav-open]` on the header; injected by `main.js` so the per-page HTML doesn't have to change. 7 Playwright tests at iPhone 13 Pro width (390px) plus a desktop control.
 
 ---
 
@@ -122,6 +122,24 @@ Three-tier IA: **Home → Category hub → Calculator**. Primary nav shows categ
 - [~] In progress
 
 ---
+
+## Recently shipped (off the original 220-list)
+
+These were built in response to keyword research, traffic priorities or user requests rather than from the Tier 1 list. Source of truth for live calculators is `categories.json`; this section is just a quick map of what's been added beyond the original roadmap.
+
+- [x] Pregnancy Due Date Calculator (Health, 2026-04-26)
+- [x] TDEE Calculator (Health, 2026-04-26)
+- [x] UK Rent vs Buy Calculator (Property, UK-localised, 2026-04-26)
+- [x] Cooking Measurements Converter (Conversions, 2026-04-26)
+- [x] Discount Calculator (Math, 2026-04-26)
+- [x] Domain Renewal True Cost Calculator (Business)
+- [x] IT Support Build vs Buy Calculator (Business)
+- [x] Rental Yield Calculator (Property)
+- [x] English to Suffolk Translator (Suffolk)
+- [x] Suffolk Lorem Ipsum (Suffolk)
+- [x] Unit Converter (Conversions)
+
+In-flight (background workers): HEIC to JPG converter, WebP to JPG converter, Image Compressor — search-language-driven image tools targeting how users actually phrase the query.
 
 ## Tier 1: Historical Authority (build first)
 
