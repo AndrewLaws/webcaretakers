@@ -54,6 +54,11 @@
           "slug": "image-compressor",
           "name": "Image Compressor",
           "summary": "Compress JPG, PNG and WebP photos to a target file size like 2 MB or 500 KB, or pick a quality. Multiple files at once, browser-only, no upload."
+        },
+        {
+          "slug": "heic-to-jpg-converter",
+          "name": "HEIC to JPG Converter",
+          "summary": "Convert iPhone HEIC and HEIF photos to JPG, PNG or WebP in your browser. Drop one file or a holiday's worth, get downloads back. Files never leave your device."
         }
       ]
     },

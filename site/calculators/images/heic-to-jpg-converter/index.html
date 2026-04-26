@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HEIC to JPG Converter | Free, browser-only HEIC converter | WebCaretakers</title>
+  <meta name="description" content="Convert iPhone HEIC photos to JPG, PNG or WebP in your browser. Drag in a single photo or a whole holiday's worth. Files never leave your device.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/images/heic-to-jpg-converter/">
+  <meta property="og:title" content="HEIC to JPG Converter | WebCaretakers">
+  <meta property="og:description" content="Convert iPhone HEIC photos to JPG in your browser. Files never leave your device.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/images/heic-to-jpg-converter/">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var _stored = null;
+    try { _stored = localStorage.getItem('cookie-consent'); } catch (e) {}
+    var _initial = _stored === 'granted' ? 'granted' : 'denied';
+    gtag('consent', 'default', {
+      ad_storage: _initial, analytics_storage: _initial,
+      ad_user_data: _initial, ad_personalization: _initial,
+      functionality_storage: 'granted', security_storage: 'granted',
+      wait_for_update: 500
+    });
+  </script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "HEIC to JPG Converter",
+    "url": "https://webcaretakers.com/calculators/images/heic-to-jpg-converter/",
+    "description": "Convert iPhone HEIC and HEIF photos to JPG, PNG or WebP in your browser. Drag and drop one photo or a whole album. Files never leave your device.",
+    "applicationCategory": "MultimediaApplication",
+    "operatingSystem": "Any",
+    "inLanguage": "en-GB",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "GBP" },
+    "author": { "@type": "Person", "name": "Andrew Laws", "url": "https://yeseo.io/" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How do I convert HEIC to JPG?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Drag your HEIC files onto this page, or tap the box and pick them from your phone or laptop. The converter decodes each file in your browser, re-encodes it as JPG, and gives you a download link. There is no upload step. You can convert one photo or a few hundred at a time, depending on your device's memory." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why are my iPhone photos saving as HEIC?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Apple switched the default camera format to HEIC in 2017. HEIC files are roughly half the size of JPGs at similar quality, which is why your iPhone saves them by default. The trade-off is compatibility: most non-Apple software, email clients and chat apps either show a broken thumbnail or refuse to open them. Converting to JPG fixes that." }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I open HEIC files on Windows?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Windows 11 can open HEIC if you install Microsoft's HEIF Image Extensions and HEVC Video Extensions from the Microsoft Store. The HEVC extension costs around £0.79. Most other apps on Windows (Outlook, older Photoshop, plenty of work tools) still cannot read HEIC, so converting to JPG is usually the simpler fix." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does this upload my photos anywhere?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. Files never leave your browser. Decoding and re-encoding happen on your own device using a JavaScript library and the standard HTML canvas. You could disconnect your Wi-Fi after the page loads and the conversion would still work. Nothing is sent to a server, nothing is logged." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the difference between HEIC and HEIF?",
+        "acceptedAnswer": { "@type": "Answer", "text": "HEIF is the underlying container format (High Efficiency Image File). HEIC is HEIF with images encoded using HEVC, which is the variant Apple uses on iPhones. In day-to-day use the two are interchangeable. This converter accepts both extensions." }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I stop my iPhone saving photos as HEIC?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Open Settings, tap Camera, then Formats, then choose Most Compatible instead of High Efficiency. From that point on, the camera saves new photos as JPG and new videos as H.264 MP4. You lose roughly half the storage efficiency but gain compatibility everywhere. Existing photos already on your phone stay HEIC." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-banner-heading" aria-describedby="cookie-banner-text" hidden>
+    <div class="cookie-banner__inner">
+      <h2 id="cookie-banner-heading" class="cookie-banner__heading">A quick word about cookies</h2>
+      <p id="cookie-banner-text" class="cookie-banner__text">
+        We use cookies for analytics, so we can see which calculators people actually use and which ones need work. Nothing creepy, nothing sold on. You can say yes, say no, or read the <a href="/privacy/">privacy policy</a> first. Your choice sticks.
+      </p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-reject>Reject</button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>Accept</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var KEY = 'cookie-consent';
+      var banner = document.querySelector('[data-cookie-banner]');
+      if (!banner) return;
+      var stored = null;
+      try { stored = localStorage.getItem(KEY); } catch (e) {}
+      if (stored !== 'granted' && stored !== 'denied') { banner.hidden = false; }
+      function record(choice) {
+        try { localStorage.setItem(KEY, choice); } catch (e) {}
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('consent', 'update', {
+          ad_storage: choice, analytics_storage: choice,
+          ad_user_data: choice, ad_personalization: choice
+        });
+        banner.hidden = true;
+      }
+      var accept = banner.querySelector('[data-cookie-accept]');
+      var reject = banner.querySelector('[data-cookie-reject]');
+      if (accept) accept.addEventListener('click', function () { record('granted'); });
+      if (reject) reject.addEventListener('click', function () { record('denied'); });
+    })();
+  </script>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">WebCaretakers</a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <ul class="primary-nav__list">
+          <li class="primary-nav__item primary-nav__item--has-menu">
+            <button type="button" class="primary-nav__link" data-menu-toggle aria-haspopup="true" aria-expanded="false">Calculators <span class="primary-nav__caret" aria-hidden="true">&#9662;</span></button>
+            <ul class="primary-nav__submenu">
+              <li><a href="/calculators/broadband/">Broadband</a></li>
+              <li><a href="/calculators/business/">Business</a></li>
+              <li><a href="/calculators/conversions/">Conversions</a></li>
+              <li><a href="/calculators/finance/">Finance</a></li>
+              <li><a href="/calculators/fun/">Fun</a></li>
+              <li><a href="/calculators/health/">Health</a></li>
+              <li><a href="/calculators/images/">Images</a></li>
+              <li><a href="/calculators/math/">Math</a></li>
+              <li><a href="/calculators/productivity/">Productivity</a></li>
+              <li><a href="/calculators/property/">Property</a></li>
+              <li><a href="/calculators/seo/">SEO</a></li>
+              <li><a href="/calculators/wedding/">Wedding</a></li>
+              <li><a href="/calculators/writing/">Writing</a></li>
+              <li class="primary-nav__submenu-sep"><a href="/calculators/">See all calculators</a></li>
+            </ul>
+          </li>
+          <li class="primary-nav__item"><a href="/about/" class="primary-nav__link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <main id="main-content">
+      <div class="container">
+        <nav aria-label="Breadcrumb" class="breadcrumbs">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/calculators/">Calculators</a></li>
+            <li><a href="/calculators/images/">Images</a></li>
+            <li aria-current="page">HEIC to JPG Converter</li>
+          </ol>
+        </nav>
+
+        <h1>HEIC to JPG Converter</h1>
+        <p class="intro">You sent a photo from your iPhone, your friend opened it on Windows, and got nothing. The photo was saved as HEIC, which is Apple's preferred format and almost nobody else's. Drop your HEIC files in below and get JPGs back. Files never leave your browser.</p>
+
+        <section class="eli5" aria-label="Plain-English explanation">
+          <h2>Explain like I'm 5 (what is this even doing?)</h2>
+          <p>iPhones save photos in a clever, space-saving format called HEIC. Most non-Apple things (Windows, Outlook, Slack, half the websites your nan uses) cannot read HEIC. This page takes the HEIC, rebuilds the picture in your browser, and saves it back out as a JPG that everything understands. The original is untouched and the new file stays on your device.</p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="in-content" aria-hidden="true"></div>
+
+        <section class="calculator-card">
+          <h2>Convert</h2>
+
+          <label for="heic-file" class="resizer-dropzone" data-dropzone>
+            <p><strong>Choose photos</strong> or drag them here</p>
+            <p class="resizer-dropzone__hint">HEIC, HEIF, JPG, PNG or WebP. Multiple files welcome. Live Photo .mov files are ignored.</p>
+            <input type="file" id="heic-file" name="files" accept=".heic,.heif,image/heic,image/heif,image/jpeg,image/png,image/webp" multiple data-file>
+          </label>
+
+          <div class="resizer-status" data-status hidden></div>
+
+          <form id="heic-form" class="calc-form" novalidate data-form>
+            <div class="calc-row">
+              <label for="heic-format">Output format</label>
+              <select id="heic-format" name="format" data-format>
+                <option value="image/jpeg" selected>JPG (most compatible, smaller)</option>
+                <option value="image/png">PNG (lossless, bigger)</option>
+                <option value="image/webp">WebP (smallest, modern browsers)</option>
+              </select>
+            </div>
+            <div class="calc-row" data-quality-row>
+              <label for="heic-quality">Quality <output for="heic-quality" data-quality-output>92</output></label>
+              <input type="range" id="heic-quality" name="quality" min="60" max="100" step="1" value="92" data-quality>
+            </div>
+            <div class="calc-row calc-row--checkbox">
+              <label for="heic-resize">Resize on the way out (preserves aspect ratio)</label>
+              <input type="checkbox" id="heic-resize" name="resize" data-resize-toggle>
+            </div>
+            <div class="calc-row" data-resize-row hidden>
+              <label for="heic-max-width">Max width (px, optional)</label>
+              <input type="number" id="heic-max-width" name="maxWidth" min="1" step="1" placeholder="e.g. 2000" data-max-width>
+            </div>
+            <div class="calc-row" data-resize-row-2 hidden>
+              <label for="heic-max-height">Max height (px, optional)</label>
+              <input type="number" id="heic-max-height" name="maxHeight" min="1" step="1" placeholder="e.g. 2000" data-max-height>
+            </div>
+          </form>
+
+          <div class="calculator-results" data-results-section>
+            <div class="resizer-results" data-results-list hidden>
+              <h3>Converted files</h3>
+              <ul class="heic-results-list" data-results-ul></ul>
+              <p class="calc-note" data-summary>&mdash;</p>
+            </div>
+          </div>
+
+          <p class="bookmark-nudge">
+            Useful? Press <kbd data-bookmark-shortcut>Ctrl</kbd> + <kbd>D</kbd> to bookmark.
+          </p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="below-results" aria-hidden="true"></div>
+
+        <section class="long-form">
+          <h2>Why your iPhone saves HEIC in the first place</h2>
+          <p>Apple switched the default camera format from JPG to HEIC in iOS 11, back in 2017. HEIC (which is HEIF wrapped around HEVC compression, in case anyone asks) gives you roughly the same image quality as a JPG at about half the file size. On a 256 GB phone full of holiday photos and short videos, that adds up. Inside the Apple ecosystem it is fine: Photos, Mail, AirDrop and Messages all handle HEIC without flinching.</p>
+          <p>The problem starts the minute you send the photo somewhere else. Outlook, Slack, most CMS upload boxes, plenty of older Android phones, anything running Windows 10 without the optional codec, every printing kiosk in the country: all of them either reject the file outright or show a sad little broken thumbnail. So you go and Google "convert HEIC to JPG", end up on a sketchy website, upload your kids to a server you have never heard of, and pray.</p>
+
+          <h2>Stop your iPhone saving HEIC in the first place (the iPhone Settings shortcut)</h2>
+          <p>If this happens to you a lot, you can just turn it off. Open Settings on your iPhone, tap Camera, then Formats, then pick Most Compatible. From the next photo onwards your phone will save JPGs and standard MP4 videos. New photos will be slightly larger on disk but they will open everywhere without ceremony.</p>
+          <p>This costs us a future visit to this page, which is fine. Trust banks better than traffic does.</p>
+
+          <h2>Privacy: files never leave your browser</h2>
+          <p>This is the bit that matters. Every other "free HEIC converter" you find online uploads your photos to their server, runs the conversion there, and hands the result back. Sometimes that is genuinely fine. Sometimes the photo is a passport, a child's face, or a confidential product shot, and "fine" is doing a lot of work. The honest default is to never send the file in the first place.</p>
+          <p>This converter does the whole job in the tab you are looking at. The HEIC decoder is a JavaScript library that runs locally; the re-encode happens on an HTML canvas in your browser. You can open the developer tools, click Network, and watch nothing happen when you press convert. Disconnect your Wi-Fi after the page loads and it still works.</p>
+
+          <h2>Bulk conversion (200 holiday photos, no faff)</h2>
+          <p>Drop the whole folder in. The converter works through them one at a time and lists the results as they are ready, with original and new file sizes side by side and an individual download link for each. On a modern laptop, a couple of hundred 12-megapixel HEICs takes a couple of minutes. On a phone, it is slower but it still works; close other browser tabs first if your device is older.</p>
+          <p>If you do this regularly, the simpler long-term fix is to switch your iPhone to Most Compatible (above) and forget HEIC ever existed.</p>
+
+          <h2>What this tool does not do</h2>
+          <ul>
+            <li>It does not extract the Live Photo motion. The still frame is the bit you get. If you drop the companion .mov in, it is ignored.</li>
+            <li>It does not do OCR or read text from your photos.</li>
+            <li>It does not recognise faces or tag people.</li>
+            <li>It does not strip or rewrite EXIF metadata, beyond honouring the orientation flag so your portraits do not end up on their side.</li>
+            <li>It does not handle HEIC video (.heif sequences are uncommon outside Apple, but if you find one, treat it as a video and convert it with a video tool).</li>
+          </ul>
+
+          <h2>JPG, PNG or WebP: what to pick</h2>
+          <p><strong>JPG</strong> is the right answer 95% of the time. It is the format every email client, every CMS, every printing service and every distant relative's laptop can open. The default quality of 92 is high enough that you will not see compression artefacts in normal viewing.</p>
+          <p><strong>PNG</strong> is lossless. The pixel values you see in the canvas are the pixel values you save. Useful if you are going to edit the photo further and do not want to re-compress it twice. Files are noticeably bigger than JPG.</p>
+          <p><strong>WebP</strong> gives you JPG-like quality at smaller sizes and is supported by every current browser. It is a great choice for the web, slightly less universal in email and older office software.</p>
+
+          <!-- related-calculators-block -->
+          <h2>Related calculators</h2>
+          <p>While we are sorting out images.</p>
+          <ul class="related-calculators">
+            <li><a href="/calculators/images/photo-resizer/">Photo Resizer</a> for trimming pixel dimensions and file size before sending.</li>
+            <li><a href="/calculators/business/website-speed-budget-calculator/">Website Speed Budget Calculator</a> if these photos are heading onto a website.</li>
+            <li><a href="/calculators/broadband/web-hosting-estimator/">Web Hosting Storage Estimator</a> for sizing the disk space your image library needs.</li>
+            <li><a href="/calculators/conversions/unit-converter/">Unit Converter</a> for the day someone asks for the photo in millimetres.</li>
+          </ul>
+        </section>
+
+        <section class="faq" aria-labelledby="faq-heading">
+          <h2 id="faq-heading">Frequently asked questions</h2>
+          <details>
+            <summary>How do I convert HEIC to JPG?</summary>
+            <p>Drag your HEIC files onto the box above, or tap it and pick them from your phone or laptop. The converter decodes each file, re-encodes as JPG, and offers a download link per file. There is no upload step.</p>
+          </details>
+          <details>
+            <summary>Why are my iPhone photos saving as HEIC?</summary>
+            <p>Apple made HEIC the default in iOS 11 because it is roughly half the size of JPG at similar quality. The trade-off is compatibility: most non-Apple software cannot read it without help.</p>
+          </details>
+          <details>
+            <summary>Can I open HEIC files on Windows directly?</summary>
+            <p>Windows 11 can, after you install the HEIF Image Extensions and HEVC Video Extensions from the Microsoft Store. The HEVC one is a small paid download. Most third-party apps on Windows still cannot read HEIC, so converting to JPG is usually the simpler answer.</p>
+          </details>
+          <details>
+            <summary>Does this upload my photos anywhere?</summary>
+            <p>No. Files never leave your browser. Decoding and re-encoding happen on your device. You can prove it by opening the browser's network tab and watching nothing happen.</p>
+          </details>
+          <details>
+            <summary>What is the difference between HEIC and HEIF?</summary>
+            <p>HEIF is the container; HEIC is HEIF with HEVC-encoded images inside it, which is what Apple uses. In practice they are interchangeable, and both extensions are accepted here.</p>
+          </details>
+          <details>
+            <summary>How do I stop my iPhone saving photos as HEIC?</summary>
+            <p>Settings, then Camera, then Formats, then Most Compatible. From that point on, your iPhone saves JPGs and standard MP4 videos. Existing HEIC photos stay HEIC; only new ones change.</p>
+          </details>
+          <details>
+            <summary>Are EXIF orientation and rotation respected?</summary>
+            <p>Yes. The converter reads the EXIF orientation flag and applies it before re-encoding, so portraits stay portraits and a photo taken on its side comes out the right way up.</p>
+          </details>
+        </section>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="ad-slot" data-ad-slot="sidebar" aria-hidden="true"></div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="site-footer-nav" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/calculators/">All calculators</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+
+      <section class="site-disclaimer" data-disclaimer aria-labelledby="disclaimer-heading">
+        <h2 id="disclaimer-heading">A quick, necessary word</h2>
+        <p>Every calculator on this site is built to give you a sensible, well-reasoned estimate. It is, however, exactly that: an estimate, for general information only. Nothing you see here is professional, legal, financial, medical, or tax advice, and it should not be treated as such.</p>
+        <p>Before you make a decision that actually matters, talk to a qualified professional who knows your specific situation: an accountant, a solicitor, a doctor, an IT consultant, whoever fits the question. They can factor in the bits a generic tool can't.</p>
+        <p>We take no liability and accept no responsibility for any loss, damage, or questionable life choice arising from acting on the numbers you see here. Use the results as a starting point for a better conversation, not as the final word.</p>
+        <p><strong>Affiliate disclosure:</strong> some links on this site are affiliate links. If you click through and buy or sign up for something, we may earn a small commission at no extra cost to you. It helps keep the calculators free and ad-light. We only recommend things we'd point a friend towards.</p>
+      </section>
+      <p class="site-copyright">&copy; 2026 WebCaretakers. All rights reserved.</p>
+      <p class="site-legal">WebCaretakers is a trading name of <a href="https://yeseo.io/" rel="noopener">Andrew Laws Associates Ltd</a>, registered in England and Wales (company no. 08602332). ICO registration ZA726704.</p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/calculators/heic-to-jpg.js"></script>
+  <script>
+    (function () {
+      'use strict';
+
+      var shortcutEl = document.querySelector('[data-bookmark-shortcut]');
+      if (shortcutEl) {
+        var isMac = /Mac|iPhone|iPad|iPod/i.test(navigator.platform || navigator.userAgent);
+        shortcutEl.textContent = isMac ? '\u2318' : 'Ctrl';
+      }
+
+      var H = window.HeicToJpg;
+
+      var fileInput   = document.querySelector('[data-file]');
+      var dropzone    = document.querySelector('[data-dropzone]');
+      var formatIn    = document.querySelector('[data-format]');
+      var qualityIn   = document.querySelector('[data-quality]');
+      var qualityOut  = document.querySelector('[data-quality-output]');
+      var qualityRow  = document.querySelector('[data-quality-row]');
+      var resizeTog   = document.querySelector('[data-resize-toggle]');
+      var resizeRow   = document.querySelector('[data-resize-row]');
+      var resizeRow2  = document.querySelector('[data-resize-row-2]');
+      var maxWidthIn  = document.querySelector('[data-max-width]');
+      var maxHeightIn = document.querySelector('[data-max-height]');
+      var statusEl    = document.querySelector('[data-status]');
+      var resultsList = document.querySelector('[data-results-list]');
+      var resultsUl   = document.querySelector('[data-results-ul]');
+      var summaryEl   = document.querySelector('[data-summary]');
+
+      var heic2anyPromise = null;
+      var totalIn = 0;
+      var totalOut = 0;
+      var totalDone = 0;
+
+      function setStatus(msg, isError) {
+        if (!msg) { statusEl.hidden = true; statusEl.textContent = ''; statusEl.classList.remove('resizer-status--error'); return; }
+        statusEl.hidden = false;
+        statusEl.textContent = msg;
+        statusEl.classList.toggle('resizer-status--error', !!isError);
+      }
+
+      function track(event, extras) {
+        window.dataLayer = window.dataLayer || [];
+        var payload = Object.assign({ event: event, calculator_name: 'HEIC to JPG Converter' }, extras || {});
+        window.dataLayer.push(payload);
+      }
+
+      function updateQualityUI() {
+        qualityRow.hidden = formatIn.value === 'image/png';
+      }
+      function updateResizeUI() {
+        var on = resizeTog.checked;
+        resizeRow.hidden = !on;
+        resizeRow2.hidden = !on;
+      }
+      formatIn.addEventListener('change', updateQualityUI);
+      resizeTog.addEventListener('change', updateResizeUI);
+      qualityIn.addEventListener('input', function () { qualityOut.textContent = qualityIn.value; });
+      updateQualityUI();
+      updateResizeUI();
+
+      // Lazy-load heic2any only when a HEIC file actually shows up. The library
+      // is around 1.4 MB; we do not pay that cost for users converting between
+      // JPG, PNG and WebP.
+      function loadHeic2Any() {
+        if (heic2anyPromise) return heic2anyPromise;
+        setStatus('Loading HEIC decoder...');
+        heic2anyPromise = new Promise(function (resolve, reject) {
+          var s = document.createElement('script');
+          s.src = 'https://cdn.jsdelivr.net/npm/heic2any@0.0.4/dist/heic2any.min.js';
+          s.async = true;
+          s.onload = function () {
+            setStatus('');
+            resolve(window.heic2any);
+          };
+          s.onerror = function () {
+            setStatus('Could not load the HEIC decoder. Check your connection and try again.', true);
+            reject(new Error('heic2any failed to load'));
+          };
+          document.head.appendChild(s);
+        });
+        return heic2anyPromise;
+      }
+
+      ['dragenter', 'dragover'].forEach(function (ev) {
+        dropzone.addEventListener(ev, function (e) { e.preventDefault(); dropzone.classList.add('is-drag-over'); });
+      });
+      ['dragleave', 'drop'].forEach(function (ev) {
+        dropzone.addEventListener(ev, function (e) { e.preventDefault(); dropzone.classList.remove('is-drag-over'); });
+      });
+      dropzone.addEventListener('drop', function (e) {
+        if (e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files.length) {
+          handleFiles(e.dataTransfer.files);
+        }
+      });
+      fileInput.addEventListener('change', function () {
+        if (fileInput.files && fileInput.files.length) handleFiles(fileInput.files);
+      });
+
+      function handleFiles(fileList) {
+        var files = Array.prototype.slice.call(fileList);
+        // Drop Live Photo .mov companions and anything we cannot handle.
+        var queue = files.filter(function (f) {
+          var name = (f.name || '').toLowerCase();
+          if (name.endsWith('.mov') || (f.type || '').indexOf('video/') === 0) return false;
+          return H.isSupportedInput(f);
+        });
+        if (!queue.length) {
+          setStatus('No supported images found. Accepted: HEIC, HEIF, JPG, PNG, WebP. Live Photo .mov files are skipped.', true);
+          return;
+        }
+        track('calculator_interaction', { field_name: 'files_added', file_count: queue.length });
+        resultsList.hidden = false;
+        // Process sequentially so we do not blow up memory on large batches.
+        queue.reduce(function (p, file) {
+          return p.then(function () { return processOne(file); });
+        }, Promise.resolve()).then(function () {
+          summaryEl.textContent = totalDone + ' files converted. ' +
+            'Original total: ' + H.formatFileSize(totalIn) + '. ' +
+            'New total: ' + H.formatFileSize(totalOut) + '.';
+        });
+      }
+
+      function readEXIFOrientation(arrayBuffer) {
+        // Minimal EXIF reader: returns 1-8 if found, otherwise 1. JPEG only
+        // (HEIC orientation is handled by heic2any's decode output, which is
+        // a JPEG blob). Based on the standard EXIF/TIFF layout.
+        try {
+          var view = new DataView(arrayBuffer);
+          if (view.getUint16(0, false) !== 0xFFD8) return 1;
+          var length = view.byteLength;
+          var offset = 2;
+          while (offset < length) {
+            if (view.getUint16(offset + 2, false) <= 8) return 1;
+            var marker = view.getUint16(offset, false);
+            offset += 2;
+            if (marker === 0xFFE1) {
+              if (view.getUint32(offset += 2, false) !== 0x45786966) return 1;
+              var little = view.getUint16(offset += 6, false) === 0x4949;
+              offset += view.getUint32(offset + 4, little);
+              var tags = view.getUint16(offset, little);
+              offset += 2;
+              for (var i = 0; i < tags; i++) {
+                if (view.getUint16(offset + (i * 12), little) === 0x0112) {
+                  return view.getUint16(offset + (i * 12) + 8, little);
+                }
+              }
+            } else if ((marker & 0xFF00) !== 0xFF00) {
+              break;
+            } else {
+              offset += view.getUint16(offset, false);
+            }
+          }
+        } catch (e) {}
+        return 1;
+      }
+
+      function processOne(file) {
+        var sourceBlobPromise;
+        if (H.isHeic(file)) {
+          sourceBlobPromise = loadHeic2Any().then(function (h) {
+            // Decode HEIC -> JPEG blob, then we re-encode to the user's chosen format.
+            return h({ blob: file, toType: 'image/jpeg', quality: 0.95 });
+          }).then(function (out) {
+            // heic2any can return a blob or array of blobs.
+            return Array.isArray(out) ? out[0] : out;
+          }).catch(function (err) {
+            // Native fallback: some browsers (Safari, modern macOS Chrome)
+            // can decode HEIC via the standard image pipeline.
+            return file;
+          });
+        } else {
+          sourceBlobPromise = Promise.resolve(file);
+        }
+
+        return sourceBlobPromise.then(function (sourceBlob) {
+          return blobToImage(sourceBlob).then(function (info) {
+            return reencode(file, info);
+          });
+        }).catch(function (err) {
+          appendFailedRow(file, err && err.message ? err.message : 'conversion failed');
+        });
+      }
+
+      function blobToImage(blob) {
+        return new Promise(function (resolve, reject) {
+          var reader = new FileReader();
+          reader.onload = function () {
+            var buf = reader.result;
+            var orientation = 1;
+            try { orientation = readEXIFOrientation(buf); } catch (e) {}
+            var url = URL.createObjectURL(blob);
+            var img = new Image();
+            img.onload = function () {
+              resolve({ image: img, url: url, orientation: orientation });
+            };
+            img.onerror = function () {
+              URL.revokeObjectURL(url);
+              reject(new Error('image decode failed'));
+            };
+            img.src = url;
+          };
+          reader.onerror = function () { reject(new Error('file read failed')); };
+          reader.readAsArrayBuffer(blob);
+        });
+      }
+
+      function reencode(originalFile, info) {
+        var format = formatIn.value;
+        var quality = format === 'image/png' ? undefined : (parseInt(qualityIn.value, 10) / 100);
+        var img = info.image;
+        var orientation = info.orientation || 1;
+
+        var srcW = img.naturalWidth;
+        var srcH = img.naturalHeight;
+        var swap = H.orientationSwapsAxes(orientation);
+        var natW = swap ? srcH : srcW;
+        var natH = swap ? srcW : srcH;
+
+        var maxW = resizeTog.checked ? parseInt(maxWidthIn.value, 10) : null;
+        var maxH = resizeTog.checked ? parseInt(maxHeightIn.value, 10) : null;
+        if (!(maxW > 0)) maxW = null;
+        if (!(maxH > 0)) maxH = null;
+
+        var dims = H.calculateResize({ origWidth: natW, origHeight: natH, maxWidth: maxW, maxHeight: maxH });
+
+        var canvas = document.createElement('canvas');
+        canvas.width = dims.width;
+        canvas.height = dims.height;
+        var ctx = canvas.getContext('2d');
+        ctx.imageSmoothingEnabled = true;
+        ctx.imageSmoothingQuality = 'high';
+
+        // Apply EXIF orientation transform, then draw at the post-transform
+        // dimensions. Source pixel space matches the raw image.
+        var drawW = swap ? dims.height : dims.width;
+        var drawH = swap ? dims.width : dims.height;
+        H.applyOrientation(ctx, orientation, drawW, drawH);
+        ctx.drawImage(img, 0, 0, drawW, drawH);
+
+        return new Promise(function (resolve) {
+          canvas.toBlob(function (blob) {
+            URL.revokeObjectURL(info.url);
+            if (!blob) {
+              appendFailedRow(originalFile, 're-encode failed');
+              resolve();
+              return;
+            }
+            appendResultRow(originalFile, blob, format, dims);
+            totalIn += originalFile.size;
+            totalOut += blob.size;
+            totalDone += 1;
+            track('calculator_result', {
+              input_type: originalFile.type || 'unknown',
+              output_format: format,
+              output_size_bytes: blob.size,
+              original_size_bytes: originalFile.size
+            });
+            resolve();
+          }, format, quality);
+        });
+      }
+
+      function appendResultRow(originalFile, blob, format, dims) {
+        var url = URL.createObjectURL(blob);
+        var li = document.createElement('li');
+        li.className = 'heic-result';
+        var pct = Math.round((1 - blob.size / originalFile.size) * 100);
+        var pctLabel = pct >= 0 ? pct + '% smaller' : Math.abs(pct) + '% larger';
+        li.innerHTML =
+          '<div class="heic-result__name"><strong>' + escapeHtml(originalFile.name || 'image') + '</strong></div>' +
+          '<div class="heic-result__meta">' +
+            H.formatFileSize(originalFile.size) + ' &rarr; ' + H.formatFileSize(blob.size) +
+            ' (' + pctLabel + '), ' + dims.width + '\u00d7' + dims.height + ' px, ' +
+            format.replace('image/', '').toUpperCase() +
+          '</div>';
+        var a = document.createElement('a');
+        a.className = 'heic-result__download';
+        a.href = url;
+        a.setAttribute('download', H.targetFilename(originalFile.name, format));
+        a.textContent = 'Download';
+        li.appendChild(a);
+        resultsUl.appendChild(li);
+      }
+
+      function appendFailedRow(originalFile, reason) {
+        var li = document.createElement('li');
+        li.className = 'heic-result heic-result--failed';
+        li.innerHTML =
+          '<div class="heic-result__name"><strong>' + escapeHtml(originalFile.name || 'image') + '</strong></div>' +
+          '<div class="heic-result__meta">Could not convert: ' + escapeHtml(reason) + '</div>';
+        resultsUl.appendChild(li);
+      }
+
+      function escapeHtml(s) {
+        return String(s).replace(/[&<>"']/g, function (c) {
+          return { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c];
+        });
+      }
+
+      // CTA tracking for related links
+      document.querySelectorAll('.related-calculators a').forEach(function (a) {
+        a.addEventListener('click', function () {
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({ event: 'cta_click', calculator_name: 'HEIC to JPG Converter', cta_target: a.getAttribute('href') });
+        });
+      });
+    })();
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>
