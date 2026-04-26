@@ -87,6 +87,24 @@ A proper `/privacy/` page is needed before we switch analytics on. The cookie ba
 
 **Status:** [ ] Not started
 
+### Post-deploy indexing pushers
+
+After each Amplify deploy, ping the search engines so new and updated calculator URLs are picked up faster than the default crawl cadence. Build-time tooling only, never runtime.
+
+**Scope:**
+- A Node script `scripts/post-deploy-index-ping.js` triggered after deploy (manual or via Amplify build hook).
+- Diff `sitemap.xml` against the previous run to identify newly added URLs.
+- Submit the sitemap to Google via the Search Console API (`sitemaps.submit`). Requires a service-account JSON in `.env.local` and the SA email granted Owner access in GSC under Settings > Users and permissions.
+- POST the new URL list to the IndexNow protocol endpoint for Bing/Yandex/Seznam, with a key file at the site root.
+- Log every submission to a local file so we have a record of what was pushed.
+
+**Out of scope:**
+- Google Indexing API (`urlNotifications.publish`): officially restricted to JobPosting and BroadcastEvent schemas. Using it for calculator pages is grey-area and risks the GSC property. Skip.
+- Sitemap ping URL (`google.com/ping?sitemap=...`): deprecated June 2023. Skip.
+- Anything that runs in the user's browser at request time. The CLAUDE.md no-runtime-API rule still applies.
+
+**Status:** [ ] Not started. Documented here so we can pick it up once the calculator catalogue is large enough that crawl latency actually matters.
+
 ### Site navigation and category hubs
 
 Three-tier IA: **Home → Category hub → Calculator**. Primary nav shows categories only (6–10 items max), with a dropdown listing the top calculators per category plus a "See all" link. Category hubs (`/calculators/{category}/`) are real pages with their own intro, grouped listings, and long-form SEO content, not thin redirects. The all-calculators index (`/calculators/`) is the A–Z fallback for users who don't know the category.
