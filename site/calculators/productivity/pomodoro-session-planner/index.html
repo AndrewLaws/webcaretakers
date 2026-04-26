@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pomodoro Session Planner | WebCaretakers</title>
+  <meta name="description" content="Work out how many Pomodoro sessions a task needs, the total focus and break time, and a realistic finish time. Honest about how much focus a human can do in one day.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/productivity/pomodoro-session-planner/">
+  <meta property="og:title" content="Pomodoro Session Planner | WebCaretakers">
+  <meta property="og:description" content="Sessions, breaks, finish time, and an honest realism check for your Pomodoro plan.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/productivity/pomodoro-session-planner/">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var _stored = null;
+    try { _stored = localStorage.getItem('cookie-consent'); } catch (e) {}
+    var _initial = _stored === 'granted' ? 'granted' : 'denied';
+    gtag('consent', 'default', {
+      ad_storage: _initial, analytics_storage: _initial,
+      ad_user_data: _initial, ad_personalization: _initial,
+      functionality_storage: 'granted', security_storage: 'granted',
+      wait_for_update: 500
+    });
+  </script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Pomodoro Session Planner",
+    "url": "https://webcaretakers.com/calculators/productivity/pomodoro-session-planner/",
+    "applicationCategory": "ProductivityApplication",
+    "operatingSystem": "Any",
+    "inLanguage": "en-GB",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "GBP" },
+    "author": {
+      "@type": "Person",
+      "name": "Andrew Laws",
+      "url": "https://yeseo.io/"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Why 25 minutes?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Francesco Cirillo, who came up with the Pomodoro Technique in the late 1980s, used a tomato-shaped kitchen timer (pomodoro is Italian for tomato) and settled on 25 minutes because it was long enough to make real progress and short enough to feel doable. There is nothing magic about the number. The principle that matters is a fixed, finite stretch of focus followed by a real break. Many people find 45 or 50 minutes works better for deeper work. Pick the length that lets you start without negotiating with yourself." }
+      },
+      {
+        "@type": "Question",
+        "name": "Should I take phones away during a Pomodoro?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Out of sight is the realistic version. In another room or in a drawer is enough for most people. The phone does not have to be in a Faraday cage; it just needs to not be the easiest thing to reach when your brain hits the first tricky bit. Notifications off is the bare minimum. If your work needs the phone, put it on Do Not Disturb and accept that one or two genuinely urgent calls might get through." }
+      },
+      {
+        "@type": "Question",
+        "name": "What if I am hyperfocused, do I still take the break?",
+        "acceptedAnswer": { "@type": "Answer", "text": "There are two honest answers. The orthodox Pomodoro answer is yes, always take the break, because the technique is partly about pacing yourself so you can keep going for hours rather than burning out in one heroic stretch. The pragmatic answer is that if you are genuinely in flow and the work is going well, breaking the timer to chase the next idea is sometimes the right call. The trap is mistaking adrenaline or anxiety for flow. If you are tense rather than absorbed, take the break." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does the Pomodoro Technique work for ADHD?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Sometimes, partly, and not in the way the productivity blogs sell it. A short timer with a clear start point can lower the activation cost of starting, which is the hardest bit of an ADHD work session. On the other hand, the rigid 25-on, 5-off rhythm fights against hyperfocus when it actually arrives, and the breaks can become a black hole because transitions are hard. What tends to work better in practice: use the timer to start, ignore it once you are properly going, and use it again when you notice you have stopped. Treat the breaks as a reminder to stand up and drink water rather than a strict rule. Your mileage will vary, and that is allowed." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does this calculator send my numbers anywhere?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. Everything runs in your browser. The numbers you type never leave your device." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-banner-heading" aria-describedby="cookie-banner-text" hidden>
+    <div class="cookie-banner__inner">
+      <h2 id="cookie-banner-heading" class="cookie-banner__heading">A quick word about cookies</h2>
+      <p id="cookie-banner-text" class="cookie-banner__text">
+        We use cookies for analytics, so we can see which calculators people actually use and which ones need work. Nothing creepy, nothing sold on. You can say yes, say no, or read the <a href="/privacy/">privacy policy</a> first. Your choice sticks.
+      </p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-reject>Reject</button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>Accept</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var KEY = 'cookie-consent';
+      var banner = document.querySelector('[data-cookie-banner]');
+      if (!banner) return;
+      var stored = null;
+      try { stored = localStorage.getItem(KEY); } catch (e) {}
+      if (stored !== 'granted' && stored !== 'denied') { banner.hidden = false; }
+      function record(choice) {
+        try { localStorage.setItem(KEY, choice); } catch (e) {}
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('consent', 'update', {
+          ad_storage: choice, analytics_storage: choice,
+          ad_user_data: choice, ad_personalization: choice
+        });
+        banner.hidden = true;
+      }
+      var accept = banner.querySelector('[data-cookie-accept]');
+      var reject = banner.querySelector('[data-cookie-reject]');
+      if (accept) accept.addEventListener('click', function () { record('granted'); });
+      if (reject) reject.addEventListener('click', function () { record('denied'); });
+    })();
+  </script>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">WebCaretakers</a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <ul class="primary-nav__list">
+          <li class="primary-nav__item primary-nav__item--has-menu">
+            <button type="button" class="primary-nav__link" data-menu-toggle aria-haspopup="true" aria-expanded="false">Calculators <span class="primary-nav__caret" aria-hidden="true">▾</span></button>
+            <ul class="primary-nav__submenu">
+              <li><a href="/calculators/ai/">AI</a></li>
+              <li><a href="/calculators/broadband/">Broadband</a></li>
+              <li><a href="/calculators/business/">Business</a></li>
+              <li><a href="/calculators/conversions/">Conversions</a></li>
+              <li><a href="/calculators/finance/">Finance</a></li>
+              <li><a href="/calculators/fun/">Fun</a></li>
+              <li><a href="/calculators/health/">Health</a></li>
+              <li><a href="/calculators/images/">Images</a></li>
+              <li><a href="/calculators/math/">Math</a></li>
+              <li><a href="/calculators/productivity/">Productivity</a></li>
+              <li><a href="/calculators/property/">Property</a></li>
+              <li><a href="/calculators/seo/">SEO</a></li>
+              <li><a href="/calculators/wedding/">Wedding</a></li>
+              <li><a href="/calculators/writing/">Writing</a></li>
+              <li class="primary-nav__submenu-sep"><a href="/calculators/">See all calculators</a></li>
+            </ul>
+          </li>
+          <li class="primary-nav__item"><a href="/about/" class="primary-nav__link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <main id="main-content">
+      <div class="container">
+        <nav aria-label="Breadcrumb" class="breadcrumbs">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/calculators/">Calculators</a></li>
+            <li><a href="/calculators/productivity/">Productivity</a></li>
+            <li aria-current="page">Pomodoro Session Planner</li>
+          </ol>
+        </nav>
+
+        <h1>Pomodoro Session Planner</h1>
+        <p class="intro">Tell it how much focused work you have to do and it works out how many Pomodoro sessions that is, how long the whole thing takes once breaks are added, and roughly when you will finish. With an honest realism check, because no one actually does eight hours of pure focus in a day.</p>
+
+        <section class="eli5" aria-label="Plain-English explanation">
+          <h2>Explain like I'm 5 (what even is this calculator?)</h2>
+          <p>You set a timer for 25 minutes, work on one thing, and stop when it dings. Then you take a short break. After four of those, you take a longer break. This calculator counts how many of those rounds your task needs, adds up the time the breaks take, and tells you when you will be done.</p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="in-content" aria-hidden="true"></div>
+
+        <section class="calculator-card">
+          <h2>Plan your sessions</h2>
+          <form id="pomodoro-form" class="calc-form" novalidate>
+            <div class="calc-row">
+              <label for="pomo-hours">Focus time needed (hours)</label>
+              <input type="number" id="pomo-hours" name="hours" min="0" step="any" value="2" data-hours>
+            </div>
+
+            <div class="calc-row">
+              <label for="pomo-minutes">Plus extra minutes</label>
+              <input type="number" id="pomo-minutes" name="minutes" min="0" step="1" value="0" data-minutes>
+            </div>
+
+            <div class="calc-row">
+              <label for="pomo-session">Session length</label>
+              <select id="pomo-session" data-session>
+                <option value="25" selected>25 minutes (classic)</option>
+                <option value="45">45 minutes</option>
+                <option value="50">50 minutes</option>
+                <option value="90">90 minutes (deep work)</option>
+              </select>
+            </div>
+
+            <div class="calc-row">
+              <label for="pomo-short-break">Short break (minutes)</label>
+              <input type="number" id="pomo-short-break" name="shortBreak" min="0" step="1" value="5" data-short-break>
+            </div>
+
+            <div class="calc-row">
+              <label for="pomo-long-break">Long break (minutes, every 4 sessions)</label>
+              <input type="number" id="pomo-long-break" name="longBreak" min="0" step="1" value="15" data-long-break>
+            </div>
+
+            <div class="calc-row">
+              <label for="pomo-cap">Daily focus cap (hours)</label>
+              <input type="number" id="pomo-cap" name="dailyCapHours" min="0.5" step="0.5" value="5" data-daily-cap>
+            </div>
+
+            <div class="calc-row">
+              <label for="pomo-start">Start time (optional)</label>
+              <input type="time" id="pomo-start" name="startTime" data-start-time>
+            </div>
+
+            <button type="submit" data-calculate>Plan it</button>
+          </form>
+
+          <div data-calculator-results class="calculator-results">
+            <div class="result-summary">
+              <p class="result-display" data-result>Enter your numbers, then press Plan it.</p>
+            </div>
+
+            <div class="mort-breakdown" data-breakdown hidden>
+              <h3>Summary</h3>
+              <ul>
+                <li><span>Sessions needed</span><strong data-line-sessions>–</strong></li>
+                <li><span>Total focus time</span><strong data-line-focus>–</strong></li>
+                <li><span>Total break time</span><strong data-line-break>–</strong></li>
+                <li class="mort-breakdown__total"><span>Total elapsed wall-clock time</span><strong data-line-elapsed>–</strong></li>
+              </ul>
+
+              <div data-finish-block hidden>
+                <h3>Finish time (today)</h3>
+                <ul>
+                  <li><span>You will finish at</span><strong data-line-finish>–</strong></li>
+                  <li><span>Spans into the next day?</span><strong data-line-spans>–</strong></li>
+                </ul>
+              </div>
+
+              <h3>Per-day plan</h3>
+              <ul data-days-list></ul>
+
+              <div class="realism-panel" data-realism>
+                <h3>Is this realistic?</h3>
+                <p data-realism-text>–</p>
+              </div>
+            </div>
+
+            <details class="prove-it" data-prove-it>
+              <summary>Prove it</summary>
+              <div data-prove-it-body></div>
+              <p class="prove-it-source">Sessions needed = ceil(total focus minutes ÷ session length). Total elapsed = sessions × session length + breaks. A short break sits between every pair of sessions, with a long break replacing the short break after every 4th session. No trailing break after the last session. Per-day split = floor(daily cap ÷ session length) full sessions per day.</p>
+            </details>
+          </div>
+
+          <p class="bookmark-nudge">
+            Useful? Save this calculator: press <kbd data-bookmark-shortcut>Ctrl</kbd> + <kbd>D</kbd> to bookmark it.
+          </p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="below-results" aria-hidden="true"></div>
+
+        <section class="long-form">
+          <h2>What this calculator is actually doing</h2>
+          <p>The Pomodoro Technique is a simple bit of arithmetic dressed up as a productivity system. You decide how long a session is, how long the breaks are, and how many sessions it takes before you get the long break. Once those four numbers are set, the rest is mechanical: how many sessions does your task need, and how much wall-clock time does that come to once the breaks are stitched in.</p>
+          <p>The honest bit is the daily cap. Most productivity advice quietly assumes you have eight clean hours of focus to spend. You do not. Almost no one does. Cal Newport's deep-work research, Anders Ericsson's work on deliberate practice, and the general consensus across people who actually study focus all land in roughly the same place: three to five hours of genuinely focused work per day is the realistic ceiling for most adults. The rest of the working day is real work too, but it is meetings, admin, replies, and the small bits in between. This planner caps your focus minutes per day on purpose, and tells you when your plan needs more than one day.</p>
+
+          <h2>Choosing a session length</h2>
+          <p>Twenty-five minutes is the classic. It is short enough to feel doable when you are dreading a task and long enough to make real progress. It also fits neatly with a five-minute break and a long break every two hours.</p>
+          <p>Forty-five and fifty-minute sessions suit deeper work where the cost of getting back into the problem is high. If your warm-up takes ten minutes, twenty-five minutes only gives you fifteen of useful time. Longer sessions claw that back.</p>
+          <p>Ninety minutes is the deep-work block. It is hard to sustain and you will not do four of them in a row. Treat ninety-minute blocks as a serious commitment, not a default.</p>
+
+          <h2>Where this technique falls down</h2>
+          <p>Pomodoro assumes your work splits cleanly into independent units. A lot of work does not. Meetings ignore the timer. Genuine creative flow ignores it too, and breaking flow to honour a five-minute break is sometimes the wrong call. Also, the rhythm fights against ADHD: rigid transitions are hard, and breaks are a notorious black hole when one task ends and you have to pick the next one.</p>
+          <p>Use the timer to start. Use it again when you notice you have stopped. Be flexible in the middle. The point is the work, not the technique.</p>
+
+          <!-- related-calculators-block -->
+          <h2>Related calculators</h2>
+          <p>Other tools for planning out a working day or a chunk of work.</p>
+          <ul class="related-calculators">
+            <li><a href="/calculators/productivity/ical-event-generator/">iCal Event Generator</a> for blocking the sessions in your calendar</li>
+            <li><a href="/calculators/writing/read-time-calculator/">Read Time Calculator</a> if the task is reading or revising long-form text</li>
+            <li><a href="/calculators/writing/word-count/">Word Count Tool</a> for sizing up a writing task before you plan it</li>
+            <li><a href="/calculators/business/freelance-day-rate-calculator/">Freelance Day Rate Calculator</a> for working out what those focus hours are worth</li>
+          </ul>
+        </section>
+
+        <section class="faq" aria-labelledby="faq-heading">
+          <h2 id="faq-heading">Frequently asked questions</h2>
+          <details>
+            <summary>Why 25 minutes?</summary>
+            <p>Francesco Cirillo, who came up with the technique in the late 1980s, used a tomato-shaped kitchen timer (pomodoro is Italian for tomato) and settled on 25 minutes because it was long enough to make real progress and short enough to feel doable. There is nothing magic about the number. The principle that matters is a fixed, finite stretch of focus followed by a real break. Many people find 45 or 50 minutes works better for deeper work.</p>
+          </details>
+          <details>
+            <summary>Should I take phones away during a Pomodoro?</summary>
+            <p>Out of sight is the realistic version. In another room or in a drawer is enough for most people. The phone does not have to be in a Faraday cage; it just needs to not be the easiest thing to reach when your brain hits the first tricky bit. Notifications off is the bare minimum. If your work needs the phone, put it on Do Not Disturb and accept that one or two genuinely urgent calls might get through.</p>
+          </details>
+          <details>
+            <summary>What if I am hyperfocused, do I still take the break?</summary>
+            <p>Two honest answers. The orthodox Pomodoro answer is yes, always take the break, because the technique is partly about pacing yourself so you can keep going for hours rather than burning out in one heroic stretch. The pragmatic answer is that if you are genuinely in flow and the work is going well, breaking the timer to chase the next idea is sometimes the right call. The trap is mistaking adrenaline or anxiety for flow. If you are tense rather than absorbed, take the break.</p>
+          </details>
+          <details>
+            <summary>Does the Pomodoro Technique work for ADHD?</summary>
+            <p>Sometimes, partly, and not in the way the productivity blogs sell it. A short timer with a clear start point can lower the activation cost of starting, which is the hardest bit of an ADHD work session. The rigid 25-on, 5-off rhythm fights against hyperfocus when it actually arrives, and the breaks can become a black hole because transitions are hard. What tends to work better in practice: use the timer to start, ignore it once you are properly going, and use it again when you notice you have stopped. Treat the breaks as a reminder to stand up and drink water rather than a strict rule. Your mileage will vary, and that is allowed.</p>
+          </details>
+          <details>
+            <summary>Does this calculator send my numbers anywhere?</summary>
+            <p>No. Everything runs in your browser. The numbers you type never leave your device.</p>
+          </details>
+        </section>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="ad-slot" data-ad-slot="sidebar" aria-hidden="true"></div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="site-footer-nav" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/calculators/">All calculators</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+
+      <section class="site-disclaimer" data-disclaimer aria-labelledby="disclaimer-heading">
+        <h2 id="disclaimer-heading">A quick, necessary word</h2>
+        <p>Every calculator on this site is built to give you a sensible, well-reasoned estimate. It is, however, exactly that: an estimate, for general information only. Nothing you see here is professional, legal, financial, medical, or tax advice, and it should not be treated as such.</p>
+        <p>Before you make a decision that actually matters, talk to a qualified professional who knows your specific situation: an accountant, a solicitor, a doctor, an IT consultant, whoever fits the question. They can factor in the bits a generic tool can't.</p>
+        <p>We take no liability and accept no responsibility for any loss, damage, or questionable life choice arising from acting on the numbers you see here. Use the results as a starting point for a better conversation, not as the final word.</p>
+        <p><strong>Affiliate disclosure:</strong> some links on this site are affiliate links. If you click through and buy or sign up for something, we may earn a small commission at no extra cost to you. It helps keep the calculators free and ad-light. We only recommend things we'd point a friend towards.</p>
+      </section>
+      <p class="site-copyright">&copy; 2026 WebCaretakers. All rights reserved.</p>
+      <p class="site-legal">WebCaretakers is a trading name of <a href="https://yeseo.io/" rel="noopener">Andrew Laws Associates Ltd</a>, registered in England and Wales (company no. 08602332). ICO registration ZA726704.</p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/calculators/pomodoro-session-planner.js"></script>
+  <script>
+    (function () {
+      'use strict';
+      var shortcutEl = document.querySelector('[data-bookmark-shortcut]');
+      if (shortcutEl) {
+        var isMac = /Mac|iPhone|iPad|iPod/i.test(navigator.platform || navigator.userAgent);
+        shortcutEl.textContent = isMac ? '\u2318' : 'Ctrl';
+      }
+
+      var form = document.getElementById('pomodoro-form');
+      if (!form) return;
+
+      var hoursIn      = form.querySelector('[data-hours]');
+      var minutesIn    = form.querySelector('[data-minutes]');
+      var sessionIn    = form.querySelector('[data-session]');
+      var shortBreakIn = form.querySelector('[data-short-break]');
+      var longBreakIn  = form.querySelector('[data-long-break]');
+      var capIn        = form.querySelector('[data-daily-cap]');
+      var startIn      = form.querySelector('[data-start-time]');
+
+      var resultEl  = document.querySelector('[data-result]');
+      var breakdown = document.querySelector('[data-breakdown]');
+      var proveBody = document.querySelector('[data-prove-it-body]');
+
+      var lineSessions = document.querySelector('[data-line-sessions]');
+      var lineFocus    = document.querySelector('[data-line-focus]');
+      var lineBreak    = document.querySelector('[data-line-break]');
+      var lineElapsed  = document.querySelector('[data-line-elapsed]');
+
+      var finishBlock = document.querySelector('[data-finish-block]');
+      var lineFinish  = document.querySelector('[data-line-finish]');
+      var lineSpans   = document.querySelector('[data-line-spans]');
+
+      var daysList     = document.querySelector('[data-days-list]');
+      var realismText  = document.querySelector('[data-realism-text]');
+
+      function fmtMinutes(m) {
+        if (m < 60) return m + (m === 1 ? ' minute' : ' minutes');
+        var h = Math.floor(m / 60);
+        var mm = m % 60;
+        if (mm === 0) return h + (h === 1 ? ' hour' : ' hours');
+        return h + 'h ' + mm + 'm';
+      }
+
+      [hoursIn, minutesIn, sessionIn, shortBreakIn, longBreakIn, capIn, startIn].forEach(function (el) {
+        if (!el) return;
+        el.addEventListener('input', function () {
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: 'calculator_interaction',
+            calculator_name: 'Pomodoro Session Planner',
+            field_name: el.name || el.id
+          });
+        });
+      });
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        var hours = parseFloat(hoursIn.value) || 0;
+        var minutes = parseFloat(minutesIn.value) || 0;
+        var totalFocusMinutes = Math.round(hours * 60 + minutes);
+
+        var args = {
+          totalFocusMinutes: totalFocusMinutes,
+          sessionLength: parseInt(sessionIn.value, 10),
+          shortBreak: parseFloat(shortBreakIn.value) || 0,
+          longBreak: parseFloat(longBreakIn.value) || 0,
+          longBreakEvery: 4,
+          dailyFocusCapMinutes: Math.round((parseFloat(capIn.value) || 5) * 60),
+          startTime: startIn.value || undefined
+        };
+
+        try {
+          var r = window.PomodoroPlanner.calculatePomodoroPlan(args);
+
+          resultEl.textContent = r.sessions + ' sessions, ' + fmtMinutes(r.totalElapsedMinutes) + ' total.';
+          breakdown.hidden = false;
+
+          lineSessions.textContent = String(r.sessions);
+          lineFocus.textContent    = fmtMinutes(r.totalFocusMinutes);
+          lineBreak.textContent    = fmtMinutes(r.totalBreakMinutes);
+          lineElapsed.textContent  = fmtMinutes(r.totalElapsedMinutes);
+
+          if (r.finish) {
+            finishBlock.hidden = false;
+            lineFinish.textContent = r.finish.time;
+            lineSpans.textContent  = r.finish.spansToNextDay ? 'Yes' : 'No';
+          } else {
+            finishBlock.hidden = true;
+          }
+
+          daysList.innerHTML = '';
+          r.days.forEach(function (d, i) {
+            var li = document.createElement('li');
+            li.innerHTML = '<span>Day ' + (i + 1) + '</span><strong>' +
+              d.sessions + ' sessions, ' + fmtMinutes(d.elapsedMinutes) + '</strong>';
+            daysList.appendChild(li);
+          });
+
+          realismText.textContent = r.realism.message;
+
+          proveBody.innerHTML = '<ul>' +
+            '<li><span>Total focus minutes requested</span><strong>' + totalFocusMinutes + '</strong></li>' +
+            '<li><span>Session length</span><strong>' + args.sessionLength + ' min</strong></li>' +
+            '<li><span>Sessions = ceil(' + totalFocusMinutes + ' / ' + args.sessionLength + ')</span><strong>' + r.sessions + '</strong></li>' +
+            '<li><span>Focus minutes (sessions × length)</span><strong>' + r.totalFocusMinutes + '</strong></li>' +
+            '<li><span>Break minutes</span><strong>' + r.totalBreakMinutes + '</strong></li>' +
+            '<li><span>Total wall-clock</span><strong>' + r.totalElapsedMinutes + ' min</strong></li>' +
+            '</ul>';
+
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: 'calculator_result',
+            calculator_name: 'Pomodoro Session Planner',
+            result_value: r.sessions,
+            total_focus_minutes: r.totalFocusMinutes,
+            total_elapsed_minutes: r.totalElapsedMinutes,
+            day_count: r.dayCount,
+            session_length: args.sessionLength,
+            has_start_time: !!args.startTime
+          });
+        } catch (err) {
+          resultEl.textContent = err.message || 'Could not calculate.';
+          breakdown.hidden = true;
+          proveBody.innerHTML = '';
+        }
+      });
+    })();
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

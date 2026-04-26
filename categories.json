@@ -2,6 +2,18 @@
   "description": "Source of truth for calculator categories. Each category has a slug (URL segment), name (display), tagline (1-line intro), and tools array. The primary nav and /calculators/ hub render from this. Only categories with at least one tool should appear in the nav.",
   "categories": [
     {
+      "slug": "ai",
+      "name": "AI",
+      "tagline": "Tools for working with AI APIs and large language models.",
+      "tools": [
+        {
+          "slug": "llm-token-usage-calculator",
+          "name": "LLM Token Usage Calculator",
+          "summary": "Estimate the per-call, daily, monthly and annual cost of an LLM workload across Claude, GPT, Gemini and DeepSeek. Side-by-side comparison, baked-in pricing dated for transparency, browser-only."
+        }
+      ]
+    },
+    {
       "slug": "broadband",
       "name": "Broadband",
       "tagline": "Work out the speed, bandwidth, and plan that actually fits your household or office.",
@@ -246,6 +258,11 @@
           "slug": "ical-event-generator",
           "name": "iCal Event Generator",
           "summary": "Create a .ics calendar file for any event. Set the date, time, timezone, location and recurrence, then download and import into Google Calendar, Apple Calendar, Outlook, or any other calendar app."
+        },
+        {
+          "slug": "pomodoro-session-planner",
+          "name": "Pomodoro Session Planner",
+          "summary": "Plan a chunk of focused work into Pomodoro sessions. Work out sessions needed, total focus and break time, finish time today, and how it splits across days when one day is not enough."
         }
       ]
     },

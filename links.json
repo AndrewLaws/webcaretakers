@@ -7,6 +7,22 @@
   ],
   "links": [
     {
+      "phrase": "LLM Token Usage Calculator",
+      "url": "/calculators/ai/llm-token-usage-calculator/"
+    },
+    {
+      "phrase": "LLM token calculator",
+      "url": "/calculators/ai/llm-token-usage-calculator/"
+    },
+    {
+      "phrase": "LLM cost calculator",
+      "url": "/calculators/ai/llm-token-usage-calculator/"
+    },
+    {
+      "phrase": "AI calculators",
+      "url": "/calculators/ai/"
+    },
+    {
       "phrase": "Broadband Bandwidth Calculator",
       "url": "/calculators/broadband/broadband-bandwidth-calculator/"
     },
@@ -389,6 +405,18 @@
     {
       "phrase": "sale price calculator",
       "url": "/calculators/math/discount-calculator/"
+    },
+    {
+      "phrase": "Pomodoro Session Planner",
+      "url": "/calculators/productivity/pomodoro-session-planner/"
+    },
+    {
+      "phrase": "pomodoro session planner",
+      "url": "/calculators/productivity/pomodoro-session-planner/"
+    },
+    {
+      "phrase": "pomodoro calculator",
+      "url": "/calculators/productivity/pomodoro-session-planner/"
     }
   ]
 }
