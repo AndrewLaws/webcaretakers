@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LLM Token Usage Calculator | WebCaretakers</title>
+  <meta name="description" content="Estimate LLM API costs across Claude, GPT, Gemini and DeepSeek. Tokens in and out, per-call cost, daily, monthly and annual totals. Side-by-side model comparison.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/ai/llm-token-usage-calculator/">
+  <meta property="og:title" content="LLM Token Usage Calculator | WebCaretakers">
+  <meta property="og:description" content="Estimate LLM API costs across Claude, GPT, Gemini and DeepSeek. Side-by-side model comparison.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/ai/llm-token-usage-calculator/">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var _stored = null;
+    try { _stored = localStorage.getItem('cookie-consent'); } catch (e) {}
+    var _initial = _stored === 'granted' ? 'granted' : 'denied';
+    gtag('consent', 'default', {
+      ad_storage: _initial, analytics_storage: _initial,
+      ad_user_data: _initial, ad_personalization: _initial,
+      functionality_storage: 'granted', security_storage: 'granted',
+      wait_for_update: 500
+    });
+  </script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "LLM Token Usage Calculator",
+    "url": "https://webcaretakers.com/calculators/ai/llm-token-usage-calculator/",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0" },
+    "author": {
+      "@type": "Person",
+      "name": "Andrew Laws",
+      "url": "https://yeseo.io/"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Why is my actual bill different from this estimate?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Three reasons usually. First, the calculator uses a 4-characters-per-token approximation, which lands inside roughly 15% of the true tokeniser count for English prose but drifts further for code, JSON and non-Latin scripts. Second, real workloads include retries, system prompts you forgot, conversation history, and the occasional runaway response. Third, this tool does not model prompt-caching discounts, batch-API discounts, image or audio tokens, or vision add-ons. Treat the number as a first-pass estimate, not an invoice." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is a token?",
+        "acceptedAnswer": { "@type": "Answer", "text": "A token is the unit a language model bills on. Roughly speaking, a token is about four characters of English text, or three quarters of a word. Different model families (GPT, Claude, Gemini) use slightly different tokenisers, so the exact count for the same prompt varies between providers. If you need the precise number, paste the text into the provider's official tokeniser tool or call their count-tokens endpoint." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does this include caching or batch discounts?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. The figures are standard, non-cached, non-batch list prices. Anthropic, OpenAI and Google all offer prompt caching that knocks 50 to 90 percent off repeated input tokens, and batch APIs that knock another 50 percent off in exchange for slower turnaround. If you are running a high-volume workload with stable system prompts, your real bill will be lower than this calculator suggests." }
+      },
+      {
+        "@type": "Question",
+        "name": "How often is the pricing updated?",
+        "acceptedAnswer": { "@type": "Answer", "text": "The Last verified date on the page tells you when the figures were last checked against the providers' official pricing pages. Pricing is baked into the page so it is fast and works without any API calls, but that means it can drift if a provider drops their prices and we have not yet pushed the update. Always sanity-check against the provider's own pricing page before signing off a budget." }
+      },
+      {
+        "@type": "Question",
+        "name": "What about embedding models?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Embedding models are priced separately from chat models, and the cost shape is different: you pay per token of input only, no output tokens. They are also typically two or three orders of magnitude cheaper. This calculator focuses on chat and completion models, which is where the bulk of LLM spend sits. If you need an embedding cost estimate, multiply your total document tokens by the provider's embedding rate (often a few cents per million tokens)." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-banner-heading" aria-describedby="cookie-banner-text" hidden>
+    <div class="cookie-banner__inner">
+      <h2 id="cookie-banner-heading" class="cookie-banner__heading">A quick word about cookies</h2>
+      <p id="cookie-banner-text" class="cookie-banner__text">
+        We use cookies for analytics, so we can see which calculators people actually use and which ones need work. Nothing creepy, nothing sold on. You can say yes, say no, or read the <a href="/privacy/">privacy policy</a> first. Your choice sticks.
+      </p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-reject>Reject</button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>Accept</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var KEY = 'cookie-consent';
+      var banner = document.querySelector('[data-cookie-banner]');
+      if (!banner) return;
+      var stored = null;
+      try { stored = localStorage.getItem(KEY); } catch (e) {}
+      if (stored !== 'granted' && stored !== 'denied') { banner.hidden = false; }
+      function record(choice) {
+        try { localStorage.setItem(KEY, choice); } catch (e) {}
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('consent', 'update', {
+          ad_storage: choice, analytics_storage: choice,
+          ad_user_data: choice, ad_personalization: choice
+        });
+        banner.hidden = true;
+      }
+      var accept = banner.querySelector('[data-cookie-accept]');
+      var reject = banner.querySelector('[data-cookie-reject]');
+      if (accept) accept.addEventListener('click', function () { record('granted'); });
+      if (reject) reject.addEventListener('click', function () { record('denied'); });
+    })();
+  </script>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">WebCaretakers</a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <ul class="primary-nav__list">
+          <li class="primary-nav__item primary-nav__item--has-menu">
+            <button type="button" class="primary-nav__link" data-menu-toggle aria-haspopup="true" aria-expanded="false">Calculators <span class="primary-nav__caret" aria-hidden="true">▾</span></button>
+            <ul class="primary-nav__submenu">
+              <li><a href="/calculators/ai/">AI</a></li>
+              <li><a href="/calculators/broadband/">Broadband</a></li>
+              <li><a href="/calculators/business/">Business</a></li>
+              <li><a href="/calculators/conversions/">Conversions</a></li>
+              <li><a href="/calculators/finance/">Finance</a></li>
+              <li><a href="/calculators/fun/">Fun</a></li>
+              <li><a href="/calculators/health/">Health</a></li>
+              <li><a href="/calculators/images/">Images</a></li>
+              <li><a href="/calculators/math/">Math</a></li>
+              <li><a href="/calculators/productivity/">Productivity</a></li>
+              <li><a href="/calculators/property/">Property</a></li>
+              <li><a href="/calculators/seo/">SEO</a></li>
+              <li><a href="/calculators/wedding/">Wedding</a></li>
+              <li><a href="/calculators/writing/">Writing</a></li>
+              <li class="primary-nav__submenu-sep"><a href="/calculators/">See all calculators</a></li>
+            </ul>
+          </li>
+          <li class="primary-nav__item"><a href="/about/" class="primary-nav__link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <main id="main-content">
+      <div class="container">
+        <nav aria-label="Breadcrumb" class="breadcrumbs">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/calculators/">Calculators</a></li>
+            <li><a href="/calculators/ai/">AI</a></li>
+            <li aria-current="page">LLM Token Usage Calculator</li>
+          </ol>
+        </nav>
+
+        <h1>LLM Token Usage Calculator</h1>
+        <p class="intro">Work out what an LLM workload actually costs before you commit to it. Paste a sample prompt or type the token counts straight in, set how often you'll call the model, and see the same workload priced across Claude, GPT, Gemini and DeepSeek side by side. All in your browser, all in USD (which is how every API bills, regardless of where you live).</p>
+
+        <section class="eli5" aria-label="Plain-English explanation">
+          <h2>Explain like I'm 5 (what even is this calculator?)</h2>
+          <p>Big language models charge you for the words you send them and the words they send back. The unit is a token, which is roughly four English characters. This tool turns "I want to ask Claude 500 questions a day" into a number on a credit card statement, and shows what the same workload would cost on the other big AI providers so you can pick the cheapest one that does the job.</p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="in-content" aria-hidden="true"></div>
+
+        <section class="calculator-card">
+          <h2>Calculate</h2>
+          <form id="llm-form" class="calc-form" novalidate>
+            <div class="calc-row">
+              <label for="llm-input-mode">Input length</label>
+              <select id="llm-input-mode" data-input-mode aria-label="Input mode">
+                <option value="paste" selected>Paste sample prompt</option>
+                <option value="tokens">Type token count directly</option>
+              </select>
+            </div>
+
+            <div class="calc-row" data-paste-row>
+              <label for="llm-input-text">Sample prompt (we'll estimate the tokens)</label>
+              <textarea id="llm-input-text" data-input-text rows="5" placeholder="Paste a representative prompt here. Roughly four characters per token."></textarea>
+            </div>
+
+            <div class="calc-row" data-input-tokens-row hidden>
+              <label for="llm-input-tokens">Input tokens per call</label>
+              <input type="number" id="llm-input-tokens" data-input-tokens min="0" step="1" value="500">
+            </div>
+
+            <div class="calc-row">
+              <label for="llm-output-tokens">Expected output tokens per call</label>
+              <input type="number" id="llm-output-tokens" data-output-tokens min="0" step="1" value="500">
+            </div>
+
+            <div class="calc-row">
+              <label for="llm-frequency">How often will you call it?</label>
+              <select id="llm-frequency" data-frequency aria-label="Call frequency unit">
+                <option value="perDay" selected>Calls per day</option>
+                <option value="perMonth">Calls per month</option>
+              </select>
+            </div>
+
+            <div class="calc-row">
+              <label for="llm-calls">Number of calls</label>
+              <input type="number" id="llm-calls" data-calls min="0" step="1" value="1000">
+            </div>
+
+            <div class="calc-row">
+              <label for="llm-primary-model">Primary model (the one you'd pick first)</label>
+              <select id="llm-primary-model" data-primary-model aria-label="Primary model">
+                <!-- populated from MODELS -->
+              </select>
+            </div>
+
+            <button type="submit" data-calculate>Calculate</button>
+          </form>
+
+          <div data-calculator-results class="calculator-results">
+            <div class="result-summary">
+              <p class="result-display" data-result>Enter your numbers, then press Calculate.</p>
+            </div>
+
+            <div class="mort-breakdown" data-breakdown hidden>
+              <h3>Your primary model</h3>
+              <ul>
+                <li><span>Estimated input tokens</span><strong data-line-input-tokens>–</strong></li>
+                <li><span>Estimated output tokens</span><strong data-line-output-tokens>–</strong></li>
+                <li><span>Per-call cost</span><strong data-line-per-call>–</strong></li>
+                <li><span>Daily cost</span><strong data-line-daily>–</strong></li>
+                <li><span>Monthly cost</span><strong data-line-monthly>–</strong></li>
+                <li class="mort-breakdown__total"><span>Annual cost</span><strong data-line-annual>–</strong></li>
+              </ul>
+
+              <h3>Same workload, every model</h3>
+              <p class="result-caption" data-pricing-caption>
+                Pricing per 1M tokens, USD. Last verified: <span data-last-verified>—</span>.
+              </p>
+              <div class="table-wrap">
+                <table class="comparison-table" data-comparison-table>
+                  <thead>
+                    <tr>
+                      <th scope="col">Model</th>
+                      <th scope="col">Input $/1M</th>
+                      <th scope="col">Output $/1M</th>
+                      <th scope="col">Per call</th>
+                      <th scope="col">Monthly</th>
+                      <th scope="col">Annual</th>
+                    </tr>
+                  </thead>
+                  <tbody data-comparison-body></tbody>
+                </table>
+              </div>
+            </div>
+
+            <details class="prove-it" data-prove-it>
+              <summary>Prove it</summary>
+              <div data-prove-it-body></div>
+              <p class="prove-it-source">Token estimation uses the four-characters-per-token rule of thumb (the canonical Anthropic and OpenAI shorthand for English prose). Real tokenisers will give a slightly different count, usually within 15%. Cost is (tokens ÷ 1,000,000) × price-per-million, summed across input and output. Monthly uses 30.4375 days (365.25 ÷ 12) so daily, monthly and annual figures stay consistent. Pricing is the standard non-cached, non-batch list price published by each provider.</p>
+            </details>
+          </div>
+
+          <p class="bookmark-nudge">
+            Useful? Save this calculator: press <kbd data-bookmark-shortcut>Ctrl</kbd> + <kbd>D</kbd> to bookmark it.
+          </p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="below-results" aria-hidden="true"></div>
+
+        <section class="long-form">
+          <h2>What this calculator is actually doing</h2>
+          <p>An LLM API bills you per token. A token is roughly four characters of English, give or take, depending on the tokeniser. You pay one rate for the tokens you send (the prompt), and a higher rate for the tokens the model generates back. Multiply those two numbers by your call volume and you get a monthly bill. That's it. The maths is not difficult; the difficult bit is getting honest figures for the inputs, and noticing when one provider quietly changes a price.</p>
+          <p>The token estimator here uses the four-chars-per-token approximation rather than running a full tokeniser in your browser. The proper tokeniser bundles (tiktoken for OpenAI, Anthropic's tokeniser, Gemini's count-tokens endpoint) are either heavy enough to noticeably slow the page, locked behind an API call, or both. The four-chars-per-token shorthand is the same one Anthropic and OpenAI use in their own back-of-the-envelope docs, and it lands inside about 15% of the true count for normal prose. If you need the exact figure, every provider has a free tokeniser tool on their site or a count-tokens endpoint.</p>
+
+          <h2>Honest caveats, in plain English</h2>
+          <p>A few things this calculator does not model, all of which can move the real bill in either direction.</p>
+          <h3>Tokenisation differs by model family</h3>
+          <p>GPT, Claude and Gemini use different tokenisers. The same English paragraph might be 100 tokens for one and 110 for another. For code, JSON or Chinese, the gap can be wider. Call this calculator's number a sensible estimate, not an exact one.</p>
+          <h3>Cached and batch pricing not modelled</h3>
+          <p>Anthropic, OpenAI and Google all offer prompt caching, which knocks 50 to 90 percent off repeated input tokens (typically your system prompt and any large reference document). They also offer batch APIs that take roughly half off the list price in exchange for processing the request within 24 hours. If your workload is heavy on stable system prompts, your real bill will be markedly lower than the figure here.</p>
+          <h3>Image, audio and vision tokens excluded</h3>
+          <p>Sending an image or an audio clip costs tokens too, but the conversion rules are model-specific and ugly. Vision-enabled requests on GPT-4o, Claude and Gemini all have their own image-token-per-megapixel rules, and the audio models (Whisper, Gemini audio) bill per second rather than per token. None of that is modelled here. If your workload is multimodal, treat this number as the text-only floor.</p>
+          <h3>Fine-tuning not included</h3>
+          <p>Fine-tuned models cost more per token to call, and there is a one-off training fee on top. If you are using a fine-tuned model in production, look up the inference rate for your specific tuned model and substitute it for the relevant base price.</p>
+
+          <h2>How to read the comparison table</h2>
+          <p>The table sorts cheapest first. That's a useful starting point, but it is not the whole story. The cheap models are cheap because they are smaller; on a hard task they may need more retries, longer chain-of-thought, or hand-holding from a cleverer model in a fallback chain. Run a representative test on each candidate before committing your spending to the cheapest row.</p>
+          <p>If two providers are within a few percent of each other on price, your tiebreaker is usually quality, latency, or which one your team already has accounts and observability set up for. The provider switching cost is real, and almost never worth it for a small price delta.</p>
+
+          <h2>Trimming an LLM bill, in rough order of impact</h2>
+          <p>If the number this calculator just produced gave you a fright, the highest-leverage moves are usually:</p>
+          <ul>
+            <li><strong>Cap output tokens.</strong> Set max_tokens. Models will happily ramble at 75 dollars per million if you let them.</li>
+            <li><strong>Move the workhorse to a smaller model.</strong> Most tasks do not need the flagship. Sonnet, Flash, GPT-5 mini and DeepSeek will all handle classification, extraction and short summarisation for a tenth of the cost.</li>
+            <li><strong>Turn on prompt caching.</strong> If your system prompt is more than a few hundred tokens and you call the API more than once, caching is free money.</li>
+            <li><strong>Batch the non-urgent stuff.</strong> Anything that doesn't need to come back inside ten seconds can run on the batch API at half price.</li>
+            <li><strong>Tighten the prompt.</strong> Long, hand-crafted system prompts with twelve few-shot examples are reassuring to write but expensive to run a million times. A short prompt that's been tested properly usually beats a long one.</li>
+          </ul>
+
+          <!-- related-calculators-block -->
+          <h2>Related calculators</h2>
+          <p>Other tools for the running-a-business numbers around AI work.</p>
+          <ul class="related-calculators">
+            <li><a href="/calculators/business/roi-calculator/">Work out the ROI on the workload you're costing here</a></li>
+            <li><a href="/calculators/business/freelance-day-rate-calculator/">Day rate calculator if you're billing AI work to a client</a></li>
+            <li><a href="/calculators/writing/word-count/">Word and character count for the prompt you're about to paste</a></li>
+            <li><a href="/calculators/writing/read-time-calculator/">Read-time calculator for long context windows</a></li>
+          </ul>
+        </section>
+
+        <section class="faq" aria-labelledby="faq-heading">
+          <h2 id="faq-heading">Frequently asked questions</h2>
+          <details>
+            <summary>Why is my actual bill different from this estimate?</summary>
+            <p>Three reasons usually. The four-chars-per-token approximation is close but not exact (about ±15% for English prose, more for code or non-Latin scripts). Real workloads include retries, system prompts, conversation history and the occasional runaway response. And this tool does not model prompt caching, batch discounts, image or audio tokens, or vision add-ons. Treat the figure as a first-pass estimate, not an invoice.</p>
+          </details>
+          <details>
+            <summary>What is a token?</summary>
+            <p>A token is the unit a language model bills on. Roughly four characters of English text, or about three quarters of a word. Different model families use different tokenisers, so the exact count for the same prompt varies between providers. For the precise number, paste the text into the provider's official tokeniser tool or call their count-tokens endpoint.</p>
+          </details>
+          <details>
+            <summary>Does this include caching or batch discounts?</summary>
+            <p>No. The figures are standard, non-cached, non-batch list prices. Prompt caching can knock 50 to 90 percent off repeated input tokens, and batch APIs take another 50 percent off in exchange for slower turnaround. High-volume workloads with stable system prompts will pay less than this calculator suggests.</p>
+          </details>
+          <details>
+            <summary>How often is the pricing updated?</summary>
+            <p>The Last verified date on the page tells you when the figures were last checked against the providers' official pricing pages. Pricing is baked into the page so it loads fast and works without any API calls, but that means it can drift if a provider drops their prices and we have not yet pushed the update. Sanity-check against the provider's own pricing page before signing off a budget.</p>
+          </details>
+          <details>
+            <summary>What about embedding models?</summary>
+            <p>Embedding models are priced separately, with input-only billing and rates two or three orders of magnitude lower than chat models. This calculator focuses on chat and completion models, which is where the real spend sits. For an embedding cost, multiply your total document tokens by the provider's embedding rate (often a few cents per million).</p>
+          </details>
+          <details>
+            <summary>Does this calculator send my prompts anywhere?</summary>
+            <p>No. Everything runs in your browser. The text you paste never leaves your device.</p>
+          </details>
+        </section>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="ad-slot" data-ad-slot="sidebar" aria-hidden="true"></div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="site-footer-nav" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/calculators/">All calculators</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+
+      <section class="site-disclaimer" data-disclaimer aria-labelledby="disclaimer-heading">
+        <h2 id="disclaimer-heading">A quick, necessary word</h2>
+        <p>Every calculator on this site is built to give you a sensible, well-reasoned estimate. It is, however, exactly that: an estimate, for general information only. Nothing you see here is professional, legal, financial, medical, or tax advice, and it should not be treated as such.</p>
+        <p>Before you make a decision that actually matters, talk to a qualified professional who knows your specific situation: an accountant, a solicitor, a doctor, an IT consultant, whoever fits the question. They can factor in the bits a generic tool can't.</p>
+        <p>We take no liability and accept no responsibility for any loss, damage, or questionable life choice arising from acting on the numbers you see here. Use the results as a starting point for a better conversation, not as the final word.</p>
+        <p><strong>Affiliate disclosure:</strong> some links on this site are affiliate links. If you click through and buy or sign up for something, we may earn a small commission at no extra cost to you. It helps keep the calculators free and ad-light. We only recommend things we'd point a friend towards.</p>
+      </section>
+      <p class="site-copyright">&copy; 2026 WebCaretakers. All rights reserved.</p>
+      <p class="site-legal">WebCaretakers is a trading name of <a href="https://yeseo.io/" rel="noopener">Andrew Laws Associates Ltd</a>, registered in England and Wales (company no. 08602332). ICO registration ZA726704.</p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/calculators/llm-token-usage.js"></script>
+  <script>
+    (function () {
+      'use strict';
+
+      var shortcutEl = document.querySelector('[data-bookmark-shortcut]');
+      if (shortcutEl) {
+        var isMac = /Mac|iPhone|iPad|iPod/i.test(navigator.platform || navigator.userAgent);
+        shortcutEl.textContent = isMac ? '\u2318' : 'Ctrl';
+      }
+
+      var lib = window.LLMTokenUsage;
+      if (!lib) return;
+
+      var form = document.getElementById('llm-form');
+      if (!form) return;
+
+      var inputModeEl = form.querySelector('[data-input-mode]');
+      var pasteRow = form.querySelector('[data-paste-row]');
+      var inputTokensRow = form.querySelector('[data-input-tokens-row]');
+      var inputTextEl = form.querySelector('[data-input-text]');
+      var inputTokensEl = form.querySelector('[data-input-tokens]');
+      var outputTokensEl = form.querySelector('[data-output-tokens]');
+      var frequencyEl = form.querySelector('[data-frequency]');
+      var callsEl = form.querySelector('[data-calls]');
+      var primaryModelEl = form.querySelector('[data-primary-model]');
+
+      var resultEl = document.querySelector('[data-result]');
+      var breakdown = document.querySelector('[data-breakdown]');
+      var lineInputTokens = document.querySelector('[data-line-input-tokens]');
+      var lineOutputTokens = document.querySelector('[data-line-output-tokens]');
+      var linePerCall = document.querySelector('[data-line-per-call]');
+      var lineDaily = document.querySelector('[data-line-daily]');
+      var lineMonthly = document.querySelector('[data-line-monthly]');
+      var lineAnnual = document.querySelector('[data-line-annual]');
+      var lastVerifiedEl = document.querySelector('[data-last-verified]');
+      var comparisonBody = document.querySelector('[data-comparison-body]');
+      var proveBody = document.querySelector('[data-prove-it-body]');
+
+      // Populate the model dropdown from MODELS, default-select Claude Sonnet 4.
+      lib.MODELS.forEach(function (m) {
+        var opt = document.createElement('option');
+        opt.value = m.id;
+        opt.textContent = m.vendor + ' — ' + m.name;
+        if (m.id === 'claude-sonnet-4') opt.selected = true;
+        primaryModelEl.appendChild(opt);
+      });
+
+      lastVerifiedEl.textContent = lib.PRICING_LAST_VERIFIED;
+
+      function syncInputMode() {
+        if (inputModeEl.value === 'tokens') {
+          pasteRow.hidden = true;
+          inputTokensRow.hidden = false;
+        } else {
+          pasteRow.hidden = false;
+          inputTokensRow.hidden = true;
+        }
+      }
+      inputModeEl.addEventListener('change', syncInputMode);
+      syncInputMode();
+
+      function fmtUSD(n, dp) {
+        if (typeof n !== 'number' || !isFinite(n)) return '—';
+        var digits = (typeof dp === 'number') ? dp : 2;
+        return '$' + n.toLocaleString('en-US', { minimumFractionDigits: digits, maximumFractionDigits: digits });
+      }
+
+      function fmtPerCall(n) {
+        if (n === 0) return '$0.00';
+        if (n < 0.01) return '$' + n.toFixed(6);
+        if (n < 1) return '$' + n.toFixed(4);
+        return fmtUSD(n, 2);
+      }
+
+      function fmtInt(n) {
+        if (typeof n !== 'number' || !isFinite(n)) return '—';
+        return n.toLocaleString('en-GB');
+      }
+
+      // Light interaction tracking
+      [inputModeEl, inputTextEl, inputTokensEl, outputTokensEl, frequencyEl, callsEl, primaryModelEl].forEach(function (el) {
+        if (!el) return;
+        el.addEventListener('input', function () {
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: 'calculator_interaction',
+            calculator_name: 'LLM Token Usage Calculator',
+            field_name: el.name || el.id || el.getAttribute('data-input-mode') || ''
+          });
+        });
+      });
+
+      function getInputTokens() {
+        if (inputModeEl.value === 'tokens') {
+          var n = parseInt(inputTokensEl.value, 10);
+          return (isFinite(n) && n >= 0) ? n : 0;
+        }
+        return lib.estimateTokens(inputTextEl.value || '');
+      }
+
+      function getCallsPerDay() {
+        var n = parseFloat(callsEl.value);
+        if (!isFinite(n) || n < 0) return 0;
+        if (frequencyEl.value === 'perMonth') return n / 30.4375;
+        return n;
+      }
+
+      function findModel(id) {
+        for (var i = 0; i < lib.MODELS.length; i++) {
+          if (lib.MODELS[i].id === id) return lib.MODELS[i];
+        }
+        return lib.MODELS[0];
+      }
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        var inputTokens = getInputTokens();
+        var outputTokens = parseInt(outputTokensEl.value, 10);
+        if (!isFinite(outputTokens) || outputTokens < 0) outputTokens = 0;
+        var callsPerDay = getCallsPerDay();
+        var primary = findModel(primaryModelEl.value);
+
+        try {
+          var perCall = lib.costForRun({
+            model: primary,
+            inputTokens: inputTokens,
+            outputTokens: outputTokens,
+          });
+          var totals = lib.projectUsage({
+            perCallCost: perCall.total,
+            callsPerDay: callsPerDay,
+          });
+          var rows = lib.modelComparison({
+            inputTokens: inputTokens,
+            outputTokens: outputTokens,
+            callsPerDay: callsPerDay,
+          });
+
+          breakdown.hidden = false;
+          resultEl.textContent = primary.name + ': ' + fmtUSD(totals.monthly, 2) + ' per month at ' +
+            fmtInt(Math.round(callsPerDay)) + ' calls/day.';
+
+          lineInputTokens.textContent = fmtInt(inputTokens) + ' (approx, ±15%)';
+          lineOutputTokens.textContent = fmtInt(outputTokens);
+          linePerCall.textContent = fmtPerCall(perCall.total);
+          lineDaily.textContent = fmtUSD(totals.daily, 2);
+          lineMonthly.textContent = fmtUSD(totals.monthly, 2);
+          lineAnnual.textContent = fmtUSD(totals.annual, 2);
+
+          // Render comparison table
+          comparisonBody.innerHTML = '';
+          rows.forEach(function (r) {
+            var tr = document.createElement('tr');
+            tr.setAttribute('data-comparison-row', r.id);
+            if (r.id === primary.id) tr.classList.add('comparison-table__row--primary');
+            tr.innerHTML =
+              '<th scope="row">' + r.vendor + ' ' + r.name + '</th>' +
+              '<td>' + fmtUSD(r.inputPer1M, 2) + '</td>' +
+              '<td>' + fmtUSD(r.outputPer1M, 2) + '</td>' +
+              '<td>' + fmtPerCall(r.perCall) + '</td>' +
+              '<td>' + fmtUSD(r.monthly, 2) + '</td>' +
+              '<td>' + fmtUSD(r.annual, 2) + '</td>';
+            comparisonBody.appendChild(tr);
+          });
+
+          proveBody.innerHTML =
+            '<ul>' +
+              '<li><span>Input tokens (approx)</span><strong>' + fmtInt(inputTokens) + '</strong></li>' +
+              '<li><span>Output tokens</span><strong>' + fmtInt(outputTokens) + '</strong></li>' +
+              '<li><span>' + primary.name + ' input price</span><strong>' + fmtUSD(primary.inputPer1M, 2) + ' / 1M</strong></li>' +
+              '<li><span>' + primary.name + ' output price</span><strong>' + fmtUSD(primary.outputPer1M, 2) + ' / 1M</strong></li>' +
+              '<li><span>Input cost per call</span><strong>' + fmtPerCall(perCall.inputCost) + '</strong></li>' +
+              '<li><span>Output cost per call</span><strong>' + fmtPerCall(perCall.outputCost) + '</strong></li>' +
+              '<li><span>Per-call cost</span><strong>' + fmtPerCall(perCall.total) + '</strong></li>' +
+              '<li><span>Calls per day (normalised)</span><strong>' + fmtInt(Math.round(callsPerDay)) + '</strong></li>' +
+              '<li><span>Monthly cost (×30.4375)</span><strong>' + fmtUSD(totals.monthly, 2) + '</strong></li>' +
+            '</ul>';
+
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: 'calculator_result',
+            calculator_name: 'LLM Token Usage Calculator',
+            primary_model: primary.id,
+            input_tokens: inputTokens,
+            output_tokens: outputTokens,
+            calls_per_day: callsPerDay,
+            per_call_cost: perCall.total,
+            monthly_cost: totals.monthly,
+            annual_cost: totals.annual,
+          });
+        } catch (err) {
+          resultEl.textContent = err.message || 'Could not calculate.';
+          breakdown.hidden = true;
+          proveBody.innerHTML = '';
+        }
+      });
+    })();
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>
