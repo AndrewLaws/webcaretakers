@@ -28,7 +28,56 @@
   document.head.appendChild(s);
 })();
 
-// Calculator interaction and DataLayer event handling
+// Mobile primary-nav: inject a hamburger toggle into the site header.
+// We do this in JS so the per-page HTML doesn't have to change. CSS hides
+// the toggle on wider viewports and shows the nav inline as before.
+(function () {
+  'use strict';
+  var header = document.querySelector('.site-header');
+  if (!header) return;
+  var nav = header.querySelector('.primary-nav');
+  if (!nav) return;
+  if (header.querySelector('[data-nav-toggle]')) return;
+
+  var toggle = document.createElement('button');
+  toggle.type = 'button';
+  toggle.className = 'site-header__nav-toggle';
+  toggle.setAttribute('data-nav-toggle', '');
+  toggle.setAttribute('aria-controls', nav.id || 'primary-nav');
+  toggle.setAttribute('aria-expanded', 'false');
+  toggle.setAttribute('aria-label', 'Show menu');
+  toggle.innerHTML =
+    '<span class="site-header__nav-toggle-bars" aria-hidden="true">' +
+      '<span></span><span></span><span></span>' +
+    '</span>';
+  if (!nav.id) nav.id = 'primary-nav';
+
+  // Place the toggle as the last child of the header container so it can
+  // float to the right of the logo on mobile.
+  var container = header.querySelector('.container') || header;
+  container.appendChild(toggle);
+
+  function setOpen(open) {
+    header.toggleAttribute('data-nav-open', open);
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    toggle.setAttribute('aria-label', open ? 'Hide menu' : 'Show menu');
+  }
+
+  toggle.addEventListener('click', function () {
+    setOpen(toggle.getAttribute('aria-expanded') !== 'true');
+  });
+
+  // Close the panel when a link inside the nav is tapped, so navigating
+  // categories on mobile feels right.
+  nav.addEventListener('click', function (e) {
+    if (e.target.closest('a')) setOpen(false);
+  });
+
+  // Escape closes the panel.
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') setOpen(false);
+  });
+})();
 
 // Primary nav: click-to-toggle submenus (keyboard/mobile).
 // Hover and focus-within are handled in CSS, so this only adds click + Escape.

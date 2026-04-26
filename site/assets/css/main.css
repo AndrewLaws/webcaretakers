@@ -261,14 +261,87 @@ body {
   padding-top: 0.25rem;
 }
 
-@media (max-width: 600px) {
+/* Hamburger toggle button: hidden by default, shown on narrow viewports.
+   Injected by main.js so per-page HTML doesn't need to change. */
+.site-header__nav-toggle {
+  display: none;
+  background: transparent;
+  border: 1px solid #d4d8e0;
+  border-radius: 6px;
+  padding: 0.5rem 0.65rem;
+  cursor: pointer;
+  margin-left: auto;
+}
+.site-header__nav-toggle:focus-visible {
+  outline: 2px solid #4f46e5;
+  outline-offset: 2px;
+}
+.site-header__nav-toggle-bars {
+  display: inline-block;
+  width: 22px;
+  height: 16px;
+  position: relative;
+}
+.site-header__nav-toggle-bars span {
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #1a1a1a;
+  border-radius: 2px;
+  transition: transform 0.18s ease, opacity 0.18s ease, top 0.18s ease;
+}
+.site-header__nav-toggle-bars span:nth-child(1) { top: 2px; }
+.site-header__nav-toggle-bars span:nth-child(2) { top: 7px; }
+.site-header__nav-toggle-bars span:nth-child(3) { top: 12px; }
+.site-header__nav-toggle[aria-expanded="true"] .site-header__nav-toggle-bars span:nth-child(1) {
+  top: 7px;
+  transform: rotate(45deg);
+}
+.site-header__nav-toggle[aria-expanded="true"] .site-header__nav-toggle-bars span:nth-child(2) {
+  opacity: 0;
+}
+.site-header__nav-toggle[aria-expanded="true"] .site-header__nav-toggle-bars span:nth-child(3) {
+  top: 7px;
+  transform: rotate(-45deg);
+}
+
+@media (max-width: 720px) {
+  .site-header__nav-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .site-header .container {
+    flex-wrap: nowrap;
+  }
+  /* Collapse nav by default on mobile; expand when header has data-nav-open. */
+  .site-header .primary-nav {
+    display: none;
+    flex-basis: 100%;
+    width: 100%;
+    order: 3;
+  }
+  .site-header[data-nav-open] .primary-nav {
+    display: block;
+  }
+  .site-header[data-nav-open] .container {
+    flex-wrap: wrap;
+  }
   .primary-nav__list {
     width: 100%;
     flex-direction: column;
     align-items: flex-start;
     gap: 0.25rem;
+    padding-top: 0.5rem;
   }
   .primary-nav__item { width: 100%; }
+  .primary-nav__link {
+    width: 100%;
+    padding: 0.6rem 0.25rem;
+    font-size: 1rem;
+  }
   .primary-nav__submenu {
     position: static;
     display: block;
@@ -284,7 +357,11 @@ body {
     display: block;
   }
   .primary-nav__submenu-sep { grid-column: auto; }
-  .primary-nav__submenu a { white-space: normal; }
+  .primary-nav__submenu a {
+    white-space: normal;
+    padding: 0.55rem 0.75rem;
+    font-size: 0.95rem;
+  }
 }
 
 /* Category hub + all-calculators listing */
