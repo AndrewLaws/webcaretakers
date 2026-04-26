@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Discount Calculator: Sale Price, Stacked Discounts, Tax | WebCaretakers</title>
+  <meta name="description" content="Work out a sale price from a percent off, stacked discounts, tax-inclusive or exclusive prices, and Buy X Get Y Free deals. Plain English, workings shown.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/math/discount-calculator/">
+  <meta property="og:title" content="Discount Calculator | WebCaretakers">
+  <meta property="og:description" content="Sale price, stacked discounts, tax, and Buy X Get Y Free in one tool.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/math/discount-calculator/">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var _stored = null;
+    try { _stored = localStorage.getItem('cookie-consent'); } catch (e) {}
+    var _initial = _stored === 'granted' ? 'granted' : 'denied';
+    gtag('consent', 'default', {
+      ad_storage: _initial, analytics_storage: _initial,
+      ad_user_data: _initial, ad_personalization: _initial,
+      functionality_storage: 'granted', security_storage: 'granted',
+      wait_for_update: 500
+    });
+  </script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Discount Calculator",
+    "url": "https://webcaretakers.com/calculators/math/discount-calculator/",
+    "description": "Sale price calculator covering single discounts, stacked discounts, tax-inclusive or exclusive pricing, and Buy X Get Y Free deals.",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Any",
+    "inLanguage": "en-GB",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "GBP" },
+    "author": { "@type": "Person", "name": "Andrew Laws", "url": "https://yeseo.io/" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How do I calculate a discount?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Multiply the original price by the discount percent, divide by 100, and take that off. For 25% off £80: 80 \u00d7 25 \u00f7 100 = 20 saved, leaving 80 \u2212 20 = £60. The shortcut is to multiply the original price by (1 \u2212 discount/100), so 80 \u00d7 0.75 = 60." }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I work out the original price from a sale price?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Divide the sale price by (1 \u2212 discount/100). A jumper at £45 with 25% off had an original price of 45 \u00f7 0.75 = £60. The amount saved is the difference: £15." }
+      },
+      {
+        "@type": "Question",
+        "name": "Do stacked discounts add up?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. Each discount is applied to the running price, not the original. 30% off then 20% off is 1 \u2212 (0.7 \u00d7 0.8) = 0.44, so 44% off in total, not 50%. The order does not change the final number, but the apparent total is always less than the sum." }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I work out percentage saved?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Take the amount saved, divide by the original price, multiply by 100. Save £15 on a £60 item: (15 \u00f7 60) \u00d7 100 = 25%. Or take the sale price and original: 1 \u2212 (sale \u00f7 original) gives the same fraction." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is Buy One Get One Half Price as a discount?",
+        "acceptedAnswer": { "@type": "Answer", "text": "You pay full price for one and half price for the other. Two items, total cost 1.5 \u00d7 the unit price, so the per-unit price is 0.75 \u00d7 the original. That is a 25% effective discount, not 50%." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-banner-heading" aria-describedby="cookie-banner-text" hidden>
+    <div class="cookie-banner__inner">
+      <h2 id="cookie-banner-heading" class="cookie-banner__heading">A quick word about cookies</h2>
+      <p id="cookie-banner-text" class="cookie-banner__text">
+        We use cookies for analytics, so we can see which calculators people actually use and which ones need work. Nothing creepy, nothing sold on. You can say yes, say no, or read the <a href="/privacy/">privacy policy</a> first. Your choice sticks.
+      </p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-reject>Reject</button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>Accept</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var KEY = 'cookie-consent';
+      var banner = document.querySelector('[data-cookie-banner]');
+      if (!banner) return;
+      var stored = null;
+      try { stored = localStorage.getItem(KEY); } catch (e) {}
+      if (stored !== 'granted' && stored !== 'denied') { banner.hidden = false; }
+      function record(choice) {
+        try { localStorage.setItem(KEY, choice); } catch (e) {}
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('consent', 'update', {
+          ad_storage: choice, analytics_storage: choice,
+          ad_user_data: choice, ad_personalization: choice
+        });
+        banner.hidden = true;
+      }
+      var accept = banner.querySelector('[data-cookie-accept]');
+      var reject = banner.querySelector('[data-cookie-reject]');
+      if (accept) accept.addEventListener('click', function () { record('granted'); });
+      if (reject) reject.addEventListener('click', function () { record('denied'); });
+    })();
+  </script>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">WebCaretakers</a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <ul class="primary-nav__list">
+          <li class="primary-nav__item primary-nav__item--has-menu">
+            <button type="button" class="primary-nav__link" data-menu-toggle aria-haspopup="true" aria-expanded="false">Calculators <span class="primary-nav__caret" aria-hidden="true">&#9662;</span></button>
+            <ul class="primary-nav__submenu">
+              <li><a href="/calculators/broadband/">Broadband</a></li>
+              <li><a href="/calculators/business/">Business</a></li>
+              <li><a href="/calculators/conversions/">Conversions</a></li>
+              <li><a href="/calculators/finance/">Finance</a></li>
+              <li><a href="/calculators/fun/">Fun</a></li>
+              <li><a href="/calculators/health/">Health</a></li>
+              <li><a href="/calculators/images/">Images</a></li>
+              <li><a href="/calculators/math/">Math</a></li>
+              <li><a href="/calculators/productivity/">Productivity</a></li>
+              <li><a href="/calculators/property/">Property</a></li>
+              <li><a href="/calculators/seo/">SEO</a></li>
+              <li><a href="/calculators/wedding/">Wedding</a></li>
+              <li><a href="/calculators/writing/">Writing</a></li>
+              <li class="primary-nav__submenu-sep"><a href="/calculators/">See all calculators</a></li>
+            </ul>
+          </li>
+          <li class="primary-nav__item"><a href="/about/" class="primary-nav__link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <main id="main-content">
+      <div class="container">
+        <nav aria-label="Breadcrumb" class="breadcrumbs">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/calculators/">Calculators</a></li>
+            <li><a href="/calculators/math/">Math</a></li>
+            <li aria-current="page">Discount Calculator</li>
+          </ol>
+        </nav>
+
+        <h1>Discount Calculator</h1>
+        <p class="intro">Work out the sale price from a percent off, stack two or more discounts on top of each other, add or remove tax, or check whether a Buy One Get One deal is as good as it looks. The maths is simple. The retailer marketing is the bit that needs decoding.</p>
+
+        <section class="eli5" aria-label="Plain-English explanation">
+          <h2>Explain like I'm 5 (what this calculator does)</h2>
+          <p>Type a price and a percent off, and it tells you what you actually pay and how much you save. There are four modes: a single discount, several discounts stacked together (which never add up the way the signs suggest), a price with tax added or removed, and Buy X Get Y Free, which is rarely as generous as the poster claims. Currency does not matter; the sums work the same in pounds, dollars, euros or yen.</p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="in-content" aria-hidden="true"></div>
+
+        <section class="calculator-card">
+          <h2>Calculate</h2>
+          <form id="discount-form" class="calc-form" novalidate>
+
+            <div class="calc-row">
+              <label for="disc-mode">Mode</label>
+              <select id="disc-mode" name="mode" data-mode>
+                <option value="single">Single discount</option>
+                <option value="stacked">Stacked discounts</option>
+                <option value="tax">Sales tax / VAT</option>
+                <option value="bogof">Buy X Get Y Free</option>
+              </select>
+            </div>
+
+            <!-- PANEL: Single -->
+            <div data-panel-single>
+              <div class="calc-row">
+                <label for="disc-single-sub">What do you know?</label>
+                <select id="disc-single-sub" name="singleSub" data-single-sub>
+                  <option value="price-percent">Original price + discount %</option>
+                  <option value="price-sale">Original price + sale price</option>
+                  <option value="price-saved">Original price + amount saved</option>
+                </select>
+              </div>
+              <div class="calc-row">
+                <label for="disc-original">Original price</label>
+                <input type="number" id="disc-original" name="original" step="any" min="0" value="100" data-original>
+              </div>
+              <div class="calc-row" data-single-percent-row>
+                <label for="disc-percent">Discount %</label>
+                <input type="number" id="disc-percent" name="percent" step="any" min="0" max="100" value="25" data-percent>
+              </div>
+              <div class="calc-row" data-single-sale-row hidden>
+                <label for="disc-sale">Sale price</label>
+                <input type="number" id="disc-sale" name="sale" step="any" min="0" value="75" data-sale>
+              </div>
+              <div class="calc-row" data-single-saved-row hidden>
+                <label for="disc-saved">Amount saved</label>
+                <input type="number" id="disc-saved" name="saved" step="any" min="0" value="25" data-saved>
+              </div>
+            </div>
+
+            <!-- PANEL: Stacked -->
+            <div data-panel-stacked hidden>
+              <div class="calc-row">
+                <label for="disc-stacked-original">Original price</label>
+                <input type="number" id="disc-stacked-original" name="stackedOriginal" step="any" min="0" value="100" data-stacked-original>
+              </div>
+              <div class="calc-row">
+                <label for="disc-stacked-1">First discount %</label>
+                <input type="number" id="disc-stacked-1" name="stacked1" step="any" min="0" max="100" value="30" data-stacked-1>
+              </div>
+              <div class="calc-row">
+                <label for="disc-stacked-2">Second discount %</label>
+                <input type="number" id="disc-stacked-2" name="stacked2" step="any" min="0" max="100" value="20" data-stacked-2>
+              </div>
+              <div class="calc-row">
+                <label for="disc-stacked-3">Third discount % (optional)</label>
+                <input type="number" id="disc-stacked-3" name="stacked3" step="any" min="0" max="100" placeholder="0" data-stacked-3>
+              </div>
+              <div class="calc-row">
+                <label for="disc-stacked-4">Fourth discount % (optional)</label>
+                <input type="number" id="disc-stacked-4" name="stacked4" step="any" min="0" max="100" placeholder="0" data-stacked-4>
+              </div>
+            </div>
+
+            <!-- PANEL: Tax -->
+            <div data-panel-tax hidden>
+              <div class="calc-row">
+                <label for="disc-tax-mode">Starting price is</label>
+                <select id="disc-tax-mode" name="taxMode" data-tax-mode>
+                  <option value="exclusive">Tax-exclusive (add tax)</option>
+                  <option value="inclusive">Tax-inclusive (remove tax)</option>
+                </select>
+              </div>
+              <div class="calc-row">
+                <label for="disc-tax-price">Price</label>
+                <input type="number" id="disc-tax-price" name="taxPrice" step="any" min="0" value="100" data-tax-price>
+              </div>
+              <div class="calc-row">
+                <label for="disc-tax-rate">Tax / VAT rate %</label>
+                <input type="number" id="disc-tax-rate" name="taxRate" step="any" min="0" value="20" data-tax-rate>
+              </div>
+              <p class="calc-note">For UK-specific VAT bands (20%, 5%, 0%) with band notes, use the <a href="/calculators/business/uk-vat-calculator/">UK VAT Calculator</a>.</p>
+            </div>
+
+            <!-- PANEL: BOGOF -->
+            <div data-panel-bogof hidden>
+              <div class="calc-row">
+                <label for="disc-bogof-buy">Quantity bought (paid for)</label>
+                <input type="number" id="disc-bogof-buy" name="bogofBuy" step="1" min="1" value="2" data-bogof-buy>
+              </div>
+              <div class="calc-row">
+                <label for="disc-bogof-free">Quantity free</label>
+                <input type="number" id="disc-bogof-free" name="bogofFree" step="1" min="0" value="1" data-bogof-free>
+              </div>
+              <div class="calc-row">
+                <label for="disc-bogof-price">Price each</label>
+                <input type="number" id="disc-bogof-price" name="bogofPrice" step="any" min="0" value="10" data-bogof-price>
+              </div>
+            </div>
+
+            <button type="submit" data-calculate>Calculate</button>
+          </form>
+
+          <div data-calculator-results class="calculator-results">
+            <div class="result-summary">
+              <p class="result-display" data-result>Enter values and press Calculate.</p>
+            </div>
+
+            <div class="mort-breakdown" data-breakdown-single hidden>
+              <h3>Single discount</h3>
+              <ul>
+                <li><span>Original price</span><strong data-line-original>&mdash;</strong></li>
+                <li><span>Discount %</span><strong data-line-percent>&mdash;</strong></li>
+                <li><span>Amount saved</span><strong data-line-saved>&mdash;</strong></li>
+                <li class="mort-breakdown__total"><span>Sale price</span><strong data-line-sale>&mdash;</strong></li>
+              </ul>
+            </div>
+
+            <div class="mort-breakdown" data-breakdown-stacked hidden>
+              <h3>Running price after each discount</h3>
+              <ul data-stacked-steps></ul>
+              <h3>Effective discount</h3>
+              <ul>
+                <li><span>Final price</span><strong data-line-stacked-final>&mdash;</strong></li>
+                <li><span>Total amount saved</span><strong data-line-stacked-saved>&mdash;</strong></li>
+                <li class="mort-breakdown__total"><span>Effective combined discount</span><strong data-line-stacked-effective>&mdash;</strong></li>
+              </ul>
+              <p class="calc-note">Stacked discounts do not add. 30% then 20% is 1 minus (0.7 times 0.8) = 0.44, so 44% off, not 50%.</p>
+            </div>
+
+            <div class="mort-breakdown" data-breakdown-tax hidden>
+              <h3>Tax breakdown</h3>
+              <ul>
+                <li><span>Net (excluding tax)</span><strong data-line-tax-net>&mdash;</strong></li>
+                <li><span>Tax amount</span><strong data-line-tax-amount>&mdash;</strong></li>
+                <li class="mort-breakdown__total"><span>Final (including tax)</span><strong data-line-tax-final>&mdash;</strong></li>
+              </ul>
+            </div>
+
+            <div class="mort-breakdown" data-breakdown-bogof hidden>
+              <h3>Buy X Get Y Free</h3>
+              <ul>
+                <li><span>Total items received</span><strong data-line-bogof-total>&mdash;</strong></li>
+                <li><span>Total paid</span><strong data-line-bogof-paid>&mdash;</strong></li>
+                <li><span>Total saved</span><strong data-line-bogof-saved>&mdash;</strong></li>
+                <li><span>Effective price per unit</span><strong data-line-bogof-effective>&mdash;</strong></li>
+                <li class="mort-breakdown__total"><span>Effective discount %</span><strong data-line-bogof-discount>&mdash;</strong></li>
+              </ul>
+            </div>
+
+            <details class="prove-it" data-prove-it>
+              <summary>Prove it</summary>
+              <div data-prove-it-body></div>
+              <p class="prove-it-source">Single: sale = original &times; (1 &minus; d/100). Stacked: final = original &times; product of (1 &minus; di/100); effective % = (1 &minus; that product) &times; 100. Tax-exclusive: final = price &times; (1 + r/100). Tax-inclusive: net = price &divide; (1 + r/100). BOGOF: effective unit price = (buy &times; price) &divide; (buy + free); effective % = free &divide; (buy + free) &times; 100.</p>
+            </details>
+          </div>
+
+          <p class="bookmark-nudge">
+            Useful? Press <kbd data-bookmark-shortcut>Ctrl</kbd> + <kbd>D</kbd> to bookmark.
+          </p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="below-results" aria-hidden="true"></div>
+
+        <section class="long-form">
+          <h2>Why stacked discounts never quite add up</h2>
+          <p>The signs in the window say "30% off, plus an extra 20% off at the till". The brain reads "50% off" and gets excited. The till disagrees, because each discount is applied to the running price, not the original.</p>
+          <p>A £100 jumper at 30% off is £70. Take 20% off £70 (not off £100) and you land on £56. That is 44% off the original, not 50%. The maths: 1 minus (0.70 times 0.80) = 0.44. The order does not matter; 20% then 30% gets you to the same £56. What does matter is that the second discount only ever attacks what is left after the first.</p>
+          <p>This is the friendly version. The cynical version is that retailers know perfectly well a "30 plus 20" sign feels bigger than "44% off". They are not lying. They are also not quite telling you the whole sum.</p>
+
+          <h2>Buy One Get One Half Price is not 50% off</h2>
+          <p>You buy two items. One is full price, one is half price. Total cost: 1.5 times the unit price, for two items. Per-unit price: 0.75 times the original. That is a 25% effective discount across the pair, not 50%.</p>
+          <p>Buy One Get One Free is the cleaner version: two items for the price of one means an effective unit price of half the original. 50% off if (and only if) you wanted two of them in the first place. Buying a second one you would not have bought anyway is not saving money. It is spending money.</p>
+
+          <h2>Was-and-now pricing, and how to spot a fake "original"</h2>
+          <p>The "was" price on a tag is supposed to reflect what the item recently sold for at full price, for a meaningful length of time. UK rules (the Chartered Trading Standards Institute pricing practices guide) suggest 28 days at the higher price as a rough benchmark, with caveats. In practice, that benchmark gets stretched. An item priced at £200 for two weeks in a quiet stock room and then "reduced" to £100 for the next six months is technically half price, in a way that means almost nothing.</p>
+          <p>Sense-checks that help: see if the same product is on Camelcamelcamel (for Amazon) or another price-history tracker. Compare against the original RRP from the manufacturer's site. If the "was" price only ever shows up on this retailer and nowhere else, treat it like fan fiction.</p>
+
+          <h2>Quick-glance reference: what £100 becomes after a discount</h2>
+          <p>Useful for back-of-an-envelope sense checking. Replace 100 with any starting figure and the proportions hold.</p>
+          <table class="discount-reference">
+            <thead>
+              <tr><th scope="col">Discount</th><th scope="col">£100 becomes</th><th scope="col">$100 becomes</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>10% off</td><td>&pound;90</td><td>$90</td></tr>
+              <tr><td>15% off</td><td>&pound;85</td><td>$85</td></tr>
+              <tr><td>20% off</td><td>&pound;80</td><td>$80</td></tr>
+              <tr><td>25% off</td><td>&pound;75</td><td>$75</td></tr>
+              <tr><td>30% off</td><td>&pound;70</td><td>$70</td></tr>
+              <tr><td>33% off</td><td>&pound;67</td><td>$67</td></tr>
+              <tr><td>40% off</td><td>&pound;60</td><td>$60</td></tr>
+              <tr><td>50% off</td><td>&pound;50</td><td>$50</td></tr>
+              <tr><td>60% off</td><td>&pound;40</td><td>$40</td></tr>
+              <tr><td>70% off</td><td>&pound;30</td><td>$30</td></tr>
+              <tr><td>75% off</td><td>&pound;25</td><td>$25</td></tr>
+            </tbody>
+          </table>
+
+          <h2>Working backwards: from sale price to original</h2>
+          <p>You see a £45 jumper marked 25% off and want to know the "was" price. The maths is just division: 45 divided by (1 minus 0.25) = 45 divided by 0.75 = £60. Save the difference, £15.</p>
+          <p>The general formula: original = sale price divided by (1 minus discount/100). Useful when you want to compare a sale price against typical RRPs to see if the deal is real.</p>
+
+          <!-- related-calculators-block -->
+          <h2>Related calculators</h2>
+          <p>The maths next door.</p>
+          <ul class="related-calculators">
+            <li><a href="/calculators/math/percentage-calculator/">Percentage Calculator for any percent-of, what-percent, or change sum</a></li>
+            <li><a href="/calculators/business/uk-vat-calculator/">UK VAT Calculator with band notes for 20%, 5% and 0%</a></li>
+            <li><a href="/calculators/finance/tip-calculator/">Tip Calculator with per-person split and round-up mode</a></li>
+            <li><a href="/calculators/business/profit-margin-calculator/">Profit Margin Calculator for cost-and-revenue maths</a></li>
+          </ul>
+        </section>
+
+        <section class="faq" aria-labelledby="faq-heading">
+          <h2 id="faq-heading">Frequently asked questions</h2>
+          <details>
+            <summary>How do I calculate a discount?</summary>
+            <p>Multiply the original price by (1 minus discount/100). 25% off £80 is 80 times 0.75 = £60. The amount saved is the difference, £20.</p>
+          </details>
+          <details>
+            <summary>How do I work out the original price from a sale price?</summary>
+            <p>Divide the sale price by (1 minus discount/100). A £45 item at 25% off had an original price of 45 divided by 0.75 = £60.</p>
+          </details>
+          <details>
+            <summary>Do stacked discounts add up?</summary>
+            <p>No. Each discount applies to the running price. 30% then 20% is 1 minus (0.7 times 0.8) = 0.44, so 44% off, not 50%.</p>
+          </details>
+          <details>
+            <summary>How do I work out percentage saved?</summary>
+            <p>Divide the amount saved by the original price, then multiply by 100. Save £15 on a £60 item: (15 divided by 60) times 100 = 25%.</p>
+          </details>
+          <details>
+            <summary>Is Buy One Get One Half Price really half off?</summary>
+            <p>No. Across the pair, you pay 1.5 times the unit price for two items, so the per-unit price is 0.75 times the original. That is 25% off, not 50%.</p>
+          </details>
+        </section>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="ad-slot" data-ad-slot="sidebar" aria-hidden="true"></div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="site-footer-nav" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/calculators/">All calculators</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+      <section class="site-disclaimer" data-disclaimer aria-labelledby="disclaimer-heading">
+        <h2 id="disclaimer-heading">A quick, necessary word</h2>
+        <p>Every calculator on this site is built to give you a sensible, well-reasoned estimate. It is, however, exactly that: an estimate, for general information only. Nothing you see here is professional, legal, financial, medical, or tax advice, and it should not be treated as such.</p>
+        <p>Before you make a decision that actually matters, talk to a qualified professional who knows your specific situation: an accountant, a solicitor, a doctor, an IT consultant, whoever fits the question. They can factor in the bits a generic tool can't.</p>
+        <p>We take no liability and accept no responsibility for any loss, damage, or questionable life choice arising from acting on the numbers you see here. Use the results as a starting point for a better conversation, not as the final word.</p>
+        <p><strong>Affiliate disclosure:</strong> some links on this site are affiliate links. If you click through and buy or sign up for something, we may earn a small commission at no extra cost to you. It helps keep the calculators free and ad-light. We only recommend things we'd point a friend towards.</p>
+      </section>
+      <p class="site-copyright">&copy; 2026 WebCaretakers. All rights reserved.</p>
+      <p class="site-legal">WebCaretakers is a trading name of <a href="https://yeseo.io/" rel="noopener">Andrew Laws Associates Ltd</a>, registered in England and Wales (company no. 08602332). ICO registration ZA726704.</p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      'use strict';
+      var shortcutEl = document.querySelector('[data-bookmark-shortcut]');
+      if (shortcutEl) {
+        var isMac = /Mac|iPhone|iPad|iPod/i.test(navigator.platform || navigator.userAgent);
+        shortcutEl.textContent = isMac ? '\u2318' : 'Ctrl';
+      }
+
+      var form = document.getElementById('discount-form');
+      if (!form) return;
+
+      var resultEl = document.querySelector('[data-result]');
+      var proveBody = document.querySelector('[data-prove-it-body]');
+
+      var modeSel = form.querySelector('[data-mode]');
+      var singleSubSel = form.querySelector('[data-single-sub]');
+
+      var panels = {
+        single: document.querySelector('[data-panel-single]'),
+        stacked: document.querySelector('[data-panel-stacked]'),
+        tax: document.querySelector('[data-panel-tax]'),
+        bogof: document.querySelector('[data-panel-bogof]')
+      };
+      var breakdowns = {
+        single: document.querySelector('[data-breakdown-single]'),
+        stacked: document.querySelector('[data-breakdown-stacked]'),
+        tax: document.querySelector('[data-breakdown-tax]'),
+        bogof: document.querySelector('[data-breakdown-bogof]')
+      };
+
+      var singlePercentRow = document.querySelector('[data-single-percent-row]');
+      var singleSaleRow = document.querySelector('[data-single-sale-row]');
+      var singleSavedRow = document.querySelector('[data-single-saved-row]');
+
+      function num(v) { var n = parseFloat(v); return isFinite(n) ? n : 0; }
+      function fmt(n) {
+        if (!isFinite(n)) return '\u2014';
+        return (Math.round(n * 100) / 100).toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 2 });
+      }
+      function fmtPct(n) {
+        if (!isFinite(n)) return '\u2014';
+        return (Math.round(n * 100) / 100).toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 2 }) + '%';
+      }
+
+      function showPanel() {
+        var m = modeSel.value;
+        Object.keys(panels).forEach(function (k) { panels[k].hidden = (k !== m); });
+        Object.keys(breakdowns).forEach(function (k) { breakdowns[k].hidden = true; });
+      }
+
+      function showSingleSub() {
+        var s = singleSubSel.value;
+        singlePercentRow.hidden = (s !== 'price-percent');
+        singleSaleRow.hidden = (s !== 'price-sale');
+        singleSavedRow.hidden = (s !== 'price-saved');
+      }
+
+      modeSel.addEventListener('change', showPanel);
+      singleSubSel.addEventListener('change', showSingleSub);
+      showPanel();
+      showSingleSub();
+
+      form.querySelectorAll('input, select').forEach(function (el) {
+        el.addEventListener('input', function () {
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: 'calculator_interaction',
+            calculator_name: 'Discount Calculator',
+            field_name: el.name || el.id
+          });
+        });
+      });
+
+      function calcSingle() {
+        var sub = singleSubSel.value;
+        var original = num(form.querySelector('[data-original]').value);
+        if (!(original > 0)) return { error: 'Enter an original price greater than zero.' };
+        var percent, sale, saved;
+        if (sub === 'price-percent') {
+          percent = num(form.querySelector('[data-percent]').value);
+          if (percent < 0) return { error: 'Discount percent cannot be negative.' };
+          saved = original * percent / 100;
+          sale = original - saved;
+        } else if (sub === 'price-sale') {
+          sale = num(form.querySelector('[data-sale]').value);
+          if (sale < 0 || sale > original) return { error: 'Sale price must be between 0 and the original price.' };
+          saved = original - sale;
+          percent = (saved / original) * 100;
+        } else {
+          saved = num(form.querySelector('[data-saved]').value);
+          if (saved < 0 || saved > original) return { error: 'Amount saved must be between 0 and the original price.' };
+          sale = original - saved;
+          percent = (saved / original) * 100;
+        }
+        return { original: original, percent: percent, saved: saved, sale: sale };
+      }
+
+      function calcStacked() {
+        var original = num(form.querySelector('[data-stacked-original]').value);
+        if (!(original > 0)) return { error: 'Enter an original price greater than zero.' };
+        var raw = [
+          form.querySelector('[data-stacked-1]').value,
+          form.querySelector('[data-stacked-2]').value,
+          form.querySelector('[data-stacked-3]').value,
+          form.querySelector('[data-stacked-4]').value
+        ];
+        var discounts = [];
+        for (var i = 0; i < raw.length; i++) {
+          var v = parseFloat(raw[i]);
+          if (isFinite(v) && v > 0) discounts.push(v);
+        }
+        if (discounts.length === 0) return { error: 'Enter at least one discount %.' };
+        var running = original;
+        var steps = [{ label: 'Start', price: running, discount: null }];
+        for (var j = 0; j < discounts.length; j++) {
+          var d = discounts[j];
+          if (d < 0 || d > 100) return { error: 'Each discount must be between 0 and 100%.' };
+          running = running * (1 - d / 100);
+          steps.push({ label: 'After ' + d + '% off', price: running, discount: d });
+        }
+        var saved = original - running;
+        var effective = (1 - running / original) * 100;
+        return { original: original, discounts: discounts, steps: steps, final: running, saved: saved, effective: effective };
+      }
+
+      function calcTax() {
+        var mode = form.querySelector('[data-tax-mode]').value;
+        var price = num(form.querySelector('[data-tax-price]').value);
+        var rate = num(form.querySelector('[data-tax-rate]').value);
+        if (!(price > 0)) return { error: 'Enter a price greater than zero.' };
+        if (rate < 0) return { error: 'Tax rate cannot be negative.' };
+        var net, tax, finalP;
+        if (mode === 'exclusive') {
+          net = price;
+          tax = price * rate / 100;
+          finalP = price + tax;
+        } else {
+          finalP = price;
+          net = price / (1 + rate / 100);
+          tax = finalP - net;
+        }
+        return { mode: mode, rate: rate, net: net, tax: tax, final: finalP };
+      }
+
+      function calcBogof() {
+        var buy = num(form.querySelector('[data-bogof-buy]').value);
+        var free = num(form.querySelector('[data-bogof-free]').value);
+        var price = num(form.querySelector('[data-bogof-price]').value);
+        if (!(buy > 0)) return { error: 'Enter a quantity bought of 1 or more.' };
+        if (free < 0) return { error: 'Free quantity cannot be negative.' };
+        if (!(price > 0)) return { error: 'Enter a price each greater than zero.' };
+        var total = buy + free;
+        var paid = buy * price;
+        var saved = free * price;
+        var effective = paid / total;
+        var discountPct = (free / total) * 100;
+        return { buy: buy, free: free, price: price, total: total, paid: paid, saved: saved, effective: effective, discountPct: discountPct };
+      }
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var m = modeSel.value;
+
+        Object.keys(breakdowns).forEach(function (k) { breakdowns[k].hidden = true; });
+
+        if (m === 'single') {
+          var r = calcSingle();
+          if (r.error) { resultEl.textContent = r.error; proveBody.innerHTML = ''; return; }
+          breakdowns.single.hidden = false;
+          document.querySelector('[data-line-original]').textContent = fmt(r.original);
+          document.querySelector('[data-line-percent]').textContent = fmtPct(r.percent);
+          document.querySelector('[data-line-saved]').textContent = fmt(r.saved);
+          document.querySelector('[data-line-sale]').textContent = fmt(r.sale);
+          resultEl.textContent = 'Sale price ' + fmt(r.sale) + '. You save ' + fmt(r.saved) + ' (' + fmtPct(r.percent) + ').';
+          proveBody.innerHTML = '<ul>' +
+            '<li><span>Original</span><strong>' + fmt(r.original) + '</strong></li>' +
+            '<li><span>Discount</span><strong>' + fmtPct(r.percent) + '</strong></li>' +
+            '<li><span>Sale price</span><strong>' + fmt(r.original) + ' &times; (1 &minus; ' + (Math.round(r.percent * 100) / 100) + '/100) = ' + fmt(r.sale) + '</strong></li>' +
+            '<li><span>Saved</span><strong>' + fmt(r.original) + ' &minus; ' + fmt(r.sale) + ' = ' + fmt(r.saved) + '</strong></li>' +
+            '</ul>';
+          pushResult({ mode: 'single', sale: r.sale, percent: r.percent });
+          return;
+        }
+
+        if (m === 'stacked') {
+          var s = calcStacked();
+          if (s.error) { resultEl.textContent = s.error; proveBody.innerHTML = ''; return; }
+          breakdowns.stacked.hidden = false;
+          var stepsList = document.querySelector('[data-stacked-steps]');
+          stepsList.innerHTML = s.steps.map(function (st) {
+            return '<li><span>' + st.label + '</span><strong>' + fmt(st.price) + '</strong></li>';
+          }).join('');
+          document.querySelector('[data-line-stacked-final]').textContent = fmt(s.final);
+          document.querySelector('[data-line-stacked-saved]').textContent = fmt(s.saved);
+          document.querySelector('[data-line-stacked-effective]').textContent = fmtPct(s.effective);
+          var sumNaive = s.discounts.reduce(function (a, b) { return a + b; }, 0);
+          resultEl.textContent = 'Final ' + fmt(s.final) + '. Effective ' + fmtPct(s.effective) + ' off (the signs would suggest ' + sumNaive + '%).';
+          var multStr = s.discounts.map(function (d) { return '(1 &minus; ' + d + '/100)'; }).join(' &times; ');
+          proveBody.innerHTML = '<ul>' +
+            '<li><span>Original</span><strong>' + fmt(s.original) + '</strong></li>' +
+            '<li><span>Multiplier</span><strong>' + multStr + ' = ' + (Math.round((s.final / s.original) * 10000) / 10000) + '</strong></li>' +
+            '<li><span>Final price</span><strong>' + fmt(s.original) + ' &times; multiplier = ' + fmt(s.final) + '</strong></li>' +
+            '<li><span>Effective discount</span><strong>(1 &minus; multiplier) &times; 100 = ' + fmtPct(s.effective) + '</strong></li>' +
+            '</ul>';
+          pushResult({ mode: 'stacked', final: s.final, effective: s.effective });
+          return;
+        }
+
+        if (m === 'tax') {
+          var t = calcTax();
+          if (t.error) { resultEl.textContent = t.error; proveBody.innerHTML = ''; return; }
+          breakdowns.tax.hidden = false;
+          document.querySelector('[data-line-tax-net]').textContent = fmt(t.net);
+          document.querySelector('[data-line-tax-amount]').textContent = fmt(t.tax);
+          document.querySelector('[data-line-tax-final]').textContent = fmt(t.final);
+          resultEl.textContent = (t.mode === 'exclusive')
+            ? 'Final ' + fmt(t.final) + ' (net ' + fmt(t.net) + ' plus ' + fmt(t.tax) + ' tax at ' + t.rate + '%).'
+            : 'Net ' + fmt(t.net) + ' (' + fmt(t.final) + ' includes ' + fmt(t.tax) + ' tax at ' + t.rate + '%).';
+          proveBody.innerHTML = '<ul>' +
+            (t.mode === 'exclusive'
+              ? '<li><span>Final</span><strong>price &times; (1 + ' + t.rate + '/100) = ' + fmt(t.final) + '</strong></li>'
+              : '<li><span>Net</span><strong>price &divide; (1 + ' + t.rate + '/100) = ' + fmt(t.net) + '</strong></li>') +
+            '<li><span>Tax amount</span><strong>' + fmt(t.tax) + '</strong></li>' +
+            '</ul>';
+          pushResult({ mode: 'tax', final: t.final, rate: t.rate });
+          return;
+        }
+
+        if (m === 'bogof') {
+          var b = calcBogof();
+          if (b.error) { resultEl.textContent = b.error; proveBody.innerHTML = ''; return; }
+          breakdowns.bogof.hidden = false;
+          document.querySelector('[data-line-bogof-total]').textContent = b.total;
+          document.querySelector('[data-line-bogof-paid]').textContent = fmt(b.paid);
+          document.querySelector('[data-line-bogof-saved]').textContent = fmt(b.saved);
+          document.querySelector('[data-line-bogof-effective]').textContent = fmt(b.effective);
+          document.querySelector('[data-line-bogof-discount]').textContent = fmtPct(b.discountPct);
+          resultEl.textContent = 'Buy ' + b.buy + ', get ' + b.free + ' free at ' + fmt(b.price) + ' each: effective ' + fmt(b.effective) + ' per unit (' + fmtPct(b.discountPct) + ' off).';
+          proveBody.innerHTML = '<ul>' +
+            '<li><span>Total items</span><strong>' + b.buy + ' + ' + b.free + ' = ' + b.total + '</strong></li>' +
+            '<li><span>Total paid</span><strong>' + b.buy + ' &times; ' + fmt(b.price) + ' = ' + fmt(b.paid) + '</strong></li>' +
+            '<li><span>Effective per unit</span><strong>' + fmt(b.paid) + ' &divide; ' + b.total + ' = ' + fmt(b.effective) + '</strong></li>' +
+            '<li><span>Effective discount %</span><strong>' + b.free + ' &divide; ' + b.total + ' &times; 100 = ' + fmtPct(b.discountPct) + '</strong></li>' +
+            '</ul>';
+          pushResult({ mode: 'bogof', effective: b.effective, discountPct: b.discountPct });
+          return;
+        }
+      });
+
+      function pushResult(extra) {
+        window.dataLayer = window.dataLayer || [];
+        var payload = { event: 'calculator_result', calculator_name: 'Discount Calculator' };
+        Object.keys(extra || {}).forEach(function (k) { payload[k] = extra[k]; });
+        window.dataLayer.push(payload);
+      }
+
+      document.querySelectorAll('.related-calculators a').forEach(function (a) {
+        a.addEventListener('click', function () {
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({ event: 'cta_click', calculator_name: 'Discount Calculator', cta_target: a.getAttribute('href') });
+        });
+      });
+    })();
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

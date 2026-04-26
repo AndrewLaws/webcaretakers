@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cooking Measurements Converter | WebCaretakers</title>
+  <meta name="description" content="Convert cooking measurements between UK and US conventions: cups, tablespoons, fluid ounces, grams, ounces, gas mark to Celsius. Ingredient cup-to-gram densities included.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/conversions/cooking-measurements-converter/">
+  <meta property="og:title" content="Cooking Measurements Converter | WebCaretakers">
+  <meta property="og:description" content="UK and US cooking conversions, gas mark to Celsius, and cup-to-gram densities for the ingredients that actually matter.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/conversions/cooking-measurements-converter/">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var _stored = null;
+    try { _stored = localStorage.getItem('cookie-consent'); } catch (e) {}
+    var _initial = _stored === 'granted' ? 'granted' : 'denied';
+    gtag('consent', 'default', {
+      ad_storage: _initial, analytics_storage: _initial,
+      ad_user_data: _initial, ad_personalization: _initial,
+      functionality_storage: 'granted', security_storage: 'granted',
+      wait_for_update: 500
+    });
+  </script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Cooking Measurements Converter",
+    "url": "https://webcaretakers.com/calculators/conversions/cooking-measurements-converter/",
+    "description": "Convert cooking measurements between UK and US conventions: cups, tablespoons, teaspoons, fluid ounces, pints, grams, ounces, Celsius, Fahrenheit and gas mark. Ingredient cup-to-gram densities included.",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0" },
+    "inLanguage": "en-GB",
+    "author": { "@type": "Person", "name": "Andrew Laws", "url": "https://yeseo.io/" },
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "WebCaretakers",
+      "url": "https://webcaretakers.com/"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is a UK cup the same as a US cup?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. A US cup is 240 ml (the legal value used on US nutrition labels; many recipe books round it to 237 ml). The 'metric cup' used widely in the UK, Australia and New Zealand is 250 ml. The historic UK imperial cup, rarely used in modern recipes, was 284 ml (half an imperial pint). If a recipe says 'cup' without context, assume US 240 ml unless the book is explicitly British or Australian." }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I convert tablespoons accurately?",
+        "acceptedAnswer": { "@type": "Answer", "text": "There are three tablespoon sizes in common use: a metric tablespoon is 15 ml, a US tablespoon is 14.79 ml, and a UK tablespoon is 17.76 ml. The differences are small for most recipes (a teaspoon of oil here or there will not break a stew), but they matter for baking and for anything where you are measuring something potent like baking powder or salt. This tool lets you pick the convention. Default is metric." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is gas mark 4 in fan oven Celsius?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Gas mark 4 is 180 C in a conventional oven, which is roughly 160 C in a fan (convection) oven. The fan moves hot air around so heat reaches the food faster: drop conventional temperatures by about 20 C for a fan oven, or shave 10 to 15 minutes off the cooking time. Always trust a probe thermometer over the dial; ovens lie." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does my US recipe call for 'sticks' of butter?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Because US butter is sold in eight-tablespoon sticks, four to a pound. One stick is half a US cup, which works out at 113 g (4 oz). Two sticks is 227 g, four is 454 g (a pound). UK butter comes in 250 g blocks. So when an American recipe calls for one stick, weigh out 113 g and ignore the imperial pretence." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why is baking by weight more accurate than by volume?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Because a cup of flour can be anywhere from about 120 g (sifted, lightly spooned) to 150 g or more (scooped and packed). That is a 25% range on a single ingredient. For a forgiving dish like soup it does not matter. For bread, cakes, biscuits or pastry it absolutely does. A digital kitchen scale is one of the cheapest pieces of useful kit you can buy. If your recipes come out inconsistent, the scale will fix half the problem before you have changed anything else." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-banner-heading" aria-describedby="cookie-banner-text" hidden>
+    <div class="cookie-banner__inner">
+      <h2 id="cookie-banner-heading" class="cookie-banner__heading">A quick word about cookies</h2>
+      <p id="cookie-banner-text" class="cookie-banner__text">
+        We use cookies for analytics, so we can see which calculators people actually use and which ones need work. Nothing creepy, nothing sold on. You can say yes, say no, or read the <a href="/privacy/">privacy policy</a> first. Your choice sticks.
+      </p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-reject>Reject</button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>Accept</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var KEY = 'cookie-consent';
+      var banner = document.querySelector('[data-cookie-banner]');
+      if (!banner) return;
+      var stored = null;
+      try { stored = localStorage.getItem(KEY); } catch (e) {}
+      if (stored !== 'granted' && stored !== 'denied') { banner.hidden = false; }
+      function record(choice) {
+        try { localStorage.setItem(KEY, choice); } catch (e) {}
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('consent', 'update', {
+          ad_storage: choice, analytics_storage: choice,
+          ad_user_data: choice, ad_personalization: choice
+        });
+        banner.hidden = true;
+      }
+      var accept = banner.querySelector('[data-cookie-accept]');
+      var reject = banner.querySelector('[data-cookie-reject]');
+      if (accept) accept.addEventListener('click', function () { record('granted'); });
+      if (reject) reject.addEventListener('click', function () { record('denied'); });
+    })();
+  </script>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">WebCaretakers</a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <ul class="primary-nav__list">
+          <li class="primary-nav__item primary-nav__item--has-menu">
+            <button type="button" class="primary-nav__link" data-menu-toggle aria-haspopup="true" aria-expanded="false">Calculators <span class="primary-nav__caret" aria-hidden="true">&#9662;</span></button>
+            <ul class="primary-nav__submenu">
+              <li><a href="/calculators/broadband/">Broadband</a></li>
+              <li><a href="/calculators/business/">Business</a></li>
+              <li><a href="/calculators/conversions/">Conversions</a></li>
+              <li><a href="/calculators/finance/">Finance</a></li>
+              <li><a href="/calculators/fun/">Fun</a></li>
+              <li><a href="/calculators/health/">Health</a></li>
+              <li><a href="/calculators/images/">Images</a></li>
+              <li><a href="/calculators/math/">Math</a></li>
+              <li><a href="/calculators/productivity/">Productivity</a></li>
+              <li><a href="/calculators/property/">Property</a></li>
+              <li><a href="/calculators/seo/">SEO</a></li>
+              <li><a href="/calculators/wedding/">Wedding</a></li>
+              <li><a href="/calculators/writing/">Writing</a></li>
+              <li class="primary-nav__submenu-sep"><a href="/calculators/">See all calculators</a></li>
+            </ul>
+          </li>
+          <li class="primary-nav__item"><a href="/about/" class="primary-nav__link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <main id="main-content">
+      <div class="container">
+        <nav aria-label="Breadcrumb" class="breadcrumbs">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/calculators/">Calculators</a></li>
+            <li><a href="/calculators/conversions/">Conversions</a></li>
+            <li aria-current="page">Cooking Measurements Converter</li>
+          </ol>
+        </nav>
+
+        <h1>Cooking Measurements Converter</h1>
+        <p class="intro">Recipes are messy. American books say cups, British ones say grams, gran's recipe card says "a cup of flour" and refuses to elaborate. This tool converts volumes, weights and oven temperatures across UK, US and metric conventions, plus a separate ingredient block for the cup-to-grams question that catches everyone out.</p>
+
+        <section class="eli5" aria-label="Plain-English explanation">
+          <h2>Explain like I'm 5 (which cup, which spoon)</h2>
+          <p>Cups and spoons are not the same size everywhere. A US cup is 240 ml. The "metric cup" used in the UK and Australia is 250 ml. UK and US tablespoons are different too. So pick the convention your recipe was written in (US, UK, or metric), then convert to whatever your kitchen kit is actually marked in. For baking, weigh things in grams if you can. It is the single biggest upgrade you can make.</p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="in-content" aria-hidden="true"></div>
+
+        <section class="calculator-card" aria-labelledby="convention-heading">
+          <h2 id="convention-heading">Cup, tablespoon and teaspoon convention</h2>
+          <p class="calc-note">Pick which "cup", "tbsp" and "tsp" the recipe is using. This applies to the volume converter and the cup-to-grams block below. Default is metric (250 ml cup, 15 ml tbsp, 5 ml tsp).</p>
+          <div class="calc-row calc-row--inline">
+            <label for="cup-convention">Convention</label>
+            <select id="cup-convention" data-cup-convention>
+              <option value="metric" selected>Metric (cup 250 ml, tbsp 15 ml, tsp 5 ml)</option>
+              <option value="us">US (cup 240 ml, tbsp 14.79 ml, tsp 4.93 ml)</option>
+              <option value="uk">UK (cup 250 ml, tbsp 17.76 ml, tsp 5.92 ml)</option>
+            </select>
+          </div>
+        </section>
+
+        <section class="calculator-card" aria-labelledby="vol-heading">
+          <h2 id="vol-heading">Volume</h2>
+          <form class="calc-form" novalidate onsubmit="return false;">
+            <div class="calc-row calc-row--inline">
+              <label for="vol-value">Value</label>
+              <input type="number" id="vol-value" step="any" value="1" data-vol-value>
+            </div>
+            <div class="calc-row calc-row--inline">
+              <label for="vol-from">From</label>
+              <select id="vol-from" data-vol-from></select>
+            </div>
+            <div class="calc-row calc-row--inline">
+              <label for="vol-to">To</label>
+              <select id="vol-to" data-vol-to></select>
+            </div>
+          </form>
+          <div class="calculator-results">
+            <p class="result-display"><strong data-vol-result>&mdash;</strong></p>
+          </div>
+        </section>
+
+        <section class="calculator-card" aria-labelledby="wt-heading">
+          <h2 id="wt-heading">Weight</h2>
+          <form class="calc-form" novalidate onsubmit="return false;">
+            <div class="calc-row calc-row--inline">
+              <label for="wt-value">Value</label>
+              <input type="number" id="wt-value" step="any" value="1" data-wt-value>
+            </div>
+            <div class="calc-row calc-row--inline">
+              <label for="wt-from">From</label>
+              <select id="wt-from" data-wt-from>
+                <option value="gram">grams (g)</option>
+                <option value="kilogram">kilograms (kg)</option>
+                <option value="ounce">ounces (oz)</option>
+                <option value="pound">pounds (lb)</option>
+                <option value="us-stick">US butter sticks (113 g)</option>
+              </select>
+            </div>
+            <div class="calc-row calc-row--inline">
+              <label for="wt-to">To</label>
+              <select id="wt-to" data-wt-to>
+                <option value="gram" selected>grams (g)</option>
+                <option value="kilogram">kilograms (kg)</option>
+                <option value="ounce">ounces (oz)</option>
+                <option value="pound">pounds (lb)</option>
+                <option value="us-stick">US butter sticks (113 g)</option>
+              </select>
+            </div>
+          </form>
+          <div class="calculator-results">
+            <p class="result-display"><strong data-wt-result>&mdash;</strong></p>
+          </div>
+        </section>
+
+        <section class="calculator-card" aria-labelledby="temp-heading">
+          <h2 id="temp-heading">Temperature and gas mark</h2>
+          <form class="calc-form" novalidate onsubmit="return false;">
+            <div class="calc-row calc-row--inline">
+              <label for="temp-value">Value</label>
+              <input type="number" id="temp-value" step="any" value="180" data-temp-value>
+            </div>
+            <div class="calc-row calc-row--inline">
+              <label for="temp-from">From</label>
+              <select id="temp-from" data-temp-from>
+                <option value="celsius" selected>Celsius (&deg;C)</option>
+                <option value="fahrenheit">Fahrenheit (&deg;F)</option>
+                <option value="gas-mark">Gas mark</option>
+              </select>
+            </div>
+            <div class="calc-row calc-row--inline">
+              <label for="temp-to">To</label>
+              <select id="temp-to" data-temp-to>
+                <option value="celsius">Celsius (&deg;C)</option>
+                <option value="fahrenheit" selected>Fahrenheit (&deg;F)</option>
+                <option value="gas-mark">Gas mark</option>
+              </select>
+            </div>
+          </form>
+          <div class="calculator-results">
+            <p class="result-display"><strong data-temp-result>&mdash;</strong></p>
+          </div>
+        </section>
+
+        <section class="calculator-card" aria-labelledby="ing-heading">
+          <h2 id="ing-heading">Cups to grams (by ingredient)</h2>
+          <p class="calc-note">Density depends on the ingredient. A cup of flour weighs less than a cup of sugar; a cup of honey is heavier still. These figures are typical, not laws of physics: expect &plusmn;5% variation depending on packing, grind, and how humid your kitchen is. Cup size follows the convention picked above.</p>
+          <form class="calc-form" novalidate onsubmit="return false;">
+            <div class="calc-row calc-row--inline">
+              <label for="ing-cups">Cups</label>
+              <input type="number" id="ing-cups" step="any" value="1" data-ing-cups>
+            </div>
+            <div class="calc-row calc-row--inline">
+              <label for="ing-ingredient">Ingredient</label>
+              <select id="ing-ingredient" data-ing-ingredient>
+                <option value="plain-flour" selected>Plain flour (all-purpose)</option>
+                <option value="self-raising-flour">Self-raising flour</option>
+                <option value="granulated-sugar">Granulated sugar</option>
+                <option value="caster-sugar">Caster sugar</option>
+                <option value="brown-sugar">Brown sugar (packed)</option>
+                <option value="icing-sugar">Icing sugar (powdered)</option>
+                <option value="butter">Butter</option>
+                <option value="rolled-oats">Rolled oats</option>
+                <option value="rice">Rice (uncooked, long grain)</option>
+                <option value="honey">Honey</option>
+                <option value="milk">Milk</option>
+                <option value="water">Water</option>
+              </select>
+            </div>
+          </form>
+          <div class="calculator-results">
+            <p class="result-display"><strong data-ing-result>&mdash;</strong></p>
+            <p class="calc-note" data-ing-detail></p>
+          </div>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="below-results" aria-hidden="true"></div>
+
+        <section class="long-form">
+          <h2>Why UK and US measurements diverged</h2>
+          <p>Until 1824 the British and Americans used roughly the same set of units, the wine gallon and Queen Anne measures inherited from English common practice. Then the UK's Imperial Units Act tidied everything up: the imperial gallon was redefined as the volume of ten pounds of water, which works out at 4.546 litres. The Americans, having politely declined to take orders from London since 1776, kept the older "Queen Anne" gallon at 3.785 litres. Same word, different size, ever since.</p>
+          <p>That difference cascades. A US pint is 16 fl oz at 29.57 ml each (473 ml total). A UK pint is 20 fl oz at 28.41 ml each (568 ml total). Even the fluid ounces are not the same, because each is one-twentieth or one-sixteenth of its respective pint, and the pints disagree. This is also why a British pint glass holds more beer than an American one. You are welcome.</p>
+          <p>The cup is messier still. The US legal cup is 240 ml (used on nutrition labels); the customary US recipe cup is 236.6 ml; the modern "metric cup" used in the UK, Australia and New Zealand is 250 ml, chosen because it makes the maths easier. The historic UK imperial cup was 284 ml (half an imperial pint), but you will rarely see it in modern recipes. This tool defaults to the 250 ml metric cup. Switch the convention selector if your recipe is American.</p>
+
+          <h2>Why baking by weight is more accurate than by volume</h2>
+          <p>A cup of flour is not a fixed weight. If you sift the flour, spoon it lightly into the cup and level it off, you get about 120 g. If you scoop the cup straight into the bag and pack it down, you can hit 150 g or more. That is a 25% range on a single ingredient, in a recipe that probably also calls for sugar, butter and eggs measured the same way. By the time you have stacked four or five "approximately" ingredients, the dough you made bears only a passing resemblance to the one the recipe writer tested.</p>
+          <p>For stew this does not matter. For cake, bread, pastry or biscuits, it absolutely does. A digital kitchen scale costs less than a takeaway and removes the entire problem. Pros weigh; you should too.</p>
+
+          <h2>Gas mark to Celsius and Fahrenheit</h2>
+          <p>Gas mark is a UK gas oven scale, calibrated so each mark is roughly 25 F apart. Conventional oven figures below; for a fan (convection) oven, drop the Celsius figure by about 20 C, or shave 10 to 15 minutes off the cooking time.</p>
+          <table class="data-table">
+            <thead>
+              <tr><th>Gas mark</th><th>Celsius</th><th>Fahrenheit</th><th>Description</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>1/4</td><td>110 C</td><td>225 F</td><td>Very cool (slow drying)</td></tr>
+              <tr><td>1/2</td><td>120 C</td><td>250 F</td><td>Very cool</td></tr>
+              <tr><td>1</td><td>140 C</td><td>275 F</td><td>Cool</td></tr>
+              <tr><td>2</td><td>150 C</td><td>300 F</td><td>Cool</td></tr>
+              <tr><td>3</td><td>170 C</td><td>325 F</td><td>Warm</td></tr>
+              <tr><td>4</td><td>180 C</td><td>350 F</td><td>Moderate</td></tr>
+              <tr><td>5</td><td>190 C</td><td>375 F</td><td>Moderately hot</td></tr>
+              <tr><td>6</td><td>200 C</td><td>400 F</td><td>Hot</td></tr>
+              <tr><td>7</td><td>220 C</td><td>425 F</td><td>Hot</td></tr>
+              <tr><td>8</td><td>230 C</td><td>450 F</td><td>Very hot</td></tr>
+              <tr><td>9</td><td>240 C</td><td>475 F</td><td>Very hot</td></tr>
+            </tbody>
+          </table>
+
+          <h2>Ingredient densities used here</h2>
+          <p>These cup-to-gram figures are the values used in this tool, based on King Arthur Baking Company's ingredient weight chart cross-referenced with BBC Good Food. Treat them as central estimates with a realistic &plusmn;5% spread. Plain flour in particular varies wildly with how it is measured: sifted and lightly spooned versus scooped and packed.</p>
+          <table class="data-table">
+            <thead>
+              <tr><th>Ingredient</th><th>Grams per metric cup (250 ml)</th><th>Grams per US cup (240 ml)</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Plain flour</td><td>130 g</td><td>125 g</td></tr>
+              <tr><td>Self-raising flour</td><td>130 g</td><td>125 g</td></tr>
+              <tr><td>Granulated sugar</td><td>210 g</td><td>200 g</td></tr>
+              <tr><td>Caster sugar</td><td>210 g</td><td>200 g</td></tr>
+              <tr><td>Brown sugar (packed)</td><td>225 g</td><td>215 g</td></tr>
+              <tr><td>Icing sugar</td><td>125 g</td><td>120 g</td></tr>
+              <tr><td>Butter</td><td>237 g</td><td>227 g</td></tr>
+              <tr><td>Rolled oats</td><td>95 g</td><td>90 g</td></tr>
+              <tr><td>Rice (uncooked)</td><td>200 g</td><td>190 g</td></tr>
+              <tr><td>Honey</td><td>355 g</td><td>340 g</td></tr>
+              <tr><td>Milk</td><td>258 g</td><td>248 g</td></tr>
+              <tr><td>Water</td><td>250 g</td><td>240 g</td></tr>
+            </tbody>
+          </table>
+
+          <h2>Sticks of butter (the American thing)</h2>
+          <p>US butter is sold in sticks. One stick is 113 g (4 oz, half a US cup, eight tablespoons). Two sticks make 227 g, four make 454 g (a pound). UK butter comes in 250 g blocks, so the maths never lines up cleanly. If your American recipe calls for "1 stick", weigh out 113 g. If it calls for "2 sticks softened", weigh 227 g. Done.</p>
+
+          <!-- related-calculators-block -->
+          <h2>Related calculators</h2>
+          <p>Other tools that pair well with this one.</p>
+          <ul class="related-calculators">
+            <li><a href="/calculators/conversions/unit-converter/">Unit Converter</a> for non-cooking units</li>
+            <li><a href="/calculators/finance/tip-calculator/">Tip Calculator</a> for the bill at the end of the meal</li>
+            <li><a href="/calculators/health/calorie-calculator/">Calorie Calculator</a> for what you actually ate</li>
+            <li><a href="/calculators/health/tdee-calculator/">TDEE Calculator</a> if you are tracking macros</li>
+          </ul>
+        </section>
+
+        <section class="faq" aria-labelledby="faq-heading">
+          <h2 id="faq-heading">Frequently asked questions</h2>
+          <details>
+            <summary>Is a UK cup the same as a US cup?</summary>
+            <p>No. US cup is 240 ml (legal) or 237 ml (customary). The metric cup used in modern UK and Australian recipes is 250 ml. The historic UK imperial cup was 284 ml. If a recipe just says "cup" with no nationality given, default to US 240 ml.</p>
+          </details>
+          <details>
+            <summary>How do I convert tablespoons accurately?</summary>
+            <p>Metric tbsp is 15 ml, US is 14.79 ml, UK is 17.76 ml. Pick the convention this recipe was written in. For most cooking the differences are small; for baking powder, salt, or anything strong, they matter.</p>
+          </details>
+          <details>
+            <summary>What is gas mark 4 in fan oven Celsius?</summary>
+            <p>Gas mark 4 is 180 C conventional, which is roughly 160 C fan. As a rule, a fan oven runs about 20 C hotter than a conventional oven at the same setting, so drop the dial accordingly.</p>
+          </details>
+          <details>
+            <summary>Why does my US recipe call for "sticks" of butter?</summary>
+            <p>Because US butter ships in eight-tablespoon sticks. One stick is 113 g (4 oz). Two sticks is 227 g, four sticks is 454 g (a pound). UK butter is in 250 g blocks, so the maths never quite lines up.</p>
+          </details>
+          <details>
+            <summary>Why is baking by weight more accurate than by volume?</summary>
+            <p>A cup of flour can weigh anywhere from 120 g (sifted) to 150 g (packed). That is a 25% range on a single ingredient. A digital scale removes the variability and is the cheapest upgrade you can make to your baking.</p>
+          </details>
+        </section>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="ad-slot" data-ad-slot="sidebar" aria-hidden="true"></div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="site-footer-nav" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/calculators/">All calculators</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+      <section class="site-disclaimer" data-disclaimer aria-labelledby="disclaimer-heading">
+        <h2 id="disclaimer-heading">A quick, necessary word</h2>
+        <p>Every calculator on this site is built to give you a sensible, well-reasoned estimate. It is, however, exactly that: an estimate, for general information only. Nothing you see here is professional, legal, financial, medical, or tax advice, and it should not be treated as such.</p>
+        <p>Before you make a decision that actually matters, talk to a qualified professional who knows your specific situation: an accountant, a solicitor, a doctor, an IT consultant, whoever fits the question. They can factor in the bits a generic tool can't.</p>
+        <p>We take no liability and accept no responsibility for any loss, damage, or questionable life choice arising from acting on the numbers you see here. Use the results as a starting point for a better conversation, not as the final word.</p>
+        <p><strong>Affiliate disclosure:</strong> some links on this site are affiliate links. If you click through and buy or sign up for something, we may earn a small commission at no extra cost to you. It helps keep the calculators free and ad-light. We only recommend things we'd point a friend towards.</p>
+      </section>
+      <p class="site-copyright">&copy; 2026 WebCaretakers. All rights reserved.</p>
+      <p class="site-legal">WebCaretakers is a trading name of <a href="https://yeseo.io/" rel="noopener">Andrew Laws Associates Ltd</a>, registered in England and Wales (company no. 08602332). ICO registration ZA726704.</p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/calculators/cooking-measurements-converter.js"></script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

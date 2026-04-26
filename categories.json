@@ -27,6 +27,11 @@
           "slug": "percentage-calculator",
           "name": "Percentage Calculator",
           "summary": "Work out a percentage of a number, what percentage one number is of another, or the percentage change between two values."
+        },
+        {
+          "slug": "discount-calculator",
+          "name": "Discount Calculator",
+          "summary": "Sale price calculator covering single discounts, stacked discounts, sales tax or VAT, and Buy X Get Y Free deals. Currency-agnostic, with workings shown."
         }
       ]
     },
@@ -51,6 +56,11 @@
           "slug": "unit-converter",
           "name": "Unit Converter",
           "summary": "Length, mass, volume, temperature, speed and area. Pick a category, enter a value, see every common unit at once. Metric and imperial side by side."
+        },
+        {
+          "slug": "cooking-measurements-converter",
+          "name": "Cooking Measurements Converter",
+          "summary": "Convert cooking measurements across UK, US and metric conventions. Cups, tablespoons, fluid ounces, grams, ounces, gas mark to Celsius, plus cup-to-grams densities for the ingredients that actually matter."
         }
       ]
     },

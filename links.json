@@ -345,6 +345,18 @@
     {
       "phrase": "TDEE calculator",
       "url": "/calculators/health/tdee-calculator/"
+    },
+    {
+      "phrase": "Discount Calculator",
+      "url": "/calculators/math/discount-calculator/"
+    },
+    {
+      "phrase": "discount calculator",
+      "url": "/calculators/math/discount-calculator/"
+    },
+    {
+      "phrase": "sale price calculator",
+      "url": "/calculators/math/discount-calculator/"
     }
   ]
 }
