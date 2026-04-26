@@ -250,6 +250,11 @@
           "slug": "rental-yield-calculator",
           "name": "Rental Yield Calculator",
           "summary": "Gross yield, net yield, monthly cash flow and return on deposit for any rental property. Currency toggle, workings shown."
+        },
+        {
+          "slug": "uk-rent-vs-buy-calculator",
+          "name": "UK Rent vs Buy Calculator",
+          "summary": "Compare the net cost of buying a UK home against renting over any horizon. Stamp duty, mortgage interest, maintenance, selling costs and the opportunity cost of the deposit all included."
         }
       ]
     },

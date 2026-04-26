@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UK Rent vs Buy Calculator | WebCaretakers</title>
+  <meta name="description" content="UK rent vs buy calculator. Compare the true cost of buying a home against renting over any time horizon, including stamp duty, mortgage interest, maintenance, and the opportunity cost of the deposit.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/property/uk-rent-vs-buy-calculator/">
+  <link rel="alternate" hreflang="en-GB" href="https://webcaretakers.com/calculators/property/uk-rent-vs-buy-calculator/">
+  <link rel="alternate" hreflang="x-default" href="https://webcaretakers.com/calculators/property/uk-rent-vs-buy-calculator/">
+  <meta property="og:title" content="UK Rent vs Buy Calculator | WebCaretakers">
+  <meta property="og:description" content="Compare the real cost of buying a UK home against renting over your chosen time horizon. Stamp duty, mortgage interest, maintenance, and opportunity cost included.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/property/uk-rent-vs-buy-calculator/">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var _stored = null;
+    try { _stored = localStorage.getItem('cookie-consent'); } catch (e) {}
+    var _initial = _stored === 'granted' ? 'granted' : 'denied';
+    gtag('consent', 'default', {
+      ad_storage: _initial, analytics_storage: _initial,
+      ad_user_data: _initial, ad_personalization: _initial,
+      functionality_storage: 'granted', security_storage: 'granted',
+      wait_for_update: 500
+    });
+  </script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "UK Rent vs Buy Calculator",
+    "url": "https://webcaretakers.com/calculators/property/uk-rent-vs-buy-calculator/",
+    "description": "Compare the net cost of buying a UK home against renting over any horizon, including stamp duty, mortgage interest, maintenance, and the opportunity cost of the deposit.",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any",
+    "inLanguage": "en-GB",
+    "countriesSupported": "GB",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "GBP" },
+    "author": { "@type": "Person", "name": "Andrew Laws", "url": "https://yeseo.io/" }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How long do I need to own a home to make buying worthwhile?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Most sensible UK scenarios break even somewhere between five and ten years. Shorter than that and the upfront costs (stamp duty, solicitor, survey, mortgage fees) plus the transaction costs on sale tend to outweigh the equity you build. Longer than that and rent increases, mortgage paydown and any house price growth usually tip it in buying's favour. The calculator shows a break-even year for your specific inputs so you can see where the line is for you." }
+      },
+      {
+        "@type": "Question",
+        "name": "What investment return should I assume on the deposit if I rent?",
+        "acceptedAnswer": { "@type": "Answer", "text": "A long-run global equity index has historically returned around 5 to 7% a year after inflation, but that range has been wide and the future is not the past. The default here is 5% nominal to stay conservative. Drop it to 3% if you would hold the cash in bonds or premium bonds, push it to 7% if you are comfortable with a global tracker. Tax on dividends and gains above the ISA allowance will eat into real-world returns." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does this include UK stamp duty?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. Stamp Duty Land Tax is calculated using the 2025/26 bands for England and Northern Ireland, with First-Time Buyer relief applied up to a £500,000 purchase. Scotland (LBTT) and Wales (LTT) use different bands and are not covered here; dedicated Scottish and Welsh versions are on the roadmap." }
+      },
+      {
+        "@type": "Question",
+        "name": "What about remortgaging at a different rate later?",
+        "acceptedAnswer": { "@type": "Answer", "text": "The calculator uses a single mortgage rate across the full term to keep the comparison tractable. In reality most UK borrowers remortgage every two to five years, which can raise or lower the payment depending on market rates at the time. If you want to stress-test, run the numbers at a couple of different rates (say, your current fix and a worst-case SVR) and compare the verdicts." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does this calculator send my numbers anywhere?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. Everything runs in your browser. The numbers you type never leave your device." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-banner-heading" aria-describedby="cookie-banner-text" hidden>
+    <div class="cookie-banner__inner">
+      <h2 id="cookie-banner-heading" class="cookie-banner__heading">A quick word about cookies</h2>
+      <p id="cookie-banner-text" class="cookie-banner__text">
+        We use cookies for analytics, so we can see which calculators people actually use and which ones need work. Nothing creepy, nothing sold on. You can say yes, say no, or read the <a href="/privacy/">privacy policy</a> first. Your choice sticks.
+      </p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-reject>Reject</button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>Accept</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var KEY = 'cookie-consent';
+      var banner = document.querySelector('[data-cookie-banner]');
+      if (!banner) return;
+      var stored = null;
+      try { stored = localStorage.getItem(KEY); } catch (e) {}
+      if (stored !== 'granted' && stored !== 'denied') { banner.hidden = false; }
+      function record(choice) {
+        try { localStorage.setItem(KEY, choice); } catch (e) {}
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('consent', 'update', {
+          ad_storage: choice, analytics_storage: choice,
+          ad_user_data: choice, ad_personalization: choice
+        });
+        banner.hidden = true;
+      }
+      var accept = banner.querySelector('[data-cookie-accept]');
+      var reject = banner.querySelector('[data-cookie-reject]');
+      if (accept) accept.addEventListener('click', function () { record('granted'); });
+      if (reject) reject.addEventListener('click', function () { record('denied'); });
+    })();
+  </script>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">WebCaretakers</a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <ul class="primary-nav__list">
+          <li class="primary-nav__item primary-nav__item--has-menu">
+            <button type="button" class="primary-nav__link" data-menu-toggle aria-haspopup="true" aria-expanded="false">Calculators <span class="primary-nav__caret" aria-hidden="true">▾</span></button>
+            <ul class="primary-nav__submenu">
+              <li><a href="/calculators/broadband/">Broadband</a></li>
+              <li><a href="/calculators/business/">Business</a></li>
+              <li><a href="/calculators/conversions/">Conversions</a></li>
+              <li><a href="/calculators/finance/">Finance</a></li>
+              <li><a href="/calculators/fun/">Fun</a></li>
+              <li><a href="/calculators/health/">Health</a></li>
+              <li><a href="/calculators/images/">Images</a></li>
+              <li><a href="/calculators/math/">Math</a></li>
+              <li><a href="/calculators/productivity/">Productivity</a></li>
+              <li><a href="/calculators/property/">Property</a></li>
+              <li><a href="/calculators/seo/">SEO</a></li>
+              <li><a href="/calculators/wedding/">Wedding</a></li>
+              <li><a href="/calculators/writing/">Writing</a></li>
+              <li class="primary-nav__submenu-sep"><a href="/calculators/">See all calculators</a></li>
+            </ul>
+          </li>
+          <li class="primary-nav__item"><a href="/about/" class="primary-nav__link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <main id="main-content">
+      <div class="container">
+        <nav aria-label="Breadcrumb" class="breadcrumbs">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/calculators/">Calculators</a></li>
+            <li><a href="/calculators/property/">Property</a></li>
+            <li aria-current="page">UK Rent vs Buy Calculator</li>
+          </ol>
+        </nav>
+
+        <h1>UK Rent vs Buy Calculator</h1>
+        <p class="intro">A proper UK rent versus buy comparison. It puts stamp duty, mortgage interest, ongoing maintenance and selling costs on the buying side, and the opportunity cost of the deposit on the renting side, then tells you which one leaves you better off over your chosen horizon.</p>
+
+        <section class="eli5" aria-label="Plain-English explanation">
+          <h2>Explain like I'm 5 (what even is this calculator?)</h2>
+          <p>Imagine two versions of you. One buys a house with a deposit and a mortgage. The other rents and invests the same deposit in a stocks and shares ISA. Every year, both of them pay their housing bill: the buyer pays the mortgage plus repairs and insurance, the renter pays rent. At the end of ten, fifteen or twenty years, we work out what each of them has left. The one with more money wins. This tool runs that race for you.</p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="in-content" aria-hidden="true"></div>
+
+        <section class="calculator-card">
+          <h2>Calculate</h2>
+
+          <aside class="indicative-notice" role="note" aria-label="Indicative estimate notice">
+            <strong>Indicative estimate only.</strong> This is a sensible starting point, not advice. Real decisions depend on your job security, how long you plan to stay put, whether you have kids, where interest rates go, and a dozen other things a calculator cannot see. Before acting on a figure here, talk to a UK mortgage broker and an independent financial adviser.
+          </aside>
+
+          <form class="calc-form" novalidate>
+            <fieldset class="calc-fieldset">
+              <legend>Buying side</legend>
+              <div class="calc-row">
+                <label for="rvb-price">House price (£)</label>
+                <input type="number" id="rvb-price" data-house-price min="1" step="any" value="300000">
+              </div>
+              <div class="calc-row">
+                <label for="rvb-deposit">Deposit (£)</label>
+                <input type="number" id="rvb-deposit" data-deposit min="0" step="any" value="30000">
+              </div>
+              <div class="calc-row">
+                <label for="rvb-term">Mortgage term (years)</label>
+                <input type="number" id="rvb-term" data-term min="1" step="1" value="25">
+              </div>
+              <div class="calc-row">
+                <label for="rvb-rate">Mortgage interest rate (% APR)</label>
+                <input type="number" id="rvb-rate" data-rate min="0" step="any" value="4.5">
+              </div>
+              <div class="calc-row">
+                <label for="rvb-ftb">First-time buyer?</label>
+                <select id="rvb-ftb" data-ftb>
+                  <option value="no" selected>No</option>
+                  <option value="yes">Yes</option>
+                </select>
+              </div>
+              <div class="calc-row">
+                <label for="rvb-solicitor">Solicitor fees (£)</label>
+                <input type="number" id="rvb-solicitor" data-solicitor min="0" step="any" value="1500">
+              </div>
+              <div class="calc-row">
+                <label for="rvb-survey">Survey (£)</label>
+                <input type="number" id="rvb-survey" data-survey min="0" step="any" value="600">
+              </div>
+              <div class="calc-row">
+                <label for="rvb-arrangement">Mortgage arrangement fee (£)</label>
+                <input type="number" id="rvb-arrangement" data-arrangement min="0" step="any" value="1000">
+              </div>
+              <div class="calc-row">
+                <label for="rvb-maint">Annual maintenance (% of house value)</label>
+                <input type="number" id="rvb-maint" data-maintenance min="0" step="any" value="1">
+              </div>
+              <div class="calc-row">
+                <label for="rvb-growth">Annual house price growth (%)</label>
+                <input type="number" id="rvb-growth" data-growth min="-20" step="any" value="3">
+              </div>
+              <div class="calc-row">
+                <label for="rvb-sellpct">Selling costs: estate agent (% of sale price)</label>
+                <input type="number" id="rvb-sellpct" data-sell-pct min="0" step="any" value="1.5">
+              </div>
+              <div class="calc-row">
+                <label for="rvb-selllegal">Selling costs: legal (£)</label>
+                <input type="number" id="rvb-selllegal" data-sell-legal min="0" step="any" value="1500">
+              </div>
+            </fieldset>
+
+            <fieldset class="calc-fieldset">
+              <legend>Renting side</legend>
+              <div class="calc-row">
+                <label for="rvb-rent">Monthly rent (£)</label>
+                <input type="number" id="rvb-rent" data-rent min="0" step="any" value="1400">
+              </div>
+              <div class="calc-row">
+                <label for="rvb-rent-inc">Annual rent increase (%)</label>
+                <input type="number" id="rvb-rent-inc" data-rent-increase min="-20" step="any" value="3">
+              </div>
+              <div class="calc-row">
+                <label for="rvb-insurance">Renters insurance (£/month)</label>
+                <input type="number" id="rvb-insurance" data-insurance min="0" step="any" value="10">
+              </div>
+              <div class="calc-row">
+                <label for="rvb-invest">Investment return on deposit (%)</label>
+                <input type="number" id="rvb-invest" data-invest min="-20" step="any" value="5">
+              </div>
+              <div class="calc-row">
+                <label for="rvb-invest-diff">Also invest any monthly saving?</label>
+                <select id="rvb-invest-diff" data-invest-diff>
+                  <option value="yes" selected>Yes, invest the difference</option>
+                  <option value="no">No, just rent</option>
+                </select>
+              </div>
+            </fieldset>
+
+            <fieldset class="calc-fieldset">
+              <legend>Horizon</legend>
+              <div class="calc-row">
+                <label for="rvb-horizon">Time horizon (years)</label>
+                <input type="number" id="rvb-horizon" data-horizon min="1" max="40" step="1" value="10">
+              </div>
+            </fieldset>
+
+            <button type="button" data-calculate>Compare rent vs buy</button>
+            <p class="calc-error" data-error hidden></p>
+          </form>
+
+          <div class="calculator-results">
+            <div class="mort-breakdown">
+              <h3>At a glance</h3>
+              <ul>
+                <li><span>Net cost of buying</span><strong data-line-buying-total>&mdash;</strong></li>
+                <li><span>Net cost of renting</span><strong data-line-renting-total>&mdash;</strong></li>
+                <li class="mort-breakdown__total"><span>Difference</span><strong data-line-difference>&mdash;</strong></li>
+                <li><span>Break-even year</span><strong data-line-breakeven>&mdash;</strong></li>
+              </ul>
+            </div>
+
+            <div class="verdict-card" data-verdict hidden>
+              <p data-verdict-text></p>
+            </div>
+
+            <div class="mort-breakdown" data-breakdown hidden>
+              <h3>Buying side detail</h3>
+              <ul>
+                <li><span>Stamp Duty (SDLT)</span><strong data-line-sdlt>&mdash;</strong></li>
+                <li><span>Other upfront costs</span><strong data-line-upfront-extra>&mdash;</strong></li>
+                <li><span>Monthly mortgage payment</span><strong data-line-monthly>&mdash;</strong></li>
+                <li><span>Total mortgage paid over horizon</span><strong data-line-total-mortgage>&mdash;</strong></li>
+                <li><span>Total maintenance</span><strong data-line-total-maint>&mdash;</strong></li>
+                <li><span>Final house value</span><strong data-line-final-value>&mdash;</strong></li>
+                <li><span>Remaining loan balance</span><strong data-line-remaining>&mdash;</strong></li>
+              </ul>
+
+              <h3>Renting side detail</h3>
+              <ul>
+                <li><span>Total rent paid</span><strong data-line-total-rent>&mdash;</strong></li>
+                <li><span>Total insurance paid</span><strong data-line-total-insurance>&mdash;</strong></li>
+                <li><span>Final investment portfolio</span><strong data-line-portfolio>&mdash;</strong></li>
+              </ul>
+
+              <h3>Year by year</h3>
+              <div class="table-scroll">
+                <table data-year-table>
+                  <thead>
+                    <tr>
+                      <th scope="col">Year</th>
+                      <th scope="col">Cumulative net cost: buying</th>
+                      <th scope="col">Cumulative net cost: renting</th>
+                      <th scope="col">House value</th>
+                      <th scope="col">Portfolio</th>
+                    </tr>
+                  </thead>
+                  <tbody></tbody>
+                </table>
+              </div>
+            </div>
+
+            <details class="prove-it">
+              <summary>Show workings</summary>
+              <div data-prove-it-body class="prove-it__body"></div>
+              <p class="prove-it-source">Mortgage monthly uses the standard annuity formula M = P r (1+r)^n / ((1+r)^n &minus; 1). Remaining balance uses the amortisation identity. Maintenance is charged on the house value at the start of each year. The investment pot starts at deposit + upfront costs and compounds yearly at the chosen return. SDLT uses the 2025/26 England and Northern Ireland bands; Scotland uses LBTT and Wales uses LTT, neither of which this tool covers.</p>
+            </details>
+          </div>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="below-results" aria-hidden="true"></div>
+
+        <section class="long-form">
+          <h2>The real question: it's not rent versus mortgage, it's outcomes over time</h2>
+          <p>"Renting is throwing money away" is one of those statements that sounds obviously true, which is usually a bad sign. The reverse, "buying is always a good investment", is no better. The honest answer is that buying can win or lose against renting depending on three things: how long you stay put, what the alternative investment would have returned, and what the local housing market does while you own. Change any of those and the verdict can flip.</p>
+
+          <p>A proper comparison puts every pound from each side on the scoreboard. On the buying side that means the deposit, stamp duty, solicitor, survey, mortgage fees, every monthly payment, maintenance, and the costs of selling when you eventually leave. On the renting side it means every month's rent and insurance, but also the investment gain on the cash that would otherwise have been locked into bricks and mortar. Leave any of those out and you are lying to yourself.</p>
+
+          <h2>How the calculator works</h2>
+          <p>For buying, it adds up the cash you put in (deposit, upfront costs, mortgage payments, maintenance) and subtracts the cash you get back at the end (final house value minus remaining loan minus selling costs). That gives you the net cost of buying over your horizon.</p>
+
+          <p>For renting, it adds up the rent and insurance, then subtracts the investment gain on the cash that would have been the deposit plus upfront costs. If you leave the "invest the difference" option on, any month where buying would have cost more than renting, the saving gets added to the investment pot too. That gives you the net cost of renting over the same horizon.</p>
+
+          <p>Whichever number is lower, wins. The year-by-year table shows you when buying overtakes renting, which is the break-even point most people actually want to see.</p>
+
+          <h2>Hidden costs of buying that most people forget</h2>
+          <p>Stamp duty is the obvious one. On a £300,000 standard purchase you are looking at £5,000 straight to HMRC; on £500,000 it is £12,500. First-time buyer relief softens it up to a £500,000 purchase, but above that threshold you pay standard rates with no relief at all. Then there is the solicitor (usually £1,200 to £2,000), a homebuyer survey (£400 to £1,000), mortgage arrangement fees (typically £999 to £1,999), and valuation fees. Add them up and you can easily spend £6,000 to £10,000 before the keys are in your hand.</p>
+
+          <p>Ongoing costs get underestimated even more often. Boilers die. Roofs leak. Windows rot. A sensible budget is roughly 1% of the property value per year averaged over a decade, which on a £300,000 home is £3,000 a year, or £30,000 across ten years. Leasehold flats add ground rent and service charge on top, sometimes running to several thousand pounds a year on their own.</p>
+
+          <p>And then you have to sell. Estate agent fees typically land at 1% to 1.8% of the sale price, plus another £1,000 to £2,000 in legal fees. On a £400,000 sale that is easily £5,000 to £8,000 gone before the money hits your account.</p>
+
+          <p>Across a ten-year ownership, upfront, ongoing and exit costs often total 5% to 10% of the purchase price. That is the number most back-of-envelope "rent versus buy" chats quietly skip.</p>
+
+          <h2>Hidden benefits of renting</h2>
+          <p>Renting gets bashed because it feels like handing money to a landlord for nothing. But it buys you things too. Flexibility, for a start: you can move for a job, a relationship, or because the street has become noisy, without the 2% to 3% friction cost of selling a house. You are not on the hook when the boiler goes or the roof starts leaking; that is the landlord's problem. Your deposit can sit in a stocks and shares ISA earning compound returns, rather than being locked in an asset you can only turn into cash by moving out.</p>
+
+          <p>None of this means renting beats buying. It means the comparison is not as one-sided as the "dead money" line suggests.</p>
+
+          <h2>What this tool does not do</h2>
+          <p>It uses a single mortgage rate for the whole term, which understates the reality of remortgaging every two to five years. It uses a single investment return, which is a smoothed long-run assumption, not a forecast. It covers England and Northern Ireland stamp duty only: Scotland and Wales use LBTT and LTT respectively, and dedicated Scottish and Welsh rent-versus-buy tools are on the roadmap. It does not handle capital gains tax (your main home is exempt from CGT in the UK), income tax on investment returns outside an ISA, or the Help to Buy / Shared Ownership schemes.</p>
+
+          <p>Nothing on this page is financial advice. Treat the result as a conversation starter with a qualified UK mortgage broker or independent financial adviser.</p>
+
+          <!-- related-calculators-block -->
+          <h2>Related calculators</h2>
+          <p>Run these alongside for the full buying picture.</p>
+          <ul class="related-calculators">
+            <li><a href="/calculators/finance/uk-mortgage-calculator/">UK Mortgage Calculator</a> for the monthly payment and SVR reversion.</li>
+            <li><a href="/calculators/finance/uk-stamp-duty-calculator/">UK Stamp Duty Calculator</a> for the full band-by-band SDLT breakdown.</li>
+            <li><a href="/calculators/property/rental-yield-calculator/">Rental Yield Calculator</a> if you're thinking about the buy-to-let angle instead.</li>
+            <li><a href="/calculators/finance/uk-salary-tax-calculator/">UK Salary Tax Calculator</a> to check what you actually take home before any of this.</li>
+          </ul>
+        </section>
+
+        <section class="faq">
+          <h2>Common questions</h2>
+          <details>
+            <summary>How long do I need to own a home to make buying worthwhile?</summary>
+            <p>In most realistic UK setups, the break-even year lands somewhere between five and ten. Upfront costs plus selling costs are heavy enough that short ownerships rarely beat renting once you account for the deposit's opportunity cost. The calculator shows your specific break-even year so you can see the line for your inputs.</p>
+          </details>
+          <details>
+            <summary>What investment return should I assume on the deposit if I rent?</summary>
+            <p>A global equity index has averaged around 5% to 7% real returns over long periods, but the range has been wide. The default is 5% nominal to stay on the conservative side. Use 3% if you'd hold cash or bonds, 7% if you'd go all-in on a global tracker and can stomach the volatility. Tax above the ISA allowance eats into these numbers in real life.</p>
+          </details>
+          <details>
+            <summary>Does this include stamp duty?</summary>
+            <p>Yes, using the 2025/26 England and Northern Ireland SDLT bands. First-time buyer relief applies up to a £500,000 purchase. Scotland's LBTT and Wales's LTT have different bands and are not handled here.</p>
+          </details>
+          <details>
+            <summary>What about remortgaging at a different rate later?</summary>
+            <p>The calculator uses one mortgage rate across the full term for simplicity. Most UK borrowers remortgage every two to five years, so try running the figures at both your current rate and a stressed higher rate to see how robust the verdict is.</p>
+          </details>
+          <details>
+            <summary>Does it handle Scotland or Wales?</summary>
+            <p>Not yet. SDLT is England and Northern Ireland only; Scotland uses Land and Buildings Transaction Tax (LBTT) and Wales uses Land Transaction Tax (LTT), both with different bands. Dedicated regional versions are on the roadmap.</p>
+          </details>
+        </section>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="ad-slot" data-ad-slot="sidebar" aria-hidden="true"></div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="site-footer-nav" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/calculators/">All calculators</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+      <section class="site-disclaimer" data-disclaimer aria-labelledby="disclaimer-heading">
+        <h2 id="disclaimer-heading">A quick, necessary word</h2>
+        <p>Every calculator on this site is built to give you a sensible, well-reasoned estimate. It is, however, exactly that: an estimate, for general information only. Nothing you see here is professional, legal, financial, medical, or tax advice, and it should not be treated as such.</p>
+        <p>Before you make a decision that actually matters, talk to a qualified professional who knows your specific situation: an accountant, a solicitor, a doctor, an IT consultant, whoever fits the question. They can factor in the bits a generic tool can't.</p>
+        <p>We take no liability and accept no responsibility for any loss, damage, or questionable life choice arising from acting on the numbers you see here. Use the results as a starting point for a better conversation, not as the final word.</p>
+        <p><strong>Affiliate disclosure:</strong> some links on this site are affiliate links. If you click through and buy or sign up for something, we may earn a small commission at no extra cost to you. It helps keep the calculators free and ad-light. We only recommend things we'd point a friend towards.</p>
+      </section>
+      <p class="site-copyright">&copy; 2026 WebCaretakers. All rights reserved.</p>
+      <p class="site-legal">WebCaretakers is a trading name of <a href="https://yeseo.io/" rel="noopener">Andrew Laws Associates Ltd</a>, registered in England and Wales (company no. 08602332). ICO registration ZA726704.</p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/calculators/uk-rent-vs-buy.js"></script>
+  <script>
+  (function () {
+    'use strict';
+
+    var calcBtn   = document.querySelector('[data-calculate]');
+    var errorEl   = document.querySelector('[data-error]');
+    var breakdown = document.querySelector('[data-breakdown]');
+    var verdict   = document.querySelector('[data-verdict]');
+    var verdictTx = document.querySelector('[data-verdict-text]');
+    var proveBody = document.querySelector('[data-prove-it-body]');
+    var tableBody = document.querySelector('[data-year-table] tbody');
+
+    function num(sel, fallback) {
+      var el = document.querySelector(sel);
+      if (!el) return fallback || 0;
+      var v = parseFloat(el.value);
+      return isNaN(v) ? (fallback || 0) : v;
+    }
+    function sel(selector) {
+      var el = document.querySelector(selector);
+      return el ? el.value : '';
+    }
+    function fmt(n) {
+      var sign = n < 0 ? '-' : '';
+      var abs = Math.abs(n).toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      return sign + '£' + abs;
+    }
+
+    // calculator_interaction: fire on any input change/blur
+    document.querySelectorAll('.calc-form input, .calc-form select').forEach(function (el) {
+      el.addEventListener('change', function () {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: 'calculator_interaction',
+          calculator_name: 'UK Rent vs Buy Calculator',
+          field: el.getAttribute('id') || ''
+        });
+      });
+    });
+
+    function showError(msg) {
+      errorEl.textContent = msg;
+      errorEl.hidden = false;
+      breakdown.hidden = true;
+      verdict.hidden = true;
+    }
+    function clearError() {
+      errorEl.hidden = true;
+      errorEl.textContent = '';
+    }
+
+    calcBtn.addEventListener('click', function () {
+      clearError();
+
+      var opts = {
+        housePrice:              num('[data-house-price]', 0),
+        deposit:                 num('[data-deposit]', 0),
+        mortgageTermYears:       num('[data-term]', 25),
+        mortgageRatePercent:     num('[data-rate]', 4.5),
+        firstTimeBuyer:          sel('[data-ftb]') === 'yes',
+        buyingCostsExtra:        num('[data-solicitor]', 0) + num('[data-survey]', 0) + num('[data-arrangement]', 0),
+        maintenancePercent:      num('[data-maintenance]', 1),
+        housePriceGrowthPercent: num('[data-growth]', 3),
+        sellingCostPercent:      num('[data-sell-pct]', 1.5),
+        sellingLegalFixed:       num('[data-sell-legal]', 1500),
+        monthlyRent:             num('[data-rent]', 0),
+        rentIncreasePercent:     num('[data-rent-increase]', 3),
+        rentersInsuranceMonthly: num('[data-insurance]', 10),
+        investmentReturnPercent: num('[data-invest]', 5),
+        horizonYears:            num('[data-horizon]', 10),
+        investDifference:        sel('[data-invest-diff]') === 'yes'
+      };
+
+      try {
+        if (opts.housePrice <= 0) throw new Error('Enter a house price greater than zero.');
+        if (opts.monthlyRent < 0) throw new Error('Monthly rent cannot be negative.');
+        if (opts.deposit > opts.housePrice) throw new Error('Deposit cannot exceed the house price.');
+
+        var r = window.UKRentVsBuy.calculate(opts);
+
+        document.querySelector('[data-line-buying-total]').textContent  = fmt(r.netBuyingCost);
+        document.querySelector('[data-line-renting-total]').textContent = fmt(r.netRentingCost);
+        document.querySelector('[data-line-difference]').textContent    = fmt(r.difference);
+        document.querySelector('[data-line-breakeven]').textContent     =
+          r.breakEvenYear ? ('Year ' + r.breakEvenYear) : 'Not within ' + r.horizonYears + ' years';
+
+        document.querySelector('[data-line-sdlt]').textContent          = fmt(r.sdlt);
+        document.querySelector('[data-line-upfront-extra]').textContent = fmt(r.buyingCostsExtra);
+        document.querySelector('[data-line-monthly]').textContent       = fmt(r.monthlyMortgage);
+        document.querySelector('[data-line-total-mortgage]').textContent = fmt(r.totalMortgagePaid);
+        document.querySelector('[data-line-total-maint]').textContent   = fmt(r.totalMaintenance);
+        document.querySelector('[data-line-final-value]').textContent   = fmt(r.finalHouseValue);
+        document.querySelector('[data-line-remaining]').textContent     = fmt(r.remainingBalance);
+        document.querySelector('[data-line-total-rent]').textContent    = fmt(r.totalRent);
+        document.querySelector('[data-line-total-insurance]').textContent = fmt(r.totalInsurance);
+        document.querySelector('[data-line-portfolio]').textContent     = fmt(r.finalPortfolio);
+
+        // Build year-by-year table
+        tableBody.innerHTML = '';
+        r.rows.forEach(function (row) {
+          var tr = document.createElement('tr');
+          tr.innerHTML = '<td>' + row.year + '</td>' +
+                         '<td>' + fmt(row.buyNet) + '</td>' +
+                         '<td>' + fmt(row.rentNet) + '</td>' +
+                         '<td>' + fmt(row.houseValue) + '</td>' +
+                         '<td>' + fmt(row.portfolio) + '</td>';
+          tableBody.appendChild(tr);
+        });
+
+        var verdictMsg;
+        if (r.verdict === 'buy') {
+          verdictMsg = 'Over ' + r.horizonYears + ' years, buying keeps you about ' + fmt(r.savings) + ' ahead of renting on these inputs.';
+        } else {
+          verdictMsg = 'Over ' + r.horizonYears + ' years, renting keeps you about ' + fmt(r.savings) + ' ahead of buying on these inputs.';
+        }
+        verdictTx.textContent = verdictMsg;
+        verdict.hidden = false;
+
+        var workings = [
+          'Loan principal: ' + fmt(opts.housePrice) + ' - ' + fmt(opts.deposit) + ' = ' + fmt(opts.housePrice - opts.deposit),
+          'SDLT on ' + fmt(opts.housePrice) + (opts.firstTimeBuyer ? ' (first-time buyer)' : '') + ' = ' + fmt(r.sdlt),
+          'Monthly mortgage (at ' + opts.mortgageRatePercent + '% over ' + opts.mortgageTermYears + 'y): ' + fmt(r.monthlyMortgage),
+          'Final house value after ' + r.horizonYears + 'y at ' + opts.housePriceGrowthPercent + '% growth: ' + fmt(r.finalHouseValue),
+          'Remaining loan balance: ' + fmt(r.remainingBalance),
+          'Net buying cost over horizon: ' + fmt(r.netBuyingCost),
+          'Total rent paid: ' + fmt(r.totalRent),
+          'Investment portfolio at year ' + r.horizonYears + ': ' + fmt(r.finalPortfolio),
+          'Net renting cost over horizon: ' + fmt(r.netRentingCost)
+        ];
+        proveBody.textContent = workings.join('\n');
+
+        breakdown.hidden = false;
+
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: 'calculator_result',
+          calculator_name: 'UK Rent vs Buy Calculator',
+          horizon_years: r.horizonYears,
+          net_buying_cost: r.netBuyingCost,
+          net_renting_cost: r.netRentingCost,
+          verdict: r.verdict,
+          break_even_year: r.breakEvenYear
+        });
+      } catch (err) {
+        showError(err.message);
+      }
+    });
+  })();
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>
