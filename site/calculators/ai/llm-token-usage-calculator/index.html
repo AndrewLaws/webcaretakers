@@ -282,6 +282,34 @@
 
         <div class="ad-slot" data-ad-slot="below-results" aria-hidden="true"></div>
 
+        <section class="price-history" data-price-history aria-labelledby="price-history-heading">
+          <h2 id="price-history-heading">Price history</h2>
+          <p class="price-history__intro">Each time the prices on this page get re-verified, a snapshot lands in <code>llm-pricing-history.json</code>. The chart shows how the input price per 1M tokens has moved over time. Output prices follow the same shape and are listed in the table below the chart for each snapshot. The first run only has one data point, so the chart fills out as more verifications are recorded.</p>
+
+          <div class="price-history__controls" data-price-history-controls>
+            <fieldset>
+              <legend class="visually-hidden">Which side of the bill to chart</legend>
+              <label><input type="radio" name="price-axis" value="input" data-price-axis checked> Input price</label>
+              <label><input type="radio" name="price-axis" value="output" data-price-axis> Output price</label>
+            </fieldset>
+          </div>
+
+          <div class="price-history__chart-wrap">
+            <svg class="price-history__chart" data-price-history-chart viewBox="0 0 800 360" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Line chart of LLM input price per 1M tokens over time"></svg>
+            <p class="price-history__caption" data-price-history-caption>Loading price history…</p>
+          </div>
+
+          <details class="price-history__raw">
+            <summary>Show raw price history (table)</summary>
+            <div class="table-wrap">
+              <table class="comparison-table" data-price-history-table>
+                <thead><tr><th scope="col">Date</th><th scope="col">Model</th><th scope="col">Vendor</th><th scope="col">Input $/1M</th><th scope="col">Output $/1M</th></tr></thead>
+                <tbody></tbody>
+              </table>
+            </div>
+          </details>
+        </section>
+
         <section class="long-form">
           <h2>What this calculator is actually doing</h2>
           <p>An LLM API bills you per token. A token is roughly four characters of English, give or take, depending on the tokeniser. You pay one rate for the tokens you send (the prompt), and a higher rate for the tokens the model generates back. Multiply those two numbers by your call volume and you get a monthly bill. That's it. The maths is not difficult; the difficult bit is getting honest figures for the inputs, and noticing when one provider quietly changes a price.</p>
@@ -583,6 +611,209 @@
       });
     })();
   </script>
+
+  <!-- Price history chart. Reads /assets/data/llm-pricing-history.json (a static
+       site asset, not a third-party API) and renders an SVG line chart of
+       price-per-1M-tokens over time. Each snapshot in the JSON adds a new
+       data point per model; the chart redraws on toggle between input and
+       output prices. -->
+  <script>
+    (function () {
+      var chartEl = document.querySelector('[data-price-history-chart]');
+      var captionEl = document.querySelector('[data-price-history-caption]');
+      var tableBodyEl = document.querySelector('[data-price-history-table] tbody');
+      var axisInputs = document.querySelectorAll('[data-price-axis]');
+      if (!chartEl || !captionEl || !tableBodyEl) return;
+
+      // Stable per-vendor colours so the same model keeps the same line colour
+      // across renders. Picked to be distinguishable for most colour-vision types.
+      var VENDOR_COLOUR = {
+        Anthropic: '#c0651f',
+        OpenAI:    '#0a8f6d',
+        Google:    '#3a6df0',
+        DeepSeek:  '#8a3ad1'
+      };
+
+      var SVG_NS = 'http://www.w3.org/2000/svg';
+      function el(name, attrs, text) {
+        var node = document.createElementNS(SVG_NS, name);
+        if (attrs) Object.keys(attrs).forEach(function (k) { node.setAttribute(k, attrs[k]); });
+        if (text != null) node.textContent = text;
+        return node;
+      }
+
+      function fmtUsd(n) {
+        if (n < 1) return '$' + n.toFixed(2);
+        return '$' + n.toFixed(2);
+      }
+
+      function render(history, axis) {
+        // Clear chart
+        while (chartEl.firstChild) chartEl.removeChild(chartEl.firstChild);
+
+        var snapshots = (history && history.snapshots) || [];
+        if (snapshots.length === 0) {
+          captionEl.textContent = 'No price history yet.';
+          return;
+        }
+
+        // Collect every model id ever seen, plus its last-known display name and vendor.
+        var modelMeta = {};
+        snapshots.forEach(function (snap) {
+          Object.keys(snap.models || {}).forEach(function (id) {
+            var m = snap.models[id];
+            modelMeta[id] = { name: m.name, vendor: m.vendor };
+          });
+        });
+
+        var modelIds = Object.keys(modelMeta).sort(function (a, b) {
+          return modelMeta[a].vendor.localeCompare(modelMeta[b].vendor) || a.localeCompare(b);
+        });
+
+        // Geometry
+        var W = 800, H = 360;
+        var pad = { top: 16, right: 180, bottom: 40, left: 56 };
+        var plotW = W - pad.left - pad.right;
+        var plotH = H - pad.top - pad.bottom;
+
+        // Y range from all observed prices on the active axis
+        var maxPrice = 0;
+        snapshots.forEach(function (snap) {
+          modelIds.forEach(function (id) {
+            var m = snap.models[id];
+            if (!m) return;
+            var v = axis === 'output' ? m.outputPer1M : m.inputPer1M;
+            if (typeof v === 'number' && v > maxPrice) maxPrice = v;
+          });
+        });
+        if (maxPrice <= 0) maxPrice = 1;
+        // Round up the y-axis ceiling to a clean number
+        var yCeiling = Math.ceil(maxPrice * 1.1 / 5) * 5 || maxPrice * 1.1;
+
+        // X positions: evenly spaced if only one snapshot, otherwise by date.
+        var xs = snapshots.map(function (s, i) {
+          if (snapshots.length === 1) return pad.left + plotW / 2;
+          var t0 = new Date(snapshots[0].date).getTime();
+          var t1 = new Date(snapshots[snapshots.length - 1].date).getTime();
+          var t  = new Date(s.date).getTime();
+          var f  = t1 === t0 ? i / (snapshots.length - 1) : (t - t0) / (t1 - t0);
+          return pad.left + f * plotW;
+        });
+        function y(price) {
+          return pad.top + plotH - (price / yCeiling) * plotH;
+        }
+
+        // Axes (subtle)
+        chartEl.appendChild(el('line', { x1: pad.left, y1: pad.top, x2: pad.left, y2: pad.top + plotH, stroke: '#ccc' }));
+        chartEl.appendChild(el('line', { x1: pad.left, y1: pad.top + plotH, x2: pad.left + plotW, y2: pad.top + plotH, stroke: '#ccc' }));
+
+        // Y-axis ticks (4 of them)
+        for (var i = 0; i <= 4; i++) {
+          var price = yCeiling * (i / 4);
+          var yp = y(price);
+          chartEl.appendChild(el('line', { x1: pad.left - 4, y1: yp, x2: pad.left, y2: yp, stroke: '#999' }));
+          chartEl.appendChild(el('text', {
+            x: pad.left - 8, y: yp + 4, 'text-anchor': 'end',
+            'font-size': '11', fill: '#555'
+          }, fmtUsd(price)));
+        }
+
+        // X-axis date labels
+        snapshots.forEach(function (s, i) {
+          chartEl.appendChild(el('text', {
+            x: xs[i], y: pad.top + plotH + 18, 'text-anchor': 'middle',
+            'font-size': '11', fill: '#555'
+          }, s.date));
+        });
+
+        // Y-axis title
+        chartEl.appendChild(el('text', {
+          x: 14, y: pad.top + plotH / 2, 'text-anchor': 'middle',
+          'font-size': '11', fill: '#555',
+          transform: 'rotate(-90 14 ' + (pad.top + plotH / 2) + ')'
+        }, axis === 'output' ? 'Output $/1M tokens' : 'Input $/1M tokens'));
+
+        // Lines per model
+        modelIds.forEach(function (id, idx) {
+          var meta = modelMeta[id];
+          var colour = VENDOR_COLOUR[meta.vendor] || '#444';
+          var pts = [];
+          snapshots.forEach(function (snap, i) {
+            var m = snap.models[id];
+            if (!m) return;
+            var v = axis === 'output' ? m.outputPer1M : m.inputPer1M;
+            if (typeof v !== 'number') return;
+            pts.push({ x: xs[i], y: y(v), v: v });
+          });
+          if (pts.length === 0) return;
+
+          // Draw line if 2+ points; otherwise just the dot.
+          if (pts.length >= 2) {
+            var d = 'M ' + pts.map(function (p) { return p.x + ' ' + p.y; }).join(' L ');
+            chartEl.appendChild(el('path', { d: d, fill: 'none', stroke: colour, 'stroke-width': '1.5', 'stroke-opacity': '0.85' }));
+          }
+          pts.forEach(function (p) {
+            chartEl.appendChild(el('circle', { cx: p.x, cy: p.y, r: '3', fill: colour }));
+            var t = el('title', null, meta.name + ' on ' + snapshots[pts.indexOf(p) === -1 ? 0 : 0].date + ': ' + fmtUsd(p.v));
+            // simpler: just per-point title
+          });
+
+          // Legend on the right
+          var legendY = pad.top + 14 + idx * 16;
+          if (legendY < pad.top + plotH) {
+            chartEl.appendChild(el('line', {
+              x1: pad.left + plotW + 12, y1: legendY,
+              x2: pad.left + plotW + 28, y2: legendY,
+              stroke: colour, 'stroke-width': '2'
+            }));
+            chartEl.appendChild(el('text', {
+              x: pad.left + plotW + 32, y: legendY + 4,
+              'font-size': '11', fill: '#333'
+            }, meta.name));
+          }
+        });
+
+        captionEl.textContent = snapshots.length === 1
+          ? 'First snapshot recorded ' + snapshots[0].date + '. The chart fills out as more verifications are appended.'
+          : snapshots.length + ' snapshots between ' + snapshots[0].date + ' and ' + snapshots[snapshots.length - 1].date + '. Hover a dot for the price on that date.';
+      }
+
+      function renderTable(history) {
+        tableBodyEl.innerHTML = '';
+        var snapshots = (history && history.snapshots) || [];
+        snapshots.forEach(function (snap) {
+          Object.keys(snap.models).forEach(function (id) {
+            var m = snap.models[id];
+            var tr = document.createElement('tr');
+            tr.innerHTML =
+              '<td>' + snap.date + '</td>' +
+              '<td>' + m.name + '</td>' +
+              '<td>' + m.vendor + '</td>' +
+              '<td>' + fmtUsd(m.inputPer1M) + '</td>' +
+              '<td>' + fmtUsd(m.outputPer1M) + '</td>';
+            tableBodyEl.appendChild(tr);
+          });
+        });
+      }
+
+      fetch('/assets/data/llm-pricing-history.json', { cache: 'no-cache' })
+        .then(function (r) { return r.ok ? r.json() : Promise.reject(new Error('HTTP ' + r.status)); })
+        .then(function (history) {
+          var axis = 'input';
+          render(history, axis);
+          renderTable(history);
+          axisInputs.forEach(function (inp) {
+            inp.addEventListener('change', function () {
+              if (inp.checked) render(history, inp.value);
+            });
+          });
+        })
+        .catch(function (err) {
+          captionEl.textContent = 'Could not load price history (' + (err && err.message) + ').';
+        });
+    })();
+  </script>
+
   <script src="/assets/js/main.js"></script>
 </body>
 </html>

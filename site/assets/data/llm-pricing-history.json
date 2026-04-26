@@ -1,0 +1,25 @@
+{
+  "_description": "Append-only price history for the LLM Token Usage Calculator. Each verification run adds a new entry to 'snapshots'. Models that retire from a provider's pricing page stay in the history (so the chart shows the run-out). Prices are USD per 1M tokens, standard list (non-cached, non-batch).",
+  "_workflow": "When refreshing prices: (1) fetch each provider's pricing page, (2) update site/assets/js/calculators/llm-token-usage.js MODELS array with current prices, (3) append a new snapshot below with today's date and the same prices keyed by model id, (4) update lastVerified at the top, (5) run tests, (6) commit.",
+  "lastVerified": "2026-04-26",
+  "snapshots": [
+    {
+      "date": "2026-04-26",
+      "note": "Genesis snapshot. Verified live against claude.com/pricing, developers.openai.com/api/docs/pricing, ai.google.dev/gemini-api/docs/pricing, api-docs.deepseek.com.",
+      "models": {
+        "claude-opus-4-7":   { "name": "Claude Opus 4.7",         "vendor": "Anthropic", "inputPer1M": 5.00,  "outputPer1M": 25.00 },
+        "claude-sonnet-4-6": { "name": "Claude Sonnet 4.6",       "vendor": "Anthropic", "inputPer1M": 3.00,  "outputPer1M": 15.00 },
+        "claude-haiku-4-5":  { "name": "Claude Haiku 4.5",        "vendor": "Anthropic", "inputPer1M": 1.00,  "outputPer1M": 5.00 },
+        "gpt-5-5":           { "name": "GPT-5.5",                 "vendor": "OpenAI",    "inputPer1M": 5.00,  "outputPer1M": 30.00 },
+        "gpt-5-4":           { "name": "GPT-5.4",                 "vendor": "OpenAI",    "inputPer1M": 2.50,  "outputPer1M": 15.00 },
+        "gpt-5-4-mini":      { "name": "GPT-5.4 mini",            "vendor": "OpenAI",    "inputPer1M": 0.75,  "outputPer1M": 4.50 },
+        "gemini-3-1-pro":    { "name": "Gemini 3.1 Pro (preview)","vendor": "Google",    "inputPer1M": 2.00,  "outputPer1M": 12.00 },
+        "gemini-3-flash":    { "name": "Gemini 3 Flash (preview)","vendor": "Google",    "inputPer1M": 0.50,  "outputPer1M": 3.00 },
+        "gemini-2-5-pro":    { "name": "Gemini 2.5 Pro",          "vendor": "Google",    "inputPer1M": 1.25,  "outputPer1M": 10.00 },
+        "gemini-2-5-flash":  { "name": "Gemini 2.5 Flash",        "vendor": "Google",    "inputPer1M": 0.30,  "outputPer1M": 2.50 },
+        "deepseek-v4-flash": { "name": "DeepSeek V4-Flash",       "vendor": "DeepSeek",  "inputPer1M": 0.14,  "outputPer1M": 0.28 },
+        "deepseek-v4-pro":   { "name": "DeepSeek V4-Pro",         "vendor": "DeepSeek",  "inputPer1M": 0.435, "outputPer1M": 0.87 }
+      }
+    }
+  ]
+}

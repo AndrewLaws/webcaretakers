@@ -151,6 +151,40 @@ test.describe('LLM Token Usage Calculator page', () => {
     const faq = page.locator('.faq');
     await expect(faq).toContainText('What is a token?');
   });
+
+  test('price history chart renders an SVG with at least one data point per model', async ({ page }) => {
+    // The chart fetches /assets/data/llm-pricing-history.json and renders an SVG.
+    // Wait for the caption to flip from the "Loading…" placeholder.
+    const caption = page.locator('[data-price-history-caption]');
+    await expect(caption).not.toHaveText(/Loading/i, { timeout: 5000 });
+    const chart = page.locator('[data-price-history-chart]');
+    await expect(chart).toBeVisible();
+    const circleCount = await chart.locator('circle').count();
+    // Genesis snapshot has 12 models, so at minimum one dot per model.
+    expect(circleCount).toBeGreaterThanOrEqual(4);
+  });
+
+  test('price history table populates from the JSON snapshot', async ({ page }) => {
+    await page.locator('[data-price-history-caption]').waitFor();
+    // Open the collapsible details so the table is visible to assertions.
+    await page.locator('.price-history__raw summary').click();
+    const rows = page.locator('[data-price-history-table] tbody tr');
+    const count = await rows.count();
+    expect(count).toBeGreaterThanOrEqual(4);
+    // Each row has a date, model name, vendor, input $, output $.
+    const cells = await rows.nth(0).locator('td').count();
+    expect(cells).toBe(5);
+  });
+
+  test('axis toggle redraws the chart when switched to output prices', async ({ page }) => {
+    const caption = page.locator('[data-price-history-caption]');
+    await expect(caption).not.toHaveText(/Loading/i, { timeout: 5000 });
+    const yLabelInput = await page.locator('[data-price-history-chart] text').filter({ hasText: 'Input $/1M tokens' }).count();
+    expect(yLabelInput).toBe(1);
+    await page.locator('[data-price-axis][value="output"]').check();
+    const yLabelOutput = await page.locator('[data-price-history-chart] text').filter({ hasText: 'Output $/1M tokens' }).count();
+    expect(yLabelOutput).toBe(1);
+  });
 });
 
 test.describe('AI hub registration', () => {

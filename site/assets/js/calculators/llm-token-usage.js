@@ -16,8 +16,15 @@
 //   - Google:    https://ai.google.dev/gemini-api/docs/pricing   (verified 2026-04-26)
 //   - DeepSeek:  https://api-docs.deepseek.com/quick_start/pricing (verified 2026-04-26)
 //
-// If you change a price, update PRICING_LAST_VERIFIED below and the caption
-// rendered in the page so users know how fresh the figures are.
+// If you change a price, do all four of these:
+//   1. update PRICING_LAST_VERIFIED below,
+//   2. update the prices in the MODELS array,
+//   3. append a new snapshot to /site/assets/data/llm-pricing-history.json
+//      (append-only — retired models stay in old snapshots so the chart shows
+//      the run-out), and bump its top-level lastVerified to today,
+//   4. run the tests and confirm the on-page "Last verified" caption updates.
+// The price-history chart on the page reads the JSON file at runtime and
+// fills in another data point per model each time you do this.
 
 'use strict';
 
