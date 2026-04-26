@@ -11,10 +11,10 @@
 // exact number.
 //
 // Pricing sources (per 1M tokens, USD, standard non-cached, non-batch):
-//   - Anthropic: https://www.anthropic.com/pricing  (verified 2026-04-26)
-//   - OpenAI:    https://openai.com/api/pricing/    (verified 2026-04-26)
-//   - Google:    https://ai.google.dev/gemini-api/docs/pricing  (verified 2026-04-26)
-//   - DeepSeek:  https://api-docs.deepseek.com/quick_start/pricing  (verified 2026-04-26)
+//   - Anthropic: https://claude.com/pricing             (verified 2026-04-26)
+//   - OpenAI:    https://developers.openai.com/api/docs/pricing  (verified 2026-04-26)
+//   - Google:    https://ai.google.dev/gemini-api/docs/pricing   (verified 2026-04-26)
+//   - DeepSeek:  https://api-docs.deepseek.com/quick_start/pricing (verified 2026-04-26)
 //
 // If you change a price, update PRICING_LAST_VERIFIED below and the caption
 // rendered in the page so users know how fresh the figures are.
@@ -29,17 +29,17 @@ const PRICING_LAST_VERIFIED = '2026-04-26';
 // English prose; we use 4 across the board and label it as approximate.
 const MODELS = [
   {
-    id: 'claude-opus-4',
-    name: 'Claude Opus 4',
+    id: 'claude-opus-4-7',
+    name: 'Claude Opus 4.7',
     vendor: 'Anthropic',
     family: 'claude',
-    inputPer1M: 15.00,
-    outputPer1M: 75.00,
-    notes: 'Anthropic flagship. Highest reasoning, highest cost.',
+    inputPer1M: 5.00,
+    outputPer1M: 25.00,
+    notes: 'Anthropic flagship. Highest reasoning. 5-min prompt caching cuts repeat-prompt input cost to about a tenth.',
   },
   {
-    id: 'claude-sonnet-4',
-    name: 'Claude Sonnet 4',
+    id: 'claude-sonnet-4-6',
+    name: 'Claude Sonnet 4.6',
     vendor: 'Anthropic',
     family: 'claude',
     inputPer1M: 3.00,
@@ -47,40 +47,58 @@ const MODELS = [
     notes: 'Anthropic workhorse. Good default for most production work.',
   },
   {
-    id: 'gpt-5',
-    name: 'GPT-5',
-    vendor: 'OpenAI',
-    family: 'gpt',
-    inputPer1M: 1.25,
-    outputPer1M: 10.00,
-    notes: 'OpenAI flagship.',
+    id: 'claude-haiku-4-5',
+    name: 'Claude Haiku 4.5',
+    vendor: 'Anthropic',
+    family: 'claude',
+    inputPer1M: 1.00,
+    outputPer1M: 5.00,
+    notes: 'Anthropic fast tier. Cheapest Claude option for bulk work.',
   },
   {
-    id: 'gpt-5-mini',
-    name: 'GPT-5 mini',
+    id: 'gpt-5-5',
+    name: 'GPT-5.5',
     vendor: 'OpenAI',
     family: 'gpt',
-    inputPer1M: 0.25,
-    outputPer1M: 2.00,
-    notes: 'OpenAI cheap tier.',
+    inputPer1M: 5.00,
+    outputPer1M: 30.00,
+    notes: 'OpenAI flagship reasoning model.',
   },
   {
-    id: 'gpt-4o',
-    name: 'GPT-4o',
+    id: 'gpt-5-4',
+    name: 'GPT-5.4',
     vendor: 'OpenAI',
     family: 'gpt',
     inputPer1M: 2.50,
-    outputPer1M: 10.00,
-    notes: 'Older OpenAI flagship, still widely deployed.',
+    outputPer1M: 15.00,
+    notes: 'OpenAI workhorse. Good balance of cost and capability.',
   },
   {
-    id: 'gpt-4o-mini',
-    name: 'GPT-4o mini',
+    id: 'gpt-5-4-mini',
+    name: 'GPT-5.4 mini',
     vendor: 'OpenAI',
     family: 'gpt',
-    inputPer1M: 0.15,
-    outputPer1M: 0.60,
-    notes: 'OpenAI legacy cheap tier. Cheapest credible option for bulk work.',
+    inputPer1M: 0.75,
+    outputPer1M: 4.50,
+    notes: 'OpenAI cheap tier for bulk work.',
+  },
+  {
+    id: 'gemini-3-1-pro',
+    name: 'Gemini 3.1 Pro (preview)',
+    vendor: 'Google',
+    family: 'gemini',
+    inputPer1M: 2.00,
+    outputPer1M: 12.00,
+    notes: 'Google flagship preview. Pricing shown is the up-to-200K-prompt tier; long prompts cost more.',
+  },
+  {
+    id: 'gemini-3-flash',
+    name: 'Gemini 3 Flash (preview)',
+    vendor: 'Google',
+    family: 'gemini',
+    inputPer1M: 0.50,
+    outputPer1M: 3.00,
+    notes: 'Google fast preview tier.',
   },
   {
     id: 'gemini-2-5-pro',
@@ -89,7 +107,7 @@ const MODELS = [
     family: 'gemini',
     inputPer1M: 1.25,
     outputPer1M: 10.00,
-    notes: 'Google flagship. Pricing shown is the up-to-200K-prompt tier.',
+    notes: 'Google previous flagship, still widely available. Up-to-200K-prompt tier.',
   },
   {
     id: 'gemini-2-5-flash',
@@ -101,13 +119,22 @@ const MODELS = [
     notes: 'Google fast and cheap tier.',
   },
   {
-    id: 'deepseek-chat',
-    name: 'DeepSeek V3',
+    id: 'deepseek-v4-flash',
+    name: 'DeepSeek V4-Flash',
     vendor: 'DeepSeek',
     family: 'deepseek',
-    inputPer1M: 0.27,
-    outputPer1M: 1.10,
-    notes: 'Open-weights challenger. Cheap, strong reasoning, hosted in CN.',
+    inputPer1M: 0.14,
+    outputPer1M: 0.28,
+    notes: 'Open-weights, hosted in CN. Cache-hit input is 50x cheaper if you re-send the same prompt.',
+  },
+  {
+    id: 'deepseek-v4-pro',
+    name: 'DeepSeek V4-Pro',
+    vendor: 'DeepSeek',
+    family: 'deepseek',
+    inputPer1M: 0.435,
+    outputPer1M: 0.87,
+    notes: 'DeepSeek flagship. 75% launch discount runs until 2026-05-05; standard rate after that is 4x higher.',
   },
 ];
 

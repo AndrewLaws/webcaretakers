@@ -306,7 +306,7 @@
           <p>If the number this calculator just produced gave you a fright, the highest-leverage moves are usually:</p>
           <ul>
             <li><strong>Cap output tokens.</strong> Set max_tokens. Models will happily ramble at 75 dollars per million if you let them.</li>
-            <li><strong>Move the workhorse to a smaller model.</strong> Most tasks do not need the flagship. Sonnet, Flash, GPT-5 mini and DeepSeek will all handle classification, extraction and short summarisation for a tenth of the cost.</li>
+            <li><strong>Move the workhorse to a smaller model.</strong> Most tasks do not need the flagship. Sonnet, Haiku, GPT-5.4 mini, Gemini Flash and DeepSeek V4-Flash will all handle classification, extraction and short summarisation for a fraction of the flagship cost.</li>
             <li><strong>Turn on prompt caching.</strong> If your system prompt is more than a few hundred tokens and you call the API more than once, caching is free money.</li>
             <li><strong>Batch the non-urgent stuff.</strong> Anything that doesn't need to come back inside ten seconds can run on the batch API at half price.</li>
             <li><strong>Tighten the prompt.</strong> Long, hand-crafted system prompts with twelve few-shot examples are reassuring to write but expensive to run a million times. A short prompt that's been tested properly usually beats a long one.</li>
@@ -427,7 +427,7 @@
         var opt = document.createElement('option');
         opt.value = m.id;
         opt.textContent = m.vendor + ' — ' + m.name;
-        if (m.id === 'claude-sonnet-4') opt.selected = true;
+        if (m.id === 'claude-sonnet-4-6') opt.selected = true;
         primaryModelEl.appendChild(opt);
       });
 
