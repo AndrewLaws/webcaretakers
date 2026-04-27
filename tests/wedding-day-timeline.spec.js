@@ -159,3 +159,47 @@ test('wedding hub lists this calculator', async ({ page }) => {
   await page.goto('/calculators/wedding/');
   await expect(page.locator('.category-grid')).toContainText('Timeline');
 });
+
+test.describe('Prove it panel', () => {
+  test('button is present after generating a timeline', async ({ page }) => {
+    await page.goto(URL);
+    await page.locator('[data-ceremony-time]').fill('14:00');
+    await page.locator('[data-reception-end-time]').fill('23:30');
+    await page.locator('[data-calculate]').click();
+    await expect(page.locator('button[data-prove-it]')).toBeVisible();
+  });
+
+  test('clicking the button reveals the body', async ({ page }) => {
+    await page.goto(URL);
+    await page.locator('[data-ceremony-time]').fill('14:00');
+    await page.locator('[data-reception-end-time]').fill('23:30');
+    await page.locator('[data-calculate]').click();
+    const btn = page.locator('button[data-prove-it]');
+    const body = page.locator('[data-prove-body]');
+    await expect(body).toBeHidden();
+    await btn.click();
+    await expect(body).toBeVisible();
+    await expect(btn).toHaveAttribute('aria-expanded', 'true');
+  });
+
+  test('body contains the entered ceremony time', async ({ page }) => {
+    await page.goto(URL);
+    await page.locator('[data-ceremony-time]').fill('14:00');
+    await page.locator('[data-reception-end-time]').fill('23:30');
+    await page.locator('[data-calculate]').click();
+    await page.locator('button[data-prove-it]').click();
+    const text = await page.locator('[data-prove-body]').textContent();
+    expect(text).toMatch(/14:00/);
+  });
+
+  test('dataLayer captures prove_it action', async ({ page }) => {
+    await page.goto(URL);
+    await page.locator('[data-ceremony-time]').fill('14:00');
+    await page.locator('[data-reception-end-time]').fill('23:30');
+    await page.locator('[data-calculate]').click();
+    await page.locator('button[data-prove-it]').click();
+    const dl = await page.evaluate(() => window.dataLayer);
+    const hit = dl.find(e => e.event === 'calculator_interaction' && e.action === 'prove_it' && e.calculator_name === 'Wedding Day Timeline Generator');
+    expect(hit).toBeTruthy();
+  });
+});

@@ -147,6 +147,41 @@ test('Conversions hub lists Cooking Measurements Converter', async ({ page }) =>
   await expect(page.locator('a[href="/calculators/conversions/cooking-measurements-converter/"]')).toBeVisible();
 });
 
+test.describe('Prove it panel', () => {
+  test('button is present on initial load', async ({ page }) => {
+    await page.goto(URL);
+    await expect(page.locator('button[data-prove-it]')).toBeVisible();
+  });
+
+  test('clicking the button reveals the body and updates aria-expanded', async ({ page }) => {
+    await page.goto(URL);
+    const btn = page.locator('button[data-prove-it]');
+    const body = page.locator('[data-prove-body]');
+    await expect(body).toBeHidden();
+    await btn.click();
+    await expect(body).toBeVisible();
+    await expect(btn).toHaveAttribute('aria-expanded', 'true');
+  });
+
+  test('body contains a step using the user input number', async ({ page }) => {
+    await page.goto(URL);
+    await page.locator('[data-vol-value]').fill('3');
+    await page.locator('[data-vol-value]').blur();
+    await page.locator('button[data-prove-it]').click();
+    const text = await page.locator('[data-prove-body]').textContent();
+    expect(text).toMatch(/3/);
+    expect(text).toMatch(/Volume/);
+  });
+
+  test('dataLayer captures prove_it action on click', async ({ page }) => {
+    await page.goto(URL);
+    await page.locator('button[data-prove-it]').click();
+    const dl = await page.evaluate(() => window.dataLayer);
+    const hit = dl.find(e => e.event === 'calculator_interaction' && e.action === 'prove_it' && e.calculator_name === 'Cooking Measurements Converter');
+    expect(hit).toBeTruthy();
+  });
+});
+
 test('related calculators links to unit converter and tip calculator', async ({ page }) => {
   await page.goto(URL);
   await expect(page.locator('.related-calculators a[href="/calculators/conversions/unit-converter/"]')).toBeVisible();

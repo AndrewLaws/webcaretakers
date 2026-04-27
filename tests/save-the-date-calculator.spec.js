@@ -136,6 +136,46 @@ test('primary nav includes Wedding link', async ({ page }) => {
   await expect(page.locator('.primary-nav__submenu a[href="/calculators/wedding/"]')).toBeVisible();
 });
 
+test.describe('Prove it panel', () => {
+  test('button is present after generating a timeline', async ({ page }) => {
+    await page.goto(URL);
+    await page.locator('[data-wedding-date]').fill(WEDDING_DATE);
+    await page.locator('[data-calculate]').click();
+    await expect(page.locator('button[data-prove-it]')).toBeVisible();
+  });
+
+  test('clicking the button reveals the body', async ({ page }) => {
+    await page.goto(URL);
+    await page.locator('[data-wedding-date]').fill(WEDDING_DATE);
+    await page.locator('[data-calculate]').click();
+    const btn = page.locator('button[data-prove-it]');
+    const body = page.locator('[data-prove-body]');
+    await expect(body).toBeHidden();
+    await btn.click();
+    await expect(body).toBeVisible();
+    await expect(btn).toHaveAttribute('aria-expanded', 'true');
+  });
+
+  test('body contains the user wedding date', async ({ page }) => {
+    await page.goto(URL);
+    await page.locator('[data-wedding-date]').fill(WEDDING_DATE);
+    await page.locator('[data-calculate]').click();
+    await page.locator('button[data-prove-it]').click();
+    const text = await page.locator('[data-prove-body]').textContent();
+    expect(text).toMatch(/2027/);
+  });
+
+  test('dataLayer captures prove_it action', async ({ page }) => {
+    await page.goto(URL);
+    await page.locator('[data-wedding-date]').fill(WEDDING_DATE);
+    await page.locator('[data-calculate]').click();
+    await page.locator('button[data-prove-it]').click();
+    const dl = await page.evaluate(() => window.dataLayer);
+    const hit = dl.find(e => e.event === 'calculator_interaction' && e.action === 'prove_it' && e.calculator_name === 'Save the Date Calculator');
+    expect(hit).toBeTruthy();
+  });
+});
+
 test('wedding hub lists this calculator', async ({ page }) => {
   await page.goto('/calculators/wedding/');
   await expect(page.locator('.category-grid')).toContainText('Save the Date');

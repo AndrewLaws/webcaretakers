@@ -110,6 +110,58 @@ test.describe('Images category hub registration', () => {
   });
 });
 
+// Minimal 1x1 transparent PNG (67 bytes). Used as a stand-in upload because
+// the converter accepts JPG/PNG/WebP as well as HEIC, and this lets us
+// exercise the prove-it path without shipping a HEIC fixture.
+const TINY_PNG = Buffer.from(
+  '89504E470D0A1A0A0000000D49484452000000010000000108060000001F15C4890000000D' +
+  '49444154789C636000010000050001AAB6B0A40000000049454E44AE426082',
+  'hex'
+);
+
+test.describe('Prove it panel', () => {
+  test('button appears after a successful conversion', async ({ page }) => {
+    await page.goto('/calculators/images/heic-to-jpg-converter/');
+    await page.locator('[data-file]').setInputFiles({ name: 'pixel.png', mimeType: 'image/png', buffer: TINY_PNG });
+    await expect(page.locator('button[data-prove-it]')).toBeVisible({ timeout: 10000 });
+  });
+
+  test('clicking the button reveals the body', async ({ page }) => {
+    await page.goto('/calculators/images/heic-to-jpg-converter/');
+    await page.locator('[data-file]').setInputFiles({ name: 'pixel.png', mimeType: 'image/png', buffer: TINY_PNG });
+    const btn = page.locator('button[data-prove-it]');
+    await expect(btn).toBeVisible({ timeout: 10000 });
+    const body = page.locator('[data-prove-body]');
+    await expect(body).toBeHidden();
+    await btn.click();
+    await expect(body).toBeVisible();
+    await expect(btn).toHaveAttribute('aria-expanded', 'true');
+  });
+
+  test('body cites the user file name and a numeric output dimension', async ({ page }) => {
+    await page.goto('/calculators/images/heic-to-jpg-converter/');
+    await page.locator('[data-file]').setInputFiles({ name: 'pixel.png', mimeType: 'image/png', buffer: TINY_PNG });
+    const btn = page.locator('button[data-prove-it]');
+    await expect(btn).toBeVisible({ timeout: 10000 });
+    await btn.click();
+    const text = await page.locator('[data-prove-body]').textContent();
+    expect(text).toMatch(/pixel\.png/);
+    // 1x1 PNG re-encoded must produce a 1 px dimension reference somewhere.
+    expect(text).toMatch(/1\s*[\u00d7x]\s*1/);
+  });
+
+  test('dataLayer captures prove_it action', async ({ page }) => {
+    await page.goto('/calculators/images/heic-to-jpg-converter/');
+    await page.locator('[data-file]').setInputFiles({ name: 'pixel.png', mimeType: 'image/png', buffer: TINY_PNG });
+    const btn = page.locator('button[data-prove-it]');
+    await expect(btn).toBeVisible({ timeout: 10000 });
+    await btn.click();
+    const dl = await page.evaluate(() => window.dataLayer);
+    const hit = dl.find(e => e.event === 'calculator_interaction' && e.action === 'prove_it' && e.calculator_name === 'HEIC to JPG Converter');
+    expect(hit).toBeTruthy();
+  });
+});
+
 test.describe('All-calculators hub registration', () => {
   test('All-calculators hub links to the HEIC to JPG Converter', async ({ page }) => {
     await page.goto('/calculators/');

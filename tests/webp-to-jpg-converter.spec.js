@@ -194,3 +194,53 @@ test.describe('Animated-WebP detection helper', () => {
     expect(result).toBe(false);
   });
 });
+
+// Minimal 1x1 transparent PNG. Used to drive a successful conversion in the
+// browser without shipping a real WebP fixture.
+const TINY_PNG = Buffer.from(
+  '89504E470D0A1A0A0000000D49484452000000010000000108060000001F15C4890000000D' +
+  '49444154789C636000010000050001AAB6B0A40000000049454E44AE426082',
+  'hex'
+);
+
+test.describe('Prove it panel', () => {
+  test('button appears after a successful conversion', async ({ page }) => {
+    await page.goto(URL);
+    await page.locator('[data-file]').setInputFiles({ name: 'pixel.png', mimeType: 'image/png', buffer: TINY_PNG });
+    await expect(page.locator('button[data-prove-it]')).toBeVisible({ timeout: 10000 });
+  });
+
+  test('clicking the button reveals the body', async ({ page }) => {
+    await page.goto(URL);
+    await page.locator('[data-file]').setInputFiles({ name: 'pixel.png', mimeType: 'image/png', buffer: TINY_PNG });
+    const btn = page.locator('button[data-prove-it]');
+    await expect(btn).toBeVisible({ timeout: 10000 });
+    const body = page.locator('[data-prove-body]');
+    await expect(body).toBeHidden();
+    await btn.click();
+    await expect(body).toBeVisible();
+    await expect(btn).toHaveAttribute('aria-expanded', 'true');
+  });
+
+  test('body cites the user file name and a numeric output dimension', async ({ page }) => {
+    await page.goto(URL);
+    await page.locator('[data-file]').setInputFiles({ name: 'pixel.png', mimeType: 'image/png', buffer: TINY_PNG });
+    const btn = page.locator('button[data-prove-it]');
+    await expect(btn).toBeVisible({ timeout: 10000 });
+    await btn.click();
+    const text = await page.locator('[data-prove-body]').textContent();
+    expect(text).toMatch(/pixel\.png/);
+    expect(text).toMatch(/1\s*[\u00d7x]\s*1/);
+  });
+
+  test('dataLayer captures prove_it action', async ({ page }) => {
+    await page.goto(URL);
+    await page.locator('[data-file]').setInputFiles({ name: 'pixel.png', mimeType: 'image/png', buffer: TINY_PNG });
+    const btn = page.locator('button[data-prove-it]');
+    await expect(btn).toBeVisible({ timeout: 10000 });
+    await btn.click();
+    const dl = await page.evaluate(() => window.dataLayer);
+    const hit = dl.find(e => e.event === 'calculator_interaction' && e.action === 'prove_it' && e.calculator_name === 'WebP to JPG Converter');
+    expect(hit).toBeTruthy();
+  });
+});

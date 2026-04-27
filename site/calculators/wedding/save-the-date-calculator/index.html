@@ -226,6 +226,12 @@
             <div data-breakdown hidden>
               <ul class="timeline-list" data-timeline-list aria-label="Wedding planning timeline"></ul>
             </div>
+
+            <button type="button" class="prove-it" data-prove-it aria-expanded="false" hidden>Prove it</button>
+            <div class="prove-it-body" data-prove-body hidden>
+              <ol data-prove-steps></ol>
+              <p class="prove-it-source">Save-the-date timing follows industry guidance: 6 to 8 months before for local weddings, 9 to 12 months before for destination weddings. Vendor lead times reflect typical UK wedding industry booking windows. Formal invitation timing aligns with standard etiquette (6 to 8 weeks). RSVP deadlines are set to give caterers two weeks of headroom.</p>
+            </div>
           </div>
 
           <p class="bookmark-nudge">
@@ -387,8 +393,25 @@
       var resultEl    = document.querySelector('[data-result]');
       var breakdown   = document.querySelector('[data-breakdown]');
       var timelineList = document.querySelector('[data-timeline-list]');
+      var proveBtn    = document.querySelector('[data-prove-it]');
+      var proveBody   = document.querySelector('[data-prove-body]');
+      var proveSteps  = document.querySelector('[data-prove-steps]');
 
       if (!form) return;
+
+      if (proveBtn && proveBody) {
+        proveBtn.addEventListener('click', function () {
+          var open = proveBody.hidden;
+          proveBody.hidden = !open;
+          proveBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: 'calculator_interaction',
+            action: 'prove_it',
+            calculator_name: 'Save the Date Calculator'
+          });
+        });
+      }
 
       var fields = form.querySelectorAll('input');
       fields.forEach(function (el) {
@@ -434,6 +457,22 @@
           });
           timelineList.innerHTML = html;
 
+          // Populate prove-it steps from the user's actual wedding date and choices
+          if (proveSteps && proveBtn) {
+            var stdWindow = isDestination ? '9 to 12 months' : '6 to 8 months';
+            var earliest = r.milestones[0];
+            var latest   = r.milestones[r.milestones.length - 1];
+            var stepsHtml = ''
+              + '<li>Wedding date entered: <strong>' + fmtDate(weddingDate) + '</strong>' + (isDestination ? ' (destination wedding)' : '') + '.</li>'
+              + '<li>Save-the-date window applied: <strong>' + stdWindow + ' before</strong> the wedding (industry guidance for ' + (isDestination ? 'destination' : 'local') + ' weddings).</li>'
+              + '<li>Each milestone is calculated by subtracting its lead time in days from your wedding date.</li>'
+              + '<li>Earliest milestone: <strong>' + earliest.name + '</strong> on ' + fmtDate(earliest.date) + ' (' + earliest.daysBeforeWedding + ' days before).</li>'
+              + '<li>Latest milestone: <strong>' + latest.name + '</strong> on ' + fmtDate(latest.date) + ' (' + latest.daysBeforeWedding + ' days before).</li>'
+              + '<li>Total milestones generated: <strong>' + r.milestones.length + '</strong>.</li>';
+            proveSteps.innerHTML = stepsHtml;
+            proveBtn.hidden = false;
+          }
+
           window.dataLayer = window.dataLayer || [];
           window.dataLayer.push({
             event: 'calculator_result',
@@ -447,6 +486,8 @@
           resultEl.textContent = err.message || 'Could not generate timeline.';
           breakdown.hidden = true;
           if (timelineList) timelineList.innerHTML = '';
+          if (proveBtn) proveBtn.hidden = true;
+          if (proveBody) proveBody.hidden = true;
         }
       });
     })();

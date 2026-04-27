@@ -228,6 +228,12 @@
           <div class="calculator-results" data-results hidden>
             <h3>Converted files</h3>
             <ul class="webp-result-list" data-result-list></ul>
+
+            <button type="button" class="prove-it" data-prove-it aria-expanded="false" hidden>Prove it</button>
+            <div class="prove-it-body" data-prove-body hidden>
+              <ol data-prove-steps></ol>
+              <p class="prove-it-source">WebP files are decoded by the browser's native image pipeline, drawn to an HTMLCanvasElement, then re-encoded with canvas.toBlob at the chosen format and quality. JPEG quality is a fraction (slider value &divide; 100); PNG is lossless. JPEG cannot store transparency, so a white background is painted before the image is drawn. Resize uses contain-fit, preserving aspect ratio. Size delta = (1 &minus; new size &divide; original size) &times; 100, expressed as a percentage.</p>
+            </div>
           </div>
 
           <p class="bookmark-nudge">
@@ -354,8 +360,46 @@
       var statusEl    = document.querySelector('[data-status]');
       var resultsEl   = document.querySelector('[data-results]');
       var resultList  = document.querySelector('[data-result-list]');
+      var proveBtn    = document.querySelector('[data-prove-it]');
+      var proveBody   = document.querySelector('[data-prove-body]');
+      var proveSteps  = document.querySelector('[data-prove-steps]');
 
       var blobUrls = [];
+
+      if (proveBtn && proveBody) {
+        proveBtn.addEventListener('click', function () {
+          var open = proveBody.hidden;
+          proveBody.hidden = !open;
+          proveBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: 'calculator_interaction',
+            action: 'prove_it',
+            calculator_name: 'WebP to JPG Converter'
+          });
+        });
+      }
+
+      function renderProveIt(file, blob, dims, animated) {
+        if (!proveSteps || !proveBtn) return;
+        var format = formatIn.value;
+        var qualityPct = parseInt(qualityIn.value, 10);
+        var pct = Math.round((1 - blob.size / file.size) * 100);
+        var pctLabel = pct >= 0 ? pct + '% smaller' : Math.abs(pct) + '% larger';
+        var html = ''
+          + '<li>Input file: <strong>' + (file.name || 'image').replace(/[<>&]/g, '') + '</strong> (' + W.formatFileSize(file.size) + ', ' + (file.type || 'unknown') + ').</li>'
+          + (animated ? '<li>Animated WebP detected: only the first frame is drawn (JPEG and PNG do not store animation).</li>' : '')
+          + '<li>Drawn to canvas at <strong>' + dims.width + ' &times; ' + dims.height + ' px</strong>'
+            + (resizeOn.checked ? ' after applying max width ' + (parseInt(maxWidthIn.value, 10) || '&mdash;') + ' / max height ' + (parseInt(maxHeightIn.value, 10) || '&mdash;') + ' (aspect ratio preserved)' : ' (no resize)')
+            + '.</li>'
+          + (format === 'image/jpeg' ? '<li>JPEG output, so a white background is painted first to flatten any transparency.</li>' : '')
+          + '<li>Re-encoded as <strong>' + format.replace('image/', '').toUpperCase() + '</strong>'
+            + (format === 'image/png' ? ' (lossless, quality ignored)' : ' at quality ' + qualityPct + '/100 (canvas.toBlob fraction ' + (qualityPct / 100).toFixed(2) + ')')
+            + '.</li>'
+          + '<li>New file size: <strong>' + W.formatFileSize(blob.size) + '</strong>. (1 &minus; ' + blob.size + ' &divide; ' + file.size + ') &times; 100 = <strong>' + pctLabel + '</strong>.</li>';
+        proveSteps.innerHTML = html;
+        proveBtn.hidden = false;
+      }
 
       function setStatus(msg, isError) {
         if (!msg) { statusEl.hidden = true; statusEl.textContent = ''; statusEl.classList.remove('resizer-status--error'); return; }
@@ -525,6 +569,7 @@
               animatedNote +
               ' <a class="webp-result-download" href="' + url + '" download="' + escapeHtml(outName) + '">Download</a>';
 
+            renderProveIt(file, blob, dims, !!state.animated);
             track('calculator_result', {
               output_format: format,
               output_size_bytes: blob.size,

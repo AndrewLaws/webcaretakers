@@ -216,6 +216,12 @@
             <div data-breakdown hidden>
               <ul class="timeline-list" data-timeline-list aria-label="Wedding day timeline"></ul>
             </div>
+
+            <button type="button" class="prove-it" data-prove-it aria-expanded="false" hidden>Prove it</button>
+            <div class="prove-it-body" data-prove-body hidden>
+              <ol data-prove-steps></ol>
+              <p class="prove-it-source">Defaults follow standard UK wedding industry guidance: bridal preparation 4 hours before ceremony, guest arrival 30 minutes before, ceremony length 45 minutes, group photographs 30 minutes, drinks reception 60 to 90 minutes, first dance 90 minutes before carriages.</p>
+            </div>
           </div>
 
           <p class="bookmark-nudge">Useful? Save this page: press <kbd data-bookmark-shortcut>Ctrl</kbd> + <kbd>D</kbd> to bookmark it.</p>
@@ -320,6 +326,33 @@
       var resultEl    = document.querySelector('[data-result]');
       var breakdown   = document.querySelector('[data-breakdown]');
       var timelineList = document.querySelector('[data-timeline-list]');
+      var proveBtn   = document.querySelector('[data-prove-it]');
+      var proveBody  = document.querySelector('[data-prove-body]');
+      var proveSteps = document.querySelector('[data-prove-steps]');
+
+      if (proveBtn && proveBody) {
+        proveBtn.addEventListener('click', function () {
+          var open = proveBody.hidden;
+          proveBody.hidden = !open;
+          proveBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: 'calculator_interaction',
+            action: 'prove_it',
+            calculator_name: 'Wedding Day Timeline Generator'
+          });
+        });
+      }
+
+      function timeToMinutes(s) {
+        var p = (s || '').split(':');
+        return (parseInt(p[0], 10) || 0) * 60 + (parseInt(p[1], 10) || 0);
+      }
+      function minutesBetween(a, b) {
+        var diff = timeToMinutes(b) - timeToMinutes(a);
+        if (diff < 0) diff += 24 * 60;
+        return diff;
+      }
 
       var SECTION_LABELS = {
         before:  'Before the ceremony',
@@ -370,6 +403,23 @@
           });
           timelineList.innerHTML = html;
 
+          if (proveSteps && proveBtn) {
+            var totalMin = minutesBetween(r.ceremonyTime, r.receptionEndTime);
+            var totalH = Math.floor(totalMin / 60);
+            var totalM = totalMin % 60;
+            var firstDance = r.milestones.find(function (m) { return /first dance/i.test(m.name); });
+            var prep = r.milestones.find(function (m) { return m.minutesFromCeremony <= -180; });
+            var stepsHtml = ''
+              + '<li>Ceremony start time: <strong>' + r.ceremonyTime + '</strong>. Reception ends at <strong>' + r.receptionEndTime + '</strong>.</li>'
+              + '<li>Total day length: ' + totalH + ' hours' + (totalM ? ' ' + totalM + ' minutes' : '') + ' from ceremony to carriages.</li>'
+              + '<li>Bridal preparation starts ' + (prep ? Math.abs(prep.minutesFromCeremony) + ' minutes' : '4 hours') + ' before the ceremony (' + (prep ? prep.time : '4 hours earlier') + ').</li>'
+              + '<li>Each milestone is offset from the ceremony start: negative offsets are before, positive after.</li>'
+              + (firstDance ? '<li>First dance is set 90 minutes before carriages, landing at <strong>' + firstDance.time + '</strong>.</li>' : '')
+              + '<li>Total milestones generated: <strong>' + r.milestones.length + '</strong>.</li>';
+            proveSteps.innerHTML = stepsHtml;
+            proveBtn.hidden = false;
+          }
+
           window.dataLayer = window.dataLayer || [];
           window.dataLayer.push({
             event: 'calculator_result',
@@ -382,6 +432,8 @@
           resultEl.textContent = err.message || 'Could not generate timeline.';
           breakdown.hidden = true;
           if (timelineList) timelineList.innerHTML = '';
+          if (proveBtn) proveBtn.hidden = true;
+          if (proveBody) proveBody.hidden = true;
         }
       });
     })();

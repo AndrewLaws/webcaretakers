@@ -229,6 +229,12 @@
               <ul class="heic-results-list" data-results-ul></ul>
               <p class="calc-note" data-summary>&mdash;</p>
             </div>
+
+            <button type="button" class="prove-it" data-prove-it aria-expanded="false" hidden>Prove it</button>
+            <div class="prove-it-body" data-prove-body hidden>
+              <ol data-prove-steps></ol>
+              <p class="prove-it-source">HEIC files are decoded by the heic2any JavaScript library, then re-encoded by the browser's HTMLCanvasElement.toBlob API at the chosen quality. JPEG quality is a 0 to 1 fraction (slider value &divide; 100). PNG is lossless, so quality is ignored. Resize uses contain-fit: the output keeps the original aspect ratio inside the supplied max width or max height. Size reduction = (1 &minus; new size &divide; original size) &times; 100, expressed as a percentage.</p>
+            </div>
           </div>
 
           <p class="bookmark-nudge">
@@ -372,6 +378,45 @@
       var resultsList = document.querySelector('[data-results-list]');
       var resultsUl   = document.querySelector('[data-results-ul]');
       var summaryEl   = document.querySelector('[data-summary]');
+      var proveBtn    = document.querySelector('[data-prove-it]');
+      var proveBody   = document.querySelector('[data-prove-body]');
+      var proveSteps  = document.querySelector('[data-prove-steps]');
+
+      if (proveBtn && proveBody) {
+        proveBtn.addEventListener('click', function () {
+          var open = proveBody.hidden;
+          proveBody.hidden = !open;
+          proveBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: 'calculator_interaction',
+            action: 'prove_it',
+            calculator_name: 'HEIC to JPG Converter'
+          });
+        });
+      }
+
+      function renderProveIt(lastFile, lastBlob, lastFormat, lastDims) {
+        if (!proveSteps || !proveBtn) return;
+        var formatName = lastFormat.replace('image/', '').toUpperCase();
+        var qualityPct = parseInt(qualityIn.value, 10);
+        var pct = Math.round((1 - lastBlob.size / lastFile.size) * 100);
+        var pctLabel = pct >= 0 ? pct + '% smaller' : Math.abs(pct) + '% larger';
+        var origSize = H.formatFileSize(lastFile.size);
+        var newSize = H.formatFileSize(lastBlob.size);
+        var html = ''
+          + '<li>Input file: <strong>' + escapeHtml(lastFile.name || 'image') + '</strong> (' + origSize + ', ' + (lastFile.type || 'unknown type') + ').</li>'
+          + '<li>Decoded to a canvas at <strong>' + lastDims.width + ' &times; ' + lastDims.height + ' px</strong>'
+            + (resizeTog.checked ? ' after applying max width ' + (parseInt(maxWidthIn.value, 10) || '&mdash;') + ' / max height ' + (parseInt(maxHeightIn.value, 10) || '&mdash;') + ' (aspect ratio preserved)' : ' (no resize)')
+            + '.</li>'
+          + '<li>Re-encoded as <strong>' + formatName + '</strong>'
+            + (lastFormat === 'image/png' ? ' (lossless, quality ignored)' : ' at quality ' + qualityPct + '/100 (canvas.toBlob fraction ' + (qualityPct / 100).toFixed(2) + ')')
+            + '.</li>'
+          + '<li>New file size: <strong>' + newSize + '</strong>. (1 &minus; ' + lastBlob.size + ' &divide; ' + lastFile.size + ') &times; 100 = <strong>' + pctLabel + '</strong>.</li>'
+          + '<li>Total run: ' + totalDone + ' file(s), ' + H.formatFileSize(totalIn) + ' in &rarr; ' + H.formatFileSize(totalOut) + ' out.</li>';
+        proveSteps.innerHTML = html;
+        proveBtn.hidden = false;
+      }
 
       var heic2anyPromise = null;
       var totalIn = 0;
@@ -596,6 +641,7 @@
             totalIn += originalFile.size;
             totalOut += blob.size;
             totalDone += 1;
+            renderProveIt(originalFile, blob, format, dims);
             track('calculator_result', {
               input_type: originalFile.type || 'unknown',
               output_format: format,

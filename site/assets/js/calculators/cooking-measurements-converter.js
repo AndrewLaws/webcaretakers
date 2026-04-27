@@ -258,6 +258,113 @@
     pushResult('ingredient', { ingredient: key, convention: conv });
   }
 
+  // Prove-it: rebuild a step list from the current inputs each time anything changes.
+  function buildProveSteps() {
+    var steps = [];
+    var conv = getConvention();
+
+    // Volume
+    try {
+      var vEl = document.querySelector('[data-vol-value]');
+      var vFromEl = document.querySelector('[data-vol-from]');
+      var vToEl = document.querySelector('[data-vol-to]');
+      if (vEl && vFromEl && vToEl) {
+        var v = parseFloat(vEl.value);
+        if (isFinite(v)) {
+          var fromMl = VOL_FIXED[vFromEl.value].ml;
+          var toMl = VOL_FIXED[vToEl.value].ml;
+          var inMl = v * fromMl;
+          var out = inMl / toMl;
+          steps.push('Volume: ' + fmt(v) + ' &times; ' + fromMl + ' ml = ' + fmt(inMl) + ' ml, then &divide; ' + toMl + ' ml = ' + fmt(out) + ' ' + VOL_FIXED[vToEl.value].label + '.');
+        }
+      }
+    } catch (e) {}
+
+    // Weight
+    try {
+      var wEl = document.querySelector('[data-wt-value]');
+      var wFromEl = document.querySelector('[data-wt-from]');
+      var wToEl = document.querySelector('[data-wt-to]');
+      if (wEl && wFromEl && wToEl) {
+        var w = parseFloat(wEl.value);
+        if (isFinite(w)) {
+          var fromG = WEIGHT_TO_G[wFromEl.value];
+          var toG = WEIGHT_TO_G[wToEl.value];
+          var grams = w * fromG;
+          var wOut = grams / toG;
+          steps.push('Weight: ' + fmt(w) + ' &times; ' + fromG + ' g = ' + fmt(grams) + ' g, then &divide; ' + toG + ' g = ' + fmt(wOut) + ' ' + WEIGHT_LABEL[wToEl.value] + '.');
+        }
+      }
+    } catch (e) {}
+
+    // Temperature
+    try {
+      var tEl = document.querySelector('[data-temp-value]');
+      var tFromEl = document.querySelector('[data-temp-from]');
+      var tToEl = document.querySelector('[data-temp-to]');
+      if (tEl && tFromEl && tToEl) {
+        var tv = parseFloat(tEl.value);
+        if (isFinite(tv)) {
+          var fk = tFromEl.value, tk = tToEl.value;
+          var c;
+          if (fk === 'celsius') c = tv;
+          else if (fk === 'fahrenheit') c = (tv - 32) * 5 / 9;
+          else c = gasToCelsius(tv);
+          var step = 'Temperature: ';
+          if (fk === 'celsius') step += tv + ' &deg;C';
+          else if (fk === 'fahrenheit') step += '(' + tv + ' &minus; 32) &times; 5/9 = ' + fmt(c) + ' &deg;C';
+          else step += 'gas mark ' + tv + ' &asymp; ' + fmt(c) + ' &deg;C (UK gas oven scale)';
+          if (tk === 'celsius') step += ' &rarr; ' + Math.round(c) + ' &deg;C.';
+          else if (tk === 'fahrenheit') step += ' &rarr; ' + fmt(c) + ' &times; 9/5 + 32 = ' + Math.round(c * 9 / 5 + 32) + ' &deg;F.';
+          else step += ' &rarr; gas mark ' + celsiusToGas(c) + '.';
+          steps.push(step);
+        }
+      }
+    } catch (e) {}
+
+    // Ingredient
+    try {
+      var iEl = document.querySelector('[data-ing-cups]');
+      var iSel = document.querySelector('[data-ing-ingredient]');
+      if (iEl && iSel) {
+        var cups = parseFloat(iEl.value);
+        var ing = INGREDIENTS[iSel.value];
+        if (isFinite(cups) && ing) {
+          var cupMl = CONVENTION_ML[conv].cup;
+          var ml = cups * cupMl;
+          var grams2 = ml * ing.gPerMl;
+          steps.push('Ingredient: ' + fmt(cups) + ' cup &times; ' + cupMl + ' ml (' + conv + ' cup) = ' + fmt(ml) + ' ml, then &times; ' + ing.gPerMl + ' g/ml (' + ing.name + ') &asymp; ' + Math.round(grams2) + ' g.');
+        }
+      }
+    } catch (e) {}
+
+    return steps;
+  }
+
+  function renderProveIt() {
+    var ol = document.querySelector('[data-prove-steps]');
+    if (!ol) return;
+    var steps = buildProveSteps();
+    ol.innerHTML = steps.map(function (s) { return '<li>' + s + '</li>'; }).join('');
+  }
+
+  function bindProveIt() {
+    var btn = document.querySelector('[data-prove-it]');
+    var body = document.querySelector('[data-prove-body]');
+    if (!btn || !body) return;
+    btn.addEventListener('click', function () {
+      var open = body.hidden;
+      body.hidden = !open;
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: 'calculator_interaction',
+        action: 'prove_it',
+        calculator_name: 'Cooking Measurements Converter'
+      });
+    });
+  }
+
   function bindAll() {
     var allEls = document.querySelectorAll(
       '[data-vol-value],[data-vol-from],[data-vol-to],' +
@@ -272,6 +379,7 @@
         runWeight();
         runTemperature();
         runIngredient();
+        renderProveIt();
       };
       el.addEventListener('input', handler);
       el.addEventListener('change', handler);
@@ -293,10 +401,12 @@
   function init() {
     buildVolumeOptions();
     bindAll();
+    bindProveIt();
     runVolume();
     runWeight();
     runTemperature();
     runIngredient();
+    renderProveIt();
   }
 
   if (document.readyState === 'loading') {
