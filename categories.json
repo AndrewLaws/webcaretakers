@@ -59,6 +59,11 @@
           "slug": "discount-calculator",
           "name": "Discount Calculator",
           "summary": "Sale price calculator covering single discounts, stacked discounts, sales tax or VAT, and Buy X Get Y Free deals. Currency-agnostic, with workings shown."
+        },
+        {
+          "slug": "fraction-calculator",
+          "name": "Fraction Calculator",
+          "summary": "Add, subtract, multiply or divide fractions and mixed numbers. Returns the simplified fraction, the mixed-number form and the decimal, with every step of the working shown."
         }
       ]
     },
@@ -293,6 +298,11 @@
           "slug": "date-difference-calculator",
           "name": "Date Difference Calculator",
           "summary": "Enter two dates to see the gap in years, months, days, weeks, hours and weekdays. Auto-flips reversed dates so the answer is always positive."
+        },
+        {
+          "slug": "random-name-picker",
+          "name": "Random Name Picker",
+          "summary": "Paste a list of names, choose how many to pick, get a fair random selection. Browser-only, uses Web Crypto for unbiased picks. Nothing you paste leaves the device."
         }
       ]
     },
@@ -349,6 +359,11 @@
           "slug": "rental-yield-calculator",
           "name": "Rental Yield Calculator",
           "summary": "Gross yield, net yield, monthly cash flow and return on deposit for any rental property. Currency toggle, workings shown."
+        },
+        {
+          "slug": "uk-mortgage-overpayment-calculator",
+          "name": "UK Mortgage Overpayment Calculator",
+          "summary": "See how much interest you save and how many years you shave off your UK repayment mortgage by paying extra each month or making a one-off lump sum. Yearly balance comparison and 12-month worked example."
         },
         {
           "slug": "uk-rent-vs-buy-calculator",

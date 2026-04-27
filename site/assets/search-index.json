@@ -112,6 +112,13 @@
     "category": "Math"
   },
   {
+    "type": "tool",
+    "name": "Fraction Calculator",
+    "summary": "Add, subtract, multiply or divide fractions and mixed numbers. Returns the simplified fraction, the mixed-number form and the decimal, with every step of the working shown.",
+    "url": "/calculators/math/fraction-calculator/",
+    "category": "Math"
+  },
+  {
     "type": "category",
     "name": "Images calculators",
     "summary": "Resize, convert and inspect photos without uploading them anywhere.",
@@ -357,6 +364,13 @@
     "category": "Fun"
   },
   {
+    "type": "tool",
+    "name": "Random Name Picker",
+    "summary": "Paste a list of names, choose how many to pick, get a fair random selection. Browser-only, uses Web Crypto for unbiased picks. Nothing you paste leaves the device.",
+    "url": "/calculators/fun/random-name-picker/",
+    "category": "Fun"
+  },
+  {
     "type": "category",
     "name": "Productivity calculators",
     "summary": "Browser-based tools for everyday tasks. Nothing uploaded, nothing stored.",
@@ -417,6 +431,13 @@
     "name": "Rental Yield Calculator",
     "summary": "Gross yield, net yield, monthly cash flow and return on deposit for any rental property. Currency toggle, workings shown.",
     "url": "/calculators/property/rental-yield-calculator/",
+    "category": "Property"
+  },
+  {
+    "type": "tool",
+    "name": "UK Mortgage Overpayment Calculator",
+    "summary": "See how much interest you save and how many years you shave off your UK repayment mortgage by paying extra each month or making a one-off lump sum. Yearly balance comparison and 12-month worked example.",
+    "url": "/calculators/property/uk-mortgage-overpayment-calculator/",
     "category": "Property"
   },
   {

@@ -491,6 +491,18 @@
       "url": "/calculators/math/discount-calculator/"
     },
     {
+      "phrase": "Fraction Calculator",
+      "url": "/calculators/math/fraction-calculator/"
+    },
+    {
+      "phrase": "fraction calculator",
+      "url": "/calculators/math/fraction-calculator/"
+    },
+    {
+      "phrase": "add fractions",
+      "url": "/calculators/math/fraction-calculator/"
+    },
+    {
       "phrase": "Pomodoro Session Planner",
       "url": "/calculators/productivity/pomodoro-session-planner/"
     },
@@ -541,6 +553,30 @@
     {
       "phrase": "online sha256",
       "url": "/calculators/cybersecurity/hash-generator/"
+    },
+    {
+      "phrase": "Random Name Picker",
+      "url": "/calculators/fun/random-name-picker/"
+    },
+    {
+      "phrase": "random name generator",
+      "url": "/calculators/fun/random-name-picker/"
+    },
+    {
+      "phrase": "pick a name from a list",
+      "url": "/calculators/fun/random-name-picker/"
+    },
+    {
+      "phrase": "UK Mortgage Overpayment Calculator",
+      "url": "/calculators/property/uk-mortgage-overpayment-calculator/"
+    },
+    {
+      "phrase": "mortgage overpayment calculator",
+      "url": "/calculators/property/uk-mortgage-overpayment-calculator/"
+    },
+    {
+      "phrase": "pay off mortgage early calculator",
+      "url": "/calculators/property/uk-mortgage-overpayment-calculator/"
     }
   ]
 }

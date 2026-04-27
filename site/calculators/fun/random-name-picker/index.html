@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Random Name Picker | WebCaretakers</title>
+  <meta name="description" content="Paste a list of names, choose how many to pick, get a fair random selection. Browser-only, uses Web Crypto for unbiased picks. Nothing you paste leaves the device.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/fun/random-name-picker/">
+  <meta property="og:title" content="Random Name Picker | WebCaretakers">
+  <meta property="og:description" content="Paste a list of names, pick a fair random selection. Browser-only, cryptographically unbiased.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/fun/random-name-picker/">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var _stored = null;
+    try { _stored = localStorage.getItem('cookie-consent'); } catch (e) {}
+    var _initial = _stored === 'granted' ? 'granted' : 'denied';
+    gtag('consent', 'default', {
+      ad_storage: _initial, analytics_storage: _initial,
+      ad_user_data: _initial, ad_personalization: _initial,
+      functionality_storage: 'granted', security_storage: 'granted',
+      wait_for_update: 500
+    });
+  </script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Random Name Picker",
+    "url": "https://webcaretakers.com/calculators/fun/random-name-picker/",
+    "applicationCategory": "MultimediaApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0" },
+    "author": {
+      "@type": "Person",
+      "name": "Andrew Laws",
+      "url": "https://yeseo.io/"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is the pick actually random?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. Picks come from crypto.getRandomValues, the browser's cryptographically strong random source, the same one used to generate session keys. We use rejection sampling to remove the bias that a naive (rand modulo n) introduces, so every name on your list has exactly the same chance of being picked. There is no Math.random and no seeded pseudo-random anywhere in the page." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does my list of names get sent anywhere?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. Everything happens in your browser. The textarea you paste into never leaves the device. You can disconnect from the network, paste a list in, hit Pick, and it still works. Open your browser's network tab while you use the page if you want to verify it." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the difference between allowing duplicates and not?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Without duplicates is sampling without replacement: each name can be picked at most once, like drawing names out of a hat without putting them back. With duplicates is sampling with replacement: each pick is independent, so the same name can come up more than once. Use without duplicates for raffles, fair team draws and classroom name calling. Use with duplicates only when independent draws is genuinely what you want, for example if a name represents a category that can repeat." }
+      },
+      {
+        "@type": "Question",
+        "name": "How big a list can it handle?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Tens of thousands of names is fine. The page parses, deduplicates and shuffles in memory; performance is not a problem long before the textarea itself becomes awkward to scroll through. If you have a list that big, paste it in and try it." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why are exact duplicates removed before picking?",
+        "acceptedAnswer": { "@type": "Answer", "text": "If a name appears twice in your list, that name would have twice the chance of being picked. For most uses (raffles, team draws, classroom call-outs) that is not what people want, so exact duplicate lines are removed before the draw and the page tells you how many were dropped. If you genuinely want weighted picks, repeat the list yourself in a way that reflects the weights, or pick more than once with duplicates allowed." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-banner-heading" aria-describedby="cookie-banner-text" hidden>
+    <div class="cookie-banner__inner">
+      <h2 id="cookie-banner-heading" class="cookie-banner__heading">A quick word about cookies</h2>
+      <p id="cookie-banner-text" class="cookie-banner__text">
+        We use cookies for analytics, so we can see which calculators people actually use and which ones need work. Nothing creepy, nothing sold on. You can say yes, say no, or read the <a href="/privacy/">privacy policy</a> first. Your choice sticks.
+      </p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-reject>Reject</button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>Accept</button>
+      </div>
+    </div>
+  </div>
+
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">WebCaretakers</a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <ul class="primary-nav__list">
+          <li class="primary-nav__item primary-nav__item--has-menu">
+            <button type="button" class="primary-nav__link" data-menu-toggle aria-haspopup="true" aria-expanded="false">Calculators <span class="primary-nav__caret" aria-hidden="true">▾</span></button>
+            <ul class="primary-nav__submenu">
+              <li><a href="/calculators/ai/">AI</a></li>
+              <li><a href="/calculators/broadband/">Broadband</a></li>
+              <li><a href="/calculators/business/">Business</a></li>
+              <li><a href="/calculators/conversions/">Conversions</a></li>
+              <li><a href="/calculators/cybersecurity/">Cybersecurity</a></li>
+              <li><a href="/calculators/finance/">Finance</a></li>
+              <li><a href="/calculators/fun/">Fun</a></li>
+              <li><a href="/calculators/health/">Health</a></li>
+              <li><a href="/calculators/images/">Images</a></li>
+              <li><a href="/calculators/math/">Math</a></li>
+              <li><a href="/calculators/productivity/">Productivity</a></li>
+              <li><a href="/calculators/property/">Property</a></li>
+              <li><a href="/calculators/seo/">SEO</a></li>
+              <li><a href="/calculators/wedding/">Wedding</a></li>
+              <li><a href="/calculators/writing/">Writing</a></li>
+              <li class="primary-nav__submenu-sep"><a href="/calculators/">See all calculators</a></li>
+            </ul>
+          </li>
+          <li class="primary-nav__item"><a href="/about/" class="primary-nav__link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <main id="main-content">
+      <div class="container">
+        <nav aria-label="Breadcrumb" class="breadcrumbs">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/calculators/">Calculators</a></li>
+            <li><a href="/calculators/fun/">Fun</a></li>
+            <li aria-current="page">Random Name Picker</li>
+          </ol>
+        </nav>
+
+        <h1>Random Name Picker</h1>
+        <p class="intro">Paste a list of names, choose how many to pick, hit Pick. Useful for classroom call-outs, raffle draws, fair team allocations, or settling a decision when nobody can agree. The picks are unbiased: every name on the list has exactly the same chance, drawn from the browser's cryptographic random source.</p>
+
+        <section class="eli5" aria-label="Plain-English explanation">
+          <h2>Explain like I'm 5 (what even is this calculator?)</h2>
+          <p>Imagine writing every name on a slip of paper, putting them in a hat, and pulling some out. This page does that, except the hat is your browser, and the random pick is provably fair. Nothing you paste in gets sent anywhere.</p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="in-content" aria-hidden="true"></div>
+
+        <section class="calculator-card">
+          <h2>Pick a name</h2>
+          <p class="reassure"><strong>Browser-only.</strong> Your list of names never leaves the device. Picks use the Web Crypto API for an unbiased draw.</p>
+
+          <form id="picker-form" class="calc-form" novalidate>
+            <div class="calc-row">
+              <label for="picker-names">Names (one per line)</label>
+              <textarea id="picker-names" data-picker-names rows="10" placeholder="Alice
+Bob
+Carol
+Dave
+Eve"></textarea>
+              <p class="calc-row__hint" data-picker-count>0 names entered.</p>
+            </div>
+
+            <div class="calc-row">
+              <label for="picker-count">How many to pick</label>
+              <input type="number" id="picker-count" data-picker-pick-count min="1" value="1" inputmode="numeric">
+            </div>
+
+            <div class="calc-row">
+              <label class="checkbox-row">
+                <input type="checkbox" id="picker-allow-duplicates" data-picker-allow-duplicates>
+                <span>Allow duplicates (sample with replacement)</span>
+              </label>
+              <p class="calc-row__hint">Off by default. Each name can be picked at most once. Turn on if you want independent draws where the same name can come up twice.</p>
+            </div>
+
+            <div class="calc-row">
+              <button type="submit" class="btn btn--primary" data-picker-pick>Pick</button>
+              <button type="button" class="btn btn--secondary" data-picker-again hidden>Pick again</button>
+            </div>
+          </form>
+
+          <div data-picker-results class="calculator-results" aria-live="polite">
+            <p class="result-display" data-picker-status>Add some names and hit Pick.</p>
+            <ul class="picker-results__list" data-picker-list></ul>
+            <p class="picker-results__error" data-picker-error hidden></p>
+          </div>
+
+          <details class="prove-it" data-prove-it>
+            <summary>Prove it</summary>
+            <p>Picks use <code>crypto.getRandomValues</code>, the cryptographically strong random source built into every modern browser. It is the same primitive used to generate session keys and CSRF tokens. There is no <code>Math.random</code> in this page.</p>
+            <p>The naive <code>rand % n</code> reduction introduces bias: if 2^32 is not a multiple of n, the lower remainders show up slightly more often. We avoid that with rejection sampling: any draw above the largest multiple of n that fits in 2^32 is discarded and re-drawn. The expected number of redraws per pick is at most 1, even in the worst case.</p>
+            <p>For picks without duplicates we use a partial Fisher-Yates shuffle on a working copy of your list, swapping one position at a time and reading off the first <code>k</code> entries. That is the textbook unbiased algorithm for sampling without replacement.</p>
+            <pre><code>// Unbiased integer in [0, n)
+function randomInt(n) {
+  const max = 0xFFFFFFFF;
+  const limit = max - ((max + 1) % n);
+  const buf = new Uint32Array(1);
+  while (true) {
+    crypto.getRandomValues(buf);
+    if (buf[0] &lt;= limit) return buf[0] % n;
+  }
+}
+
+// Sample k names without replacement (partial Fisher-Yates)
+const pool = names.slice();
+const picked = [];
+for (let i = 0; i &lt; k; i++) {
+  const j = i + randomInt(pool.length - i);
+  [pool[i], pool[j]] = [pool[j], pool[i]];
+  picked.push(pool[i]);
+}</code></pre>
+            <p>Nothing leaves the device. The page makes no network requests after it has loaded, so your names cannot be exfiltrated. Disconnect your network and the picker still works.</p>
+          </details>
+
+          <p class="bookmark-nudge">
+            Useful? Save this calculator: press <kbd data-bookmark-shortcut>Ctrl</kbd> + <kbd>D</kbd> to bookmark it.
+          </p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="below-results" aria-hidden="true"></div>
+
+        <section class="long-form">
+          <h2>When a fair pick actually matters</h2>
+          <p>The classroom is the obvious case. Calling on the same students every lesson is a habit teachers fall into without noticing, and the quiet ones drift further into the background each week. A genuinely random pick from the register breaks the pattern: the next voice you hear is whoever the browser draws, not whoever caught your eye. The same trick works for hand-up votes, allocating who reads first, and stopping the loudest child from running every group activity.</p>
+          <p>Sports clubs and youth groups face the same problem with team assignment. If the captain picks, the strong friendship groups stick together and the new kid ends up last. A random allocation, drawn in front of everyone with a tool nobody can fiddle, removes the social politics. Paste the squad in, set the pick count to half the list, draw team A, the rest are team B. Two clicks, no arguments.</p>
+          <p>Raffles and prize draws are where the bias question stops being academic. If your "random" number generator favours the start of the list, the people who signed up first are quietly more likely to win. A serious draw needs a draw process that you can explain and that holds up if anyone audits it. The Web Crypto API plus rejection sampling is that process. The Prove it panel above is there so you can show the working to a sceptical organiser.</p>
+          <p>Decision-making is the most underrated use. When two reasonable choices are too close to call, the time spent agonising is worth more than the difference between them. Toss the options into the textarea, pick one, get on with the day. The name is "Random Name Picker" but the names can be holiday destinations, restaurants, project ideas, or anything else where the deliberation has stopped paying off.</p>
+
+          <h2>Common mistakes to avoid</h2>
+          <p>Pasting a list with stray blank lines or trailing spaces is the most frequent. Most spreadsheets export with a trailing newline, and a copy-paste from a Word document drags inconsistent indentation along with it. The page strips leading and trailing whitespace on every line and drops empty lines, but if your names happen to include their own internal whitespace, that is preserved. "Alice  Smith" with two spaces in the middle is treated as a different name from "Alice Smith" with one. If your list looks longer than it should be, look for that.</p>
+          <p>Forgetting that exact duplicate lines are removed before the draw is the second. If you paste in a list where two people happen to share the same name, only one entry survives. That is usually what you want for a raffle (one ticket per person), but if you genuinely have two distinct people called "John", differentiate them in the textarea: "John (red team)" and "John (blue team)" will both survive deduplication. The page tells you how many duplicates it dropped, so you can spot this before drawing.</p>
+          <p>Asking for more picks than the list has, with duplicates disabled, is the third. The page checks for this and refuses to draw, with a message that names the actual list size. The fix is one of: add more names, reduce the pick count, or tick "Allow duplicates" if independent draws is what you actually want.</p>
+
+          <h2>Edge cases this page handles</h2>
+          <ul>
+            <li><strong>Single name, pick 1.</strong> Returns the one name. Not interesting, but defined.</li>
+            <li><strong>Empty list.</strong> The Pick button shows a clear validation message.</li>
+            <li><strong>Whitespace-only lines.</strong> Stripped before counting and drawing.</li>
+            <li><strong>Duplicates inside the list.</strong> Removed, with a count of how many were dropped.</li>
+            <li><strong>Pick count larger than the list, no duplicates.</strong> Validation blocks the draw.</li>
+            <li><strong>Pick count larger than the list, duplicates on.</strong> Works as expected: independent draws.</li>
+          </ul>
+
+          <h2>Related calculators</h2>
+          <p>Other browser-only tools where local-only processing matters.</p>
+          <ul class="related-calculators">
+            <li><a href="/calculators/fun/">All fun calculators</a></li>
+            <li><a href="/calculators/cybersecurity/password-generator/">Password Generator, also Web Crypto</a></li>
+            <li><a href="/calculators/cybersecurity/password-strength-calculator/">Password Strength Calculator</a></li>
+            <li><a href="/calculators/cybersecurity/hash-generator/">Hash Generator</a></li>
+          </ul>
+        </section>
+
+        <section class="faq" aria-labelledby="faq-heading">
+          <h2 id="faq-heading">Frequently asked questions</h2>
+          <details>
+            <summary>Is the pick actually random?</summary>
+            <p>Yes. Picks come from <code>crypto.getRandomValues</code>, the browser's cryptographically strong random source, the same one used to generate session keys. We use rejection sampling to remove the bias that a naive <code>rand % n</code> introduces, so every name on your list has exactly the same chance of being picked. There is no <code>Math.random</code> and no seeded pseudo-random anywhere in the page.</p>
+          </details>
+          <details>
+            <summary>Does my list of names get sent anywhere?</summary>
+            <p>No. Everything happens in your browser. The textarea you paste into never leaves the device. You can disconnect from the network, paste a list in, hit Pick, and it still works. Open your browser's network tab while you use the page if you want to verify it.</p>
+          </details>
+          <details>
+            <summary>What is the difference between allowing duplicates and not?</summary>
+            <p>Without duplicates is sampling without replacement: each name can be picked at most once, like drawing names out of a hat without putting them back. With duplicates is sampling with replacement: each pick is independent, so the same name can come up more than once. Use without duplicates for raffles, fair team draws and classroom name calling. Use with duplicates only when independent draws is genuinely what you want.</p>
+          </details>
+          <details>
+            <summary>How big a list can it handle?</summary>
+            <p>Tens of thousands of names is fine. The page parses, deduplicates and shuffles in memory; performance is not a problem long before the textarea itself becomes awkward to scroll through.</p>
+          </details>
+          <details>
+            <summary>Why are exact duplicates removed before picking?</summary>
+            <p>If a name appears twice in your list, that name would have twice the chance of being picked. For most uses that is not what people want, so exact duplicate lines are removed before the draw and the page tells you how many were dropped.</p>
+          </details>
+        </section>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="ad-slot" data-ad-slot="sidebar" aria-hidden="true"></div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="site-footer-nav" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/calculators/">All calculators</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+
+      <section class="site-disclaimer" data-disclaimer aria-labelledby="disclaimer-heading">
+        <h2 id="disclaimer-heading">A quick, necessary word</h2>
+        <p>Every calculator on this site is built to give you a sensible, well-reasoned estimate. It is, however, exactly that: an estimate, for general information only. Nothing you see here is professional, legal, financial, medical, or tax advice, and it should not be treated as such.</p>
+        <p>Before you make a decision that actually matters, talk to a qualified professional who knows your specific situation: an accountant, a solicitor, a doctor, an IT consultant, whoever fits the question. They can factor in the bits a generic tool can't.</p>
+        <p>We take no liability and accept no responsibility for any loss, damage, or questionable life choice arising from acting on the numbers you see here. Use the results as a starting point for a better conversation, not as the final word.</p>
+        <p><strong>Affiliate disclosure:</strong> some links on this site are affiliate links. If you click through and buy or sign up for something, we may earn a small commission at no extra cost to you. It helps keep the calculators free and ad-light. We only recommend things we'd point a friend towards.</p>
+      </section>
+      <p class="site-copyright">&copy; 2026 WebCaretakers. All rights reserved.</p>
+      <p class="site-legal">WebCaretakers is a trading name of <a href="https://yeseo.io/" rel="noopener">Andrew Laws Associates Ltd</a>, registered in England and Wales (company no. 08602332). ICO registration ZA726704.</p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/calculators/random-name-picker.js"></script>
+  <script>
+    (function () {
+      'use strict';
+
+      var shortcutEl = document.querySelector('[data-bookmark-shortcut]');
+      if (shortcutEl) {
+        var isMac = /Mac|iPhone|iPad|iPod/i.test(navigator.platform || navigator.userAgent);
+        shortcutEl.textContent = isMac ? '\u2318' : 'Ctrl';
+      }
+
+      var lib = window.RandomNamePicker;
+      if (!lib) return;
+
+      var form = document.getElementById('picker-form');
+      var namesEl = document.querySelector('[data-picker-names]');
+      var countEl = document.querySelector('[data-picker-pick-count]');
+      var dupesEl = document.querySelector('[data-picker-allow-duplicates]');
+      var liveCountEl = document.querySelector('[data-picker-count]');
+      var statusEl = document.querySelector('[data-picker-status]');
+      var listEl = document.querySelector('[data-picker-list]');
+      var errorEl = document.querySelector('[data-picker-error]');
+      var pickBtn = document.querySelector('[data-picker-pick]');
+      var againBtn = document.querySelector('[data-picker-again]');
+      var proveIt = document.querySelector('[data-prove-it]');
+
+      var firstInteractionTracked = false;
+
+      function trackInteraction(field) {
+        if (firstInteractionTracked) return;
+        firstInteractionTracked = true;
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: 'calculator_interaction',
+          calculator_name: 'Random Name Picker',
+          field: field
+        });
+      }
+
+      function updateLiveCount() {
+        var parsed = lib.parseNames(namesEl.value);
+        var msg = parsed.names.length + ' name' + (parsed.names.length === 1 ? '' : 's') + ' entered.';
+        if (parsed.dedupedCount > 0) {
+          msg += ' Deduped ' + parsed.dedupedCount + ' duplicate entr' + (parsed.dedupedCount === 1 ? 'y' : 'ies') + '.';
+        }
+        liveCountEl.textContent = msg;
+      }
+
+      function clearError() {
+        errorEl.hidden = true;
+        errorEl.textContent = '';
+      }
+
+      function showError(msg) {
+        errorEl.hidden = false;
+        errorEl.textContent = msg;
+      }
+
+      function renderPicks(picks) {
+        listEl.innerHTML = '';
+        picks.forEach(function (name, i) {
+          var li = document.createElement('li');
+          li.className = 'picker-results__item';
+          li.style.opacity = '0';
+          li.style.transition = 'opacity 0.35s ease';
+          // Stagger the fade-in slightly so multi-pick reveals feel sequential.
+          li.style.transitionDelay = (i * 80) + 'ms';
+          li.textContent = name;
+          listEl.appendChild(li);
+          // Force reflow then trigger the fade.
+          // eslint-disable-next-line no-unused-expressions
+          li.offsetHeight;
+          li.style.opacity = '1';
+        });
+      }
+
+      function doPick() {
+        clearError();
+        var parsed = lib.parseNames(namesEl.value);
+        var count = parseInt(countEl.value, 10);
+        var allowDuplicates = !!dupesEl.checked;
+
+        var v = lib.validatePick(parsed.names, count, allowDuplicates);
+        if (!v.ok) {
+          showError(v.message);
+          listEl.innerHTML = '';
+          statusEl.textContent = 'No pick made.';
+          againBtn.hidden = true;
+          return;
+        }
+
+        var picks;
+        try {
+          picks = lib.pickNames(parsed.names, count, allowDuplicates);
+        } catch (e) {
+          showError(e.message || 'Could not pick from this list.');
+          return;
+        }
+
+        renderPicks(picks);
+        var label = picks.length === 1 ? 'Picked' : 'Picked ' + picks.length + ' names';
+        var dedupNote = parsed.dedupedCount > 0
+          ? ' (deduped ' + parsed.dedupedCount + ' from ' + (parsed.names.length + parsed.dedupedCount) + ' raw entries)'
+          : '';
+        statusEl.textContent = label + ' from ' + parsed.names.length + ' name' +
+          (parsed.names.length === 1 ? '' : 's') + dedupNote + '.';
+        againBtn.hidden = false;
+
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: 'calculator_result',
+          calculator_name: 'Random Name Picker',
+          list_size: parsed.names.length,
+          pick_count: picks.length,
+          allow_duplicates: allowDuplicates
+        });
+      }
+
+      namesEl.addEventListener('input', function () {
+        trackInteraction('names');
+        updateLiveCount();
+      });
+      countEl.addEventListener('input', function () { trackInteraction('pick_count'); });
+      dupesEl.addEventListener('change', function () { trackInteraction('allow_duplicates'); });
+
+      form.addEventListener('submit', function (ev) {
+        ev.preventDefault();
+        doPick();
+      });
+      againBtn.addEventListener('click', function () { doPick(); });
+
+      if (proveIt) {
+        proveIt.addEventListener('toggle', function () {
+          if (proveIt.open) {
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+              event: 'prove_it',
+              calculator_name: 'Random Name Picker'
+            });
+          }
+        });
+      }
+
+      updateLiveCount();
+    })();
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>
