@@ -35,6 +35,13 @@
     "category": "Cybersecurity"
   },
   {
+    "type": "tool",
+    "name": "Hash Generator",
+    "summary": "Generate SHA-256, SHA-384, SHA-512 and SHA-1 hashes from text or files. Uses Web Crypto in your browser. Drag a 100MB file in, the hash never leaves the device.",
+    "url": "/calculators/cybersecurity/hash-generator/",
+    "category": "Cybersecurity"
+  },
+  {
     "type": "category",
     "name": "AI calculators",
     "summary": "Tools for working with AI APIs and large language models.",

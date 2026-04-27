@@ -108,6 +108,11 @@
           "slug": "data-breach-risk-score",
           "name": "Data Breach Risk Score",
           "summary": "Self-assess your breach exposure across passwords, 2FA, software hygiene and phishing awareness. Get a risk score and a prioritised fix list. All in your browser."
+        },
+        {
+          "slug": "hash-generator",
+          "name": "Hash Generator",
+          "summary": "Generate SHA-256, SHA-384, SHA-512 and SHA-1 hashes from text or files. Uses Web Crypto in your browser. Drag a 100MB file in, hash never leaves the device."
         }
       ]
     },

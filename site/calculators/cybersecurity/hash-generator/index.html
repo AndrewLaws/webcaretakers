@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hash Generator | WebCaretakers</title>
+  <meta name="description" content="Generate SHA-256, SHA-384, SHA-512 and SHA-1 hashes from text or files entirely in your browser. Web Crypto, no upload, drag a 100MB file in and the hash never leaves the device.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/cybersecurity/hash-generator/">
+  <meta property="og:title" content="Hash Generator | WebCaretakers">
+  <meta property="og:description" content="Generate SHA-256, SHA-384, SHA-512 and SHA-1 hashes from text or files entirely in your browser. Web Crypto, no upload.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/cybersecurity/hash-generator/">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var _stored = null;
+    try { _stored = localStorage.getItem('cookie-consent'); } catch (e) {}
+    var _initial = _stored === 'granted' ? 'granted' : 'denied';
+    gtag('consent', 'default', {
+      ad_storage: _initial, analytics_storage: _initial,
+      ad_user_data: _initial, ad_personalization: _initial,
+      functionality_storage: 'granted', security_storage: 'granted',
+      wait_for_update: 500
+    });
+  </script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Hash Generator",
+    "url": "https://webcaretakers.com/calculators/cybersecurity/hash-generator/",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0" },
+    "author": {
+      "@type": "Person",
+      "name": "Andrew Laws",
+      "url": "https://yeseo.io/"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Does the file or text get uploaded anywhere?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. Hashing runs entirely in your browser using the Web Crypto API. You can disconnect from the network, type or drop a file in, and the hashes still appear. Nothing is sent to a server." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why is MD5 not included?",
+        "acceptedAnswer": { "@type": "Answer", "text": "MD5 is not supported by the browser's Web Crypto API, and pulling in a third-party MD5 library to add it would bloat the page for an algorithm nobody should be using on new work. MD5 is broken for collision resistance. If you need to verify a vendor that still publishes MD5 sums, run md5sum locally on the command line. For everything else, SHA-256 is the right default." }
+      },
+      {
+        "@type": "Question",
+        "name": "Should I use this to hash passwords?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. SHA-256 of a password is fast enough that an attacker with a stolen database can try billions of guesses a second on a GPU. Password storage needs a slow, salted hash designed for the job, like bcrypt, scrypt or argon2id, run on the server. This tool is for file integrity, build artefacts, mirror checks and the like." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why are SHA-256 and SHA-512 fine but SHA-1 weak?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Both SHA-256 and SHA-512 are part of the SHA-2 family and have no known practical collision attacks. SHA-1, by contrast, fell to the SHAttered collision attack in 2017, and stronger attacks have followed. SHA-1 still appears in legacy systems and Git internals, so it is included here for compatibility, but do not use it to confirm anything is genuine on a new system." }
+      },
+      {
+        "@type": "Question",
+        "name": "What does base64 give me that hex does not?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Hex is the conventional way to print a hash and what most tooling expects. Base64 is shorter (about a third smaller) and is the format used in Subresource Integrity attributes, some HTTP headers, and a few build manifests. If the system you are checking against publishes its hash in base64, switch the toggle to base64 here and compare directly." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-banner-heading" aria-describedby="cookie-banner-text" hidden>
+    <div class="cookie-banner__inner">
+      <h2 id="cookie-banner-heading" class="cookie-banner__heading">A quick word about cookies</h2>
+      <p id="cookie-banner-text" class="cookie-banner__text">
+        We use cookies for analytics, so we can see which calculators people actually use and which ones need work. Nothing creepy, nothing sold on. You can say yes, say no, or read the <a href="/privacy/">privacy policy</a> first. Your choice sticks.
+      </p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-reject>Reject</button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>Accept</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var KEY = 'cookie-consent';
+      var banner = document.querySelector('[data-cookie-banner]');
+      if (!banner) return;
+      var stored = null;
+      try { stored = localStorage.getItem(KEY); } catch (e) {}
+      if (stored !== 'granted' && stored !== 'denied') { banner.hidden = false; }
+      function record(choice) {
+        try { localStorage.setItem(KEY, choice); } catch (e) {}
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('consent', 'update', {
+          ad_storage: choice, analytics_storage: choice,
+          ad_user_data: choice, ad_personalization: choice
+        });
+        banner.hidden = true;
+      }
+      var accept = banner.querySelector('[data-cookie-accept]');
+      var reject = banner.querySelector('[data-cookie-reject]');
+      if (accept) accept.addEventListener('click', function () { record('granted'); });
+      if (reject) reject.addEventListener('click', function () { record('denied'); });
+    })();
+  </script>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">WebCaretakers</a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <ul class="primary-nav__list">
+          <li class="primary-nav__item primary-nav__item--has-menu">
+            <button type="button" class="primary-nav__link" data-menu-toggle aria-haspopup="true" aria-expanded="false">Calculators <span class="primary-nav__caret" aria-hidden="true">▾</span></button>
+            <ul class="primary-nav__submenu">
+              <li><a href="/calculators/ai/">AI</a></li>
+              <li><a href="/calculators/broadband/">Broadband</a></li>
+              <li><a href="/calculators/business/">Business</a></li>
+              <li><a href="/calculators/conversions/">Conversions</a></li>
+              <li><a href="/calculators/cybersecurity/">Cybersecurity</a></li>
+              <li><a href="/calculators/finance/">Finance</a></li>
+              <li><a href="/calculators/fun/">Fun</a></li>
+              <li><a href="/calculators/health/">Health</a></li>
+              <li><a href="/calculators/images/">Images</a></li>
+              <li><a href="/calculators/math/">Math</a></li>
+              <li><a href="/calculators/productivity/">Productivity</a></li>
+              <li><a href="/calculators/property/">Property</a></li>
+              <li><a href="/calculators/seo/">SEO</a></li>
+              <li><a href="/calculators/wedding/">Wedding</a></li>
+              <li><a href="/calculators/writing/">Writing</a></li>
+              <li class="primary-nav__submenu-sep"><a href="/calculators/">See all calculators</a></li>
+            </ul>
+          </li>
+          <li class="primary-nav__item"><a href="/about/" class="primary-nav__link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <main id="main-content">
+      <div class="container">
+        <nav aria-label="Breadcrumb" class="breadcrumbs">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/calculators/">Calculators</a></li>
+            <li><a href="/calculators/cybersecurity/">Cybersecurity</a></li>
+            <li aria-current="page">Hash Generator</li>
+          </ol>
+        </nav>
+
+        <h1>Hash Generator</h1>
+        <p class="intro">Hash text or a file with SHA-256, SHA-384, SHA-512 and SHA-1, all four side by side. Useful for checking a download against a published checksum, generating fixtures for tests, or seeing whether two files really are identical. Everything happens in your browser. The text you type and the files you drop are never uploaded.</p>
+
+        <section class="eli5" aria-label="Plain-English explanation">
+          <h2>Explain like I'm 5 (what even is this calculator?)</h2>
+          <p>A hash is a short fingerprint of a file or piece of text. Same input, same fingerprint, every time. Change a single byte and the fingerprint changes completely. So if a website says "the SHA-256 of our installer is e3b0c4...", you can run the file through this page, compare the two strings, and know whether the file you downloaded is the one they published, or whether something tampered with it on the way to you.</p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="in-content" aria-hidden="true"></div>
+
+        <section class="calculator-card">
+          <h2>Hash something</h2>
+          <p class="reassure"><strong>Browser-only.</strong> Files and text are hashed locally using the Web Crypto API. Nothing is uploaded. You can disconnect your network and the page still works.</p>
+
+          <form id="hash-form" class="calc-form" novalidate>
+            <fieldset class="calc-row">
+              <legend>What do you want to hash?</legend>
+              <label><input type="radio" name="hash-mode" value="text" data-mode checked> Text</label>
+              <label><input type="radio" name="hash-mode" value="file" data-mode> File</label>
+            </fieldset>
+
+            <div class="calc-row" data-text-panel>
+              <label for="hash-text">Text</label>
+              <textarea id="hash-text" data-hash-text rows="5" placeholder="Type or paste anything. Hashes update as you type."></textarea>
+              <p class="calc-row__hint">Empty input is fine, it shows the canonical empty-string hash for each algorithm.</p>
+            </div>
+
+            <div class="calc-row" data-file-panel hidden>
+              <label for="hash-file">File</label>
+              <div class="drop-zone" data-drop-zone>
+                <p>Drop a file here, or <label class="drop-zone__pick" for="hash-file">choose a file</label>.</p>
+                <input type="file" id="hash-file" data-hash-file>
+                <p class="drop-zone__hint">Files up to about 100 MB hash comfortably in your browser. Larger is possible but slower.</p>
+              </div>
+              <div data-file-meta class="file-meta" hidden>
+                <ul>
+                  <li><span>Name</span><strong data-file-name>—</strong></li>
+                  <li><span>Size</span><strong data-file-size>—</strong></li>
+                  <li><span>Last modified</span><strong data-file-modified>—</strong></li>
+                </ul>
+              </div>
+              <progress data-file-progress hidden value="0" max="100"></progress>
+            </div>
+
+            <fieldset class="calc-row">
+              <legend>Output format</legend>
+              <label><input type="radio" name="hash-format" value="hex" data-format checked> Hex</label>
+              <label><input type="radio" name="hash-format" value="base64" data-format> Base64</label>
+            </fieldset>
+          </form>
+
+          <div class="hash-rows" aria-live="polite">
+            <div class="hash-row" data-hash-row="SHA-256">
+              <div class="hash-row__head">
+                <h3>SHA-256 <span class="hash-row__tag hash-row__tag--default">default</span></h3>
+                <button type="button" class="hash-row__copy" data-copy>Copy</button>
+              </div>
+              <code class="hash-row__value" data-hash-value></code>
+              <label class="hash-row__compare">
+                <span>Compare with expected hash</span>
+                <input type="text" data-compare-input placeholder="Paste an expected SHA-256 to verify">
+              </label>
+            </div>
+
+            <div class="hash-row" data-hash-row="SHA-384">
+              <div class="hash-row__head">
+                <h3>SHA-384</h3>
+                <button type="button" class="hash-row__copy" data-copy>Copy</button>
+              </div>
+              <code class="hash-row__value" data-hash-value></code>
+              <label class="hash-row__compare">
+                <span>Compare with expected hash</span>
+                <input type="text" data-compare-input placeholder="Paste an expected SHA-384 to verify">
+              </label>
+            </div>
+
+            <div class="hash-row" data-hash-row="SHA-512">
+              <div class="hash-row__head">
+                <h3>SHA-512</h3>
+                <button type="button" class="hash-row__copy" data-copy>Copy</button>
+              </div>
+              <code class="hash-row__value" data-hash-value></code>
+              <label class="hash-row__compare">
+                <span>Compare with expected hash</span>
+                <input type="text" data-compare-input placeholder="Paste an expected SHA-512 to verify">
+              </label>
+            </div>
+
+            <div class="hash-row" data-hash-row="SHA-1">
+              <div class="hash-row__head">
+                <h3>SHA-1 <span class="hash-row__tag hash-row__tag--warn">legacy</span></h3>
+                <button type="button" class="hash-row__copy" data-copy>Copy</button>
+              </div>
+              <code class="hash-row__value" data-hash-value></code>
+              <label class="hash-row__compare">
+                <span>Compare with expected hash</span>
+                <input type="text" data-compare-input placeholder="Paste an expected SHA-1 to verify">
+              </label>
+            </div>
+
+            <p class="hash-rows__note"><strong>MD5:</strong> not supported by Web Crypto. SHA-256 is what you want anyway. If you genuinely need MD5 for a legacy mirror, run <code>md5sum</code> on the command line.</p>
+          </div>
+
+          <details class="prove-it" data-prove-it>
+            <summary>Prove it</summary>
+            <p>The two canonical SHA-256 test vectors that every implementation has to get right. If the values displayed for the matching inputs do not match these strings exactly, the implementation on this page is broken and you should not trust it.</p>
+            <ul>
+              <li><strong>Empty string</strong> SHA-256: <code>e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855</code></li>
+              <li><strong>"abc"</strong> SHA-256: <code>ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad</code></li>
+              <li><strong>Empty string</strong> SHA-1: <code>da39a3ee5e6b4b0d3255bfef95601890afd80709</code></li>
+              <li><strong>"abc"</strong> SHA-1: <code>a9993e364706816aba3e25717850c26c9cd0d89d</code></li>
+            </ul>
+            <p>Source: NIST FIPS 180-4 test vectors. These are reproduced verbatim because users should be able to copy-paste them and verify the page is honest, without leaving the site.</p>
+          </details>
+
+          <p class="bookmark-nudge">
+            Useful? Save this calculator: press <kbd data-bookmark-shortcut>Ctrl</kbd> + <kbd>D</kbd> to bookmark it.
+          </p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="below-results" aria-hidden="true"></div>
+
+        <section class="long-form">
+          <h2>What a hash actually is</h2>
+          <p>A cryptographic hash function takes any input, of any length, and returns a fixed-size value. SHA-256 always returns 256 bits (32 bytes, 64 hex characters), regardless of whether you fed it a single space or a 90 GB Linux ISO. The output looks random but is fully deterministic: the same input always produces the same hash, on any machine, in any language. That is the entire trick. The hash is a fingerprint that is much easier to compare than the original data, and that nobody can forge a different input to match without doing more work than the universe has time for.</p>
+          <p>The two practical properties that matter day to day are <strong>preimage resistance</strong> (given a hash, you cannot work backwards to a matching input) and <strong>collision resistance</strong> (you cannot find two different inputs that produce the same hash). When a hash function is described as "broken", what is usually broken is collision resistance. That is what happened to MD5 in the early 2000s and SHA-1 in 2017.</p>
+
+          <h2>Why SHA-256 is the sensible default</h2>
+          <p>SHA-256 is part of the SHA-2 family, designed by NSA and standardised by NIST in 2001. More than two decades on, there are no known practical attacks against it. It is fast, it is the default in TLS certificates, Bitcoin, Git's newer object format, Subresource Integrity attributes, and most package manager checksums. If a system asks for "the hash" without specifying which one, SHA-256 is the right answer. SHA-512 gives you longer output for the same security floor, useful when you want a bit more headroom or are working with 64-bit-friendly hardware, but for ordinary file-integrity work SHA-256 is plenty.</p>
+
+          <h2>Why MD5 and SHA-1 are weak</h2>
+          <p>MD5 has been considered cryptographically broken since 2004, when researchers demonstrated practical collisions. By 2008, those collisions were used to forge a rogue Certificate Authority. MD5 should not appear in any new design that depends on collision resistance. It survives in two places: as a non-cryptographic checksum for accidental corruption (where speed matters more than security), and on legacy mirrors that have not yet caught up.</p>
+          <p>SHA-1 fell to the SHAttered attack in 2017, with two real PDF files producing the same hash. The cost of the attack has dropped dramatically since then. Git still uses SHA-1 for object IDs but is migrating to SHA-256, and most security-sensitive uses (TLS, signatures, code signing) phased it out years ago. SHA-1 is included on this page because legacy compatibility is a real need (Git, old CRL files, vendor mirrors), but if you have a choice, choose SHA-256.</p>
+
+          <h2>When to use a hash, and when not</h2>
+          <p>Hashes are the right tool for checking that a file you downloaded is the one the publisher intended. Pair the hash with a signed, trusted source for the hash itself, otherwise an attacker who can replace the file can also replace the published hash. They are also good for content-addressed storage (Git, IPFS), build manifests, and Subresource Integrity tags on third-party scripts.</p>
+          <p>Hashes are the wrong tool for password storage. SHA-256 is fast on purpose: a modern GPU can compute billions of SHA-256 hashes per second, which makes brute-forcing a stolen password database trivial. Passwords need a slow, salted, memory-hard hash designed for the job: bcrypt, scrypt, or argon2id, computed on the server. If you find yourself reaching for SHA-256 to "secure" passwords in a database, stop and pick the right primitive instead.</p>
+
+          <h2>Verifying a download in three steps</h2>
+          <ul>
+            <li><strong>Get the published hash from the publisher's own site.</strong> Not from the mirror that hosts the binary. The whole point of the check is to detect a tampered mirror, so the hash needs to come from a trusted channel.</li>
+            <li><strong>Drop the downloaded file into the file panel above.</strong> The browser hashes it locally and shows the value.</li>
+            <li><strong>Paste the published hash into the Compare with expected hash field.</strong> Green means it matches, red means do not run the file.</li>
+          </ul>
+          <p>If the hash matches but you still see weird behaviour, the issue is somewhere else (maybe the publisher themselves got compromised, maybe your machine is infected). If the hash does not match, do not unzip, do not run, do not install. Re-download from a different mirror, or contact the publisher.</p>
+
+          <h2>Related calculators</h2>
+          <p>Other browser-only tools where local-only processing matters.</p>
+          <ul class="related-calculators">
+            <li><a href="/calculators/cybersecurity/">All cybersecurity tools</a></li>
+            <li><a href="/calculators/images/photo-resizer/">Photo Resizer, also browser-only</a></li>
+            <li><a href="/calculators/images/heic-to-jpg-converter/">HEIC to JPG Converter for iPhone photos</a></li>
+            <li><a href="/calculators/writing/word-count/">Word and character count</a></li>
+          </ul>
+        </section>
+
+        <section class="faq" aria-labelledby="faq-heading">
+          <h2 id="faq-heading">Frequently asked questions</h2>
+          <details>
+            <summary>Does the file or text get uploaded anywhere?</summary>
+            <p>No. Hashing runs entirely in your browser using the Web Crypto API. You can disconnect from the network, type or drop a file in, and the hashes still appear. Nothing is sent to a server.</p>
+          </details>
+          <details>
+            <summary>Why is MD5 not included?</summary>
+            <p>MD5 is not supported by the browser's Web Crypto API, and pulling in a third-party MD5 library to add it would bloat the page for an algorithm nobody should be using on new work. MD5 is broken for collision resistance. If you need to verify a vendor that still publishes MD5 sums, run <code>md5sum</code> locally on the command line. For everything else, SHA-256 is the right default.</p>
+          </details>
+          <details>
+            <summary>Should I use this to hash passwords?</summary>
+            <p>No. SHA-256 of a password is fast enough that an attacker with a stolen database can try billions of guesses a second on a GPU. Password storage needs a slow, salted hash designed for the job, like bcrypt, scrypt or argon2id, run on the server. This tool is for file integrity, build artefacts, mirror checks and the like.</p>
+          </details>
+          <details>
+            <summary>Why are SHA-256 and SHA-512 fine but SHA-1 weak?</summary>
+            <p>Both SHA-256 and SHA-512 are part of the SHA-2 family and have no known practical collision attacks. SHA-1, by contrast, fell to the SHAttered collision attack in 2017, and stronger attacks have followed. SHA-1 still appears in legacy systems and Git internals, so it is included here for compatibility, but do not use it to confirm anything is genuine on a new system.</p>
+          </details>
+          <details>
+            <summary>What does base64 give me that hex does not?</summary>
+            <p>Hex is the conventional way to print a hash and what most tooling expects. Base64 is shorter, about a third smaller, and is the format used in Subresource Integrity attributes, some HTTP headers, and a few build manifests. If the system you are checking against publishes its hash in base64, switch the toggle to base64 here and compare directly.</p>
+          </details>
+          <details>
+            <summary>How big a file can it actually handle?</summary>
+            <p>Up to about 100 MB hashes comfortably on most machines. Bigger files work too, but the whole file has to fit in browser memory because the Web Crypto digest takes one buffer. For multi-gigabyte ISOs, the command line is faster: <code>shasum -a 256 file.iso</code> on macOS or Linux, <code>Get-FileHash file.iso</code> in PowerShell on Windows.</p>
+          </details>
+        </section>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="ad-slot" data-ad-slot="sidebar" aria-hidden="true"></div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="site-footer-nav" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/calculators/">All calculators</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+
+      <section class="site-disclaimer" data-disclaimer aria-labelledby="disclaimer-heading">
+        <h2 id="disclaimer-heading">A quick, necessary word</h2>
+        <p>Every calculator on this site is built to give you a sensible, well-reasoned estimate. It is, however, exactly that: an estimate, for general information only. Nothing you see here is professional, legal, financial, medical, or tax advice, and it should not be treated as such.</p>
+        <p>Before you make a decision that actually matters, talk to a qualified professional who knows your specific situation: an accountant, a solicitor, a doctor, an IT consultant, whoever fits the question. They can factor in the bits a generic tool can't.</p>
+        <p>We take no liability and accept no responsibility for any loss, damage, or questionable life choice arising from acting on the numbers you see here. Use the results as a starting point for a better conversation, not as the final word.</p>
+        <p><strong>Affiliate disclosure:</strong> some links on this site are affiliate links. If you click through and buy or sign up for something, we may earn a small commission at no extra cost to you. It helps keep the calculators free and ad-light. We only recommend things we'd point a friend towards.</p>
+      </section>
+      <p class="site-copyright">&copy; 2026 WebCaretakers. All rights reserved.</p>
+      <p class="site-legal">WebCaretakers is a trading name of <a href="https://yeseo.io/" rel="noopener">Andrew Laws Associates Ltd</a>, registered in England and Wales (company no. 08602332). ICO registration ZA726704.</p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/calculators/hash-generator.js"></script>
+  <script>
+    (function () {
+      var shortcutEl = document.querySelector('[data-bookmark-shortcut]');
+      if (shortcutEl) {
+        var isMac = /Mac|iPhone|iPad|iPod/i.test(navigator.platform || navigator.userAgent);
+        shortcutEl.textContent = isMac ? '\u2318' : 'Ctrl';
+      }
+    })();
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

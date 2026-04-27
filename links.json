@@ -489,6 +489,22 @@
     {
       "phrase": "cybersecurity self-assessment",
       "url": "/calculators/cybersecurity/data-breach-risk-score/"
+    },
+    {
+      "phrase": "Hash Generator",
+      "url": "/calculators/cybersecurity/hash-generator/"
+    },
+    {
+      "phrase": "SHA-256 generator",
+      "url": "/calculators/cybersecurity/hash-generator/"
+    },
+    {
+      "phrase": "file hash calculator",
+      "url": "/calculators/cybersecurity/hash-generator/"
+    },
+    {
+      "phrase": "online sha256",
+      "url": "/calculators/cybersecurity/hash-generator/"
     }
   ]
 }
