@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Time Card Calculator | WebCaretakers</title>
+  <meta name="description" content="A weekly timesheet calculator. Enter start and end times, plus unpaid breaks, for each day. Get hours per day, total hours for the week, and optional pay if you add an hourly rate. Handles overnight shifts.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/productivity/time-card-calculator/">
+  <meta property="og:title" content="Time Card Calculator | WebCaretakers">
+  <meta property="og:description" content="Weekly timesheet calculator. Hours per day, week total, optional pay. Handles overnight shifts.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/productivity/time-card-calculator/">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var _stored = null;
+    try { _stored = localStorage.getItem('cookie-consent'); } catch (e) {}
+    var _initial = _stored === 'granted' ? 'granted' : 'denied';
+    gtag('consent', 'default', {
+      ad_storage: _initial, analytics_storage: _initial,
+      ad_user_data: _initial, ad_personalization: _initial,
+      functionality_storage: 'granted', security_storage: 'granted',
+      wait_for_update: 500
+    });
+  </script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Time Card Calculator",
+    "url": "https://webcaretakers.com/calculators/productivity/time-card-calculator/",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Any",
+    "inLanguage": "en-GB",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "GBP" },
+    "author": {
+      "@type": "Person",
+      "name": "Andrew Laws",
+      "url": "https://yeseo.io/"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How does it handle overnight shifts?",
+        "acceptedAnswer": { "@type": "Answer", "text": "If the end time is on or before the start time, the calculator treats the end as the next day. So 22:00 to 06:00 is read as eight hours, not minus sixteen. There is no separate option for it. If you typed the start and end the way you actually worked them, the maths works." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why are my hours showing as a decimal rather than hours and minutes?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Decimal hours are the format payroll software, freelance invoices, and most contracts use. 7.5 hours is easier to multiply by an hourly rate than 7 hours 30 minutes, and easier to add up across a week. If you need the minute view, the working in the Prove it panel shows the gross minutes, the break, and the net minutes for each row." }
+      },
+      {
+        "@type": "Question",
+        "name": "Should I include unpaid breaks?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes, in the unpaid break column. Lunch, the school run, the half-hour you popped out for a parcel, anything you are not being paid for. Paid breaks (a tea round, a short comfort break that your contract pays through) do not go in this column, because the time still counts towards your paid hours." }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I use it for a fortnight or a month?",
+        "acceptedAnswer": { "@type": "Answer", "text": "It is built around a week, but the maths is per row, so you can press Add row as many times as you like and label them however suits you. For longer periods, the totals stay accurate. The pay total assumes a single hourly rate; if your rate changed mid-period, calculate each rate range separately and add the results." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does the calculator send my times anywhere?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. It runs entirely in your browser. Times, breaks and rate are not uploaded, not stored, and not shared. Close the tab and they are gone." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-banner-heading" aria-describedby="cookie-banner-text" hidden>
+    <div class="cookie-banner__inner">
+      <h2 id="cookie-banner-heading" class="cookie-banner__heading">A quick word about cookies</h2>
+      <p id="cookie-banner-text" class="cookie-banner__text">
+        We use cookies for analytics, so we can see which calculators people actually use and which ones need work. Nothing creepy, nothing sold on. You can say yes, say no, or read the <a href="/privacy/">privacy policy</a> first. Your choice sticks.
+      </p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-reject>Reject</button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>Accept</button>
+      </div>
+    </div>
+  </div>
+
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">WebCaretakers</a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <ul class="primary-nav__list">
+          <li class="primary-nav__item primary-nav__item--has-menu">
+            <button type="button" class="primary-nav__link" data-menu-toggle aria-haspopup="true" aria-expanded="false">Calculators <span class="primary-nav__caret" aria-hidden="true">▾</span></button>
+            <ul class="primary-nav__submenu">
+              <li><a href="/calculators/ai/">AI</a></li>
+              <li><a href="/calculators/broadband/">Broadband</a></li>
+              <li><a href="/calculators/business/">Business</a></li>
+              <li><a href="/calculators/conversions/">Conversions</a></li>
+              <li><a href="/calculators/cybersecurity/">Cybersecurity</a></li>
+              <li><a href="/calculators/finance/">Finance</a></li>
+              <li><a href="/calculators/fun/">Fun</a></li>
+              <li><a href="/calculators/health/">Health</a></li>
+              <li><a href="/calculators/images/">Images</a></li>
+              <li><a href="/calculators/math/">Math</a></li>
+              <li><a href="/calculators/productivity/">Productivity</a></li>
+              <li><a href="/calculators/property/">Property</a></li>
+              <li><a href="/calculators/seo/">SEO</a></li>
+              <li><a href="/calculators/wedding/">Wedding</a></li>
+              <li><a href="/calculators/writing/">Writing</a></li>
+              <li class="primary-nav__submenu-sep"><a href="/calculators/">See all calculators</a></li>
+            </ul>
+          </li>
+          <li class="primary-nav__item"><a href="/about/" class="primary-nav__link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <main id="main-content">
+      <div class="container">
+        <nav aria-label="Breadcrumb" class="breadcrumbs">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/calculators/">Calculators</a></li>
+            <li><a href="/calculators/productivity/">Productivity</a></li>
+            <li aria-current="page">Time Card Calculator</li>
+          </ol>
+        </nav>
+
+        <h1>Time Card Calculator</h1>
+        <p class="intro">A weekly timesheet that adds up your hours honestly. Type the start and end times for each day, the unpaid break in minutes, and it gives you decimal hours per day and a total for the week. Add an hourly rate and it works out the pay too. Overnight shifts are handled, bad input on one row does not break the others.</p>
+
+        <section class="eli5" aria-label="Plain-English explanation">
+          <h2>Explain like I'm 5 (what even is this calculator?)</h2>
+          <p>You write down what time you started, what time you finished, and how long you took for lunch. The calculator does the take-away for you and tells you how many hours you worked. Do that for every day, and at the bottom it adds the whole week up.</p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="in-content" aria-hidden="true"></div>
+
+        <section class="calculator-card">
+          <h2>Your week</h2>
+          <p class="reassure"><strong>Browser-only.</strong> Times, breaks and rate stay on your device. Nothing is uploaded.</p>
+
+          <form id="timecard-form" class="calc-form" novalidate>
+            <div class="calc-row">
+              <label for="timecard-rate">Hourly rate (optional, &pound;)</label>
+              <input type="number" id="timecard-rate" name="rate" min="0" step="0.01" placeholder="e.g. 12.50" data-rate>
+              <p class="calc-row__hint">Leave blank if you only want hours. Add a rate to see total pay.</p>
+            </div>
+
+            <div class="timecard-table-wrap">
+              <table class="timecard-table" data-timecard-table>
+                <thead>
+                  <tr>
+                    <th scope="col">Day</th>
+                    <th scope="col">Start (HH:MM)</th>
+                    <th scope="col">End (HH:MM)</th>
+                    <th scope="col">Unpaid break (min)</th>
+                    <th scope="col">Hours</th>
+                    <th scope="col"><span class="visually-hidden">Remove row</span></th>
+                  </tr>
+                </thead>
+                <tbody data-rows>
+                  <!-- Rows are rendered by JS so the Add row / Remove pattern is consistent. -->
+                </tbody>
+              </table>
+            </div>
+
+            <div class="timecard-actions">
+              <button type="button" data-add-row>+ Add row</button>
+              <button type="button" data-clear>Clear</button>
+              <button type="submit" data-calculate>Calculate</button>
+            </div>
+          </form>
+
+          <div data-calculator-results class="calculator-results" aria-live="polite">
+            <div class="result-summary">
+              <p class="result-display" data-result>Fill in your hours, then press Calculate.</p>
+            </div>
+
+            <div class="mort-breakdown" data-breakdown hidden>
+              <h3>Week summary</h3>
+              <ul>
+                <li><span>Total hours worked</span><strong data-line-hours>&ndash;</strong></li>
+                <li data-pay-line hidden><span>Total pay</span><strong data-line-pay>&ndash;</strong></li>
+              </ul>
+            </div>
+
+            <details class="prove-it" data-prove-it>
+              <summary>Prove it</summary>
+              <div data-prove-it-body>
+                <p>Press Calculate, and the working for each row appears here.</p>
+              </div>
+              <p class="prove-it-source">Per row: convert HH:MM to minutes since midnight for both start and end. If end &le; start, add 1440 to the end (next-day rollover for overnight shifts). Net minutes = end &minus; start &minus; unpaid break. Hours = net minutes &divide; 60, rounded to two decimal places. If net is negative (the break is longer than the shift), the row is flagged invalid and skipped from the total. Empty rows are skipped silently. Total pay = total hours &times; hourly rate, rounded to two decimal places.</p>
+            </details>
+          </div>
+
+          <p class="bookmark-nudge">
+            Useful? Save this calculator: press <kbd data-bookmark-shortcut>Ctrl</kbd> + <kbd>D</kbd> to bookmark it.
+          </p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="below-results" aria-hidden="true"></div>
+
+        <section class="long-form">
+          <h2>What this calculator is doing</h2>
+          <p>A time card is meant to be boring: when you started, when you finished, what came off for lunch. The maths is simple, but the small mistakes are easy to make and annoying to spot. Two minutes here, fifteen minutes there, and by the end of the week your timesheet does not match the hours you actually worked. This page does the addition for you, in your browser, with no uploads.</p>
+          <p>Each row is independent. You enter a start time, an end time, and the minutes you took for unpaid breaks. The calculator turns each time into minutes since midnight, subtracts to get the gross shift length, takes the break off, and divides by 60 to give decimal hours. The total at the bottom is the week's hours, and if you provided an hourly rate it also gives you the pay.</p>
+
+          <h2>Overnight shifts and why end &le; start rolls over</h2>
+          <p>If you finish at 06:00 after starting at 22:00, the gap is eight hours, not minus sixteen. The calculator notices that the end time is on or before the start time and treats the end as the next day. The same rule covers a 24-hour shift, where start and end are identical. There is no separate toggle for it, because there does not need to be: if you type the times you actually worked, the maths is right.</p>
+          <p>The one quirk worth flagging: if you genuinely worked a zero-minute shift (start equals end on the same day), the calculator will read it as 24 hours. Do not enter zero shifts. Use an empty row instead, which is skipped from the total.</p>
+
+          <h2>Decimal hours, not hours and minutes</h2>
+          <p>Payroll software, freelance invoices, and most employment contracts work in decimal hours. 7.5 hours is much easier to multiply by an hourly rate than 7 hours 30 minutes, and easier to add up across a week. The calculator follows that convention. If you want the underlying minutes for a row, open the Prove it panel after calculating, which shows the gross minutes, the break, and the net minutes alongside the decimal value.</p>
+
+          <h2>Common mistakes</h2>
+          <p>Forgetting to subtract the lunch break is the classic. The break column is for unpaid time only: if your contract pays you through tea breaks, leave those out, because the time still counts as paid. Lunch, the school run, a doctor's appointment in the middle of the day, anything you are not being paid for, goes in.</p>
+          <p>The other common mistake is rounding too aggressively in your head. If you started at 09:07 and finished at 17:23, type those exact times. Rounding to 09:00 and 17:30 looks tidy and quietly costs you money over a year. Decimal hours give you precise totals; let the calculator do the rounding at the end.</p>
+
+          <h2>Edge cases the calculator handles</h2>
+          <p>An empty row is skipped without comment, which is what makes Mon to Fri prefilled and weekend rows blank work cleanly. A row with bad input (mistyped time, garbled break) shows a dash for that row and is left out of the total, so a typo on Wednesday does not invalidate Monday. A break that is longer than the shift is rejected with a clear message, because that almost always means a typo (5-hour break on a 4-hour shift), not a genuine answer of negative hours.</p>
+
+          <h2>Related calculators</h2>
+          <p>Other tools for sizing up time and money.</p>
+          <ul class="related-calculators">
+            <li><a href="/calculators/productivity/pomodoro-session-planner/">Pomodoro Session Planner</a> for sizing up focused work blocks within those hours</li>
+            <li><a href="/calculators/business/freelance-day-rate-calculator/">Freelance Day Rate Calculator</a> for working out what your hours should actually cost</li>
+            <li><a href="/calculators/productivity/ical-event-generator/">iCal Event Generator</a> for blocking your shifts into a calendar</li>
+            <li><a href="/calculators/productivity/">All productivity tools</a></li>
+          </ul>
+        </section>
+
+        <section class="faq" aria-labelledby="faq-heading">
+          <h2 id="faq-heading">Frequently asked questions</h2>
+          <details>
+            <summary>How does it handle overnight shifts?</summary>
+            <p>If the end time is on or before the start time, the calculator treats the end as the next day. So 22:00 to 06:00 is read as eight hours, not minus sixteen. There is no separate option for it. If you typed the start and end the way you actually worked them, the maths works.</p>
+          </details>
+          <details>
+            <summary>Why are my hours showing as a decimal rather than hours and minutes?</summary>
+            <p>Decimal hours are the format payroll software, freelance invoices, and most contracts use. 7.5 hours is easier to multiply by an hourly rate than 7 hours 30 minutes, and easier to add up across a week. If you need the minute view, the working in the Prove it panel shows the gross minutes, the break, and the net minutes for each row.</p>
+          </details>
+          <details>
+            <summary>Should I include unpaid breaks?</summary>
+            <p>Yes, in the unpaid break column. Lunch, the school run, the half-hour you popped out for a parcel, anything you are not being paid for. Paid breaks (a tea round, a short comfort break that your contract pays through) do not go in this column, because the time still counts towards your paid hours.</p>
+          </details>
+          <details>
+            <summary>Can I use it for a fortnight or a month?</summary>
+            <p>It is built around a week, but the maths is per row, so you can press Add row as many times as you like and label them however suits you. For longer periods, the totals stay accurate. The pay total assumes a single hourly rate; if your rate changed mid-period, calculate each rate range separately and add the results.</p>
+          </details>
+          <details>
+            <summary>Does the calculator send my times anywhere?</summary>
+            <p>No. It runs entirely in your browser. Times, breaks and rate are not uploaded, not stored, and not shared. Close the tab and they are gone.</p>
+          </details>
+        </section>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="ad-slot" data-ad-slot="sidebar" aria-hidden="true"></div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="site-footer-nav" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/calculators/">All calculators</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+
+      <section class="site-disclaimer" data-disclaimer aria-labelledby="disclaimer-heading">
+        <h2 id="disclaimer-heading">A quick, necessary word</h2>
+        <p>Every calculator on this site is built to give you a sensible, well-reasoned estimate. It is, however, exactly that: an estimate, for general information only. Nothing you see here is professional, legal, financial, medical, or tax advice, and it should not be treated as such.</p>
+        <p>Before you make a decision that actually matters, talk to a qualified professional who knows your specific situation: an accountant, a solicitor, a doctor, an IT consultant, whoever fits the question. They can factor in the bits a generic tool can't.</p>
+        <p>We take no liability and accept no responsibility for any loss, damage, or questionable life choice arising from acting on the numbers you see here. Use the results as a starting point for a better conversation, not as the final word.</p>
+        <p><strong>Affiliate disclosure:</strong> some links on this site are affiliate links. If you click through and buy or sign up for something, we may earn a small commission at no extra cost to you. It helps keep the calculators free and ad-light. We only recommend things we'd point a friend towards.</p>
+      </section>
+      <p class="site-copyright">&copy; 2026 WebCaretakers. All rights reserved.</p>
+      <p class="site-legal">WebCaretakers is a trading name of <a href="https://yeseo.io/" rel="noopener">Andrew Laws Associates Ltd</a>, registered in England and Wales (company no. 08602332). ICO registration ZA726704.</p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/calculators/time-card-calculator.js"></script>
+  <script>
+    (function () {
+      'use strict';
+      var shortcutEl = document.querySelector('[data-bookmark-shortcut]');
+      if (shortcutEl) {
+        var isMac = /Mac|iPhone|iPad|iPod/i.test(navigator.platform || navigator.userAgent);
+        shortcutEl.textContent = isMac ? '\u2318' : 'Ctrl';
+      }
+
+      var TC = window.TimeCardCalculator;
+      if (!TC) return;
+
+      var form      = document.getElementById('timecard-form');
+      var rateIn    = form.querySelector('[data-rate]');
+      var tbody     = form.querySelector('[data-rows]');
+      var addBtn    = form.querySelector('[data-add-row]');
+      var clearBtn  = form.querySelector('[data-clear]');
+
+      var resultEl  = document.querySelector('[data-result]');
+      var breakdown = document.querySelector('[data-breakdown]');
+      var lineHours = document.querySelector('[data-line-hours]');
+      var linePay   = document.querySelector('[data-line-pay]');
+      var payLine   = document.querySelector('[data-pay-line]');
+      var proveBody = document.querySelector('[data-prove-it-body]');
+      var proveDetails = document.querySelector('[data-prove-it]');
+
+      var DEFAULT_DAYS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'];
+
+      function pushInteraction(field) {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: 'calculator_interaction',
+          calculator_name: 'Time Card Calculator',
+          field: field
+        });
+      }
+
+      function makeRow(day) {
+        var tr = document.createElement('tr');
+        tr.className = 'timecard-row';
+        tr.innerHTML =
+          '<td><input type="text" data-day value="' + (day || '') + '" placeholder="Day" aria-label="Day"></td>' +
+          '<td><input type="text" data-start placeholder="09:00" inputmode="numeric" pattern="\\d{1,2}:\\d{2}" aria-label="Start time"></td>' +
+          '<td><input type="text" data-end placeholder="17:00" inputmode="numeric" pattern="\\d{1,2}:\\d{2}" aria-label="End time"></td>' +
+          '<td><input type="number" data-break min="0" step="1" placeholder="0" aria-label="Unpaid break in minutes"></td>' +
+          '<td class="timecard-row__hours" data-row-hours>&ndash;</td>' +
+          '<td><button type="button" class="timecard-row__remove" data-remove aria-label="Remove row">&times;</button></td>';
+        return tr;
+      }
+
+      function renderDefaultRows() {
+        tbody.innerHTML = '';
+        DEFAULT_DAYS.forEach(function (d) {
+          tbody.appendChild(makeRow(d));
+        });
+      }
+
+      function gatherRows() {
+        var trs = tbody.querySelectorAll('tr');
+        var rows = [];
+        trs.forEach(function (tr) {
+          rows.push({
+            day:           tr.querySelector('[data-day]').value,
+            start:         tr.querySelector('[data-start]').value,
+            end:           tr.querySelector('[data-end]').value,
+            breakMinutes:  parseFloat(tr.querySelector('[data-break]').value) || 0
+          });
+        });
+        return rows;
+      }
+
+      function fmtHours(h) {
+        return h.toFixed(2) + (h === 1 ? ' hour' : ' hours');
+      }
+
+      function fmtPay(p) {
+        return '\u00A3' + p.toFixed(2);
+      }
+
+      function updateRowDisplays(week) {
+        var trs = tbody.querySelectorAll('tr');
+        trs.forEach(function (tr, i) {
+          var cell = tr.querySelector('[data-row-hours]');
+          var r = week.rows[i];
+          if (!r) { cell.textContent = '\u2014'; return; }
+          if (r.status === 'ok') {
+            cell.textContent = r.hours.toFixed(2);
+            cell.classList.remove('is-invalid');
+            cell.removeAttribute('title');
+          } else if (r.status === 'empty') {
+            cell.textContent = '\u2014';
+            cell.classList.remove('is-invalid');
+            cell.removeAttribute('title');
+          } else {
+            cell.textContent = '\u2014';
+            cell.classList.add('is-invalid');
+            var msg = 'Invalid';
+            if (r.reason === 'break-too-long') msg = 'Break is longer than the shift';
+            if (r.reason === 'bad-time') msg = 'Time should be HH:MM';
+            if (r.reason === 'bad-break') msg = 'Break must be zero or positive';
+            cell.title = msg;
+          }
+        });
+      }
+
+      function buildProve(week) {
+        var lines = [];
+        lines.push('<ol class="prove-it-rows">');
+        week.rows.forEach(function (r) {
+          var label = r.day ? r.day : 'Row';
+          if (r.status === 'empty') {
+            lines.push('<li><strong>' + escapeHtml(label) + ':</strong> empty, skipped.</li>');
+          } else if (r.status === 'invalid') {
+            var reason = 'invalid input';
+            if (r.reason === 'break-too-long') reason = 'unpaid break is longer than the shift';
+            if (r.reason === 'bad-time')       reason = 'start or end time is not HH:MM';
+            if (r.reason === 'bad-break')      reason = 'break value is not a positive number';
+            lines.push('<li><strong>' + escapeHtml(label) + ':</strong> ' + reason + ', skipped from total.</li>');
+          } else {
+            var startH = Math.floor(r.startMinutes / 60), startM = r.startMinutes % 60;
+            var endMins = r.endMinutes;
+            var endH, endM, suffix = '';
+            if (r.overnight) {
+              var adj = endMins - 24 * 60;
+              endH = Math.floor(adj / 60); endM = adj % 60;
+              suffix = ' (next day, overnight rollover applied)';
+            } else {
+              endH = Math.floor(endMins / 60); endM = endMins % 60;
+            }
+            var pad = function (n) { return n < 10 ? '0' + n : '' + n; };
+            lines.push(
+              '<li><strong>' + escapeHtml(label) + ':</strong> ' +
+              pad(startH) + ':' + pad(startM) + ' to ' + pad(endH) + ':' + pad(endM) + suffix +
+              '. Gross ' + r.grossMinutes + ' min minus break ' + r.breakMinutes + ' min = ' +
+              r.netMinutes + ' min &divide; 60 = <strong>' + r.hours.toFixed(2) + ' hours</strong>.</li>'
+            );
+          }
+        });
+        lines.push('</ol>');
+        lines.push('<p>Total = sum of valid rows&rsquo; net minutes &divide; 60 = <strong>' + week.totalHours.toFixed(2) + ' hours</strong>.</p>');
+        if (week.totalPay !== null) {
+          lines.push('<p>Pay = ' + week.totalHours.toFixed(2) + ' &times; &pound;' + week.hourlyRate.toFixed(2) + ' = <strong>&pound;' + week.totalPay.toFixed(2) + '</strong>.</p>');
+        }
+        return lines.join('');
+      }
+
+      function escapeHtml(s) {
+        return String(s).replace(/[&<>"']/g, function (c) {
+          return ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' })[c];
+        });
+      }
+
+      function calculate() {
+        var rows = gatherRows();
+        var rate = parseFloat(rateIn.value);
+        var week = TC.computeWeek({ rows: rows, hourlyRate: rate });
+
+        updateRowDisplays(week);
+
+        breakdown.hidden = false;
+        lineHours.textContent = fmtHours(week.totalHours);
+
+        if (week.totalPay !== null) {
+          payLine.hidden = false;
+          linePay.textContent = fmtPay(week.totalPay);
+        } else {
+          payLine.hidden = true;
+          linePay.textContent = '\u2014';
+        }
+
+        var msg;
+        if (week.totalHours === 0) {
+          msg = 'No valid hours yet. Fill in a start and end for at least one row.';
+        } else if (week.totalPay !== null) {
+          msg = 'You worked ' + week.totalHours.toFixed(2) + ' hours this week, which comes to ' + fmtPay(week.totalPay) + ' at \u00A3' + week.hourlyRate.toFixed(2) + ' an hour.';
+        } else {
+          msg = 'You worked ' + week.totalHours.toFixed(2) + ' hours this week.';
+        }
+        resultEl.textContent = msg;
+
+        proveBody.innerHTML = buildProve(week);
+
+        var validRows = week.rows.filter(function (r) { return r.status === 'ok'; }).length;
+        var invalidRows = week.rows.filter(function (r) { return r.status === 'invalid'; }).length;
+
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: 'calculator_result',
+          calculator_name: 'Time Card Calculator',
+          total_hours: week.totalHours,
+          total_pay: week.totalPay,
+          has_rate: week.totalPay !== null,
+          valid_rows: validRows,
+          invalid_rows: invalidRows
+        });
+      }
+
+      function clearAll() {
+        renderDefaultRows();
+        rateIn.value = '';
+        breakdown.hidden = true;
+        payLine.hidden = true;
+        resultEl.textContent = 'Fill in your hours, then press Calculate.';
+        proveBody.innerHTML = '<p>Press Calculate, and the working for each row appears here.</p>';
+      }
+
+      // Wire it up.
+      tbody.addEventListener('input', function (e) {
+        var name = e.target && e.target.getAttribute && (
+          e.target.hasAttribute('data-day')   ? 'day'   :
+          e.target.hasAttribute('data-start') ? 'start' :
+          e.target.hasAttribute('data-end')   ? 'end'   :
+          e.target.hasAttribute('data-break') ? 'break' : null
+        );
+        if (name) pushInteraction(name);
+      });
+      tbody.addEventListener('click', function (e) {
+        if (e.target && e.target.matches('[data-remove]')) {
+          var tr = e.target.closest('tr');
+          if (tr && tbody.children.length > 1) tr.remove();
+        }
+      });
+
+      addBtn.addEventListener('click', function () {
+        tbody.appendChild(makeRow(''));
+        pushInteraction('add-row');
+      });
+      clearBtn.addEventListener('click', clearAll);
+      rateIn.addEventListener('input', function () { pushInteraction('rate'); });
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        calculate();
+      });
+
+      if (proveDetails) {
+        proveDetails.addEventListener('toggle', function () {
+          if (proveDetails.open) {
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+              event: 'prove_it',
+              calculator_name: 'Time Card Calculator'
+            });
+          }
+        });
+      }
+
+      renderDefaultRows();
+    })();
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>
