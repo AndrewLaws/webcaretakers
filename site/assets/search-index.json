@@ -364,6 +364,13 @@
     "category": "Productivity"
   },
   {
+    "type": "tool",
+    "name": "Time Card Calculator",
+    "summary": "Weekly timesheet calculator. Enter start and end times, plus unpaid breaks, for each day. Returns hours per day, total hours for the week, and total pay if you add an hourly rate. Handles overnight shifts.",
+    "url": "/calculators/productivity/time-card-calculator/",
+    "category": "Productivity"
+  },
+  {
     "type": "category",
     "name": "SEO calculators",
     "summary": "Practical SEO tools that run in your browser.",

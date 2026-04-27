@@ -305,6 +305,11 @@
           "slug": "pomodoro-session-planner",
           "name": "Pomodoro Session Planner",
           "summary": "Plan a chunk of focused work into Pomodoro sessions. Work out sessions needed, total focus and break time, finish time today, and how it splits across days when one day is not enough."
+        },
+        {
+          "slug": "time-card-calculator",
+          "name": "Time Card Calculator",
+          "summary": "Weekly timesheet calculator. Enter start and end times, plus unpaid breaks, for each day. Returns hours per day, total hours for the week, and total pay if you add an hourly rate. Handles overnight shifts."
         }
       ]
     },
