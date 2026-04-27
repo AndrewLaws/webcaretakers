@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI vs Human Writer Cost Calculator | WebCaretakers</title>
+  <meta name="description" content="Compare the monthly cost of producing written content with an LLM versus a human writer. Per-word and per-hour rates, model pricing, breakeven and side-by-side model table.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/ai/ai-vs-human-writer-cost-calculator/">
+  <meta property="og:title" content="AI vs Human Writer Cost Calculator | WebCaretakers">
+  <meta property="og:description" content="Compare LLM cost against human writer cost for a given monthly word volume. Honest about quality trade-offs.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/ai/ai-vs-human-writer-cost-calculator/">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var _stored = null;
+    try { _stored = localStorage.getItem('cookie-consent'); } catch (e) {}
+    var _initial = _stored === 'granted' ? 'granted' : 'denied';
+    gtag('consent', 'default', {
+      ad_storage: _initial, analytics_storage: _initial,
+      ad_user_data: _initial, ad_personalization: _initial,
+      functionality_storage: 'granted', security_storage: 'granted',
+      wait_for_update: 500
+    });
+  </script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "AI vs Human Writer Cost Calculator",
+    "url": "https://webcaretakers.com/calculators/ai/ai-vs-human-writer-cost-calculator/",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "author": {
+      "@type": "Person",
+      "name": "Andrew Laws",
+      "url": "https://yeseo.io/"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is the LLM number really comparable to hiring a writer?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Not exactly. The LLM cost is the raw API bill for generating draft text. A real publishing operation also pays for the editor who fact-checks, restructures, fixes the voice and removes the AI tells. A human writer's price already bakes those things in. To compare like with like, add an editorial cost to the LLM column equal to the time you'll spend cleaning each draft. For most teams that's between 30 minutes and two hours per article." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does the per-word LLM cost look so low?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Because raw token output is genuinely cheap. A 1,000-word article on a mid-tier model is a few cents of API spend. The expensive bit of content is the thinking, the research, the editorial judgement and the legal review, not the keystrokes. The calculator shows the keystrokes cost honestly, then the long-form section talks about everything you still have to pay for around it." }
+      },
+      {
+        "@type": "Question",
+        "name": "What human writer rate should I plug in?",
+        "acceptedAnswer": { "@type": "Answer", "text": "For UK and US freelance content writers in 2026, $0.10 to $0.25 per word is the working range. Specialist writers (B2B SaaS, finance, medical) charge $0.30 to $1.00 per word. Cheap content-mill rates ($0.02 to $0.05) buy what they buy. If you pay hourly, $40 to $80/hour at 400 to 600 finished words per hour is the realistic band for a competent writer." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does this include caching, fine-tuning or batch discounts?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. The figures use standard, non-cached, non-batch list prices. Prompt caching can knock 50 to 90 percent off repeated input tokens, which matters if your system prompt is long and shared across every article. Batch APIs cut another 50 percent in exchange for slower turnaround. If you are running this at scale with a stable system prompt, expect your real bill to be lower than the calculator suggests." }
+      },
+      {
+        "@type": "Question",
+        "name": "When does a human writer make sense over an LLM?",
+        "acceptedAnswer": { "@type": "Answer", "text": "When the topic needs original reporting, expert interviews, lived experience, legal accuracy, or a recognisable voice. When the brand is small enough that one bad piece dents trust. When the audience can spot AI prose at fifty paces. When you need an opinion that holds up under scrutiny. The LLM column wins on volume and speed; the human column wins on credibility and original thought. Most serious publishers use both and are honest about which is which." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why is the breakeven sometimes 'human is never cheaper'?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Because both costs scale linearly with word volume in this calculator: there is no fixed-cost base for either side, just a per-word rate. If the LLM per-word rate is below the human per-word rate, the human side will always cost more, no matter the volume. The calculator surfaces that honestly rather than inventing a fake breakeven number." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-banner-heading" aria-describedby="cookie-banner-text" hidden>
+    <div class="cookie-banner__inner">
+      <h2 id="cookie-banner-heading" class="cookie-banner__heading">A quick word about cookies</h2>
+      <p id="cookie-banner-text" class="cookie-banner__text">
+        We use cookies for analytics, so we can see which calculators people actually use and which ones need work. Nothing creepy, nothing sold on. You can say yes, say no, or read the <a href="/privacy/">privacy policy</a> first. Your choice sticks.
+      </p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-reject>Reject</button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>Accept</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var KEY = 'cookie-consent';
+      var banner = document.querySelector('[data-cookie-banner]');
+      if (!banner) return;
+      var stored = null;
+      try { stored = localStorage.getItem(KEY); } catch (e) {}
+      if (stored !== 'granted' && stored !== 'denied') { banner.hidden = false; }
+      function record(choice) {
+        try { localStorage.setItem(KEY, choice); } catch (e) {}
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('consent', 'update', {
+          ad_storage: choice, analytics_storage: choice,
+          ad_user_data: choice, ad_personalization: choice
+        });
+        banner.hidden = true;
+      }
+      var accept = banner.querySelector('[data-cookie-accept]');
+      var reject = banner.querySelector('[data-cookie-reject]');
+      if (accept) accept.addEventListener('click', function () { record('granted'); });
+      if (reject) reject.addEventListener('click', function () { record('denied'); });
+    })();
+  </script>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">WebCaretakers</a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <ul class="primary-nav__list">
+          <li class="primary-nav__item primary-nav__item--has-menu">
+            <button type="button" class="primary-nav__link" data-menu-toggle aria-haspopup="true" aria-expanded="false">Calculators <span class="primary-nav__caret" aria-hidden="true">▾</span></button>
+            <ul class="primary-nav__submenu">
+              <li><a href="/calculators/ai/">AI</a></li>
+              <li><a href="/calculators/broadband/">Broadband</a></li>
+              <li><a href="/calculators/business/">Business</a></li>
+              <li><a href="/calculators/conversions/">Conversions</a></li>
+              <li><a href="/calculators/finance/">Finance</a></li>
+              <li><a href="/calculators/fun/">Fun</a></li>
+              <li><a href="/calculators/health/">Health</a></li>
+              <li><a href="/calculators/images/">Images</a></li>
+              <li><a href="/calculators/math/">Math</a></li>
+              <li><a href="/calculators/productivity/">Productivity</a></li>
+              <li><a href="/calculators/property/">Property</a></li>
+              <li><a href="/calculators/seo/">SEO</a></li>
+              <li><a href="/calculators/wedding/">Wedding</a></li>
+              <li><a href="/calculators/writing/">Writing</a></li>
+              <li class="primary-nav__submenu-sep"><a href="/calculators/">See all calculators</a></li>
+            </ul>
+          </li>
+          <li class="primary-nav__item"><a href="/about/" class="primary-nav__link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <main id="main-content">
+      <div class="container">
+        <nav aria-label="Breadcrumb" class="breadcrumbs">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/calculators/">Calculators</a></li>
+            <li><a href="/calculators/ai/">AI</a></li>
+            <li aria-current="page">AI vs Human Writer Cost Calculator</li>
+          </ol>
+        </nav>
+
+        <h1>AI vs Human Writer Cost Calculator</h1>
+        <p class="intro">Punch in your monthly word target, pick a model, set what a human writer charges and see the two bills side by side. The number you'll get tells you the raw cost of producing draft text. The long-form section below tells you what you still have to pay for around it, because content is more than keystrokes and we'd rather be honest about that than sell you the cheap answer.</p>
+
+        <section class="eli5" aria-label="Plain-English explanation">
+          <h2>Explain like I'm 5 (what even is this calculator?)</h2>
+          <p>You want some words written. A robot will do it for pennies but might get the facts wrong. A human will do it well but charges proper money. This tool shows what each one costs for the volume you're after, and where the crossover sits. The robot bill is real. The human bill is real. The bit nobody puts on a sticker is the editing time, and we talk about that further down.</p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="in-content" aria-hidden="true"></div>
+
+        <section class="calculator-card">
+          <h2>Calculate</h2>
+          <form id="ai-human-form" class="calc-form" novalidate>
+            <div class="calc-row">
+              <label for="words-per-month">Words per month to produce</label>
+              <input type="number" id="words-per-month" data-words-per-month min="0" step="100" value="50000">
+            </div>
+
+            <div class="calc-row">
+              <label for="article-words">Average article length (words)</label>
+              <input type="number" id="article-words" data-article-words min="1" step="50" value="1000">
+            </div>
+
+            <div class="calc-row">
+              <label for="input-tokens">Prompt overhead per article (input tokens)</label>
+              <input type="number" id="input-tokens" data-input-tokens min="0" step="50" value="800">
+            </div>
+
+            <div class="calc-row">
+              <label for="primary-model">LLM model</label>
+              <select id="primary-model" data-primary-model aria-label="LLM model">
+                <!-- populated from MODELS -->
+              </select>
+            </div>
+
+            <div class="calc-row">
+              <label for="human-mode">Human writer pricing mode</label>
+              <select id="human-mode" data-human-mode aria-label="Human writer pricing mode">
+                <option value="perWord" selected>Per word</option>
+                <option value="perHour">Per hour</option>
+              </select>
+            </div>
+
+            <div class="calc-row" data-per-word-row>
+              <label for="per-word-rate">Human rate per word (USD)</label>
+              <input type="number" id="per-word-rate" data-per-word-rate min="0" step="0.01" value="0.15">
+            </div>
+
+            <div class="calc-row" data-per-hour-row hidden>
+              <label for="hourly-rate">Human hourly rate (USD)</label>
+              <input type="number" id="hourly-rate" data-hourly-rate min="0" step="1" value="50">
+            </div>
+
+            <div class="calc-row" data-words-per-hour-row hidden>
+              <label for="words-per-hour">Words per hour</label>
+              <input type="number" id="words-per-hour" data-words-per-hour min="1" step="50" value="500">
+            </div>
+
+            <button type="submit" data-calculate>Calculate</button>
+          </form>
+
+          <div data-calculator-results class="calculator-results">
+            <div class="result-summary">
+              <p class="result-display" data-result>Enter your numbers, then press Calculate.</p>
+            </div>
+
+            <div class="mort-breakdown" data-breakdown hidden>
+              <h3>Monthly cost</h3>
+              <ul>
+                <li><span>LLM monthly cost</span><strong data-line-llm>–</strong></li>
+                <li><span>Human monthly cost</span><strong data-line-human>–</strong></li>
+                <li><span>Articles per month</span><strong data-line-articles>–</strong></li>
+                <li><span>LLM cost per article</span><strong data-line-cost-per-article>–</strong></li>
+                <li class="mort-breakdown__total"><span>Saving (or extra spend) using LLM</span><strong data-line-savings>–</strong></li>
+              </ul>
+
+              <p class="result-caption" data-breakeven>–</p>
+
+              <h3>Same workload, every model</h3>
+              <p class="result-caption" data-pricing-caption>
+                Pricing per 1M tokens, USD. Last verified: <span data-last-verified>—</span>.
+              </p>
+              <div class="table-wrap">
+                <table class="comparison-table" data-comparison-table>
+                  <thead>
+                    <tr>
+                      <th scope="col">Model</th>
+                      <th scope="col">Input $/1M</th>
+                      <th scope="col">Output $/1M</th>
+                      <th scope="col">Per article</th>
+                      <th scope="col">Monthly</th>
+                      <th scope="col">Vs human</th>
+                    </tr>
+                  </thead>
+                  <tbody data-comparison-body></tbody>
+                </table>
+              </div>
+            </div>
+
+            <details class="prove-it" data-prove-it>
+              <summary>Prove it</summary>
+              <div data-prove-it-body></div>
+              <p class="prove-it-source">Output tokens are estimated at 1.3 tokens per English word (the four-characters-per-token rule of thumb applied to the average five-character English word plus a trailing space). LLM cost per article is (input tokens ÷ 1M × input price) + (output tokens ÷ 1M × output price). Monthly cost is cost per article × articles per month, where articles per month is the monthly word target divided by article length. Human per-word cost is taken straight from the rate you entered, or computed from hourly rate ÷ words per hour. Pricing is the standard non-cached, non-batch list price published by each provider.</p>
+            </details>
+          </div>
+
+          <p class="bookmark-nudge">
+            Useful? Save this calculator: press <kbd data-bookmark-shortcut>Ctrl</kbd> + <kbd>D</kbd> to bookmark it.
+          </p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="below-results" aria-hidden="true"></div>
+
+        <section class="long-form">
+          <h2>What this calculator is actually doing</h2>
+          <p>Both columns are linear: cost goes up in proportion to wordcount. The LLM column multiplies your monthly word target by the per-word output cost of the chosen model, then adds the prompt overhead for each article (the system prompt and brief you send in). The human column either multiplies by the per-word rate you entered, or works out the hours (words ÷ words-per-hour) and multiplies by the hourly rate. There is no fixed cost on either side: no platform fees, no minimums, no agency retainers. Real life has all of those, so treat the figure as the per-word cost-of-production floor, not the bottom line.</p>
+
+          <h2>The bit the LLM bill does not include</h2>
+          <p>If you treat draft text as "done", the LLM column wins on price for almost any volume. It's a hundred times cheaper per word than even a budget freelancer. But draft text is not done. Here is what an honest content operation pays for around the keystrokes:</p>
+          <ul>
+            <li><strong>Editorial review.</strong> Someone reads it, fact-checks claims, removes the AI tells (the over-confident summary sentences, the four-word bullet points that all start with the same verb, the made-up statistics), and rewrites the bits that sound like the model phoned it in. Budget 30 to 90 minutes per 1,000-word article.</li>
+            <li><strong>Subject-matter accuracy.</strong> The model will confidently state things that are wrong. Tax thresholds, drug dosages, legal precedents, product features. If your topic has any regulatory or safety dimension, you need a human who actually knows it to read the draft.</li>
+            <li><strong>Voice and brand.</strong> LLM prose has a default register (slightly American, slightly LinkedIn, slightly hollow). Pulling it back to your brand voice takes work. Some brands genuinely cannot publish LLM prose without it landing as off-brand.</li>
+            <li><strong>SEO sanity.</strong> The model will pad. It will repeat itself. It will use the wrong heading hierarchy. It will invent links. A human or a properly tuned editorial pass fixes this before publish.</li>
+            <li><strong>Originality and authority.</strong> Search engines and readers are getting better at detecting and discounting commodity AI content. The pieces that earn links and rankings are the ones with original reporting, expert interviews, or a clear point of view, none of which come out of a base model.</li>
+          </ul>
+          <p>Add the editorial time to the LLM column at whatever your editor's rate is. On a 1,000-word article at one hour of editing at $60/hour, that is another $60 on top of a few cents of API spend. The maths still favours the LLM at scale, but by a much smaller margin than the raw bill suggests.</p>
+
+          <h2>When LLMs make sense</h2>
+          <p>The LLM column wins clearly when:</p>
+          <ul>
+            <li>The topic is well-trodden and the model has read about it a thousand times (general explainers, definitions, summaries of public knowledge).</li>
+            <li>You need volume that no human team could keep up with (programmatic SEO pages, product description variants, internal documentation).</li>
+            <li>The output is a starting point for a human, not the finished thing (draft outlines, first-pass briefs, research notes).</li>
+            <li>You have a strong editorial process to catch the inaccuracies and the AI tells before publish.</li>
+            <li>The downside of being wrong on any individual page is low.</li>
+          </ul>
+
+          <h2>When humans make sense</h2>
+          <p>The human column wins clearly when:</p>
+          <ul>
+            <li>The piece needs original reporting, lived experience or expert interviews. The model has none of those.</li>
+            <li>Accuracy under scrutiny matters: regulated industries, medical, legal, financial advice, anything that might be cited by a journalist or a regulator.</li>
+            <li>The brand has a recognisable voice that readers come for, and that voice is part of the product.</li>
+            <li>You're publishing rarely enough that one bad piece dents trust for the next year.</li>
+            <li>Your audience is clued-up enough to spot LLM prose and treat it as a signal of laziness.</li>
+          </ul>
+
+          <h2>Honest caveats on the numbers</h2>
+          <h3>Token counts are approximate</h3>
+          <p>The 1.3-tokens-per-word figure is the rule-of-thumb applied to English prose. Code, JSON, tables, non-Latin scripts and very short articles will drift further. Treat the LLM cost as a sensible estimate, not an exact figure.</p>
+          <h3>Caching and batch pricing not modelled</h3>
+          <p>Anthropic, OpenAI and Google all offer prompt caching, which is genuinely useful here: most content workflows use the same long system prompt for every article. Caching can knock 50 to 90 percent off repeated input tokens. If you have a stable system prompt and high volume, your real bill will be lower than this calculator says.</p>
+          <h3>Fine-tuned and reasoning models</h3>
+          <p>The pricing here is for the standard chat models. Fine-tuned variants cost more per token and have a one-off training fee. Reasoning models (o1-style) charge for their internal thinking tokens, which can blow past output tokens by an order of magnitude on a hard task.</p>
+          <h3>Quality is not in the spreadsheet</h3>
+          <p>Two pieces with the same word count and the same publish date can be worth wildly different amounts to the business. The cheapest column does not always win; sometimes the expensive piece is the only one that earns a link, ranks for the high-intent keyword, or convinces a buyer.</p>
+
+          <!-- related-calculators-block -->
+          <h2>Related calculators</h2>
+          <p>Other tools for costing AI and content work.</p>
+          <ul class="related-calculators">
+            <li><a href="/calculators/ai/llm-token-usage-calculator/">LLM Token Usage Calculator</a> for the per-call API cost without the human comparison.</li>
+            <li><a href="/calculators/business/seo-roi-calculator/">SEO ROI Calculator</a> to see whether the content investment pays back in organic traffic.</li>
+            <li><a href="/calculators/business/freelance-day-rate-calculator/">Freelance Day Rate Calculator</a> if you're the writer working out what to charge.</li>
+            <li><a href="/calculators/writing/word-count/">Word and character count</a> for the brief you're about to send.</li>
+            <li><a href="/calculators/writing/read-time-calculator/">Read-time calculator</a> for the article you're about to commission.</li>
+          </ul>
+        </section>
+
+        <section class="faq" aria-labelledby="faq-heading">
+          <h2 id="faq-heading">Frequently asked questions</h2>
+          <details>
+            <summary>Is the LLM number really comparable to hiring a writer?</summary>
+            <p>Not exactly. The LLM cost is the raw API bill for generating draft text. A real publishing operation also pays for the editor who fact-checks, restructures, fixes the voice and removes the AI tells. A human writer's price already bakes those things in. To compare like with like, add an editorial cost to the LLM column equal to the time you'll spend cleaning each draft. For most teams that's between 30 minutes and two hours per article.</p>
+          </details>
+          <details>
+            <summary>Why does the per-word LLM cost look so low?</summary>
+            <p>Because raw token output is genuinely cheap. A 1,000-word article on a mid-tier model is a few cents of API spend. The expensive bit of content is the thinking, the research, the editorial judgement and the legal review, not the keystrokes. The calculator shows the keystrokes cost honestly, then the long-form section talks about everything you still have to pay for around it.</p>
+          </details>
+          <details>
+            <summary>What human writer rate should I plug in?</summary>
+            <p>For UK and US freelance content writers in 2026, $0.10 to $0.25 per word is the working range. Specialist writers (B2B SaaS, finance, medical) charge $0.30 to $1.00 per word. Cheap content-mill rates ($0.02 to $0.05) buy what they buy. If you pay hourly, $40 to $80/hour at 400 to 600 finished words per hour is the realistic band for a competent writer.</p>
+          </details>
+          <details>
+            <summary>Does this include caching, fine-tuning or batch discounts?</summary>
+            <p>No. The figures use standard, non-cached, non-batch list prices. Prompt caching can knock 50 to 90 percent off repeated input tokens, which matters if your system prompt is long and shared across every article. Batch APIs cut another 50 percent in exchange for slower turnaround. If you are running this at scale with a stable system prompt, expect your real bill to be lower than the calculator suggests.</p>
+          </details>
+          <details>
+            <summary>When does a human writer make sense over an LLM?</summary>
+            <p>When the topic needs original reporting, expert interviews, lived experience, legal accuracy, or a recognisable voice. When the brand is small enough that one bad piece dents trust. When the audience can spot AI prose at fifty paces. When you need an opinion that holds up under scrutiny. The LLM column wins on volume and speed; the human column wins on credibility and original thought. Most serious publishers use both and are honest about which is which.</p>
+          </details>
+          <details>
+            <summary>Why is the breakeven sometimes "human is never cheaper"?</summary>
+            <p>Because both costs scale linearly with word volume in this calculator: there is no fixed-cost base for either side, just a per-word rate. If the LLM per-word rate is below the human per-word rate, the human side will always cost more, no matter the volume. The calculator surfaces that honestly rather than inventing a fake breakeven number.</p>
+          </details>
+          <details>
+            <summary>Does this calculator send my data anywhere?</summary>
+            <p>No. Everything runs in your browser. Your numbers never leave your device.</p>
+          </details>
+        </section>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="ad-slot" data-ad-slot="sidebar" aria-hidden="true"></div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="site-footer-nav" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/calculators/">All calculators</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+
+      <section class="site-disclaimer" data-disclaimer aria-labelledby="disclaimer-heading">
+        <h2 id="disclaimer-heading">A quick, necessary word</h2>
+        <p>Every calculator on this site is built to give you a sensible, well-reasoned estimate. It is, however, exactly that: an estimate, for general information only. Nothing you see here is professional, legal, financial, medical, or tax advice, and it should not be treated as such.</p>
+        <p>Before you make a decision that actually matters, talk to a qualified professional who knows your specific situation: an accountant, a solicitor, a doctor, an IT consultant, whoever fits the question. They can factor in the bits a generic tool can't.</p>
+        <p>We take no liability and accept no responsibility for any loss, damage, or questionable life choice arising from acting on the numbers you see here. Use the results as a starting point for a better conversation, not as the final word.</p>
+        <p><strong>Affiliate disclosure:</strong> some links on this site are affiliate links. If you click through and buy or sign up for something, we may earn a small commission at no extra cost to you. It helps keep the calculators free and ad-light. We only recommend things we'd point a friend towards.</p>
+      </section>
+      <p class="site-copyright">&copy; 2026 WebCaretakers. All rights reserved.</p>
+      <p class="site-legal">WebCaretakers is a trading name of <a href="https://yeseo.io/" rel="noopener">Andrew Laws Associates Ltd</a>, registered in England and Wales (company no. 08602332). ICO registration ZA726704.</p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/calculators/ai-vs-human-writer-cost.js"></script>
+  <script>
+    (function () {
+      'use strict';
+
+      var shortcutEl = document.querySelector('[data-bookmark-shortcut]');
+      if (shortcutEl) {
+        var isMac = /Mac|iPhone|iPad|iPod/i.test(navigator.platform || navigator.userAgent);
+        shortcutEl.textContent = isMac ? '\u2318' : 'Ctrl';
+      }
+
+      var lib = window.AIvsHumanWriterCost;
+      if (!lib) return;
+
+      var form = document.getElementById('ai-human-form');
+      if (!form) return;
+
+      var wordsPerMonthEl = form.querySelector('[data-words-per-month]');
+      var articleWordsEl = form.querySelector('[data-article-words]');
+      var inputTokensEl = form.querySelector('[data-input-tokens]');
+      var primaryModelEl = form.querySelector('[data-primary-model]');
+      var humanModeEl = form.querySelector('[data-human-mode]');
+      var perWordRateEl = form.querySelector('[data-per-word-rate]');
+      var hourlyRateEl = form.querySelector('[data-hourly-rate]');
+      var wordsPerHourEl = form.querySelector('[data-words-per-hour]');
+      var perWordRow = form.querySelector('[data-per-word-row]');
+      var perHourRow = form.querySelector('[data-per-hour-row]');
+      var wordsPerHourRow = form.querySelector('[data-words-per-hour-row]');
+
+      var resultEl = document.querySelector('[data-result]');
+      var breakdown = document.querySelector('[data-breakdown]');
+      var lineLLM = document.querySelector('[data-line-llm]');
+      var lineHuman = document.querySelector('[data-line-human]');
+      var lineArticles = document.querySelector('[data-line-articles]');
+      var lineCostPerArticle = document.querySelector('[data-line-cost-per-article]');
+      var lineSavings = document.querySelector('[data-line-savings]');
+      var breakevenEl = document.querySelector('[data-breakeven]');
+      var lastVerifiedEl = document.querySelector('[data-last-verified]');
+      var comparisonBody = document.querySelector('[data-comparison-body]');
+      var proveBody = document.querySelector('[data-prove-it-body]');
+
+      // Populate the model dropdown from MODELS, default-select Claude Sonnet 4.6
+      lib.MODELS.forEach(function (m) {
+        var opt = document.createElement('option');
+        opt.value = m.id;
+        opt.textContent = m.vendor + ' — ' + m.name;
+        if (m.id === 'claude-sonnet-4-6') opt.selected = true;
+        primaryModelEl.appendChild(opt);
+      });
+
+      lastVerifiedEl.textContent = lib.PRICING_LAST_VERIFIED;
+
+      function syncHumanMode() {
+        if (humanModeEl.value === 'perHour') {
+          perWordRow.hidden = true;
+          perHourRow.hidden = false;
+          wordsPerHourRow.hidden = false;
+        } else {
+          perWordRow.hidden = false;
+          perHourRow.hidden = true;
+          wordsPerHourRow.hidden = true;
+        }
+      }
+      humanModeEl.addEventListener('change', syncHumanMode);
+      syncHumanMode();
+
+      function fmtUSD(n, dp) {
+        if (typeof n !== 'number' || !isFinite(n)) return '—';
+        var digits = (typeof dp === 'number') ? dp : 2;
+        return '$' + n.toLocaleString('en-US', { minimumFractionDigits: digits, maximumFractionDigits: digits });
+      }
+
+      function fmtPerArticle(n) {
+        if (n === 0) return '$0.00';
+        if (n < 0.01) return '$' + n.toFixed(6);
+        if (n < 1) return '$' + n.toFixed(4);
+        return fmtUSD(n, 2);
+      }
+
+      function fmtInt(n) {
+        if (typeof n !== 'number' || !isFinite(n)) return '—';
+        return Math.round(n).toLocaleString('en-GB');
+      }
+
+      // Light interaction tracking
+      [wordsPerMonthEl, articleWordsEl, inputTokensEl, primaryModelEl, humanModeEl, perWordRateEl, hourlyRateEl, wordsPerHourEl].forEach(function (el) {
+        if (!el) return;
+        el.addEventListener('input', function () {
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: 'calculator_interaction',
+            calculator_name: 'AI vs Human Writer Cost Calculator',
+            field_name: el.id || el.name || ''
+          });
+        });
+      });
+
+      function findModel(id) {
+        for (var i = 0; i < lib.MODELS.length; i++) {
+          if (lib.MODELS[i].id === id) return lib.MODELS[i];
+        }
+        return lib.MODELS[0];
+      }
+
+      function getHumanPerWord() {
+        if (humanModeEl.value === 'perHour') {
+          var hourly = parseFloat(hourlyRateEl.value);
+          var wph = parseFloat(wordsPerHourEl.value);
+          if (!isFinite(hourly) || hourly < 0 || !isFinite(wph) || wph <= 0) return 0;
+          return hourly / wph;
+        }
+        var rate = parseFloat(perWordRateEl.value);
+        return (isFinite(rate) && rate >= 0) ? rate : 0;
+      }
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        var wordsPerMonth = parseFloat(wordsPerMonthEl.value);
+        if (!isFinite(wordsPerMonth) || wordsPerMonth < 0) wordsPerMonth = 0;
+        var articleWords = parseFloat(articleWordsEl.value);
+        if (!isFinite(articleWords) || articleWords <= 0) articleWords = 1000;
+        var inputTokens = parseFloat(inputTokensEl.value);
+        if (!isFinite(inputTokens) || inputTokens < 0) inputTokens = 0;
+        var primary = findModel(primaryModelEl.value);
+
+        try {
+          var llm = lib.llmMonthlyCost({
+            model: primary,
+            wordsPerMonth: wordsPerMonth,
+            articleWords: articleWords,
+            inputTokensPerArticle: inputTokens,
+          });
+
+          var humanArgs = { wordsPerMonth: wordsPerMonth, mode: humanModeEl.value };
+          if (humanModeEl.value === 'perHour') {
+            humanArgs.hourlyRate = parseFloat(hourlyRateEl.value);
+            humanArgs.wordsPerHour = parseFloat(wordsPerHourEl.value);
+          } else {
+            humanArgs.perWordRate = parseFloat(perWordRateEl.value);
+          }
+          var human = lib.humanMonthlyCost(humanArgs);
+          var humanPerWord = human.effectivePerWord;
+
+          var savings = human.monthly - llm.monthly;
+
+          var be = lib.breakevenWords({
+            model: primary,
+            articleWords: articleWords,
+            inputTokensPerArticle: inputTokens,
+            humanPerWord: humanPerWord,
+          });
+
+          var rows = lib.modelComparison({
+            wordsPerMonth: wordsPerMonth,
+            articleWords: articleWords,
+            inputTokensPerArticle: inputTokens,
+          });
+
+          breakdown.hidden = false;
+          var verb = savings >= 0 ? 'You save' : 'Extra spend';
+          resultEl.textContent = primary.name + ': ' + fmtUSD(llm.monthly, 2) + '/month vs human ' +
+            fmtUSD(human.monthly, 2) + '/month. ' + verb + ' ' + fmtUSD(Math.abs(savings), 2) + ' going LLM.';
+
+          lineLLM.textContent = fmtUSD(llm.monthly, 2);
+          lineHuman.textContent = fmtUSD(human.monthly, 2);
+          lineArticles.textContent = fmtInt(llm.articlesPerMonth);
+          lineCostPerArticle.textContent = fmtPerArticle(llm.costPerArticle);
+          lineSavings.textContent = (savings >= 0 ? '+' : '') + fmtUSD(savings, 2) + (savings >= 0 ? ' (LLM cheaper)' : ' (LLM more expensive)');
+
+          if (be.verdict === 'llm-cheaper') {
+            breakevenEl.textContent =
+              'At your inputs, the LLM costs ' + fmtPerArticle(be.llmPerWord) + '/word against ' +
+              fmtPerArticle(be.humanPerWord) + '/word for the human. Both costs scale linearly, so a human writer is never cheaper at this rate, no matter the word volume.';
+          } else if (be.verdict === 'human-cheaper') {
+            breakevenEl.textContent =
+              'At your inputs, the human costs ' + fmtPerArticle(be.humanPerWord) + '/word against ' +
+              fmtPerArticle(be.llmPerWord) + '/word for the LLM. The human is already cheaper per word, so the human side wins at every volume.';
+          } else {
+            breakevenEl.textContent = 'At your inputs, LLM and human are tied per word. Volume does not change the answer.';
+          }
+
+          // Render comparison table
+          comparisonBody.innerHTML = '';
+          rows.forEach(function (r) {
+            var tr = document.createElement('tr');
+            tr.setAttribute('data-comparison-row', r.id);
+            if (r.id === primary.id) tr.classList.add('comparison-table__row--primary');
+            var diff = human.monthly - r.monthly;
+            var vsHuman = (diff >= 0 ? '−' : '+') + fmtUSD(Math.abs(diff), 2);
+            tr.innerHTML =
+              '<th scope="row">' + r.vendor + ' ' + r.name + '</th>' +
+              '<td>' + fmtUSD(r.inputPer1M, 2) + '</td>' +
+              '<td>' + fmtUSD(r.outputPer1M, 2) + '</td>' +
+              '<td>' + fmtPerArticle(r.costPerArticle) + '</td>' +
+              '<td>' + fmtUSD(r.monthly, 2) + '</td>' +
+              '<td>' + vsHuman + '</td>';
+            comparisonBody.appendChild(tr);
+          });
+
+          var humanLine = humanModeEl.value === 'perHour'
+            ? '<li><span>Human hours/month</span><strong>' + (human.hours == null ? '—' : human.hours.toFixed(1)) + '</strong></li>' +
+              '<li><span>Effective human $/word</span><strong>' + fmtPerArticle(human.effectivePerWord) + '</strong></li>'
+            : '<li><span>Human $/word</span><strong>' + fmtPerArticle(human.effectivePerWord) + '</strong></li>';
+
+          proveBody.innerHTML =
+            '<ul>' +
+              '<li><span>Words per month</span><strong>' + fmtInt(wordsPerMonth) + '</strong></li>' +
+              '<li><span>Article length</span><strong>' + fmtInt(articleWords) + ' words</strong></li>' +
+              '<li><span>Articles per month</span><strong>' + fmtInt(llm.articlesPerMonth) + '</strong></li>' +
+              '<li><span>Input tokens per article</span><strong>' + fmtInt(llm.inputTokensPerArticle) + '</strong></li>' +
+              '<li><span>Output tokens per article (≈1.3 per word)</span><strong>' + fmtInt(llm.outputTokensPerArticle) + '</strong></li>' +
+              '<li><span>' + primary.name + ' input</span><strong>' + fmtUSD(primary.inputPer1M, 2) + ' / 1M</strong></li>' +
+              '<li><span>' + primary.name + ' output</span><strong>' + fmtUSD(primary.outputPer1M, 2) + ' / 1M</strong></li>' +
+              '<li><span>LLM cost per article</span><strong>' + fmtPerArticle(llm.costPerArticle) + '</strong></li>' +
+              '<li><span>LLM monthly</span><strong>' + fmtUSD(llm.monthly, 2) + '</strong></li>' +
+              humanLine +
+              '<li><span>Human monthly</span><strong>' + fmtUSD(human.monthly, 2) + '</strong></li>' +
+              '<li><span>Saving (or extra spend) using LLM</span><strong>' + fmtUSD(savings, 2) + '</strong></li>' +
+            '</ul>';
+
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: 'calculator_result',
+            calculator_name: 'AI vs Human Writer Cost Calculator',
+            primary_model: primary.id,
+            words_per_month: wordsPerMonth,
+            article_words: articleWords,
+            llm_monthly_cost: llm.monthly,
+            human_monthly_cost: human.monthly,
+            savings_per_month: Math.round(savings * 100) / 100,
+            // Linear comparison: there is no finite breakeven word count, so
+            // the field carries 0 for "human never cheaper" and the literal
+            // wordsPerMonth (i.e. always-already-cheaper) for "human cheaper".
+            // The verdict string is the source of truth.
+            breakeven_words: 0,
+            breakeven_verdict: be.verdict,
+          });
+        } catch (err) {
+          resultEl.textContent = err.message || 'Could not calculate.';
+          breakdown.hidden = true;
+          proveBody.innerHTML = '';
+        }
+      });
+    })();
+  </script>
+
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

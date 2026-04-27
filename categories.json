@@ -20,6 +20,11 @@
           "slug": "rag-pipeline-cost-calculator",
           "name": "RAG Pipeline Cost Calculator",
           "summary": "Estimate the monthly cost of running a Retrieval-Augmented Generation pipeline. Embedding, vector database, and LLM query costs broken out, with a month-by-month projection and an LLM swap comparison."
+        },
+        {
+          "slug": "ai-vs-human-writer-cost-calculator",
+          "name": "AI vs Human Writer Cost Calculator",
+          "summary": "Compare the monthly cost of producing written content via an LLM against a human writer. Per-word or per-hour human rates, side-by-side model table, honest about editorial trade-offs."
         }
       ]
     },
