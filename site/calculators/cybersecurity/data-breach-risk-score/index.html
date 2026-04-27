@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data Breach Risk Score | WebCaretakers</title>
+  <meta name="description" content="Self-assess your breach exposure across passwords, 2FA, software hygiene and phishing awareness. Get a score and a prioritised fix list, all in your browser.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/cybersecurity/data-breach-risk-score/">
+  <meta property="og:title" content="Data Breach Risk Score | WebCaretakers">
+  <meta property="og:description" content="Self-assess your breach exposure. Score, category, prioritised fix list, browser-only.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/cybersecurity/data-breach-risk-score/">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var _stored = null;
+    try { _stored = localStorage.getItem('cookie-consent'); } catch (e) {}
+    var _initial = _stored === 'granted' ? 'granted' : 'denied';
+    gtag('consent', 'default', {
+      ad_storage: _initial, analytics_storage: _initial,
+      ad_user_data: _initial, ad_personalization: _initial,
+      functionality_storage: 'granted', security_storage: 'granted',
+      wait_for_update: 500
+    });
+  </script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Data Breach Risk Score",
+    "url": "https://webcaretakers.com/calculators/cybersecurity/data-breach-risk-score/",
+    "applicationCategory": "SecurityApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0" },
+    "author": {
+      "@type": "Person",
+      "name": "Andrew Laws",
+      "url": "https://yeseo.io/"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is this the same thing as Have I Been Pwned?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. Have I Been Pwned tells you whether your specific email address has shown up in a known leak. This calculator never sees your email or any personal detail. It scores your security habits to estimate how likely you are to be in the next leak. The two complement each other: HIBP looks at past breaches, this tool looks at future exposure." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does this calculator send my answers anywhere?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. Every answer stays in your browser. The page makes no API calls, no fetch requests, nothing. You can disconnect from the internet, fill the form in, and it still works. The only network activity on the page is the analytics tag, which records that someone (anonymously) used the calculator, not what they answered." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why are passwords and 2FA weighted so heavily?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Because credential stuffing and infostealer malware drive the majority of consumer account compromises in 2026. A single reused password in a leaked dump becomes the key to dozens of other accounts within minutes. A password manager plus 2FA on critical accounts blocks both attack patterns at once, which is why the recommendations engine pushes those to the top whenever they apply." }
+      },
+      {
+        "@type": "Question",
+        "name": "What if I don't have any \"important\" online accounts?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Most people think this and most people are wrong. Your email account alone can reset every other login you have. Add to that any cloud storage with photos, any social media account that holds your messages, any shopping site with a saved card. The threshold for being worth attacking is not financial wealth, it is having a working pulse and a credit history." }
+      },
+      {
+        "@type": "Question",
+        "name": "How accurate is the score?",
+        "acceptedAnswer": { "@type": "Answer", "text": "It is a relative score, not a probability. The 0 to 100 number is for comparing your habits to better and worse alternatives, and for showing how much each habit contributes to your overall exposure. It is not a percent chance of being breached this year. Treat it as a self-assessment to find the highest-impact fixes." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-banner-heading" aria-describedby="cookie-banner-text" hidden>
+    <div class="cookie-banner__inner">
+      <h2 id="cookie-banner-heading" class="cookie-banner__heading">A quick word about cookies</h2>
+      <p id="cookie-banner-text" class="cookie-banner__text">
+        We use cookies for analytics, so we can see which calculators people actually use and which ones need work. Nothing creepy, nothing sold on. You can say yes, say no, or read the <a href="/privacy/">privacy policy</a> first. Your choice sticks.
+      </p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-reject>Reject</button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>Accept</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var KEY = 'cookie-consent';
+      var banner = document.querySelector('[data-cookie-banner]');
+      if (!banner) return;
+      var stored = null;
+      try { stored = localStorage.getItem(KEY); } catch (e) {}
+      if (stored !== 'granted' && stored !== 'denied') { banner.hidden = false; }
+      function record(choice) {
+        try { localStorage.setItem(KEY, choice); } catch (e) {}
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('consent', 'update', {
+          ad_storage: choice, analytics_storage: choice,
+          ad_user_data: choice, ad_personalization: choice
+        });
+        banner.hidden = true;
+      }
+      var accept = banner.querySelector('[data-cookie-accept]');
+      var reject = banner.querySelector('[data-cookie-reject]');
+      if (accept) accept.addEventListener('click', function () { record('granted'); });
+      if (reject) reject.addEventListener('click', function () { record('denied'); });
+    })();
+  </script>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">WebCaretakers</a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <ul class="primary-nav__list">
+          <li class="primary-nav__item primary-nav__item--has-menu">
+            <button type="button" class="primary-nav__link" data-menu-toggle aria-haspopup="true" aria-expanded="false">Calculators <span class="primary-nav__caret" aria-hidden="true">▾</span></button>
+            <ul class="primary-nav__submenu">
+              <li><a href="/calculators/ai/">AI</a></li>
+              <li><a href="/calculators/broadband/">Broadband</a></li>
+              <li><a href="/calculators/business/">Business</a></li>
+              <li><a href="/calculators/conversions/">Conversions</a></li>
+              <li><a href="/calculators/cybersecurity/">Cybersecurity</a></li>
+              <li><a href="/calculators/finance/">Finance</a></li>
+              <li><a href="/calculators/fun/">Fun</a></li>
+              <li><a href="/calculators/health/">Health</a></li>
+              <li><a href="/calculators/images/">Images</a></li>
+              <li><a href="/calculators/math/">Math</a></li>
+              <li><a href="/calculators/productivity/">Productivity</a></li>
+              <li><a href="/calculators/property/">Property</a></li>
+              <li><a href="/calculators/seo/">SEO</a></li>
+              <li><a href="/calculators/wedding/">Wedding</a></li>
+              <li><a href="/calculators/writing/">Writing</a></li>
+              <li class="primary-nav__submenu-sep"><a href="/calculators/">See all calculators</a></li>
+            </ul>
+          </li>
+          <li class="primary-nav__item"><a href="/about/" class="primary-nav__link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <main id="main-content">
+      <div class="container">
+        <nav aria-label="Breadcrumb" class="breadcrumbs">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/calculators/">Calculators</a></li>
+            <li><a href="/calculators/cybersecurity/">Cybersecurity</a></li>
+            <li aria-current="page">Data Breach Risk Score</li>
+          </ol>
+        </nav>
+
+        <h1>Data Breach Risk Score</h1>
+        <p class="intro">A quick self-assessment of how exposed your accounts are to the next breach. Twelve questions about how you actually use passwords, 2FA, software updates and email. You get a score out of 100, a category from Low to Critical, and a prioritised fix list ranked by impact, not generic advice. All scoring happens in your browser. Your answers don't leave the page.</p>
+
+        <section class="eli5" aria-label="Plain-English explanation">
+          <h2>Explain like I'm 5 (what even is this calculator?)</h2>
+          <p>Imagine your online life as a row of doors. Each door is an account. Some doors share a key (you reused the password). Some doors have a deadbolt (2FA). Some are propped open by an unpatched window (no software updates). This tool walks down the row, counts the dodgy doors, and tells you which one to fix first. Lower score is better. Zero is paranoia-tier. A hundred is "you might already be in someone's spreadsheet".</p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="in-content" aria-hidden="true"></div>
+
+        <section class="calculator-card">
+          <h2>Self-assessment</h2>
+          <p class="calc-reassurance"><strong>Reassurance:</strong> All scoring happens in your browser. Your answers don't leave the page. There are no API calls and no analytics on the answers themselves.</p>
+
+          <form id="dbrs-form" class="calc-form" novalidate>
+            <fieldset class="calc-section">
+              <legend>1. Your account footprint</legend>
+              <div class="calc-row">
+                <label for="dbrs-accounts">Roughly how many online accounts do you have?</label>
+                <select id="dbrs-accounts" data-field="accounts">
+                  <option value="under50">Under 50</option>
+                  <option value="between" selected>50 to 200</option>
+                  <option value="over200">Over 200</option>
+                </select>
+              </div>
+              <div class="calc-row">
+                <label for="dbrs-cascade">How many of those accounts could be reset by gaining access to your primary email?</label>
+                <select id="dbrs-cascade" data-field="cascade">
+                  <option value="low">Just a handful (low cascade risk)</option>
+                  <option value="medium" selected>Maybe a dozen or two</option>
+                  <option value="high">Most of them (high cascade risk)</option>
+                </select>
+              </div>
+            </fieldset>
+
+            <fieldset class="calc-section">
+              <legend>2. Passwords</legend>
+              <div class="calc-row">
+                <label for="dbrs-reuse">Do you reuse the same password across accounts?</label>
+                <select id="dbrs-reuse" data-field="reuse">
+                  <option value="never">Never, every account is unique</option>
+                  <option value="some" selected>On some less-important accounts</option>
+                  <option value="most">On most of them</option>
+                </select>
+              </div>
+              <div class="calc-row">
+                <label for="dbrs-manager">Are you using a password manager?</label>
+                <select id="dbrs-manager" data-field="manager">
+                  <option value="yes">Yes</option>
+                  <option value="no" selected>No</option>
+                </select>
+              </div>
+            </fieldset>
+
+            <fieldset class="calc-section">
+              <legend>3. Two-factor authentication</legend>
+              <div class="calc-row">
+                <label for="dbrs-twofa">2FA on your critical accounts (email, banking, primary cloud)?</label>
+                <select id="dbrs-twofa" data-field="twofa">
+                  <option value="all">On all of them</option>
+                  <option value="some" selected>On some</option>
+                  <option value="none">None</option>
+                </select>
+              </div>
+            </fieldset>
+
+            <fieldset class="calc-section">
+              <legend>4. Email hygiene</legend>
+              <div class="calc-row">
+                <label for="dbrs-aliases">Do you use email aliases or plus-addressing for sign-ups?</label>
+                <select id="dbrs-aliases" data-field="aliases">
+                  <option value="yes">Yes</option>
+                  <option value="no" selected>No</option>
+                </select>
+              </div>
+              <div class="calc-row">
+                <label for="dbrs-hibp">When did you last check Have I Been Pwned?</label>
+                <select id="dbrs-hibp" data-field="hibp">
+                  <option value="recent">In the last 3 months</option>
+                  <option value="year" selected>In the last year, ish</option>
+                  <option value="never">Never, or can't remember</option>
+                </select>
+              </div>
+            </fieldset>
+
+            <fieldset class="calc-section">
+              <legend>5. Devices and software</legend>
+              <div class="calc-row">
+                <label for="dbrs-updates">How do you handle software updates?</label>
+                <select id="dbrs-updates" data-field="updates">
+                  <option value="auto">Auto-updates on, OS and browser</option>
+                  <option value="monthly">I check monthly</option>
+                  <option value="prompted" selected>Only when prompted</option>
+                  <option value="rarely">Rarely, if I'm honest</option>
+                </select>
+              </div>
+              <div class="calc-row">
+                <label for="dbrs-wifi">Public WiFi without a VPN?</label>
+                <select id="dbrs-wifi" data-field="wifi">
+                  <option value="never">Never</option>
+                  <option value="sometimes" selected>Sometimes</option>
+                  <option value="often">Often</option>
+                </select>
+              </div>
+            </fieldset>
+
+            <fieldset class="calc-section">
+              <legend>6. Phishing awareness check</legend>
+
+              <div class="calc-row">
+                <label for="dbrs-phish1">An email from your bank says: "Unusual activity detected. Click here to verify your account." What do you do?</label>
+                <select id="dbrs-phish1" data-field="phish1">
+                  <option value="right" selected>Ignore the link, open a new tab and log in to the bank directly</option>
+                  <option value="wrong">Click the link, the email looked legitimate</option>
+                </select>
+              </div>
+
+              <div class="calc-row">
+                <label for="dbrs-phish2">A colleague messages on Slack asking you to buy gift cards for a client. The message has their name and photo. What do you do?</label>
+                <select id="dbrs-phish2" data-field="phish2">
+                  <option value="right" selected>Phone or video-call them to confirm before doing anything</option>
+                  <option value="wrong">Buy the gift cards and reply with the codes</option>
+                </select>
+              </div>
+
+              <div class="calc-row">
+                <label for="dbrs-phish3">A web page warns "Your computer is infected. Call this number to fix it now." What do you do?</label>
+                <select id="dbrs-phish3" data-field="phish3">
+                  <option value="right" selected>Close the tab, run a real antivirus scan, ignore the number</option>
+                  <option value="wrong">Call the number so they can fix it remotely</option>
+                </select>
+              </div>
+            </fieldset>
+
+            <button type="submit" data-calculate>Score me</button>
+          </form>
+
+          <div data-results class="calculator-results" hidden>
+            <div class="result-summary dbrs-summary">
+              <p class="result-display"><span data-result-score class="dbrs-score">0</span><span class="dbrs-score-of"> / 100</span></p>
+              <p class="dbrs-category-line">Category: <strong data-result-category data-category="Low">Low</strong></p>
+              <p class="dbrs-fixed-line">If you fix the top 3, your score drops to <strong data-fixed-score>0</strong>.</p>
+            </div>
+
+            <h3>What's driving your score</h3>
+            <div class="dbrs-breakdown" data-breakdown-chart aria-label="Risk contribution by category">
+              <!-- bars injected here -->
+            </div>
+
+            <h3>Your fix list, ordered by impact</h3>
+            <ol class="dbrs-recs" data-recommendations>
+              <!-- recs injected here -->
+            </ol>
+
+            <details class="prove-it" data-prove-it>
+              <summary>Prove it (show the per-category contribution)</summary>
+              <div class="table-wrap">
+                <table class="comparison-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Category</th>
+                      <th scope="col">Your answer</th>
+                      <th scope="col">Severity</th>
+                      <th scope="col">Max points</th>
+                      <th scope="col">Your points</th>
+                    </tr>
+                  </thead>
+                  <tbody data-prove-body></tbody>
+                  <tfoot>
+                    <tr><th scope="row" colspan="4">Total (sum of contributions)</th><td data-prove-total>0</td></tr>
+                  </tfoot>
+                </table>
+              </div>
+              <p class="prove-it-source">Each category has a max weight chosen so that passwords, 2FA and phishing dominate (the three signals that drive most consumer breaches in 2026). Your severity for each category, between 0 and 1, is multiplied by the max points to give your contribution. Sum the contributions and you have the score out of 100.</p>
+            </details>
+
+            <button type="button" class="dbrs-retake" data-retake>Re-take the assessment</button>
+          </div>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="below-results" aria-hidden="true"></div>
+
+        <section class="long-form">
+          <h2>What actually drives breach risk in 2026</h2>
+          <p>The honest answer, the one that does not sell antivirus subscriptions, is that almost everything boils down to three attack patterns: credential stuffing, phishing, and infostealer malware. Get those three under control and your breach exposure drops by an order of magnitude. Ignore them and the rest of the security theatre is window dressing.</p>
+
+          <h3>Credential stuffing</h3>
+          <p>When a website is breached, the leaked username and password pairs are dumped, sold, and within hours fed into bots that try them against every other major site. If you reused that password anywhere, those accounts fall too. This is why password reuse and "no password manager" weigh so heavily here. The fix is a password manager plus unique generated passwords, every time. Boring, effective, free.</p>
+
+          <h3>Phishing-as-a-service</h3>
+          <p>Phishing kits are now sold as polished SaaS products with templates, hosting, and bypasses for common 2FA flows. The convincing ones look identical to the real login page. The defence is reflex: never log in by clicking a link in an email or message. Open a new tab, type the address by hand, log in there. If something genuinely needs your attention, it will still be waiting once you're logged in directly.</p>
+
+          <h3>Infostealer malware</h3>
+          <p>This is the one that is quietly murdering corporate accounts in 2026. A user installs a "free" tool, a cracked plugin, or clicks a poisoned ad. The malware sits on the machine and exfiltrates every saved browser password, cookie and session token. Two days later someone is logged in as them, with the cookie that bypasses 2FA entirely. Mitigations: keep the OS and browser fully patched (auto-update is your friend), don't store passwords in the browser when a manager will do it better, and treat anything you download with the same suspicion you would a stranger's USB stick.</p>
+
+          <h2>Why the password manager plus 2FA combo is the single biggest lever</h2>
+          <p>Pick one move and only one. It is "use a password manager and turn on 2FA on your email." That single combination defeats credential stuffing (because every password is unique), most phishing (because the manager will not auto-fill a near-miss domain), and many infostealer payoffs (because even if the password is leaked, 2FA blocks the login). Everything else in this calculator matters, but if you only do one thing, do that.</p>
+
+          <h2>"I don't have any significant accounts" is wishful thinking</h2>
+          <p>This is the most common reason people give for not bothering. It is also wrong, almost without exception. Your email address is a master key: it can reset every other account you own. Your social media holds years of personal context that makes targeted phishing trivial. Your phone number is the shared secret for SMS-based 2FA at every bank you use. Your Amazon account has a saved card and a delivery address. None of these need to be "significant" in their own right; they are the rungs of a ladder up to the things that are.</p>
+
+          <h2>Related calculators</h2>
+          <ul class="related-calculators">
+            <li><a href="/calculators/cybersecurity/">All cybersecurity tools</a></li>
+            <li><a href="/calculators/business/it-support-build-vs-buy-calculator/">IT Support: Build vs Buy</a></li>
+          </ul>
+        </section>
+
+        <section class="faq" aria-labelledby="faq-heading">
+          <h2 id="faq-heading">Frequently asked questions</h2>
+          <details>
+            <summary>Is this the same thing as Have I Been Pwned?</summary>
+            <p>No. Have I Been Pwned tells you whether your specific email address has shown up in a known leak. This calculator never sees your email or any personal detail. It scores your security habits to estimate how likely you are to be in the next leak. The two complement each other: HIBP looks at past breaches, this tool looks at future exposure.</p>
+          </details>
+          <details>
+            <summary>Does this calculator send my answers anywhere?</summary>
+            <p>No. Every answer stays in your browser. The page makes no API calls, no fetch requests, nothing. You can disconnect from the internet, fill the form in, and it still works. The only network activity on the page is the analytics tag, which records that someone (anonymously) used the calculator, not what they answered.</p>
+          </details>
+          <details>
+            <summary>Why are passwords and 2FA weighted so heavily?</summary>
+            <p>Because credential stuffing and infostealer malware drive the majority of consumer account compromises in 2026. A single reused password in a leaked dump becomes the key to dozens of other accounts within minutes. A password manager plus 2FA on critical accounts blocks both attack patterns at once, which is why the recommendations engine pushes those to the top whenever they apply.</p>
+          </details>
+          <details>
+            <summary>What if I don't have any "important" online accounts?</summary>
+            <p>Most people think this and most people are wrong. Your email account alone can reset every other login you have. Add to that any cloud storage with photos, any social media account that holds your messages, any shopping site with a saved card. The threshold for being worth attacking is not financial wealth, it is having a working pulse and a credit history.</p>
+          </details>
+          <details>
+            <summary>How accurate is the score?</summary>
+            <p>It is a relative score, not a probability. The 0 to 100 number is for comparing your habits to better and worse alternatives, and for showing how much each habit contributes to your overall exposure. It is not a percent chance of being breached this year. Treat it as a self-assessment to find the highest-impact fixes.</p>
+          </details>
+        </section>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="ad-slot" data-ad-slot="sidebar" aria-hidden="true"></div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="site-footer-nav" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/calculators/">All calculators</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+
+      <section class="site-disclaimer" data-disclaimer aria-labelledby="disclaimer-heading">
+        <h2 id="disclaimer-heading">A quick, necessary word</h2>
+        <p>Every calculator on this site is built to give you a sensible, well-reasoned estimate. It is, however, exactly that: an estimate, for general information only. Nothing you see here is professional, legal, financial, medical, or tax advice, and it should not be treated as such.</p>
+        <p>Before you make a decision that actually matters, talk to a qualified professional who knows your specific situation: an accountant, a solicitor, a doctor, an IT consultant, whoever fits the question. They can factor in the bits a generic tool can't.</p>
+        <p>We take no liability and accept no responsibility for any loss, damage, or questionable life choice arising from acting on the numbers you see here. Use the results as a starting point for a better conversation, not as the final word.</p>
+        <p><strong>Affiliate disclosure:</strong> some links on this site are affiliate links. If you click through and buy or sign up for something, we may earn a small commission at no extra cost to you. It helps keep the calculators free and ad-light. We only recommend things we'd point a friend towards.</p>
+      </section>
+      <p class="site-copyright">&copy; 2026 WebCaretakers. All rights reserved.</p>
+      <p class="site-legal">WebCaretakers is a trading name of <a href="https://yeseo.io/" rel="noopener">Andrew Laws Associates Ltd</a>, registered in England and Wales (company no. 08602332). ICO registration ZA726704.</p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/calculators/data-breach-risk-score.js"></script>
+  <script>
+    (function () {
+      'use strict';
+      var lib = window.DataBreachRiskScore;
+      if (!lib) return;
+      var form = document.getElementById('dbrs-form');
+      if (!form) return;
+
+      var results = document.querySelector('[data-results]');
+      var scoreEl = document.querySelector('[data-result-score]');
+      var categoryEl = document.querySelector('[data-result-category]');
+      var fixedEl = document.querySelector('[data-fixed-score]');
+      var recsEl = document.querySelector('[data-recommendations]');
+      var chartEl = document.querySelector('[data-breakdown-chart]');
+      var proveBody = document.querySelector('[data-prove-body]');
+      var proveTotal = document.querySelector('[data-prove-total]');
+      var retake = document.querySelector('[data-retake]');
+
+      function readAnswers() {
+        var fields = form.querySelectorAll('[data-field]');
+        var answers = {};
+        fields.forEach(function (f) { answers[f.getAttribute('data-field')] = f.value; });
+        return answers;
+      }
+
+      function answerLabelFor(key, value) {
+        // Build a readable label from CATEGORIES.optionLabels, with phishing handled inline.
+        if (key === 'phishing') return ''; // phishing label rendered specially
+        var cat = lib.CATEGORIES.find(function (c) { return c.key === key; });
+        if (!cat || !cat.optionLabels) return value;
+        return cat.optionLabels[value] || value;
+      }
+
+      // Track first-touch interactions for analytics. Only one event needed
+      // per session; we still let GTM dedupe but the change-listener is light.
+      var interactionFired = false;
+      form.querySelectorAll('[data-field]').forEach(function (el) {
+        el.addEventListener('change', function () {
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: 'calculator_interaction',
+            calculator_name: 'Data Breach Risk Score',
+            field_name: el.getAttribute('data-field') || el.id || ''
+          });
+          interactionFired = true;
+        });
+      });
+
+      function render(answers) {
+        var result = lib.score(answers);
+        var fixed = lib.scoreIfFixed(answers, 3);
+
+        scoreEl.textContent = String(result.score);
+        categoryEl.textContent = result.category;
+        categoryEl.setAttribute('data-category', result.category);
+        fixedEl.textContent = String(fixed.after);
+
+        // Recommendations list. Each item carries data-impact for ordering tests.
+        recsEl.innerHTML = '';
+        result.recommendations.forEach(function (r) {
+          var li = document.createElement('li');
+          li.setAttribute('data-impact', String(r.points));
+          li.setAttribute('data-key', r.key);
+          var h = document.createElement('strong');
+          h.textContent = r.headline;
+          var p = document.createElement('p');
+          p.textContent = r.body;
+          var meta = document.createElement('span');
+          meta.className = 'dbrs-rec-meta';
+          meta.textContent = 'Impact: ' + r.points.toFixed(1) + ' points';
+          li.appendChild(h);
+          li.appendChild(p);
+          li.appendChild(meta);
+          recsEl.appendChild(li);
+        });
+        if (result.recommendations.length === 0) {
+          var li = document.createElement('li');
+          li.textContent = 'Nothing obvious to fix. You\'re in the top tier of how everyday users handle this stuff.';
+          recsEl.appendChild(li);
+        }
+
+        // Bar chart, one row per category. Width as a percentage of category max.
+        chartEl.innerHTML = '';
+        result.breakdown.forEach(function (b) {
+          var row = document.createElement('div');
+          row.className = 'dbrs-bar-row';
+          row.setAttribute('data-bar', b.key);
+          var label = document.createElement('span');
+          label.className = 'dbrs-bar-label';
+          label.textContent = b.label;
+          var track = document.createElement('div');
+          track.className = 'dbrs-bar-track';
+          var fill = document.createElement('div');
+          fill.className = 'dbrs-bar-fill';
+          // Width relative to total possible (100). Even small categories show up as thin bars.
+          var pct = (b.points / 100) * 100;
+          fill.style.width = pct + '%';
+          var val = document.createElement('span');
+          val.className = 'dbrs-bar-value';
+          val.textContent = b.points.toFixed(1) + ' / ' + b.weight;
+          track.appendChild(fill);
+          row.appendChild(label);
+          row.appendChild(track);
+          row.appendChild(val);
+          chartEl.appendChild(row);
+        });
+
+        // Prove-it table.
+        proveBody.innerHTML = '';
+        result.breakdown.forEach(function (b) {
+          var tr = document.createElement('tr');
+          var your;
+          if (b.key === 'phishing') {
+            var wrong = 0;
+            ['phish1', 'phish2', 'phish3'].forEach(function (k) { if (answers[k] === 'wrong') wrong++; });
+            your = wrong + ' of 3 wrong';
+          } else {
+            your = answerLabelFor(b.key, answers[b.key]);
+          }
+          tr.innerHTML =
+            '<th scope="row">' + b.label + '</th>' +
+            '<td>' + your + '</td>' +
+            '<td>' + b.severity.toFixed(2) + '</td>' +
+            '<td>' + b.weight + '</td>' +
+            '<td>' + b.points.toFixed(1) + '</td>';
+          proveBody.appendChild(tr);
+        });
+        proveTotal.textContent = String(result.score);
+
+        results.hidden = false;
+
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: 'calculator_result',
+          calculator_name: 'Data Breach Risk Score',
+          score: result.score,
+          category: result.category,
+          fixed_top3_score: fixed.after
+        });
+      }
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        render(readAnswers());
+        // Scroll the results into view politely.
+        if (results && typeof results.scrollIntoView === 'function') {
+          results.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+
+      retake.addEventListener('click', function () {
+        results.hidden = true;
+        form.reset();
+        if (form.scrollIntoView) form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    })();
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

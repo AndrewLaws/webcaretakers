@@ -103,6 +103,11 @@
           "slug": "password-generator",
           "name": "Password Generator",
           "summary": "Cryptographically secure passwords and passphrases generated in your browser. Uses Web Crypto. Nothing leaves the device. Disconnect your network and it still works."
+        },
+        {
+          "slug": "data-breach-risk-score",
+          "name": "Data Breach Risk Score",
+          "summary": "Self-assess your breach exposure across passwords, 2FA, software hygiene and phishing awareness. Get a risk score and a prioritised fix list. All in your browser."
         }
       ]
     },

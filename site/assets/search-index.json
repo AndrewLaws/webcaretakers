@@ -15,9 +15,23 @@
   },
   {
     "type": "tool",
+    "name": "Password Strength Calculator",
+    "summary": "Test how strong a password really is. Entropy, common-password check and crack-time estimates, all in your browser. Nothing you type is sent anywhere.",
+    "url": "/calculators/cybersecurity/password-strength-calculator/",
+    "category": "Cybersecurity"
+  },
+  {
+    "type": "tool",
     "name": "Password Generator",
     "summary": "Cryptographically secure passwords and passphrases generated in your browser. Uses Web Crypto. Nothing leaves the device. Disconnect your network and it still works.",
     "url": "/calculators/cybersecurity/password-generator/",
+    "category": "Cybersecurity"
+  },
+  {
+    "type": "tool",
+    "name": "Data Breach Risk Score",
+    "summary": "Self-assess your breach exposure across passwords, 2FA, software hygiene and phishing awareness. Get a risk score and a prioritised fix list, all in your browser.",
+    "url": "/calculators/cybersecurity/data-breach-risk-score/",
     "category": "Cybersecurity"
   },
   {
@@ -117,20 +131,6 @@
     "summary": "Length, mass, volume, temperature, speed and area. Pick a category, enter a value, see every common unit at once. Metric and imperial side by side.",
     "url": "/calculators/conversions/unit-converter/",
     "category": "Conversions"
-  },
-  {
-    "type": "category",
-    "name": "Cybersecurity calculators",
-    "summary": "Browser-only password and security tools. Nothing you type gets sent anywhere.",
-    "url": "/calculators/cybersecurity/",
-    "category": "Cybersecurity"
-  },
-  {
-    "type": "tool",
-    "name": "Password Strength Calculator",
-    "summary": "Test how strong a password really is. Entropy, common-password check and crack-time estimates, all in your browser. Nothing you type is sent anywhere.",
-    "url": "/calculators/cybersecurity/password-strength-calculator/",
-    "category": "Cybersecurity"
   },
   {
     "type": "category",
