@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Password Strength Calculator | WebCaretakers</title>
+  <meta name="description" content="Test how strong a password really is. Entropy, breach-list check and crack-time estimates, all in your browser. Nothing you type is sent anywhere.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/cybersecurity/password-strength-calculator/">
+  <meta property="og:title" content="Password Strength Calculator | WebCaretakers">
+  <meta property="og:description" content="Browser-only password strength tester. Entropy, breach-list check and crack-time estimates. Nothing you type leaves your device.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/cybersecurity/password-strength-calculator/">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var _stored = null;
+    try { _stored = localStorage.getItem('cookie-consent'); } catch (e) {}
+    var _initial = _stored === 'granted' ? 'granted' : 'denied';
+    gtag('consent', 'default', {
+      ad_storage: _initial, analytics_storage: _initial,
+      ad_user_data: _initial, ad_personalization: _initial,
+      functionality_storage: 'granted', security_storage: 'granted',
+      wait_for_update: 500
+    });
+  </script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Password Strength Calculator",
+    "url": "https://webcaretakers.com/calculators/cybersecurity/password-strength-calculator/",
+    "applicationCategory": "SecurityApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0" },
+    "author": {
+      "@type": "Person",
+      "name": "Andrew Laws",
+      "url": "https://yeseo.io/"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Does this tool send my password anywhere?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. The page does not perform any network requests once it has loaded. Everything happens in JavaScript on your device. You can verify by opening your browser's network tab while typing: there are no outbound requests. If you want to be extra cautious, disconnect from the internet before typing your real password." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does length matter more than special characters?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Each extra character roughly doubles the search space an attacker has to grind through. Adding one symbol to an eight-character password adds a small multiplier. Adding three more characters adds a much larger one. The maths is unforgiving: a 16-character all-lowercase password is harder to crack than a 10-character mix of upper, lower, digits and symbols." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is entropy in bits?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Entropy in bits measures how many guesses an attacker has to try, on average, before they hit your password. Each bit doubles the work. 40 bits is roughly a trillion guesses; 60 bits is roughly a quintillion. Modern guidance puts the bar at 60 bits for a normal account and 80+ bits for a password manager master password or anything protecting financial data." }
+      },
+      {
+        "@type": "Question",
+        "name": "What are the three threat models?",
+        "acceptedAnswer": { "@type": "Answer", "text": "The slowest is an online attack against a service that throttles login attempts, capped at roughly 10 tries per second. The middle one assumes a poorly-configured service that allows tens of thousands of guesses per second. The fastest assumes the attacker has stolen the password database and is running a fast hash on a graphics card, doing 10 billion guesses per second. Strong passwords need to survive the third scenario, not just the first." }
+      },
+      {
+        "@type": "Question",
+        "name": "Is the breach-list check exhaustive?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. The page ships with a list of the most-used breached passwords, which catches the obvious cases. It does not query Have I Been Pwned or any external service, because that would mean sending your password (or a hash prefix of it) over the network, which defeats the purpose. For a complete check, use the Have I Been Pwned password lookup directly on their site." }
+      },
+      {
+        "@type": "Question",
+        "name": "What's a sensible target for a real account?",
+        "acceptedAnswer": { "@type": "Answer", "text": "60 bits of adjusted entropy and a Strong rating is the floor for a normal account behind two-factor authentication. 80+ bits for a password manager master password, an email account or anything storing payment details. The honest answer is: use a password manager, generate a 20-character random password per site, and stop trying to remember any of them." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-banner-heading" aria-describedby="cookie-banner-text" hidden>
+    <div class="cookie-banner__inner">
+      <h2 id="cookie-banner-heading" class="cookie-banner__heading">A quick word about cookies</h2>
+      <p id="cookie-banner-text" class="cookie-banner__text">
+        We use cookies for analytics, so we can see which calculators people actually use and which ones need work. Nothing creepy, nothing sold on. You can say yes, say no, or read the <a href="/privacy/">privacy policy</a> first. Your choice sticks.
+      </p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-reject>Reject</button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>Accept</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var KEY = 'cookie-consent';
+      var banner = document.querySelector('[data-cookie-banner]');
+      if (!banner) return;
+      var stored = null;
+      try { stored = localStorage.getItem(KEY); } catch (e) {}
+      if (stored !== 'granted' && stored !== 'denied') { banner.hidden = false; }
+      function record(choice) {
+        try { localStorage.setItem(KEY, choice); } catch (e) {}
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('consent', 'update', {
+          ad_storage: choice, analytics_storage: choice,
+          ad_user_data: choice, ad_personalization: choice
+        });
+        banner.hidden = true;
+      }
+      var accept = banner.querySelector('[data-cookie-accept]');
+      var reject = banner.querySelector('[data-cookie-reject]');
+      if (accept) accept.addEventListener('click', function () { record('granted'); });
+      if (reject) reject.addEventListener('click', function () { record('denied'); });
+    })();
+  </script>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">WebCaretakers</a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <ul class="primary-nav__list">
+          <li class="primary-nav__item primary-nav__item--has-menu">
+            <button type="button" class="primary-nav__link" data-menu-toggle aria-haspopup="true" aria-expanded="false">Calculators <span class="primary-nav__caret" aria-hidden="true">▾</span></button>
+            <ul class="primary-nav__submenu">
+              <li><a href="/calculators/ai/">AI</a></li>
+              <li><a href="/calculators/broadband/">Broadband</a></li>
+              <li><a href="/calculators/business/">Business</a></li>
+              <li><a href="/calculators/conversions/">Conversions</a></li>
+              <li><a href="/calculators/cybersecurity/">Cybersecurity</a></li>
+              <li><a href="/calculators/finance/">Finance</a></li>
+              <li><a href="/calculators/fun/">Fun</a></li>
+              <li><a href="/calculators/health/">Health</a></li>
+              <li><a href="/calculators/images/">Images</a></li>
+              <li><a href="/calculators/math/">Math</a></li>
+              <li><a href="/calculators/productivity/">Productivity</a></li>
+              <li><a href="/calculators/property/">Property</a></li>
+              <li><a href="/calculators/seo/">SEO</a></li>
+              <li><a href="/calculators/wedding/">Wedding</a></li>
+              <li><a href="/calculators/writing/">Writing</a></li>
+              <li class="primary-nav__submenu-sep"><a href="/calculators/">See all calculators</a></li>
+            </ul>
+          </li>
+          <li class="primary-nav__item"><a href="/about/" class="primary-nav__link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <main id="main-content">
+      <div class="container">
+        <nav aria-label="Breadcrumb" class="breadcrumbs">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/calculators/">Calculators</a></li>
+            <li><a href="/calculators/cybersecurity/">Cybersecurity</a></li>
+            <li aria-current="page">Password Strength Calculator</li>
+          </ol>
+        </nav>
+
+        <h1>Password Strength Calculator</h1>
+        <p class="intro">Type or paste a candidate password, get a sober assessment of how long it would take to crack. Entropy in bits, breach-list check, three different attacker scenarios, and a list of specific weaknesses. Everything runs locally in your browser.</p>
+
+        <section class="eli5" aria-label="Plain-English explanation">
+          <h2>Explain like I'm 5 (what even is this calculator?)</h2>
+          <p>A password is strong when it would take an attacker, with a fast computer and a stolen copy of the website's password file, longer than a human lifetime to guess it. This tool works out roughly how long that would take for a password you're thinking about, and points out anything that makes it easier to guess (a real word, a year, a keyboard pattern, or its presence on a list of leaked passwords).</p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="in-content" aria-hidden="true"></div>
+
+        <section class="calculator-card">
+          <h2>Test a password</h2>
+          <p class="privacy-reassurance" data-privacy-line><strong>Nothing you type is sent anywhere.</strong> This page works fully offline once loaded. The check happens in your browser using JavaScript only.</p>
+
+          <form id="pw-form" class="calc-form" novalidate autocomplete="off">
+            <div class="calc-row">
+              <label for="pw-input">Candidate password</label>
+              <div class="pw-input-wrap">
+                <input type="password" id="pw-input" data-pw-input autocomplete="new-password" autocapitalize="off" spellcheck="false" placeholder="Type or paste a password to test">
+                <button type="button" class="pw-toggle" data-pw-toggle aria-pressed="false" aria-label="Show password">Show</button>
+              </div>
+            </div>
+          </form>
+
+          <div data-calculator-results class="calculator-results">
+            <div class="result-summary">
+              <p class="result-display" data-result>Type a password above to see its strength.</p>
+            </div>
+
+            <div class="pw-strength-bar" data-strength-bar aria-hidden="true">
+              <div class="pw-strength-bar__fill" data-strength-fill style="width:0%; background:#ddd;"></div>
+            </div>
+
+            <div class="mort-breakdown" data-breakdown hidden>
+              <h3>Strength summary</h3>
+              <ul>
+                <li><span>Length</span><strong data-line-length>–</strong></li>
+                <li><span>Character classes used</span><strong data-line-classes>–</strong></li>
+                <li><span>Charset size</span><strong data-line-charset>–</strong></li>
+                <li><span>Raw entropy</span><strong data-line-raw-entropy>–</strong></li>
+                <li><span>Penalties</span><strong data-line-penalty>–</strong></li>
+                <li class="mort-breakdown__total"><span>Adjusted entropy</span><strong data-line-adjusted-entropy>–</strong></li>
+              </ul>
+
+              <h3>Estimated crack time</h3>
+              <div class="table-wrap">
+                <table class="comparison-table" data-crack-table>
+                  <thead>
+                    <tr>
+                      <th scope="col">Threat model</th>
+                      <th scope="col">Time to crack</th>
+                    </tr>
+                  </thead>
+                  <tbody data-crack-body></tbody>
+                </table>
+              </div>
+
+              <h3>Issues found</h3>
+              <ul class="pw-issues" data-issues-list>
+                <li>None worth flagging.</li>
+              </ul>
+
+              <h3>Suggestions</h3>
+              <ul class="pw-suggestions" data-suggestions-list>
+                <li>Type a password to get specific suggestions.</li>
+              </ul>
+            </div>
+
+            <details class="prove-it" data-prove-it>
+              <summary>Show the workings</summary>
+              <div data-prove-it-body></div>
+              <p class="prove-it-source">Entropy is log2(charset size) × length, in bits. Charset size is 26 (lowercase) + 26 (uppercase) + 10 (digits) + 33 (common symbols), counted only for classes that actually appear in the password. Penalties for breach-list membership, keyboard runs, repeated characters, year-shaped numbers and dictionary stems are subtracted from raw entropy. Crack time uses the average case (half the search space), divided by the attacker's guesses-per-second rate. Three threat models are shown: throttled online (10/s), unthrottled online (10,000/s) and offline fast hash (10 billion/s). Common-password membership zeroes the score outright.</p>
+            </details>
+          </div>
+
+          <p class="bookmark-nudge">
+            Useful? Save this calculator: press <kbd data-bookmark-shortcut>Ctrl</kbd> + <kbd>D</kbd> to bookmark it.
+          </p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="below-results" aria-hidden="true"></div>
+
+        <section class="long-form">
+          <h2>Why length beats complexity, every time</h2>
+          <p>The folklore says a strong password needs an uppercase letter, a number and a special character. The maths says length matters far more. Adding a symbol to an eight-character password buys you a small multiplier. Adding four more characters buys you a much larger one. A 16-character all-lowercase passphrase is genuinely harder to crack than a typical "Pa55word!" style attempt, even though one looks more "complex" than the other.</p>
+          <p>The reason is the way attackers actually work. They don't try every possible eight-character string in random order. They try the common passwords first, then dictionary words, then dictionary words with the obvious mangling rules (capitalise first letter, swap a for @, append a year, append an exclamation mark). A complicated-looking but predictable password gets caught early in that list. A long, properly random password does not, because there are simply too many of them.</p>
+
+          <h2>What entropy in bits actually means</h2>
+          <p>Entropy is a measure of how many guesses an attacker has to try before they hit your password, expressed in powers of two. 40 bits of entropy means roughly a trillion guesses. 60 bits is roughly a quintillion. Each extra bit doubles the work.</p>
+          <p>Modern guidance puts the bar at around 60 bits of entropy for a normal account, and 80 bits or more for a password manager master password, an email account, or anything protecting payment details. The figure on this page is the entropy after penalties for things like dictionary words and keyboard runs, because the raw figure is misleading for predictable passwords.</p>
+
+          <h2>The myths this calculator is trying to kill</h2>
+          <h3>Myth: special characters make a password strong</h3>
+          <p>They make it slightly stronger, by widening the per-character search space. They do not save a short or predictable password. "P@ssw0rd!" is still on every cracker's first-pass list.</p>
+          <h3>Myth: changing your password every 90 days makes you safer</h3>
+          <p>Forced rotation makes people pick weaker passwords with a predictable suffix, then write them down. NIST formally dropped that guidance in 2017. Pick a strong password, leave it alone, and only change it if you have reason to think it has been exposed.</p>
+          <h3>Myth: random gibberish is the only safe option</h3>
+          <p>A passphrase of four or five random unrelated words has plenty of entropy and is far easier to remember. The classic example: <em>correct horse battery staple</em>. Length wins.</p>
+          <h3>Myth: hackers care about your specific password</h3>
+          <p>Almost never. They steal a database of millions of password hashes and run them against the most common passwords first. If yours is on the list, you're done. If yours is unique and long, they move on.</p>
+
+          <h2>What this tool does not check</h2>
+          <p>This page checks whether your password is on a curated list of the most-used breached passwords. It does not query Have I Been Pwned or any external breach service, because doing so would require sending your password (or a hash prefix of it) over the internet, which would defeat the entire point of a browser-only tool. For a complete breach check, run the password through the Have I Been Pwned site directly.</p>
+          <p>It also cannot tell you whether you have used the same password somewhere else, whether it has been pasted into chat history, or whether your machine has malware reading your keystrokes. Those problems are real and sit outside what any web-based strength meter can solve. Use a password manager, turn on two-factor authentication, and stop reusing passwords across sites.</p>
+
+          <h2>Practical advice in three lines</h2>
+          <ul>
+            <li><strong>Use a password manager.</strong> Generate a long random password per site. You only ever need to remember the master password.</li>
+            <li><strong>Make the master password a 5-word passphrase.</strong> Five random words gives you well over 60 bits of entropy and is straightforward to type.</li>
+            <li><strong>Turn on two-factor authentication everywhere it's offered.</strong> A leaked password without a second factor is a much smaller problem.</li>
+          </ul>
+
+          <h2>Related calculators</h2>
+          <p>Other browser-only tools in the same neighbourhood.</p>
+          <ul class="related-calculators">
+            <li><a href="/calculators/cybersecurity/">All cybersecurity tools</a></li>
+            <li><a href="/calculators/ai/llm-token-usage-calculator/">LLM Token Usage Calculator</a></li>
+            <li><a href="/calculators/productivity/">Productivity calculators</a></li>
+          </ul>
+        </section>
+
+        <section class="faq" aria-labelledby="faq-heading">
+          <h2 id="faq-heading">Frequently asked questions</h2>
+          <details>
+            <summary>Does this tool send my password anywhere?</summary>
+            <p>No. The page does not perform any network requests once it has loaded. Everything happens in JavaScript on your device. Open the browser's network tab while typing to verify: there are no outbound requests. If you want to be extra cautious, disconnect from the internet before typing your real password.</p>
+          </details>
+          <details>
+            <summary>Why does length matter more than special characters?</summary>
+            <p>Each extra character roughly doubles the search space an attacker has to grind through. Adding one symbol to an eight-character password adds a small multiplier. Adding three more characters adds a much larger one. A 16-character all-lowercase password is harder to crack than a 10-character mix of upper, lower, digits and symbols.</p>
+          </details>
+          <details>
+            <summary>What is entropy in bits?</summary>
+            <p>Entropy in bits measures how many guesses an attacker has to try, on average, before they hit your password. Each bit doubles the work. 40 bits is roughly a trillion guesses; 60 bits is roughly a quintillion. The bar is 60 bits for a normal account and 80+ bits for a password manager master password.</p>
+          </details>
+          <details>
+            <summary>What are the three threat models?</summary>
+            <p>The slowest is an online attack against a service that throttles login attempts, capped at roughly 10 tries per second. The middle one is a poorly-configured service that allows tens of thousands of guesses per second. The fastest assumes the attacker has stolen the password database and is running a fast hash on a graphics card, doing 10 billion guesses per second.</p>
+          </details>
+          <details>
+            <summary>Is the breach-list check exhaustive?</summary>
+            <p>No. The page ships with a list of the most-used breached passwords, which catches the obvious cases. It does not query Have I Been Pwned, because that would mean sending your password over the network. For a complete check, use Have I Been Pwned directly.</p>
+          </details>
+          <details>
+            <summary>What's a sensible target for a real account?</summary>
+            <p>60 bits of adjusted entropy and a Strong rating is the floor for a normal account behind two-factor authentication. 80+ bits for a password manager master password, an email account or anything storing payment details. Use a password manager and generate per-site random passwords.</p>
+          </details>
+        </section>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="ad-slot" data-ad-slot="sidebar" aria-hidden="true"></div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="site-footer-nav" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/calculators/">All calculators</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+
+      <section class="site-disclaimer" data-disclaimer aria-labelledby="disclaimer-heading">
+        <h2 id="disclaimer-heading">A quick, necessary word</h2>
+        <p>Every calculator on this site is built to give you a sensible, well-reasoned estimate. It is, however, exactly that: an estimate, for general information only. Nothing you see here is professional, legal, financial, medical, or tax advice, and it should not be treated as such.</p>
+        <p>Before you make a decision that actually matters, talk to a qualified professional who knows your specific situation: an accountant, a solicitor, a doctor, an IT consultant, whoever fits the question. They can factor in the bits a generic tool can't.</p>
+        <p>We take no liability and accept no responsibility for any loss, damage, or questionable life choice arising from acting on the numbers you see here. Use the results as a starting point for a better conversation, not as the final word.</p>
+        <p><strong>Affiliate disclosure:</strong> some links on this site are affiliate links. If you click through and buy or sign up for something, we may earn a small commission at no extra cost to you. It helps keep the calculators free and ad-light. We only recommend things we'd point a friend towards.</p>
+      </section>
+      <p class="site-copyright">&copy; 2026 WebCaretakers. All rights reserved.</p>
+      <p class="site-legal">WebCaretakers is a trading name of <a href="https://yeseo.io/" rel="noopener">Andrew Laws Associates Ltd</a>, registered in England and Wales (company no. 08602332). ICO registration ZA726704.</p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/calculators/password-strength.js"></script>
+  <script>
+    (function () {
+      'use strict';
+
+      var shortcutEl = document.querySelector('[data-bookmark-shortcut]');
+      if (shortcutEl) {
+        var isMac = /Mac|iPhone|iPad|iPod/i.test(navigator.platform || navigator.userAgent);
+        shortcutEl.textContent = isMac ? '\u2318' : 'Ctrl';
+      }
+
+      var lib = window.PasswordStrength;
+      if (!lib) return;
+
+      var input = document.querySelector('[data-pw-input]');
+      var toggle = document.querySelector('[data-pw-toggle]');
+      var resultEl = document.querySelector('[data-result]');
+      var bar = document.querySelector('[data-strength-fill]');
+      var breakdown = document.querySelector('[data-breakdown]');
+      var lineLength = document.querySelector('[data-line-length]');
+      var lineClasses = document.querySelector('[data-line-classes]');
+      var lineCharset = document.querySelector('[data-line-charset]');
+      var lineRaw = document.querySelector('[data-line-raw-entropy]');
+      var linePenalty = document.querySelector('[data-line-penalty]');
+      var lineAdjusted = document.querySelector('[data-line-adjusted-entropy]');
+      var crackBody = document.querySelector('[data-crack-body]');
+      var issuesList = document.querySelector('[data-issues-list]');
+      var suggestionsList = document.querySelector('[data-suggestions-list]');
+      var proveBody = document.querySelector('[data-prove-it-body]');
+
+      var firstInteractionTracked = false;
+      var debounceTimer = null;
+      var lastResultKey = null;
+
+      // Show/hide toggle. Flips the input type between password and text.
+      toggle.addEventListener('click', function () {
+        var showing = input.getAttribute('type') === 'text';
+        input.setAttribute('type', showing ? 'password' : 'text');
+        toggle.textContent = showing ? 'Show' : 'Hide';
+        toggle.setAttribute('aria-pressed', showing ? 'false' : 'true');
+        toggle.setAttribute('aria-label', showing ? 'Show password' : 'Hide password');
+      });
+
+      function classListLabel(c) {
+        var parts = [];
+        if (c.lower) parts.push('lowercase');
+        if (c.upper) parts.push('uppercase');
+        if (c.digit) parts.push('digits');
+        if (c.symbol) parts.push('symbols');
+        return parts.length ? parts.join(', ') : 'none';
+      }
+
+      function render(pw) {
+        var assessment = lib.assess(pw);
+
+        if (!pw) {
+          resultEl.textContent = 'Type a password above to see its strength.';
+          breakdown.hidden = true;
+          bar.style.width = '0%';
+          bar.style.background = '#ddd';
+          proveBody.innerHTML = '';
+          return;
+        }
+
+        breakdown.hidden = false;
+        var pct = Math.min(100, (assessment.rating.level / 5) * 100);
+        bar.style.width = pct + '%';
+        bar.style.background = assessment.rating.colour;
+
+        var headline = assessment.rating.label;
+        if (assessment.inCommonList) {
+          headline += '. This password is in public breach lists.';
+        } else {
+          headline += '. ' + Math.round(assessment.adjustedEntropyBits) + ' bits of adjusted entropy.';
+        }
+        resultEl.textContent = headline;
+
+        lineLength.textContent = assessment.length;
+        lineClasses.textContent = classListLabel(assessment.classes);
+        lineCharset.textContent = assessment.charsetSize;
+        lineRaw.textContent = assessment.rawEntropyBits.toFixed(1) + ' bits';
+        linePenalty.textContent = assessment.inCommonList ? 'breach-list match (score zeroed)' : assessment.penaltyBits.toFixed(1) + ' bits';
+        lineAdjusted.textContent = assessment.adjustedEntropyBits.toFixed(1) + ' bits (' + assessment.rating.label + ')';
+
+        // Crack times table
+        crackBody.innerHTML = '';
+        var rows = [
+          ['Online, throttled (10/s)', assessment.crackTimes.onlineThrottled],
+          ['Online, unthrottled (10k/s)', assessment.crackTimes.onlineUnthrottled],
+          ['Offline, fast hash (10B/s)', assessment.crackTimes.offlineFast]
+        ];
+        rows.forEach(function (r) {
+          var tr = document.createElement('tr');
+          tr.innerHTML = '<th scope="row">' + r[0] + '</th><td>' + r[1] + '</td>';
+          crackBody.appendChild(tr);
+        });
+
+        // Issues
+        issuesList.innerHTML = '';
+        if (assessment.issues.length === 0) {
+          var li = document.createElement('li');
+          li.textContent = 'None worth flagging.';
+          issuesList.appendChild(li);
+        } else {
+          assessment.issues.forEach(function (i) {
+            var li = document.createElement('li');
+            li.textContent = i.text;
+            issuesList.appendChild(li);
+          });
+        }
+
+        // Suggestions
+        suggestionsList.innerHTML = '';
+        if (assessment.suggestions.length === 0) {
+          var li2 = document.createElement('li');
+          li2.textContent = 'Nothing obvious to improve.';
+          suggestionsList.appendChild(li2);
+        } else {
+          assessment.suggestions.forEach(function (s) {
+            var li = document.createElement('li');
+            li.textContent = s;
+            suggestionsList.appendChild(li);
+          });
+        }
+
+        // Prove-it block
+        proveBody.innerHTML =
+          '<ul>' +
+            '<li><span>Length</span><strong>' + assessment.length + '</strong></li>' +
+            '<li><span>Charset size</span><strong>' + assessment.charsetSize + '</strong></li>' +
+            '<li><span>Raw entropy = log2(' + assessment.charsetSize + ') × ' + assessment.length + '</span><strong>' + assessment.rawEntropyBits.toFixed(2) + ' bits</strong></li>' +
+            '<li><span>Total penalties</span><strong>' + (assessment.inCommonList ? '∞ (breach list)' : assessment.penaltyBits.toFixed(2) + ' bits') + '</strong></li>' +
+            '<li><span>Adjusted entropy</span><strong>' + assessment.adjustedEntropyBits.toFixed(2) + ' bits</strong></li>' +
+            '<li><span>Rating</span><strong>' + assessment.rating.label + '</strong></li>' +
+          '</ul>';
+
+        // Push calculator_result if the rating bucket has changed (debounced).
+        var key = assessment.rating.label + '|' + Math.round(assessment.adjustedEntropyBits);
+        if (key !== lastResultKey) {
+          lastResultKey = key;
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: 'calculator_result',
+            calculator_name: 'Password Strength Calculator',
+            rating: assessment.rating.label,
+            entropy_bits: Math.round(assessment.adjustedEntropyBits),
+            in_common_list: assessment.inCommonList
+          });
+        }
+      }
+
+      input.addEventListener('input', function () {
+        if (!firstInteractionTracked) {
+          firstInteractionTracked = true;
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: 'calculator_interaction',
+            calculator_name: 'Password Strength Calculator',
+            field_name: 'password'
+          });
+        }
+        if (debounceTimer) clearTimeout(debounceTimer);
+        var val = input.value;
+        debounceTimer = setTimeout(function () { render(val); }, 150);
+      });
+
+    })();
+  </script>
+
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

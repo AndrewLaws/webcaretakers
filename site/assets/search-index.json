@@ -106,6 +106,20 @@
   },
   {
     "type": "category",
+    "name": "Cybersecurity calculators",
+    "summary": "Browser-only password and security tools. Nothing you type gets sent anywhere.",
+    "url": "/calculators/cybersecurity/",
+    "category": "Cybersecurity"
+  },
+  {
+    "type": "tool",
+    "name": "Password Strength Calculator",
+    "summary": "Test how strong a password really is. Entropy, common-password check and crack-time estimates, all in your browser. Nothing you type is sent anywhere.",
+    "url": "/calculators/cybersecurity/password-strength-calculator/",
+    "category": "Cybersecurity"
+  },
+  {
+    "type": "category",
     "name": "Finance calculators",
     "summary": "Sensible estimates for everyday money decisions.",
     "url": "/calculators/finance/",
