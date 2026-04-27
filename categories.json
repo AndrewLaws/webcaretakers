@@ -90,6 +90,12 @@
       ]
     },
     {
+      "slug": "cybersecurity",
+      "name": "Cybersecurity",
+      "tagline": "Browser-only password and security tools. Nothing you type gets sent anywhere.",
+      "tools": []
+    },
+    {
       "slug": "conversions",
       "name": "Conversions",
       "tagline": "Metric-imperial converters for everyday units.",
