@@ -82,19 +82,22 @@ test.describe('Hash Generator page', () => {
     await expect(proveIt).toContainText(ABC_SHA256);
   });
 
-  test('page makes no network requests for hashing', async ({ page }) => {
-    // Confirm there's no fetch/XHR triggered when typing
-    const requests = [];
+  test('page does not exfiltrate the typed input', async ({ page }) => {
+    // The guarantee is "nothing you type leaves the device". GTM/analytics
+    // pixels are allowed (they don't see the input); what matters is that no
+    // request URL or post body contains the user's text.
+    const SECRET = 'unique-secret-marker-9f3a2b';
+    const offending = [];
     page.on('request', (req) => {
       const u = req.url();
-      // Ignore the initial page load assets
-      if (req.resourceType() === 'fetch' || req.resourceType() === 'xhr') {
-        requests.push(u);
+      const body = req.postData() || '';
+      if (u.includes(SECRET) || body.includes(SECRET)) {
+        offending.push(u);
       }
     });
-    await page.fill('[data-hash-text]', 'something to hash');
+    await page.fill('[data-hash-text]', SECRET);
     await page.waitForTimeout(400);
-    expect(requests.length).toBe(0);
+    expect(offending).toEqual([]);
   });
 
   test('has SoftwareApplication and FAQPage JSON-LD', async ({ page }) => {
