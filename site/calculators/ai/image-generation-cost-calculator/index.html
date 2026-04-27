@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Image Generation Cost Calculator | WebCaretakers</title>
+  <meta name="description" content="Estimate the monthly and annual cost of generating AI images across DALL-E 3, Midjourney, Stable Diffusion XL, Imagen 3 and Flux Pro. Side-by-side comparison.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/ai/image-generation-cost-calculator/">
+  <meta property="og:title" content="AI Image Generation Cost Calculator | WebCaretakers">
+  <meta property="og:description" content="Estimate the cost of generating AI images across the major providers. Side-by-side comparison, pricing dated for transparency.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/ai/image-generation-cost-calculator/">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var _stored = null;
+    try { _stored = localStorage.getItem('cookie-consent'); } catch (e) {}
+    var _initial = _stored === 'granted' ? 'granted' : 'denied';
+    gtag('consent', 'default', {
+      ad_storage: _initial, analytics_storage: _initial,
+      ad_user_data: _initial, ad_personalization: _initial,
+      functionality_storage: 'granted', security_storage: 'granted',
+      wait_for_update: 500
+    });
+  </script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "AI Image Generation Cost Calculator",
+    "url": "https://webcaretakers.com/calculators/ai/image-generation-cost-calculator/",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0" },
+    "author": {
+      "@type": "Person",
+      "name": "Andrew Laws",
+      "url": "https://yeseo.io/"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Why does Midjourney show a per-image price when it is sold by subscription?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Because the comparison only works if every model is priced on the same axis. The Midjourney Standard plan is $30 a month for roughly 3,500 fast images, which works out at about $0.0086 per fast image. If you generate fewer than that, your effective per-image cost is higher; if you stay inside the fast-image quota, the figure here is honest. Heavy users will spill into relax-mode or buy more fast hours, which the calculator does not model." }
+      },
+      {
+        "@type": "Question",
+        "name": "Are these the prices I will actually pay?",
+        "acceptedAnswer": { "@type": "Answer", "text": "They are the public list prices on the Last verified date shown on the page. They do not include volume discounts, free credits new accounts get on Replicate or Vertex AI, currency conversion fees if you are billed in a non-USD card, or upscales and variations on Midjourney. Treat the number as a sensible estimate, not an invoice." }
+      },
+      {
+        "@type": "Question",
+        "name": "What size of image are these prices for?",
+        "acceptedAnswer": { "@type": "Answer", "text": "The standard 1024x1024 image, or each provider's nearest equivalent. Larger or more detailed outputs cost more on most platforms (DALL-E 3 1792x1024 is roughly $0.08 standard or $0.12 HD, for example). If you are generating big landscape images at scale, push the per-image price up by 50 to 100 percent before signing off the budget." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why is Stable Diffusion XL so much cheaper?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Two reasons. First, SDXL is open weights, so providers like Replicate compete on margin alone rather than carrying a research bill. Second, SDXL runs in seconds on cheap GPUs. The trade-off is output consistency: SDXL needs a careful prompt, the right sampler and often a few rerolls before it produces what you wanted. Cheap per image is not the same as cheap per usable image." }
+      },
+      {
+        "@type": "Question",
+        "name": "How often is the pricing on this page updated?",
+        "acceptedAnswer": { "@type": "Answer", "text": "The Last verified date on the page is when the prices were last checked against each provider's official pricing page. The figures are baked into the page so it loads fast and works without any API calls, which means they can drift if a provider changes their list price. Always sanity-check against the provider's own pricing page before signing off a meaningful spend." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-banner-heading" aria-describedby="cookie-banner-text" hidden>
+    <div class="cookie-banner__inner">
+      <h2 id="cookie-banner-heading" class="cookie-banner__heading">A quick word about cookies</h2>
+      <p id="cookie-banner-text" class="cookie-banner__text">
+        We use cookies for analytics, so we can see which calculators people actually use and which ones need work. Nothing creepy, nothing sold on. You can say yes, say no, or read the <a href="/privacy/">privacy policy</a> first. Your choice sticks.
+      </p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-reject>Reject</button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>Accept</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var KEY = 'cookie-consent';
+      var banner = document.querySelector('[data-cookie-banner]');
+      if (!banner) return;
+      var stored = null;
+      try { stored = localStorage.getItem(KEY); } catch (e) {}
+      if (stored !== 'granted' && stored !== 'denied') { banner.hidden = false; }
+      function record(choice) {
+        try { localStorage.setItem(KEY, choice); } catch (e) {}
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('consent', 'update', {
+          ad_storage: choice, analytics_storage: choice,
+          ad_user_data: choice, ad_personalization: choice
+        });
+        banner.hidden = true;
+      }
+      var accept = banner.querySelector('[data-cookie-accept]');
+      var reject = banner.querySelector('[data-cookie-reject]');
+      if (accept) accept.addEventListener('click', function () { record('granted'); });
+      if (reject) reject.addEventListener('click', function () { record('denied'); });
+    })();
+  </script>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">WebCaretakers</a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <ul class="primary-nav__list">
+          <li class="primary-nav__item primary-nav__item--has-menu">
+            <button type="button" class="primary-nav__link" data-menu-toggle aria-haspopup="true" aria-expanded="false">Calculators <span class="primary-nav__caret" aria-hidden="true">▾</span></button>
+            <ul class="primary-nav__submenu">
+              <li><a href="/calculators/ai/">AI</a></li>
+              <li><a href="/calculators/broadband/">Broadband</a></li>
+              <li><a href="/calculators/business/">Business</a></li>
+              <li><a href="/calculators/conversions/">Conversions</a></li>
+              <li><a href="/calculators/finance/">Finance</a></li>
+              <li><a href="/calculators/fun/">Fun</a></li>
+              <li><a href="/calculators/health/">Health</a></li>
+              <li><a href="/calculators/images/">Images</a></li>
+              <li><a href="/calculators/math/">Math</a></li>
+              <li><a href="/calculators/productivity/">Productivity</a></li>
+              <li><a href="/calculators/property/">Property</a></li>
+              <li><a href="/calculators/seo/">SEO</a></li>
+              <li><a href="/calculators/wedding/">Wedding</a></li>
+              <li><a href="/calculators/writing/">Writing</a></li>
+              <li class="primary-nav__submenu-sep"><a href="/calculators/">See all calculators</a></li>
+            </ul>
+          </li>
+          <li class="primary-nav__item"><a href="/about/" class="primary-nav__link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <main id="main-content">
+      <div class="container">
+        <nav aria-label="Breadcrumb" class="breadcrumbs">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/calculators/">Calculators</a></li>
+            <li><a href="/calculators/ai/">AI</a></li>
+            <li aria-current="page">AI Image Generation Cost Calculator</li>
+          </ol>
+        </nav>
+
+        <h1>AI Image Generation Cost Calculator</h1>
+        <p class="intro">Pick a model, plug in how many images you plan to generate each month, and see the per-image cost, monthly bill and annual total. Then look at the comparison table and see what the same workload costs everywhere else. Useful when you are about to commit to a generative-image workflow and want to know what the credit-card statement will say.</p>
+
+        <section class="eli5" aria-label="Plain-English explanation">
+          <h2>Explain like I'm 5 (what even is this calculator?)</h2>
+          <p>Every AI image you generate costs the provider a tiny slice of GPU time, and they pass that cost on to you. Some, like DALL-E and Imagen, charge per image. Some, like Midjourney, sell you a monthly bundle. Some, like Replicate-hosted Stable Diffusion XL, are basically rounding error per image. This tool turns "I want to make 2,000 product photos a month" into a real money figure on each provider, so you can pick the cheapest one that produces the quality you actually need.</p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="in-content" aria-hidden="true"></div>
+
+        <section class="calculator-card">
+          <h2>Calculate</h2>
+          <form id="image-cost-form" class="calc-form" novalidate>
+            <div class="calc-row">
+              <label for="image-primary-model">Model (the one you'd pick first)</label>
+              <select id="image-primary-model" data-primary-model aria-label="Primary model">
+                <!-- populated from MODELS -->
+              </select>
+            </div>
+
+            <div class="calc-row">
+              <label for="image-volume">Images per month</label>
+              <input type="number" id="image-volume" data-images-per-month min="0" step="1" value="1000">
+            </div>
+
+            <button type="submit" data-calculate>Calculate</button>
+          </form>
+
+          <div data-calculator-results class="calculator-results">
+            <div class="result-summary">
+              <p class="result-display" data-result>Pick a model, set a monthly volume, then press Calculate.</p>
+            </div>
+
+            <div class="mort-breakdown" data-breakdown hidden>
+              <h3>Your primary model</h3>
+              <ul>
+                <li><span>Per-image cost</span><strong data-line-per-image>–</strong></li>
+                <li><span>Images per month</span><strong data-line-volume>–</strong></li>
+                <li><span>Monthly cost</span><strong data-line-monthly>–</strong></li>
+                <li class="mort-breakdown__total"><span>Annual cost</span><strong data-line-annual>–</strong></li>
+              </ul>
+
+              <h3>Same workload, every model</h3>
+              <p class="result-caption" data-pricing-caption>
+                Per-image USD list price. Last verified: <span data-last-verified>—</span>.
+              </p>
+              <div class="table-wrap">
+                <table class="comparison-table" data-comparison-table>
+                  <thead>
+                    <tr>
+                      <th scope="col">Model</th>
+                      <th scope="col">Per image</th>
+                      <th scope="col">Monthly</th>
+                      <th scope="col">Annual</th>
+                    </tr>
+                  </thead>
+                  <tbody data-comparison-body></tbody>
+                </table>
+              </div>
+            </div>
+
+            <details class="prove-it" data-prove-it>
+              <summary>Prove it</summary>
+              <div data-prove-it-body></div>
+              <p class="prove-it-source">Cost is per-image price multiplied by your monthly volume; annual is monthly times twelve. Pricing is the standard list price published by each provider on the Last verified date. Midjourney is sold by subscription, so the per-image figure is the Standard plan ($30/month, ~3500 fast images) divided down. Volume discounts, free credits, upscales, variations and currency conversion fees are not modelled.</p>
+            </details>
+          </div>
+
+          <p class="bookmark-nudge">
+            Useful? Save this calculator: press <kbd data-bookmark-shortcut>Ctrl</kbd> + <kbd>D</kbd> to bookmark it.
+          </p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="below-results" aria-hidden="true"></div>
+
+        <section class="long-form">
+          <h2>What this calculator is actually doing</h2>
+          <p>An image-generation API bills you per image, give or take. The maths is short: per-image price multiplied by volume gives you the monthly bill, and that times twelve gives you the annual. The hard bit is finding an honest per-image figure for each provider, because they price in different shapes (per call, per credit, per subscription) and they all change their list prices a few times a year.</p>
+          <p>The figures here are baked into the page on the Last verified date you can see in the result block. No live API calls, no surprise rate-limit failures, no way for a popular calculator to spin up a six-figure invoice on someone else's bill. If a provider drops their price tomorrow, this page is wrong tomorrow afternoon, and you should sanity-check against the provider's own pricing page before signing off real spend.</p>
+
+          <h2>Honest caveats, in plain English</h2>
+          <p>A few things this calculator does not model, all of which can move the real bill in either direction.</p>
+          <h3>Subscription versus pay-as-you-go</h3>
+          <p>DALL-E 3, Imagen 3 and the Replicate-hosted models are pay-per-image. Midjourney is a flat monthly subscription with a fast-image quota. The calculator treats Midjourney's effective per-image cost on the Standard plan as $0.0086, which is honest if you stay inside the fast quota and a bit optimistic if you blow past it. If you only generate 50 images a month, your effective Midjourney cost is $30 ÷ 50 = $0.60 each, not $0.0086. That is the trade-off of subscriptions.</p>
+          <h3>Image size and quality</h3>
+          <p>Prices here are for 1024x1024 standard outputs (or each provider's closest equivalent). Larger sizes, HD modes, multiple variations per call, and upscales all cost extra on most platforms. If you are going to generate 1792x1024 hero images at HD on DALL-E, expect to pay roughly three times the figure here.</p>
+          <h3>Failed and rerolled outputs</h3>
+          <p>This is the one nobody wants to talk about. Cheap models often need two or three attempts to produce one usable image. SDXL at $0.0023 is brilliant on paper, but if your real ratio is one keeper per three rerolls, your effective cost is closer to $0.007. Track your keep rate before you commit to a model on price alone.</p>
+          <h3>Free credits and tiers</h3>
+          <p>Replicate gives new accounts a small free monthly credit. Vertex AI offers a free trial budget. OpenAI hands out occasional promotional credit. None of that is modelled here, because once you are in production those one-off credits are noise.</p>
+
+          <h2>How to read the comparison table</h2>
+          <p>The table sorts cheapest first. Useful as a starting point, not as the final answer. The cheap rows are cheap because the model is open-weights and runs on commodity hardware. The expensive rows are expensive because the model is doing something the cheap ones can't yet, or because someone is paying for a brand. Run a representative test on each candidate before committing your spend to the cheapest row.</p>
+          <p>If two providers are within a few percent of each other on cost, your tiebreaker is usually quality, latency, or which one your team already has accounts and observability set up for. Switching cost is real, and almost never worth it for a tiny price delta.</p>
+
+          <h2>Trimming an image generation bill, in rough order of impact</h2>
+          <p>If the number this calculator produced gave you a fright, the highest-leverage moves are usually:</p>
+          <ul>
+            <li><strong>Generate fewer.</strong> Most teams over-generate. A clear brief and a tighter prompt cuts the reroll rate, which cuts the bill in proportion.</li>
+            <li><strong>Drop down a tier on the easy work.</strong> SDXL or Flux Schnell handle hero photography stand-ins, blog illustrations and social-media filler perfectly well. Save the flagship models for the things that genuinely need them.</li>
+            <li><strong>Cache the assets you generate.</strong> If five different blog posts need the same generic "person at a laptop" hero image, generate it once and reuse it. The cheapest image is the one you don't generate twice.</li>
+            <li><strong>Self-host SDXL if your volume justifies it.</strong> At a few thousand images a month, hosted SDXL on Replicate is the right answer. At a hundred thousand, a single H100 on RunPod or a dedicated GPU on a hyperscaler will be cheaper, with the trade-off that you now own the operations.</li>
+            <li><strong>Use real photography for anything important.</strong> A good stock photo is still a few quid. AI is better when the alternative is "no image at all", not when the alternative is "a properly shot product photo".</li>
+          </ul>
+
+          <h2>Related calculators</h2>
+          <p>Other tools for the running-a-business numbers around AI work.</p>
+          <ul class="related-calculators">
+            <li><a href="/calculators/ai/llm-token-usage-calculator/">LLM Token Usage Calculator for chat-model spend</a></li>
+            <li><a href="/calculators/business/roi-calculator/">Work out the ROI on the workload you're costing here</a></li>
+            <li><a href="/calculators/business/freelance-day-rate-calculator/">Day rate calculator if you're billing AI work to a client</a></li>
+            <li><a href="/calculators/images/image-compressor/">Compress the AI images you've generated before you ship them</a></li>
+          </ul>
+        </section>
+
+        <section class="faq" aria-labelledby="faq-heading">
+          <h2 id="faq-heading">Frequently asked questions</h2>
+          <details>
+            <summary>Why does Midjourney show a per-image price when it is sold by subscription?</summary>
+            <p>Because the comparison only works if every model is priced on the same axis. The Midjourney Standard plan is $30 a month for roughly 3,500 fast images, which works out at about $0.0086 per fast image. If you generate fewer than that, your effective per-image cost is higher; if you stay inside the fast-image quota, the figure here is honest. Heavy users will spill into relax-mode or buy more fast hours, which the calculator does not model.</p>
+          </details>
+          <details>
+            <summary>Are these the prices I will actually pay?</summary>
+            <p>They are the public list prices on the Last verified date shown on the page. They do not include volume discounts, free credits new accounts get on Replicate or Vertex AI, currency conversion fees if you are billed in a non-USD card, or upscales and variations on Midjourney. Treat the number as a sensible estimate, not an invoice.</p>
+          </details>
+          <details>
+            <summary>What size of image are these prices for?</summary>
+            <p>The standard 1024x1024 image, or each provider's nearest equivalent. Larger or more detailed outputs cost more on most platforms. If you are generating big landscape images at scale, push the per-image price up by 50 to 100 percent before signing off the budget.</p>
+          </details>
+          <details>
+            <summary>Why is Stable Diffusion XL so much cheaper?</summary>
+            <p>Two reasons. First, SDXL is open weights, so providers like Replicate compete on margin alone rather than carrying a research bill. Second, SDXL runs in seconds on cheap GPUs. The trade-off is output consistency: SDXL needs a careful prompt, the right sampler and often a few rerolls before it produces what you wanted. Cheap per image is not the same as cheap per usable image.</p>
+          </details>
+          <details>
+            <summary>How often is the pricing on this page updated?</summary>
+            <p>The Last verified date on the page is when the prices were last checked against each provider's official pricing page. The figures are baked in so the page loads fast and works without any API calls, which means they can drift if a provider changes their list price. Sanity-check against the provider's own pricing page before signing off a meaningful spend.</p>
+          </details>
+          <details>
+            <summary>Does this calculator send my prompts anywhere?</summary>
+            <p>No. Everything runs in your browser. Nothing leaves your device, because there is no server to leave to.</p>
+          </details>
+        </section>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="ad-slot" data-ad-slot="sidebar" aria-hidden="true"></div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="site-footer-nav" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/calculators/">All calculators</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+
+      <section class="site-disclaimer" data-disclaimer aria-labelledby="disclaimer-heading">
+        <h2 id="disclaimer-heading">A quick, necessary word</h2>
+        <p>Every calculator on this site is built to give you a sensible, well-reasoned estimate. It is, however, exactly that: an estimate, for general information only. Nothing you see here is professional, legal, financial, medical, or tax advice, and it should not be treated as such.</p>
+        <p>Before you make a decision that actually matters, talk to a qualified professional who knows your specific situation: an accountant, a solicitor, a doctor, an IT consultant, whoever fits the question. They can factor in the bits a generic tool can't.</p>
+        <p>We take no liability and accept no responsibility for any loss, damage, or questionable life choice arising from acting on the numbers you see here. Use the results as a starting point for a better conversation, not as the final word.</p>
+        <p><strong>Affiliate disclosure:</strong> some links on this site are affiliate links. If you click through and buy or sign up for something, we may earn a small commission at no extra cost to you. It helps keep the calculators free and ad-light. We only recommend things we'd point a friend towards.</p>
+      </section>
+      <p class="site-copyright">&copy; 2026 WebCaretakers. All rights reserved.</p>
+      <p class="site-legal">WebCaretakers is a trading name of <a href="https://yeseo.io/" rel="noopener">Andrew Laws Associates Ltd</a>, registered in England and Wales (company no. 08602332). ICO registration ZA726704.</p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/calculators/ai-image-generation-cost.js"></script>
+  <script>
+    (function () {
+      'use strict';
+
+      var shortcutEl = document.querySelector('[data-bookmark-shortcut]');
+      if (shortcutEl) {
+        var isMac = /Mac|iPhone|iPad|iPod/i.test(navigator.platform || navigator.userAgent);
+        shortcutEl.textContent = isMac ? '\u2318' : 'Ctrl';
+      }
+
+      var lib = window.AIImageGenerationCost;
+      if (!lib) return;
+
+      var form = document.getElementById('image-cost-form');
+      if (!form) return;
+
+      var primaryModelEl = form.querySelector('[data-primary-model]');
+      var volumeEl = form.querySelector('[data-images-per-month]');
+
+      var resultEl = document.querySelector('[data-result]');
+      var breakdown = document.querySelector('[data-breakdown]');
+      var linePerImage = document.querySelector('[data-line-per-image]');
+      var lineVolume = document.querySelector('[data-line-volume]');
+      var lineMonthly = document.querySelector('[data-line-monthly]');
+      var lineAnnual = document.querySelector('[data-line-annual]');
+      var lastVerifiedEl = document.querySelector('[data-last-verified]');
+      var comparisonBody = document.querySelector('[data-comparison-body]');
+      var proveBody = document.querySelector('[data-prove-it-body]');
+
+      // Populate the model dropdown from MODELS, default-select DALL-E 3 standard.
+      lib.MODELS.forEach(function (m) {
+        var opt = document.createElement('option');
+        opt.value = m.id;
+        opt.textContent = m.vendor + ' — ' + m.name;
+        if (m.id === 'dalle-3-standard') opt.selected = true;
+        primaryModelEl.appendChild(opt);
+      });
+
+      lastVerifiedEl.textContent = lib.PRICING_LAST_VERIFIED;
+
+      function fmtUSD(n, dp) {
+        if (typeof n !== 'number' || !isFinite(n)) return '—';
+        var digits = (typeof dp === 'number') ? dp : 2;
+        return '$' + n.toLocaleString('en-US', { minimumFractionDigits: digits, maximumFractionDigits: digits });
+      }
+
+      function fmtPerImage(n) {
+        if (n === 0) return '$0.00';
+        if (n < 0.01) return '$' + n.toFixed(6);
+        if (n < 1) return '$' + n.toFixed(4);
+        return fmtUSD(n, 2);
+      }
+
+      function fmtInt(n) {
+        if (typeof n !== 'number' || !isFinite(n)) return '—';
+        return n.toLocaleString('en-GB');
+      }
+
+      // Light interaction tracking
+      [primaryModelEl, volumeEl].forEach(function (el) {
+        if (!el) return;
+        el.addEventListener('input', function () {
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: 'calculator_interaction',
+            calculator_name: 'AI Image Generation Cost Calculator',
+            field_name: el.name || el.id || ''
+          });
+        });
+      });
+
+      function findModel(id) {
+        for (var i = 0; i < lib.MODELS.length; i++) {
+          if (lib.MODELS[i].id === id) return lib.MODELS[i];
+        }
+        return lib.MODELS[0];
+      }
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        var imagesPerMonth = parseInt(volumeEl.value, 10);
+        if (!isFinite(imagesPerMonth) || imagesPerMonth < 0) imagesPerMonth = 0;
+        var primary = findModel(primaryModelEl.value);
+
+        try {
+          var totals = lib.projectUsage({
+            perImage: primary.perImage,
+            imagesPerMonth: imagesPerMonth,
+          });
+          var rows = lib.modelComparison({
+            imagesPerMonth: imagesPerMonth,
+          });
+
+          breakdown.hidden = false;
+          resultEl.textContent = primary.name + ': ' + fmtUSD(totals.monthly, 2) + ' per month at ' +
+            fmtInt(imagesPerMonth) + ' images.';
+
+          linePerImage.textContent = fmtPerImage(primary.perImage);
+          lineVolume.textContent = fmtInt(imagesPerMonth);
+          lineMonthly.textContent = fmtUSD(totals.monthly, 2);
+          lineAnnual.textContent = fmtUSD(totals.annual, 2);
+
+          // Render comparison table
+          comparisonBody.innerHTML = '';
+          rows.forEach(function (r) {
+            var tr = document.createElement('tr');
+            tr.setAttribute('data-comparison-row', r.id);
+            if (r.id === primary.id) tr.classList.add('comparison-table__row--primary');
+            tr.innerHTML =
+              '<th scope="row">' + r.vendor + ' ' + r.name + '</th>' +
+              '<td>' + fmtPerImage(r.perImage) + '</td>' +
+              '<td>' + fmtUSD(r.monthly, 2) + '</td>' +
+              '<td>' + fmtUSD(r.annual, 2) + '</td>';
+            comparisonBody.appendChild(tr);
+          });
+
+          proveBody.innerHTML =
+            '<ul>' +
+              '<li><span>' + primary.name + ' per-image price</span><strong>' + fmtPerImage(primary.perImage) + '</strong></li>' +
+              '<li><span>Images per month</span><strong>' + fmtInt(imagesPerMonth) + '</strong></li>' +
+              '<li><span>Monthly cost (price × volume)</span><strong>' + fmtUSD(totals.monthly, 2) + '</strong></li>' +
+              '<li><span>Annual cost (× 12 months)</span><strong>' + fmtUSD(totals.annual, 2) + '</strong></li>' +
+            '</ul>';
+
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: 'calculator_result',
+            calculator_name: 'AI Image Generation Cost Calculator',
+            primary_model: primary.id,
+            images_per_month: imagesPerMonth,
+            per_image_cost: primary.perImage,
+            monthly_cost: totals.monthly,
+            annual_cost: totals.annual,
+          });
+        } catch (err) {
+          resultEl.textContent = err.message || 'Could not calculate.';
+          breakdown.hidden = true;
+          proveBody.innerHTML = '';
+        }
+      });
+    })();
+  </script>
+
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RAG Pipeline Cost Calculator | WebCaretakers</title>
+  <meta name="description" content="Estimate the monthly cost of a Retrieval-Augmented Generation pipeline. Embedding, vector database, and LLM query costs broken out, with a month-by-month projection.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/ai/rag-pipeline-cost-calculator/">
+  <meta property="og:title" content="RAG Pipeline Cost Calculator | WebCaretakers">
+  <meta property="og:description" content="Estimate the monthly cost of a Retrieval-Augmented Generation pipeline. Embedding, vector database, and LLM query costs broken out.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/ai/rag-pipeline-cost-calculator/">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var _stored = null;
+    try { _stored = localStorage.getItem('cookie-consent'); } catch (e) {}
+    var _initial = _stored === 'granted' ? 'granted' : 'denied';
+    gtag('consent', 'default', {
+      ad_storage: _initial, analytics_storage: _initial,
+      ad_user_data: _initial, ad_personalization: _initial,
+      functionality_storage: 'granted', security_storage: 'granted',
+      wait_for_update: 500
+    });
+  </script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "RAG Pipeline Cost Calculator",
+    "url": "https://webcaretakers.com/calculators/ai/rag-pipeline-cost-calculator/",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0" },
+    "author": {
+      "@type": "Person",
+      "name": "Andrew Laws",
+      "url": "https://yeseo.io/"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is RAG?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Retrieval-Augmented Generation. You take a body of documents, split them into chunks, turn each chunk into a vector with an embedding model, and store the vectors in a database. When a user asks a question you embed the question, pull the most similar chunks back out, and stuff those chunks into the LLM prompt as context. The model answers using your data instead of guessing from training. The cost has three legs: embedding the corpus, paying the vector DB to host it, and paying the LLM each time someone asks a question." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why is the first month more expensive?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Because you only pay to embed the existing corpus once. After that the running cost is just embedding new content as it arrives, the fixed monthly vector DB bill, and the per-query LLM cost. The calculator separates first-month and ongoing-month totals so the corpus build does not skew your sense of what the pipeline costs to run." }
+      },
+      {
+        "@type": "Question",
+        "name": "When does pgvector beat a managed vector DB?",
+        "acceptedAnswer": { "@type": "Answer", "text": "When you already run Postgres, your vector count is in the low millions, and you do not need bleeding-edge ANN performance. pgvector on a small managed Postgres (Supabase, Neon, Render) is roughly a fifth of the price of a Pinecone Starter pod, and it keeps your retrieval data in the same store as your application data, which makes joins and ACL trivial. It stops winning when you cross 10 million vectors or need sub-50ms p99 latency at scale." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does this calculator include caching savings?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. List prices only. In practice, prompt caching on the LLM side knocks 50 to 90 percent off repeated input tokens, which matters because most RAG workloads inject a near-identical system prompt every time. Anthropic, OpenAI and Google all offer it. Your real bill on production traffic with caching turned on will usually come in 30 to 60 percent below the figure here." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does context size move the bill so much?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Because every query pays for every retrieved token as input. If you stuff 10,000 tokens of context into each call instead of 3,000, the input cost more than triples. Top-k tuning, chunk size, and reranking are the three biggest levers on RAG cost, well ahead of which LLM you pick." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-banner-heading" aria-describedby="cookie-banner-text" hidden>
+    <div class="cookie-banner__inner">
+      <h2 id="cookie-banner-heading" class="cookie-banner__heading">A quick word about cookies</h2>
+      <p id="cookie-banner-text" class="cookie-banner__text">
+        We use cookies for analytics, so we can see which calculators people actually use and which ones need work. Nothing creepy, nothing sold on. You can say yes, say no, or read the <a href="/privacy/">privacy policy</a> first. Your choice sticks.
+      </p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-reject>Reject</button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>Accept</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var KEY = 'cookie-consent';
+      var banner = document.querySelector('[data-cookie-banner]');
+      if (!banner) return;
+      var stored = null;
+      try { stored = localStorage.getItem(KEY); } catch (e) {}
+      if (stored !== 'granted' && stored !== 'denied') { banner.hidden = false; }
+      function record(choice) {
+        try { localStorage.setItem(KEY, choice); } catch (e) {}
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('consent', 'update', {
+          ad_storage: choice, analytics_storage: choice,
+          ad_user_data: choice, ad_personalization: choice
+        });
+        banner.hidden = true;
+      }
+      var accept = banner.querySelector('[data-cookie-accept]');
+      var reject = banner.querySelector('[data-cookie-reject]');
+      if (accept) accept.addEventListener('click', function () { record('granted'); });
+      if (reject) reject.addEventListener('click', function () { record('denied'); });
+    })();
+  </script>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">WebCaretakers</a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <ul class="primary-nav__list">
+          <li class="primary-nav__item primary-nav__item--has-menu">
+            <button type="button" class="primary-nav__link" data-menu-toggle aria-haspopup="true" aria-expanded="false">Calculators <span class="primary-nav__caret" aria-hidden="true">▾</span></button>
+            <ul class="primary-nav__submenu">
+              <li><a href="/calculators/ai/">AI</a></li>
+              <li><a href="/calculators/broadband/">Broadband</a></li>
+              <li><a href="/calculators/business/">Business</a></li>
+              <li><a href="/calculators/conversions/">Conversions</a></li>
+              <li><a href="/calculators/finance/">Finance</a></li>
+              <li><a href="/calculators/fun/">Fun</a></li>
+              <li><a href="/calculators/health/">Health</a></li>
+              <li><a href="/calculators/images/">Images</a></li>
+              <li><a href="/calculators/math/">Math</a></li>
+              <li><a href="/calculators/productivity/">Productivity</a></li>
+              <li><a href="/calculators/property/">Property</a></li>
+              <li><a href="/calculators/seo/">SEO</a></li>
+              <li><a href="/calculators/wedding/">Wedding</a></li>
+              <li><a href="/calculators/writing/">Writing</a></li>
+              <li class="primary-nav__submenu-sep"><a href="/calculators/">See all calculators</a></li>
+            </ul>
+          </li>
+          <li class="primary-nav__item"><a href="/about/" class="primary-nav__link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <main id="main-content">
+      <div class="container">
+        <nav aria-label="Breadcrumb" class="breadcrumbs">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/calculators/">Calculators</a></li>
+            <li><a href="/calculators/ai/">AI</a></li>
+            <li aria-current="page">RAG Pipeline Cost Calculator</li>
+          </ol>
+        </nav>
+
+        <h1>RAG Pipeline Cost Calculator</h1>
+        <p class="intro">Work out what a Retrieval-Augmented Generation pipeline actually costs to run, before you commit to one. Embedding the corpus, paying the vector database, and paying the LLM each time someone asks a question, all priced out and broken down month by month. Pricing is baked in and dated, so you know how fresh the figures are.</p>
+
+        <section class="eli5" aria-label="Plain-English explanation">
+          <h2>Explain like I'm 5 (what even is this calculator?)</h2>
+          <p>RAG is the trick where you give an AI access to your own documents instead of relying on whatever it half-remembers from training. You pay three different bills: one to turn your documents into vectors, one to keep those vectors in a special database, and one to the LLM every time it answers a question using them. This calculator adds all three up, so you can stop guessing.</p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="in-content" aria-hidden="true"></div>
+
+        <section class="calculator-card">
+          <h2>Calculate</h2>
+          <form id="rag-form" class="calc-form" novalidate>
+            <fieldset>
+              <legend>Embedding</legend>
+              <div class="calc-row">
+                <label for="rag-corpus-tokens">Total corpus tokens (one-off embed)</label>
+                <input type="number" id="rag-corpus-tokens" data-corpus-tokens min="0" step="1" value="5000000">
+              </div>
+              <div class="calc-row">
+                <label for="rag-monthly-new-tokens">Net new tokens added per month</label>
+                <input type="number" id="rag-monthly-new-tokens" data-monthly-new-tokens min="0" step="1" value="250000">
+              </div>
+              <div class="calc-row">
+                <label for="rag-embedding-model">Embedding model</label>
+                <select id="rag-embedding-model" data-embedding-model aria-label="Embedding model">
+                  <!-- populated from EMBEDDING_MODELS -->
+                </select>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>Vector database</legend>
+              <div class="calc-row">
+                <label for="rag-vector-db">Vector DB tier</label>
+                <select id="rag-vector-db" data-vector-db aria-label="Vector database">
+                  <!-- populated from VECTOR_DBS -->
+                </select>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>Queries</legend>
+              <div class="calc-row">
+                <label for="rag-queries-per-day">Queries per day</label>
+                <input type="number" id="rag-queries-per-day" data-queries-per-day min="0" step="1" value="5000">
+              </div>
+              <div class="calc-row">
+                <label for="rag-context-tokens">Avg context tokens injected per query</label>
+                <input type="number" id="rag-context-tokens" data-context-tokens min="0" step="1" value="3000">
+              </div>
+              <div class="calc-row">
+                <label for="rag-prompt-tokens">Avg user prompt tokens</label>
+                <input type="number" id="rag-prompt-tokens" data-prompt-tokens min="0" step="1" value="100">
+              </div>
+              <div class="calc-row">
+                <label for="rag-response-tokens">Avg LLM response tokens</label>
+                <input type="number" id="rag-response-tokens" data-response-tokens min="0" step="1" value="400">
+              </div>
+              <div class="calc-row">
+                <label for="rag-llm-model">LLM</label>
+                <select id="rag-llm-model" data-llm-model aria-label="LLM">
+                  <!-- populated from LLM_MODELS -->
+                </select>
+              </div>
+            </fieldset>
+
+            <button type="submit" data-calculate>Calculate</button>
+          </form>
+
+          <div data-calculator-results class="calculator-results">
+            <div class="result-summary">
+              <p class="result-display" data-result>Press Calculate to see the bill.</p>
+            </div>
+
+            <div class="mort-breakdown" data-breakdown hidden>
+              <h3>Cost breakdown</h3>
+              <ul>
+                <li><span>One-off corpus embedding</span><strong data-line-one-off>–</strong></li>
+                <li><span>Monthly embedding (net new)</span><strong data-line-monthly-embedding>–</strong></li>
+                <li><span>Monthly vector database</span><strong data-line-monthly-vector>–</strong></li>
+                <li><span>Monthly LLM queries</span><strong data-line-monthly-llm>–</strong></li>
+                <li><span>Per query cost</span><strong data-line-per-query>–</strong></li>
+                <li><span>First-month total</span><strong data-line-first-month>–</strong></li>
+                <li class="mort-breakdown__total"><span>Ongoing monthly total</span><strong data-line-ongoing-month>–</strong></li>
+              </ul>
+
+              <h3>Month by month</h3>
+              <p class="result-caption">First month carries the one-off corpus embedding cost. Every month after that is the ongoing run-rate.</p>
+              <div class="table-wrap">
+                <table class="comparison-table" data-month-table>
+                  <thead>
+                    <tr>
+                      <th scope="col">Month</th>
+                      <th scope="col">Embedding</th>
+                      <th scope="col">Vector DB</th>
+                      <th scope="col">LLM</th>
+                      <th scope="col">Total</th>
+                    </tr>
+                  </thead>
+                  <tbody data-month-body></tbody>
+                </table>
+              </div>
+
+              <h3>Same workload, swap the LLM</h3>
+              <p class="result-caption">
+                Pricing baked in, USD. Last verified: <span data-last-verified>—</span>.
+              </p>
+              <div class="table-wrap">
+                <table class="comparison-table" data-llm-comparison-table>
+                  <thead>
+                    <tr>
+                      <th scope="col">LLM</th>
+                      <th scope="col">Per query</th>
+                      <th scope="col">Ongoing month</th>
+                      <th scope="col">First month</th>
+                    </tr>
+                  </thead>
+                  <tbody data-llm-comparison-body></tbody>
+                </table>
+              </div>
+            </div>
+
+            <details class="prove-it" data-prove-it>
+              <summary>Prove it</summary>
+              <div data-prove-it-body></div>
+              <p class="prove-it-source">Embedding cost is (tokens ÷ 1,000,000) × the embedding model's price per million. LLM per-query cost adds the retrieved context and the user prompt as input tokens, the response as output tokens, and prices each side at the model's list rate. Monthly LLM cost multiplies the per-query figure by queries per day, then by 30.4375 (365.25 ÷ 12) so monthly and annual stay self-consistent. Vector DB is a flat monthly figure at the smallest viable tier per provider. Pricing is the standard non-cached, non-batch list price published by each provider.</p>
+            </details>
+          </div>
+
+          <p class="bookmark-nudge">
+            Useful? Save this calculator: press <kbd data-bookmark-shortcut>Ctrl</kbd> + <kbd>D</kbd> to bookmark it.
+          </p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="below-results" aria-hidden="true"></div>
+
+        <section class="long-form">
+          <h2>What RAG actually is, in plain English</h2>
+          <p>You have a stack of documents (a help centre, a product manual, the last five years of board minutes, whatever it is). You want an AI that can answer questions about that stack without making things up. The trick is Retrieval-Augmented Generation: you slice the documents into chunks, turn each chunk into a vector (a list of numbers that captures its meaning), and store the vectors in a database designed to find similar ones quickly. When someone asks a question, you turn the question into a vector, pull back the chunks closest to it, paste those chunks into the prompt, and let the LLM answer using them as reference material.</p>
+          <p>The cost shows up in three places. You pay an embedding model once per chunk, every time something gets indexed. You pay a vector database to keep those vectors hot and queryable. And you pay the LLM every single time someone asks a question, because every retrieved chunk lands in the prompt as input tokens. The third one is where most of the bill lives.</p>
+
+          <h2>When self-hosting pgvector beats a managed vector DB</h2>
+          <p>If you already run Postgres, and your vector count is in the low millions, pgvector is the cheapest sensible answer. A small managed Postgres on Supabase, Neon, or Render runs around fifteen quid a month with pgvector enabled, which is roughly a fifth of what a Pinecone Starter pod costs. You also get to keep retrieval data in the same database as your application data, which makes per-tenant access control and joins trivial instead of a faff.</p>
+          <p>It stops winning at scale. Once you cross ten million vectors, or you need sub-50ms p99 latency under heavy concurrent load, the dedicated vector databases start pulling away. Pinecone, Qdrant, and Weaviate have spent years tuning ANN indexes for exactly that workload. pgvector has gotten very good with HNSW, but the ops burden of running it well at scale is real, and at some point paying someone else to do that is the right call.</p>
+          <p>The honest middle path: prototype on pgvector, switch when the metrics tell you to, not before.</p>
+
+          <h2>Why caching matters more than which LLM you pick</h2>
+          <p>Run any production RAG workload for a week and you will notice something: roughly 80% of queries cluster around a small set of chunks. People ask the same questions, look up the same policy pages, hit the same FAQ entries. Which means the same retrieved context lands in the prompt over and over.</p>
+          <p>Anthropic, OpenAI, and Google all offer prompt caching. Mark a prefix of the prompt as cacheable (typically the system prompt and any large reference document), and repeat hits cost a fraction of the list price. Anthropic's discount is around 90 percent on cache hits. OpenAI's is 50 percent. Google's varies by model but lands in a similar range.</p>
+          <p>The implication is concrete: a Claude Sonnet pipeline with caching turned on will routinely outprice a DeepSeek pipeline without it, despite Sonnet being twenty times more expensive on paper. Before you switch LLMs to save money, switch on caching first.</p>
+
+          <h2>Trimming a RAG bill, in rough order of impact</h2>
+          <p>If the number above made you wince, the high-leverage moves are usually:</p>
+          <ul>
+            <li><strong>Drop your top-k.</strong> Most pipelines retrieve more chunks than they need. Going from k=10 to k=5 halves the context tokens and most of the time the answer quality is identical or better (the model has fewer distractions).</li>
+            <li><strong>Turn on prompt caching.</strong> If your system prompt and instructions are stable, this is free money.</li>
+            <li><strong>Add a reranker.</strong> A cheap reranker (Cohere Rerank, Voyage Rerank) lets you retrieve more candidates, then keep only the best three or four. Lower context cost, better answers.</li>
+            <li><strong>Cap the response.</strong> Set max_tokens. RAG models love to ramble at output prices.</li>
+            <li><strong>Smaller LLM, bigger context.</strong> Most retrieval-grounded questions do not need the flagship. Sonnet, Haiku, GPT-5.4 mini, Gemini Flash, and DeepSeek will all happily summarise three relevant chunks for a fraction of Opus money.</li>
+          </ul>
+
+          <h2>Honest caveats</h2>
+          <p>The figures above are list price, non-cached, non-batch. Embedding token counts assume each chunk is sent once; if you re-embed on every change to a document, multiply accordingly. Vector DB cost is the smallest viable tier per provider, which works for the first few million vectors and falls over after that. The LLM column does not model fine-tuned models, image or audio inputs, or any of the volume discounts the bigger providers will quietly offer once your spend justifies a phone call.</p>
+
+          <h2>Related calculators</h2>
+          <ul class="related-calculators">
+            <li><a href="/calculators/ai/llm-token-usage-calculator/">LLM Token Usage Calculator for the underlying token-cost maths</a></li>
+            <li><a href="/calculators/business/roi-calculator/">ROI calculator for the business case behind a RAG build</a></li>
+            <li><a href="/calculators/business/freelance-day-rate-calculator/">Day rate calculator if you're billing the build to a client</a></li>
+          </ul>
+        </section>
+
+        <section class="faq" aria-labelledby="faq-heading">
+          <h2 id="faq-heading">Frequently asked questions</h2>
+          <details>
+            <summary>What is RAG?</summary>
+            <p>Retrieval-Augmented Generation. You take a body of documents, split them into chunks, turn each chunk into a vector with an embedding model, and store the vectors in a database. When a user asks a question you embed the question, pull the most similar chunks back out, and stuff those chunks into the LLM prompt as context. The model answers using your data instead of guessing from training.</p>
+          </details>
+          <details>
+            <summary>Why is the first month more expensive?</summary>
+            <p>Because you only pay to embed the existing corpus once. After that, the running cost is just embedding new content as it arrives, the fixed monthly vector DB bill, and the per-query LLM cost. The calculator separates first-month and ongoing-month totals so the corpus build does not skew your sense of what the pipeline costs to run.</p>
+          </details>
+          <details>
+            <summary>When does pgvector beat a managed vector DB?</summary>
+            <p>When you already run Postgres, your vector count is in the low millions, and you do not need bleeding-edge ANN performance. pgvector on a small managed Postgres is roughly a fifth of the price of a Pinecone Starter pod, and it keeps your retrieval data in the same store as your application data. It stops winning when you cross ten million vectors or need sub-50ms p99 latency at scale.</p>
+          </details>
+          <details>
+            <summary>Does this calculator include caching savings?</summary>
+            <p>No. List prices only. In practice, prompt caching on the LLM side knocks 50 to 90 percent off repeated input tokens, which matters because most RAG workloads inject a near-identical system prompt every time. Your real bill on production traffic with caching turned on will usually come in 30 to 60 percent below the figure here.</p>
+          </details>
+          <details>
+            <summary>Why does context size move the bill so much?</summary>
+            <p>Because every query pays for every retrieved token as input. If you stuff 10,000 tokens of context into each call instead of 3,000, the input cost more than triples. Top-k tuning, chunk size, and reranking are the three biggest levers on RAG cost, well ahead of which LLM you pick.</p>
+          </details>
+          <details>
+            <summary>Does this calculator send my numbers anywhere?</summary>
+            <p>No. Everything runs in your browser. Nothing gets uploaded.</p>
+          </details>
+        </section>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="ad-slot" data-ad-slot="sidebar" aria-hidden="true"></div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="site-footer-nav" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/calculators/">All calculators</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+
+      <section class="site-disclaimer" data-disclaimer aria-labelledby="disclaimer-heading">
+        <h2 id="disclaimer-heading">A quick, necessary word</h2>
+        <p>Every calculator on this site is built to give you a sensible, well-reasoned estimate. It is, however, exactly that: an estimate, for general information only. Nothing you see here is professional, legal, financial, medical, or tax advice, and it should not be treated as such.</p>
+        <p>Before you make a decision that actually matters, talk to a qualified professional who knows your specific situation: an accountant, a solicitor, a doctor, an IT consultant, whoever fits the question. They can factor in the bits a generic tool can't.</p>
+        <p>We take no liability and accept no responsibility for any loss, damage, or questionable life choice arising from acting on the numbers you see here. Use the results as a starting point for a better conversation, not as the final word.</p>
+        <p><strong>Affiliate disclosure:</strong> some links on this site are affiliate links. If you click through and buy or sign up for something, we may earn a small commission at no extra cost to you. It helps keep the calculators free and ad-light. We only recommend things we'd point a friend towards.</p>
+      </section>
+      <p class="site-copyright">&copy; 2026 WebCaretakers. All rights reserved.</p>
+      <p class="site-legal">WebCaretakers is a trading name of <a href="https://yeseo.io/" rel="noopener">Andrew Laws Associates Ltd</a>, registered in England and Wales (company no. 08602332). ICO registration ZA726704.</p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/calculators/rag-pipeline-cost.js"></script>
+  <script>
+    (function () {
+      'use strict';
+
+      var shortcutEl = document.querySelector('[data-bookmark-shortcut]');
+      if (shortcutEl) {
+        var isMac = /Mac|iPhone|iPad|iPod/i.test(navigator.platform || navigator.userAgent);
+        shortcutEl.textContent = isMac ? '\u2318' : 'Ctrl';
+      }
+
+      var lib = window.RAGPipelineCost;
+      if (!lib) return;
+
+      var form = document.getElementById('rag-form');
+      if (!form) return;
+
+      var corpusEl = form.querySelector('[data-corpus-tokens]');
+      var monthlyNewEl = form.querySelector('[data-monthly-new-tokens]');
+      var embeddingModelEl = form.querySelector('[data-embedding-model]');
+      var vectorDbEl = form.querySelector('[data-vector-db]');
+      var queriesPerDayEl = form.querySelector('[data-queries-per-day]');
+      var contextTokensEl = form.querySelector('[data-context-tokens]');
+      var promptTokensEl = form.querySelector('[data-prompt-tokens]');
+      var responseTokensEl = form.querySelector('[data-response-tokens]');
+      var llmModelEl = form.querySelector('[data-llm-model]');
+
+      var resultEl = document.querySelector('[data-result]');
+      var breakdown = document.querySelector('[data-breakdown]');
+      var lineOneOff = document.querySelector('[data-line-one-off]');
+      var lineMonthlyEmbedding = document.querySelector('[data-line-monthly-embedding]');
+      var lineMonthlyVector = document.querySelector('[data-line-monthly-vector]');
+      var lineMonthlyLLM = document.querySelector('[data-line-monthly-llm]');
+      var linePerQuery = document.querySelector('[data-line-per-query]');
+      var lineFirstMonth = document.querySelector('[data-line-first-month]');
+      var lineOngoingMonth = document.querySelector('[data-line-ongoing-month]');
+      var lastVerifiedEl = document.querySelector('[data-last-verified]');
+      var monthBody = document.querySelector('[data-month-body]');
+      var llmCompBody = document.querySelector('[data-llm-comparison-body]');
+      var proveBody = document.querySelector('[data-prove-it-body]');
+
+      // Populate the embedding model dropdown
+      lib.EMBEDDING_MODELS.forEach(function (m) {
+        var opt = document.createElement('option');
+        opt.value = m.id;
+        opt.textContent = m.vendor + ' — ' + m.name + ' ($' + m.pricePer1M.toFixed(2) + '/1M)';
+        if (m.id === 'text-embedding-3-small') opt.selected = true;
+        embeddingModelEl.appendChild(opt);
+      });
+
+      // Populate the vector DB dropdown
+      lib.VECTOR_DBS.forEach(function (v) {
+        var opt = document.createElement('option');
+        opt.value = v.id;
+        opt.textContent = v.name + ' ($' + v.monthlyCost + '/mo)';
+        if (v.id === 'pinecone-starter') opt.selected = true;
+        vectorDbEl.appendChild(opt);
+      });
+
+      // Populate the LLM dropdown, default Claude Sonnet 4.6
+      lib.LLM_MODELS.forEach(function (m) {
+        var opt = document.createElement('option');
+        opt.value = m.id;
+        opt.textContent = m.vendor + ' — ' + m.name;
+        if (m.id === 'claude-sonnet-4-6') opt.selected = true;
+        llmModelEl.appendChild(opt);
+      });
+
+      lastVerifiedEl.textContent = lib.PRICING_LAST_VERIFIED;
+
+      function fmtUSD(n, dp) {
+        if (typeof n !== 'number' || !isFinite(n)) return '—';
+        var digits = (typeof dp === 'number') ? dp : 2;
+        return '$' + n.toLocaleString('en-US', { minimumFractionDigits: digits, maximumFractionDigits: digits });
+      }
+      function fmtPerQuery(n) {
+        if (n === 0) return '$0.00';
+        if (n < 0.01) return '$' + n.toFixed(6);
+        if (n < 1) return '$' + n.toFixed(4);
+        return fmtUSD(n, 2);
+      }
+      function fmtInt(n) {
+        if (typeof n !== 'number' || !isFinite(n)) return '—';
+        return n.toLocaleString('en-GB');
+      }
+
+      // Light interaction tracking
+      [corpusEl, monthlyNewEl, embeddingModelEl, vectorDbEl, queriesPerDayEl, contextTokensEl, promptTokensEl, responseTokensEl, llmModelEl].forEach(function (el) {
+        if (!el) return;
+        el.addEventListener('input', function () {
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: 'calculator_interaction',
+            calculator_name: 'RAG Pipeline Cost Calculator',
+            field_name: el.name || el.id || ''
+          });
+        });
+        el.addEventListener('change', function () {
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: 'calculator_interaction',
+            calculator_name: 'RAG Pipeline Cost Calculator',
+            field_name: el.name || el.id || ''
+          });
+        });
+      });
+
+      function getNum(el) {
+        var n = parseFloat(el.value);
+        return (isFinite(n) && n >= 0) ? n : 0;
+      }
+      function findBy(arr, id) {
+        for (var i = 0; i < arr.length; i++) if (arr[i].id === id) return arr[i];
+        return arr[0];
+      }
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        var opts = {
+          corpusTokens: getNum(corpusEl),
+          monthlyNewTokens: getNum(monthlyNewEl),
+          embeddingModel: findBy(lib.EMBEDDING_MODELS, embeddingModelEl.value),
+          vectorDb: findBy(lib.VECTOR_DBS, vectorDbEl.value),
+          queriesPerDay: getNum(queriesPerDayEl),
+          contextTokens: getNum(contextTokensEl),
+          promptTokens: getNum(promptTokensEl),
+          responseTokens: getNum(responseTokensEl),
+          llmModel: findBy(lib.LLM_MODELS, llmModelEl.value),
+        };
+
+        try {
+          var projection = lib.projectPipeline(opts);
+          var months = lib.monthByMonth({ months: 12, projection: projection });
+          var compRows = lib.llmComparison(opts);
+
+          breakdown.hidden = false;
+          resultEl.textContent = opts.llmModel.name + ' on ' + opts.vectorDb.name + ': ' +
+            fmtUSD(projection.ongoingMonth, 2) + ' per ongoing month, ' +
+            fmtUSD(projection.firstMonth, 2) + ' first month.';
+
+          lineOneOff.textContent = fmtUSD(projection.oneOffEmbedding, 2);
+          lineMonthlyEmbedding.textContent = fmtUSD(projection.monthlyEmbedding, 2);
+          lineMonthlyVector.textContent = fmtUSD(projection.monthlyVectorDb, 2);
+          lineMonthlyLLM.textContent = fmtUSD(projection.monthlyLLM, 2);
+          linePerQuery.textContent = fmtPerQuery(projection.perQueryCost);
+          lineFirstMonth.textContent = fmtUSD(projection.firstMonth, 2);
+          lineOngoingMonth.textContent = fmtUSD(projection.ongoingMonth, 2);
+
+          // Month-by-month rows
+          monthBody.innerHTML = '';
+          months.forEach(function (m) {
+            var tr = document.createElement('tr');
+            tr.innerHTML =
+              '<th scope="row">Month ' + m.month + '</th>' +
+              '<td>' + fmtUSD(m.embedding, 2) + '</td>' +
+              '<td>' + fmtUSD(m.vectorDb, 2) + '</td>' +
+              '<td>' + fmtUSD(m.llm, 2) + '</td>' +
+              '<td>' + fmtUSD(m.total, 2) + '</td>';
+            monthBody.appendChild(tr);
+          });
+
+          // LLM comparison
+          llmCompBody.innerHTML = '';
+          compRows.forEach(function (r) {
+            var tr = document.createElement('tr');
+            if (r.id === opts.llmModel.id) tr.classList.add('comparison-table__row--primary');
+            tr.innerHTML =
+              '<th scope="row">' + r.vendor + ' ' + r.name + '</th>' +
+              '<td>' + fmtPerQuery(r.perQueryCost) + '</td>' +
+              '<td>' + fmtUSD(r.ongoingMonth, 2) + '</td>' +
+              '<td>' + fmtUSD(r.firstMonth, 2) + '</td>';
+            llmCompBody.appendChild(tr);
+          });
+
+          proveBody.innerHTML =
+            '<ul>' +
+              '<li><span>Corpus tokens</span><strong>' + fmtInt(opts.corpusTokens) + '</strong></li>' +
+              '<li><span>Embedding price</span><strong>' + fmtUSD(opts.embeddingModel.pricePer1M, 2) + ' / 1M</strong></li>' +
+              '<li><span>One-off corpus embedding</span><strong>' + fmtUSD(projection.oneOffEmbedding, 2) + '</strong></li>' +
+              '<li><span>Net new tokens / month</span><strong>' + fmtInt(opts.monthlyNewTokens) + '</strong></li>' +
+              '<li><span>Monthly embedding</span><strong>' + fmtUSD(projection.monthlyEmbedding, 2) + '</strong></li>' +
+              '<li><span>Vector DB monthly</span><strong>' + fmtUSD(projection.monthlyVectorDb, 2) + '</strong></li>' +
+              '<li><span>Per-query input tokens</span><strong>' + fmtInt(opts.contextTokens + opts.promptTokens) + '</strong></li>' +
+              '<li><span>Per-query output tokens</span><strong>' + fmtInt(opts.responseTokens) + '</strong></li>' +
+              '<li><span>Per-query cost</span><strong>' + fmtPerQuery(projection.perQueryCost) + '</strong></li>' +
+              '<li><span>Queries per month (×30.4375)</span><strong>' + fmtInt(projection.queriesPerMonth) + '</strong></li>' +
+              '<li><span>Monthly LLM</span><strong>' + fmtUSD(projection.monthlyLLM, 2) + '</strong></li>' +
+              '<li><span>Ongoing month total</span><strong>' + fmtUSD(projection.ongoingMonth, 2) + '</strong></li>' +
+              '<li><span>First month total</span><strong>' + fmtUSD(projection.firstMonth, 2) + '</strong></li>' +
+            '</ul>';
+
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: 'calculator_result',
+            calculator_name: 'RAG Pipeline Cost Calculator',
+            embedding_model: opts.embeddingModel.id,
+            vector_db: opts.vectorDb.id,
+            llm_model: opts.llmModel.id,
+            per_query_cost: projection.perQueryCost,
+            first_month_cost: projection.firstMonth,
+            ongoing_month_cost: projection.ongoingMonth,
+          });
+        } catch (err) {
+          resultEl.textContent = err.message || 'Could not calculate.';
+          breakdown.hidden = true;
+          proveBody.innerHTML = '';
+        }
+      });
+    })();
+  </script>
+
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

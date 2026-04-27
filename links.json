@@ -11,6 +11,30 @@
       "url": "/calculators/ai/llm-token-usage-calculator/"
     },
     {
+      "phrase": "AI Image Generation Cost Calculator",
+      "url": "/calculators/ai/image-generation-cost-calculator/"
+    },
+    {
+      "phrase": "image generation cost calculator",
+      "url": "/calculators/ai/image-generation-cost-calculator/"
+    },
+    {
+      "phrase": "cost per AI image",
+      "url": "/calculators/ai/image-generation-cost-calculator/"
+    },
+    {
+      "phrase": "RAG Pipeline Cost Calculator",
+      "url": "/calculators/ai/rag-pipeline-cost-calculator/"
+    },
+    {
+      "phrase": "RAG cost calculator",
+      "url": "/calculators/ai/rag-pipeline-cost-calculator/"
+    },
+    {
+      "phrase": "vector database cost calculator",
+      "url": "/calculators/ai/rag-pipeline-cost-calculator/"
+    },
+    {
       "phrase": "LLM token calculator",
       "url": "/calculators/ai/llm-token-usage-calculator/"
     },
