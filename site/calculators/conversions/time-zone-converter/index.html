@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Time Zone Converter | WebCaretakers</title>
+  <meta name="description" content="Convert a date and time between IANA time zones. Pick a source, pick any number of targets, see the day-of-week, date, local time and UTC offset for each. Browser-only, DST handled by your OS.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/conversions/time-zone-converter/">
+  <meta property="og:title" content="Time Zone Converter | WebCaretakers">
+  <meta property="og:description" content="Convert a date and time between IANA time zones. Pick a source and as many targets as you need. Browser-only, DST handled correctly.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/conversions/time-zone-converter/">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var _stored = null;
+    try { _stored = localStorage.getItem('cookie-consent'); } catch (e) {}
+    var _initial = _stored === 'granted' ? 'granted' : 'denied';
+    gtag('consent', 'default', {
+      ad_storage: _initial, analytics_storage: _initial,
+      ad_user_data: _initial, ad_personalization: _initial,
+      functionality_storage: 'granted', security_storage: 'granted',
+      wait_for_update: 500
+    });
+  </script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Time Zone Converter",
+    "url": "https://webcaretakers.com/calculators/conversions/time-zone-converter/",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0" },
+    "author": {
+      "@type": "Person",
+      "name": "Andrew Laws",
+      "url": "https://yeseo.io/"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How does this handle daylight saving time?",
+        "acceptedAnswer": { "@type": "Answer", "text": "It does not handle DST at all. The browser does, by reading the IANA tzdata that ships with your operating system. We hand the wall-clock time and the source zone to Intl.DateTimeFormat, which knows when each zone springs forward and falls back. As long as your OS has a recent tzdata (any system updated in the last few months will), the result is correct on the day of the change too." }
+      },
+      {
+        "@type": "Question",
+        "name": "What's an IANA time zone?",
+        "acceptedAnswer": { "@type": "Answer", "text": "IANA names are the canonical way to identify a time zone, written as Region/City. Europe/London, America/New_York, Asia/Tokyo, Pacific/Auckland. They beat short names like \"BST\" or \"EST\" because those are ambiguous (BST is also Bangladesh Standard Time, EST is also Australian Eastern Standard Time) and because the IANA name carries the full DST history with it. The dropdown lists about 60 of the most-used ones; the free-text option accepts any valid IANA name." }
+      },
+      {
+        "@type": "Question",
+        "name": "What happens at the moment the clocks change?",
+        "acceptedAnswer": { "@type": "Answer", "text": "If you enter a wall-clock time that does not exist (in the UK, 02:30 on the spring-forward Sunday simply does not happen, because the clock jumps from 01:00 to 02:00), the converter resolves to a stable, deterministic instant rather than throwing. If you enter a wall-clock time that happens twice (the autumn fall-back hour, 01:30 happens once in BST then again in GMT), it picks one consistently. Both edge cases are rare in practice, but they exist." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why not just show UTC offsets?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Offsets are useful for spotting differences at a glance, so each row shows one (UTC+1, UTC-5, UTC+5:30 and so on). But the offset for a given zone changes through the year, sometimes twice. \"Europe/London is UTC+0\" is true in winter and false in summer. Working with IANA names rather than fixed offsets is the only way to be right all year round." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-banner-heading" aria-describedby="cookie-banner-text" hidden>
+    <div class="cookie-banner__inner">
+      <h2 id="cookie-banner-heading" class="cookie-banner__heading">A quick word about cookies</h2>
+      <p id="cookie-banner-text" class="cookie-banner__text">
+        We use cookies for analytics, so we can see which calculators people actually use and which ones need work. Nothing creepy, nothing sold on. You can say yes, say no, or read the <a href="/privacy/">privacy policy</a> first. Your choice sticks.
+      </p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-reject>Reject</button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>Accept</button>
+      </div>
+    </div>
+  </div>
+
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">WebCaretakers</a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <ul class="primary-nav__list">
+          <li class="primary-nav__item primary-nav__item--has-menu">
+            <button type="button" class="primary-nav__link" data-menu-toggle aria-haspopup="true" aria-expanded="false">Calculators <span class="primary-nav__caret" aria-hidden="true">▾</span></button>
+            <ul class="primary-nav__submenu">
+              <li><a href="/calculators/ai/">AI</a></li>
+              <li><a href="/calculators/broadband/">Broadband</a></li>
+              <li><a href="/calculators/business/">Business</a></li>
+              <li><a href="/calculators/conversions/">Conversions</a></li>
+              <li><a href="/calculators/cybersecurity/">Cybersecurity</a></li>
+              <li><a href="/calculators/finance/">Finance</a></li>
+              <li><a href="/calculators/fun/">Fun</a></li>
+              <li><a href="/calculators/health/">Health</a></li>
+              <li><a href="/calculators/images/">Images</a></li>
+              <li><a href="/calculators/math/">Math</a></li>
+              <li><a href="/calculators/productivity/">Productivity</a></li>
+              <li><a href="/calculators/property/">Property</a></li>
+              <li><a href="/calculators/seo/">SEO</a></li>
+              <li><a href="/calculators/wedding/">Wedding</a></li>
+              <li><a href="/calculators/writing/">Writing</a></li>
+              <li class="primary-nav__submenu-sep"><a href="/calculators/">See all calculators</a></li>
+            </ul>
+          </li>
+          <li class="primary-nav__item"><a href="/about/" class="primary-nav__link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <main id="main-content">
+      <div class="container">
+        <nav aria-label="Breadcrumb" class="breadcrumbs">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/calculators/">Calculators</a></li>
+            <li><a href="/calculators/conversions/">Conversions</a></li>
+            <li aria-current="page">Time Zone Converter</li>
+          </ol>
+        </nav>
+
+        <h1>Time Zone Converter</h1>
+        <p class="intro">Pick a source zone, pick a date and time, then add as many target zones as you need. Each target shows the local day-of-week, date, time and UTC offset. The browser handles DST through the IANA tzdata, so the answer is right whether you ask in summer, winter or on the day the clocks change.</p>
+
+        <section class="eli5" aria-label="Plain-English explanation">
+          <h2>Explain like I'm 5 (what even is this calculator?)</h2>
+          <p>Different parts of the world set their clocks differently. If a meeting is at 3pm in London, that's 10am in New York and 11pm in Tokyo. This tool does that maths for any date, any time and any number of cities. It also gets daylight saving right, so the answer is correct in both halves of the year.</p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="in-content" aria-hidden="true"></div>
+
+        <section class="calculator-card">
+          <h2>Convert a moment between zones</h2>
+          <p class="reassure"><strong>Browser-only.</strong> The conversion uses your browser's built-in Intl API. Nothing you enter is sent anywhere.</p>
+
+          <form id="tzc-form" class="calc-form" novalidate>
+            <div class="calc-row">
+              <label for="tzc-source-zone">Source zone</label>
+              <select id="tzc-source-zone" data-source-zone></select>
+              <input type="text" data-source-zone-custom hidden placeholder="IANA name, e.g. Europe/Madrid">
+              <p class="calc-row__hint">Defaults to the zone your browser thinks you're in. Pick another, or choose "Other" to type any IANA name.</p>
+            </div>
+
+            <div class="calc-row calc-row--inline">
+              <label for="tzc-date">Date
+                <input type="date" id="tzc-date" data-date>
+              </label>
+              <label for="tzc-time">Time
+                <input type="time" id="tzc-time" data-time step="60">
+              </label>
+              <button type="button" class="btn-secondary" data-now-btn>Now</button>
+            </div>
+
+            <div class="calc-row">
+              <label class="checkbox-row">
+                <input type="checkbox" data-hour12>
+                Show times in 12-hour (am/pm) format
+              </label>
+            </div>
+
+            <div class="calc-row">
+              <p class="calc-row__hint">Source moment in that zone:</p>
+              <p class="result-display" data-source-label aria-live="polite">—</p>
+            </div>
+          </form>
+
+          <div class="tzc-targets-wrap">
+            <h3>Target zones</h3>
+            <ul class="tzc-targets" data-targets></ul>
+            <button type="button" class="btn-secondary" data-add-zone>Add zone</button>
+          </div>
+
+          <details class="prove-it" data-prove-it>
+            <summary>Prove it</summary>
+            <p>The conversion uses your browser's Intl API, which reads IANA time-zone definitions from the OS-supplied tzdata. The same database powers Linux servers, macOS, Windows and every modern phone. Daylight-saving rules, historical offset changes and oddities like Nepal's UTC+5:45 are all baked in.</p>
+            <p>The conversion is anchored on a single UTC instant, derived from your wall-clock input in the source zone:</p>
+            <p><strong>UTC anchor:</strong> <code data-utc-anchor>—</code></p>
+            <p>From that instant, each target zone is rendered with <code>Intl.DateTimeFormat</code>. The offset for each row (UTC+1, UTC-5, UTC+5:30) is computed by formatting the same UTC instant in that zone and comparing the wall-clock that comes back to the original UTC time. No hand-rolled offset table exists in this code. If your machine's tzdata is current, the answer is correct.</p>
+            <p>To check it yourself: open the browser console and run <code>Intl.DateTimeFormat('en-GB', { timeZone: 'America/New_York', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' }).format(new Date('<span data-utc-anchor>—</span>'))</code>. The output should match the New York row above.</p>
+          </details>
+
+          <p class="bookmark-nudge">
+            Useful? Save this calculator: press <kbd data-bookmark-shortcut>Ctrl</kbd> + <kbd>D</kbd> to bookmark it.
+          </p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="below-results" aria-hidden="true"></div>
+
+        <section class="long-form">
+          <h2>When to use a time zone converter</h2>
+          <p>Three situations cover almost everything. The first is scheduling: working out a meeting time that lands inside business hours in three different countries. The second is remembering: looking back at a log line stamped in UTC and asking what time that actually was where the user was sitting. The third is travelling: knowing what time a flight lands in the destination zone, not the time the boarding pass shows in the departure zone.</p>
+          <p>The common thread is that you need both ends of the conversion to be honest about which zone you mean. "3pm UK time" sounds clear and is not, because UK time is GMT in winter and BST in summer. The only way to be right year-round is to pick the IANA name (Europe/London) and let the tzdata work out which offset applies on the date you care about.</p>
+
+          <h2>Common mistakes</h2>
+          <p><strong>Treating short codes as zone names.</strong> EST, CST, PST, GMT, BST: these are offset labels, not zones. They tell you what offset is in force at one moment, not which offset will be in force tomorrow. Use the IANA name for the zone (America/New_York, not "EST").</p>
+          <p><strong>Forgetting that the date can roll over.</strong> Tuesday 23:00 in London is Wednesday 11:00 in Auckland on most dates of the year. The day-of-week label on each target row is there precisely so you don't book a meeting for the wrong day. Watch for it on calls between Europe and the Pacific, and between the Americas and Asia.</p>
+          <p><strong>Assuming the offset is constant.</strong> Most zones change offset twice a year, on dates that differ by country. The UK and EU shift on the same Sunday in March and October; the US and Canada use a different Sunday; Australia and New Zealand are the opposite way round because their seasons are inverted. If you build a recurring meeting in March, half the participants will be an hour off for two weeks until the other half also switch.</p>
+
+          <h2>Edge cases worth knowing about</h2>
+          <p><strong>Half-hour and quarter-hour zones.</strong> India is UTC+5:30, Iran is UTC+3:30, Newfoundland is UTC-3:30, Nepal is UTC+5:45, the Chatham Islands are UTC+12:45. Software that hard-codes whole-hour offsets gets these wrong. The Intl API does not.</p>
+          <p><strong>The non-existent hour and the doubled hour.</strong> On the spring-forward Sunday, the wall clock skips an hour. 02:30 simply does not happen in the UK on that day. On the autumn fall-back Sunday, the hour 01:00-02:00 happens twice. The converter resolves both cases to a stable answer rather than refusing to compute, but if it really matters (logging an exact medical event, say), think carefully about which side of the boundary you mean.</p>
+          <p><strong>Zones that don't observe DST.</strong> Most of Arizona stays on Mountain Standard Time year-round, while the rest of the US Mountain time zone goes onto MDT in summer. So Phoenix and Denver are an hour apart for half the year and the same for the other half. Use America/Phoenix for the no-DST cases.</p>
+
+          <h2>Related calculators</h2>
+          <p>Other browser-only conversion tools.</p>
+          <ul class="related-calculators">
+            <li><a href="/calculators/conversions/">All conversion tools</a></li>
+            <li><a href="/calculators/conversions/unit-converter/">Unit Converter</a></li>
+            <li><a href="/calculators/conversions/cooking-measurements-converter/">Cooking Measurements Converter</a></li>
+            <li><a href="/calculators/productivity/">Productivity calculators</a></li>
+          </ul>
+        </section>
+
+        <section class="faq" aria-labelledby="faq-heading">
+          <h2 id="faq-heading">Frequently asked questions</h2>
+          <details>
+            <summary>How does this handle daylight saving time?</summary>
+            <p>It does not handle DST at all. The browser does, by reading the IANA tzdata that ships with your operating system. We hand the wall-clock time and the source zone to <code>Intl.DateTimeFormat</code>, which knows when each zone springs forward and falls back. As long as your OS has a recent tzdata (any system updated in the last few months will), the result is correct on the day of the change too.</p>
+          </details>
+          <details>
+            <summary>What's an IANA time zone?</summary>
+            <p>IANA names are the canonical way to identify a time zone, written as Region/City. Europe/London, America/New_York, Asia/Tokyo, Pacific/Auckland. They beat short names like "BST" or "EST" because those are ambiguous (BST is also Bangladesh Standard Time, EST is also Australian Eastern Standard Time) and because the IANA name carries the full DST history with it. The dropdown lists about 60 of the most-used ones; the free-text option accepts any valid IANA name.</p>
+          </details>
+          <details>
+            <summary>What happens at the moment the clocks change?</summary>
+            <p>If you enter a wall-clock time that does not exist (in the UK, 02:30 on the spring-forward Sunday simply does not happen, because the clock jumps from 01:00 to 02:00), the converter resolves to a stable, deterministic instant rather than throwing. If you enter a wall-clock time that happens twice (the autumn fall-back hour, 01:30 happens once in BST then again in GMT), it picks one consistently. Both edge cases are rare in practice, but they exist.</p>
+          </details>
+          <details>
+            <summary>Why not just show UTC offsets?</summary>
+            <p>Offsets are useful for spotting differences at a glance, so each row shows one (UTC+1, UTC-5, UTC+5:30 and so on). But the offset for a given zone changes through the year, sometimes twice. "Europe/London is UTC+0" is true in winter and false in summer. Working with IANA names rather than fixed offsets is the only way to be right all year round.</p>
+          </details>
+        </section>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="ad-slot" data-ad-slot="sidebar" aria-hidden="true"></div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="site-footer-nav" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/calculators/">All calculators</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+
+      <section class="site-disclaimer" data-disclaimer aria-labelledby="disclaimer-heading">
+        <h2 id="disclaimer-heading">A quick, necessary word</h2>
+        <p>Every calculator on this site is built to give you a sensible, well-reasoned estimate. It is, however, exactly that: an estimate, for general information only. Nothing you see here is professional, legal, financial, medical, or tax advice, and it should not be treated as such.</p>
+        <p>Before you make a decision that actually matters, talk to a qualified professional who knows your specific situation: an accountant, a solicitor, a doctor, an IT consultant, whoever fits the question. They can factor in the bits a generic tool can't.</p>
+        <p>We take no liability and accept no responsibility for any loss, damage, or questionable life choice arising from acting on the numbers you see here. Use the results as a starting point for a better conversation, not as the final word.</p>
+        <p><strong>Affiliate disclosure:</strong> some links on this site are affiliate links. If you click through and buy or sign up for something, we may earn a small commission at no extra cost to you. It helps keep the calculators free and ad-light. We only recommend things we'd point a friend towards.</p>
+      </section>
+      <p class="site-copyright">&copy; 2026 WebCaretakers. All rights reserved.</p>
+      <p class="site-legal">WebCaretakers is a trading name of <a href="https://yeseo.io/" rel="noopener">Andrew Laws Associates Ltd</a>, registered in England and Wales (company no. 08602332). ICO registration ZA726704.</p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/calculators/time-zone-converter.js"></script>
+  <script>
+    (function () {
+      var shortcutEl = document.querySelector('[data-bookmark-shortcut]');
+      if (shortcutEl) {
+        var isMac = /Mac|iPhone|iPad|iPod/i.test(navigator.platform || navigator.userAgent);
+        shortcutEl.textContent = isMac ? '\u2318' : 'Ctrl';
+      }
+    })();
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

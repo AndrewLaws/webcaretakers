@@ -130,6 +130,11 @@
           "slug": "cooking-measurements-converter",
           "name": "Cooking Measurements Converter",
           "summary": "Convert cooking measurements across UK, US and metric conventions. Cups, tablespoons, fluid ounces, grams, ounces, gas mark to Celsius, plus cup-to-grams densities for the ingredients that actually matter."
+        },
+        {
+          "slug": "time-zone-converter",
+          "name": "Time Zone Converter",
+          "summary": "Convert a date and time between IANA time zones. Pick a source, add as many target zones as you need, see day-of-week, local time and UTC offset for each. DST handled by your OS, browser-only."
         }
       ]
     },

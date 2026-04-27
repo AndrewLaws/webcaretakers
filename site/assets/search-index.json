@@ -140,6 +140,13 @@
     "category": "Conversions"
   },
   {
+    "type": "tool",
+    "name": "Time Zone Converter",
+    "summary": "Convert a date and time between IANA time zones. Pick a source, add as many target zones as you need, see day-of-week, local time and UTC offset for each. DST handled by your OS, browser-only.",
+    "url": "/calculators/conversions/time-zone-converter/",
+    "category": "Conversions"
+  },
+  {
     "type": "category",
     "name": "Finance calculators",
     "summary": "Sensible estimates for everyday money decisions.",
