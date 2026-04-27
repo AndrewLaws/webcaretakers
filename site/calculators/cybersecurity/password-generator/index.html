@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Password Generator | WebCaretakers</title>
+  <meta name="description" content="Cryptographically secure passwords and passphrases generated entirely in your browser. Uses Web Crypto. Disconnect your network and it still works.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/cybersecurity/password-generator/">
+  <meta property="og:title" content="Password Generator | WebCaretakers">
+  <meta property="og:description" content="Cryptographically secure passwords and passphrases, generated in your browser. Nothing leaves the device.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/cybersecurity/password-generator/">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var _stored = null;
+    try { _stored = localStorage.getItem('cookie-consent'); } catch (e) {}
+    var _initial = _stored === 'granted' ? 'granted' : 'denied';
+    gtag('consent', 'default', {
+      ad_storage: _initial, analytics_storage: _initial,
+      ad_user_data: _initial, ad_personalization: _initial,
+      functionality_storage: 'granted', security_storage: 'granted',
+      wait_for_update: 500
+    });
+  </script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Password Generator",
+    "url": "https://webcaretakers.com/calculators/cybersecurity/password-generator/",
+    "applicationCategory": "SecurityApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0" },
+    "author": {
+      "@type": "Person",
+      "name": "Andrew Laws",
+      "url": "https://yeseo.io/"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is this password generator safe to use?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. Everything runs in your browser using the Web Crypto API. The page never sends your generated password back to the server, and there is no server-side component that could log it. You can verify by opening the browser's network tab, pressing Generate, and watching nothing happen. Or pull the network cable: it still works." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is entropy?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Entropy measures how unpredictable a password is, expressed in bits. A password with 60 bits of entropy means an attacker would need on average 2 to the 59 guesses to crack it. Each bit doubles the work. As a rough guide: under 40 bits is weak, 60 is fair, 80 is strong, and 100 plus is overkill for almost anything that is not nation-state attention." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why use crypto.getRandomValues instead of Math.random?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Math.random is a pseudo-random number generator designed for games and simulations. It is fast, but its output is predictable: given a few sample values, an attacker can reconstruct the seed and predict every future call. For anything you would not want guessed (passwords, tokens, keys), it is dangerous. crypto.getRandomValues uses the operating system's cryptographic random source, which is suitable for keys and passwords." }
+      },
+      {
+        "@type": "Question",
+        "name": "When should I use a passphrase instead of a random password?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Use a passphrase when you have to type the password yourself: laptop login, password manager master password, full-disk encryption. Five short common words have around 45 bits of entropy and are far easier to type than a random 12-character string. For passwords that live in a manager and get auto-filled, use random characters: shorter, higher entropy per character, and you never have to type it." }
+      },
+      {
+        "@type": "Question",
+        "name": "How long does it take to crack one of these passwords?",
+        "acceptedAnswer": { "@type": "Answer", "text": "The page shows an estimated crack time at 10 billion guesses per second, which is roughly what a well-funded attacker can do offline against fast hashes (NTLM, MD5, SHA1). Slow hashes like bcrypt and Argon2 are several orders of magnitude slower to attack, so a password rated as cracked in a year against fast hashes might take a millennium against bcrypt. Treat the displayed figure as a worst-case estimate." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-banner-heading" aria-describedby="cookie-banner-text" hidden>
+    <div class="cookie-banner__inner">
+      <h2 id="cookie-banner-heading" class="cookie-banner__heading">A quick word about cookies</h2>
+      <p id="cookie-banner-text" class="cookie-banner__text">
+        We use cookies for analytics, so we can see which calculators people actually use and which ones need work. Nothing creepy, nothing sold on. You can say yes, say no, or read the <a href="/privacy/">privacy policy</a> first. Your choice sticks.
+      </p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-reject>Reject</button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>Accept</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var KEY = 'cookie-consent';
+      var banner = document.querySelector('[data-cookie-banner]');
+      if (!banner) return;
+      var stored = null;
+      try { stored = localStorage.getItem(KEY); } catch (e) {}
+      if (stored !== 'granted' && stored !== 'denied') { banner.hidden = false; }
+      function record(choice) {
+        try { localStorage.setItem(KEY, choice); } catch (e) {}
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('consent', 'update', {
+          ad_storage: choice, analytics_storage: choice,
+          ad_user_data: choice, ad_personalization: choice
+        });
+        banner.hidden = true;
+      }
+      var accept = banner.querySelector('[data-cookie-accept]');
+      var reject = banner.querySelector('[data-cookie-reject]');
+      if (accept) accept.addEventListener('click', function () { record('granted'); });
+      if (reject) reject.addEventListener('click', function () { record('denied'); });
+    })();
+  </script>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">WebCaretakers</a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <ul class="primary-nav__list">
+          <li class="primary-nav__item primary-nav__item--has-menu">
+            <button type="button" class="primary-nav__link" data-menu-toggle aria-haspopup="true" aria-expanded="false">Calculators <span class="primary-nav__caret" aria-hidden="true">▾</span></button>
+            <ul class="primary-nav__submenu">
+              <li><a href="/calculators/ai/">AI</a></li>
+              <li><a href="/calculators/broadband/">Broadband</a></li>
+              <li><a href="/calculators/business/">Business</a></li>
+              <li><a href="/calculators/conversions/">Conversions</a></li>
+              <li><a href="/calculators/cybersecurity/">Cybersecurity</a></li>
+              <li><a href="/calculators/finance/">Finance</a></li>
+              <li><a href="/calculators/fun/">Fun</a></li>
+              <li><a href="/calculators/health/">Health</a></li>
+              <li><a href="/calculators/images/">Images</a></li>
+              <li><a href="/calculators/math/">Math</a></li>
+              <li><a href="/calculators/productivity/">Productivity</a></li>
+              <li><a href="/calculators/property/">Property</a></li>
+              <li><a href="/calculators/seo/">SEO</a></li>
+              <li><a href="/calculators/wedding/">Wedding</a></li>
+              <li><a href="/calculators/writing/">Writing</a></li>
+              <li class="primary-nav__submenu-sep"><a href="/calculators/">See all calculators</a></li>
+            </ul>
+          </li>
+          <li class="primary-nav__item"><a href="/about/" class="primary-nav__link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <main id="main-content">
+      <div class="container">
+        <nav aria-label="Breadcrumb" class="breadcrumbs">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/calculators/">Calculators</a></li>
+            <li><a href="/calculators/cybersecurity/">Cybersecurity</a></li>
+            <li aria-current="page">Password Generator</li>
+          </ol>
+        </nav>
+
+        <h1>Password Generator</h1>
+        <p class="intro">Cryptographically secure passwords and passphrases, generated entirely in your browser. The page uses <code>crypto.getRandomValues</code>, the same random source the browser uses for TLS keys. Nothing you generate is sent anywhere. Disconnect your network and try it: still works.</p>
+
+        <section class="eli5" aria-label="Plain-English explanation">
+          <h2>Explain like I'm 5 (what even is this calculator?)</h2>
+          <p>It rolls cryptographic dice and writes down what they land on. The dice are good ones (the same ones your browser trusts to keep your bank session safe), and the result never leaves the page. Pick how long you want it, hit Generate, copy it into your password manager, close the tab. Done.</p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="in-content" aria-hidden="true"></div>
+
+        <section class="calculator-card">
+          <h2>Generate</h2>
+
+          <div class="result-summary">
+            <p class="result-display" data-password aria-live="polite" style="font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; word-break: break-all;">Press Generate.</p>
+            <div class="calc-row">
+              <button type="button" data-generate>Generate</button>
+              <button type="button" data-copy>Copy</button>
+              <button type="button" data-generate-five>Generate 5</button>
+            </div>
+            <ul data-multi-list class="related-calculators" hidden></ul>
+          </div>
+
+          <form id="pw-form" class="calc-form" novalidate onsubmit="return false;">
+            <div class="calc-row">
+              <label for="pw-length">Length: <strong data-length-value>20</strong></label>
+              <input type="range" id="pw-length" data-length min="8" max="128" step="1" value="20">
+            </div>
+
+            <div class="calc-row">
+              <label><input type="checkbox" data-toggle-lowercase checked> Lowercase (a-z)</label>
+              <label><input type="checkbox" data-toggle-uppercase checked> Uppercase (A-Z)</label>
+              <label><input type="checkbox" data-toggle-digits checked> Digits (0-9)</label>
+              <label><input type="checkbox" data-toggle-symbols checked> Symbols (!@#$...)</label>
+            </div>
+
+            <div class="calc-row">
+              <label><input type="checkbox" data-toggle-exclude-ambiguous> Exclude ambiguous characters (0, O, o, 1, l, I)</label>
+              <label><input type="checkbox" data-toggle-no-repeats> No repeating characters</label>
+              <label><input type="checkbox" data-toggle-pronounceable> Pronounceable (consonant-vowel pairs)</label>
+            </div>
+
+            <div class="calc-row">
+              <label><input type="checkbox" data-toggle-passphrase> Passphrase mode (word-based)</label>
+            </div>
+
+            <div class="calc-row" data-passphrase-controls hidden>
+              <label for="pw-words">Number of words</label>
+              <input type="number" id="pw-words" data-passphrase-words min="3" max="12" step="1" value="5">
+              <label for="pw-sep">Separator</label>
+              <select id="pw-sep" data-passphrase-separator>
+                <option value="-" selected>Hyphen (-)</option>
+                <option value=".">Dot (.)</option>
+                <option value=" ">Space ( )</option>
+                <option value="none">None</option>
+              </select>
+            </div>
+          </form>
+
+          <div class="mort-breakdown">
+            <ul>
+              <li><span>Entropy</span><strong data-entropy>0 bits</strong></li>
+              <li><span>Strength</span><strong data-strength>—</strong></li>
+              <li><span>Crack time (offline fast hash, 10B/s)</span><strong data-crack-time>—</strong></li>
+            </ul>
+          </div>
+
+          <p class="result-caption">Generated locally with <code>crypto.getRandomValues</code>. The password never leaves your browser. Disconnect your network and try it: still works.</p>
+
+          <details class="prove-it" data-prove-it>
+            <summary>Prove it</summary>
+            <div data-prove-it-body></div>
+            <p class="prove-it-source">Entropy bits = log2(charset size) × length for random passwords, or log2(wordlist size) × words for passphrases. Crack time assumes 10 billion guesses per second (a well-funded offline attacker against fast hashes like NTLM or unsalted SHA1). Slow hashes (bcrypt, Argon2) push the figure several orders of magnitude further out.</p>
+          </details>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="below-results" aria-hidden="true"></div>
+
+        <section class="long-form">
+          <h2>Why this generator runs in your browser, and why that matters</h2>
+          <p>A password generator that posts the password back to a server is precisely the thing you should be afraid of. Even when the operator has the best of intentions, the generated string has briefly existed on someone else's machine, in their logs, possibly in their backups. For a tool whose entire point is producing something nobody else should ever see, that is the wrong shape.</p>
+          <p>Everything on this page runs locally. The randomness comes from <code>crypto.getRandomValues</code>, which on every modern browser is wired into the operating system's cryptographic random source: the same thing your browser uses to negotiate TLS sessions with your bank. There is no server-side component. Open dev tools, watch the network tab, press Generate, and notice that nothing happens.</p>
+
+          <h2>Why <code>Math.random</code> is dangerous for passwords</h2>
+          <p>Most JavaScript random calls use <code>Math.random</code>. It is fast, fine for shuffling cards in a browser game, and totally unsuitable for anything an attacker might care about. The output is generated by a deterministic algorithm seeded once when the page loads. Given a handful of values, an attacker can recover the seed and predict every future call. There are published proofs of concept that pull this off in milliseconds.</p>
+          <p>Cryptographic random (which is what this page uses) is held to a different standard. The output is required to be indistinguishable from true randomness by any computationally bounded observer. That is not a marketing claim, it is the formal definition the algorithm has to satisfy to be allowed to call itself a CSPRNG.</p>
+
+          <h2>What entropy actually means</h2>
+          <p>Entropy, in the password sense, is just a measurement of how many guesses an attacker would need on average to find your password by brute force. It is expressed in bits because each bit doubles the work. A 40-bit password takes a trillion-ish guesses. A 60-bit password takes a quintillion. An 80-bit password is well past the point that any individual attacker can plausibly throw at it, and a 100-bit password is fine for the rest of your career.</p>
+          <p>For a random password, the maths is straightforward: log2 of the charset size, multiplied by the length. A 16-character password drawn from the 94 printable ASCII symbols carries about 105 bits. The same length drawn from only lowercase letters carries about 75. That is a real, exploitable gap.</p>
+
+          <h2>When passphrases beat random strings</h2>
+          <p>Passphrases shine when you have to type the password yourself. Master passwords for password managers, full-disk encryption keys, laptop login. A five-word passphrase from a 500-word list carries roughly 45 bits, which is fair-to-strong, and you can type it without misspellings or shoulder-surfing accidents. Random characters, by contrast, are denser per symbol but miserable to type. For anything that lives in a password manager and gets auto-filled, random wins. For anything you have to type, lean passphrase.</p>
+
+          <h2>A note on the crack-time figure</h2>
+          <p>The page shows estimated crack time at 10 billion guesses per second. That is a reasonable shorthand for a well-funded offline attacker against a fast hash like NTLM or unsalted SHA1. Modern password storage uses slow hashes (bcrypt, scrypt, Argon2) which are deliberately tuned to take milliseconds rather than nanoseconds, pushing the figure several orders of magnitude further out. Treat the number on the page as the worst case.</p>
+
+          <h2>Related calculators</h2>
+          <p>Other browser-only utilities for keeping things tidy.</p>
+          <ul class="related-calculators">
+            <li><a href="/calculators/cybersecurity/">All cybersecurity tools</a></li>
+            <li><a href="/calculators/writing/word-count/">Word and character count</a></li>
+            <li><a href="/calculators/conversions/">Unit converters</a></li>
+          </ul>
+        </section>
+
+        <section class="faq" aria-labelledby="faq-heading">
+          <h2 id="faq-heading">Frequently asked questions</h2>
+          <details>
+            <summary>Is this password generator safe to use?</summary>
+            <p>Yes. Everything runs in your browser using the Web Crypto API. The page never sends your generated password back to a server, and there is no server-side component to log it. Verify by opening dev tools, going to the network tab, and pressing Generate. Or pull the network cable. It still works.</p>
+          </details>
+          <details>
+            <summary>What is entropy?</summary>
+            <p>Entropy measures how unpredictable a password is, expressed in bits. Each bit doubles the average work an attacker has to do. Under 40 bits is weak, 60 is fair, 80 is strong, 100 plus is overkill for almost anything that is not nation-state attention.</p>
+          </details>
+          <details>
+            <summary>Why use <code>crypto.getRandomValues</code> instead of <code>Math.random</code>?</summary>
+            <p><code>Math.random</code> is fast and fine for shuffling cards in a browser game, but its output is predictable. Given a few values, an attacker can reconstruct the seed and predict every future call. <code>crypto.getRandomValues</code> uses the operating system's cryptographic random source, which is suitable for keys and passwords.</p>
+          </details>
+          <details>
+            <summary>When should I use a passphrase instead of a random password?</summary>
+            <p>Use a passphrase when you have to type the password: laptop login, password manager master password, full-disk encryption. For anything that lives in a manager and gets auto-filled, random characters win on entropy per character.</p>
+          </details>
+          <details>
+            <summary>How long does it take to crack one of these passwords?</summary>
+            <p>The page shows estimated crack time at 10 billion guesses per second, the rough rate of a well-funded attacker against fast hashes. Slow hashes (bcrypt, Argon2) push the figure several orders of magnitude further out. Treat the displayed time as a worst case.</p>
+          </details>
+        </section>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="ad-slot" data-ad-slot="sidebar" aria-hidden="true"></div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="site-footer-nav" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/calculators/">All calculators</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+
+      <section class="site-disclaimer" data-disclaimer aria-labelledby="disclaimer-heading">
+        <h2 id="disclaimer-heading">A quick, necessary word</h2>
+        <p>Every calculator on this site is built to give you a sensible, well-reasoned estimate. It is, however, exactly that: an estimate, for general information only. Nothing you see here is professional, legal, financial, medical, or tax advice, and it should not be treated as such.</p>
+        <p>Before you make a decision that actually matters, talk to a qualified professional who knows your specific situation: an accountant, a solicitor, a doctor, an IT consultant, whoever fits the question. They can factor in the bits a generic tool can't.</p>
+        <p>We take no liability and accept no responsibility for any loss, damage, or questionable life choice arising from acting on the numbers you see here. Use the results as a starting point for a better conversation, not as the final word.</p>
+        <p><strong>Affiliate disclosure:</strong> some links on this site are affiliate links. If you click through and buy or sign up for something, we may earn a small commission at no extra cost to you. It helps keep the calculators free and ad-light. We only recommend things we'd point a friend towards.</p>
+      </section>
+      <p class="site-copyright">&copy; 2026 WebCaretakers. All rights reserved.</p>
+      <p class="site-legal">WebCaretakers is a trading name of <a href="https://yeseo.io/" rel="noopener">Andrew Laws Associates Ltd</a>, registered in England and Wales (company no. 08602332). ICO registration ZA726704.</p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/calculators/password-generator.js"></script>
+  <script>
+    (function () {
+      'use strict';
+      var lib = window.PasswordGenerator;
+      if (!lib) return;
+
+      var form = document.getElementById('pw-form');
+      var lengthEl = form.querySelector('[data-length]');
+      var lengthValEl = form.querySelector('[data-length-value]');
+      var lower = form.querySelector('[data-toggle-lowercase]');
+      var upper = form.querySelector('[data-toggle-uppercase]');
+      var digits = form.querySelector('[data-toggle-digits]');
+      var symbols = form.querySelector('[data-toggle-symbols]');
+      var excl = form.querySelector('[data-toggle-exclude-ambiguous]');
+      var noReps = form.querySelector('[data-toggle-no-repeats]');
+      var pron = form.querySelector('[data-toggle-pronounceable]');
+      var phrase = form.querySelector('[data-toggle-passphrase]');
+      var phraseCtl = form.querySelector('[data-passphrase-controls]');
+      var wordsEl = form.querySelector('[data-passphrase-words]');
+      var sepEl = form.querySelector('[data-passphrase-separator]');
+
+      var passwordEl = document.querySelector('[data-password]');
+      var entropyEl = document.querySelector('[data-entropy]');
+      var strengthEl = document.querySelector('[data-strength]');
+      var crackEl = document.querySelector('[data-crack-time]');
+      var proveBody = document.querySelector('[data-prove-it-body]');
+      var multiList = document.querySelector('[data-multi-list]');
+
+      var generateBtn = document.querySelector('[data-generate]');
+      var generateFiveBtn = document.querySelector('[data-generate-five]');
+      var copyBtn = document.querySelector('[data-copy]');
+
+      var interactionPushed = false;
+      var resultPushed = false;
+
+      function pushInteraction(field) {
+        if (interactionPushed) return;
+        interactionPushed = true;
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: 'calculator_interaction',
+          calculator_name: 'Password Generator',
+          field_name: field || ''
+        });
+      }
+
+      function pushResult(detail) {
+        if (resultPushed) return;
+        resultPushed = true;
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push(Object.assign({
+          event: 'calculator_result',
+          calculator_name: 'Password Generator'
+        }, detail || {}));
+      }
+
+      function readOpts() {
+        return {
+          length: parseInt(lengthEl.value, 10) || 20,
+          lowercase: lower.checked,
+          uppercase: upper.checked,
+          digits: digits.checked,
+          symbols: symbols.checked,
+          excludeAmbiguous: excl.checked,
+          noRepeats: noReps.checked,
+          pronounceable: pron.checked,
+          passphrase: phrase.checked,
+          words: parseInt(wordsEl.value, 10) || 5,
+          separator: sepEl.value
+        };
+      }
+
+      function updateEntropy() {
+        var opts = readOpts();
+        var bits;
+        var charsetSize;
+        if (opts.passphrase) {
+          bits = lib.passphraseEntropyBits(opts.words);
+          charsetSize = lib.WORDLIST.length;
+        } else if (opts.pronounceable && opts.length <= 32) {
+          // Pronounceable approximation: ~26 effective options per slot
+          // (consonant+vowel sets, with case variation factored in).
+          bits = Math.log2(26) * opts.length;
+          charsetSize = 26;
+        } else {
+          var charset = lib.buildCharset(opts);
+          charsetSize = charset.length;
+          bits = lib.entropyBits(charsetSize, opts.length);
+        }
+        entropyEl.textContent = bits.toFixed(1) + ' bits';
+        strengthEl.textContent = lib.rateEntropy(bits);
+        crackEl.textContent = lib.crackTime(bits);
+        return { bits: bits, charsetSize: charsetSize, opts: opts };
+      }
+
+      function syncLengthLabel() {
+        lengthValEl.textContent = lengthEl.value;
+      }
+
+      function syncPassphraseControls() {
+        phraseCtl.hidden = !phrase.checked;
+      }
+
+      function generate() {
+        var opts = readOpts();
+        var pw;
+        try {
+          if (opts.passphrase) {
+            pw = lib.generatePassphrase({ words: opts.words, separator: opts.separator });
+          } else if (opts.pronounceable && opts.length <= 32) {
+            pw = lib.generatePronounceable(opts.length);
+          } else {
+            pw = lib.generateRandom(opts);
+          }
+        } catch (err) {
+          passwordEl.textContent = err.message || 'Could not generate.';
+          return;
+        }
+        passwordEl.textContent = pw;
+        multiList.hidden = true;
+        multiList.innerHTML = '';
+        var info = updateEntropy();
+        renderProve(info, pw);
+        pushResult({ length: pw.length, entropy_bits: info.bits, mode: opts.passphrase ? 'passphrase' : (opts.pronounceable ? 'pronounceable' : 'random') });
+      }
+
+      function generateFive() {
+        var opts = readOpts();
+        multiList.innerHTML = '';
+        multiList.hidden = false;
+        for (var i = 0; i < 5; i++) {
+          var pw;
+          try {
+            if (opts.passphrase) pw = lib.generatePassphrase({ words: opts.words, separator: opts.separator });
+            else if (opts.pronounceable && opts.length <= 32) pw = lib.generatePronounceable(opts.length);
+            else pw = lib.generateRandom(opts);
+          } catch (err) {
+            passwordEl.textContent = err.message;
+            return;
+          }
+          var li = document.createElement('li');
+          li.textContent = pw;
+          li.style.fontFamily = 'ui-monospace, SFMono-Regular, Menlo, Consolas, monospace';
+          li.style.wordBreak = 'break-all';
+          multiList.appendChild(li);
+        }
+        var info = updateEntropy();
+        renderProve(info, '(see list)');
+        pushResult({ length: opts.length, entropy_bits: info.bits, mode: 'batch5' });
+      }
+
+      function renderProve(info, pw) {
+        var charsetDesc;
+        if (info.opts.passphrase) {
+          charsetDesc = 'wordlist of ' + lib.WORDLIST.length + ' words, ' + info.opts.words + ' words';
+        } else if (info.opts.pronounceable && info.opts.length <= 32) {
+          charsetDesc = 'pronounceable charset (~26 effective options per slot)';
+        } else {
+          var cs = lib.buildCharset(info.opts);
+          charsetDesc = 'charset size ' + cs.length + ' (' + (info.opts.lowercase ? 'lower ' : '') +
+            (info.opts.uppercase ? 'upper ' : '') + (info.opts.digits ? 'digits ' : '') +
+            (info.opts.symbols ? 'symbols' : '') + (info.opts.excludeAmbiguous ? ', no ambiguous' : '') + ')';
+        }
+        proveBody.innerHTML =
+          '<ul>' +
+            '<li><span>Charset</span><strong>' + charsetDesc + '</strong></li>' +
+            '<li><span>Length</span><strong>' + info.opts.length + (info.opts.passphrase ? ' words' : ' chars') + '</strong></li>' +
+            '<li><span>Entropy</span><strong>' + info.bits.toFixed(2) + ' bits</strong></li>' +
+            '<li><span>Random source</span><strong>crypto.getRandomValues, rejection-sampled</strong></li>' +
+          '</ul>';
+      }
+
+      // Wire up live entropy on every control change, plus interaction event.
+      [lengthEl, lower, upper, digits, symbols, excl, noReps, pron, phrase, wordsEl, sepEl].forEach(function (el) {
+        if (!el) return;
+        el.addEventListener('input', function () {
+          syncLengthLabel();
+          syncPassphraseControls();
+          updateEntropy();
+          pushInteraction(el.id || el.getAttribute('data-toggle-lowercase') || 'control');
+        });
+        el.addEventListener('change', function () {
+          syncPassphraseControls();
+          updateEntropy();
+          pushInteraction(el.id || 'control');
+        });
+      });
+
+      generateBtn.addEventListener('click', generate);
+      generateFiveBtn.addEventListener('click', generateFive);
+      copyBtn.addEventListener('click', function () {
+        var txt = (passwordEl.textContent || '').trim();
+        if (!txt || txt === 'Press Generate.') return;
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(txt);
+        }
+      });
+
+      syncLengthLabel();
+      syncPassphraseControls();
+      updateEntropy();
+    })();
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

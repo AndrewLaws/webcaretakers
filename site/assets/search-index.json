@@ -8,6 +8,20 @@
   },
   {
     "type": "category",
+    "name": "Cybersecurity calculators",
+    "summary": "Browser-only password and security tools. Nothing you type gets sent anywhere.",
+    "url": "/calculators/cybersecurity/",
+    "category": "Cybersecurity"
+  },
+  {
+    "type": "tool",
+    "name": "Password Generator",
+    "summary": "Cryptographically secure passwords and passphrases generated in your browser. Uses Web Crypto. Nothing leaves the device. Disconnect your network and it still works.",
+    "url": "/calculators/cybersecurity/password-generator/",
+    "category": "Cybersecurity"
+  },
+  {
+    "type": "category",
     "name": "AI calculators",
     "summary": "Tools for working with AI APIs and large language models.",
     "url": "/calculators/ai/",
