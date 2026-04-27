@@ -322,6 +322,11 @@
           "slug": "meta-length-checker",
           "name": "Meta Length Checker",
           "summary": "Check SEO title and meta description against Google's display limits in characters and approximate pixel width."
+        },
+        {
+          "slug": "keyword-density-calculator",
+          "name": "Keyword Density Calculator",
+          "summary": "Paste an article or page and see word counts plus 1-, 2- and 3-gram keyword density tables. Optional stop-word filter, runs in your browser."
         }
       ]
     },

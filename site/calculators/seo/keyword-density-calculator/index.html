@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Keyword Density Calculator | WebCaretakers</title>
+  <meta name="description" content="Paste in a page or article and see word counts plus 1-, 2- and 3-gram keyword density tables. Optional stop-word filter, runs in your browser, nothing uploaded.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/seo/keyword-density-calculator/">
+  <meta property="og:title" content="Keyword Density Calculator | WebCaretakers">
+  <meta property="og:description" content="Word counts, unigram, bigram and trigram density tables for any pasted text. Browser-only.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/seo/keyword-density-calculator/">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var _stored = null;
+    try { _stored = localStorage.getItem('cookie-consent'); } catch (e) {}
+    var _initial = _stored === 'granted' ? 'granted' : 'denied';
+    gtag('consent', 'default', {
+      ad_storage: _initial, analytics_storage: _initial,
+      ad_user_data: _initial, ad_personalization: _initial,
+      functionality_storage: 'granted', security_storage: 'granted',
+      wait_for_update: 500
+    });
+  </script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Keyword Density Calculator",
+    "url": "https://webcaretakers.com/calculators/seo/keyword-density-calculator/",
+    "description": "Paste any text to get word counts and 1-, 2- and 3-gram keyword density tables. Optional stop-word filter. Runs in the browser, nothing uploaded.",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0" },
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "WebCaretakers",
+      "url": "https://webcaretakers.com/"
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is a healthy keyword density?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "There is no fixed target. Modern search engines do not score pages on a keyword-density ratio, and chasing a specific percentage usually produces stilted prose. Use the tables to spot the opposite problem: a primary term that barely appears, or a phrase that has been repeated so often it reads as stuffed. As a rough sanity check, a primary keyword sitting somewhere between 0.5% and 2.5% in natural prose is normal. Anything above 4% on a single term is worth a second look."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does keyword density still matter for SEO in 2026?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Density itself is not a ranking factor. What still matters is whether the page actually covers the topic with the right vocabulary. The bigram and trigram tables are more useful than the single-word table for that, because they surface the phrases a page is genuinely about. If your trigrams do not contain the topic you intended to write about, the page is off-target and no amount of optimisation will save it."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does the tool refuse to compute on short text?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Below 50 words the density numbers are noise. A single repeated word in a 30-word snippet looks like 10% density, which tells you nothing about a real page. The threshold is set at 50 words so the percentages the tool shows are at least directionally meaningful."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does it send my text anywhere?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Tokenisation, counting and ranking all happen in your browser. You can disconnect the network and the tool still works. Drafts and unpublished client copy stay on your device."
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-banner-heading" aria-describedby="cookie-banner-text" hidden>
+    <div class="cookie-banner__inner">
+      <h2 id="cookie-banner-heading" class="cookie-banner__heading">A quick word about cookies</h2>
+      <p id="cookie-banner-text" class="cookie-banner__text">
+        We use cookies for analytics, so we can see which calculators people actually use and which ones need work. Nothing creepy, nothing sold on. You can say yes, say no, or read the <a href="/privacy/">privacy policy</a> first. Your choice sticks.
+      </p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-reject>Reject</button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>Accept</button>
+      </div>
+    </div>
+  </div>
+
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">WebCaretakers</a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <ul class="primary-nav__list">
+          <li class="primary-nav__item primary-nav__item--has-menu">
+            <button type="button" class="primary-nav__link" data-menu-toggle aria-haspopup="true" aria-expanded="false">Calculators <span class="primary-nav__caret" aria-hidden="true">▾</span></button>
+            <ul class="primary-nav__submenu">
+              <li><a href="/calculators/ai/">AI</a></li>
+              <li><a href="/calculators/broadband/">Broadband</a></li>
+              <li><a href="/calculators/business/">Business</a></li>
+              <li><a href="/calculators/conversions/">Conversions</a></li>
+              <li><a href="/calculators/cybersecurity/">Cybersecurity</a></li>
+              <li><a href="/calculators/finance/">Finance</a></li>
+              <li><a href="/calculators/fun/">Fun</a></li>
+              <li><a href="/calculators/health/">Health</a></li>
+              <li><a href="/calculators/images/">Images</a></li>
+              <li><a href="/calculators/math/">Math</a></li>
+              <li><a href="/calculators/productivity/">Productivity</a></li>
+              <li><a href="/calculators/property/">Property</a></li>
+              <li><a href="/calculators/seo/">SEO</a></li>
+              <li><a href="/calculators/wedding/">Wedding</a></li>
+              <li><a href="/calculators/writing/">Writing</a></li>
+              <li class="primary-nav__submenu-sep"><a href="/calculators/">See all calculators</a></li>
+            </ul>
+          </li>
+          <li class="primary-nav__item"><a href="/about/" class="primary-nav__link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <main id="main-content">
+      <div class="container">
+        <nav aria-label="Breadcrumb" class="breadcrumbs">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/calculators/">Calculators</a></li>
+            <li><a href="/calculators/seo/">SEO</a></li>
+            <li aria-current="page">Keyword Density Calculator</li>
+          </ol>
+        </nav>
+
+        <h1>Keyword Density Calculator</h1>
+        <p class="intro">Paste a draft, a published page, or a competitor's article. The tool returns total and unique word counts, and three density tables: single words, two-word phrases, and three-word phrases. Useful for spotting accidental keyword stuffing and for checking that a page actually covers the topic you think it does.</p>
+
+        <section class="eli5" aria-label="Plain-English explanation">
+          <h2>Explain like I'm 5 (what even is this calculator?)</h2>
+          <p>It counts how many times each word and phrase appears in your text and turns the count into a percentage. The bigger the percentage, the more dominant that word or phrase is. If "running shoes" comes out at 6%, the page is shouting; if it does not appear at all on a page about running shoes, the page is not actually on topic.</p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="in-content" aria-hidden="true"></div>
+
+        <section data-calculator class="calculator-card">
+          <h2>Paste your text</h2>
+          <p class="reassure"><strong>Browser-only.</strong> Tokenisation and counting run locally. Nothing leaves the device.</p>
+
+          <form class="calc-form" novalidate>
+            <div class="calc-row">
+              <label for="kd-text">Text<span class="calc-hint">Paste an article, page copy, or a draft. The tables update as you type.</span></label>
+              <textarea id="kd-text" data-text rows="10" placeholder="Paste a block of text here. Aim for at least 50 words for the percentages to be meaningful."></textarea>
+            </div>
+            <div class="calc-row calc-row--checkbox">
+              <label><input type="checkbox" data-remove-stops checked> Remove stop words (the, a, of, and, etc.)</label>
+            </div>
+            <p class="calc-error" data-error hidden></p>
+          </form>
+
+          <div class="calculator-results" data-results hidden>
+            <h2>Results</h2>
+            <div class="mort-breakdown">
+              <h3>Counts</h3>
+              <ul>
+                <li class="mort-breakdown__total"><span>Total words</span><strong data-total-words>0</strong></li>
+                <li><span>Unique words</span><strong data-unique-words>0</strong></li>
+              </ul>
+            </div>
+
+            <h3>Top single words (1-grams)</h3>
+            <table class="density-table" aria-label="Top single words by frequency">
+              <thead><tr><th scope="col">Word</th><th scope="col">Count</th><th scope="col">Density</th></tr></thead>
+              <tbody data-unigrams><tr><td colspan="3">No data yet.</td></tr></tbody>
+            </table>
+
+            <h3>Top two-word phrases (2-grams)</h3>
+            <table class="density-table" aria-label="Top two-word phrases by frequency">
+              <thead><tr><th scope="col">Phrase</th><th scope="col">Count</th><th scope="col">Density</th></tr></thead>
+              <tbody data-bigrams><tr><td colspan="3">No data yet.</td></tr></tbody>
+            </table>
+
+            <h3>Top three-word phrases (3-grams)</h3>
+            <table class="density-table" aria-label="Top three-word phrases by frequency">
+              <thead><tr><th scope="col">Phrase</th><th scope="col">Count</th><th scope="col">Density</th></tr></thead>
+              <tbody data-trigrams><tr><td colspan="3">No data yet.</td></tr></tbody>
+            </table>
+
+            <details class="prove-it" data-prove-it>
+              <summary>Prove it</summary>
+              <div data-prove-it-body class="prove-it__body"></div>
+              <p class="prove-it-source">Tokenisation: lowercase the text, normalise smart quotes to ASCII apostrophes, treat em and en dashes as separators, then split on anything that is not a letter, digit, internal hyphen or internal apostrophe. Density is count divided by total tokens (before stop-word filtering), multiplied by 100. With the stop-word filter on, any unigram, bigram or trigram that contains a stop word is excluded from the table, but the total token count it is divided by stays the same.</p>
+            </details>
+          </div>
+
+          <p class="calc-note" data-too-short hidden>Add a bit more text. Below 50 words, density percentages are noise rather than signal.</p>
+
+          <p class="bookmark-nudge">
+            Useful? Save this calculator: press <kbd data-bookmark-shortcut>Ctrl</kbd> + <kbd>D</kbd> to bookmark it.
+          </p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="below-results" aria-hidden="true"></div>
+
+        <section class="long-form">
+          <h2>What keyword density actually tells you</h2>
+          <p>Keyword density is the share of a page's words that match a particular term or phrase. It is a counting exercise, not a ranking signal. Search engines stopped reading raw density as a quality measure long before TF-IDF, BERT and embedding-based retrieval rebuilt the way pages are evaluated. So why bother running the numbers? Because density is a useful diagnostic, even when it is not a target. Two patterns are worth catching: a primary topic that hardly appears on the page (the page is not really about what you think it is about), and a phrase that appears so often the prose reads as stuffed. The first is more common than people think. The second is rarer than it used to be, but still trips up content briefs that demand a keyword be repeated a fixed number of times.</p>
+
+          <h2>The bigram and trigram tables matter more than the unigram one</h2>
+          <p>Single-word counts are dominated by stop words unless you filter them out, and even with the filter on a single word like "marketing" or "London" tells you very little about the page's actual angle. Two-word and three-word phrases are where the topic shows itself. A page on rental yields should have "rental yield", "gross yield" and "net yield" in the bigram table. A page about UK mortgages should produce "stamp duty", "fixed rate" and "monthly payment" near the top of the bigram and trigram tables. If those phrases do not appear, the page is missing the vocabulary readers and crawlers expect.</p>
+
+          <h2>Common mistakes the tool will catch</h2>
+          <p>Repeating an exact match phrase verbatim across an article. The trigram table will surface it. Replace some occurrences with a synonym or rewrite the sentence. Forgetting the topic entirely after the first paragraph: the bigram and trigram tables go quiet on the topic phrase from row two onwards. A heading-heavy page where the body never picks up the same phrasing as the H2s: the unigrams from the headings dominate, the body's bigrams disagree.</p>
+
+          <h2>What the stop-word filter does, and when to switch it off</h2>
+          <p>The filter removes around 175 of the most common English words: articles, conjunctions, prepositions, pronouns, common contractions. With the filter on, those words never appear in the unigram table, and any bigram or trigram that contains one of them is dropped from the phrase tables too. That is what you want most of the time. Switch the filter off when you are checking a specific phrase that genuinely needs a stop word in it, like "cat in the hat" or "of the year". Switch it off too when you are auditing a page for natural-sounding prose: a healthy article has a high proportion of stop words, and seeing them in the raw counts can reassure you that the prose is not over-engineered.</p>
+
+          <h2>Edge cases the tokeniser handles</h2>
+          <p>Hyphenated words like "long-tail" stay as one token. Contractions like "don't" and "it's" stay as one token, with the apostrophe preserved. Numbers are kept and counted. Em dashes and en dashes are treated as separators rather than parts of words, so "test, really" and "test really" tokenise the same way. Smart quotes from Word and Google Docs are normalised to ASCII apostrophes before counting, so the same word does not appear twice with a different quote character.</p>
+
+          <h2>Related calculators</h2>
+          <p>Other quick checks for on-page hygiene.</p>
+          <ul class="related-calculators">
+            <li><a href="/calculators/seo/url-slug-generator/">Generate a clean URL slug</a></li>
+            <li><a href="/calculators/seo/meta-length-checker/">Check meta title and description length</a></li>
+            <li><a href="/calculators/writing/word-count/">Word, character and sentence count</a></li>
+            <li><a href="/calculators/writing/read-time-calculator/">Reading time estimator</a></li>
+          </ul>
+        </section>
+
+        <section class="faq" aria-labelledby="faq-heading">
+          <h2 id="faq-heading">Frequently asked questions</h2>
+          <details>
+            <summary>What is a healthy keyword density?</summary>
+            <p>There is no fixed target. Modern search engines do not score pages on a density ratio, and chasing a specific percentage usually produces stilted prose. Use the tables to spot a primary term that barely appears, or a phrase that has been repeated so often it reads as stuffed. A primary keyword sitting between 0.5% and 2.5% in natural prose is normal. Above 4% on a single term is worth a second look.</p>
+          </details>
+          <details>
+            <summary>Does keyword density still matter for SEO in 2026?</summary>
+            <p>Density itself is not a ranking factor. What still matters is whether the page actually covers the topic with the right vocabulary. The bigram and trigram tables are more useful than the single-word table for that, because they surface the phrases a page is genuinely about.</p>
+          </details>
+          <details>
+            <summary>Why does the tool refuse to compute on short text?</summary>
+            <p>Below 50 words, density percentages are noise. A single repeated word in a 30-word snippet looks like 10% density and tells you nothing about a real page. The threshold is set at 50 words so the percentages are at least directionally meaningful.</p>
+          </details>
+          <details>
+            <summary>Does it send my text anywhere?</summary>
+            <p>No. Tokenisation, counting and ranking all happen in your browser. Disconnect the network and the tool still works. Unpublished drafts and client copy stay on your device.</p>
+          </details>
+        </section>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="ad-slot" data-ad-slot="sidebar" aria-hidden="true"></div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="site-footer-nav" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/calculators/">All calculators</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+
+      <section class="site-disclaimer" data-disclaimer aria-labelledby="disclaimer-heading">
+        <h2 id="disclaimer-heading">A quick, necessary word</h2>
+        <p>Every calculator on this site is built to give you a sensible, well-reasoned estimate. It is, however, exactly that: an estimate, for general information only. Nothing you see here is professional, legal, financial, medical, or tax advice, and it should not be treated as such.</p>
+        <p>Before you make a decision that actually matters, talk to a qualified professional who knows your specific situation: an accountant, a solicitor, a doctor, an IT consultant, whoever fits the question. They can factor in the bits a generic tool can't.</p>
+        <p>We take no liability and accept no responsibility for any loss, damage, or questionable life choice arising from acting on the numbers you see here. Use the results as a starting point for a better conversation, not as the final word.</p>
+        <p><strong>Affiliate disclosure:</strong> some links on this site are affiliate links. If you click through and buy or sign up for something, we may earn a small commission at no extra cost to you. It helps keep the calculators free and ad-light. We only recommend things we'd point a friend towards.</p>
+      </section>
+      <p class="site-copyright">&copy; 2026 WebCaretakers. All rights reserved.</p>
+      <p class="site-legal">WebCaretakers is a trading name of <a href="https://yeseo.io/" rel="noopener">Andrew Laws Associates Ltd</a>, registered in England and Wales (company no. 08602332). ICO registration ZA726704.</p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/calculators/keyword-density.js"></script>
+  <script>
+  (function () {
+    'use strict';
+
+    var lib = window.KeywordDensity;
+    if (!lib) return;
+
+    var textIn   = document.querySelector('[data-text]');
+    var stopsIn  = document.querySelector('[data-remove-stops]');
+    var resultsEl = document.querySelector('[data-results]');
+    var tooShortEl = document.querySelector('[data-too-short]');
+    var totalEl  = document.querySelector('[data-total-words]');
+    var uniqueEl = document.querySelector('[data-unique-words]');
+    var uniBody  = document.querySelector('[data-unigrams]');
+    var biBody   = document.querySelector('[data-bigrams]');
+    var triBody  = document.querySelector('[data-trigrams]');
+    var proveBody = document.querySelector('[data-prove-it-body]');
+    var proveDetails = document.querySelector('[data-prove-it]');
+
+    var debounceTimer = null;
+    var firstResultFired = false;
+
+    function fmtPct(n) {
+      // 2 d.p. for small densities; integers for clean values.
+      if (Math.abs(n - Math.round(n)) < 0.005) return Math.round(n) + '%';
+      return n.toFixed(2) + '%';
+    }
+
+    function renderRows(tbody, rows) {
+      if (!rows.length) {
+        tbody.innerHTML = '<tr><td colspan="3">No phrases found at this length.</td></tr>';
+        return;
+      }
+      var html = '';
+      for (var i = 0; i < rows.length; i++) {
+        var r = rows[i];
+        var safe = r.term.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+        html += '<tr><td>' + safe + '</td><td>' + r.count + '</td><td>' + fmtPct(r.density) + '</td></tr>';
+      }
+      tbody.innerHTML = html;
+    }
+
+    function run() {
+      var result = lib.analyse({
+        text: textIn.value,
+        removeStopWords: stopsIn.checked
+      });
+
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: 'calculator_interaction',
+        calculator_name: 'Keyword Density Calculator',
+        field: 'text'
+      });
+
+      if (result.tooShort) {
+        resultsEl.hidden = true;
+        tooShortEl.hidden = textIn.value.trim().length === 0;
+        return;
+      }
+
+      tooShortEl.hidden = true;
+      resultsEl.hidden = false;
+
+      totalEl.textContent  = result.totalWords.toLocaleString('en-GB');
+      uniqueEl.textContent = result.uniqueWords.toLocaleString('en-GB');
+
+      renderRows(uniBody, result.unigrams);
+      renderRows(biBody,  result.bigrams);
+      renderRows(triBody, result.trigrams);
+
+      // Prove-it body: first 30 tokens and the working for the top result.
+      var first = result.proveIt.firstTokens;
+      var lines = [];
+      lines.push('Tokens 1 to ' + first.length + ' (lowercased, punctuation stripped, internal hyphens and apostrophes kept):');
+      lines.push('  ' + first.map(function (t, i) { return (i + 1) + '. ' + t; }).join('  '));
+      lines.push('');
+      lines.push('Total tokens: ' + result.totalWords);
+      lines.push('Unique tokens: ' + result.uniqueWords);
+      lines.push('');
+      if (result.proveIt.topTerm) {
+        lines.push('Top single word: "' + result.proveIt.topTerm + '"');
+        lines.push('Count: ' + result.proveIt.topCount);
+        lines.push('Density: ' + result.proveIt.topCount + ' \u00f7 ' + result.proveIt.topTotal + ' \u00d7 100 = ' + fmtPct(result.proveIt.topDensity));
+      } else {
+        lines.push('No single word survives the current filter.');
+      }
+      proveBody.textContent = lines.join('\n');
+
+      if (!firstResultFired) {
+        firstResultFired = true;
+        window.dataLayer.push({
+          event: 'calculator_result',
+          calculator_name: 'Keyword Density Calculator',
+          total_words: result.totalWords,
+          unique_words: result.uniqueWords,
+          top_term: result.proveIt.topTerm,
+          stop_words_filtered: stopsIn.checked
+        });
+      }
+    }
+
+    function schedule() {
+      if (debounceTimer) clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(run, 300);
+    }
+
+    textIn.addEventListener('input', schedule);
+    stopsIn.addEventListener('change', run);
+
+    if (proveDetails) {
+      proveDetails.addEventListener('toggle', function () {
+        if (proveDetails.open) {
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({ event: 'prove_it', calculator_name: 'Keyword Density Calculator' });
+        }
+      });
+    }
+
+    // Initial render (will show the too-short note for empty input).
+    run();
+  })();
+  </script>
+  <script>
+    (function () {
+      var shortcutEl = document.querySelector('[data-bookmark-shortcut]');
+      if (shortcutEl) {
+        var isMac = /Mac|iPhone|iPad|iPod/i.test(navigator.platform || navigator.userAgent);
+        shortcutEl.textContent = isMac ? '\u2318' : 'Ctrl';
+      }
+    })();
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

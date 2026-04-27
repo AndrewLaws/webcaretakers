@@ -385,6 +385,13 @@
     "category": "SEO"
   },
   {
+    "type": "tool",
+    "name": "Keyword Density Calculator",
+    "summary": "Paste an article or page and see word counts plus 1-, 2- and 3-gram keyword density tables. Optional stop-word filter, runs in your browser.",
+    "url": "/calculators/seo/keyword-density-calculator/",
+    "category": "SEO"
+  },
+  {
     "type": "category",
     "name": "Property calculators",
     "summary": "Figures for buying, renting, moving, and maintaining a home.",
