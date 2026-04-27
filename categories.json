@@ -93,7 +93,13 @@
       "slug": "cybersecurity",
       "name": "Cybersecurity",
       "tagline": "Browser-only password and security tools. Nothing you type gets sent anywhere.",
-      "tools": []
+      "tools": [
+        {
+          "slug": "password-generator",
+          "name": "Password Generator",
+          "summary": "Cryptographically secure passwords and passphrases generated in your browser. Uses Web Crypto. Nothing leaves the device. Disconnect your network and it still works."
+        }
+      ]
     },
     {
       "slug": "conversions",
