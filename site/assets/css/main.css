@@ -610,6 +610,22 @@ button[type="submit"]:hover {
   text-decoration: underline;
 }
 
+.site-footer-nav__cookie-link {
+  background: none;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: #ccc;
+  cursor: pointer;
+}
+
+.site-footer-nav__cookie-link:hover,
+.site-footer-nav__cookie-link:focus {
+  color: #fff;
+  text-decoration: underline;
+}
+
 .site-copyright {
   text-align: center;
   margin: 0;

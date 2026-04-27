@@ -101,30 +101,6 @@
     </div>
   </div>
 
-  <script>
-    (function () {
-      var KEY = 'cookie-consent';
-      var banner = document.querySelector('[data-cookie-banner]');
-      if (!banner) return;
-      var stored = null;
-      try { stored = localStorage.getItem(KEY); } catch (e) {}
-      if (stored !== 'granted' && stored !== 'denied') { banner.hidden = false; }
-      function record(choice) {
-        try { localStorage.setItem(KEY, choice); } catch (e) {}
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('consent', 'update', {
-          ad_storage: choice, analytics_storage: choice,
-          ad_user_data: choice, ad_personalization: choice
-        });
-        banner.hidden = true;
-      }
-      var accept = banner.querySelector('[data-cookie-accept]');
-      var reject = banner.querySelector('[data-cookie-reject]');
-      if (accept) accept.addEventListener('click', function () { record('granted'); });
-      if (reject) reject.addEventListener('click', function () { record('denied'); });
-    })();
-  </script>
 
   <header class="site-header">
     <div class="container">

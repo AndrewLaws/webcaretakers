@@ -110,6 +110,118 @@
   });
 })();
 
+// Cookie consent banner: show/hide, accept/reject, focus trap, ESC = reject,
+// and a "Manage cookie preferences" footer control that reopens the banner.
+//
+// The Consent Mode v2 default-denied gtag block stays inline in each page's
+// <head> because it must run before GTM loads. Everything below runs after
+// the page has rendered.
+(function () {
+  'use strict';
+
+  var KEY = 'cookie-consent';
+  var banner = document.querySelector('[data-cookie-banner]');
+  if (!banner) return;
+
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ window.dataLayer.push(arguments); }
+
+  var lastFocusBeforeOpen = null;
+
+  function focusable() {
+    return banner.querySelectorAll(
+      'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+    );
+  }
+
+  function onKeydown(e) {
+    if (banner.hidden) return;
+    if (e.key === 'Escape') {
+      e.preventDefault();
+      record('denied');
+      return;
+    }
+    if (e.key !== 'Tab') return;
+    var nodes = focusable();
+    if (!nodes.length) return;
+    var first = nodes[0];
+    var last = nodes[nodes.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
+  }
+
+  function open() {
+    lastFocusBeforeOpen = document.activeElement;
+    banner.hidden = false;
+    var reject = banner.querySelector('[data-cookie-reject]');
+    var accept = banner.querySelector('[data-cookie-accept]');
+    var target = reject || accept;
+    if (target) {
+      // Defer focus by a tick so the layout has settled.
+      setTimeout(function () { target.focus(); }, 0);
+    }
+    document.addEventListener('keydown', onKeydown, true);
+  }
+
+  function close() {
+    banner.hidden = true;
+    document.removeEventListener('keydown', onKeydown, true);
+    if (lastFocusBeforeOpen && typeof lastFocusBeforeOpen.focus === 'function') {
+      try { lastFocusBeforeOpen.focus(); } catch (e) {}
+    }
+  }
+
+  function record(choice) {
+    try { localStorage.setItem(KEY, choice); } catch (e) {}
+    gtag('consent', 'update', {
+      ad_storage: choice,
+      analytics_storage: choice,
+      ad_user_data: choice,
+      ad_personalization: choice
+    });
+    close();
+  }
+
+  // Wire the banner's own controls. Idempotent: per-page inline script may
+  // also have wired these, but addEventListener won't double-fire because
+  // we call removeEventListener via close() and re-add via open().
+  var accept = banner.querySelector('[data-cookie-accept]');
+  var reject = banner.querySelector('[data-cookie-reject]');
+  if (accept) accept.addEventListener('click', function () { record('granted'); });
+  if (reject) reject.addEventListener('click', function () { record('denied'); });
+
+  // Inject the "Manage cookie preferences" control into the footer nav so
+  // we don't have to edit every page's HTML.
+  var footerNav = document.querySelector('.site-footer-nav ul');
+  if (footerNav && !footerNav.querySelector('[data-cookie-manage]')) {
+    var li = document.createElement('li');
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'site-footer-nav__cookie-link';
+    btn.setAttribute('data-cookie-manage', '');
+    btn.textContent = 'Manage cookie preferences';
+    btn.addEventListener('click', function () { open(); });
+    li.appendChild(btn);
+    footerNav.appendChild(li);
+  }
+
+  // Show on first visit (no stored choice).
+  var stored = null;
+  try { stored = localStorage.getItem(KEY); } catch (e) {}
+  if (stored !== 'granted' && stored !== 'denied') {
+    open();
+  }
+
+  // Public API for any other surface that wants to reopen the banner.
+  window.WC = window.WC || {};
+  window.WC.cookieConsent = { open: open, close: close };
+})();
+
 // Sitewide CTA click tracking. Calculator-specific GTM events
 // (calculator_interaction, calculator_result) are pushed by each calculator's
 // own page script so the calculator_name is accurate and events are not
