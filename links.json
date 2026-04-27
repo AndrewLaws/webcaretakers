@@ -453,6 +453,18 @@
     {
       "phrase": "pomodoro calculator",
       "url": "/calculators/productivity/pomodoro-session-planner/"
+    },
+    {
+      "phrase": "Data Breach Risk Score",
+      "url": "/calculators/cybersecurity/data-breach-risk-score/"
+    },
+    {
+      "phrase": "breach risk calculator",
+      "url": "/calculators/cybersecurity/data-breach-risk-score/"
+    },
+    {
+      "phrase": "cybersecurity self-assessment",
+      "url": "/calculators/cybersecurity/data-breach-risk-score/"
     }
   ]
 }

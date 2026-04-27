@@ -106,6 +106,20 @@
   },
   {
     "type": "category",
+    "name": "Cybersecurity tools",
+    "summary": "Browser-only password and security tools. Nothing you type gets sent anywhere.",
+    "url": "/calculators/cybersecurity/",
+    "category": "Cybersecurity"
+  },
+  {
+    "type": "tool",
+    "name": "Data Breach Risk Score",
+    "summary": "Self-assess your breach exposure across passwords, 2FA, software hygiene and phishing awareness. Get a risk score and a prioritised fix list, all in your browser.",
+    "url": "/calculators/cybersecurity/data-breach-risk-score/",
+    "category": "Cybersecurity"
+  },
+  {
+    "type": "category",
     "name": "Finance calculators",
     "summary": "Sensible estimates for everyday money decisions.",
     "url": "/calculators/finance/",
