@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meeting Cost Calculator | WebCaretakers</title>
+  <meta name="description" content="Work out what a meeting actually costs. Attendees, salaries, overheads, duration, plus an annualised figure if it runs every week, and a live cost ticker.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/productivity/meeting-cost-calculator/">
+  <meta property="og:title" content="Meeting Cost Calculator | WebCaretakers">
+  <meta property="og:description" content="See the real cost of a meeting in money and lost productivity. Per-person breakdown, annualised weekly cost, and a live ticker.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/productivity/meeting-cost-calculator/">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var _stored = null;
+    try { _stored = localStorage.getItem('cookie-consent'); } catch (e) {}
+    var _initial = _stored === 'granted' ? 'granted' : 'denied';
+    gtag('consent', 'default', {
+      ad_storage: _initial, analytics_storage: _initial,
+      ad_user_data: _initial, ad_personalization: _initial,
+      functionality_storage: 'granted', security_storage: 'granted',
+      wait_for_update: 500
+    });
+  </script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Meeting Cost Calculator",
+    "url": "https://webcaretakers.com/calculators/productivity/meeting-cost-calculator/",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0" },
+    "author": {
+      "@type": "Person",
+      "name": "Andrew Laws",
+      "url": "https://yeseo.io/"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What working-hours-per-year figure does this use?",
+        "acceptedAnswer": { "@type": "Answer", "text": "1,800 hours. That is 37.5 hours a week multiplied by 48 working weeks, which is a typical UK full-time figure once you net off statutory holiday and bank holidays. If your team works a different pattern, the absolute pound figures move proportionally, but the relative cost between meetings stays the same." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why is there an overheads multiplier and what should I set it to?",
+        "acceptedAnswer": { "@type": "Answer", "text": "An employee costs more than their salary. Employer National Insurance, pension contributions, holiday, equipment, software, the desk they sit at, the office that desk lives in. A multiplier of 1.3 is a sensible default for a UK employee with standard benefits. If you are calculating contractor cost (no benefits, no desk), drop it to 1.0. For a London tech employer with generous benefits, 1.4 or 1.5 is closer to reality." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does the currency selector convert between GBP, USD and EUR?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No, it just changes the symbol on the display. £100,000 stays £100,000 whether you pick GBP, USD or EUR. There is no exchange-rate lookup because exchange rates change daily and the calculator would have to phone a server every time it ran. If you need to compare salaries across currencies, convert your inputs first and then read the result." }
+      },
+      {
+        "@type": "Question",
+        "name": "Is the annualised weekly cost realistic?",
+        "acceptedAnswer": { "@type": "Answer", "text": "It assumes the same meeting, with the same people, runs once a week for 52 weeks. That is a generous assumption for one-off planning sessions, and a brutally accurate one for the recurring Monday status update that nobody has questioned in three years. If yours falls somewhere in between, scale the figure to your actual cadence." }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I trust the live ticker?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. It uses your computer's wall clock, not a counter that drifts when the tab loses focus. Pause it when someone fetches coffee, reset it when the meeting really starts, and watch the cost climb in real time. It will not invoice anyone, but the look on their face when they see the number is part of the point." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-banner-heading" aria-describedby="cookie-banner-text" hidden>
+    <div class="cookie-banner__inner">
+      <h2 id="cookie-banner-heading" class="cookie-banner__heading">A quick word about cookies</h2>
+      <p id="cookie-banner-text" class="cookie-banner__text">
+        We use cookies for analytics, so we can see which calculators people actually use and which ones need work. Nothing creepy, nothing sold on. You can say yes, say no, or read the <a href="/privacy/">privacy policy</a> first. Your choice sticks.
+      </p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-reject>Reject</button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>Accept</button>
+      </div>
+    </div>
+  </div>
+
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">WebCaretakers</a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <ul class="primary-nav__list">
+          <li class="primary-nav__item primary-nav__item--has-menu">
+            <button type="button" class="primary-nav__link" data-menu-toggle aria-haspopup="true" aria-expanded="false">Calculators <span class="primary-nav__caret" aria-hidden="true">▾</span></button>
+            <ul class="primary-nav__submenu">
+              <li><a href="/calculators/ai/">AI</a></li>
+              <li><a href="/calculators/broadband/">Broadband</a></li>
+              <li><a href="/calculators/business/">Business</a></li>
+              <li><a href="/calculators/conversions/">Conversions</a></li>
+              <li><a href="/calculators/cybersecurity/">Cybersecurity</a></li>
+              <li><a href="/calculators/finance/">Finance</a></li>
+              <li><a href="/calculators/fun/">Fun</a></li>
+              <li><a href="/calculators/health/">Health</a></li>
+              <li><a href="/calculators/images/">Images</a></li>
+              <li><a href="/calculators/math/">Math</a></li>
+              <li><a href="/calculators/productivity/">Productivity</a></li>
+              <li><a href="/calculators/property/">Property</a></li>
+              <li><a href="/calculators/seo/">SEO</a></li>
+              <li><a href="/calculators/wedding/">Wedding</a></li>
+              <li><a href="/calculators/writing/">Writing</a></li>
+              <li class="primary-nav__submenu-sep"><a href="/calculators/">See all calculators</a></li>
+            </ul>
+          </li>
+          <li class="primary-nav__item"><a href="/about/" class="primary-nav__link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <main id="main-content">
+      <div class="container">
+        <nav aria-label="Breadcrumb" class="breadcrumbs">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/calculators/">Calculators</a></li>
+            <li><a href="/calculators/productivity/">Productivity</a></li>
+            <li aria-current="page">Meeting Cost Calculator</li>
+          </ol>
+        </nav>
+
+        <h1>Meeting Cost Calculator</h1>
+        <p class="intro">Add up what a meeting actually costs in salary time, with overheads. Plug in attendees, salaries and duration, get the meeting cost, what it adds up to over a year if you run it weekly, and the total person-hours sunk. There is also a live ticker for showing the room how much that "quick" sync is currently bleeding.</p>
+
+        <section class="eli5" aria-label="Plain-English explanation">
+          <h2>Explain like I'm 5 (what even is this calculator?)</h2>
+          <p>Every meeting has a price tag. Take everyone's hourly cost (their salary, plus the bits the company pays on top, divided by how many hours they work in a year), add it all up, then multiply by how long the meeting actually runs. The number that falls out is what your company has just spent on people staring at the same Zoom grid for an hour.</p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="in-content" aria-hidden="true"></div>
+
+        <section class="calculator-card">
+          <h2>Work out the cost</h2>
+
+          <form id="meeting-cost-form" class="calc-form" novalidate>
+            <fieldset class="calc-row">
+              <legend>How do you want to enter attendees?</legend>
+              <label><input type="radio" name="meeting-mode" value="simple" data-mode checked> Simple (everyone on the same salary)</label>
+              <label><input type="radio" name="meeting-mode" value="detailed" data-mode> Detailed (mixed roles and salaries)</label>
+            </fieldset>
+
+            <div class="calc-row" data-simple-panel>
+              <label for="simple-attendees">Number of attendees</label>
+              <input type="number" id="simple-attendees" data-simple-attendees min="0" step="1" value="6" inputmode="numeric">
+
+              <label for="simple-salary">Average annual salary</label>
+              <input type="number" id="simple-salary" data-simple-salary min="0" step="1000" value="55000" inputmode="decimal">
+            </div>
+
+            <div class="calc-row" data-detailed-panel hidden>
+              <label>Attendees by role</label>
+              <div data-detailed-rows class="meeting-rows"></div>
+              <button type="button" class="calc-btn calc-btn--secondary" data-add-row>Add a role</button>
+            </div>
+
+            <fieldset class="calc-row">
+              <legend>Meeting</legend>
+              <label for="duration">Duration (minutes)</label>
+              <input type="number" id="duration" data-duration min="0" step="5" value="60" inputmode="numeric">
+
+              <label for="overheads">Overheads multiplier</label>
+              <input type="number" id="overheads" data-overheads min="1" step="0.05" value="1.3" inputmode="decimal">
+              <p class="calc-row__hint">1.3 is a sensible UK default for an employee. Set it to 1.0 if you only want raw salary cost.</p>
+
+              <label for="currency">Currency</label>
+              <select id="currency" data-currency>
+                <option value="GBP" selected>GBP (£)</option>
+                <option value="USD">USD ($)</option>
+                <option value="EUR">EUR (€)</option>
+              </select>
+              <p class="calc-row__hint">Symbol only. No FX conversion: 100,000 stays 100,000 whichever you pick.</p>
+            </fieldset>
+
+            <div class="calc-row">
+              <button type="button" class="calc-btn" data-calculate>Calculate</button>
+            </div>
+          </form>
+
+          <div class="results" aria-live="polite">
+            <h3>Results</h3>
+            <ul class="result-list">
+              <li><span>Cost of this meeting</span> <strong data-result-total>£0.00</strong></li>
+              <li><span>Annualised if held weekly (× 52)</span> <strong data-result-annual>£0.00</strong></li>
+              <li><span>Time cost</span> <strong data-result-hours>0 person-hours</strong></li>
+            </ul>
+
+            <h3>Breakdown</h3>
+            <table class="breakdown-table">
+              <thead>
+                <tr><th>Role</th><th>Count</th><th>Salary</th><th>Hourly cost</th><th>Cost</th></tr>
+              </thead>
+              <tbody data-breakdown-body></tbody>
+            </table>
+          </div>
+
+          <section class="ticker" aria-labelledby="ticker-heading">
+            <h3 id="ticker-heading">Live ticker: meeting in progress</h3>
+            <p class="reassure">Press start when the meeting begins. The cost climbs in real time. Pause it when someone goes for tea, reset it when you start over. It uses your computer's wall clock, so it does not drift when the tab loses focus.</p>
+            <div class="ticker-display">
+              <div class="ticker-cost"><span class="ticker-label">Cost so far</span> <strong data-ticker-cost>£0.00</strong></div>
+              <div class="ticker-time"><span class="ticker-label">Elapsed</span> <strong data-ticker-time>00:00</strong></div>
+              <div class="ticker-status"><span class="ticker-label">Status</span> <strong data-ticker-status>Stopped</strong></div>
+            </div>
+            <div class="ticker-controls">
+              <button type="button" class="calc-btn" data-ticker-start>Start</button>
+              <button type="button" class="calc-btn calc-btn--secondary" data-ticker-pause>Pause</button>
+              <button type="button" class="calc-btn calc-btn--secondary" data-ticker-reset>Reset</button>
+            </div>
+          </section>
+
+          <details class="prove-it" data-prove-it>
+            <summary>Prove it</summary>
+            <p>Every figure on this page comes out of the same three lines of arithmetic. No black box. If the breakdown below does not match what you can do on the back of an envelope, the page is wrong, not your envelope.</p>
+            <p><strong>Formulas</strong></p>
+            <ul>
+              <li>Hourly rate per person = (annual salary × overheads multiplier) ÷ working hours per year</li>
+              <li>Cost per attendee = hourly rate × (duration in minutes ÷ 60)</li>
+              <li>Total meeting cost = sum of (cost per attendee × count) across every row</li>
+              <li>Annualised weekly cost = total meeting cost × 52</li>
+              <li>Live ticker cost = total cost × (elapsed seconds ÷ total seconds), capped at total cost once the meeting time runs out</li>
+            </ul>
+            <p><strong>Working hours per year</strong>: 1,800. That is 37.5 hours per week × 48 working weeks (52 weeks minus four weeks of statutory and bank holidays). UK full-time norm. If your team works longer or shorter weeks, the absolute pound figures scale by the same proportion.</p>
+            <p><strong>Workings used in this calculation</strong></p>
+            <ol data-workings></ol>
+          </details>
+
+          <p class="bookmark-nudge">
+            Useful? Save this calculator: press <kbd data-bookmark-shortcut>Ctrl</kbd> + <kbd>D</kbd> to bookmark it.
+          </p>
+        </section>
+
+        <template id="row-template">
+          <div class="meeting-row" data-detailed-row>
+            <input type="text" data-row-label placeholder="Role (e.g. Engineer)" aria-label="Role label">
+            <input type="number" data-row-count placeholder="Count" min="0" step="1" value="1" aria-label="Count" inputmode="numeric">
+            <input type="number" data-row-salary placeholder="Annual salary" min="0" step="1000" value="50000" aria-label="Annual salary" inputmode="decimal">
+            <button type="button" class="calc-btn calc-btn--secondary" data-row-remove>Remove</button>
+          </div>
+        </template>
+
+        <div class="ad-slot" data-ad-slot="below-results" aria-hidden="true"></div>
+
+        <section class="long-form">
+          <h2>The honest case for working out what your meetings cost</h2>
+          <p>Most companies have no idea what their meetings cost, which is partly why there are so many of them. A weekly all-hands with eighteen senior people in it can run to a couple of grand a session before anyone has spoken. Run that for a year and you are at six figures, for what is, very often, a slide deck and a quick "any questions?" Working it out once tends to change the conversation about whether the meeting needs to exist at all, who actually needs to be there, and whether 60 minutes was a sensible default or just what the calendar suggested.</p>
+
+          <h2>When this calculator is useful</h2>
+          <p>It is at its best when someone wants to push back on a recurring meeting and needs an actual number to wave around. "I think this stand-up is a waste of time" loses to "this stand-up is on track to cost the business £42,000 this year and we have not made a decision in it for two months." It is also useful before signing off on a workshop, training session, or off-site, where you can preview the cost of pulling fifteen people away from their actual jobs for a day. Plug in the salaries you can get hold of (LinkedIn, Glassdoor, your finance team if they are friendly), pad them up by 1.3 for overheads, and see what falls out.</p>
+
+          <h2>Common ways people fudge it</h2>
+          <p>The most common mistake is using the headline salary and ignoring everything else. An employee on £60,000 does not cost £60,000 a year, they cost something closer to £75,000 to £85,000 once you add employer National Insurance, pension contributions, equipment, software licences, holiday cover, and the proportion of office and management overhead they consume. The 1.3 multiplier on this calculator is a defensible default; bigger companies with more generous benefits often work out at 1.4 to 1.5. Set it to 1.0 only if you genuinely want the salary-only floor figure, or if you are pricing contractors who already cover their own overheads.</p>
+          <p>The second mistake is forgetting the cost of context-switching. The calculator gives you the time spent in the meeting itself. It does not, and cannot, capture the half hour either side: prep, "right, where were we" recovery, the email reply that finally goes out two hours later because someone got their flow broken. Real-world cost is meaningfully higher than the figure on screen. If you want to be ruthless about it, add 30 minutes to the duration field to bake the context-switch tax in.</p>
+
+          <h2>Edge cases worth knowing</h2>
+          <p>Single attendees give the floor of cost: one person, one hour, their hourly rate. Useful for "is it worth me going to this in person" decisions. Zero duration returns zero (no division by zero, no NaN, no fireworks); useful only as a sanity check that the page is not lying to you. Decimal salaries are fine, the maths runs in floating point. Currency is a label, not a converter: if you change the dropdown after a calculation, the symbol updates but the number does not. Switch overheads to 1.0 to see the raw salary cost without any of the employer tax-and-benefits padding, which is occasionally useful when arguing with people who think overheads are a finance department conspiracy.</p>
+
+          <h2>Using the live ticker without being a monster</h2>
+          <p>The ticker is, frankly, meant to be slightly horrifying. Share your screen with it running, press start when the meeting actually begins, watch the number climb. Used well, it makes everyone slightly more disciplined about staying on topic and finishing on time. Used badly, it makes you the office accountant nobody wants to invite to anything. Pick your audience. It works best in retrospectives, when looking at a recurring meeting that nobody has audited in a while, or when a senior leader asks why finance keeps querying the L&amp;D budget.</p>
+
+          <h2>Related calculators</h2>
+          <p>Other tools you might want next.</p>
+          <ul class="related-calculators">
+            <li><a href="/calculators/productivity/">All productivity tools</a></li>
+            <li><a href="/calculators/productivity/time-card-calculator/">Time Card Calculator for weekly hours and pay</a></li>
+            <li><a href="/calculators/productivity/pomodoro-session-planner/">Pomodoro Session Planner for focused work</a></li>
+            <li><a href="/calculators/business/freelance-day-rate-calculator/">Freelance Day Rate Calculator</a></li>
+          </ul>
+        </section>
+
+        <section class="faq" aria-labelledby="faq-heading">
+          <h2 id="faq-heading">Frequently asked questions</h2>
+          <details>
+            <summary>What working-hours-per-year figure does this use?</summary>
+            <p>1,800 hours. That is 37.5 hours a week multiplied by 48 working weeks, which is a typical UK full-time figure once you net off statutory holiday and bank holidays. If your team works a different pattern, the absolute pound figures move proportionally, but the relative cost between meetings stays the same.</p>
+          </details>
+          <details>
+            <summary>Why is there an overheads multiplier and what should I set it to?</summary>
+            <p>An employee costs more than their salary. Employer National Insurance, pension contributions, holiday, equipment, software, the desk they sit at, the office that desk lives in. A multiplier of 1.3 is a sensible default for a UK employee with standard benefits. If you are calculating contractor cost (no benefits, no desk), drop it to 1.0. For a London tech employer with generous benefits, 1.4 or 1.5 is closer to reality.</p>
+          </details>
+          <details>
+            <summary>Does the currency selector convert between GBP, USD and EUR?</summary>
+            <p>No, it just changes the symbol on the display. £100,000 stays £100,000 whether you pick GBP, USD or EUR. There is no exchange-rate lookup because exchange rates change daily and the calculator would have to phone a server every time it ran. If you need to compare salaries across currencies, convert your inputs first and then read the result.</p>
+          </details>
+          <details>
+            <summary>Is the annualised weekly cost realistic?</summary>
+            <p>It assumes the same meeting, with the same people, runs once a week for 52 weeks. That is a generous assumption for one-off planning sessions, and a brutally accurate one for the recurring Monday status update that nobody has questioned in three years. If yours falls somewhere in between, scale the figure to your actual cadence.</p>
+          </details>
+          <details>
+            <summary>Can I trust the live ticker?</summary>
+            <p>Yes. It uses your computer's wall clock, not a counter that drifts when the tab loses focus. Pause it when someone fetches coffee, reset it when the meeting really starts, and watch the cost climb in real time. It will not invoice anyone, but the look on their face when they see the number is part of the point.</p>
+          </details>
+        </section>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="ad-slot" data-ad-slot="sidebar" aria-hidden="true"></div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="site-footer-nav" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/calculators/">All calculators</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+
+      <section class="site-disclaimer" data-disclaimer aria-labelledby="disclaimer-heading">
+        <h2 id="disclaimer-heading">A quick, necessary word</h2>
+        <p>Every calculator on this site is built to give you a sensible, well-reasoned estimate. It is, however, exactly that: an estimate, for general information only. Nothing you see here is professional, legal, financial, medical, or tax advice, and it should not be treated as such.</p>
+        <p>Before you make a decision that actually matters, talk to a qualified professional who knows your specific situation: an accountant, a solicitor, a doctor, an IT consultant, whoever fits the question. They can factor in the bits a generic tool can't.</p>
+        <p>We take no liability and accept no responsibility for any loss, damage, or questionable life choice arising from acting on the numbers you see here. Use the results as a starting point for a better conversation, not as the final word.</p>
+        <p><strong>Affiliate disclosure:</strong> some links on this site are affiliate links. If you click through and buy or sign up for something, we may earn a small commission at no extra cost to you. It helps keep the calculators free and ad-light. We only recommend things we'd point a friend towards.</p>
+      </section>
+      <p class="site-copyright">&copy; 2026 WebCaretakers. All rights reserved.</p>
+      <p class="site-legal">WebCaretakers is a trading name of <a href="https://yeseo.io/" rel="noopener">Andrew Laws Associates Ltd</a>, registered in England and Wales (company no. 08602332). ICO registration ZA726704.</p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/calculators/meeting-cost-calculator.js"></script>
+  <script>
+    (function () {
+      var shortcutEl = document.querySelector('[data-bookmark-shortcut]');
+      if (shortcutEl) {
+        var isMac = /Mac|iPhone|iPad|iPod/i.test(navigator.platform || navigator.userAgent);
+        shortcutEl.textContent = isMac ? '\u2318' : 'Ctrl';
+      }
+    })();
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>
