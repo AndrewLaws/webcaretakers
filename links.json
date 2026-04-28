@@ -865,6 +865,90 @@
     {
       "phrase": "JPEG vs WebP vs AVIF size",
       "url": "/calculators/images/image-file-size-estimator/"
+    },
+    {
+      "phrase": "Sprint Capacity Planner",
+      "url": "/calculators/productivity/sprint-capacity-planner/"
+    },
+    {
+      "phrase": "sprint capacity calculator",
+      "url": "/calculators/productivity/sprint-capacity-planner/"
+    },
+    {
+      "phrase": "story point forecast",
+      "url": "/calculators/productivity/sprint-capacity-planner/"
+    },
+    {
+      "phrase": "Magic 8-Ball Generator",
+      "url": "/calculators/fun/magic-8-ball/"
+    },
+    {
+      "phrase": "magic 8 ball online",
+      "url": "/calculators/fun/magic-8-ball/"
+    },
+    {
+      "phrase": "ask the magic 8 ball",
+      "url": "/calculators/fun/magic-8-ball/"
+    },
+    {
+      "phrase": "CTR by SERP Position Estimator",
+      "url": "/calculators/seo/serp-ctr-estimator/"
+    },
+    {
+      "phrase": "SERP CTR estimator",
+      "url": "/calculators/seo/serp-ctr-estimator/"
+    },
+    {
+      "phrase": "click-through rate by ranking position",
+      "url": "/calculators/seo/serp-ctr-estimator/"
+    },
+    {
+      "phrase": "UK Leasehold Ground Rent & Service Charge Calculator",
+      "url": "/calculators/property/uk-leasehold-ground-rent-service-charge-calculator/"
+    },
+    {
+      "phrase": "leasehold service charge calculator",
+      "url": "/calculators/property/uk-leasehold-ground-rent-service-charge-calculator/"
+    },
+    {
+      "phrase": "ground rent calculator",
+      "url": "/calculators/property/uk-leasehold-ground-rent-service-charge-calculator/"
+    },
+    {
+      "phrase": "Headline Power-Word Score",
+      "url": "/calculators/writing/headline-power-word-score/"
+    },
+    {
+      "phrase": "headline analyser",
+      "url": "/calculators/writing/headline-power-word-score/"
+    },
+    {
+      "phrase": "headline power words",
+      "url": "/calculators/writing/headline-power-word-score/"
+    },
+    {
+      "phrase": "VPN Throughput Calculator",
+      "url": "/calculators/broadband/vpn-throughput-calculator/"
+    },
+    {
+      "phrase": "VPN speed calculator",
+      "url": "/calculators/broadband/vpn-throughput-calculator/"
+    },
+    {
+      "phrase": "WireGuard vs OpenVPN speed",
+      "url": "/calculators/broadband/vpn-throughput-calculator/"
+    },
+    {
+      "phrase": "Latency Impact Calculator",
+      "url": "/calculators/broadband/latency-impact-calculator/"
+    },
+    {
+      "phrase": "ping jitter packet loss calculator",
+      "url": "/calculators/broadband/latency-impact-calculator/"
+    },
+    {
+      "phrase": "is my ping good enough",
+      "url": "/calculators/broadband/latency-impact-calculator/"
     }
   ]
 }

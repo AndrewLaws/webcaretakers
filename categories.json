@@ -62,6 +62,16 @@
           "slug": "file-download-time-calculator",
           "name": "File Download Time Calculator",
           "summary": "Work out how long a file will take to download given your line speed. Decimal MB, GB and TB, megabit and gigabit speeds, with a 5% protocol overhead included and the working shown."
+        },
+        {
+          "slug": "latency-impact-calculator",
+          "name": "Latency Impact Calculator",
+          "summary": "See how ping, jitter and packet loss affect cloud gaming, FPS, video calls, browsing or SSH. Get a verdict per use case and an effective TCP throughput cap."
+        },
+        {
+          "slug": "vpn-throughput-calculator",
+          "name": "VPN Throughput Calculator",
+          "summary": "Estimate effective speed through a VPN given your link speed, protocol (WireGuard, OpenVPN, IPsec), cipher, CPU class and server distance. Identifies whether encryption, link bandwidth or RTT is the bottleneck."
         }
       ]
     },
@@ -385,6 +395,11 @@
           "summary": "Roll any combination of tabletop dice (2d6, 1d20+5, 4d6kh3) or flip up to 1000 coins. Browser-only, uses Web Crypto for an unbiased draw."
         },
         {
+          "slug": "magic-8-ball",
+          "name": "Magic 8-Ball Generator",
+          "summary": "Ask any yes/no question. The classic 20-answer oracle, with 10 affirmative, 5 non-committal and 5 negative answers, weighted exactly like the original toy."
+        },
+        {
           "slug": "random-name-picker",
           "name": "Random Name Picker",
           "summary": "Paste a list of names, choose how many to pick, get a fair random selection. Browser-only, uses Web Crypto for unbiased picks. Nothing you paste leaves the device."
@@ -415,6 +430,11 @@
           "slug": "project-deadline-countdown-calculator",
           "name": "Project Deadline Countdown Calculator",
           "summary": "Count the calendar days, working days and working hours left until a project deadline. Tick the days you actually work, paste in any holidays, see the percentage elapsed and a mini-calendar of the days that count."
+        },
+        {
+          "slug": "sprint-capacity-planner",
+          "name": "Sprint Capacity Planner",
+          "summary": "Plan a sprint by capacity, not gut feel. Per-person availability, holidays, ceremonies and focus factor combine into person-hours, person-days and a story-point forecast with a confidence band."
         },
         {
           "slug": "time-card-calculator",
@@ -449,6 +469,11 @@
           "summary": "Paste a robots.txt and check whether a URL is allowed or blocked for Googlebot, Bingbot or any user-agent. Follows Google's spec, shows the winning rule and why."
         },
         {
+          "slug": "serp-ctr-estimator",
+          "name": "CTR by SERP Position Estimator",
+          "summary": "Estimate clicks from a Google ranking. Pick a position 1–20, set monthly volume and SERP features, and see expected click-through rate based on Advanced Web Ranking 2024 data."
+        },
+        {
           "slug": "serp-snippet-preview",
           "name": "SERP Snippet Preview Tool",
           "summary": "Preview how a page title, meta description and URL render in Google's desktop and mobile search results. Truncation calculated by pixel width, not character count."
@@ -479,6 +504,11 @@
           "slug": "uk-house-move-cost-calculator",
           "name": "UK House Move Cost Calculator",
           "summary": "Total cost of moving home in the UK, broken out line by line. Stamp duty (SDLT, LBTT or LTT), conveyancing, mortgage fees, survey, removals, EPC and estate agent, with a best- and worst-case spread."
+        },
+        {
+          "slug": "uk-leasehold-ground-rent-service-charge-calculator",
+          "name": "UK Leasehold Ground Rent & Service Charge Calculator",
+          "summary": "Project annual cost over a chosen period for a UK leasehold flat. Models fixed, doubling and RPI-linked ground rent escalation, service charge inflation, and the post-2022 peppercorn rule."
         },
         {
           "slug": "uk-section-24-buy-to-let-tax-impact-calculator",
@@ -538,6 +568,11 @@
           "slug": "flesch-reading-ease-calculator",
           "name": "Flesch Reading Ease Score Calculator",
           "summary": "Paste text to get the Flesch Reading Ease score and Flesch-Kincaid Grade Level, with the underlying word, sentence and syllable counts."
+        },
+        {
+          "slug": "headline-power-word-score",
+          "name": "Headline Power-Word Score",
+          "summary": "Score a headline 0–100 based on power words, length, sentiment skew, numbers and stop-word ratio. Get suggestions to make it punchier."
         },
         {
           "slug": "read-time-calculator",

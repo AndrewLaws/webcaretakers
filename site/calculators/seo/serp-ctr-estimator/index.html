@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SERP CTR Estimator by Position | WebCaretakers</title>
+  <meta name="description" content="Forecast monthly clicks from a target Google ranking. Pick a CTR curve (Advanced Web Ranking 2024 or Backlinko 2024), set SERP features and branded weighting, see expected clicks with a low and high band.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/seo/serp-ctr-estimator/">
+  <meta property="og:title" content="SERP CTR Estimator by Position | WebCaretakers">
+  <meta property="og:description" content="Forecast monthly clicks from a target Google ranking. Two industry CTR curves, SERP feature erosion, branded weighting, all in your browser.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/seo/serp-ctr-estimator/">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var _stored = null;
+    try { _stored = localStorage.getItem('cookie-consent'); } catch (e) {}
+    var _initial = _stored === 'granted' ? 'granted' : 'denied';
+    gtag('consent', 'default', {
+      ad_storage: _initial, analytics_storage: _initial,
+      ad_user_data: _initial, ad_personalization: _initial,
+      functionality_storage: 'granted', security_storage: 'granted',
+      wait_for_update: 500
+    });
+  </script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "SERP CTR Estimator by Position",
+    "url": "https://webcaretakers.com/calculators/seo/serp-ctr-estimator/",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0" },
+    "author": {
+      "@type": "Person",
+      "name": "Andrew Laws",
+      "url": "https://yeseo.io/"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Where do the CTR numbers come from?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Two published studies are baked in. Advanced Web Ranking 2024 reports an average non-branded desktop CTR of 39.8% at position 1, falling to 1.6% at position 10. Backlinko's 2024 study of 4 million SERPs reports 27.6% at position 1, falling to 2.4% at position 10. Both are averages across millions of queries, so they smooth out the variation that any single keyword shows. Pick whichever matches your reference work." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does this tool call any API or look up live data?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. The page does not contact SerpAPI, Google, Ahrefs, or any other service. Every number you see is computed in your browser from the volume and position you typed and the CTR curve you selected. Nothing is uploaded, nothing is logged on a server, and the page works offline once loaded." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why is the answer a band rather than a single number?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Because organic CTR for any single keyword can sit a long way from the average. Intent, brand recognition, the snippet you write, the year, the device, and the SERP layout on the day all move the number. The +/- 25% band is a deliberate signal that this is a forecast, not a measurement. Use the expected value for planning and the high and low to stress-test the case." }
+      },
+      {
+        "@type": "Question",
+        "name": "What do the SERP feature erosion percentages mean?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Each feature, featured snippet, People Also Ask, Maps pack, video carousel, takes some of the organic clicks before they reach position 1. The erosion rate is the share of organic CTR the feature absorbs. They stack multiplicatively: two features that each erode 30% leave 0.7 x 0.7 = 0.49 of the original CTR, not 0.4. Defaults are conservative; tune them if your reference data says otherwise." }
+      },
+      {
+        "@type": "Question",
+        "name": "Should I use the branded multiplier?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Only if the keyword contains your brand name. Branded queries see CTRs at the top of the SERP that are roughly 50% higher than the non-branded average, because the searcher already knows what they are looking for. For non-branded informational or commercial keywords, leave it off. The default 1.5 is a starting point; adjust to match your own Search Console data once you have it." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-banner-heading" aria-describedby="cookie-banner-text" hidden>
+    <div class="cookie-banner__inner">
+      <h2 id="cookie-banner-heading" class="cookie-banner__heading">A quick word about cookies</h2>
+      <p id="cookie-banner-text" class="cookie-banner__text">
+        We use cookies for analytics, so we can see which calculators people actually use and which ones need work. Nothing creepy, nothing sold on. You can say yes, say no, or read the <a href="/privacy/">privacy policy</a> first. Your choice sticks.
+      </p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-reject>Reject</button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>Accept</button>
+      </div>
+    </div>
+  </div>
+
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">WebCaretakers</a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <ul class="primary-nav__list">
+          <li class="primary-nav__item primary-nav__item--has-menu">
+            <button type="button" class="primary-nav__link" data-menu-toggle aria-haspopup="true" aria-expanded="false">Calculators <span class="primary-nav__caret" aria-hidden="true">▾</span></button>
+            <ul class="primary-nav__submenu">
+              <li><a href="/calculators/ai/">AI</a></li>
+              <li><a href="/calculators/broadband/">Broadband</a></li>
+              <li><a href="/calculators/business/">Business</a></li>
+              <li><a href="/calculators/conversions/">Conversions</a></li>
+              <li><a href="/calculators/cybersecurity/">Cybersecurity</a></li>
+              <li><a href="/calculators/finance/">Finance</a></li>
+              <li><a href="/calculators/fun/">Fun</a></li>
+              <li><a href="/calculators/health/">Health</a></li>
+              <li><a href="/calculators/images/">Images</a></li>
+              <li><a href="/calculators/math/">Math</a></li>
+              <li><a href="/calculators/productivity/">Productivity</a></li>
+              <li><a href="/calculators/property/">Property</a></li>
+              <li><a href="/calculators/seo/">SEO</a></li>
+              <li><a href="/calculators/wedding/">Wedding</a></li>
+              <li><a href="/calculators/writing/">Writing</a></li>
+              <li class="primary-nav__submenu-sep"><a href="/calculators/">See all calculators</a></li>
+            </ul>
+          </li>
+          <li class="primary-nav__item"><a href="/about/" class="primary-nav__link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <main id="main-content">
+      <div class="container">
+        <nav aria-label="Breadcrumb" class="breadcrumbs">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/calculators/">Calculators</a></li>
+            <li><a href="/calculators/seo/">SEO</a></li>
+            <li aria-current="page">SERP CTR Estimator by Position</li>
+          </ol>
+        </nav>
+
+        <h1>SERP CTR Estimator by Position</h1>
+        <p class="intro">Type a keyword's monthly search volume and a target Google position, pick a published CTR curve, and see how many clicks the page is likely to bring in each month. Adjust for SERP features (featured snippet, People Also Ask, Maps, video) and toggle a branded multiplier when the keyword contains your brand. Everything runs in your browser.</p>
+
+        <section class="eli5" aria-label="Plain-English explanation">
+          <h2>Explain like I'm 5 (what even is this calculator?)</h2>
+          <p>If your page ranks at position 3 for a keyword that 10,000 people search every month, how many of them actually click? Not all 10,000. Not even half. The top result picks up most of the clicks, the second picks up fewer, and by the time you get to position 10 only a small handful are still clicking. This calculator multiplies your search volume by a published click-through rate for the position you have in mind, then trims it for the bits of the SERP (snippets, People Also Ask, maps) that steal clicks before anyone reaches the organic results.</p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="in-content" aria-hidden="true"></div>
+
+        <section class="calculator-card">
+          <h2>Estimate clicks for a position</h2>
+          <p class="reassure"><strong>Browser-only.</strong> No SerpAPI call, no Google query, no live volume lookup. The CTR curves are baked in from published studies and the maths runs locally.</p>
+
+          <form id="ctr-form" class="calc-form" novalidate>
+            <div class="calc-row">
+              <label for="ctr-volume">Monthly search volume</label>
+              <input type="number" id="ctr-volume" data-volume min="1" step="1" value="10000" inputmode="numeric">
+              <p class="calc-row__hint">From your keyword tool of choice. The figure is whatever you treat as the keyword's monthly searches.</p>
+            </div>
+
+            <div class="calc-row">
+              <label for="ctr-position">Target SERP position (1 to 20)</label>
+              <input type="number" id="ctr-position" data-position min="1" max="20" step="1" value="3" inputmode="numeric">
+            </div>
+
+            <fieldset class="calc-row">
+              <legend>CTR curve</legend>
+              <label><input type="radio" name="ctr-curve" value="awr" checked> Advanced Web Ranking 2024 (non-branded desktop)</label>
+              <label><input type="radio" name="ctr-curve" value="backlinko"> Backlinko 2024 (study of 4 million SERPs)</label>
+            </fieldset>
+
+            <fieldset class="calc-row">
+              <legend>SERP features present (each erodes organic CTR)</legend>
+              <label><input type="checkbox" data-feature-snippet> Featured snippet
+                <input type="number" data-erode-snippet min="0" max="100" step="1" value="30" aria-label="Featured snippet erosion percent">%
+              </label>
+              <label><input type="checkbox" data-feature-paa> People Also Ask
+                <input type="number" data-erode-paa min="0" max="100" step="1" value="10" aria-label="People Also Ask erosion percent">%
+              </label>
+              <label><input type="checkbox" data-feature-maps> Maps pack
+                <input type="number" data-erode-maps min="0" max="100" step="1" value="20" aria-label="Maps pack erosion percent">%
+              </label>
+              <label><input type="checkbox" data-feature-video> Video carousel
+                <input type="number" data-erode-video min="0" max="100" step="1" value="10" aria-label="Video carousel erosion percent">%
+              </label>
+              <p class="calc-row__hint">Erosions stack multiplicatively, so two 30% features leave 49% of the original CTR, not 40%.</p>
+            </fieldset>
+
+            <fieldset class="calc-row">
+              <legend>Branded query?</legend>
+              <label><input type="checkbox" data-branded> Yes, the keyword contains my brand. Apply a multiplier of
+                <input type="number" data-branded-multiplier min="1" max="3" step="0.05" value="1.5" aria-label="Branded multiplier">
+              </label>
+              <p class="calc-row__hint">Branded queries typically show ~50% higher CTR at the top of the SERP. Leave off for non-branded keywords.</p>
+            </fieldset>
+          </form>
+
+          <div class="result-card" data-result-card aria-live="polite">
+            <h3>Estimated clicks per month</h3>
+            <p class="result-card__primary"><strong data-result-expected>—</strong> <span class="result-card__unit">clicks/month (expected)</span></p>
+            <p class="result-card__band">Low to high band: <strong data-result-low>—</strong> – <strong data-result-high>—</strong> clicks</p>
+            <p class="result-card__meta">CTR at this position: <strong data-result-ctr>—</strong></p>
+            <p class="result-card__message" data-result-message></p>
+          </div>
+
+          <h3>Comparison: positions 1 to 10 at this volume</h3>
+          <table class="compact-table">
+            <thead>
+              <tr><th>Position</th><th>CTR</th><th>Expected clicks</th><th>Low – High</th></tr>
+            </thead>
+            <tbody data-comparison-tbody></tbody>
+          </table>
+
+          <details class="prove-it" data-prove-it>
+            <summary>Prove it</summary>
+            <div data-prove-it-body>
+              <p>Enter valid inputs to see the working.</p>
+            </div>
+          </details>
+
+          <p class="bookmark-nudge">
+            Useful? Save this calculator: press <kbd data-bookmark-shortcut>Ctrl</kbd> + <kbd>D</kbd> to bookmark it.
+          </p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="below-results" aria-hidden="true"></div>
+
+        <section class="long-form">
+          <h2>What a CTR forecast is actually for</h2>
+          <p>Most rank-tracking tools tell you where you sit today. A CTR forecast tells you what a position is worth before you spend the time chasing it. If a keyword has 5,000 monthly searches and the realistic top of the page CTR for your industry is 25%, then position 1 is worth roughly 1,250 visits a month. Position 5 is worth around 250. That ten-times difference is the number that should drive priority calls, not raw rank position.</p>
+          <p>Used well, the forecast feeds three sensible questions. First, is the prize worth the build cost? A page targeting a 200-volume keyword at position 3 produces about 22 clicks a month even on a generous curve, which sets a hard ceiling on the leads it can generate. Second, what does the upgrade look like? If you are at P5 today and modelling P2, the table on this page shows the gap, and that gap is the case for the work. Third, is the SERP layout punishing organic clicks before you even start? A keyword with a featured snippet, a Maps pack and a People Also Ask is a different proposition to one with ten clean blue links, and the erosion controls let you say so.</p>
+
+          <h2>The two CTR curves and when to pick each</h2>
+          <p>Advanced Web Ranking publishes a quarterly CTR study based on rank-tracking data across millions of keywords. Their non-branded desktop curve is steeper at the top: 39.8% at P1, half that at P2, single digits by P5. It tends to fit informational, longer-tail and B2B SERPs where the searcher reads a few options before clicking.</p>
+          <p>Backlinko's 2024 study of four million SERPs is flatter: 27.6% at P1, with a slower decline. It fits transactional and commercial SERPs where pre-existing brand recognition pulls clicks down the page. There is no "right" curve. Pick whichever matches the kind of search you are forecasting, and run the same model under both if the decision is close.</p>
+
+          <h2>Common mistakes to avoid</h2>
+          <p><strong>Treating the expected number as a target.</strong> It is the midpoint of a noisy band. Plan against the low end, celebrate the high end, but do not put the expected figure on a slide as if it were measured.</p>
+          <p><strong>Forgetting that volume tools disagree.</strong> Ahrefs, Semrush, Keyword Planner and Search Console all measure search volume differently. The forecast is only as good as the volume input. Pick a tool, note which one in the working, and stick with it across keywords for fair comparison.</p>
+          <p><strong>Ignoring SERP features.</strong> A featured snippet at the top of the page can shave 30% off the organic CTR before you reach P1. Look at the actual SERP for your keyword on a logged-out browser, count the features, and tick the boxes. The default erosion rates are conservative; if your industry is more click-rich (or less), tune them.</p>
+          <p><strong>Applying the branded multiplier to non-branded keywords.</strong> The 50% bump only applies to queries that contain your brand. Anything else, leave it off, or you will overstate the forecast by the same ratio.</p>
+
+          <h2>Edge cases worth knowing</h2>
+          <p>Positions 11 to 20 (page two) are modelled with a linear taper from P10's CTR down to about 0.5% at P20. That tail is rough by design. Real second-page traffic varies wildly by query and by how much a search refinement loop is happening on the SERP. Treat any P11+ forecast as a rough order of magnitude, not a planning number.</p>
+          <p>Very low-volume keywords (under about 50 searches a month) are noisy enough that the forecast is dominated by rounding. The honest answer for those is "a handful of clicks if you rank, none if you don't". Cluster them together with related terms and forecast the cluster.</p>
+
+          <h2>Related calculators</h2>
+          <p>Other browser-only SEO tools on the site.</p>
+          <ul class="related-calculators">
+            <li><a href="/calculators/seo/">All SEO calculators</a></li>
+            <li><a href="/calculators/seo/serp-snippet-preview/">SERP Snippet Preview, draft the title and description that earns the click</a></li>
+            <li><a href="/calculators/business/seo-roi-calculator/">SEO ROI Calculator, turn the click forecast into a revenue case</a></li>
+            <li><a href="/calculators/seo/keyword-density-calculator/">Keyword Density Calculator</a></li>
+          </ul>
+        </section>
+
+        <section class="faq" aria-labelledby="faq-heading">
+          <h2 id="faq-heading">Frequently asked questions</h2>
+          <details>
+            <summary>Where do the CTR numbers come from?</summary>
+            <p>Two published studies are baked in. Advanced Web Ranking 2024 reports an average non-branded desktop CTR of 39.8% at position 1, falling to 1.6% at position 10. Backlinko's 2024 study of 4 million SERPs reports 27.6% at position 1, falling to 2.4% at position 10. Both are averages across millions of queries, so they smooth out the variation that any single keyword shows. Pick whichever matches your reference work.</p>
+          </details>
+          <details>
+            <summary>Does this tool call any API or look up live data?</summary>
+            <p>No. The page does not contact SerpAPI, Google, Ahrefs, or any other service. Every number you see is computed in your browser from the volume and position you typed and the CTR curve you selected. Nothing is uploaded, nothing is logged on a server, and the page works offline once loaded.</p>
+          </details>
+          <details>
+            <summary>Why is the answer a band rather than a single number?</summary>
+            <p>Because organic CTR for any single keyword can sit a long way from the average. Intent, brand recognition, the snippet you write, the year, the device, and the SERP layout on the day all move the number. The +/- 25% band is a deliberate signal that this is a forecast, not a measurement. Use the expected value for planning and the high and low to stress-test the case.</p>
+          </details>
+          <details>
+            <summary>What do the SERP feature erosion percentages mean?</summary>
+            <p>Each feature, featured snippet, People Also Ask, Maps pack, video carousel, takes some of the organic clicks before they reach position 1. The erosion rate is the share of organic CTR the feature absorbs. They stack multiplicatively: two features that each erode 30% leave 0.7 x 0.7 = 0.49 of the original CTR, not 0.4. Defaults are conservative; tune them if your reference data says otherwise.</p>
+          </details>
+          <details>
+            <summary>Should I use the branded multiplier?</summary>
+            <p>Only if the keyword contains your brand name. Branded queries see CTRs at the top of the SERP that are roughly 50% higher than the non-branded average, because the searcher already knows what they are looking for. For non-branded informational or commercial keywords, leave it off. The default 1.5 is a starting point; adjust to match your own Search Console data once you have it.</p>
+          </details>
+        </section>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="ad-slot" data-ad-slot="sidebar" aria-hidden="true"></div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="site-footer-nav" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/calculators/">All calculators</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+
+      <section class="site-disclaimer" data-disclaimer aria-labelledby="disclaimer-heading">
+        <h2 id="disclaimer-heading">A quick, necessary word</h2>
+        <p>Every calculator on this site is built to give you a sensible, well-reasoned estimate. It is, however, exactly that: an estimate, for general information only. Nothing you see here is professional, legal, financial, medical, or tax advice, and it should not be treated as such.</p>
+        <p>Before you make a decision that actually matters, talk to a qualified professional who knows your specific situation: an accountant, a solicitor, a doctor, an IT consultant, whoever fits the question. They can factor in the bits a generic tool can't.</p>
+        <p>We take no liability and accept no responsibility for any loss, damage, or questionable life choice arising from acting on the numbers you see here. Use the results as a starting point for a better conversation, not as the final word.</p>
+        <p><strong>Affiliate disclosure:</strong> some links on this site are affiliate links. If you click through and buy or sign up for something, we may earn a small commission at no extra cost to you. It helps keep the calculators free and ad-light. We only recommend things we'd point a friend towards.</p>
+      </section>
+      <p class="site-copyright">&copy; 2026 WebCaretakers. All rights reserved.</p>
+      <p class="site-legal">WebCaretakers is a trading name of <a href="https://yeseo.io/" rel="noopener">Andrew Laws Associates Ltd</a>, registered in England and Wales (company no. 08602332). ICO registration ZA726704.</p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/calculators/serp-ctr-estimator.js"></script>
+  <script src="/assets/js/calculators/serp-ctr-estimator.page.js"></script>
+  <script>
+    (function () {
+      var shortcutEl = document.querySelector('[data-bookmark-shortcut]');
+      if (shortcutEl) {
+        var isMac = /Mac|iPhone|iPad|iPod/i.test(navigator.platform || navigator.userAgent);
+        shortcutEl.textContent = isMac ? '\u2318' : 'Ctrl';
+      }
+    })();
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

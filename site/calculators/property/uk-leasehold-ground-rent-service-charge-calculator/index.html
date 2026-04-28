@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UK Leasehold Ground Rent &amp; Service Charge Calculator | WebCaretakers</title>
+  <meta name="description" content="UK leasehold calculator that projects ground rent and service charge over the years you choose, including doubling clauses, RPI escalation, and the 2022 peppercorn cap.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/property/uk-leasehold-ground-rent-service-charge-calculator/">
+  <link rel="alternate" hreflang="en-GB" href="https://webcaretakers.com/calculators/property/uk-leasehold-ground-rent-service-charge-calculator/">
+  <link rel="alternate" hreflang="x-default" href="https://webcaretakers.com/calculators/property/uk-leasehold-ground-rent-service-charge-calculator/">
+  <meta property="og:title" content="UK Leasehold Ground Rent &amp; Service Charge Calculator | WebCaretakers">
+  <meta property="og:description" content="Project a UK leaseholder's ground rent and service charge over any horizon, including doubling clauses, RPI escalation, and the peppercorn cap from the Leasehold Reform (Ground Rent) Act 2022.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/property/uk-leasehold-ground-rent-service-charge-calculator/">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var _stored = null;
+    try { _stored = localStorage.getItem('cookie-consent'); } catch (e) {}
+    var _initial = _stored === 'granted' ? 'granted' : 'denied';
+    gtag('consent', 'default', {
+      ad_storage: _initial, analytics_storage: _initial,
+      ad_user_data: _initial, ad_personalization: _initial,
+      functionality_storage: 'granted', security_storage: 'granted',
+      wait_for_update: 500
+    });
+  </script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "UK Leasehold Ground Rent & Service Charge Calculator",
+    "url": "https://webcaretakers.com/calculators/property/uk-leasehold-ground-rent-service-charge-calculator/",
+    "description": "Projects a UK leaseholder's ground rent and service charge across the years you choose, including fixed, doubling and RPI-linked escalation, plus the peppercorn cap from the Leasehold Reform (Ground Rent) Act 2022.",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any",
+    "inLanguage": "en-GB",
+    "countriesSupported": "GB",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "GBP" },
+    "author": { "@type": "Person", "name": "Andrew Laws", "url": "https://yeseo.io/" }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is a peppercorn ground rent?",
+        "acceptedAnswer": { "@type": "Answer", "text": "A peppercorn rent is, in practice, zero. The Leasehold Reform (Ground Rent) Act 2022 caps ground rent on most new long residential leases granted from 30 June 2022 at one peppercorn a year, which means no money actually changes hands. Older leases granted before that date keep whatever ground rent clause they were sold with, which is why doubling and RPI-linked rents still affect a lot of existing flat owners." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does a doubling ground rent clause matter so much?",
+        "acceptedAnswer": { "@type": "Answer", "text": "A clause that doubles the ground rent every 10 or 25 years compounds aggressively. £250 doubling every 10 years reaches £4,000 by year 50 and £64,000 by year 100. Lenders treat ground rents above £250 outside London (£1,000 inside London) as Assured Shorthold Tenancy territory, which scares mortgage providers off and can make the flat hard to sell. Always check the lease before exchanging." }
+      },
+      {
+        "@type": "Question",
+        "name": "What does service charge actually cover?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Service charge covers the running costs of the building: communal cleaning, lifts, garden maintenance, buildings insurance, lighting, the freeholder's management fees, and a contribution to the reserve fund (sinking fund) for big future works like roof replacement or external decoration. It does not cover repairs inside your own flat. You're entitled under the Landlord and Tenant Act 1985 to ask for a written summary of how the charge has been spent." }
+      },
+      {
+        "@type": "Question",
+        "name": "Is the projection here a forecast?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. Service charge inflation is set by you as an assumption, not pulled from any market data. RPI on ground rent uses whatever figure you type in. Treat the projection as a stress test of your lease terms under a chosen scenario, not a prediction. Run it at a couple of different inflation assumptions to see how robust your figures are." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does this tool send my numbers anywhere?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. Everything runs in your browser. The figures you type never leave your device." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-banner-heading" aria-describedby="cookie-banner-text" hidden>
+    <div class="cookie-banner__inner">
+      <h2 id="cookie-banner-heading" class="cookie-banner__heading">A quick word about cookies</h2>
+      <p id="cookie-banner-text" class="cookie-banner__text">
+        We use cookies for analytics, so we can see which calculators people actually use and which ones need work. Nothing creepy, nothing sold on. You can say yes, say no, or read the <a href="/privacy/">privacy policy</a> first. Your choice sticks.
+      </p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-reject>Reject</button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>Accept</button>
+      </div>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">WebCaretakers</a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <ul class="primary-nav__list">
+          <li class="primary-nav__item primary-nav__item--has-menu">
+            <button type="button" class="primary-nav__link" data-menu-toggle aria-haspopup="true" aria-expanded="false">Calculators <span class="primary-nav__caret" aria-hidden="true">▾</span></button>
+            <ul class="primary-nav__submenu">
+              <li><a href="/calculators/ai/">AI</a></li>
+              <li><a href="/calculators/broadband/">Broadband</a></li>
+              <li><a href="/calculators/business/">Business</a></li>
+              <li><a href="/calculators/conversions/">Conversions</a></li>
+              <li><a href="/calculators/cybersecurity/">Cybersecurity</a></li>
+              <li><a href="/calculators/finance/">Finance</a></li>
+              <li><a href="/calculators/fun/">Fun</a></li>
+              <li><a href="/calculators/health/">Health</a></li>
+              <li><a href="/calculators/images/">Images</a></li>
+              <li><a href="/calculators/math/">Math</a></li>
+              <li><a href="/calculators/productivity/">Productivity</a></li>
+              <li><a href="/calculators/property/">Property</a></li>
+              <li><a href="/calculators/seo/">SEO</a></li>
+              <li><a href="/calculators/wedding/">Wedding</a></li>
+              <li><a href="/calculators/writing/">Writing</a></li>
+              <li class="primary-nav__submenu-sep"><a href="/calculators/">See all calculators</a></li>
+            </ul>
+          </li>
+          <li class="primary-nav__item"><a href="/about/" class="primary-nav__link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <main id="main-content">
+      <div class="container">
+        <nav aria-label="Breadcrumb" class="breadcrumbs">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/calculators/">Calculators</a></li>
+            <li><a href="/calculators/property/">Property</a></li>
+            <li aria-current="page">UK Leasehold Ground Rent &amp; Service Charge Calculator</li>
+          </ol>
+        </nav>
+
+        <h1>UK Leasehold Ground Rent &amp; Service Charge Calculator</h1>
+        <p class="intro">A UK leaseholder's two biggest recurring bills are ground rent and service charge. This tool projects both over the years you choose, including fixed, doubling and RPI-linked ground rent clauses, plus the peppercorn cap introduced by the Leasehold Reform (Ground Rent) Act 2022.</p>
+
+        <section class="eli5" aria-label="Plain-English explanation">
+          <h2>Explain like I'm 5 (what even is this calculator?)</h2>
+          <p>If you own a flat in the UK, you usually own a long lease, not the building. That means every year you pay the freeholder a small fee called ground rent, and a bigger fee called service charge that pays for things like cleaning the hallway, fixing the lift, and insuring the roof. Some old leases say the ground rent doubles every ten years, which gets out of hand fast. Type your figures in, pick how the rent grows, and the calculator shows what you'll pay each year and the total over time.</p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="in-content" aria-hidden="true"></div>
+
+        <section class="calculator-card">
+          <h2>Calculate</h2>
+
+          <aside class="indicative-notice" role="note" aria-label="Indicative estimate notice">
+            <strong>Indicative estimate only.</strong> The projection reflects the figures you type in. It is not a forecast of inflation, RPI, or your specific freeholder's behaviour. Always read your lease and, before buying or extending, take advice from a qualified UK conveyancing solicitor.
+          </aside>
+
+          <form class="calc-form" novalidate>
+            <fieldset class="calc-fieldset">
+              <legend>Ground rent</legend>
+              <div class="calc-row">
+                <label for="lh-current-gr">Current ground rent (£/year)</label>
+                <input type="number" id="lh-current-gr" name="currentGroundRent" min="0" step="any" value="250">
+              </div>
+              <div class="calc-row">
+                <label for="lh-escalation">Escalation type</label>
+                <select id="lh-escalation" name="escalationType">
+                  <option value="fixed">Fixed (no increase)</option>
+                  <option value="doublingEvery10">Doubling every 10 years</option>
+                  <option value="doublingEvery25">Doubling every 25 years</option>
+                  <option value="rpiLinked">RPI-linked (compound annually)</option>
+                </select>
+              </div>
+              <div class="calc-row" data-rpi-row hidden>
+                <label for="lh-rpi">RPI assumption (%)</label>
+                <input type="number" id="lh-rpi" name="rpiAssumption" min="0" step="any" value="3">
+              </div>
+              <div class="calc-row">
+                <label for="lh-peppercorn">Peppercorn cap (Leasehold Reform Act 2022)</label>
+                <input type="checkbox" id="lh-peppercorn" name="peppercorn">
+              </div>
+            </fieldset>
+
+            <fieldset class="calc-fieldset">
+              <legend>Service charge</legend>
+              <div class="calc-row">
+                <label for="lh-current-sc">Current service charge (£/year)</label>
+                <input type="number" id="lh-current-sc" name="currentServiceCharge" min="0" step="any" value="2000">
+              </div>
+              <div class="calc-row">
+                <label for="lh-sc-inflation">Annual service charge inflation (%)</label>
+                <input type="number" id="lh-sc-inflation" name="serviceChargeInflation" step="any" value="3">
+              </div>
+            </fieldset>
+
+            <fieldset class="calc-fieldset">
+              <legend>Horizon</legend>
+              <div class="calc-row">
+                <label for="lh-years">Years to project</label>
+                <input type="number" id="lh-years" name="years" min="1" max="50" step="1" value="20">
+              </div>
+            </fieldset>
+
+            <button type="button" data-calculate>Project ground rent &amp; service charge</button>
+            <p class="calc-error" data-error hidden></p>
+          </form>
+
+          <div class="calculator-results">
+            <div class="result-summary" data-result-summary hidden>
+              <h3>At a glance</h3>
+              <p data-result-summary-text></p>
+              <ul>
+                <li><span>Total over horizon</span><strong data-result-total>&mdash;</strong></li>
+                <li><span>Average monthly cost</span><strong data-result-monthly-avg>&mdash;</strong></li>
+              </ul>
+            </div>
+
+            <div class="mort-breakdown" data-year-table-wrap hidden>
+              <h3>Year by year</h3>
+              <div class="table-scroll">
+                <table data-year-table>
+                  <thead>
+                    <tr>
+                      <th scope="col">Year</th>
+                      <th scope="col">Ground rent</th>
+                      <th scope="col">Service charge</th>
+                      <th scope="col">Combined</th>
+                    </tr>
+                  </thead>
+                  <tbody></tbody>
+                </table>
+              </div>
+            </div>
+
+            <details class="prove-it" data-prove-it>
+              <summary>Prove it</summary>
+              <div data-prove-it-body>
+                <p>The maths, end to end, so you can audit it.</p>
+                <ul data-prove-it-list></ul>
+                <p class="prove-it-source">Doubling clauses follow the lease wording: a 10-year clause doubles after every full 10 years, so years 1 to 10 stay at the base rate, year 11 to 20 sit at double, and so on. RPI-linked clauses compound annually at your stated assumption. The peppercorn cap reflects the Leasehold Reform (Ground Rent) Act 2022, which sets ground rent on qualifying new long residential leases at one peppercorn (effectively zero) from 30 June 2022.</p>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="below-results" aria-hidden="true"></div>
+
+        <section class="long-form">
+          <h2>Why leasehold costs catch buyers off guard</h2>
+          <p>If you have only ever owned a freehold house, leasehold can look strange. You buy a flat for hundreds of thousands of pounds and then find out you owe the freeholder an annual ground rent, plus a service charge that can swing several thousand pounds a year depending on what work the building needs. Both can rise. Some can rise sharply. The lease is the contract that decides how, and reading it carefully is the only way to know what you have signed up to.</p>
+
+          <p>Three patterns matter most: a fixed ground rent that never moves, a doubling clause that escalates aggressively, and an RPI-linked clause that compounds with inflation. The Leasehold Reform (Ground Rent) Act 2022 changed the rules for new long residential leases granted from 30 June 2022, capping ground rent at a peppercorn. That cap does not retrospectively apply to existing leases, which is why so many flat owners are still tied to clauses written decades ago.</p>
+
+          <h2>Fixed, doubling and RPI: what each one does to your bill</h2>
+          <p>A fixed ground rent of £250 is exactly that, every year, for the life of the lease. Boring, but easy to plan around. The trouble starts when "fixed" actually means "fixed until the next review", and the lease quietly buries a doubling clause inside.</p>
+
+          <p>A doubling clause is the one that ruins valuations. £250 doubling every 10 years sounds harmless. By year 50 it is £4,000. By year 100 it is £64,000. Mortgage lenders refuse to touch flats where the ground rent crosses £250 outside London or £1,000 inside London, because at that point the lease can be re-categorised as an Assured Shorthold Tenancy under the Housing Act 1988. Owners stuck with these clauses often find their flats unsellable until the freeholder agrees to a deed of variation, which usually costs thousands of pounds.</p>
+
+          <p>RPI-linked clauses are gentler in the short term but compound silently. A £250 ground rent rising at 3% per year reaches roughly £455 after 20 years and £820 after 40. That sits well below the lender thresholds today, but the compounding never stops, and a high-inflation decade can push a previously sleepy lease into mortgage-trouble territory.</p>
+
+          <h2>Service charge: the bigger number most people forget</h2>
+          <p>Ground rent gets the press. Service charge usually costs more. A typical London flat in a managed block might run £2,000 to £4,000 a year. A flat with a concierge, lifts and a swimming pool can easily clear £6,000. New-build cladding remediation has pushed some service charges past £10,000 a year on its own. None of that is in the lease as a fixed figure: the lease tells you how the charge is calculated and apportioned, not what it will actually be.</p>
+
+          <p>Service charge usually covers communal cleaning, lift maintenance, gardening, buildings insurance, lighting, the freeholder's management fee, and a reserve fund (sometimes called a sinking fund) for big future works. It does not cover anything inside your own flat. Under the Landlord and Tenant Act 1985 you have the right to ask for a written summary of how the charge has been spent in any 12-month period, and to inspect the underlying invoices.</p>
+
+          <h2>What the calculator does</h2>
+          <p>It takes your current ground rent and service charge, applies the escalation rule you select, projects each year separately, and adds them up. The year-by-year table is the useful bit: it shows you exactly when a doubling clause kicks in, or when RPI compounding has eaten your monthly budget. The summary line gives you the total cost over your horizon and the average monthly figure, so you can compare leasehold ownership against renting or against a freehold alternative on the same mental footing.</p>
+
+          <p>If you tick the peppercorn box, every year of ground rent drops to zero, regardless of what the escalation rule would otherwise have done. Service charge keeps inflating at your stated assumption, because the 2022 Act does not touch service charge.</p>
+
+          <h2>What this tool does not do</h2>
+          <p>It does not value your lease for extension or enfranchisement: that needs a RICS surveyor. It does not check whether your specific clause is enforceable: that needs a solicitor. It does not predict actual RPI or service charge inflation: you set those assumptions yourself. It does not handle event-fee leases (typical of some retirement housing) where a fee is triggered on sale. And it makes no allowance for major works levies, which can land in any given year and dwarf the regular service charge.</p>
+
+          <p>Nothing on this page is legal or financial advice. Treat the result as a starting point for a conversation with a qualified UK conveyancing solicitor or chartered surveyor.</p>
+
+          <h2>Related calculators</h2>
+          <p>Run these alongside for the full picture.</p>
+          <ul class="related-calculators">
+            <li><a href="/calculators/property/uk-rent-vs-buy-calculator/">UK Rent vs Buy Calculator</a> to compare leasehold ownership against renting.</li>
+            <li><a href="/calculators/finance/uk-mortgage-calculator/">UK Mortgage Calculator</a> for the monthly mortgage payment on a flat purchase.</li>
+            <li><a href="/calculators/property/uk-house-move-cost-calculator/">UK House Move Cost Calculator</a> for the upfront costs of moving.</li>
+          </ul>
+        </section>
+
+        <section class="faq">
+          <h2>Common questions</h2>
+          <details>
+            <summary>What is a peppercorn ground rent?</summary>
+            <p>A peppercorn rent is, in practice, zero. The Leasehold Reform (Ground Rent) Act 2022 caps ground rent on most new long residential leases granted from 30 June 2022 at one peppercorn a year. Older leases keep whatever clause they were sold with.</p>
+          </details>
+          <details>
+            <summary>Why does a doubling clause matter so much?</summary>
+            <p>It compounds aggressively. £250 doubling every 10 years reaches £4,000 by year 50. Mortgage lenders treat ground rents above £250 outside London (£1,000 inside) with caution because of the Housing Act 1988 AST overlap, which can make a flat hard to sell.</p>
+          </details>
+          <details>
+            <summary>What does service charge cover?</summary>
+            <p>The communal running costs of the building: cleaning, lifts, gardens, buildings insurance, lighting, freeholder management fees, and a reserve fund for major future works. It does not cover anything inside your own flat.</p>
+          </details>
+          <details>
+            <summary>Is this projection a forecast?</summary>
+            <p>No. You set the inflation and RPI assumptions yourself. Treat the figures as a stress test of your lease, not a prediction. Run it at a couple of different inflation rates to see how the totals move.</p>
+          </details>
+          <details>
+            <summary>Does this tool send my numbers anywhere?</summary>
+            <p>No. Everything runs in your browser. The figures you type never leave your device.</p>
+          </details>
+        </section>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="ad-slot" data-ad-slot="sidebar" aria-hidden="true"></div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="site-footer-nav" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/calculators/">All calculators</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+      <section class="site-disclaimer" data-disclaimer aria-labelledby="disclaimer-heading">
+        <h2 id="disclaimer-heading">A quick, necessary word</h2>
+        <p>Every calculator on this site is built to give you a sensible, well-reasoned estimate. It is, however, exactly that: an estimate, for general information only. Nothing you see here is professional, legal, financial, medical, or tax advice, and it should not be treated as such.</p>
+        <p>Before you make a decision that actually matters, talk to a qualified professional who knows your specific situation: an accountant, a solicitor, a doctor, an IT consultant, whoever fits the question. They can factor in the bits a generic tool can't.</p>
+        <p>We take no liability and accept no responsibility for any loss, damage, or questionable life choice arising from acting on the numbers you see here. Use the results as a starting point for a better conversation, not as the final word.</p>
+        <p><strong>Affiliate disclosure:</strong> some links on this site are affiliate links. If you click through and buy or sign up for something, we may earn a small commission at no extra cost to you. It helps keep the calculators free and ad-light. We only recommend things we'd point a friend towards.</p>
+      </section>
+      <p class="site-copyright">&copy; 2026 WebCaretakers. All rights reserved.</p>
+      <p class="site-legal">WebCaretakers is a trading name of <a href="https://yeseo.io/" rel="noopener">Andrew Laws Associates Ltd</a>, registered in England and Wales (company no. 08602332). ICO registration ZA726704.</p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/calculators/uk-leasehold-ground-rent-service-charge-calculator.js"></script>
+  <script>
+  (function () {
+    'use strict';
+
+    var CALC_NAME = 'uk-leasehold-ground-rent-service-charge-calculator';
+
+    var calcBtn = document.querySelector('[data-calculate]');
+    var errorEl = document.querySelector('[data-error]');
+    var summaryEl = document.querySelector('[data-result-summary]');
+    var summaryText = document.querySelector('[data-result-summary-text]');
+    var totalEl = document.querySelector('[data-result-total]');
+    var monthlyEl = document.querySelector('[data-result-monthly-avg]');
+    var tableWrap = document.querySelector('[data-year-table-wrap]');
+    var tableBody = document.querySelector('[data-year-table] tbody');
+    var proveListEl = document.querySelector('[data-prove-it-list]');
+    var proveDetails = document.querySelector('[data-prove-it]');
+    var rpiRow = document.querySelector('[data-rpi-row]');
+    var escalationEl = document.querySelector('[name="escalationType"]');
+    var rpiInput = document.querySelector('[name="rpiAssumption"]');
+
+    function num(sel, fallback) {
+      var el = document.querySelector(sel);
+      if (!el) return fallback || 0;
+      var v = parseFloat(el.value);
+      return isNaN(v) ? (fallback || 0) : v;
+    }
+    function fmt(n) {
+      var sign = n < 0 ? '-' : '';
+      var abs = Math.abs(n).toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      return sign + '£' + abs;
+    }
+
+    function syncRpiVisibility() {
+      var isRpi = escalationEl.value === 'rpiLinked';
+      if (rpiRow) rpiRow.hidden = !isRpi;
+      if (rpiInput) {
+        // Keep the input in the DOM either way; just hide its row.
+        rpiInput.style.display = isRpi ? '' : '';
+      }
+    }
+    syncRpiVisibility();
+    escalationEl.addEventListener('change', syncRpiVisibility);
+
+    document.querySelectorAll('.calc-form input, .calc-form select').forEach(function (el) {
+      el.addEventListener('change', function () {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: 'calculator_interaction',
+          calculator_name: CALC_NAME,
+          field: el.getAttribute('name') || el.getAttribute('id') || ''
+        });
+      });
+    });
+
+    function showError(msg) {
+      errorEl.textContent = msg;
+      errorEl.hidden = false;
+      summaryEl.hidden = true;
+      tableWrap.hidden = true;
+    }
+    function clearError() {
+      errorEl.hidden = true;
+      errorEl.textContent = '';
+    }
+
+    calcBtn.addEventListener('click', function () {
+      clearError();
+
+      var peppercornEl = document.querySelector('[name="peppercorn"]');
+      var args = {
+        currentGroundRent: num('[name="currentGroundRent"]', 0),
+        escalationType: escalationEl.value,
+        rpiAssumption: num('[name="rpiAssumption"]', 0),
+        currentServiceCharge: num('[name="currentServiceCharge"]', 0),
+        serviceChargeInflation: num('[name="serviceChargeInflation"]', 0),
+        years: Math.floor(num('[name="years"]', 20)),
+        peppercorn: peppercornEl ? peppercornEl.checked : false
+      };
+
+      try {
+        var r = window.UkLeaseholdCalc.calculateLeasehold(args);
+
+        var summarySentence;
+        if (r.peppercorn) {
+          summarySentence = 'Peppercorn cap applied: ground rent stays at zero across all ' + args.years + ' years. Service charge still inflates at ' + args.serviceChargeInflation + '% a year.';
+        } else if (r.escalationType === 'doublingEvery10' || r.escalationType === 'doublingEvery25') {
+          summarySentence = 'Doubling ground rent clause applied. Combined ground rent and service charge over ' + args.years + ' years totals ' + fmt(r.totalCombined) + '.';
+        } else if (r.escalationType === 'rpiLinked') {
+          summarySentence = 'RPI-linked ground rent at ' + args.rpiAssumption + '% compounding annually. Combined cost over ' + args.years + ' years: ' + fmt(r.totalCombined) + '.';
+        } else {
+          summarySentence = 'Fixed ground rent of ' + fmt(args.currentGroundRent) + ' a year. Combined cost over ' + args.years + ' years: ' + fmt(r.totalCombined) + '.';
+        }
+        summaryText.textContent = summarySentence;
+        totalEl.textContent = fmt(r.totalCombined);
+        monthlyEl.textContent = fmt(r.averageMonthly);
+        summaryEl.hidden = false;
+
+        tableBody.innerHTML = '';
+        r.years.forEach(function (row) {
+          var tr = document.createElement('tr');
+          tr.innerHTML = '<td>' + row.year + '</td>' +
+                         '<td>' + fmt(row.groundRent) + '</td>' +
+                         '<td>' + fmt(row.serviceCharge) + '</td>' +
+                         '<td>' + fmt(row.combined) + '</td>';
+          tableBody.appendChild(tr);
+        });
+        tableWrap.hidden = false;
+
+        // Build prove-it list
+        proveListEl.innerHTML = '';
+        var workings = [
+          'Ground rent input: ' + fmt(args.currentGroundRent) + ' a year, escalation = ' + r.escalationType + (r.peppercorn ? ' (peppercorn override applied)' : ''),
+          'Service charge input: ' + fmt(args.currentServiceCharge) + ' a year, inflating at ' + args.serviceChargeInflation + '% a year',
+          'Total ground rent over ' + args.years + ' years: ' + fmt(r.totalGroundRent),
+          'Total service charge over ' + args.years + ' years: ' + fmt(r.totalServiceCharge),
+          'Combined total: ' + fmt(r.totalCombined),
+          'Average monthly cost = ' + fmt(r.totalCombined) + ' / (' + args.years + ' years x 12 months) = ' + fmt(r.averageMonthly)
+        ];
+        workings.forEach(function (line) {
+          var li = document.createElement('li');
+          li.textContent = line;
+          proveListEl.appendChild(li);
+        });
+
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: 'calculator_result',
+          calculator_name: CALC_NAME,
+          years: args.years,
+          escalation_type: r.escalationType,
+          peppercorn: r.peppercorn,
+          total_ground_rent: r.totalGroundRent,
+          total_service_charge: r.totalServiceCharge,
+          total_combined: r.totalCombined,
+          average_monthly: r.averageMonthly
+        });
+      } catch (err) {
+        showError(err.message);
+      }
+    });
+
+    if (proveDetails) {
+      proveDetails.addEventListener('toggle', function () {
+        if (proveDetails.open) {
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: 'prove_it',
+            calculator_name: CALC_NAME
+          });
+        }
+      });
+    }
+  })();
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

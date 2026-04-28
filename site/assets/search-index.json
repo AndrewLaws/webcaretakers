@@ -705,5 +705,54 @@
     "summary": "Paste English text and see it transformed into Suffolk dialect, word by word, using the same vocabulary as the Suffolk Lorem Ipsum generator.",
     "url": "/calculators/writing/english-to-suffolk-translator/",
     "category": "Writing"
+  },
+  {
+    "type": "tool",
+    "name": "Magic 8-Ball Generator",
+    "summary": "Ask any yes/no question. The classic 20-answer oracle, with 10 affirmative, 5 non-committal and 5 negative answers, weighted exactly like the original toy.",
+    "url": "/calculators/fun/magic-8-ball/",
+    "category": "Fun"
+  },
+  {
+    "type": "tool",
+    "name": "Sprint Capacity Planner",
+    "summary": "Plan a sprint by capacity, not gut feel. Per-person availability, holidays, ceremonies and focus factor combine into person-hours, person-days and a story-point forecast with a confidence band.",
+    "url": "/calculators/productivity/sprint-capacity-planner/",
+    "category": "Productivity"
+  },
+  {
+    "type": "tool",
+    "name": "CTR by SERP Position Estimator",
+    "summary": "Estimate clicks from a Google ranking. Pick a position 1-20, set monthly volume and SERP features, and see expected click-through rate based on Advanced Web Ranking 2024 data.",
+    "url": "/calculators/seo/serp-ctr-estimator/",
+    "category": "SEO"
+  },
+  {
+    "type": "tool",
+    "name": "UK Leasehold Ground Rent & Service Charge Calculator",
+    "summary": "Project annual cost over a chosen period for a UK leasehold flat. Models fixed, doubling and RPI-linked ground rent escalation, service charge inflation, and the post-2022 peppercorn rule.",
+    "url": "/calculators/property/uk-leasehold-ground-rent-service-charge-calculator/",
+    "category": "Property"
+  },
+  {
+    "type": "tool",
+    "name": "Headline Power-Word Score",
+    "summary": "Score a headline 0-100 based on power words, length, sentiment skew, numbers and stop-word ratio. Get suggestions to make it punchier.",
+    "url": "/calculators/writing/headline-power-word-score/",
+    "category": "Writing"
+  },
+  {
+    "type": "tool",
+    "name": "VPN Throughput Calculator",
+    "summary": "Estimate effective speed through a VPN given your link speed, protocol (WireGuard, OpenVPN, IPsec), cipher, CPU class and server distance. Identifies whether encryption, link bandwidth or RTT is the bottleneck.",
+    "url": "/calculators/broadband/vpn-throughput-calculator/",
+    "category": "Broadband"
+  },
+  {
+    "type": "tool",
+    "name": "Latency Impact Calculator",
+    "summary": "See how ping, jitter and packet loss affect cloud gaming, FPS, video calls, browsing or SSH. Get a verdict per use case and an effective TCP throughput cap.",
+    "url": "/calculators/broadband/latency-impact-calculator/",
+    "category": "Broadband"
   }
 ]

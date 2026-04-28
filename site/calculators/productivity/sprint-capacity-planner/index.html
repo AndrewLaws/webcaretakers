@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sprint Capacity Planner | WebCaretakers</title>
+  <meta name="description" content="Plan a sprint by team capacity, not by gut feel. Per-person availability, holidays, ceremonies and focus factor combine into person-hours, person-days and a story-point forecast with a confidence band.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/productivity/sprint-capacity-planner/">
+  <meta property="og:title" content="Sprint Capacity Planner | WebCaretakers">
+  <meta property="og:description" content="Estimate the sprint's real capacity in story points and hours, given holidays, ceremonies and a focus factor.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/productivity/sprint-capacity-planner/">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var _stored = null;
+    try { _stored = localStorage.getItem('cookie-consent'); } catch (e) {}
+    var _initial = _stored === 'granted' ? 'granted' : 'denied';
+    gtag('consent', 'default', {
+      ad_storage: _initial, analytics_storage: _initial,
+      ad_user_data: _initial, ad_personalization: _initial,
+      functionality_storage: 'granted', security_storage: 'granted',
+      wait_for_update: 500
+    });
+  </script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Sprint Capacity Planner",
+    "url": "https://webcaretakers.com/calculators/productivity/sprint-capacity-planner/",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0" },
+    "author": {
+      "@type": "Person",
+      "name": "Andrew Laws",
+      "url": "https://yeseo.io/"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What focus factor should I use?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Most teams land between 60% and 80%. The focus factor is the share of a working day that turns into actual delivery once you account for context-switching, support, code review, and the small interruptions that never make it onto the sprint board. New teams or teams with heavy operational load tend to be lower (50% to 60%); steady, mature teams with good engineering practice can push 75% to 80%. Anything above that is usually wishful thinking dressed up as planning." }
+      },
+      {
+        "@type": "Question",
+        "name": "What does the velocity figure mean here?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Story points per person per day. The default of 0.6 says one developer can typically clear about 0.6 story points of work in a normal working day. Take your team's last three completed sprints, divide story points delivered by total person-days available in those sprints, and use that figure. Velocity is team-specific. There is no industry benchmark, and trying to compare points across teams is one of the great wastes of management time." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why is the default sprint 10 days?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Two-week sprints are the most common pattern, which is ten working days. If you run weekly sprints, set it to five. For three-week or four-week iterations, set fifteen or twenty. The maths scales linearly, so a longer sprint with the same team and the same focus factor returns proportionally more capacity." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why is there a confidence band on the forecast?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Because point estimates lie. A single number like '24 story points' suggests precision the planning process does not have. The ±20% band is a defensible default: it acknowledges that velocity wobbles sprint to sprint, and that two people off sick at the same time can knock a chunk out of capacity nobody saw coming. Plan to the lower bound, stretch into the upper if everything goes well." }
+      },
+      {
+        "@type": "Question",
+        "name": "Should ceremonies be a percentage or a fixed time?",
+        "acceptedAnswer": { "@type": "Answer", "text": "A percentage scales naturally with sprint length, so it works whether you run a one-week or four-week iteration. As a rough guide: 10% covers the standard daily stand-up, planning, review and retro for a typical two-week sprint. 15% to 20% is more honest if your team also has a refinement session, design reviews, or a weekly all-hands. If your ceremonies regularly creep above 25%, the meeting load is the bigger problem, not the capacity calculation." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-banner-heading" aria-describedby="cookie-banner-text" hidden>
+    <div class="cookie-banner__inner">
+      <h2 id="cookie-banner-heading" class="cookie-banner__heading">A quick word about cookies</h2>
+      <p id="cookie-banner-text" class="cookie-banner__text">
+        We use cookies for analytics, so we can see which calculators people actually use and which ones need work. Nothing creepy, nothing sold on. You can say yes, say no, or read the <a href="/privacy/">privacy policy</a> first. Your choice sticks.
+      </p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-reject>Reject</button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>Accept</button>
+      </div>
+    </div>
+  </div>
+
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">WebCaretakers</a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <ul class="primary-nav__list">
+          <li class="primary-nav__item primary-nav__item--has-menu">
+            <button type="button" class="primary-nav__link" data-menu-toggle aria-haspopup="true" aria-expanded="false">Calculators <span class="primary-nav__caret" aria-hidden="true">▾</span></button>
+            <ul class="primary-nav__submenu">
+              <li><a href="/calculators/ai/">AI</a></li>
+              <li><a href="/calculators/broadband/">Broadband</a></li>
+              <li><a href="/calculators/business/">Business</a></li>
+              <li><a href="/calculators/conversions/">Conversions</a></li>
+              <li><a href="/calculators/cybersecurity/">Cybersecurity</a></li>
+              <li><a href="/calculators/finance/">Finance</a></li>
+              <li><a href="/calculators/fun/">Fun</a></li>
+              <li><a href="/calculators/health/">Health</a></li>
+              <li><a href="/calculators/images/">Images</a></li>
+              <li><a href="/calculators/math/">Math</a></li>
+              <li><a href="/calculators/productivity/">Productivity</a></li>
+              <li><a href="/calculators/property/">Property</a></li>
+              <li><a href="/calculators/seo/">SEO</a></li>
+              <li><a href="/calculators/wedding/">Wedding</a></li>
+              <li><a href="/calculators/writing/">Writing</a></li>
+              <li class="primary-nav__submenu-sep"><a href="/calculators/">See all calculators</a></li>
+            </ul>
+          </li>
+          <li class="primary-nav__item"><a href="/about/" class="primary-nav__link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <main id="main-content">
+      <div class="container">
+        <nav aria-label="Breadcrumb" class="breadcrumbs">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/calculators/">Calculators</a></li>
+            <li><a href="/calculators/productivity/">Productivity</a></li>
+            <li aria-current="page">Sprint Capacity Planner</li>
+          </ol>
+        </nav>
+
+        <h1>Sprint Capacity Planner</h1>
+        <p class="intro">Work out what a sprint can actually hold. Set the sprint length, the team, and each person's holidays, ceremonies and focus factor. The page returns total person-hours, person-days, and a forecast in story points with a confidence band, so the commitment matches the capacity rather than the optimism in the room.</p>
+
+        <section class="eli5" aria-label="Plain-English explanation">
+          <h2>Explain like I'm 5 (what even is this calculator?)</h2>
+          <p>Pick a sprint length. Add the team. Tell the page who is off, who has lots of meetings, and how focused everyone usually is. The page does the arithmetic that planning meetings keep getting wrong: it subtracts the holidays, trims for ceremonies, applies the focus factor, then converts the hours into story points using your team's velocity. The number that falls out is roughly what the team can finish without burning out by Thursday week two.</p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="in-content" aria-hidden="true"></div>
+
+        <section class="calculator-card">
+          <h2>Plan the sprint</h2>
+
+          <form id="sprint-capacity-form" class="calc-form" novalidate>
+            <fieldset class="calc-row">
+              <legend>Sprint shape</legend>
+              <label for="sprint-days">Sprint length (working days)</label>
+              <input type="number" id="sprint-days" data-sprint-days min="1" step="1" value="10" inputmode="numeric">
+
+              <label for="hours-per-day">Hours per working day</label>
+              <input type="number" id="hours-per-day" data-hours-per-day min="0.5" step="0.5" value="6" inputmode="decimal">
+              <p class="calc-row__hint">6 is a sensible default. It nets off the meetings, code review and admin that fill the rest of an eight-hour day.</p>
+
+              <label for="velocity">Velocity (story points per person-day)</label>
+              <input type="number" id="velocity" data-velocity min="0" step="0.05" value="0.6" inputmode="decimal">
+              <p class="calc-row__hint">Take the rolling average over the last three sprints: story points delivered divided by person-days available. 0.6 is a reasonable starting figure.</p>
+
+              <label for="confidence-band">Confidence band (% either side of the forecast)</label>
+              <input type="number" id="confidence-band" data-confidence-band min="0" max="100" step="1" value="20" inputmode="numeric">
+              <p class="calc-row__hint">±20% is a defensible default. Plan to the lower bound, stretch into the upper if everything goes right.</p>
+            </fieldset>
+
+            <fieldset class="calc-row">
+              <legend>Team</legend>
+              <table class="breakdown-table people-table">
+                <thead>
+                  <tr>
+                    <th>Name (optional)</th>
+                    <th>Holiday days</th>
+                    <th>Ceremonies %</th>
+                    <th>Focus %</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody data-people-body></tbody>
+              </table>
+              <button type="button" class="calc-btn calc-btn--secondary" data-add-person>Add a team member</button>
+            </fieldset>
+
+            <div class="calc-row">
+              <button type="button" class="calc-btn" data-calculate>Calculate capacity</button>
+            </div>
+
+            <p class="calc-error" data-error role="alert"></p>
+          </form>
+
+          <div class="results" aria-live="polite">
+            <h3>Results</h3>
+            <ul class="result-list">
+              <li><span>Total available capacity</span> <strong data-result-hours>0 person-hours</strong></li>
+              <li><span>In person-days</span> <strong data-result-days>0 person-days</strong></li>
+              <li><span>Forecast story points</span> <strong data-result-points>0 story points</strong></li>
+              <li><span>Confidence band</span> <strong data-result-band>0 to 0 story points</strong></li>
+            </ul>
+
+            <h3>Per-person breakdown</h3>
+            <table class="breakdown-table">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Holiday</th>
+                  <th>Ceremonies</th>
+                  <th>Focus</th>
+                  <th>Hours</th>
+                  <th>Days</th>
+                  <th>Points</th>
+                </tr>
+              </thead>
+              <tbody data-breakdown-body></tbody>
+            </table>
+          </div>
+
+          <details class="prove-it" data-prove-it>
+            <summary>Prove it</summary>
+            <p>Every figure on this page comes out of the same chain of arithmetic. No black box. If the workings below do not match what you can do on the back of an envelope, the page is wrong, not your envelope.</p>
+            <p><strong>Per person</strong></p>
+            <ol>
+              <li>Working days = sprint days minus holiday days (clamped at zero, you cannot owe the company holidays).</li>
+              <li>Raw hours = working days x hours per day.</li>
+              <li>After focus = raw hours x focus factor (0 to 1).</li>
+              <li>After ceremonies = after-focus x (1 minus ceremonies percent / 100). This is the person-hours figure.</li>
+              <li>Person-days = person-hours / hours per day.</li>
+              <li>Story points = person-days x velocity.</li>
+            </ol>
+            <p><strong>Team</strong></p>
+            <ol>
+              <li>Total hours = sum of every person's hours.</li>
+              <li>Total days = total hours / hours per day.</li>
+              <li>Forecast points = total days x velocity.</li>
+              <li>Confidence band = forecast x (1 plus or minus the band percent).</li>
+            </ol>
+            <p><strong>Workings used in this calculation</strong></p>
+            <ol data-workings></ol>
+          </details>
+
+          <p class="bookmark-nudge">
+            Useful? Save this calculator: press <kbd data-bookmark-shortcut>Ctrl</kbd> + <kbd>D</kbd> to bookmark it.
+          </p>
+        </section>
+
+        <template id="person-row-template">
+          <tr data-person-row>
+            <td><input type="text" data-row-name placeholder="Name (optional)" aria-label="Team member name"></td>
+            <td><input type="number" data-row-holiday min="0" step="0.5" value="0" aria-label="Holiday days" inputmode="decimal"></td>
+            <td><input type="number" data-row-ceremonies min="0" max="100" step="1" value="10" aria-label="Ceremonies percent" inputmode="numeric"></td>
+            <td><input type="number" data-row-focus min="0" max="100" step="1" value="70" aria-label="Focus percent" inputmode="numeric"></td>
+            <td><button type="button" class="calc-btn calc-btn--secondary" data-row-remove aria-label="Remove team member">Remove</button></td>
+          </tr>
+        </template>
+
+        <div class="ad-slot" data-ad-slot="below-results" aria-hidden="true"></div>
+
+        <section class="long-form">
+          <h2>Why sprint capacity planning is worth half an hour up front</h2>
+          <p>Most teams plan sprints by feel. The product owner brings a stack of stories to planning, the team chews through them, somebody says "yeah, that feels about right", and a number gets written on a card. Two days in, somebody is on holiday nobody remembered, the design review meeting nobody flagged ate four hours, and the sprint goal quietly slips out the window. Spending half an hour on a capacity calculation up front, with the actual people in the room, prevents about eighty per cent of that. It will not stop unexpected production incidents, but it will stop you committing to a sprint that was never mathematically possible.</p>
+
+          <h2>What the focus factor really represents</h2>
+          <p>The focus factor is the honest gap between the time someone is at work and the time they spend moving sprint stories forward. The other hours go to onboarding a new starter, reviewing a colleague's pull request, answering Slack, helping support diagnose a customer issue, fixing the build, taking a call with sales, or recovering from any of the above. None of that is wasted, all of it is necessary, but very little of it lands on the sprint board. A team starting out with shaky engineering practices and a lot of operational load might run at 50% to 60%. A mature team with good test coverage, a stable platform, and clear separation between sprint work and unplanned interruptions can hold 75% to 80%. Anything above that is either short-lived heroism or a team about to burn out, and neither belongs in a planning forecast.</p>
+
+          <h2>Common ways this calculation goes wrong</h2>
+          <p>The single most common error is forgetting holidays. A two-week sprint where one person is off for three days has lost six per cent of total capacity before you even start. Plug it in and watch what falls out. The second most common error is undercounting ceremonies. Stand-up plus planning plus review plus retro plus refinement plus the design review nobody calls a ceremony but everyone has to attend is comfortably 15% in many teams, not the 10% they like to claim. The third is overestimating velocity, particularly after a strong sprint. Velocity is a noisy three-sprint average, not the best single sprint you ever had. If your last three sprints delivered 18, 24 and 21 points against 100 person-days available, your velocity is 0.21, not 0.24.</p>
+
+          <p>The fourth error is treating the forecast as a commitment. The output of this page is a planning input, not a contract. Use the lower bound of the confidence band as the realistic commit, the midpoint as the stretch, and the upper bound as the "everything went brilliantly" outcome. Stakeholders trying to lock you to the upper bound are asking for the project equivalent of a mortgage payment that assumes a pay rise.</p>
+
+          <h2>Edge cases worth knowing</h2>
+          <p>If a person's holidays are equal to or greater than the sprint length, the page clamps their working days at zero rather than going negative. They contribute no hours to the sprint, which is the right answer. A focus factor of 100% means the person spends every working hour on sprint stories, which is fine to model as an upper bound but rarely matches reality. A ceremonies figure of 0% says the team has no ceremonies at all, which is unusual unless you have just dropped the lot. Velocity of 0 returns 0 forecast points, which is occasionally useful for working out raw capacity in hours alone.</p>
+
+          <h2>How to use the output in a real planning session</h2>
+          <p>Open the page, fill in the team, and project the per-person breakdown on the screen everyone can see. The conversation tends to shift from "how much do you think we can do" to "Bel is off Thursday and Friday, so the realistic figure is the lower bound, what stories do we cut?" That is a more useful conversation. The prove-it panel is there for the inevitable senior leader who wants to know where the number came from: open it, walk through the working, and the suspicion that the team is sandbagging tends to evaporate when they can see the arithmetic.</p>
+
+          <h2>Related calculators</h2>
+          <p>Other tools you might want next.</p>
+          <ul class="related-calculators">
+            <li><a href="/calculators/productivity/">All productivity tools</a></li>
+            <li><a href="/calculators/productivity/meeting-cost-calculator/">Meeting Cost Calculator for the cost of those ceremonies</a></li>
+            <li><a href="/calculators/productivity/project-deadline-countdown-calculator/">Project Deadline Countdown for working days remaining</a></li>
+            <li><a href="/calculators/productivity/pomodoro-session-planner/">Pomodoro Session Planner for breaking the work into chunks</a></li>
+          </ul>
+        </section>
+
+        <section class="faq" aria-labelledby="faq-heading">
+          <h2 id="faq-heading">Frequently asked questions</h2>
+          <details>
+            <summary>What focus factor should I use?</summary>
+            <p>Most teams land between 60% and 80%. The focus factor is the share of a working day that turns into actual delivery once you account for context-switching, support, code review, and the small interruptions that never make it onto the sprint board. New teams or teams with heavy operational load tend to be lower (50% to 60%); steady, mature teams with good engineering practice can push 75% to 80%. Anything above that is usually wishful thinking dressed up as planning.</p>
+          </details>
+          <details>
+            <summary>What does the velocity figure mean here?</summary>
+            <p>Story points per person per day. The default of 0.6 says one developer can typically clear about 0.6 story points of work in a normal working day. Take your team's last three completed sprints, divide story points delivered by total person-days available in those sprints, and use that figure. Velocity is team-specific. There is no industry benchmark, and trying to compare points across teams is one of the great wastes of management time.</p>
+          </details>
+          <details>
+            <summary>Why is the default sprint 10 days?</summary>
+            <p>Two-week sprints are the most common pattern, which is ten working days. If you run weekly sprints, set it to five. For three-week or four-week iterations, set fifteen or twenty. The maths scales linearly, so a longer sprint with the same team and the same focus factor returns proportionally more capacity.</p>
+          </details>
+          <details>
+            <summary>Why is there a confidence band on the forecast?</summary>
+            <p>Because point estimates lie. A single number like "24 story points" suggests precision the planning process does not have. The ±20% band is a defensible default: it acknowledges that velocity wobbles sprint to sprint, and that two people off sick at the same time can knock a chunk out of capacity nobody saw coming. Plan to the lower bound, stretch into the upper if everything goes well.</p>
+          </details>
+          <details>
+            <summary>Should ceremonies be a percentage or a fixed time?</summary>
+            <p>A percentage scales naturally with sprint length, so it works whether you run a one-week or four-week iteration. As a rough guide: 10% covers the standard daily stand-up, planning, review and retro for a typical two-week sprint. 15% to 20% is more honest if your team also has a refinement session, design reviews, or a weekly all-hands. If your ceremonies regularly creep above 25%, the meeting load is the bigger problem, not the capacity calculation.</p>
+          </details>
+        </section>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="ad-slot" data-ad-slot="sidebar" aria-hidden="true"></div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="site-footer-nav" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/calculators/">All calculators</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+
+      <section class="site-disclaimer" data-disclaimer aria-labelledby="disclaimer-heading">
+        <h2 id="disclaimer-heading">A quick, necessary word</h2>
+        <p>Every calculator on this site is built to give you a sensible, well-reasoned estimate. It is, however, exactly that: an estimate, for general information only. Nothing you see here is professional, legal, financial, medical, or tax advice, and it should not be treated as such.</p>
+        <p>Before you make a decision that actually matters, talk to a qualified professional who knows your specific situation: an accountant, a solicitor, a doctor, an IT consultant, whoever fits the question. They can factor in the bits a generic tool can't.</p>
+        <p>We take no liability and accept no responsibility for any loss, damage, or questionable life choice arising from acting on the numbers you see here. Use the results as a starting point for a better conversation, not as the final word.</p>
+        <p><strong>Affiliate disclosure:</strong> some links on this site are affiliate links. If you click through and buy or sign up for something, we may earn a small commission at no extra cost to you. It helps keep the calculators free and ad-light. We only recommend things we'd point a friend towards.</p>
+      </section>
+      <p class="site-copyright">&copy; 2026 WebCaretakers. All rights reserved.</p>
+      <p class="site-legal">WebCaretakers is a trading name of <a href="https://yeseo.io/" rel="noopener">Andrew Laws Associates Ltd</a>, registered in England and Wales (company no. 08602332). ICO registration ZA726704.</p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/calculators/sprint-capacity-planner.js"></script>
+  <script>
+    (function () {
+      var shortcutEl = document.querySelector('[data-bookmark-shortcut]');
+      if (shortcutEl) {
+        var isMac = /Mac|iPhone|iPad|iPod/i.test(navigator.platform || navigator.userAgent);
+        shortcutEl.textContent = isMac ? '\u2318' : 'Ctrl';
+      }
+    })();
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

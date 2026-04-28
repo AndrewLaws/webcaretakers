@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VPN Throughput Calculator: Realistic Speed Through WireGuard, OpenVPN and IPsec | WebCaretakers</title>
+  <meta name="description" content="Estimate the realistic throughput of a VPN tunnel given your link speed, protocol, cipher, CPU class and server distance. Identifies whether you are link-bound, encryption-bound or RTT-bound.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/broadband/vpn-throughput-calculator/">
+  <meta property="og:title" content="VPN Throughput Calculator | WebCaretakers">
+  <meta property="og:description" content="Realistic VPN throughput estimates across WireGuard, OpenVPN, IPsec/IKEv2 and L2TP/IPsec, with the bottleneck named.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/broadband/vpn-throughput-calculator/">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var _stored = null;
+    try { _stored = localStorage.getItem('cookie-consent'); } catch (e) {}
+    var _initial = _stored === 'granted' ? 'granted' : 'denied';
+    gtag('consent', 'default', {
+      ad_storage: _initial, analytics_storage: _initial,
+      ad_user_data: _initial, ad_personalization: _initial,
+      functionality_storage: 'granted', security_storage: 'granted',
+      wait_for_update: 500
+    });
+  </script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "VPN Throughput Calculator",
+    "url": "https://webcaretakers.com/calculators/broadband/vpn-throughput-calculator/",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "description": "Estimate the realistic throughput of a VPN tunnel given link speed, protocol, cipher, CPU class, MTU and server distance. Names the bottleneck: link-bound, encryption-bound or RTT-bound.",
+    "offers": { "@type": "Offer", "price": "0" },
+    "author": { "@type": "Person", "name": "Andrew Laws", "url": "https://yeseo.io/" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Why is my VPN slower than my internet connection?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Three things cap a VPN: the underlying link, the CPU available to encrypt and decrypt every packet, and, for OpenVPN over TCP, the receive window relative to the round-trip time. On a fast line with a slow CPU, encryption is the bottleneck. On a slow line with a fast CPU, the line is the bottleneck. On OpenVPN-TCP across an ocean, the TCP receive window inside the tunnel is the bottleneck. The calculator names which one is hurting you." }
+      },
+      {
+        "@type": "Question",
+        "name": "Should I use WireGuard or OpenVPN?",
+        "acceptedAnswer": { "@type": "Answer", "text": "WireGuard, almost always, for raw throughput. It runs in-kernel on Linux and modern routers, has a small protocol overhead per packet, and uses ChaCha20-Poly1305 by default which is fast on every CPU. OpenVPN is older, runs in userspace, is largely single-threaded, and pays a real penalty against WireGuard on the same hardware. OpenVPN still has a place where strict TLS-style trust models or specific corporate compatibility matter, but for speed it is not the right choice." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does ChaCha20 sometimes beat AES?",
+        "acceptedAnswer": { "@type": "Answer", "text": "AES is fastest on CPUs that have AES-NI hardware acceleration: most modern desktops, laptops and phones. On those, AES-256-GCM tops the charts. ChaCha20-Poly1305 is software-only, but it is so well-tuned that it beats AES on devices without AES-NI: cheap routers, old phones, low-power embedded gear. WireGuard picked ChaCha20 as its default for exactly this reason. If your VPN endpoint is a cheap travel router, ChaCha20 is usually the right call." }
+      },
+      {
+        "@type": "Question",
+        "name": "What does RTT-bound mean for OpenVPN-TCP?",
+        "acceptedAnswer": { "@type": "Answer", "text": "OpenVPN over TCP wraps your inner traffic inside an outer TCP stream. That outer stream is subject to the standard TCP throughput cap: window size in bytes times eight, divided by round-trip time in seconds. With a 128 KB receive window and a 145ms transcontinental round-trip, the cap lands around 7 Mbps regardless of how fast the line or CPU is. UDP-based protocols (WireGuard, OpenVPN-UDP, IPsec) do not have this cap, which is one of the standing arguments against TCP-mode VPNs over long links." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does the MTU really matter?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes, modestly. Every packet carries a fixed protocol header. With a 1500-byte MTU and a 60-byte WireGuard overhead, 4% of every packet is framing, not user data. Push the MTU up to 1500 and you get 96% efficiency. Drop to 576 and you collapse to 89%. The default 1500 is right for most home connections. Lower it only if you are hitting fragmentation, which usually shows up as sites half-loading or video calls cutting out." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-banner-heading" aria-describedby="cookie-banner-text" hidden>
+    <div class="cookie-banner__inner">
+      <h2 id="cookie-banner-heading" class="cookie-banner__heading">A quick word about cookies</h2>
+      <p id="cookie-banner-text" class="cookie-banner__text">
+        We use cookies for analytics, so we can see which calculators people actually use and which ones need work. Nothing creepy, nothing sold on. You can say yes, say no, or read the <a href="/privacy/">privacy policy</a> first. Your choice sticks.
+      </p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-reject>Reject</button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>Accept</button>
+      </div>
+    </div>
+  </div>
+
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">WebCaretakers</a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <ul class="primary-nav__list">
+          <li class="primary-nav__item primary-nav__item--has-menu">
+            <button type="button" class="primary-nav__link" data-menu-toggle aria-haspopup="true" aria-expanded="false">Calculators <span class="primary-nav__caret" aria-hidden="true">&#9662;</span></button>
+            <ul class="primary-nav__submenu">
+              <li><a href="/calculators/ai/">AI</a></li>
+              <li><a href="/calculators/broadband/">Broadband</a></li>
+              <li><a href="/calculators/business/">Business</a></li>
+              <li><a href="/calculators/conversions/">Conversions</a></li>
+              <li><a href="/calculators/cybersecurity/">Cybersecurity</a></li>
+              <li><a href="/calculators/finance/">Finance</a></li>
+              <li><a href="/calculators/fun/">Fun</a></li>
+              <li><a href="/calculators/health/">Health</a></li>
+              <li><a href="/calculators/images/">Images</a></li>
+              <li><a href="/calculators/math/">Math</a></li>
+              <li><a href="/calculators/productivity/">Productivity</a></li>
+              <li><a href="/calculators/property/">Property</a></li>
+              <li><a href="/calculators/seo/">SEO</a></li>
+              <li><a href="/calculators/wedding/">Wedding</a></li>
+              <li><a href="/calculators/writing/">Writing</a></li>
+              <li class="primary-nav__submenu-sep"><a href="/calculators/">See all calculators</a></li>
+            </ul>
+          </li>
+          <li class="primary-nav__item"><a href="/about/" class="primary-nav__link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <main id="main-content">
+      <div class="container">
+        <nav aria-label="Breadcrumb" class="breadcrumbs">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/calculators/">Calculators</a></li>
+            <li><a href="/calculators/broadband/">Broadband</a></li>
+            <li aria-current="page">VPN Throughput Calculator</li>
+          </ol>
+        </nav>
+
+        <h1>VPN Throughput Calculator</h1>
+        <p class="intro">Work out the realistic throughput of a VPN tunnel for your link, protocol, cipher and CPU. Names the bottleneck (link, encryption, or TCP receive window) so you know what to change to get more speed.</p>
+
+        <section class="eli5" aria-label="Plain-English explanation">
+          <h2>Explain like I'm 5 (what even is this calculator?)</h2>
+          <p>Tell it how fast your line is, which VPN you use, which cipher, and how strong the device doing the encryption is. It tells you how fast the tunnel will actually go, what percentage of your line that is, and which part of the chain is holding you back. If the answer is "encryption-bound", you need a faster device or a lighter cipher. If it's "link-bound", your VPN is doing as well as it can.</p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="in-content" aria-hidden="true"></div>
+
+        <section data-calculator class="calculator-card" aria-labelledby="calc-heading">
+          <h2 id="calc-heading">Estimate VPN throughput</h2>
+          <form id="vpn-form" class="calc-form" novalidate>
+            <div class="calc-row">
+              <label for="inp-link">Link speed (Mbps)</label>
+              <input type="number" id="inp-link" name="linkSpeed" min="1" step="1" value="1000" required>
+              <p class="calc-row__hint">Your underlying internet line, the figure a speed test gives you, in megabits per second.</p>
+            </div>
+
+            <div class="calc-row">
+              <label for="inp-protocol">VPN protocol</label>
+              <select id="inp-protocol" name="protocol" required>
+                <option value="WireGuard" selected>WireGuard</option>
+                <option value="IPsec/IKEv2">IPsec/IKEv2</option>
+                <option value="OpenVPN-UDP">OpenVPN-UDP</option>
+                <option value="OpenVPN-TCP">OpenVPN-TCP</option>
+                <option value="L2TP/IPsec">L2TP/IPsec</option>
+              </select>
+            </div>
+
+            <div class="calc-row">
+              <label for="inp-cipher">Cipher</label>
+              <select id="inp-cipher" name="cipher" required>
+                <option value="AES-128-GCM">AES-128-GCM</option>
+                <option value="AES-256-GCM" selected>AES-256-GCM</option>
+                <option value="ChaCha20-Poly1305">ChaCha20-Poly1305</option>
+                <option value="AES-256-CBC">AES-256-CBC</option>
+              </select>
+            </div>
+
+            <div class="calc-row">
+              <label for="inp-cpu">CPU class of the VPN endpoint</label>
+              <select id="inp-cpu" name="cpuClass" required>
+                <option value="low">Low (cheap router, old phone, no AES-NI)</option>
+                <option value="mid" selected>Mid (modern phone or laptop, AES-NI)</option>
+                <option value="high">High (desktop CPU or server-class router)</option>
+              </select>
+            </div>
+
+            <div class="calc-row">
+              <label for="inp-mtu">MTU (bytes)</label>
+              <input type="number" id="inp-mtu" name="mtu" min="576" max="9000" step="1" value="1500">
+              <p class="calc-row__hint">1500 is the standard internet MTU. Drop it only if you are seeing fragmentation symptoms.</p>
+            </div>
+
+            <div class="calc-row">
+              <label for="inp-distance">Server distance</label>
+              <select id="inp-distance" name="serverDistance" required>
+                <option value="same-country" selected>Same country (~15ms RTT)</option>
+                <option value="same-continent">Same continent (~40ms RTT)</option>
+                <option value="transcontinental">Transcontinental (~140ms RTT)</option>
+              </select>
+            </div>
+
+            <button type="submit" data-calculate>Estimate throughput</button>
+          </form>
+
+          <div data-calculator-results class="calculator-results" aria-live="polite">
+            <p class="result-display" data-result-placeholder>Fill in the form and press the button to see realistic VPN throughput.</p>
+            <div class="result-summary" hidden data-result-summary>
+              <p>Realistic throughput: <strong data-result-throughput></strong></p>
+              <p>Percent of link: <strong data-result-percent></strong></p>
+              <p>Bottleneck: <strong data-result-bottleneck></strong></p>
+              <p>Round-trip latency through the tunnel: <strong data-result-latency></strong></p>
+
+              <details class="prove-it" data-prove-it>
+                <summary>Prove it</summary>
+                <div data-prove-it-body>
+                  <p>The maths, end to end, so you can audit it.</p>
+                  <ul data-prove-it-list></ul>
+                  <p class="prove-it-source">Per-packet protocol overheads are taken from the published header sizes for each protocol (WireGuard 60 bytes, IPsec/IKEv2 ~73 bytes, OpenVPN-UDP ~78 bytes, OpenVPN-TCP ~94 bytes, L2TP/IPsec ~85 bytes). CPU/cipher figures are realistic sustained single-tunnel benchmarks across low, mid and high-end hardware. The TCP receive-window cap uses a 128 KB window, which is a fair real-world figure for window-scaled TCP through an OpenVPN-TCP tunnel.</p>
+                </div>
+              </details>
+            </div>
+
+            <p class="bookmark-nudge">
+              <strong>Save this calculator:</strong>
+              press <kbd data-bookmark-shortcut>Ctrl</kbd> + <kbd>D</kbd> to bookmark it in your browser.
+            </p>
+          </div>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="below-results" aria-hidden="true"></div>
+
+        <section class="long-form">
+          <h2>Why VPN throughput is rarely line speed</h2>
+          <p>People buy a gigabit line, switch on a VPN, run a speed test, and see 200 Mbps. That is not the VPN failing. It is the VPN exposing the cost of encrypting every packet, wrapping it in a tunnel header, and shipping it through a server somewhere else. The line is one ceiling. The CPU on the device doing the encryption is another. The protocol's framing overhead is a third. On TCP-mode tunnels across long distances, the inner TCP receive window is a fourth. The actual throughput is whichever ceiling is lowest, and naming that ceiling is the whole job of this calculator.</p>
+
+          <h2>WireGuard, OpenVPN, IPsec and L2TP, in plain terms</h2>
+          <p>WireGuard is the modern default. It runs in-kernel on Linux and modern home routers, the protocol header is small, and it uses ChaCha20-Poly1305 by default, which is fast on every CPU. On the same hardware, WireGuard is consistently the fastest of the bunch. OpenVPN is older, written for portability, runs in userspace, and is largely single-threaded. UDP mode is the faster of the two; TCP mode is the slow one and the only one that hits a receive-window ceiling on long links. IPsec/IKEv2 is the corporate workhorse, in-kernel on most platforms, fast, but heavier per-packet than WireGuard. L2TP/IPsec wraps L2TP inside IPsec, which adds a touch of overhead on top of IPsec on its own; it is mostly there for legacy compatibility and you should not pick it for new deployments.</p>
+
+          <h2>Why CPU class matters more than people think</h2>
+          <p>Cipher throughput on a low-end router without AES-NI hardware acceleration sits around 80-100 Mbps for AES, regardless of whether the line is 100 Mbps or 1 Gbps. Slot the same VPN onto a desktop CPU with AES-NI and you can punch through 2-3 Gbps of AES-256-GCM. The cipher you should pick depends on the CPU. Without AES-NI, ChaCha20-Poly1305 wins by a large margin, which is exactly why WireGuard chose it as the default. With AES-NI, AES-128-GCM and AES-256-GCM are the fastest options. Picking the wrong cipher for your hardware is the single most common reason a VPN underperforms.</p>
+
+          <h2>What "RTT-bound" means and why only OpenVPN-TCP gets it</h2>
+          <p>Inside an OpenVPN-TCP tunnel there is a single outer TCP stream carrying all your inner traffic. That outer stream is subject to the textbook TCP throughput cap: window size in bytes, multiplied by eight, divided by round-trip time in seconds. With a 128 KB window and a 145ms transcontinental round-trip, that cap lands around 7 Mbps. Your line could be a hundred times faster and the tunnel still cannot exceed it. UDP-based protocols (WireGuard, OpenVPN-UDP, IPsec/IKEv2) carry independent inner flows, so the cap does not apply. This is the standing argument against TCP-mode VPNs over long links and why WireGuard is the right choice for any cross-continent connection.</p>
+
+          <h2>Common mistakes when sizing a VPN</h2>
+          <ul>
+            <li><strong>Picking AES-256 on a cheap router.</strong> ChaCha20 will be two to three times faster on the same hardware.</li>
+            <li><strong>Using OpenVPN-TCP because the docs default to it.</strong> Switch to UDP wherever the network will let you. TCP-in-TCP is a known anti-pattern.</li>
+            <li><strong>Blaming the VPN provider for slow speeds on a slow CPU.</strong> If your home router is the endpoint and it has no AES-NI, the provider cannot fix that.</li>
+            <li><strong>Forgetting MTU.</strong> A 1500-byte MTU loses 4-6% to framing, which is fine. Lower MTUs lose more, which adds up at gigabit speeds.</li>
+            <li><strong>Comparing speed-test results without isolating variables.</strong> Same CPU, same protocol, same cipher, same server distance, otherwise you are measuring noise.</li>
+          </ul>
+
+          <h2>How to act on the result</h2>
+          <p>If the calculator says you are link-bound, the VPN is doing as well as physics allows on that line. If you want more, you need a faster line. If it says encryption-bound, your CPU is the limit: switch cipher (ChaCha20 if no AES-NI, AES-GCM if you have it), or move the VPN endpoint to a faster device. If it says RTT-bound, you are on OpenVPN-TCP across a long link and the receive-window cap is killing you: switch to a UDP-based protocol. WireGuard is usually the right answer.</p>
+
+          <h2>Related calculators</h2>
+          <ul class="related-calculators">
+            <li><a href="/calculators/broadband/cloud-backup-time-estimator/">Cloud Backup Time Estimator</a></li>
+            <li><a href="/calculators/broadband/broadband-bandwidth-calculator/">Broadband bandwidth calculator</a></li>
+            <li><a href="/calculators/broadband/">All broadband calculators</a></li>
+          </ul>
+        </section>
+
+        <section class="faq" aria-labelledby="faq-heading">
+          <h2 id="faq-heading">Frequently asked questions</h2>
+          <details>
+            <summary>Why is my VPN slower than my internet connection?</summary>
+            <p>Three things cap a VPN: the underlying link, the CPU available to encrypt and decrypt every packet, and, for OpenVPN over TCP, the receive window relative to the round-trip time. On a fast line with a slow CPU, encryption is the bottleneck. On a slow line with a fast CPU, the line is the bottleneck. On OpenVPN-TCP across an ocean, the TCP receive window inside the tunnel is the bottleneck.</p>
+          </details>
+          <details>
+            <summary>Should I use WireGuard or OpenVPN?</summary>
+            <p>WireGuard, almost always, for raw throughput. It runs in-kernel, has a small protocol overhead per packet, and uses ChaCha20-Poly1305 by default which is fast on every CPU. OpenVPN runs in userspace, is largely single-threaded, and pays a real penalty against WireGuard on the same hardware.</p>
+          </details>
+          <details>
+            <summary>Why does ChaCha20 sometimes beat AES?</summary>
+            <p>AES is fastest on CPUs that have AES-NI hardware acceleration. ChaCha20-Poly1305 is software-only, but well enough tuned that it beats AES on devices without AES-NI: cheap routers, old phones, low-power embedded gear. WireGuard picked ChaCha20 as default for that reason.</p>
+          </details>
+          <details>
+            <summary>What does RTT-bound mean for OpenVPN-TCP?</summary>
+            <p>OpenVPN over TCP wraps your inner traffic inside an outer TCP stream. That outer stream is subject to the standard TCP throughput cap: window size times eight, divided by round-trip time. Across a long link the cap lands at single-digit Mbps regardless of how fast the line is. UDP-based protocols do not have this cap.</p>
+          </details>
+          <details>
+            <summary>Does the MTU really matter?</summary>
+            <p>Modestly. With a 1500-byte MTU and a 60-byte WireGuard header, 4% of every packet is framing rather than payload. The default 1500 is right for most home connections. Lower it only if you are hitting fragmentation symptoms.</p>
+          </details>
+        </section>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="ad-slot" data-ad-slot="sidebar" aria-hidden="true"></div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="site-footer-nav" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/calculators/">All calculators</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+
+      <section class="site-disclaimer" data-disclaimer aria-labelledby="disclaimer-heading">
+        <h2 id="disclaimer-heading">A quick, necessary word</h2>
+        <p>Every calculator on this site is built to give you a sensible, well-reasoned estimate. It is, however, exactly that: an estimate, for general information only. Nothing you see here is professional, legal, financial, medical, or tax advice, and it should not be treated as such.</p>
+        <p>Before you make a decision that actually matters, talk to a qualified professional who knows your specific situation: an accountant, a solicitor, a doctor, an IT consultant, whoever fits the question. They can factor in the bits a generic tool can't.</p>
+        <p>We take no liability and accept no responsibility for any loss, damage, or questionable life choice arising from acting on the numbers you see here. Use the results as a starting point for a better conversation, not as the final word.</p>
+        <p><strong>Affiliate disclosure:</strong> some links on this site are affiliate links. If you click through and buy or sign up for something, we may earn a small commission at no extra cost to you. It helps keep the calculators free and ad-light. We only recommend things we'd point a friend towards.</p>
+      </section>
+      <p class="site-copyright">&copy; 2026 WebCaretakers. All rights reserved.</p>
+      <p class="site-legal">WebCaretakers is a trading name of <a href="https://yeseo.io/" rel="noopener">Andrew Laws Associates Ltd</a>, registered in England and Wales (company no. 08602332). ICO registration ZA726704.</p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/calculators/vpn-throughput-calculator.js"></script>
+  <script>
+    (function () {
+      var form = document.getElementById('vpn-form');
+      if (!form) return;
+      var summary = document.querySelector('[data-result-summary]');
+      var placeholder = document.querySelector('[data-result-placeholder]');
+      var throughputEl = document.querySelector('[data-result-throughput]');
+      var percentEl = document.querySelector('[data-result-percent]');
+      var bottleneckEl = document.querySelector('[data-result-bottleneck]');
+      var latencyEl = document.querySelector('[data-result-latency]');
+      var proveListEl = document.querySelector('[data-prove-it-list]');
+      var proveBodyEl = document.querySelector('[data-prove-it-body]');
+
+      function pushInteraction(field, value) {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: 'calculator_interaction',
+          calculator_name: 'vpn-throughput-calculator',
+          field: field,
+          value: value
+        });
+      }
+
+      form.addEventListener('input', function (e) {
+        var t = e.target;
+        pushInteraction(t.name || t.id, t.value);
+      });
+
+      function fmtMbps(mbps) {
+        if (mbps >= 1000) return (mbps / 1000).toFixed(2) + ' Gbps';
+        if (mbps >= 10) return mbps.toFixed(1) + ' Mbps';
+        return mbps.toFixed(2) + ' Mbps';
+      }
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var fd = new FormData(form);
+        var input = {
+          linkSpeed: parseFloat(fd.get('linkSpeed')) || 0,
+          protocol: fd.get('protocol'),
+          cipher: fd.get('cipher'),
+          cpuClass: fd.get('cpuClass'),
+          mtu: parseFloat(fd.get('mtu')) || 1500,
+          serverDistance: fd.get('serverDistance')
+        };
+
+        var r;
+        try {
+          r = VpnThroughputCalculator.estimateVpnThroughput(input);
+        } catch (err) {
+          placeholder.hidden = false;
+          summary.hidden = true;
+          placeholder.textContent = 'Please check your inputs: ' + err.message;
+          return;
+        }
+
+        placeholder.hidden = true;
+        summary.hidden = false;
+
+        throughputEl.textContent = fmtMbps(r.throughputMbps);
+        percentEl.textContent = r.percentOfLink.toFixed(1) + '% of the ' + input.linkSpeed + ' Mbps link';
+        bottleneckEl.textContent = r.bottleneck;
+        latencyEl.textContent = r.totalLatencyMs.toFixed(0) + ' ms (underlying ' + r.latencyMs + ' ms + ~5 ms VPN overhead)';
+
+        if (proveListEl) {
+          var rows = [
+            ['Link speed', input.linkSpeed + ' Mbps'],
+            ['Protocol', input.protocol + ' (overhead ' + r.overheadBytes + ' bytes/packet)'],
+            ['MTU', input.mtu + ' bytes'],
+            ['Effective MTU (payload per packet)', r.effectiveMtu + ' bytes'],
+            ['Payload efficiency', (r.payloadEfficiency * 100).toFixed(2) + '%'],
+            ['Cipher / CPU class', input.cipher + ' on ' + input.cpuClass + '-class CPU'],
+            ['Encryption ceiling', fmtMbps(r.encryptionCapMbps)],
+            ['Link payload ceiling', fmtMbps(r.linkPayloadCapMbps)],
+            ['TCP receive-window ceiling', r.tcpCapMbps == null ? 'n/a (UDP-based protocol)' : fmtMbps(r.tcpCapMbps)],
+            ['Underlying RTT', r.latencyMs + ' ms'],
+            ['Total tunnel RTT', r.totalLatencyMs.toFixed(0) + ' ms'],
+            ['Realistic throughput', fmtMbps(r.throughputMbps)],
+            ['Percent of link', r.percentOfLink.toFixed(1) + '%'],
+            ['Bottleneck', r.bottleneck]
+          ];
+          proveListEl.innerHTML = rows.map(function (row) {
+            return '<li><span>' + row[0] + '</span><strong>' + row[1] + '</strong></li>';
+          }).join('');
+        }
+
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: 'calculator_result',
+          calculator_name: 'vpn-throughput-calculator',
+          link_speed_mbps: input.linkSpeed,
+          protocol: input.protocol,
+          cipher: input.cipher,
+          cpu_class: input.cpuClass,
+          mtu: input.mtu,
+          server_distance: input.serverDistance,
+          throughput_mbps: Number(r.throughputMbps.toFixed(2)),
+          percent_of_link: Number(r.percentOfLink.toFixed(1)),
+          bottleneck: r.bottleneck,
+          total_latency_ms: Math.round(r.totalLatencyMs)
+        });
+      });
+
+      var proveDetails = document.querySelector('[data-prove-it]');
+      if (proveDetails) {
+        proveDetails.addEventListener('toggle', function () {
+          if (proveDetails.open) {
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+              event: 'prove_it',
+              calculator_name: 'vpn-throughput-calculator'
+            });
+          }
+        });
+      }
+
+      var shortcutEl = document.querySelector('[data-bookmark-shortcut]');
+      if (shortcutEl) {
+        var isMac = /Mac|iPhone|iPad|iPod/i.test(navigator.platform || navigator.userAgent);
+        shortcutEl.textContent = isMac ? '⌘' : 'Ctrl';
+      }
+    })();
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

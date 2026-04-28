@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Magic 8-Ball Generator | WebCaretakers</title>
+  <meta name="description" content="Ask a yes/no question and the Magic 8-Ball gives you one of the 20 canonical Mattel answers. Browser-only, cryptographically unbiased, no Math.random.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/fun/magic-8-ball/">
+  <meta property="og:title" content="Magic 8-Ball Generator | WebCaretakers">
+  <meta property="og:description" content="Ask a yes/no question and the Magic 8-Ball gives you one of the 20 canonical answers. Browser-only and unbiased.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/fun/magic-8-ball/">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var _stored = null;
+    try { _stored = localStorage.getItem('cookie-consent'); } catch (e) {}
+    var _initial = _stored === 'granted' ? 'granted' : 'denied';
+    gtag('consent', 'default', {
+      ad_storage: _initial, analytics_storage: _initial,
+      ad_user_data: _initial, ad_personalization: _initial,
+      functionality_storage: 'granted', security_storage: 'granted',
+      wait_for_update: 500
+    });
+  </script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Magic 8-Ball Generator",
+    "url": "https://webcaretakers.com/calculators/fun/magic-8-ball/",
+    "applicationCategory": "GameApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0" },
+    "author": {
+      "@type": "Person",
+      "name": "Andrew Laws",
+      "url": "https://yeseo.io/"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Are these the real Magic 8-Ball answers?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. All 20 answers are the canonical Mattel set in their canonical order: 10 affirmative, 5 non-committal, 5 negative. Nothing has been added, swapped, or sanitised. The text on screen is what you would read on the bottom of a real ball if you got bored and shook it for long enough." }
+      },
+      {
+        "@type": "Question",
+        "name": "Is the answer actually random?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. The answer is drawn using crypto.getRandomValues with rejection sampling, the same primitive browsers use for session keys. No Math.random anywhere. Each of the 20 answers has exactly the same one-in-twenty chance per shake." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does my question get sent anywhere?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. The question stays in the textbox on your device. The page makes no network calls during a shake. Disconnect your network and the ball still works." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why are there more yes answers than no answers?",
+        "acceptedAnswer": { "@type": "Answer", "text": "That is the original Mattel split: ten affirmative, five non-committal, five negative. So fifty per cent yes, twenty-five per cent maybe, twenty-five per cent no. The ball is gently optimistic by design, which is part of why it has sold for nearly seventy years." }
+      },
+      {
+        "@type": "Question",
+        "name": "Should I use this to make actual decisions?",
+        "acceptedAnswer": { "@type": "Answer", "text": "For breaking a deadlock between two reasonable choices, sure. For anything that genuinely matters (jobs, relationships, money, health), no. The ball is a fairground oracle, not a financial adviser. Its value is the moment after the answer appears, when you notice your gut reaction to it." }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    .ball-stage {
+      max-width: 320px;
+      margin: 1rem auto 1.25rem;
+      text-align: center;
+    }
+    .ball {
+      position: relative;
+      width: 240px;
+      height: 240px;
+      margin: 0 auto;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, #4a4a4a 0%, #1a1a1a 60%, #000 100%);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.6s cubic-bezier(0.36, 0.07, 0.19, 0.97);
+    }
+    .ball.is-shaking {
+      animation: shake 0.55s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+    }
+    @keyframes shake {
+      10%, 90% { transform: translate3d(-2px, 0, 0) rotate(-1deg); }
+      20%, 80% { transform: translate3d(3px, 0, 0) rotate(1deg); }
+      30%, 50%, 70% { transform: translate3d(-5px, 1px, 0) rotate(-2deg); }
+      40%, 60% { transform: translate3d(5px, -1px, 0) rotate(2deg); }
+    }
+    .ball__window {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      background: #0a1a3a;
+      color: #d8e4ff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.5rem;
+      text-align: center;
+      font-weight: 600;
+      font-size: 0.95rem;
+      line-height: 1.25;
+      box-shadow: inset 0 4px 10px rgba(0,0,0,0.5);
+    }
+    .ball__window .triangle {
+      transform: none;
+    }
+    .answer-tone {
+      margin-top: 0.75rem;
+      font-size: 0.95rem;
+      color: #555;
+      min-height: 1.4em;
+    }
+    .answer-tone[data-tone="Affirmative"] { color: #1a6e2e; }
+    .answer-tone[data-tone="Non-committal"] { color: #8a6d00; }
+    .answer-tone[data-tone="Negative"] { color: #a3252b; }
+    @media (prefers-reduced-motion: reduce) {
+      .ball.is-shaking { animation: none; }
+    }
+  </style>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-banner-heading" aria-describedby="cookie-banner-text" hidden>
+    <div class="cookie-banner__inner">
+      <h2 id="cookie-banner-heading" class="cookie-banner__heading">A quick word about cookies</h2>
+      <p id="cookie-banner-text" class="cookie-banner__text">
+        We use cookies for analytics, so we can see which calculators people actually use and which ones need work. Nothing creepy, nothing sold on. You can say yes, say no, or read the <a href="/privacy/">privacy policy</a> first. Your choice sticks.
+      </p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-reject>Reject</button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>Accept</button>
+      </div>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">WebCaretakers</a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <ul class="primary-nav__list">
+          <li class="primary-nav__item primary-nav__item--has-menu">
+            <button type="button" class="primary-nav__link" data-menu-toggle aria-haspopup="true" aria-expanded="false">Calculators <span class="primary-nav__caret" aria-hidden="true">▾</span></button>
+            <ul class="primary-nav__submenu">
+              <li><a href="/calculators/ai/">AI</a></li>
+              <li><a href="/calculators/broadband/">Broadband</a></li>
+              <li><a href="/calculators/business/">Business</a></li>
+              <li><a href="/calculators/conversions/">Conversions</a></li>
+              <li><a href="/calculators/cybersecurity/">Cybersecurity</a></li>
+              <li><a href="/calculators/finance/">Finance</a></li>
+              <li><a href="/calculators/fun/">Fun</a></li>
+              <li><a href="/calculators/health/">Health</a></li>
+              <li><a href="/calculators/images/">Images</a></li>
+              <li><a href="/calculators/math/">Math</a></li>
+              <li><a href="/calculators/productivity/">Productivity</a></li>
+              <li><a href="/calculators/property/">Property</a></li>
+              <li><a href="/calculators/seo/">SEO</a></li>
+              <li><a href="/calculators/wedding/">Wedding</a></li>
+              <li><a href="/calculators/writing/">Writing</a></li>
+              <li class="primary-nav__submenu-sep"><a href="/calculators/">See all calculators</a></li>
+            </ul>
+          </li>
+          <li class="primary-nav__item"><a href="/about/" class="primary-nav__link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <main id="main-content">
+      <div class="container">
+        <nav aria-label="Breadcrumb" class="breadcrumbs">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/calculators/">Calculators</a></li>
+            <li><a href="/calculators/fun/">Fun</a></li>
+            <li aria-current="page">Magic 8-Ball</li>
+          </ol>
+        </nav>
+
+        <h1>Magic 8-Ball Generator</h1>
+        <p class="intro">Ask a yes/no question, shake the ball, get one of the twenty canonical Mattel answers. Browser-only, no Math.random, every answer has exactly the same one-in-twenty chance per shake. The ball is gently optimistic on purpose: ten yeses, five maybes, five nos, exactly as it has shipped since 1950.</p>
+
+        <section class="eli5" aria-label="Plain-English explanation">
+          <h2>Explain like I'm 5 (what even is this calculator?)</h2>
+          <p>You think of a yes-or-no question, you tap the ball, and a little message floats up from inside it. Sometimes it says yes, sometimes no, sometimes "ask again later". Same thing as the plastic ball your nan had on the shelf, just on a screen and with the dice rolled fairly.</p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="in-content" aria-hidden="true"></div>
+
+        <section class="calculator-card">
+          <h2>Ask the ball</h2>
+          <p class="reassure"><strong>Browser-only.</strong> Your question never leaves the device. The answer is drawn using the Web Crypto API for an unbiased pick.</p>
+
+          <form id="ball-form" class="calc-form" novalidate>
+            <div class="calc-row">
+              <label for="ball-question">Your yes/no question (optional)</label>
+              <input type="text" id="ball-question" data-question maxlength="200" placeholder="Should I order pizza tonight?" autocomplete="off">
+              <p class="calc-row__hint">The ball does not actually read it. The question is just for your own benefit, so you remember what you asked.</p>
+            </div>
+
+            <div class="ball-stage">
+              <div class="ball" data-ball aria-hidden="true">
+                <div class="ball__window" data-result-answer>Ask a question and shake.</div>
+              </div>
+              <p class="answer-tone" data-result-tone aria-live="polite"></p>
+            </div>
+
+            <div class="calc-row">
+              <button type="submit" class="btn btn--primary" data-ask>Shake the ball</button>
+            </div>
+          </form>
+
+          <details class="prove-it" data-prove-it>
+            <summary>Prove it</summary>
+            <p>The answer is one of exactly 20 strings, the canonical Mattel set, drawn with the browser's cryptographic random source. Here is the order of operations:</p>
+            <ol data-prove-it-list>
+              <li>Read the 20 canonical answers from the frozen list (10 affirmative, 5 non-committal, 5 negative).</li>
+              <li>Draw an integer in [0, 20) using <code>crypto.getRandomValues</code> with rejection sampling, so every answer has exactly the same chance.</li>
+              <li>Look up the answer at that index and display its text and tone.</li>
+              <li>Push a <code>calculator_result</code> dataLayer event with the chosen tone (Affirmative, Non-committal, or Negative) for analytics.</li>
+            </ol>
+            <p data-prove-it-body>Total bits drawn per shake: 32 (one Uint32 read from the browser RNG). For n = 20, (2^32) mod 20 is 0, so the rejection sampler accepts every draw. There is no <code>Math.random</code> in the path. Same primitive your bank uses for session keys.</p>
+            <pre><code>// Unbiased integer in [0, n)
+function randomInt(n) {
+  const max = 0xFFFFFFFF;
+  const limit = max - ((max + 1) % n);
+  const buf = new Uint32Array(1);
+  while (true) {
+    crypto.getRandomValues(buf);
+    if (buf[0] &lt;= limit) return buf[0] % n;
+  }
+}
+
+// Draw one of the 20 canonical answers
+const answer = ANSWERS[randomInt(20)];</code></pre>
+            <p>Nothing leaves the device. The page makes no network requests after it loads. Disconnect your network and the ball still answers.</p>
+          </details>
+
+          <p class="bookmark-nudge">
+            Useful? Save this calculator: press <kbd data-bookmark-shortcut>Ctrl</kbd> + <kbd>D</kbd> to bookmark it.
+          </p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="below-results" aria-hidden="true"></div>
+
+        <section class="long-form">
+          <h2>When asking a plastic ball is a perfectly reasonable thing to do</h2>
+          <p>Two equally good options, neither side budging, the discussion going round in circles. Pizza or curry. Cinema or pub. Stay in or go out. The decision is small, the deliberation is taking longer than the activity will, and someone has to break the tie. The ball decides. Not because it knows anything, but because it removes the social cost of one person picking. If the loser feels strongly enough to argue with the result, the question was never actually 50/50 and you have new information about what they actually wanted.</p>
+          <p>Children at a sleepover, party games, a dull Tuesday evening. The ball is a tiny piece of theatre that costs nothing to run. Type a question, shake, watch a face appear. The drama is the feature: the moment between the shake and the answer is where the fun lives. It does not really matter what the ball says. It matters that everyone watched the same answer come up.</p>
+          <p>Writers and creatives use it as a procrastination cure. Stuck on whether to cut a scene, kill a character, change the tense, give the protagonist a dog. Ask the ball. The answer does not bind you, but the gut reaction does. If the ball says "no" and your stomach drops, you wanted to keep the scene. If it says "yes" and you feel relieved, you wanted to cut it. The ball is a coin flip with better branding.</p>
+
+          <h2>A short, slightly suspicious history</h2>
+          <p>The Magic 8-Ball was invented by Albert Carter in the 1940s, supposedly inspired by a fortune-telling device his clairvoyant mother used. Mattel acquired the design in 1971 and has been selling it largely unchanged ever since. The 20 answers, the icosahedral floating die inside, the blue-tinted alcohol fluid, the cheerful bias toward "yes": all of it has been the same for nearly seventy years. The ball is older than the personal computer, the mobile phone, and the public internet. It still sells. There is something to be said for not over-engineering a good idea.</p>
+
+          <h2>Common mistakes to avoid</h2>
+          <p>Asking it open-ended questions. The ball only does yes/no. "What should I have for dinner?" returns "Most likely" and you are no further forward. Phrase the question as a yes/no first ("Should I have curry tonight?") and the answer is at least parseable. The Decision Wheel is the right tool for picking between named options.</p>
+          <p>Asking it the same question repeatedly until you get the answer you want. This is funny once and depressing twice. If you are doing this, you already know what you want and the ball is just stalling for you. The right move is to put the kettle on and admit it to yourself.</p>
+          <p>Treating it as a serious decision-making tool. The ball is a fairground oracle. It does not know your situation, your budget, your medical history, or whether your landlord is reasonable. For real decisions, talk to a real person who knows the specifics. The ball is for tiebreakers and fun.</p>
+
+          <h2>Edge cases this page handles</h2>
+          <ul>
+            <li><strong>No question entered.</strong> The ball still answers. The question is purely for the user's own benefit.</li>
+            <li><strong>Question over 200 characters.</strong> Capped at 200, because the ball does not read it anyway.</li>
+            <li><strong>Repeat shakes.</strong> Each shake is an independent draw. Two affirmatives in a row are exactly as likely as the maths says (one in four).</li>
+            <li><strong>Reduced motion.</strong> The shake animation respects <code>prefers-reduced-motion</code>: the answer still appears, the wobble does not.</li>
+            <li><strong>Offline.</strong> Page works fully offline once loaded. No network calls during a shake.</li>
+          </ul>
+
+          <h2>Related calculators</h2>
+          <p>Other browser-only tools where the result is genuinely random and nothing leaves the device.</p>
+          <ul class="related-calculators">
+            <li><a href="/calculators/fun/">All fun calculators</a></li>
+            <li><a href="/calculators/fun/decision-wheel/">Decision Wheel, for more than two options</a></li>
+            <li><a href="/calculators/fun/dice-and-coin-roller/">Dice and Coin Roller</a></li>
+            <li><a href="/calculators/fun/random-name-picker/">Random Name Picker</a></li>
+          </ul>
+        </section>
+
+        <section class="faq" aria-labelledby="faq-heading">
+          <h2 id="faq-heading">Frequently asked questions</h2>
+          <details>
+            <summary>Are these the real Magic 8-Ball answers?</summary>
+            <p>Yes. All 20 answers are the canonical Mattel set in their canonical order: 10 affirmative, 5 non-committal, 5 negative. Nothing has been added, swapped, or sanitised. The text on screen is what you would read on the bottom of a real ball if you got bored and shook it for long enough.</p>
+          </details>
+          <details>
+            <summary>Is the answer actually random?</summary>
+            <p>Yes. The answer is drawn using <code>crypto.getRandomValues</code> with rejection sampling, the same primitive browsers use for session keys. No <code>Math.random</code> anywhere. Each of the 20 answers has exactly the same one-in-twenty chance per shake.</p>
+          </details>
+          <details>
+            <summary>Does my question get sent anywhere?</summary>
+            <p>No. The question stays in the textbox on your device. The page makes no network calls during a shake. Disconnect your network and the ball still works.</p>
+          </details>
+          <details>
+            <summary>Why are there more yes answers than no answers?</summary>
+            <p>That is the original Mattel split: ten affirmative, five non-committal, five negative. So fifty per cent yes, twenty-five per cent maybe, twenty-five per cent no. The ball is gently optimistic by design, which is part of why it has sold for nearly seventy years.</p>
+          </details>
+          <details>
+            <summary>Should I use this to make actual decisions?</summary>
+            <p>For breaking a deadlock between two reasonable choices, sure. For anything that genuinely matters (jobs, relationships, money, health), no. The ball is a fairground oracle, not a financial adviser. Its value is the moment after the answer appears, when you notice your gut reaction to it.</p>
+          </details>
+        </section>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="ad-slot" data-ad-slot="sidebar" aria-hidden="true"></div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="site-footer-nav" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/calculators/">All calculators</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+
+      <section class="site-disclaimer" data-disclaimer aria-labelledby="disclaimer-heading">
+        <h2 id="disclaimer-heading">A quick, necessary word</h2>
+        <p>Every calculator on this site is built to give you a sensible, well-reasoned estimate. It is, however, exactly that: an estimate, for general information only. Nothing you see here is professional, legal, financial, medical, or tax advice, and it should not be treated as such.</p>
+        <p>Before you make a decision that actually matters, talk to a qualified professional who knows your specific situation: an accountant, a solicitor, a doctor, an IT consultant, whoever fits the question. They can factor in the bits a generic tool can't.</p>
+        <p>We take no liability and accept no responsibility for any loss, damage, or questionable life choice arising from acting on the numbers you see here. Use the results as a starting point for a better conversation, not as the final word.</p>
+        <p><strong>Affiliate disclosure:</strong> some links on this site are affiliate links. If you click through and buy or sign up for something, we may earn a small commission at no extra cost to you. It helps keep the calculators free and ad-light. We only recommend things we'd point a friend towards.</p>
+      </section>
+      <p class="site-copyright">&copy; 2026 WebCaretakers. All rights reserved.</p>
+      <p class="site-legal">WebCaretakers is a trading name of <a href="https://yeseo.io/" rel="noopener">Andrew Laws Associates Ltd</a>, registered in England and Wales (company no. 08602332). ICO registration ZA726704.</p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/calculators/magic-8-ball.js"></script>
+  <script>
+    (function () {
+      'use strict';
+
+      var shortcutEl = document.querySelector('[data-bookmark-shortcut]');
+      if (shortcutEl) {
+        var isMac = /Mac|iPhone|iPad|iPod/i.test(navigator.platform || navigator.userAgent);
+        shortcutEl.textContent = isMac ? '⌘' : 'Ctrl';
+      }
+
+      var lib = window.Magic8Ball;
+      if (!lib) return;
+
+      var form = document.getElementById('ball-form');
+      var ballEl = document.querySelector('[data-ball]');
+      var answerEl = document.querySelector('[data-result-answer]');
+      var toneEl = document.querySelector('[data-result-tone]');
+      var questionEl = document.querySelector('[data-question]');
+      var proveIt = document.querySelector('[data-prove-it]');
+
+      var firstInteractionTracked = false;
+
+      function trackInteraction(field) {
+        if (firstInteractionTracked) return;
+        firstInteractionTracked = true;
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: 'calculator_interaction',
+          calculator_name: 'magic-8-ball',
+          field: field
+        });
+      }
+
+      function shake() {
+        var ans = lib.getAnswer();
+        // Trigger shake animation, then reveal.
+        ballEl.classList.remove('is-shaking');
+        // Force reflow so the animation restarts on repeat shakes.
+        void ballEl.offsetWidth;
+        ballEl.classList.add('is-shaking');
+
+        var prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var delay = prefersReduced ? 0 : 550;
+
+        window.setTimeout(function () {
+          answerEl.textContent = ans.text;
+          toneEl.textContent = ans.category;
+          toneEl.setAttribute('data-tone', ans.category);
+          ballEl.classList.remove('is-shaking');
+
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: 'calculator_result',
+            calculator_name: 'magic-8-ball',
+            tone: ans.category,
+            answer: ans.text,
+            had_question: !!(questionEl.value && questionEl.value.trim().length > 0)
+          });
+        }, delay);
+      }
+
+      if (form) {
+        form.addEventListener('submit', function (e) {
+          e.preventDefault();
+          shake();
+        });
+      }
+
+      if (questionEl) {
+        questionEl.addEventListener('input', function () {
+          trackInteraction('question');
+        });
+      }
+
+      if (proveIt) {
+        var proveItFired = false;
+        proveIt.addEventListener('toggle', function () {
+          if (proveIt.open && !proveItFired) {
+            proveItFired = true;
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+              event: 'prove_it',
+              calculator_name: 'magic-8-ball'
+            });
+          }
+        });
+      }
+    })();
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

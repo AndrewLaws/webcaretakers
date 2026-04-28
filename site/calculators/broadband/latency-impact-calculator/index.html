@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Latency Impact Calculator: Is Your Ping Good Enough? | WebCaretakers</title>
+  <meta name="description" content="Work out whether your ping, jitter and packet loss are good enough for cloud gaming, FPS, MMOs, video calls, web browsing or SSH. Verdict, score and the maths shown end to end.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/broadband/latency-impact-calculator/">
+  <meta property="og:title" content="Latency Impact Calculator | WebCaretakers">
+  <meta property="og:description" content="Assess whether your ping, jitter and packet loss are good enough for the thing you actually want to do online.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/broadband/latency-impact-calculator/">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var _stored = null;
+    try { _stored = localStorage.getItem('cookie-consent'); } catch (e) {}
+    var _initial = _stored === 'granted' ? 'granted' : 'denied';
+    gtag('consent', 'default', {
+      ad_storage: _initial, analytics_storage: _initial,
+      ad_user_data: _initial, ad_personalization: _initial,
+      functionality_storage: 'granted', security_storage: 'granted',
+      wait_for_update: 500
+    });
+  </script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Latency Impact Calculator",
+    "url": "https://webcaretakers.com/calculators/broadband/latency-impact-calculator/",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "description": "Assess whether your ping (RTT), jitter and packet loss are good enough for cloud gaming, competitive FPS, MMOs, video calls, web browsing or SSH and remote desktop. Returns a verdict, a 0-100 quality score, the TCP-window throughput cap, and a plain-English explanation.",
+    "offers": { "@type": "Offer", "price": "0" },
+    "author": { "@type": "Person", "name": "Andrew Laws", "url": "https://yeseo.io/" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What counts as good ping?",
+        "acceptedAnswer": { "@type": "Answer", "text": "It depends entirely on what you are doing. For competitive shooters, anything under 30 ms is excellent and 50 ms is still fine. For cloud gaming, the bar is tighter: 20 ms is the comfort zone. For web browsing or video calls, 50 to 100 ms is unnoticeable. For MMOs and casual gaming, 100 ms is perfectly playable. There is no single number, which is why this calculator asks what you are using the connection for before passing judgement." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does jitter matter as much as ping?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Ping is the average. Jitter is the variation around it. A line with 30 ms ping and 2 ms jitter feels rock-solid. A line with 30 ms ping and 25 ms jitter feels rubbery and unpredictable, even though the average is identical. Real-time apps such as games, voice and video are far more sensitive to jitter than to a steady high ping. Audio chops, frames freeze, typing over SSH stops feeling local." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is packet loss and how much is too much?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Packet loss is the percentage of packets that never arrive. Anything above zero is technically lossy, but real lines run at 0.1 to 0.3% on a good day. Above 1% you start to notice it on calls and games. Above 2% it is obvious: dropped audio, rubber-banding characters, retransmits, stalls. Persistent loss above 1% is worth raising with your provider, especially if your speed test still looks fine, because loss does not show up in a Mbps number." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does the calculator show a TCP throughput cap?",
+        "acceptedAnswer": { "@type": "Answer", "text": "A single TCP connection cannot push faster than its window size divided by its round-trip time. With a 64 KB window and 100 ms RTT, the maximum is about 5.2 Mbps no matter how fast your line is. That is why a long-haul download from a far-away server feels slow on a gigabit connection. Modern operating systems use window scaling and congestion control to do better than the textbook number, but the formula is still the right place to start when a single download feels capped." }
+      },
+      {
+        "@type": "Question",
+        "name": "How can I lower my latency?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Wire in instead of using Wi-Fi. Wi-Fi adds 5 to 30 ms of jitter on a busy network. Pick a gaming server geographically close to you. Avoid VPNs and proxies for real-time work unless they are essential. Check that no one in the house is saturating the upload with a backup or a cloud sync. If your line itself is slow, full fibre (FTTP) gives the best latency floor of any consumer broadband technology, well below FTTC or fixed wireless." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-banner-heading" aria-describedby="cookie-banner-text" hidden>
+    <div class="cookie-banner__inner">
+      <h2 id="cookie-banner-heading" class="cookie-banner__heading">A quick word about cookies</h2>
+      <p id="cookie-banner-text" class="cookie-banner__text">
+        We use cookies for analytics, so we can see which calculators people actually use and which ones need work. Nothing creepy, nothing sold on. You can say yes, say no, or read the <a href="/privacy/">privacy policy</a> first. Your choice sticks.
+      </p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-reject>Reject</button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>Accept</button>
+      </div>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">WebCaretakers</a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <ul class="primary-nav__list">
+          <li class="primary-nav__item primary-nav__item--has-menu">
+            <button type="button" class="primary-nav__link" data-menu-toggle aria-haspopup="true" aria-expanded="false">Calculators <span class="primary-nav__caret" aria-hidden="true">&#9662;</span></button>
+            <ul class="primary-nav__submenu">
+              <li><a href="/calculators/ai/">AI</a></li>
+              <li><a href="/calculators/broadband/">Broadband</a></li>
+              <li><a href="/calculators/business/">Business</a></li>
+              <li><a href="/calculators/conversions/">Conversions</a></li>
+              <li><a href="/calculators/cybersecurity/">Cybersecurity</a></li>
+              <li><a href="/calculators/finance/">Finance</a></li>
+              <li><a href="/calculators/fun/">Fun</a></li>
+              <li><a href="/calculators/health/">Health</a></li>
+              <li><a href="/calculators/images/">Images</a></li>
+              <li><a href="/calculators/math/">Math</a></li>
+              <li><a href="/calculators/productivity/">Productivity</a></li>
+              <li><a href="/calculators/property/">Property</a></li>
+              <li><a href="/calculators/seo/">SEO</a></li>
+              <li><a href="/calculators/wedding/">Wedding</a></li>
+              <li><a href="/calculators/writing/">Writing</a></li>
+              <li class="primary-nav__submenu-sep"><a href="/calculators/">See all calculators</a></li>
+            </ul>
+          </li>
+          <li class="primary-nav__item"><a href="/about/" class="primary-nav__link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <main id="main-content">
+      <div class="container">
+        <nav aria-label="Breadcrumb" class="breadcrumbs">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/calculators/">Calculators</a></li>
+            <li><a href="/calculators/broadband/">Broadband</a></li>
+            <li aria-current="page">Latency Impact Calculator</li>
+          </ol>
+        </nav>
+
+        <h1>Latency Impact Calculator</h1>
+        <p class="intro">Plug in your ping, jitter and packet loss, pick what you are actually trying to do online, and find out whether the line is up to it. The verdict and 0-100 score are honest, the maths is shown, and the use cases are tuned the way real applications behave.</p>
+
+        <section class="eli5" aria-label="Plain-English explanation">
+          <h2>Explain like I'm 5 (what even is this calculator?)</h2>
+          <p>Speed tests tell you how fat the pipe is. They don't tell you how snappy it is. This calculator looks at the snappy bits: how long round-trips take, how steady that timing is, and whether packets get dropped. Then it tells you whether that's good enough for the thing you actually want to do, like cloud gaming, a video call, or just opening web pages.</p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="in-content" aria-hidden="true"></div>
+
+        <section data-calculator class="calculator-card" aria-labelledby="calc-heading">
+          <h2 id="calc-heading">Assess your latency</h2>
+          <form id="latency-form" class="calc-form" novalidate>
+            <div class="calc-row">
+              <label for="inp-use-case">What are you using the connection for?</label>
+              <select id="inp-use-case" name="useCase" required>
+                <option value="cloud-gaming">Cloud gaming (GeForce Now, Xbox Cloud, Luna)</option>
+                <option value="fps-gaming" selected>Competitive FPS / online gaming</option>
+                <option value="mmo-gaming">MMO / casual online gaming</option>
+                <option value="video-call">Video call (Zoom, Teams, Meet)</option>
+                <option value="web-browsing">Web browsing</option>
+                <option value="ssh-remote-desktop">SSH and remote desktop</option>
+              </select>
+            </div>
+
+            <div class="calc-row">
+              <label for="inp-rtt">Ping / round-trip time (ms)</label>
+              <input type="number" id="inp-rtt" name="rtt" min="0" step="1" value="30" required>
+              <p class="calc-row__hint">From a speed test, ping plugin, or `ping 8.8.8.8`. Use the average.</p>
+            </div>
+
+            <div class="calc-row">
+              <label for="inp-jitter">Jitter (ms)</label>
+              <input type="number" id="inp-jitter" name="jitter" min="0" step="0.1" value="5" required>
+              <p class="calc-row__hint">The variation in ping. Most speed tests report it next to ping.</p>
+            </div>
+
+            <div class="calc-row">
+              <label for="inp-loss">Packet loss (%)</label>
+              <input type="number" id="inp-loss" name="packetLoss" min="0" max="100" step="0.1" value="0" required>
+              <p class="calc-row__hint">Zero is ideal. Anything above 1% is worth investigating.</p>
+            </div>
+
+            <div class="calc-row">
+              <label for="inp-link">Link speed (Mbps)</label>
+              <input type="number" id="inp-link" name="linkSpeed" min="0" step="1" value="100">
+              <p class="calc-row__hint">Your download speed. Used to bound the TCP throughput cap.</p>
+            </div>
+
+            <div class="calc-row">
+              <label for="inp-window">TCP window (KB)</label>
+              <input type="number" id="inp-window" name="tcpWindow" min="1" step="1" value="64">
+              <p class="calc-row__hint">64 KB is the textbook default. Modern OSes scale higher, but 64 is the right starting figure for "why does one download feel capped?".</p>
+            </div>
+
+            <button type="submit" data-calculate>Assess the line</button>
+          </form>
+
+          <div data-calculator-results class="calculator-results" aria-live="polite">
+            <p class="result-display" data-result-placeholder>Fill in the form and press the button to see the verdict.</p>
+            <div class="result-summary" hidden data-result-summary>
+              <p>Verdict: <strong data-result-verdict></strong></p>
+              <p>Quality score: <strong data-result-score></strong> / 100</p>
+              <p>Single-flow TCP throughput cap: <strong data-result-tcp-cap></strong></p>
+              <h3>Why this verdict</h3>
+              <ul data-result-reasons></ul>
+
+              <details class="prove-it" data-prove-it>
+                <summary>Prove it</summary>
+                <div data-prove-it-body>
+                  <p>The maths and thresholds, end to end, so you can audit it. RTT, jitter and loss are each compared to the band edges for the use case. The worst band wins the verdict. The 0-100 score is a weighted average across all three.</p>
+                  <ul data-prove-it-list></ul>
+                  <p class="prove-it-source">TCP throughput cap uses the Mathis-lite formula: window divided by RTT, bounded by the line speed. Use-case thresholds are tuned to match how the applications actually feel: cloud gaming and competitive FPS are strict, MMOs and web browsing are forgiving, video and SSH sit in between.</p>
+                </div>
+              </details>
+            </div>
+
+            <p class="bookmark-nudge">
+              <strong>Save this calculator:</strong>
+              press <kbd data-bookmark-shortcut>Ctrl</kbd> + <kbd>D</kbd> to bookmark it in your browser.
+            </p>
+          </div>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="below-results" aria-hidden="true"></div>
+
+        <div data-cta="next-step" class="cta-block">
+          <h3>Latency too high for what you need?</h3>
+          <p>Full fibre (FTTP) gives the best latency floor of any consumer broadband, usually 5 to 10 ms to the nearest peering point, with low jitter and steady performance under load.</p>
+          <a href="https://www.awin1.com/cread.php?awinmid=12213&awinaffid=202051&ued=https%3A%2F%2Fwww.broadband.co.uk%2F" class="cta-link" rel="noopener sponsored" data-cta-link>Compare full-fibre broadband at broadband.co.uk</a>
+        </div>
+
+        <section class="long-form">
+          <h2>Why ping alone is the wrong question</h2>
+          <p>Ask anyone what makes a connection "good for gaming" and you will hear a single number: ping. The truth is that ping is one of three numbers, and on its own it is misleading. A line at 25 ms ping with 20 ms jitter feels worse than a line at 60 ms ping with 2 ms jitter, because the brain notices the wobble more than it notices the average. Add packet loss into the mix and you have a third axis: even a fast, steady line that drops 1 in 50 packets will stutter through a video call. This calculator looks at all three and ranks them against the thing you are actually trying to do.</p>
+
+          <h2>Why use cases matter</h2>
+          <p>Cloud gaming runs the whole game on a server somewhere and streams the video back to you, so it has to pay the round-trip on every frame. Anything over 60 ms is uncomfortable, anything over 80 ms is unplayable. Competitive FPS gaming is a little more forgiving because the local client predicts movement, so 100 ms is still sort of playable, just not winnable. MMOs and casual online games tolerate 200 ms because the simulation is slower-paced and tick-rate-limited. Video calls put up with 150 ms because audio buffering smooths the worst of it. SSH and remote desktop care most about jitter, because a steady 100 ms ping feels normal but variable jitter makes typing feel rubbery. The same set of numbers therefore gives a different verdict for each use case, which is exactly what the calculator does.</p>
+
+          <h2>The TCP throughput cap nobody mentions</h2>
+          <p>You can have a 1 Gbps line, a perfect speed test, and a single download that crawls along at 5 Mbps. The reason is the bandwidth-delay product. A single TCP connection can only have one window's worth of data in flight at a time, and on a 100 ms link with a 64 KB window that maths out to roughly 5.2 Mbps. Long-haul downloads from far-away servers run into this all the time. Modern operating systems use window scaling, BBR, and parallel connections to work around it, but the textbook number is still the right reference when one specific download feels stuck. The calculator surfaces the cap so you can sanity-check whether your "slow internet" is actually a TCP-window problem.</p>
+
+          <h2>What the verdicts mean</h2>
+          <ul>
+            <li><strong>Excellent:</strong> the line is well within tolerance for the chosen use case. Nobody in the house will complain.</li>
+            <li><strong>Good:</strong> not flawless, but solid. You will not notice an issue under normal use.</li>
+            <li><strong>Playable:</strong> usable, but on the edge. A bad-luck spike will be noticeable.</li>
+            <li><strong>Poor:</strong> the experience will be visibly compromised. Calls drop frames, games rubber-band, SSH feels laggy.</li>
+            <li><strong>Unusable:</strong> the chosen activity is not realistic on this line. Switch to a less demanding use, or change the connection.</li>
+          </ul>
+
+          <h2>Common ways to lower latency</h2>
+          <ul>
+            <li><strong>Wire in.</strong> Wi-Fi adds 5 to 30 ms of jitter on a busy household network. An ethernet cable is the single biggest improvement most people can make.</li>
+            <li><strong>Pick a closer game server.</strong> 200 ms to a US East server from the UK is geography, not your line.</li>
+            <li><strong>Avoid VPNs for real-time work.</strong> Every extra hop adds latency. If you must, use one with a nearby exit node.</li>
+            <li><strong>Stop background uploads.</strong> A cloud backup or photo sync saturating the upload can ruin ping for everyone in the house.</li>
+            <li><strong>Switch to full fibre.</strong> FTTP has the lowest latency floor of any consumer broadband, well below FTTC, cable, or fixed wireless.</li>
+          </ul>
+
+          <h2>Related calculators</h2>
+          <ul class="related-calculators">
+            <li><a href="/calculators/broadband/broadband-bandwidth-calculator/">Work out how much broadband speed you need</a></li>
+            <li><a href="/calculators/broadband/file-download-time-calculator/">File download time calculator</a></li>
+            <li><a href="/calculators/broadband/">All broadband calculators</a></li>
+          </ul>
+        </section>
+
+        <section class="faq" aria-labelledby="faq-heading">
+          <h2 id="faq-heading">Frequently asked questions</h2>
+          <details>
+            <summary>What counts as good ping?</summary>
+            <p>It depends on what you are doing. Under 30 ms is excellent for competitive shooters. 50 to 100 ms is fine for video calls and web browsing. 200 ms is still playable for MMOs and casual gaming. Cloud gaming is the strictest case: anything over 60 ms is uncomfortable.</p>
+          </details>
+          <details>
+            <summary>Why does jitter matter as much as ping?</summary>
+            <p>Ping is the average. Jitter is the variation around it. Real-time apps notice the wobble more than the steady delay. A line with 30 ms ping and 25 ms jitter feels rubbery and unpredictable; the same average with 2 ms jitter feels rock-solid.</p>
+          </details>
+          <details>
+            <summary>What is packet loss and how much is too much?</summary>
+            <p>Packet loss is the percentage of packets that never arrive. Above 1% is noticeable on calls and games. Above 2% is obvious: dropouts, rubber-banding, retransmits. Persistent loss above 1% is worth raising with your provider, even when speed tests look fine.</p>
+          </details>
+          <details>
+            <summary>Why does the calculator show a TCP throughput cap?</summary>
+            <p>A single TCP connection cannot exceed its window size divided by its round-trip time. With a 64 KB window and 100 ms RTT, that is about 5.2 Mbps regardless of line speed. It explains why one download can feel slow even on a fast connection.</p>
+          </details>
+          <details>
+            <summary>How can I lower my latency?</summary>
+            <p>Wire in instead of using Wi-Fi. Pick game servers close to you. Skip VPNs for real-time work. Stop background uploads while gaming or calling. If the line itself is the problem, full fibre has the lowest latency floor of any consumer broadband.</p>
+          </details>
+        </section>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="ad-slot" data-ad-slot="sidebar" aria-hidden="true"></div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="site-footer-nav" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/calculators/">All calculators</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+
+      <section class="site-disclaimer" data-disclaimer aria-labelledby="disclaimer-heading">
+        <h2 id="disclaimer-heading">A quick, necessary word</h2>
+        <p>Every calculator on this site is built to give you a sensible, well-reasoned estimate. It is, however, exactly that: an estimate, for general information only. Nothing you see here is professional, legal, financial, medical, or tax advice, and it should not be treated as such.</p>
+        <p>Before you make a decision that actually matters, talk to a qualified professional who knows your specific situation: an accountant, a solicitor, a doctor, an IT consultant, whoever fits the question. They can factor in the bits a generic tool can't.</p>
+        <p>We take no liability and accept no responsibility for any loss, damage, or questionable life choice arising from acting on the numbers you see here. Use the results as a starting point for a better conversation, not as the final word.</p>
+        <p><strong>Affiliate disclosure:</strong> some links on this site are affiliate links. If you click through and buy or sign up for something, we may earn a small commission at no extra cost to you. It helps keep the calculators free and ad-light. We only recommend things we'd point a friend towards.</p>
+      </section>
+      <p class="site-copyright">&copy; 2026 WebCaretakers. All rights reserved.</p>
+      <p class="site-legal">WebCaretakers is a trading name of <a href="https://yeseo.io/" rel="noopener">Andrew Laws Associates Ltd</a>, registered in England and Wales (company no. 08602332). ICO registration ZA726704.</p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/calculators/latency-impact-calculator.js"></script>
+  <script>
+    (function () {
+      var form = document.getElementById('latency-form');
+      if (!form) return;
+      var summary = document.querySelector('[data-result-summary]');
+      var placeholder = document.querySelector('[data-result-placeholder]');
+      var verdictEl = document.querySelector('[data-result-verdict]');
+      var scoreEl = document.querySelector('[data-result-score]');
+      var tcpCapEl = document.querySelector('[data-result-tcp-cap]');
+      var reasonsEl = document.querySelector('[data-result-reasons]');
+      var proveListEl = document.querySelector('[data-prove-it-list]');
+
+      function pushInteraction(field, value) {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: 'calculator_interaction',
+          calculator_name: 'latency-impact-calculator',
+          field: field,
+          value: value
+        });
+      }
+
+      form.addEventListener('input', function (e) {
+        var t = e.target;
+        pushInteraction(t.name || t.id, t.value);
+      });
+
+      function fmtMbps(mbps) {
+        if (!Number.isFinite(mbps)) return 'Unbounded';
+        if (mbps >= 1000) return (mbps / 1000).toFixed(2) + ' Gbps';
+        if (mbps >= 1) return mbps.toFixed(2) + ' Mbps';
+        return (mbps * 1000).toFixed(0) + ' kbps';
+      }
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var fd = new FormData(form);
+        var input = {
+          rtt: parseFloat(fd.get('rtt')),
+          jitter: parseFloat(fd.get('jitter')),
+          packetLoss: parseFloat(fd.get('packetLoss')),
+          useCase: fd.get('useCase'),
+          linkSpeed: parseFloat(fd.get('linkSpeed')),
+          tcpWindow: parseFloat(fd.get('tcpWindow'))
+        };
+
+        try {
+          var r = LatencyImpactCalculator.assessLatency(input);
+        } catch (err) {
+          placeholder.hidden = false;
+          summary.hidden = true;
+          placeholder.textContent = 'Please check your inputs: ' + err.message;
+          return;
+        }
+
+        placeholder.hidden = true;
+        summary.hidden = false;
+
+        verdictEl.textContent = r.verdict;
+        scoreEl.textContent = r.score;
+        tcpCapEl.textContent = fmtMbps(r.tcpCapMbps);
+
+        reasonsEl.innerHTML = r.reasons.map(function (s) {
+          return '<li>' + s.replace(/</g, '&lt;') + '</li>';
+        }).join('');
+
+        if (proveListEl) {
+          var bandNames = ['Excellent', 'Good', 'Playable', 'Poor', 'Unusable'];
+          var rows = [
+            ['Use case', r.useCase.name],
+            ['RTT (ping)', input.rtt + ' ms'],
+            ['RTT band', bandNames[r.rttBand]],
+            ['Jitter', input.jitter + ' ms'],
+            ['Jitter band', bandNames[r.jitterBand]],
+            ['Packet loss', input.packetLoss + '%'],
+            ['Loss band', bandNames[r.lossBand]],
+            ['TCP window', (input.tcpWindow || 64) + ' KB'],
+            ['Link speed', (input.linkSpeed || 0) + ' Mbps'],
+            ['TCP throughput cap', fmtMbps(r.tcpCapMbps)],
+            ['Quality score', r.score + ' / 100'],
+            ['Verdict', r.verdict]
+          ];
+          proveListEl.innerHTML = rows.map(function (row) {
+            return '<li><span>' + row[0] + '</span><strong>' + row[1] + '</strong></li>';
+          }).join('');
+        }
+
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: 'calculator_result',
+          calculator_name: 'latency-impact-calculator',
+          use_case: input.useCase,
+          rtt: input.rtt,
+          jitter: input.jitter,
+          packet_loss: input.packetLoss,
+          link_speed: input.linkSpeed,
+          tcp_window: input.tcpWindow,
+          score: r.score,
+          verdict: r.verdict
+        });
+      });
+
+      var proveDetails = document.querySelector('[data-prove-it]');
+      if (proveDetails) {
+        proveDetails.addEventListener('toggle', function () {
+          if (proveDetails.open) {
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+              event: 'prove_it',
+              calculator_name: 'latency-impact-calculator'
+            });
+          }
+        });
+      }
+
+      var shortcutEl = document.querySelector('[data-bookmark-shortcut]');
+      if (shortcutEl) {
+        var isMac = /Mac|iPhone|iPad|iPod/i.test(navigator.platform || navigator.userAgent);
+        shortcutEl.textContent = isMac ? '⌘' : 'Ctrl';
+      }
+
+      var ctaLink = document.querySelector('[data-cta-link]');
+      if (ctaLink) {
+        ctaLink.addEventListener('click', function () {
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: 'cta_click',
+            calculator_name: 'latency-impact-calculator',
+            cta: 'compare-broadband-plans'
+          });
+        });
+      }
+    })();
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>
