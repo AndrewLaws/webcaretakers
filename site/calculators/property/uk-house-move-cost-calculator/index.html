@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UK House Move Cost Calculator | WebCaretakers</title>
+  <meta name="description" content="UK house move cost calculator. Estimate stamp duty (SDLT, LBTT or LTT), conveyancing, mortgage fees, survey, removals, EPC and estate agent in one go.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/property/uk-house-move-cost-calculator/">
+  <link rel="alternate" hreflang="en-GB" href="https://webcaretakers.com/calculators/property/uk-house-move-cost-calculator/">
+  <link rel="alternate" hreflang="x-default" href="https://webcaretakers.com/calculators/property/uk-house-move-cost-calculator/">
+  <meta property="og:title" content="UK House Move Cost Calculator | WebCaretakers">
+  <meta property="og:description" content="Total estimated cost of moving home in the UK, broken out line by line. Stamp duty bands shown in detail. Best- and worst-case spread.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/property/uk-house-move-cost-calculator/">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var _stored = null;
+    try { _stored = localStorage.getItem('cookie-consent'); } catch (e) {}
+    var _initial = _stored === 'granted' ? 'granted' : 'denied';
+    gtag('consent', 'default', {
+      ad_storage: _initial, analytics_storage: _initial,
+      ad_user_data: _initial, ad_personalization: _initial,
+      functionality_storage: 'granted', security_storage: 'granted',
+      wait_for_update: 500
+    });
+  </script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "UK House Move Cost Calculator",
+    "url": "https://webcaretakers.com/calculators/property/uk-house-move-cost-calculator/",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any",
+    "inLanguage": "en-GB",
+    "countriesSupported": "GB",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "GBP" },
+    "author": {
+      "@type": "Person",
+      "name": "Andrew Laws",
+      "url": "https://yeseo.io/"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What does it actually cost to move house in the UK?",
+        "acceptedAnswer": { "@type": "Answer", "text": "On a typical £400,000 home mover purchase in England with a mortgage, a Level 2 survey, a 3-bed local removal and a sale of a similar-priced home at 1.2% agent fee, you are looking at the high teens of thousands once the stamp duty, conveyancing, lender fees, removals, EPC and the agent are summed. Stamp duty is usually the biggest single line. The calculator above breaks every line out so you can see where the money goes." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why are first-time buyer numbers so different?",
+        "acceptedAnswer": { "@type": "Answer", "text": "First-time buyer relief in England and Northern Ireland zeroes out the SDLT on the first £300,000 and charges 5% on the slice from £300,000 to £500,000. Above £500,000 you lose the relief completely and pay the standard rates. Scotland gives FTBs a higher nil-rate band of £175,000. Wales has no first-time buyer scheme at all. The calculator picks the right table based on the country you choose." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why is there a best-case and worst-case spread?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Most of the costs in a house move are quoted as a range, not a fixed number. Conveyancing varies by firm and complexity. Mortgage arrangement fees range from zero (some products) to £2,000. Removals depend on volume, day of week and traffic. The spread shows you the realistic best and worst case so you can budget for the worst and be pleasantly surprised. Stamp duty is the one fixed line: the band-by-band calc is exact." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does the calculator send my numbers anywhere?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. Everything runs in your browser. Nothing you type is uploaded or stored, and you can disconnect from the network and the figures still work." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-banner-heading" aria-describedby="cookie-banner-text" hidden>
+    <div class="cookie-banner__inner">
+      <h2 id="cookie-banner-heading" class="cookie-banner__heading">A quick word about cookies</h2>
+      <p id="cookie-banner-text" class="cookie-banner__text">
+        We use cookies for analytics, so we can see which calculators people actually use and which ones need work. Nothing creepy, nothing sold on. You can say yes, say no, or read the <a href="/privacy/">privacy policy</a> first. Your choice sticks.
+      </p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-reject>Reject</button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>Accept</button>
+      </div>
+    </div>
+  </div>
+
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">WebCaretakers</a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <ul class="primary-nav__list">
+          <li class="primary-nav__item primary-nav__item--has-menu">
+            <button type="button" class="primary-nav__link" data-menu-toggle aria-haspopup="true" aria-expanded="false">Calculators <span class="primary-nav__caret" aria-hidden="true">▾</span></button>
+            <ul class="primary-nav__submenu">
+              <li><a href="/calculators/ai/">AI</a></li>
+              <li><a href="/calculators/broadband/">Broadband</a></li>
+              <li><a href="/calculators/business/">Business</a></li>
+              <li><a href="/calculators/conversions/">Conversions</a></li>
+              <li><a href="/calculators/cybersecurity/">Cybersecurity</a></li>
+              <li><a href="/calculators/finance/">Finance</a></li>
+              <li><a href="/calculators/fun/">Fun</a></li>
+              <li><a href="/calculators/health/">Health</a></li>
+              <li><a href="/calculators/images/">Images</a></li>
+              <li><a href="/calculators/math/">Math</a></li>
+              <li><a href="/calculators/productivity/">Productivity</a></li>
+              <li><a href="/calculators/property/">Property</a></li>
+              <li><a href="/calculators/seo/">SEO</a></li>
+              <li><a href="/calculators/wedding/">Wedding</a></li>
+              <li><a href="/calculators/writing/">Writing</a></li>
+              <li class="primary-nav__submenu-sep"><a href="/calculators/">See all calculators</a></li>
+            </ul>
+          </li>
+          <li class="primary-nav__item"><a href="/about/" class="primary-nav__link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <main id="main-content">
+      <div class="container">
+        <nav aria-label="Breadcrumb" class="breadcrumbs">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/calculators/">Calculators</a></li>
+            <li><a href="/calculators/property/">Property</a></li>
+            <li aria-current="page">UK House Move Cost Calculator</li>
+          </ol>
+        </nav>
+
+        <p class="country-switch">UK only. Stamp duty rates assume 2025/26 thresholds for England &amp; Northern Ireland (SDLT), Scotland (LBTT) or Wales (LTT). Pick the country that matches the property you are buying.</p>
+
+        <h1>UK House Move Cost Calculator</h1>
+        <p class="intro">Moving home in the UK costs a lot more than the deposit and the survey, and most of the cost is buried in fees that nobody warns you about until it is too late to flinch. Type your numbers in below, and the calculator adds up the stamp duty (or LBTT in Scotland, LTT in Wales), conveyancing, mortgage fees, survey, removals, EPC and the estate agent if you are selling. The total comes back as a best-case to worst-case range, with every line broken out so you can argue with any of it.</p>
+
+        <section class="eli5" aria-label="Plain-English explanation">
+          <h2>Explain like I'm 5 (what even is this calculator?)</h2>
+          <p>Buying a house has a sticker price, but on top of that there is a long tail of fees that quietly add up to a small car. Some are taxes the government takes (stamp duty, mostly). Some are paid to solicitors, surveyors, lenders and the moving van. This calculator adds them all up so you can see the real number before you start, instead of finding out one bill at a time.</p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="in-content" aria-hidden="true"></div>
+
+        <section data-calculator class="calculator-card">
+          <h2>Calculate your move cost</h2>
+
+          <aside class="indicative-notice" role="note" aria-label="Indicative estimate notice">
+            <strong>Indicative estimate only.</strong> Conveyancing, mortgage and removals quotes vary widely. Stamp duty is exact for the bands shown but does not handle linked transactions, mixed-use property, leasehold quirks or non-resident surcharges. Get firm quotes before you commit.
+          </aside>
+
+          <form id="hmc-form" class="calc-form" novalidate>
+            <div class="calc-row">
+              <label for="hmc-price">Property price (£)</label>
+              <input type="number" id="hmc-price" name="propertyPrice" min="1" step="any" value="400000" data-price>
+            </div>
+
+            <div class="calc-row">
+              <label for="hmc-country">Country</label>
+              <select id="hmc-country" name="country" data-country>
+                <option value="england_ni" selected>England &amp; Northern Ireland (SDLT)</option>
+                <option value="scotland">Scotland (LBTT)</option>
+                <option value="wales">Wales (LTT)</option>
+              </select>
+            </div>
+
+            <div class="calc-row">
+              <label for="hmc-buyer">Buyer status</label>
+              <select id="hmc-buyer" name="buyerStatus" data-buyer>
+                <option value="home_mover" selected>Home mover</option>
+                <option value="first_time">First-time buyer</option>
+                <option value="additional">Additional property (BTL or second home)</option>
+              </select>
+            </div>
+
+            <div class="calc-row">
+              <label for="hmc-mortgage">Mortgage borrowed (£)</label>
+              <input type="number" id="hmc-mortgage" name="mortgage" min="0" step="any" value="280000" data-mortgage>
+            </div>
+
+            <div class="calc-row">
+              <label for="hmc-survey">Survey type</label>
+              <select id="hmc-survey" name="surveyType" data-survey>
+                <option value="none">None</option>
+                <option value="level1">Level 1 condition report</option>
+                <option value="level2" selected>Level 2 homebuyer report</option>
+                <option value="level3">Level 3 building survey</option>
+              </select>
+            </div>
+
+            <div class="calc-row">
+              <label for="hmc-house-size">House size</label>
+              <select id="hmc-house-size" name="houseSize" data-house-size>
+                <option value="2-bed">2-bed</option>
+                <option value="3-bed" selected>3-bed</option>
+                <option value="4-bed">4-bed</option>
+              </select>
+            </div>
+
+            <div class="calc-row">
+              <label for="hmc-distance">Removals distance</label>
+              <select id="hmc-distance" name="distance" data-distance>
+                <option value="short" selected>Short (under 50 miles)</option>
+                <option value="medium">Medium (50 to 150 miles)</option>
+                <option value="long">Long (over 150 miles)</option>
+              </select>
+            </div>
+
+            <div class="calc-row">
+              <label><input type="checkbox" id="hmc-selling" data-selling checked> I am selling an existing home as part of the move</label>
+            </div>
+
+            <div class="calc-row" data-selling-panel>
+              <label for="hmc-sale-price">Sale price of existing home (£)</label>
+              <input type="number" id="hmc-sale-price" name="salePrice" min="0" step="any" value="350000" data-sale-price>
+              <label for="hmc-agent-fee">Estate agent fee (%)</label>
+              <input type="number" id="hmc-agent-fee" name="agentFeePct" min="0" step="any" value="1.2" data-agent-fee>
+            </div>
+
+            <button type="submit" data-calculate>Calculate</button>
+          </form>
+
+          <div data-calculator-results class="calculator-results">
+            <div class="result-summary">
+              <p class="result-display" data-result>Enter your numbers, then press Calculate.</p>
+            </div>
+
+            <div class="mort-breakdown" data-breakdown hidden>
+              <h3>Itemised breakdown</h3>
+              <table class="data-table" data-items-table>
+                <thead>
+                  <tr>
+                    <th scope="col">Cost</th>
+                    <th scope="col">Best case</th>
+                    <th scope="col">Likely</th>
+                    <th scope="col">Worst case</th>
+                  </tr>
+                </thead>
+                <tbody data-items-body></tbody>
+                <tfoot>
+                  <tr>
+                    <th scope="row">Total</th>
+                    <td data-total-low>&mdash;</td>
+                    <td data-total-mid>&mdash;</td>
+                    <td data-total-high>&mdash;</td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+
+            <details class="prove-it" data-prove-it>
+              <summary>Prove it</summary>
+              <div data-prove-it-body>
+                <p>Press Calculate to see the stamp duty band breakdown and every line that fed the total.</p>
+              </div>
+              <p class="prove-it-source">Stamp duty is calculated band by band on the property price using the 2025/26 thresholds for the chosen country: SDLT for England &amp; Northern Ireland, LBTT for Scotland, LTT for Wales. First-time buyer relief in England &amp; NI applies up to £500,000 (nil-rate to £300,000, 5% on £300,000 to £500,000). In Scotland the FTB nil-rate band is £175,000. Wales has no first-time buyer relief. Additional-property surcharges are 5% (England &amp; NI), 8% ADS (Scotland) and 5% higher residential (Wales). Other fees are taken from typical UK mid-2025 quotes and shown as a range, with the mid-point used as the headline figure.</p>
+              <p class="prove-it-source"><strong>What the tool cannot know:</strong> linked transactions, mixed-use property, non-UK-resident surcharges (extra 2% on SDLT), leasehold and chain complications that push solicitor fees up, lender product fees that you choose to add to the loan instead of paying upfront, and the small army of incidental costs (locksmith, parking permits, takeaway pizza for the move).</p>
+            </details>
+          </div>
+
+          <p class="bookmark-nudge">
+            Useful? Save this calculator: press <kbd data-bookmark-shortcut>Ctrl</kbd> + <kbd>D</kbd> to bookmark it.
+          </p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="below-results" aria-hidden="true"></div>
+
+        <section class="long-form">
+          <h2>Where the money actually goes</h2>
+          <p>The headline you remember from buying a house is the deposit. The bit nobody warns you about is the convoy of smaller fees that march in afterwards. Stamp duty (or LBTT, or LTT, depending on which country your new front door is in) is usually the biggest single line and the one with the most political weather around it. Conveyancing is the second-biggest predictable cost, and the one most people skimp on without realising what they have skimped on. Then come the lender fees, the survey, the moving van, the EPC if you are selling, and the estate agent's slice. Each of those individually feels manageable. Stacked together, they often clear five figures before you have unpacked the kettle.</p>
+
+          <h2>Stamp duty by country, briefly</h2>
+          <p>England and Northern Ireland use Stamp Duty Land Tax. Since 1 April 2025, the nil-rate band is back to £125,000, with 2% to £250,000, 5% to £925,000, 10% to £1.5 million, and 12% above. First-time buyers get a separate, more generous table up to £500,000 (nothing to £300,000, 5% on the slice between £300,000 and £500,000). Above £500,000 the FTB relief vanishes completely, which is the cliff that catches a lot of London buyers. The additional-property surcharge sits at 5% on the whole price (it was 3% until late 2024, hence why older calculators get this wrong).</p>
+          <p>Scotland charges Land and Buildings Transaction Tax with its own bands and an Additional Dwelling Supplement of 8% for second properties. First-time buyers in Scotland get a higher nil-rate band of £175,000 but the bands above that are the standard ones. Wales charges Land Transaction Tax, has no first-time buyer relief at all, and applies a 5% higher-residential surcharge on additional properties. The calculator above picks the right table for you, but if you are crossing borders for work it is worth knowing which one you are walking into.</p>
+
+          <h2>The fees people forget</h2>
+          <p>The lender valuation is not the same as a survey. The valuation is for the bank, it is brief, and it tells the bank whether their money is safe. The survey is for you, and it is the difference between knowing your roof is fine and finding out the day you move in that it is not. Skipping the survey on a Victorian terrace to save £600 is the false economy nobody admits to until the first big bill lands. A Level 2 homebuyer report is the right default for most modern, unremarkable houses. A Level 3 building survey is what you want for anything older, anything timber-framed, anything with obvious quirks, or anything you intend to extend.</p>
+          <p>The other fee that catches people is the mortgage product fee, sometimes called an arrangement fee. Lenders advertise the rate, not the fee, and a low rate paired with a £2,000 fee can work out worse than a slightly higher rate with no fee on a smaller loan or a shorter fix. Always price the mortgage on the total cost over the fixed-rate period, not on the headline rate alone.</p>
+
+          <h2>When to pay extra to spend less later</h2>
+          <p>Two places where paying a bit more upfront usually saves money down the line. First, conveyancing. The cheapest online conveyancers are cheap because they are running a volume operation with junior staff, fixed scripts, and slow turnarounds. On a straightforward freehold purchase in a chain-free situation, that is fine. On a leasehold, a new build with a managing agent, or a chain of three or more, the difference between a £750 conveyancer and a £1,300 one is the difference between completing on time and watching the chain collapse because somebody could not get a phone call returned. Second, removals. A man-and-a-van saves a few hundred quid on the day and costs you a Saturday and probably a friendship. Pay a real removals firm for anything bigger than a flat.</p>
+
+          <h2>Common mistakes</h2>
+          <p>People budget for the deposit and the stamp duty and assume the rest is small change. It is not. People also forget that if they are selling, the agent fee is paid out of the sale proceeds, which means the cash they thought they had for the deposit on the new place is smaller than the spreadsheet suggested. And people frequently miscount which country they are buying in, especially when buying near the Welsh or Scottish border, because the tax follows the property and not the buyer. Pick the country carefully.</p>
+
+          <h2>Edge cases</h2>
+          <p>Linked transactions (buying two flats from the same seller, for example) and mixed-use property (a flat above a shop) use different rules and the calculator does not cover them. Non-UK residents pay an extra 2% on SDLT in England and Northern Ireland, again not covered here. Buy-to-let purchases through a limited company follow the additional-property table, with corporation-tax implications on top that a generic calculator cannot estimate. And anything new-build with a Help to Buy tail or a shared-ownership lease has its own fee structure. If any of those apply to you, take the number from this page as a rough opening figure, then talk to a conveyancer who has done the specific thing you are doing.</p>
+
+          <h2>Related calculators</h2>
+          <p>Other tools that pair with the move-cost number above.</p>
+          <ul class="related-calculators">
+            <li><a href="/calculators/finance/uk-stamp-duty-calculator/">UK Stamp Duty Calculator for the SDLT-only breakdown</a></li>
+            <li><a href="/calculators/finance/uk-mortgage-calculator/">UK Mortgage Calculator for the monthly payment</a></li>
+            <li><a href="/calculators/property/uk-mortgage-overpayment-calculator/">UK Mortgage Overpayment Calculator for clearing it sooner</a></li>
+            <li><a href="/calculators/property/uk-rent-vs-buy-calculator/">UK Rent vs Buy Calculator for the long-horizon comparison</a></li>
+            <li><a href="/calculators/property/rental-yield-calculator/">Rental Yield Calculator if it is a buy-to-let</a></li>
+          </ul>
+        </section>
+
+        <section class="faq" aria-labelledby="faq-heading">
+          <h2 id="faq-heading">Frequently asked questions</h2>
+          <details>
+            <summary>What does it actually cost to move house in the UK?</summary>
+            <p>On a typical £400,000 home mover purchase in England with a mortgage, a Level 2 survey, a 3-bed local removal and a sale of a similar-priced home at 1.2% agent fee, the total clears five figures comfortably. Stamp duty is usually the biggest single line. The calculator above breaks every line out so you can see exactly where the money goes.</p>
+          </details>
+          <details>
+            <summary>Why are first-time buyer numbers so different?</summary>
+            <p>First-time buyer relief in England and Northern Ireland zeroes out the SDLT on the first £300,000 and charges 5% on the slice from £300,000 to £500,000. Above £500,000 the relief disappears entirely. Scotland gives FTBs a higher nil-rate band of £175,000. Wales has no first-time buyer scheme at all. The calculator picks the right table based on the country you choose.</p>
+          </details>
+          <details>
+            <summary>Why is there a best-case and worst-case spread?</summary>
+            <p>Most of the costs in a house move are quoted as a range, not a fixed number. Conveyancing varies by firm and by complexity. Mortgage product fees range from zero to about £2,000. Removals depend on volume, day of the week and traffic. The spread shows the realistic best and worst case so you can budget for the worst and be pleasantly surprised. Stamp duty is the one fixed line, calculated band by band.</p>
+          </details>
+          <details>
+            <summary>Does the calculator send my numbers anywhere?</summary>
+            <p>No. Everything runs in your browser. Nothing you type is uploaded or stored, and you can disconnect from the network and the figures still work.</p>
+          </details>
+        </section>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="ad-slot" data-ad-slot="sidebar" aria-hidden="true"></div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="site-footer-nav" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/calculators/">All calculators</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+
+      <section class="site-disclaimer" data-disclaimer aria-labelledby="disclaimer-heading">
+        <h2 id="disclaimer-heading">A quick, necessary word</h2>
+        <p>Every calculator on this site is built to give you a sensible, well-reasoned estimate. It is, however, exactly that: an estimate, for general information only. Nothing you see here is professional, legal, financial, medical, or tax advice, and it should not be treated as such.</p>
+        <p>Before you make a decision that actually matters, talk to a qualified professional who knows your specific situation: an accountant, a solicitor, a doctor, an IT consultant, whoever fits the question. They can factor in the bits a generic tool can't.</p>
+        <p>We take no liability and accept no responsibility for any loss, damage, or questionable life choice arising from acting on the numbers you see here. Use the results as a starting point for a better conversation, not as the final word.</p>
+        <p><strong>Affiliate disclosure:</strong> some links on this site are affiliate links. If you click through and buy or sign up for something, we may earn a small commission at no extra cost to you. It helps keep the calculators free and ad-light. We only recommend things we'd point a friend towards.</p>
+      </section>
+      <p class="site-copyright">&copy; 2026 WebCaretakers. All rights reserved.</p>
+      <p class="site-legal">WebCaretakers is a trading name of <a href="https://yeseo.io/" rel="noopener">Andrew Laws Associates Ltd</a>, registered in England and Wales (company no. 08602332). ICO registration ZA726704.</p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/calculators/uk-house-move-cost.js"></script>
+  <script>
+    (function () {
+      'use strict';
+      var shortcutEl = document.querySelector('[data-bookmark-shortcut]');
+      if (shortcutEl) {
+        var isMac = /Mac|iPhone|iPad|iPod/i.test(navigator.platform || navigator.userAgent);
+        shortcutEl.textContent = isMac ? '\u2318' : 'Ctrl';
+      }
+
+      var form = document.getElementById('hmc-form');
+      if (!form) return;
+
+      var priceIn      = form.querySelector('[data-price]');
+      var countryIn    = form.querySelector('[data-country]');
+      var buyerIn      = form.querySelector('[data-buyer]');
+      var mortgageIn   = form.querySelector('[data-mortgage]');
+      var surveyIn     = form.querySelector('[data-survey]');
+      var houseSizeIn  = form.querySelector('[data-house-size]');
+      var distanceIn   = form.querySelector('[data-distance]');
+      var sellingIn    = form.querySelector('[data-selling]');
+      var sellingPanel = form.querySelector('[data-selling-panel]');
+      var salePriceIn  = form.querySelector('[data-sale-price]');
+      var agentFeeIn   = form.querySelector('[data-agent-fee]');
+
+      var resultEl   = document.querySelector('[data-result]');
+      var breakdown  = document.querySelector('[data-breakdown]');
+      var itemsBody  = document.querySelector('[data-items-body]');
+      var totalLow   = document.querySelector('[data-total-low]');
+      var totalMid   = document.querySelector('[data-total-mid]');
+      var totalHigh  = document.querySelector('[data-total-high]');
+      var proveBody  = document.querySelector('[data-prove-it-body]');
+      var proveEl    = document.querySelector('[data-prove-it]');
+
+      function fmt(n) {
+        if (typeof n !== 'number' || !isFinite(n)) return '\u2014';
+        return '\u00a3' + Math.round(n).toLocaleString('en-GB');
+      }
+      function fmtPct(n) {
+        return (n * 100).toFixed(n < 0.01 ? 2 : 1) + '%';
+      }
+
+      function syncSellingPanel() {
+        if (sellingIn.checked) {
+          sellingPanel.hidden = false;
+        } else {
+          sellingPanel.hidden = true;
+        }
+      }
+      sellingIn.addEventListener('change', function () {
+        syncSellingPanel();
+        pushInteraction(sellingIn);
+      });
+      syncSellingPanel();
+
+      function pushInteraction(el) {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: 'calculator_interaction',
+          calculator_name: 'UK House Move Cost Calculator',
+          field: el.name || el.id,
+          field_name: el.name || el.id
+        });
+      }
+
+      [priceIn, countryIn, buyerIn, mortgageIn, surveyIn, houseSizeIn, distanceIn, salePriceIn, agentFeeIn].forEach(function (el) {
+        if (!el) return;
+        var evt = (el.tagName === 'SELECT') ? 'change' : 'input';
+        el.addEventListener(evt, function () { pushInteraction(el); });
+      });
+
+      if (proveEl) {
+        proveEl.addEventListener('toggle', function () {
+          if (proveEl.open) {
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+              event: 'prove_it',
+              calculator_name: 'UK House Move Cost Calculator'
+            });
+          }
+        });
+      }
+
+      function renderItems(items) {
+        itemsBody.innerHTML = items.map(function (it) {
+          return '<tr>' +
+            '<td>' + escapeHtml(it.label) + '</td>' +
+            '<td>' + fmt(it.low) + '</td>' +
+            '<td>' + fmt(it.mid) + '</td>' +
+            '<td>' + fmt(it.high) + '</td>' +
+            '</tr>';
+        }).join('');
+      }
+
+      function escapeHtml(s) {
+        return String(s)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;');
+      }
+
+      function renderProveIt(args, r) {
+        var sd = r.stampDuty;
+        var bandRows = sd.breakdown.map(function (b) {
+          var rateText = fmtPct(b.rate);
+          var bandLabel = '\u00a3' + b.from.toLocaleString('en-GB') + ' to \u00a3' + b.to.toLocaleString('en-GB');
+          var taxableText = fmt(b.taxableAmount);
+          var bandTax = (typeof b.bandTax === 'number') ? b.bandTax : b.tax;
+          var tax = fmt(b.tax);
+          var sur = (typeof b.surchargeAmount === 'number' && b.surchargeAmount > 0)
+            ? ' (incl. ' + fmt(b.surchargeAmount) + ' surcharge)' : '';
+          return '<tr><td>' + bandLabel + '</td><td>' + rateText + '</td><td>' + taxableText + '</td><td>' + fmt(bandTax) + sur + '</td></tr>';
+        }).join('');
+
+        var itemRows = r.items.map(function (it) {
+          return '<tr><td>' + escapeHtml(it.label) + '</td><td>' + fmt(it.low) + '</td><td>' + fmt(it.mid) + '</td><td>' + fmt(it.high) + '</td></tr>';
+        }).join('');
+
+        var stampHeader = '<h4>' + sd.taxName + ' band-by-band on ' + fmt(args.propertyPrice) + '</h4>';
+        var bandsTable = '<table class="data-table"><thead><tr><th>Band</th><th>Rate</th><th>Taxable in band</th><th>Tax</th></tr></thead><tbody>' + bandRows + '</tbody>' +
+          '<tfoot><tr><th colspan="3">Total ' + sd.taxName + '</th><td>' + fmt(sd.total) + '</td></tr></tfoot></table>';
+
+        var allItemsHeader = '<h4>Every line that fed the total</h4>';
+        var allItemsTable = '<table class="data-table"><thead><tr><th>Cost</th><th>Best</th><th>Likely</th><th>Worst</th></tr></thead><tbody>' + itemRows + '</tbody>' +
+          '<tfoot><tr><th>Total</th><td>' + fmt(r.totals.low) + '</td><td>' + fmt(r.totals.mid) + '</td><td>' + fmt(r.totals.high) + '</td></tr></tfoot></table>';
+
+        proveBody.innerHTML = stampHeader + bandsTable + allItemsHeader + allItemsTable;
+      }
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var args = {
+          propertyPrice: parseFloat(priceIn.value),
+          country:       countryIn.value,
+          buyerStatus:   buyerIn.value,
+          mortgage:      parseFloat(mortgageIn.value) || 0,
+          surveyType:    surveyIn.value,
+          houseSize:     houseSizeIn.value,
+          distance:      distanceIn.value,
+          selling:       sellingIn.checked,
+          salePrice:     parseFloat(salePriceIn.value) || 0,
+          agentFeePct:   parseFloat(agentFeeIn.value),
+        };
+        if (!isFinite(args.agentFeePct)) args.agentFeePct = 1.2;
+
+        try {
+          var r = window.UkHouseMoveCost.calculateMoveCost(args);
+
+          resultEl.textContent = 'Estimated total: ' + fmt(r.totals.mid) +
+            ' (range ' + fmt(r.totals.low) + ' to ' + fmt(r.totals.high) + ').';
+
+          breakdown.hidden = false;
+          renderItems(r.items);
+          totalLow.textContent  = fmt(r.totals.low);
+          totalMid.textContent  = fmt(r.totals.mid);
+          totalHigh.textContent = fmt(r.totals.high);
+
+          renderProveIt(args, r);
+
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: 'calculator_result',
+            calculator_name: 'UK House Move Cost Calculator',
+            country: args.country,
+            buyer_status: args.buyerStatus,
+            property_price: args.propertyPrice,
+            stamp_duty: r.stampDuty.total,
+            total_low: r.totals.low,
+            total_mid: r.totals.mid,
+            total_high: r.totals.high
+          });
+        } catch (err) {
+          resultEl.textContent = err.message || 'Could not calculate.';
+          breakdown.hidden = true;
+          proveBody.innerHTML = '';
+        }
+      });
+    })();
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>
