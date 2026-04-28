@@ -136,6 +136,7 @@ test.describe('Meeting Cost Calculator page', () => {
 
   test('prove-it open fires prove_it dataLayer event', async ({ page }) => {
     await page.locator('[data-prove-it] summary').click();
+    await page.waitForFunction(() => window.dataLayer.some((e) => e.event === 'prove_it'));
     const evt = await page.evaluate(() =>
       window.dataLayer.find(e => e.event === 'prove_it' && e.calculator_name === 'Meeting Cost Calculator')
     );

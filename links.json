@@ -43,6 +43,18 @@
       "url": "/calculators/conversions/fuel-economy-converter/"
     },
     {
+      "phrase": "Number Base Converter",
+      "url": "/calculators/conversions/number-base-converter/"
+    },
+    {
+      "phrase": "decimal to hex converter",
+      "url": "/calculators/conversions/number-base-converter/"
+    },
+    {
+      "phrase": "binary to decimal",
+      "url": "/calculators/conversions/number-base-converter/"
+    },
+    {
       "phrase": "Standard Deviation Calculator",
       "url": "/calculators/math/standard-deviation-calculator/"
     },
@@ -53,6 +65,18 @@
     {
       "phrase": "variance calculator",
       "url": "/calculators/math/standard-deviation-calculator/"
+    },
+    {
+      "phrase": "Quadratic Equation Solver",
+      "url": "/calculators/math/quadratic-equation-solver/"
+    },
+    {
+      "phrase": "quadratic formula calculator",
+      "url": "/calculators/math/quadratic-equation-solver/"
+    },
+    {
+      "phrase": "solve ax^2 + bx + c",
+      "url": "/calculators/math/quadratic-equation-solver/"
     },
     {
       "phrase": "GCD and LCM Calculator",
@@ -599,6 +623,18 @@
       "url": "/calculators/health/tdee-calculator/"
     },
     {
+      "phrase": "Macro Split Calculator",
+      "url": "/calculators/health/macro-split-calculator/"
+    },
+    {
+      "phrase": "macro calculator",
+      "url": "/calculators/health/macro-split-calculator/"
+    },
+    {
+      "phrase": "macro ratio calculator",
+      "url": "/calculators/health/macro-split-calculator/"
+    },
+    {
       "phrase": "Discount Calculator",
       "url": "/calculators/math/discount-calculator/"
     },
@@ -805,6 +841,30 @@
     {
       "phrase": "EFF wordlist passphrase",
       "url": "/calculators/cybersecurity/diceware-passphrase-generator/"
+    },
+    {
+      "phrase": "SSL Certificate Expiry Calculator",
+      "url": "/calculators/cybersecurity/ssl-certificate-expiry-calculator/"
+    },
+    {
+      "phrase": "SSL certificate expiry checker",
+      "url": "/calculators/cybersecurity/ssl-certificate-expiry-calculator/"
+    },
+    {
+      "phrase": "days until SSL certificate expires",
+      "url": "/calculators/cybersecurity/ssl-certificate-expiry-calculator/"
+    },
+    {
+      "phrase": "Image File Size Estimator",
+      "url": "/calculators/images/image-file-size-estimator/"
+    },
+    {
+      "phrase": "estimate image file size",
+      "url": "/calculators/images/image-file-size-estimator/"
+    },
+    {
+      "phrase": "JPEG vs WebP vs AVIF size",
+      "url": "/calculators/images/image-file-size-estimator/"
     }
   ]
 }

@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SSL Certificate Expiry Calculator | WebCaretakers</title>
+  <meta name="description" content="Paste an SSL certificate expiry date or the PEM text and see days remaining, urgency band, and a recommended renewal date. Browser-only date arithmetic, no network call.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/cybersecurity/ssl-certificate-expiry-calculator/">
+  <meta property="og:title" content="SSL Certificate Expiry Calculator | WebCaretakers">
+  <meta property="og:description" content="Days remaining, urgency band and a recommended renewal date for any SSL certificate. Browser-only, no network call.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/cybersecurity/ssl-certificate-expiry-calculator/">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var _stored = null;
+    try { _stored = localStorage.getItem('cookie-consent'); } catch (e) {}
+    var _initial = _stored === 'granted' ? 'granted' : 'denied';
+    gtag('consent', 'default', {
+      ad_storage: _initial, analytics_storage: _initial,
+      ad_user_data: _initial, ad_personalization: _initial,
+      functionality_storage: 'granted', security_storage: 'granted',
+      wait_for_update: 500
+    });
+  </script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "SSL Certificate Expiry Calculator",
+    "url": "https://webcaretakers.com/calculators/cybersecurity/ssl-certificate-expiry-calculator/",
+    "applicationCategory": "SecurityApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0" },
+    "author": {
+      "@type": "Person",
+      "name": "Andrew Laws",
+      "url": "https://yeseo.io/"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Does this tool actually check my live SSL certificate?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. This is a date-arithmetic helper, not an SSL validator. It does not contact your server, does not validate the chain, and does not check OCSP or CT logs. It takes an expiry date or a pasted certificate's text dump, and tells you how long is left and when to renew. For a live check, use openssl s_client -connect host:443 or a monitoring service." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why 30 days as the default renewal lead time?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Thirty days is the threshold most operations teams use as their renewal trigger, and it is what most monitoring services flag at by default. It gives enough room to handle a failed validation, a delayed DNS change, or a vendor sign-off without anyone losing a weekend. If your renewal process is faster (let's encrypt with full automation), drop the lead time. If it is slower (corporate change-management for a wildcard cert), push it out to 45 or 60 days." }
+      },
+      {
+        "@type": "Question",
+        "name": "How does the PEM-paste mode work?",
+        "acceptedAnswer": { "@type": "Answer", "text": "It does not parse the certificate's ASN.1 structure. It scans the text you pasted for the standard openssl text-dump line: \"Not After : Apr 28 12:00:00 2026 GMT\", and reads the date from that line. So paste either the output of openssl x509 -in cert.pem -noout -text, or anything that contains that one line. If your tooling prints the validity in a different format, switch to date mode and type the expiry directly." }
+      },
+      {
+        "@type": "Question",
+        "name": "What do the urgency bands mean?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Negative days remaining is Expired (browsers will warn or block users). 0 to 7 days is Critical (renew today). 8 to 30 days is Warning (inside the standard renewal window). 31 to 60 days is Caution (worth scheduling). More than 60 days is Healthy. The bands are deliberately conservative: a certificate that expires on a Friday night with no on-call is the same problem whether it expires this week or next." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-banner-heading" aria-describedby="cookie-banner-text" hidden>
+    <div class="cookie-banner__inner">
+      <h2 id="cookie-banner-heading" class="cookie-banner__heading">A quick word about cookies</h2>
+      <p id="cookie-banner-text" class="cookie-banner__text">
+        We use cookies for analytics, so we can see which calculators people actually use and which ones need work. Nothing creepy, nothing sold on. You can say yes, say no, or read the <a href="/privacy/">privacy policy</a> first. Your choice sticks.
+      </p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-reject>Reject</button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>Accept</button>
+      </div>
+    </div>
+  </div>
+
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">WebCaretakers</a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <ul class="primary-nav__list">
+          <li class="primary-nav__item primary-nav__item--has-menu">
+            <button type="button" class="primary-nav__link" data-menu-toggle aria-haspopup="true" aria-expanded="false">Calculators <span class="primary-nav__caret" aria-hidden="true">▾</span></button>
+            <ul class="primary-nav__submenu">
+              <li><a href="/calculators/ai/">AI</a></li>
+              <li><a href="/calculators/broadband/">Broadband</a></li>
+              <li><a href="/calculators/business/">Business</a></li>
+              <li><a href="/calculators/conversions/">Conversions</a></li>
+              <li><a href="/calculators/cybersecurity/">Cybersecurity</a></li>
+              <li><a href="/calculators/finance/">Finance</a></li>
+              <li><a href="/calculators/fun/">Fun</a></li>
+              <li><a href="/calculators/health/">Health</a></li>
+              <li><a href="/calculators/images/">Images</a></li>
+              <li><a href="/calculators/math/">Math</a></li>
+              <li><a href="/calculators/productivity/">Productivity</a></li>
+              <li><a href="/calculators/property/">Property</a></li>
+              <li><a href="/calculators/seo/">SEO</a></li>
+              <li><a href="/calculators/wedding/">Wedding</a></li>
+              <li><a href="/calculators/writing/">Writing</a></li>
+              <li class="primary-nav__submenu-sep"><a href="/calculators/">See all calculators</a></li>
+            </ul>
+          </li>
+          <li class="primary-nav__item"><a href="/about/" class="primary-nav__link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <main id="main-content">
+      <div class="container">
+        <nav aria-label="Breadcrumb" class="breadcrumbs">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/calculators/">Calculators</a></li>
+            <li><a href="/calculators/cybersecurity/">Cybersecurity</a></li>
+            <li aria-current="page">SSL Certificate Expiry Calculator</li>
+          </ol>
+        </nav>
+
+        <h1>SSL Certificate Expiry Calculator</h1>
+        <p class="intro">Paste an expiry date, or the openssl text dump of a certificate, and get days remaining, an urgency band, and the date you should set the renewal reminder for. This is a date-arithmetic helper. It does not contact your server, does not validate the chain, and does not parse the binary certificate. Everything runs in your browser.</p>
+
+        <section class="eli5" aria-label="Plain-English explanation">
+          <h2>Explain like I'm 5 (what even is this calculator?)</h2>
+          <p>An SSL certificate is the thing that turns the padlock on in your browser. Every certificate has a date it stops working. If you forget to renew it before that date, every visitor to the site sees a scary red warning. This page tells you how many days are left, whether you need to panic, and the date to put in your calendar so you actually remember.</p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="in-content" aria-hidden="true"></div>
+
+        <section class="calculator-card">
+          <h2>Check an expiry</h2>
+          <p class="reassure"><strong>Browser-only.</strong> No network call is made. This page does not validate your certificate, it only does the date maths. For a live check use <code>openssl s_client -connect host:443</code> or a monitoring service.</p>
+
+          <form id="ssl-form" class="calc-form" novalidate onsubmit="return false;">
+            <fieldset class="calc-row">
+              <legend>How are you giving us the expiry?</legend>
+              <label><input type="radio" name="ssl-mode" value="date" data-mode checked> Type or pick a date</label>
+              <label><input type="radio" name="ssl-mode" value="pem" data-mode> Paste a PEM certificate or openssl dump</label>
+            </fieldset>
+
+            <div class="calc-row" data-date-panel>
+              <label for="ssl-expiry">Expiry date</label>
+              <input type="text" id="ssl-expiry" data-expiry-date placeholder="2026-04-28 or 2026-04-28T12:00:00Z" autocomplete="off">
+              <p class="calc-row__hint">Either YYYY-MM-DD or a full ISO timestamp. Treated as UTC.</p>
+            </div>
+
+            <div class="calc-row" data-pem-panel hidden>
+              <label for="ssl-pem">Certificate text</label>
+              <textarea id="ssl-pem" data-pem-text rows="8" placeholder="Paste output of: openssl x509 -in cert.pem -noout -text&#10;or any text containing the line:&#10;Not After : Apr 28 12:00:00 2026 GMT"></textarea>
+              <p class="calc-row__hint">We grep for the standard <code>Not After : ...</code> line. The certificate body itself is not parsed.</p>
+            </div>
+
+            <div class="calc-row">
+              <label for="ssl-lead">Renewal lead time (days)</label>
+              <input type="number" id="ssl-lead" data-lead-days value="30" min="0" max="365" step="1">
+              <p class="calc-row__hint">How many days before expiry you want the renewal reminder. Most teams use 30. Drop it for fully automated renewals, push it up for slow change-management.</p>
+            </div>
+
+            <div class="calc-row">
+              <button type="button" class="btn btn--primary" data-calculate>Calculate</button>
+            </div>
+          </form>
+
+          <p class="error" data-error role="alert" hidden></p>
+
+          <div class="results" data-results hidden aria-live="polite">
+            <div class="result-band">
+              <span class="result-band__label" data-band-label data-band="">&mdash;</span>
+            </div>
+            <ul class="result-stats">
+              <li><span>Days remaining</span><strong data-days-remaining>&mdash;</strong></li>
+              <li><span>Expiry parsed as</span><strong data-parsed-expiry>&mdash;</strong></li>
+              <li><span>Recommended renewal date</span><strong data-recommended-renewal>&mdash;</strong></li>
+            </ul>
+            <p class="result-message" data-band-message></p>
+          </div>
+
+          <details class="prove-it" data-prove-it>
+            <summary>Prove it</summary>
+            <div data-prove-it-body>
+              <p>Press <strong>Calculate</strong> and the working will appear here: parsed expiry, your current UTC clock, the days-remaining calculation, the band rule that selected the verdict, and the renewal-date subtraction. Nothing is sent off the page.</p>
+              <p><strong>This is not an SSL validator.</strong> It does not contact your server, does not check the chain, the hostname, OCSP, or Certificate Transparency logs. It is date arithmetic on the expiry you supply.</p>
+            </div>
+          </details>
+
+          <p class="bookmark-nudge">
+            Useful? Save this calculator: press <kbd data-bookmark-shortcut>Ctrl</kbd> + <kbd>D</kbd> to bookmark it.
+          </p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="below-results" aria-hidden="true"></div>
+
+        <section class="long-form">
+          <h2>When to use this</h2>
+          <p>The most common scenario: you have just been handed responsibility for a domain, an inbox, or an internal service, and you want to know how nervous to be about its certificate. Either you have the expiry date noted somewhere, or you can run <code>openssl x509 -in cert.pem -noout -text</code> against the certificate file. Paste either into the panel above and you have your answer in seconds, with the renewal date already on the calendar.</p>
+          <p>The other common scenario: you have a list of services, you have already pulled their certificates with whatever monitoring you use, and you want a quick sense check on one specific value. The bands here match the ones most monitoring tools use, so the verdict here will line up with the alert thresholds you already have.</p>
+
+          <h2>Common mistakes</h2>
+          <p>The first mistake is treating the expiry date as a hard deadline. It is not. Browsers begin showing warnings the moment the clock ticks past it, which means you should be deploying a new certificate hours or days earlier, not minutes. The second mistake is renewing the day before. Validation can fail. DNS records can be slow to propagate. Vendor sign-off can take a working day. Treat the renewal date this calculator gives you as the latest acceptable trigger, not the target.</p>
+          <p>The third mistake, a quieter one, is renewing on the same day every year and forgetting that calendar drift exists. A certificate issued on the 1st of March will not necessarily expire on the 1st of March: most CAs add a small grace buffer or align with their issuance window. Always read the actual expiry off the certificate, never assume it.</p>
+
+          <h2>Edge cases</h2>
+          <p>Short-lived certificates (Let's Encrypt's 90-day default, or the proposed 47-day baseline) shift the maths. The "30 days lead time" default makes less sense for a 90-day cert because you will spend a third of the cert's life inside the renewal window. For automated renewal pipelines, drop the lead time to 7 or 14 days. For wildcard or EV certificates that go through a slow procurement process, 60 days is sensible.</p>
+          <p>Internal certificates, signed by a private CA, work the same way for the maths but not for the consequences. An expired internal cert may not show a browser warning if the user is not pointing at it, but it will quietly break service-to-service authentication. Keep them in the same renewal calendar as your public certs, even though nobody outside the network will notice.</p>
+          <p>Time zones. Certificates use UTC. This calculator uses UTC. If your expiry says "23:59 on the 30th" in your local time and you are seven hours behind UTC, the actual expiry instant is the morning of the 31st in your local clock. Renew accordingly.</p>
+
+          <h2>Related calculators</h2>
+          <p>Other browser-only cybersecurity tools where local-only processing matters.</p>
+          <ul class="related-calculators">
+            <li><a href="/calculators/cybersecurity/">All cybersecurity tools</a></li>
+            <li><a href="/calculators/cybersecurity/hash-generator/">Hash Generator for verifying file integrity</a></li>
+            <li><a href="/calculators/cybersecurity/password-strength-calculator/">Password Strength Calculator</a></li>
+            <li><a href="/calculators/cybersecurity/diceware-passphrase-generator/">Diceware Passphrase Generator</a></li>
+          </ul>
+        </section>
+
+        <section class="faq" aria-labelledby="faq-heading">
+          <h2 id="faq-heading">Frequently asked questions</h2>
+          <details>
+            <summary>Does this tool actually check my live SSL certificate?</summary>
+            <p>No. This is a date-arithmetic helper, not an SSL validator. It does not contact your server, does not validate the chain, and does not check OCSP or CT logs. It takes an expiry date or a pasted certificate's text dump, and tells you how long is left and when to renew. For a live check, use <code>openssl s_client -connect host:443</code> or a monitoring service.</p>
+          </details>
+          <details>
+            <summary>Why 30 days as the default renewal lead time?</summary>
+            <p>Thirty days is the threshold most operations teams use as their renewal trigger, and it is what most monitoring services flag at by default. It gives enough room to handle a failed validation, a delayed DNS change, or a vendor sign-off without anyone losing a weekend. If your renewal process is faster (Let's Encrypt with full automation), drop the lead time. If it is slower (corporate change-management for a wildcard cert), push it out to 45 or 60 days.</p>
+          </details>
+          <details>
+            <summary>How does the PEM-paste mode work?</summary>
+            <p>It does not parse the certificate's ASN.1 structure. It scans the text you pasted for the standard openssl text-dump line: <code>Not After : Apr 28 12:00:00 2026 GMT</code>, and reads the date from that line. So paste either the output of <code>openssl x509 -in cert.pem -noout -text</code>, or anything that contains that one line. If your tooling prints the validity in a different format, switch to date mode and type the expiry directly.</p>
+          </details>
+          <details>
+            <summary>What do the urgency bands mean?</summary>
+            <p>Negative days remaining is Expired (browsers will warn or block users). 0 to 7 days is Critical (renew today). 8 to 30 days is Warning (inside the standard renewal window). 31 to 60 days is Caution (worth scheduling). More than 60 days is Healthy. The bands are deliberately conservative: a certificate that expires on a Friday night with no on-call is the same problem whether it expires this week or next.</p>
+          </details>
+          <details>
+            <summary>Does it handle short-lived certificates like Let's Encrypt's 90-day default?</summary>
+            <p>Yes, but the default 30-day lead time is too generous for a 90-day cert. Drop the lead time to 7 or 14 days for any pipeline that renews automatically. The bands themselves still apply, and the days-remaining figure is unchanged.</p>
+          </details>
+        </section>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="ad-slot" data-ad-slot="sidebar" aria-hidden="true"></div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="site-footer-nav" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/calculators/">All calculators</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+
+      <section class="site-disclaimer" data-disclaimer aria-labelledby="disclaimer-heading">
+        <h2 id="disclaimer-heading">A quick, necessary word</h2>
+        <p>Every calculator on this site is built to give you a sensible, well-reasoned estimate. It is, however, exactly that: an estimate, for general information only. Nothing you see here is professional, legal, financial, medical, or tax advice, and it should not be treated as such.</p>
+        <p>Before you make a decision that actually matters, talk to a qualified professional who knows your specific situation: an accountant, a solicitor, a doctor, an IT consultant, whoever fits the question. They can factor in the bits a generic tool can't.</p>
+        <p>We take no liability and accept no responsibility for any loss, damage, or questionable life choice arising from acting on the numbers you see here. Use the results as a starting point for a better conversation, not as the final word.</p>
+        <p><strong>Affiliate disclosure:</strong> some links on this site are affiliate links. If you click through and buy or sign up for something, we may earn a small commission at no extra cost to you. It helps keep the calculators free and ad-light. We only recommend things we'd point a friend towards.</p>
+      </section>
+      <p class="site-copyright">&copy; 2026 WebCaretakers. All rights reserved.</p>
+      <p class="site-legal">WebCaretakers is a trading name of <a href="https://yeseo.io/" rel="noopener">Andrew Laws Associates Ltd</a>, registered in England and Wales (company no. 08602332). ICO registration ZA726704.</p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/calculators/ssl-certificate-expiry-calculator.js"></script>
+  <script src="/assets/js/calculators/ssl-certificate-expiry-calculator.page.js"></script>
+  <script>
+    (function () {
+      var shortcutEl = document.querySelector('[data-bookmark-shortcut]');
+      if (shortcutEl) {
+        var isMac = /Mac|iPhone|iPad|iPod/i.test(navigator.platform || navigator.userAgent);
+        shortcutEl.textContent = isMac ? '\u2318' : 'Ctrl';
+      }
+    })();
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

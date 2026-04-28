@@ -94,6 +94,11 @@
           "slug": "gcd-lcm-calculator",
           "name": "GCD and LCM Calculator",
           "summary": "Find the greatest common divisor (HCF) and lowest common multiple of two or more whole numbers. Shows the Euclidean algorithm, prime factorisations and the combined-prime LCM working."
+        },
+        {
+          "slug": "quadratic-equation-solver",
+          "name": "Quadratic Equation Solver",
+          "summary": "Solve any quadratic ax\u00b2 + bx + c = 0. Returns the two roots, the discriminant, the vertex, the axis of symmetry and the y-intercept. Handles real and complex roots with full working shown."
         }
       ]
     },
@@ -126,6 +131,11 @@
           "slug": "aspect-ratio-calculator",
           "name": "Aspect Ratio Calculator",
           "summary": "Work out the matching width or height that keeps an image or video at the same aspect ratio. Live two-way binding, simplified ratio shown via GCD, preset ratios in one click."
+        },
+        {
+          "slug": "image-file-size-estimator",
+          "name": "Image File Size Estimator",
+          "summary": "Estimate the file size of a JPEG, PNG, WebP, AVIF or HEIC from its pixel dimensions and quality, before you encode anything. Side-by-side comparison of all five formats."
         }
       ]
     },
@@ -158,6 +168,11 @@
           "slug": "diceware-passphrase-generator",
           "name": "Diceware Passphrase Generator",
           "summary": "Generate a memorable Diceware passphrase from the EFF short wordlist (1,296 words) using Web Crypto. Pick word count, separator and capitalisation, see honest entropy figures. Browser-only."
+        },
+        {
+          "slug": "ssl-certificate-expiry-calculator",
+          "name": "SSL Certificate Expiry Calculator",
+          "summary": "Paste an expiry date or a certificate's openssl text dump and see days remaining, urgency band, and the renewal date to set a reminder for. Browser-only date arithmetic, no network call."
         }
       ]
     },
@@ -190,6 +205,11 @@
           "slug": "fuel-economy-converter",
           "name": "Fuel Economy Converter",
           "summary": "Live four-way conversion across MPG (UK), MPG (US), L/100km and km/L. Edit any one field, the other three update on the spot. Anchored on L/100km internally for stable round-trips."
+        },
+        {
+          "slug": "number-base-converter",
+          "name": "Number Base Converter",
+          "summary": "Convert between binary, octal, decimal and hexadecimal with live two-way binding, plus an arbitrary base (2 to 36) panel. BigInt internals so 64-bit values round-trip without precision loss."
         }
       ]
     },
@@ -331,6 +351,11 @@
           "slug": "tdee-calculator",
           "name": "TDEE Calculator",
           "summary": "Work out Total Daily Energy Expenditure and BMR using Mifflin-St Jeor, Harris-Benedict or Katch-McArdle. Includes cut and bulk targets and a starting macro split."
+        },
+        {
+          "slug": "macro-split-calculator",
+          "name": "Macro Split Calculator",
+          "summary": "Turn a daily calorie target into grams of protein, carbs and fat. Goal presets (balanced, high-protein cut, endurance, keto) or a custom three-slider ratio that always sums to 100. Per-meal breakdown included."
         }
       ]
     },

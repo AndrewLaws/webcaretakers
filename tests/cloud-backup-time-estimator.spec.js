@@ -86,6 +86,7 @@ test.describe('Cloud backup time estimator page', () => {
     await page.fill('[name="speedValue"]', '50');
     await page.click('[data-calculate]');
     await page.locator('[data-prove-it] summary').click();
+    await page.waitForFunction(() => window.dataLayer.some((e) => e.event === 'prove_it'));
     const event = await page.evaluate(() =>
       window.dataLayer.find((e) => e.event === 'prove_it' && e.calculator_name === 'cloud-backup-time-estimator')
     );

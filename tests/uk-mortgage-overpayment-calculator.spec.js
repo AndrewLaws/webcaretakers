@@ -76,6 +76,7 @@ test.describe('UK Mortgage Overpayment Calculator page', () => {
   test('pushes prove_it event when the prove-it details panel is opened', async ({ page }) => {
     await page.locator('[data-calculate]').click();
     await page.locator('[data-prove-it] summary').click();
+    await page.waitForFunction(() => window.dataLayer.some((e) => e.event === 'prove_it'));
     const event = await page.evaluate(() =>
       window.dataLayer.find(e => e.event === 'prove_it')
     );

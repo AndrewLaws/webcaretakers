@@ -89,6 +89,7 @@ test.describe('AI Fine-Tuning Cost Calculator page', () => {
   test('pushes prove_it event when prove-it details opens', async ({ page }) => {
     await page.locator('[data-calculate]').click();
     await page.locator('[data-prove-it] summary').click();
+    await page.waitForFunction(() => window.dataLayer.some((e) => e.event === 'prove_it'));
     const evt = await page.evaluate(() =>
       window.dataLayer.find(e => e.event === 'prove_it' && e.calculator_name === 'AI Fine-Tuning Cost Calculator')
     );

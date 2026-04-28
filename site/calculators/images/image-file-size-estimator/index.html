@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image File Size Estimator | WebCaretakers</title>
+  <meta name="description" content="Estimate the file size of a JPEG, PNG, WebP, AVIF or HEIC image from its pixel dimensions and quality, before you encode anything. Side-by-side comparison of all five formats.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/images/image-file-size-estimator/">
+  <meta property="og:title" content="Image File Size Estimator | WebCaretakers">
+  <meta property="og:description" content="Estimate the file size of a JPEG, PNG, WebP, AVIF or HEIC image from its pixel dimensions and quality, before you encode anything.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/images/image-file-size-estimator/">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var _stored = null;
+    try { _stored = localStorage.getItem('cookie-consent'); } catch (e) {}
+    var _initial = _stored === 'granted' ? 'granted' : 'denied';
+    gtag('consent', 'default', {
+      ad_storage: _initial, analytics_storage: _initial,
+      ad_user_data: _initial, ad_personalization: _initial,
+      functionality_storage: 'granted', security_storage: 'granted',
+      wait_for_update: 500
+    });
+  </script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Image File Size Estimator",
+    "url": "https://webcaretakers.com/calculators/images/image-file-size-estimator/",
+    "applicationCategory": "MultimediaApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0" },
+    "author": {
+      "@type": "Person",
+      "name": "Andrew Laws",
+      "url": "https://yeseo.io/"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Why is this only an estimate?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Final file size depends on the entropy of the actual pixels, the encoder, the quality scale used, chroma subsampling settings and a dozen smaller knobs. Two photos at the same resolution and the same nominal quality can differ by 30 percent or more. The numbers here are calibrated against typical cameras and encoders, but treat them as a planning figure with a plus or minus 30 percent band, not a guarantee." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does PNG have a content toggle instead of a quality slider?",
+        "acceptedAnswer": { "@type": "Answer", "text": "PNG is lossless. The compression knob (deflate level 0, 6 or 9) only changes how hard the encoder works to find a smaller representation, not the visible result. What actually drives PNG file size is the content. A photograph compresses poorly because every pixel is slightly different. A flat UI graphic, logo, or screenshot full of solid colour compresses brilliantly. The toggle picks the right deflate ratio for the kind of image you have." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why is AVIF roughly half the size of JPEG at the same quality?",
+        "acceptedAnswer": { "@type": "Answer", "text": "AVIF uses the AV1 video codec's intra-frame coding, which is more than 20 years more recent than JPEG. It supports better prediction, larger transform blocks, and modern entropy coding. Across a typical photo set, AVIF lands at roughly 0.45 of the JPEG size at visually matching quality. The trade-off is encoding time: AVIF is much slower to produce, which is why it has not displaced JPEG for camera output yet." }
+      },
+      {
+        "@type": "Question",
+        "name": "Should I use WebP or AVIF for the web?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Both have effectively universal browser support in 2026. AVIF gives you smaller files at the same visible quality, but encoders are slower and the decoder is heavier on low-end phones. WebP encodes faster, decodes lighter, and is still meaningfully smaller than JPEG. For a media-heavy site, ship AVIF with WebP as a fallback via the picture element. For a small site where build speed matters, WebP alone is the pragmatic choice." }
+      },
+      {
+        "@type": "Question",
+        "name": "What about HEIC, the iPhone format?",
+        "acceptedAnswer": { "@type": "Answer", "text": "HEIC is Apple's container for HEVC-encoded stills. It is a touch larger than AVIF and a touch smaller than WebP at matching quality. It is excellent on Apple devices and useless on the open web because no major browser decodes it natively. If you are sharing photos beyond the Apple ecosystem, convert HEIC to JPEG, WebP or AVIF first." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-banner-heading" aria-describedby="cookie-banner-text" hidden>
+    <div class="cookie-banner__inner">
+      <h2 id="cookie-banner-heading" class="cookie-banner__heading">A quick word about cookies</h2>
+      <p id="cookie-banner-text" class="cookie-banner__text">
+        We use cookies for analytics, so we can see which calculators people actually use and which ones need work. Nothing creepy, nothing sold on. You can say yes, say no, or read the <a href="/privacy/">privacy policy</a> first. Your choice sticks.
+      </p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-reject>Reject</button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>Accept</button>
+      </div>
+    </div>
+  </div>
+
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">WebCaretakers</a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <ul class="primary-nav__list">
+          <li class="primary-nav__item primary-nav__item--has-menu">
+            <button type="button" class="primary-nav__link" data-menu-toggle aria-haspopup="true" aria-expanded="false">Calculators <span class="primary-nav__caret" aria-hidden="true">▾</span></button>
+            <ul class="primary-nav__submenu">
+              <li><a href="/calculators/ai/">AI</a></li>
+              <li><a href="/calculators/broadband/">Broadband</a></li>
+              <li><a href="/calculators/business/">Business</a></li>
+              <li><a href="/calculators/conversions/">Conversions</a></li>
+              <li><a href="/calculators/cybersecurity/">Cybersecurity</a></li>
+              <li><a href="/calculators/finance/">Finance</a></li>
+              <li><a href="/calculators/fun/">Fun</a></li>
+              <li><a href="/calculators/health/">Health</a></li>
+              <li><a href="/calculators/images/">Images</a></li>
+              <li><a href="/calculators/math/">Math</a></li>
+              <li><a href="/calculators/productivity/">Productivity</a></li>
+              <li><a href="/calculators/property/">Property</a></li>
+              <li><a href="/calculators/seo/">SEO</a></li>
+              <li><a href="/calculators/wedding/">Wedding</a></li>
+              <li><a href="/calculators/writing/">Writing</a></li>
+              <li class="primary-nav__submenu-sep"><a href="/calculators/">See all calculators</a></li>
+            </ul>
+          </li>
+          <li class="primary-nav__item"><a href="/about/" class="primary-nav__link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <main id="main-content">
+      <div class="container">
+        <nav aria-label="Breadcrumb" class="breadcrumbs">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/calculators/">Calculators</a></li>
+            <li><a href="/calculators/images/">Images</a></li>
+            <li aria-current="page">Image File Size Estimator</li>
+          </ol>
+        </nav>
+
+        <h1>Image File Size Estimator</h1>
+        <p class="intro">Estimate how big a JPEG, PNG, WebP, AVIF or HEIC image will be from its pixel dimensions and quality setting, before you actually encode anything. Useful for budgeting page weight, planning bulk uploads, or deciding which format is worth the trouble.</p>
+
+        <section class="eli5" aria-label="Plain-English explanation">
+          <h2>Explain like I'm 5 (what even is this calculator?)</h2>
+          <p>Tell it the width, the height, the format and how aggressively you want to compress, and it works out roughly how many kilobytes the saved file will be. It uses the same rough rules of thumb a camera firmware engineer or a CDN capacity planner would: pixels times a per-format coefficient that depends on the encoder. It is an estimate within about 30 percent of reality, not a precise prediction.</p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="in-content" aria-hidden="true"></div>
+
+        <section class="calculator-card">
+          <h2>Estimate a file size</h2>
+          <p class="reassure"><strong>Browser-only.</strong> Nothing is uploaded. Numbers are computed locally from per-format heuristics.</p>
+
+          <form id="ifse-form" class="calc-form" novalidate data-ifse-form>
+            <div class="calc-row calc-row--inline">
+              <label for="ifse-width">Width (pixels)</label>
+              <input type="number" id="ifse-width" data-ifse-width min="1" step="1" value="1920" inputmode="numeric">
+            </div>
+            <div class="calc-row calc-row--inline">
+              <label for="ifse-height">Height (pixels)</label>
+              <input type="number" id="ifse-height" data-ifse-height min="1" step="1" value="1080" inputmode="numeric">
+            </div>
+            <div class="calc-row calc-row--inline">
+              <label for="ifse-format">Format</label>
+              <select id="ifse-format" data-ifse-format>
+                <option value="JPEG">JPEG</option>
+                <option value="PNG">PNG</option>
+                <option value="WebP">WebP</option>
+                <option value="AVIF">AVIF</option>
+                <option value="HEIC">HEIC</option>
+              </select>
+            </div>
+            <div class="calc-row calc-row--inline" data-ifse-quality-row>
+              <label for="ifse-quality">Quality (1-100)</label>
+              <input type="number" id="ifse-quality" data-ifse-quality min="1" max="100" step="1" value="85" inputmode="numeric">
+            </div>
+            <div class="calc-row calc-row--inline" data-ifse-png-row hidden>
+              <label for="ifse-png-content">PNG content type</label>
+              <select id="ifse-png-content" data-ifse-png-content>
+                <option value="photo">Photograph (high entropy)</option>
+                <option value="graphic">Graphic, logo or screenshot (flat colour)</option>
+              </select>
+            </div>
+            <p class="calc-row__hint" data-ifse-error></p>
+          </form>
+
+          <div class="result-panel" data-ifse-result hidden aria-live="polite">
+            <p class="result-panel__label">Estimated file size</p>
+            <p class="result-panel__value" data-ifse-result-value>—</p>
+            <p class="result-panel__summary" data-ifse-result-summary></p>
+
+            <h3>All five formats at the same dimensions and quality</h3>
+            <div data-ifse-comparison></div>
+          </div>
+
+          <details class="prove-it" data-prove-it>
+            <summary>Prove it</summary>
+            <div data-prove-it-body>
+              <p>Enter dimensions, a format and a quality to see the working.</p>
+            </div>
+          </details>
+
+          <p class="bookmark-nudge">
+            Useful? Save this calculator: press <kbd data-bookmark-shortcut>Ctrl</kbd> + <kbd>D</kbd> to bookmark it.
+          </p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="below-results" aria-hidden="true"></div>
+
+        <section class="long-form">
+          <h2>When to use this</h2>
+          <p>Three situations come up regularly. The first is page-weight budgeting: a designer hands you a 4000 by 3000 hero image and asks whether it will fit inside a 200 KB performance budget. Punch the dimensions in, pick the format and quality you would ship, and you have an answer in a couple of seconds without round-tripping through Photoshop. The second is bulk planning: a thousand product photos at 1500 by 1500, JPEG quality 80, gives you a rough storage and CDN egress figure to put in a quote. The third is deciding which format is worth the engineering pain. The comparison table tells you whether dropping JPEG for AVIF saves you 60 percent or 6 percent for the kind of images you serve.</p>
+
+          <h2>Common mistakes</h2>
+          <p>The biggest mistake is treating the number as exact. Two photos at 1920 by 1080, both JPEG quality 85, can comfortably differ by a factor of two: a clean studio shot of a single subject compresses much smaller than a forest canopy where every pixel is different. The estimator gives a sensible middle, the variance band is real, and a photo with a lot of fine detail will sit at the upper edge of it.</p>
+          <p>The second mistake is forgetting that PNG quality is not a quality at all. The deflate level changes how long the encoder spends searching for a shorter representation, not what comes out the other end. The output is always lossless. What actually changes the size is whether the source is a photo or a flat graphic, which is why this estimator asks about content rather than quality for PNG.</p>
+          <p>The third mistake is comparing formats at the same numeric quality and concluding one is better. Quality scales are not portable across encoders. JPEG quality 85 in libjpeg-turbo, WebP quality 85 in libwebp, and AVIF quality 85 in libaom encode to different visual qualities. The right comparison is by visual result on the actual content, with file size as the secondary axis. Use the comparison table here to get a rough order-of-magnitude feel, then encode a real test image when the decision matters.</p>
+
+          <h2>Edge cases</h2>
+          <p>For very small images (favicons, sprite tiles, anything under 100 by 100), fixed-cost overhead in the file format starts to dominate the size. A 32 by 32 PNG might be 200 bytes; the estimate based on raw pixel count is roughly right but the floor is set by the file header, not the data. For very large images (8K stills, panoramas) the estimate stays linear in pixel count, which matches reality reasonably well: more pixels means proportionally more bytes, give or take entropy.</p>
+          <p>Animated formats are out of scope here. APNG, animated WebP and animated AVIF all multiply the per-frame size by the frame count and add a small inter-frame compression saving. If you are working with animation, estimate one frame and multiply by frame count, then knock 20 percent off as a rough inter-frame compression discount.</p>
+
+          <h2>Related calculators</h2>
+          <p>Other browser-only image and bandwidth tools.</p>
+          <ul class="related-calculators">
+            <li><a href="/calculators/images/">All image tools</a></li>
+            <li><a href="/calculators/images/photo-resizer/">Photo Resizer, the actual resize-and-encode tool</a></li>
+            <li><a href="/calculators/images/image-compressor/">Image Compressor, target a file size on a real file</a></li>
+            <li><a href="/calculators/images/aspect-ratio-calculator/">Aspect Ratio Calculator</a></li>
+            <li><a href="/calculators/broadband/file-download-time-calculator/">File Download Time Calculator</a></li>
+          </ul>
+        </section>
+
+        <section class="faq" aria-labelledby="faq-heading">
+          <h2 id="faq-heading">Frequently asked questions</h2>
+          <details>
+            <summary>Why is this only an estimate?</summary>
+            <p>Final file size depends on the entropy of the actual pixels, the encoder, the quality scale used, chroma subsampling settings and a dozen smaller knobs. Two photos at the same resolution and the same nominal quality can differ by 30 percent or more. The numbers here are calibrated against typical cameras and encoders, but treat them as a planning figure with a plus or minus 30 percent band, not a guarantee.</p>
+          </details>
+          <details>
+            <summary>Why does PNG have a content toggle instead of a quality slider?</summary>
+            <p>PNG is lossless. The compression knob (deflate level 0, 6 or 9) only changes how hard the encoder works to find a smaller representation, not the visible result. What actually drives PNG file size is the content. A photograph compresses poorly because every pixel is slightly different. A flat UI graphic, logo, or screenshot full of solid colour compresses brilliantly. The toggle picks the right deflate ratio for the kind of image you have.</p>
+          </details>
+          <details>
+            <summary>Why is AVIF roughly half the size of JPEG at the same quality?</summary>
+            <p>AVIF uses the AV1 video codec's intra-frame coding, which is more than 20 years more recent than JPEG. It supports better prediction, larger transform blocks, and modern entropy coding. Across a typical photo set, AVIF lands at roughly 0.45 of the JPEG size at visually matching quality. The trade-off is encoding time: AVIF is much slower to produce, which is why it has not displaced JPEG for camera output yet.</p>
+          </details>
+          <details>
+            <summary>Should I use WebP or AVIF for the web?</summary>
+            <p>Both have effectively universal browser support in 2026. AVIF gives you smaller files at the same visible quality, but encoders are slower and the decoder is heavier on low-end phones. WebP encodes faster, decodes lighter, and is still meaningfully smaller than JPEG. For a media-heavy site, ship AVIF with WebP as a fallback via the picture element. For a small site where build speed matters, WebP alone is the pragmatic choice.</p>
+          </details>
+          <details>
+            <summary>What about HEIC, the iPhone format?</summary>
+            <p>HEIC is Apple's container for HEVC-encoded stills. It is a touch larger than AVIF and a touch smaller than WebP at matching quality. It is excellent on Apple devices and useless on the open web because no major browser decodes it natively. If you are sharing photos beyond the Apple ecosystem, convert HEIC to JPEG, WebP or AVIF first.</p>
+          </details>
+        </section>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="ad-slot" data-ad-slot="sidebar" aria-hidden="true"></div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="site-footer-nav" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/calculators/">All calculators</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+
+      <section class="site-disclaimer" data-disclaimer aria-labelledby="disclaimer-heading">
+        <h2 id="disclaimer-heading">A quick, necessary word</h2>
+        <p>Every calculator on this site is built to give you a sensible, well-reasoned estimate. It is, however, exactly that: an estimate, for general information only. Nothing you see here is professional, legal, financial, medical, or tax advice, and it should not be treated as such.</p>
+        <p>Before you make a decision that actually matters, talk to a qualified professional who knows your specific situation: an accountant, a solicitor, a doctor, an IT consultant, whoever fits the question. They can factor in the bits a generic tool can't.</p>
+        <p>We take no liability and accept no responsibility for any loss, damage, or questionable life choice arising from acting on the numbers you see here. Use the results as a starting point for a better conversation, not as the final word.</p>
+        <p><strong>Affiliate disclosure:</strong> some links on this site are affiliate links. If you click through and buy or sign up for something, we may earn a small commission at no extra cost to you. It helps keep the calculators free and ad-light. We only recommend things we'd point a friend towards.</p>
+      </section>
+      <p class="site-copyright">&copy; 2026 WebCaretakers. All rights reserved.</p>
+      <p class="site-legal">WebCaretakers is a trading name of <a href="https://yeseo.io/" rel="noopener">Andrew Laws Associates Ltd</a>, registered in England and Wales (company no. 08602332). ICO registration ZA726704.</p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/calculators/image-file-size-estimator.js"></script>
+  <script src="/assets/js/calculators/image-file-size-estimator.page.js"></script>
+  <script>
+    (function () {
+      var shortcutEl = document.querySelector('[data-bookmark-shortcut]');
+      if (shortcutEl) {
+        var isMac = /Mac|iPhone|iPad|iPod/i.test(navigator.platform || navigator.userAgent);
+        shortcutEl.textContent = isMac ? '\u2318' : 'Ctrl';
+      }
+    })();
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

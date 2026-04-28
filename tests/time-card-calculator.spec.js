@@ -122,6 +122,7 @@ test.describe('Time Card Calculator page', () => {
 
   test('prove_it event fires when the panel is opened', async ({ page }) => {
     await page.locator('[data-prove-it] summary').click();
+    await page.waitForFunction(() => window.dataLayer.some((e) => e.event === 'prove_it'));
     const event = await page.evaluate(() =>
       window.dataLayer.find(e => e.event === 'prove_it')
     );

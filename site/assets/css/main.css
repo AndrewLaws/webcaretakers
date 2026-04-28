@@ -1310,3 +1310,104 @@ button.prove-it[aria-expanded="true"] { background: #ececec; }
 }
 .price-history__raw { margin-top: 1rem; }
 .price-history__raw summary { cursor: pointer; font-size: 0.95rem; color: #1d4ed8; }
+
+/* ---------- SERP Snippet Preview Tool ---------- */
+.serp-previews { display: grid; gap: 1.25rem; margin-top: 1rem; }
+.serp-card {
+  background: #fff;
+  border: 1px solid #dadce0;
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+.serp-card--mobile { max-width: 420px; }
+.serp-card__head {
+  display: flex; justify-content: space-between; align-items: baseline;
+  font-size: 0.85rem; color: #5f6368; margin-bottom: 0.5rem;
+  border-bottom: 1px solid #ececec; padding-bottom: 0.5rem;
+}
+.serp-card__device { font-weight: 600; color: #202124; }
+.serp-card__body { font-family: arial, sans-serif; }
+.serp-snippet__url {
+  color: #5f6368; font-size: 0.78rem; line-height: 1.3; margin-bottom: 0.15rem;
+}
+.serp-snippet__title {
+  color: #1a0dab; font-size: 1.25rem; line-height: 1.3; font-weight: 400;
+  margin: 0 0 0.25rem 0; cursor: pointer;
+}
+.serp-snippet__title:hover { text-decoration: underline; }
+.serp-snippet--mobile .serp-snippet__title { font-size: 1.1rem; }
+.serp-snippet__description {
+  color: #4d5156; font-size: 0.875rem; line-height: 1.45;
+}
+.serp-card__foot { margin-top: 0.75rem; display: grid; gap: 0.4rem; }
+.serp-meter {
+  display: flex; justify-content: space-between; gap: 1rem;
+  font-size: 0.8rem; color: #555;
+}
+.serp-meter__label { font-weight: 500; }
+.serp-meter__value { font-variant-numeric: tabular-nums; }
+.serp-warning {
+  margin-top: 0.5rem; padding: 0.5rem 0.75rem;
+  background: #fff8e1; border-left: 3px solid #f9a825;
+  font-size: 0.85rem; color: #5d4037; border-radius: 3px;
+}
+
+/* ---------- Project Deadline Countdown ---------- */
+.pdc-results-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.75rem; margin-top: 1rem;
+}
+.pdc-results-grid > div {
+  background: #f8f9fa; border-radius: 6px; padding: 0.75rem 1rem;
+}
+.pdc-results-grid__label {
+  display: block; font-size: 0.78rem; color: #666; text-transform: uppercase;
+  letter-spacing: 0.04em; margin-bottom: 0.25rem;
+}
+.pdc-results-grid__value {
+  display: block; font-size: 1.3rem; font-weight: 600; color: #1d4ed8;
+  font-variant-numeric: tabular-nums;
+}
+.pdc-progress {
+  margin: 1rem 0; background: #e9ecef; border-radius: 4px; overflow: hidden; height: 8px;
+}
+.pdc-progress > div {
+  height: 100%; background: linear-gradient(90deg, #4ade80, #1d4ed8);
+  transition: width 0.3s ease;
+}
+.pdc-calendar-wrap { margin-top: 1.25rem; overflow-x: auto; }
+.pdc-mini-cal {
+  display: grid; grid-template-columns: repeat(7, minmax(34px, 1fr));
+  gap: 2px; max-width: 360px; font-size: 0.75rem;
+}
+.pdc-mini-cal__cell {
+  aspect-ratio: 1; display: flex; align-items: center; justify-content: center;
+  background: #f1f3f5; border-radius: 3px; color: #333;
+}
+.pdc-mini-cal__cell--weekend { background: #e9ecef; color: #888; }
+.pdc-mini-cal__cell--working { background: #d0ebff; color: #0b3d6b; font-weight: 500; }
+.pdc-mini-cal__cell--holiday { background: #ffe0e6; color: #8b1c2c; font-weight: 500; }
+.pdc-mini-cal__cell--start { background: #c5f6c8; color: #1b4d22; font-weight: 700; outline: 2px solid #2f9e44; }
+.pdc-mini-cal__cell--deadline { background: #ffd6a5; color: #6b3a00; font-weight: 700; outline: 2px solid #e8590c; }
+.pdc-mini-cal__legend {
+  display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 0.75rem;
+  font-size: 0.78rem; color: #555;
+}
+.pdc-mini-cal__legend > span { display: inline-flex; align-items: center; gap: 0.35rem; }
+.pdc-mini-cal__swatch {
+  display: inline-block; width: 12px; height: 12px; border-radius: 2px; background: #f1f3f5;
+}
+.pdc-mini-cal__swatch--weekend { background: #e9ecef; }
+.pdc-mini-cal__swatch--working { background: #d0ebff; }
+.pdc-mini-cal__swatch--holiday { background: #ffe0e6; }
+.pdc-mini-cal__swatch--start { background: #c5f6c8; outline: 2px solid #2f9e44; }
+.pdc-mini-cal__swatch--deadline { background: #ffd6a5; outline: 2px solid #e8590c; }
+.pdc-mini-cal__note { margin-top: 0.5rem; font-size: 0.8rem; color: #777; font-style: italic; }
+
+/* ---------- Fuel Economy Converter source-of-truth highlight ---------- */
+.fec-card--source {
+  outline: 2px solid #1d4ed8;
+  outline-offset: 2px;
+  background: #eff6ff;
+}

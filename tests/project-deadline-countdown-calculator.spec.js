@@ -127,6 +127,7 @@ test.describe('Project Deadline Countdown Calculator page', () => {
   test('pushes prove_it event when details opened', async ({ page }) => {
     await page.goto(URL);
     await page.locator('[data-prove-it] summary').click();
+    await page.waitForFunction(() => window.dataLayer.some((e) => e.event === 'prove_it'));
     await expect.poll(() => page.evaluate(() =>
       !!window.dataLayer.find(e => e.event === 'prove_it' && e.calculator_name === 'Project Deadline Countdown Calculator')
     )).toBe(true);

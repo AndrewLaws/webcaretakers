@@ -92,6 +92,7 @@ test.describe('GCD and LCM Calculator page', () => {
       d.open = true;
       d.dispatchEvent(new Event('toggle'));
     });
+    await page.waitForFunction(() => window.dataLayer.some((e) => e.event === 'prove_it'));
     const event = await page.evaluate(() =>
       window.dataLayer.find(e => e.event === 'prove_it')
     );

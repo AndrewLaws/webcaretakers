@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quadratic Equation Solver | WebCaretakers</title>
+  <meta name="description" content="Solve any quadratic ax&sup2; + bx + c = 0. Get the two roots, the discriminant, the vertex, the axis of symmetry and the y-intercept, with the working shown step by step.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/math/quadratic-equation-solver/">
+  <meta property="og:title" content="Quadratic Equation Solver | WebCaretakers">
+  <meta property="og:description" content="Solve ax&sup2; + bx + c = 0, with the discriminant, vertex, axis of symmetry and full working shown. Handles real and complex roots.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/math/quadratic-equation-solver/">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var _stored = null;
+    try { _stored = localStorage.getItem('cookie-consent'); } catch (e) {}
+    var _initial = _stored === 'granted' ? 'granted' : 'denied';
+    gtag('consent', 'default', {
+      ad_storage: _initial, analytics_storage: _initial,
+      ad_user_data: _initial, ad_personalization: _initial,
+      functionality_storage: 'granted', security_storage: 'granted',
+      wait_for_update: 500
+    });
+  </script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Quadratic Equation Solver",
+    "url": "https://webcaretakers.com/calculators/math/quadratic-equation-solver/",
+    "applicationCategory": "EducationalApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "author": {
+      "@type": "Person",
+      "name": "Andrew Laws",
+      "url": "https://yeseo.io/"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What does the discriminant tell me?",
+        "acceptedAnswer": { "@type": "Answer", "text": "The discriminant is b&sup2; &minus; 4ac, the bit under the square root in the quadratic formula. Its sign tells you what kind of roots you have without solving the equation. Positive means two distinct real roots and the parabola crosses the x-axis twice. Zero means one repeated real root and the parabola just touches the x-axis at its vertex. Negative means two complex conjugate roots and the parabola never touches the x-axis at all." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does this calculator sometimes show roots as fractions?",
+        "acceptedAnswer": { "@type": "Answer", "text": "When all three coefficients are whole numbers and the discriminant is a perfect square, the roots are rational and can be written exactly as a reduced fraction. The calculator simplifies using the greatest common divisor so you get 1/2 rather than 4/8. When the discriminant is not a perfect square the roots are irrational, so a decimal approximation is the honest answer and no fraction is shown." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the vertex and why is it useful?",
+        "acceptedAnswer": { "@type": "Answer", "text": "The vertex (h, k) is the turning point of the parabola y = ax&sup2; + bx + c. It is the minimum point if a is positive (a smile) and the maximum if a is negative (a frown). The formulas are h = &minus;b / (2a) and k = c &minus; b&sup2; / (4a). The vertex sits on the axis of symmetry, x = h, the vertical line that mirrors the parabola onto itself." }
+      },
+      {
+        "@type": "Question",
+        "name": "What does p + qi mean for the complex roots?",
+        "acceptedAnswer": { "@type": "Answer", "text": "When the discriminant is negative, the square root in the quadratic formula gives an imaginary number. The two roots come out as a complex conjugate pair: p + qi and p - qi, where p is the real part (&minus;b / 2a) and q is the imaginary part (&radic;|D| / 2a). The roots are mirror images across the real axis on the complex plane. They still satisfy the original equation; they just do not appear as crossings on the standard x-axis graph." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does this calculator send my numbers anywhere?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. Everything runs in your browser using vanilla JavaScript. The coefficients you type never leave your device. You can disconnect from the network and the solver still works." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-banner-heading" aria-describedby="cookie-banner-text" hidden>
+    <div class="cookie-banner__inner">
+      <h2 id="cookie-banner-heading" class="cookie-banner__heading">A quick word about cookies</h2>
+      <p id="cookie-banner-text" class="cookie-banner__text">
+        We use cookies for analytics, so we can see which calculators people actually use and which ones need work. Nothing creepy, nothing sold on. You can say yes, say no, or read the <a href="/privacy/">privacy policy</a> first. Your choice sticks.
+      </p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-reject>Reject</button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>Accept</button>
+      </div>
+    </div>
+  </div>
+
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">WebCaretakers</a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <ul class="primary-nav__list">
+          <li class="primary-nav__item primary-nav__item--has-menu">
+            <button type="button" class="primary-nav__link" data-menu-toggle aria-haspopup="true" aria-expanded="false">Calculators <span class="primary-nav__caret" aria-hidden="true">&#9662;</span></button>
+            <ul class="primary-nav__submenu">
+              <li><a href="/calculators/ai/">AI</a></li>
+              <li><a href="/calculators/broadband/">Broadband</a></li>
+              <li><a href="/calculators/business/">Business</a></li>
+              <li><a href="/calculators/conversions/">Conversions</a></li>
+              <li><a href="/calculators/cybersecurity/">Cybersecurity</a></li>
+              <li><a href="/calculators/finance/">Finance</a></li>
+              <li><a href="/calculators/fun/">Fun</a></li>
+              <li><a href="/calculators/health/">Health</a></li>
+              <li><a href="/calculators/images/">Images</a></li>
+              <li><a href="/calculators/math/">Math</a></li>
+              <li><a href="/calculators/productivity/">Productivity</a></li>
+              <li><a href="/calculators/property/">Property</a></li>
+              <li><a href="/calculators/seo/">SEO</a></li>
+              <li><a href="/calculators/wedding/">Wedding</a></li>
+              <li><a href="/calculators/writing/">Writing</a></li>
+              <li class="primary-nav__submenu-sep"><a href="/calculators/">See all calculators</a></li>
+            </ul>
+          </li>
+          <li class="primary-nav__item"><a href="/about/" class="primary-nav__link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <main id="main-content">
+      <div class="container">
+        <nav aria-label="Breadcrumb" class="breadcrumbs">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/calculators/">Calculators</a></li>
+            <li><a href="/calculators/math/">Math</a></li>
+            <li aria-current="page">Quadratic Equation Solver</li>
+          </ol>
+        </nav>
+
+        <h1>Quadratic Equation Solver</h1>
+        <p class="intro">Enter the coefficients a, b and c of a quadratic ax&sup2; + bx + c = 0 and get the two roots, the discriminant, the vertex, the axis of symmetry and the y-intercept. Real or complex, exact fractions where possible, decimal where not, with the working laid out so you can audit every step.</p>
+
+        <section class="eli5" aria-label="Plain-English explanation">
+          <h2>Explain like I'm 5 (what even is this calculator?)</h2>
+          <p>A quadratic is an equation that, when drawn, makes a U-shaped curve called a parabola. The roots are the points where that curve crosses the x-axis. This page takes the three numbers in front of the x&sup2;, x and constant terms, runs them through the quadratic formula, and tells you where the curve crosses, where its bottom (or top) sits, and what it looks like in summary.</p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="in-content" aria-hidden="true"></div>
+
+        <section data-calculator class="calculator-card">
+          <h2>Solve</h2>
+          <p class="reassure"><strong>Browser-only.</strong> The numbers you enter are processed in your browser. Nothing is uploaded.</p>
+
+          <form id="quad-form" class="calc-form" novalidate>
+            <p class="calc-row__hint">Equation: <strong>ax&sup2; + bx + c = 0</strong></p>
+            <div class="calc-row calc-row--inline">
+              <label for="quad-a">a (coefficient of x&sup2;)</label>
+              <input type="number" id="quad-a" data-quad-a step="any" inputmode="decimal" placeholder="e.g. 1" required>
+            </div>
+            <div class="calc-row calc-row--inline">
+              <label for="quad-b">b (coefficient of x)</label>
+              <input type="number" id="quad-b" data-quad-b step="any" inputmode="decimal" placeholder="e.g. -3">
+            </div>
+            <div class="calc-row calc-row--inline">
+              <label for="quad-c">c (constant)</label>
+              <input type="number" id="quad-c" data-quad-c step="any" inputmode="decimal" placeholder="e.g. 2">
+            </div>
+            <p class="calc-row__hint">a must be non-zero. With a = 0 the equation is linear, not quadratic, and a different calculator is the right tool.</p>
+
+            <button type="submit" data-calculate>Solve</button>
+          </form>
+
+          <div data-calculator-results class="calculator-results">
+            <p class="result-display" data-result>Enter coefficients and press Solve.</p>
+            <div data-stats-grid class="stats-grid" hidden></div>
+
+            <details class="prove-it" data-prove-it>
+              <summary>Prove it</summary>
+              <div data-prove-it-body></div>
+              <p class="prove-it-source">Method: the quadratic formula x = (&minus;b &plusmn; &radic;(b&sup2; &minus; 4ac)) / (2a). Vertex from h = &minus;b / (2a) and k = c &minus; b&sup2; / (4a). When the coefficients are integers and the discriminant is a perfect square, the roots are reduced to exact fractions using the Euclidean algorithm for the greatest common divisor.</p>
+            </details>
+          </div>
+
+          <p class="bookmark-nudge">
+            Useful? Save this calculator: press <kbd data-bookmark-shortcut>Ctrl</kbd> + <kbd>D</kbd> to bookmark it.
+          </p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="below-results" aria-hidden="true"></div>
+
+        <section class="long-form">
+          <h2>What the quadratic formula actually does</h2>
+          <p>Every quadratic equation in the standard form ax&sup2; + bx + c = 0 has exactly two roots, counting multiplicity, somewhere in the complex numbers. The quadratic formula, x = (&minus;b &plusmn; &radic;(b&sup2; &minus; 4ac)) / (2a), is a closed-form expression for both of them. Plug in the three coefficients, do the arithmetic, and you have your answer. There is no iteration, no guessing, no graphical estimation. The maths is the same whether the roots are nice integers or messy irrationals or a complex conjugate pair.</p>
+          <p>The expression under the square root, b&sup2; &minus; 4ac, is called the <strong>discriminant</strong>. It carries enough information by itself to tell you what kind of roots you are dealing with. A positive discriminant gives two distinct real roots. A discriminant of exactly zero gives one repeated real root, where the parabola touches the x-axis at its vertex without crossing. A negative discriminant means the square root pulls in an imaginary unit, and the two roots come out as a complex conjugate pair: p + qi and p &minus; qi.</p>
+
+          <h2>When you actually need this</h2>
+          <p>School and university coursework is the obvious one, but quadratics show up well beyond the textbook. Projectile motion under constant gravity is a quadratic in time. The break-even point of a business with linear cost growth and a saturating demand curve often resolves to a quadratic. Optimising a rectangular area constrained by a fixed perimeter is a quadratic in one of the side lengths. Anywhere a quantity depends on the square of another quantity, with a linear correction and a constant, you end up with a quadratic to solve.</p>
+
+          <h2>Common mistakes the calculator helps you avoid</h2>
+          <p><strong>Sign errors on b.</strong> The minus sign in the &minus;b at the front of the formula trips up an enormous number of students. If your equation reads x&sup2; &minus; 3x + 2 = 0, then b is &minus;3, not 3, and &minus;b is +3. Type the coefficient with its sign exactly as it appears in the equation and the calculator handles the rest.</p>
+          <p><strong>Putting the equation in the wrong form first.</strong> The formula assumes ax&sup2; + bx + c = 0, with everything on one side and zero on the other. If your equation looks like 2x&sup2; = 5x &minus; 1, rearrange to 2x&sup2; &minus; 5x + 1 = 0 before reading off a, b and c. The calculator does not parse equations, only coefficients.</p>
+          <p><strong>Forgetting that a = 0 breaks everything.</strong> If a is zero, the formula divides by zero and the equation is no longer quadratic. The calculator validates this and tells you so rather than returning a misleading answer. With a = 0 you have a linear equation, bx + c = 0, and a single root x = &minus;c / b.</p>
+          <p><strong>Stopping at the discriminant.</strong> Knowing that the discriminant is positive is useful, but it is only a label. The roots themselves are what most problems actually need. The page shows the discriminant first, then the full working, then the roots in both exact and decimal form where exact is meaningful.</p>
+
+          <h2>Edge cases worth knowing about</h2>
+          <p>Pure quadratic, no linear term: if b = 0, the formula simplifies to x = &plusmn;&radic;(&minus;c / a). The roots are symmetric about zero and the vertex sits on the y-axis. The calculator handles this without any special case.</p>
+          <p>No constant term: if c = 0, one of the roots is always zero (factor out an x), and the other is &minus;b / a. The discriminant is b&sup2;, which is a perfect square as long as b is an integer, so the calculator returns both roots as exact fractions.</p>
+          <p>Decimal coefficients: the formula works with any real a, b, c. The exact-fraction reduction only kicks in when all three coefficients are whole numbers and the discriminant is a perfect square. Otherwise the roots are reported as decimals to a sensible precision.</p>
+          <p>Very large or very small coefficients: floating-point arithmetic limits the precision of the answer when coefficients span many orders of magnitude. For most schoolwork and undergraduate problems this is not an issue. If you are solving a quadratic for serious numerical work, use a library like NumPy or a CAS that handles arbitrary-precision arithmetic.</p>
+
+          <h2>Related calculators</h2>
+          <p>Other maths tools that pair well with this one.</p>
+          <ul class="related-calculators">
+            <li><a href="/calculators/math/standard-deviation-calculator/">Standard Deviation Calculator</a> for descriptive stats on a list of numbers</li>
+            <li><a href="/calculators/math/fraction-calculator/">Fraction Calculator</a> for exact-fraction arithmetic</li>
+            <li><a href="/calculators/math/gcd-lcm-calculator/">GCD and LCM Calculator</a> for the integer-divisor maths behind the fraction reduction here</li>
+            <li><a href="/calculators/math/">All math calculators</a></li>
+          </ul>
+        </section>
+
+        <section class="faq" aria-labelledby="faq-heading">
+          <h2 id="faq-heading">Frequently asked questions</h2>
+          <details>
+            <summary>What does the discriminant tell me?</summary>
+            <p>The discriminant is b&sup2; &minus; 4ac, the bit under the square root in the quadratic formula. Its sign tells you what kind of roots you have without solving the equation. Positive means two distinct real roots and the parabola crosses the x-axis twice. Zero means one repeated real root and the parabola just touches the x-axis at its vertex. Negative means two complex conjugate roots and the parabola never touches the x-axis at all.</p>
+          </details>
+          <details>
+            <summary>Why does this calculator sometimes show roots as fractions?</summary>
+            <p>When all three coefficients are whole numbers and the discriminant is a perfect square, the roots are rational and can be written exactly as a reduced fraction. The calculator simplifies using the greatest common divisor so you get 1/2 rather than 4/8. When the discriminant is not a perfect square the roots are irrational, so a decimal approximation is the honest answer and no fraction is shown.</p>
+          </details>
+          <details>
+            <summary>What is the vertex and why is it useful?</summary>
+            <p>The vertex (h, k) is the turning point of the parabola y = ax&sup2; + bx + c. It is the minimum point if a is positive (a smile) and the maximum if a is negative (a frown). The formulas are h = &minus;b / (2a) and k = c &minus; b&sup2; / (4a). The vertex sits on the axis of symmetry, x = h, the vertical line that mirrors the parabola onto itself.</p>
+          </details>
+          <details>
+            <summary>What does p + qi mean for the complex roots?</summary>
+            <p>When the discriminant is negative, the square root in the quadratic formula gives an imaginary number. The two roots come out as a complex conjugate pair: p + qi and p &minus; qi, where p is the real part (&minus;b / 2a) and q is the imaginary part (&radic;|D| / 2a). The roots are mirror images across the real axis on the complex plane. They still satisfy the original equation; they just do not appear as crossings on the standard x-axis graph.</p>
+          </details>
+          <details>
+            <summary>Does this calculator send my numbers anywhere?</summary>
+            <p>No. Everything runs in your browser using vanilla JavaScript. The coefficients you type never leave your device. You can disconnect from the network and the solver still works.</p>
+          </details>
+        </section>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="ad-slot" data-ad-slot="sidebar" aria-hidden="true"></div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="site-footer-nav" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/calculators/">All calculators</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+
+      <section class="site-disclaimer" data-disclaimer aria-labelledby="disclaimer-heading">
+        <h2 id="disclaimer-heading">A quick, necessary word</h2>
+        <p>Every calculator on this site is built to give you a sensible, well-reasoned estimate. It is, however, exactly that: an estimate, for general information only. Nothing you see here is professional, legal, financial, medical, or tax advice, and it should not be treated as such.</p>
+        <p>Before you make a decision that actually matters, talk to a qualified professional who knows your specific situation: an accountant, a solicitor, a doctor, an IT consultant, whoever fits the question. They can factor in the bits a generic tool can't.</p>
+        <p>We take no liability and accept no responsibility for any loss, damage, or questionable life choice arising from acting on the numbers you see here. Use the results as a starting point for a better conversation, not as the final word.</p>
+        <p><strong>Affiliate disclosure:</strong> some links on this site are affiliate links. If you click through and buy or sign up for something, we may earn a small commission at no extra cost to you. It helps keep the calculators free and ad-light. We only recommend things we'd point a friend towards.</p>
+      </section>
+      <p class="site-copyright">&copy; 2026 WebCaretakers. All rights reserved.</p>
+      <p class="site-legal">WebCaretakers is a trading name of <a href="https://yeseo.io/" rel="noopener">Andrew Laws Associates Ltd</a>, registered in England and Wales (company no. 08602332). ICO registration ZA726704.</p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/calculators/quadratic-equation-solver.js"></script>
+  <script>
+    (function () {
+      'use strict';
+      var shortcutEl = document.querySelector('[data-bookmark-shortcut]');
+      if (shortcutEl) {
+        var isMac = /Mac|iPhone|iPad|iPod/i.test(navigator.platform || navigator.userAgent);
+        shortcutEl.textContent = isMac ? '\u2318' : 'Ctrl';
+      }
+
+      var form = document.getElementById('quad-form');
+      if (!form) return;
+      var aInput = form.querySelector('[data-quad-a]');
+      var bInput = form.querySelector('[data-quad-b]');
+      var cInput = form.querySelector('[data-quad-c]');
+      var resultEl = document.querySelector('[data-result]');
+      var statsGrid = document.querySelector('[data-stats-grid]');
+      var proveBody = document.querySelector('[data-prove-it-body]');
+      var proveDetails = document.querySelector('[data-prove-it]');
+
+      function pushInteraction(field) {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: 'calculator_interaction',
+          calculator_name: 'Quadratic Equation Solver',
+          field: field
+        });
+      }
+
+      [aInput, bInput, cInput].forEach(function (el) {
+        if (!el) return;
+        el.addEventListener('input', function () {
+          pushInteraction(el.id.replace('quad-', ''));
+        });
+      });
+
+      if (proveDetails) {
+        proveDetails.addEventListener('toggle', function () {
+          if (proveDetails.open) {
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+              event: 'prove_it',
+              calculator_name: 'Quadratic Equation Solver'
+            });
+          }
+        });
+      }
+
+      function fmt(n) {
+        return window.QuadraticSolver.formatNumber(n);
+      }
+
+      function fmtFrac(f) {
+        return window.QuadraticSolver.formatFraction(f);
+      }
+
+      function readNumber(el) {
+        var raw = el.value;
+        if (raw === null || raw === undefined || String(raw).trim() === '') return NaN;
+        var n = Number(raw);
+        return Number.isFinite(n) ? n : NaN;
+      }
+
+      function rootText(root) {
+        return window.QuadraticSolver.formatRoot(root);
+      }
+
+      function renderResult(r) {
+        if (r.kind === 'invalid') {
+          resultEl.textContent = r.error;
+          statsGrid.hidden = true;
+          proveBody.innerHTML = '';
+          return;
+        }
+
+        var headline;
+        if (r.kind === 'real-distinct') {
+          headline = 'Two distinct real roots: x = ' + rootText(r.roots[0]) + ' and x = ' + rootText(r.roots[1]) + '.';
+        } else if (r.kind === 'real-repeated') {
+          headline = 'One repeated real root: x = ' + rootText(r.roots[0]) + ' (multiplicity 2).';
+        } else if (r.kind === 'complex') {
+          headline = 'Two complex conjugate roots: x = ' + rootText(r.roots[0]) + ' and x = ' + rootText(r.roots[1]) + '.';
+        }
+        resultEl.textContent = headline;
+
+        var rows = [
+          ['Discriminant (b\u00b2 \u2212 4ac)', fmt(r.discriminant)],
+          ['Root 1', rootText(r.roots[0])],
+          ['Root 2', r.roots.length > 1 ? rootText(r.roots[1]) : 'same as Root 1 (repeated)'],
+          ['Vertex (h, k)', '(' + fmt(r.vertex.h) + ', ' + fmt(r.vertex.k) + ')'],
+          ['Axis of symmetry', 'x = ' + fmt(r.axisOfSymmetry)],
+          ['y-intercept', '(0, ' + fmt(r.yIntercept) + ')'],
+        ];
+        var html = '<dl>';
+        for (var i = 0; i < rows.length; i++) {
+          html += '<div class="stats-grid__row"><dt>' + rows[i][0] + '</dt><dd>' + rows[i][1] + '</dd></div>';
+        }
+        html += '</dl>';
+        statsGrid.innerHTML = html;
+        statsGrid.hidden = false;
+
+        renderProveIt(r);
+      }
+
+      function renderProveIt(r) {
+        var a = r.a, b = r.b, c = r.c;
+        var bSq = b * b;
+        var fourAC = 4 * a * c;
+        var twoA = 2 * a;
+        var fourA = 4 * a;
+
+        var html = '<ul class="prove-it-steps">';
+        html += '<li><span>Equation</span><strong>' + fmt(a) + 'x\u00b2 + ' + fmt(b) + 'x + ' + fmt(c) + ' = 0</strong></li>';
+        html += '<li><span>Step 1: discriminant</span><strong>D = b\u00b2 \u2212 4ac = (' + fmt(b) + ')\u00b2 \u2212 4(' + fmt(a) + ')(' + fmt(c) + ') = ' + fmt(bSq) + ' \u2212 ' + fmt(fourAC) + ' = ' + fmt(r.discriminant) + '</strong></li>';
+
+        if (r.kind === 'real-distinct') {
+          html += '<li><span>Step 2: square root of D</span><strong>\u221aD = \u221a' + fmt(r.discriminant) + ' = ' + fmt(r.sqrtDiscriminant) + '</strong></li>';
+          html += '<li><span>Step 3: quadratic formula</span><strong>x = (\u2212b &plusmn; \u221aD) / (2a) = (' + fmt(-b) + ' &plusmn; ' + fmt(r.sqrtDiscriminant) + ') / ' + fmt(twoA) + '</strong></li>';
+          html += '<li><span>Root 1</span><strong>x = (' + fmt(-b) + ' \u2212 ' + fmt(r.sqrtDiscriminant) + ') / ' + fmt(twoA) + ' = ' + rootText(r.roots[0]) + '</strong></li>';
+          html += '<li><span>Root 2</span><strong>x = (' + fmt(-b) + ' + ' + fmt(r.sqrtDiscriminant) + ') / ' + fmt(twoA) + ' = ' + rootText(r.roots[1]) + '</strong></li>';
+        } else if (r.kind === 'real-repeated') {
+          html += '<li><span>Step 2: D = 0</span><strong>The square root term vanishes, leaving a single repeated root.</strong></li>';
+          html += '<li><span>Step 3: repeated root</span><strong>x = \u2212b / (2a) = ' + fmt(-b) + ' / ' + fmt(twoA) + ' = ' + rootText(r.roots[0]) + '</strong></li>';
+        } else if (r.kind === 'complex') {
+          html += '<li><span>Step 2: D &lt; 0</span><strong>\u221aD = \u221a(' + fmt(r.discriminant) + ') = ' + fmt(r.sqrtDiscriminant) + 'i (imaginary)</strong></li>';
+          html += '<li><span>Step 3: quadratic formula</span><strong>x = (\u2212b &plusmn; ' + fmt(r.sqrtDiscriminant) + 'i) / (2a) = (' + fmt(-b) + ' &plusmn; ' + fmt(r.sqrtDiscriminant) + 'i) / ' + fmt(twoA) + '</strong></li>';
+          html += '<li><span>Root 1</span><strong>x = ' + rootText(r.roots[0]) + '</strong></li>';
+          html += '<li><span>Root 2</span><strong>x = ' + rootText(r.roots[1]) + '</strong></li>';
+        }
+
+        html += '<li><span>Vertex h</span><strong>h = \u2212b / (2a) = ' + fmt(-b) + ' / ' + fmt(twoA) + ' = ' + fmt(r.vertex.h) + '</strong></li>';
+        html += '<li><span>Vertex k</span><strong>k = c \u2212 b\u00b2 / (4a) = ' + fmt(c) + ' \u2212 ' + fmt(bSq) + ' / ' + fmt(fourA) + ' = ' + fmt(r.vertex.k) + '</strong></li>';
+        html += '<li><span>Axis of symmetry</span><strong>x = ' + fmt(r.axisOfSymmetry) + '</strong></li>';
+        html += '<li><span>y-intercept</span><strong>set x = 0, y = c = ' + fmt(c) + '</strong></li>';
+        html += '</ul>';
+
+        proveBody.innerHTML = html;
+      }
+
+      function calculateAndRender() {
+        var a = readNumber(aInput);
+        var b = readNumber(bInput);
+        var c = readNumber(cInput);
+
+        // Treat blank b or c as zero, since "x^2 + 1 = 0" should work without
+        // forcing the user to type a zero. a still has to be supplied.
+        if (Number.isNaN(b)) b = 0;
+        if (Number.isNaN(c)) c = 0;
+
+        if (Number.isNaN(a)) {
+          resultEl.textContent = 'Please enter a value for a.';
+          statsGrid.hidden = true;
+          proveBody.innerHTML = '';
+          return;
+        }
+
+        var r = window.QuadraticSolver.solveQuadratic(a, b, c);
+        renderResult(r);
+
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: 'calculator_result',
+          calculator_name: 'Quadratic Equation Solver',
+          a: a, b: b, c: c,
+          discriminant: r.discriminant === undefined ? null : r.discriminant,
+          root_kind: r.kind
+        });
+      }
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        calculateAndRender();
+      });
+    })();
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

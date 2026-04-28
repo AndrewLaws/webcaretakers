@@ -113,6 +113,7 @@ test.describe('File Download Time Calculator page', () => {
   test('pushes prove_it event when details opened', async ({ page }) => {
     await page.goto(URL);
     await page.locator('[data-prove-it] summary').click();
+    await page.waitForFunction(() => window.dataLayer.some((e) => e.event === 'prove_it'));
     const evt = await page.evaluate(() =>
       window.dataLayer.find(e => e.event === 'prove_it' && e.calculator_name === 'File Download Time Calculator')
     );

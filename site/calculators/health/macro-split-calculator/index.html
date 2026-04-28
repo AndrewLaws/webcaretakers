@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Macro Split Calculator | WebCaretakers</title>
+  <meta name="description" content="Split a daily calorie target into grams of protein, carbs and fat. Pick a preset (balanced, high-protein cut, endurance, keto) or set a custom ratio. Per-meal breakdown included.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/health/macro-split-calculator/">
+  <meta property="og:title" content="Macro Split Calculator | WebCaretakers">
+  <meta property="og:description" content="Turn a daily calorie target into grams of protein, carbs and fat with goal presets or a custom ratio.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/health/macro-split-calculator/">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var _stored = null;
+    try { _stored = localStorage.getItem('cookie-consent'); } catch (e) {}
+    var _initial = _stored === 'granted' ? 'granted' : 'denied';
+    gtag('consent', 'default', {
+      ad_storage: _initial, analytics_storage: _initial,
+      ad_user_data: _initial, ad_personalization: _initial,
+      functionality_storage: 'granted', security_storage: 'granted',
+      wait_for_update: 500
+    });
+  </script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Macro Split Calculator",
+    "url": "https://webcaretakers.com/calculators/health/macro-split-calculator/",
+    "applicationCategory": "HealthApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0" },
+    "author": {
+      "@type": "Person",
+      "name": "Andrew Laws",
+      "url": "https://yeseo.io/"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How do I work out my daily calorie target before splitting it?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Use the TDEE Calculator on this site. It works out your Total Daily Energy Expenditure from age, weight, height and activity level, and adjusts for whether you want to lose, maintain or gain. The number it gives you is the one to drop into the Macro Split Calculator." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why is fat 9 kcal per gram while protein and carbs are 4?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Those are the Atwater factors, the calorie-per-gram values used in nutrition labelling for over a century. Fat packs more energy per gram because of its chemical structure (long hydrocarbon chains release more energy when oxidised). It is the reason a tablespoon of olive oil and a slice of bread can land at roughly the same calorie count, despite looking very different on the plate." }
+      },
+      {
+        "@type": "Question",
+        "name": "Do my custom percentages have to add up to exactly 100?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Within one percentage point, yes. The calculator allows ±1 to absorb rounding, but anything further from 100 is rejected because it would distort the calorie split. The custom sliders auto-redistribute the other two values when you move one, so getting to a valid combination is quick." }
+      },
+      {
+        "@type": "Question",
+        "name": "Is keto really 70 percent fat?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Strict ketogenic diets sit around 70 to 75 percent of calories from fat, 20 to 25 percent from protein and 5 to 10 percent from carbohydrate. The preset here uses 70 / 25 / 5, which is the commonly cited starting point. Therapeutic keto diets used for epilepsy go higher still, but those are run by a clinician rather than a web page." }
+      },
+      {
+        "@type": "Question",
+        "name": "How accurate is the per-meal breakdown?",
+        "acceptedAnswer": { "@type": "Answer", "text": "It is a flat divide, daily totals split by the number of meals you eat. Real-world meals vary, you might want more protein around training and more carbs at breakfast, but the per-meal numbers give you a sensible target shape so each plate looks roughly right." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-banner-heading" aria-describedby="cookie-banner-text" hidden>
+    <div class="cookie-banner__inner">
+      <h2 id="cookie-banner-heading" class="cookie-banner__heading">A quick word about cookies</h2>
+      <p id="cookie-banner-text" class="cookie-banner__text">
+        We use cookies for analytics, so we can see which calculators people actually use and which ones need work. Nothing creepy, nothing sold on. You can say yes, say no, or read the <a href="/privacy/">privacy policy</a> first. Your choice sticks.
+      </p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-reject>Reject</button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>Accept</button>
+      </div>
+    </div>
+  </div>
+
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">WebCaretakers</a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <ul class="primary-nav__list">
+          <li class="primary-nav__item primary-nav__item--has-menu">
+            <button type="button" class="primary-nav__link" data-menu-toggle aria-haspopup="true" aria-expanded="false">Calculators <span class="primary-nav__caret" aria-hidden="true">&#9662;</span></button>
+            <ul class="primary-nav__submenu">
+              <li><a href="/calculators/ai/">AI</a></li>
+              <li><a href="/calculators/broadband/">Broadband</a></li>
+              <li><a href="/calculators/business/">Business</a></li>
+              <li><a href="/calculators/conversions/">Conversions</a></li>
+              <li><a href="/calculators/cybersecurity/">Cybersecurity</a></li>
+              <li><a href="/calculators/finance/">Finance</a></li>
+              <li><a href="/calculators/fun/">Fun</a></li>
+              <li><a href="/calculators/health/">Health</a></li>
+              <li><a href="/calculators/images/">Images</a></li>
+              <li><a href="/calculators/math/">Math</a></li>
+              <li><a href="/calculators/productivity/">Productivity</a></li>
+              <li><a href="/calculators/property/">Property</a></li>
+              <li><a href="/calculators/seo/">SEO</a></li>
+              <li><a href="/calculators/wedding/">Wedding</a></li>
+              <li><a href="/calculators/writing/">Writing</a></li>
+              <li class="primary-nav__submenu-sep"><a href="/calculators/">See all calculators</a></li>
+            </ul>
+          </li>
+          <li class="primary-nav__item"><a href="/about/" class="primary-nav__link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <main id="main-content">
+      <div class="container">
+        <nav aria-label="Breadcrumb" class="breadcrumbs">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/calculators/">Calculators</a></li>
+            <li><a href="/calculators/health/">Health</a></li>
+            <li aria-current="page">Macro Split Calculator</li>
+          </ol>
+        </nav>
+
+        <h1>Macro Split Calculator</h1>
+        <p class="intro">Take a daily calorie target and split it into grams of protein, carbs and fat. Pick a goal preset or set a custom ratio with three sliders that always add up to 100. Optional per-meal breakdown for whatever number of meals you actually eat.</p>
+
+        <section class="eli5" aria-label="Plain-English explanation">
+          <h2>Explain like I'm 5 (what even is this calculator?)</h2>
+          <p>Calories tell you how much energy is on the plate. Macros (short for macronutrients) tell you where that energy comes from: protein, carbs or fat. This page takes one number (your daily calories) and splits it three ways using a percentage rule, then converts each share into grams using the standard calorie-per-gram values for each macro.</p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="in-content" aria-hidden="true"></div>
+
+        <section class="calculator-card">
+          <h2>Split your calories</h2>
+          <p class="reassure">Need a daily calorie number first? Use the <a href="/calculators/health/tdee-calculator/">TDEE Calculator</a> to work out your Total Daily Energy Expenditure, then drop that number in here.</p>
+
+          <form id="macro-form" class="calc-form" novalidate>
+            <div class="calc-row">
+              <label for="macro-calories">Daily calorie target (kcal)</label>
+              <input id="macro-calories" data-calories type="number" min="0" max="10000" step="10" value="2000" inputmode="numeric">
+            </div>
+
+            <div class="calc-row">
+              <label for="macro-preset">Goal preset</label>
+              <select id="macro-preset" data-preset>
+                <option value="balanced">Standard balanced (30 / 40 / 30)</option>
+                <option value="high_protein_cut">High-protein cut (40 / 35 / 25)</option>
+                <option value="endurance">Endurance (20 / 60 / 20)</option>
+                <option value="keto">Keto (25 / 5 / 70)</option>
+                <option value="custom">Custom (set your own)</option>
+              </select>
+            </div>
+
+            <fieldset class="calc-row" data-custom-panel hidden>
+              <legend>Custom split (must add up to 100%)</legend>
+
+              <label class="slider-row">
+                <span>Protein <strong data-pct-protein>30</strong>%</span>
+                <input type="range" min="0" max="100" step="1" value="30" data-slider="protein">
+              </label>
+
+              <label class="slider-row">
+                <span>Carbs <strong data-pct-carbs>40</strong>%</span>
+                <input type="range" min="0" max="100" step="1" value="40" data-slider="carbs">
+              </label>
+
+              <label class="slider-row">
+                <span>Fat <strong data-pct-fat>30</strong>%</span>
+                <input type="range" min="0" max="100" step="1" value="30" data-slider="fat">
+              </label>
+
+              <p class="calc-row__hint" data-custom-sum>Total: 100%</p>
+            </fieldset>
+
+            <div class="calc-row">
+              <label for="macro-meals">Meals per day</label>
+              <input id="macro-meals" data-meals type="number" min="1" max="10" step="1" value="4" inputmode="numeric">
+              <p class="calc-row__hint">Used for the per-meal breakdown. Default 4.</p>
+            </div>
+
+            <div class="calc-row">
+              <button type="submit" class="btn btn--primary">Split it</button>
+            </div>
+          </form>
+
+          <div class="result-block" data-result-block hidden aria-live="polite">
+            <h3>Daily macros</h3>
+            <ul class="result-list">
+              <li><span>Protein</span><strong><span data-out-protein-g>0</span> g <small>(<span data-out-protein-kcal>0</span> kcal)</small></strong></li>
+              <li><span>Carbs</span><strong><span data-out-carbs-g>0</span> g <small>(<span data-out-carbs-kcal>0</span> kcal)</small></strong></li>
+              <li><span>Fat</span><strong><span data-out-fat-g>0</span> g <small>(<span data-out-fat-kcal>0</span> kcal)</small></strong></li>
+            </ul>
+
+            <h3>Per meal (<span data-out-meals>4</span> meals/day)</h3>
+            <ul class="result-list">
+              <li><span>Calories</span><strong data-out-meal-kcal>0 kcal</strong></li>
+              <li><span>Protein</span><strong><span data-out-meal-protein>0</span> g</strong></li>
+              <li><span>Carbs</span><strong><span data-out-meal-carbs>0</span> g</strong></li>
+              <li><span>Fat</span><strong><span data-out-meal-fat>0</span> g</strong></li>
+            </ul>
+          </div>
+
+          <p class="form-error" data-error hidden role="alert"></p>
+
+          <details class="prove-it" data-prove-it>
+            <summary>Prove it</summary>
+            <div data-prove-body>
+              <p>The split runs in two steps for each macro.</p>
+              <p><strong>Step 1.</strong> Multiply the daily calories by the macro percentage to get calories for that macro.</p>
+              <p><strong>Step 2.</strong> Divide those calories by the kcal-per-gram for that macro: 4 for protein, 4 for carbs, 9 for fat (the Atwater factors).</p>
+              <p>Worked example, 2000 kcal on the balanced preset (30 / 40 / 30):</p>
+              <ul>
+                <li>Protein: 2000 &times; 0.30 = 600 kcal &divide; 4 = <strong>150 g</strong></li>
+                <li>Carbs: 2000 &times; 0.40 = 800 kcal &divide; 4 = <strong>200 g</strong></li>
+                <li>Fat: 2000 &times; 0.30 = 600 kcal &divide; 9 = <strong>67 g</strong> (66.67 rounded)</li>
+              </ul>
+              <p>Per-meal numbers are the daily figures divided by your meals/day, rounded to the nearest gram.</p>
+            </div>
+          </details>
+
+          <p class="bookmark-nudge">
+            Useful? Save this calculator: press <kbd data-bookmark-shortcut>Ctrl</kbd> + <kbd>D</kbd> to bookmark it.
+          </p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="below-results" aria-hidden="true"></div>
+
+        <section class="long-form">
+          <h2>What a macro split is for</h2>
+          <p>Macros are the three sources of food energy your body actually runs on: protein, carbohydrate and fat. Calories are the unit those sources are measured in, but two diets at the same calorie total can feel completely different in practice. A 2000 kcal day at 40 percent carbs leaves you with the energy to run a half marathon. The same 2000 kcal at 5 percent carbs leaves you in nutritional ketosis. The split is what changes, not the total.</p>
+          <p>The point of fixing a target macro split is to make the daily food question simpler. Once you know you are aiming for, say, 150 g of protein, the question on each plate becomes "where is my protein on this plate?" rather than "is this meal healthy?" Useful for muscle gain, recomp, endurance training, and anyone whose nutritionist has handed them a target ratio.</p>
+
+          <h2>Common mistakes</h2>
+          <p>The first one is treating the percentages as if they were grams. They are not. 30 percent protein on a 2000 kcal day is 600 kcal of protein, which is 150 g. On a 2500 kcal day the same percentage gives you 188 g. The grams move with calories, the percentages do not.</p>
+          <p>The second is forgetting that fat is more than twice as energy-dense per gram as protein and carbs. 70 g of fat looks small on a plate but carries 630 kcal. 70 g of carbs is 280 kcal. People underestimate fat intake on a regular basis because the volume is misleading. The kcal-per-gram column on the result table is there to keep that visible.</p>
+          <p>The third is chasing very high protein ratios that nobody actually needs. Above about 1.6 to 2.2 g per kg of body weight per day, the extra protein is mostly oxidised for energy, the same as carbs and fat. The high-protein cut preset here lands at 40 percent because cutting calories without protein loss is the one situation where a higher ratio earns its place.</p>
+
+          <h2>Edge cases</h2>
+          <p>Custom ratios are validated to within one percentage point of 100, which absorbs rounding from the sliders without letting you build an impossible split. If a slider lands you at 99 percent, the result is still calculated. If it lands you at 90 percent, the calculator refuses, because 10 percent of the day's calories would simply be missing. The sliders auto-redistribute the other two values pro-rata when you drag one, so you should rarely end up outside the tolerance unless you are typing values in directly.</p>
+          <p>Calories of zero return zeros across the board, useful for sanity-checking that the maths is not adding ghost grams from somewhere. Calories above 10,000 are rejected because nothing in normal human nutrition lands that high, and accepting them tends to mean a typo somewhere upstream.</p>
+
+          <h2>How this fits with the other health calculators</h2>
+          <p>This calculator only does the split. It does not work out the total calories. For that, use the <a href="/calculators/health/tdee-calculator/">TDEE Calculator</a> (which gives a daily calorie figure based on your size, age and activity), or the <a href="/calculators/health/calorie-calculator/">Calorie Calculator</a> (which adds a goal adjustment for losing, maintaining or gaining weight). Take the number those calculators give you, drop it into the calorie field above, pick a preset and you have a target macro shape for the day.</p>
+
+          <h2>Related calculators</h2>
+          <ul class="related-calculators">
+            <li><a href="/calculators/health/tdee-calculator/">TDEE Calculator</a> for the total calorie figure that feeds into this page.</li>
+            <li><a href="/calculators/health/calorie-calculator/">Calorie Calculator</a> for cut, maintenance and bulk targets.</li>
+            <li><a href="/calculators/health/bmi-calculator/">BMI Calculator</a> for a quick body-mass-index reference, with the caveats made plain.</li>
+            <li><a href="/calculators/health/">All health calculators</a>.</li>
+          </ul>
+        </section>
+
+        <section class="faq" aria-labelledby="faq-heading">
+          <h2 id="faq-heading">Frequently asked questions</h2>
+          <details>
+            <summary>How do I work out my daily calorie target before splitting it?</summary>
+            <p>Use the <a href="/calculators/health/tdee-calculator/">TDEE Calculator</a> on this site. It works out your Total Daily Energy Expenditure from age, weight, height and activity level, and adjusts for whether you want to lose, maintain or gain. The number it gives you is the one to drop into the Macro Split Calculator.</p>
+          </details>
+          <details>
+            <summary>Why is fat 9 kcal per gram while protein and carbs are 4?</summary>
+            <p>Those are the Atwater factors, the calorie-per-gram values used in nutrition labelling for over a century. Fat packs more energy per gram because of its chemical structure (long hydrocarbon chains release more energy when oxidised). It is the reason a tablespoon of olive oil and a slice of bread can land at roughly the same calorie count, despite looking very different on the plate.</p>
+          </details>
+          <details>
+            <summary>Do my custom percentages have to add up to exactly 100?</summary>
+            <p>Within one percentage point, yes. The calculator allows &plusmn;1 to absorb rounding, but anything further from 100 is rejected because it would distort the calorie split. The custom sliders auto-redistribute the other two values when you move one, so getting to a valid combination is quick.</p>
+          </details>
+          <details>
+            <summary>Is keto really 70 percent fat?</summary>
+            <p>Strict ketogenic diets sit around 70 to 75 percent of calories from fat, 20 to 25 percent from protein and 5 to 10 percent from carbohydrate. The preset here uses 70 / 25 / 5, which is the commonly cited starting point. Therapeutic keto diets used for epilepsy go higher still, but those are run by a clinician rather than a web page.</p>
+          </details>
+          <details>
+            <summary>How accurate is the per-meal breakdown?</summary>
+            <p>It is a flat divide, daily totals split by the number of meals you eat. Real-world meals vary, you might want more protein around training and more carbs at breakfast, but the per-meal numbers give you a sensible target shape so each plate looks roughly right.</p>
+          </details>
+        </section>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="ad-slot" data-ad-slot="sidebar" aria-hidden="true"></div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="site-footer-nav" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/calculators/">All calculators</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+
+      <section class="site-disclaimer" data-disclaimer aria-labelledby="disclaimer-heading">
+        <h2 id="disclaimer-heading">A quick, necessary word</h2>
+        <p>Every calculator on this site is built to give you a sensible, well-reasoned estimate. It is, however, exactly that: an estimate, for general information only. Nothing you see here is professional, legal, financial, medical, or tax advice, and it should not be treated as such.</p>
+        <p>Before you make a decision that actually matters, talk to a qualified professional who knows your specific situation: an accountant, a solicitor, a doctor, an IT consultant, whoever fits the question. They can factor in the bits a generic tool can't.</p>
+        <p>We take no liability and accept no responsibility for any loss, damage, or questionable life choice arising from acting on the numbers you see here. Use the results as a starting point for a better conversation, not as the final word.</p>
+        <p><strong>Affiliate disclosure:</strong> some links on this site are affiliate links. If you click through and buy or sign up for something, we may earn a small commission at no extra cost to you. It helps keep the calculators free and ad-light. We only recommend things we'd point a friend towards.</p>
+      </section>
+      <p class="site-copyright">&copy; 2026 WebCaretakers. All rights reserved.</p>
+      <p class="site-legal">WebCaretakers is a trading name of <a href="https://yeseo.io/" rel="noopener">Andrew Laws Associates Ltd</a>, registered in England and Wales (company no. 08602332). ICO registration ZA726704.</p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/calculators/macro-split-calculator.js"></script>
+  <script>
+    (function () {
+      'use strict';
+      var shortcutEl = document.querySelector('[data-bookmark-shortcut]');
+      if (shortcutEl) {
+        var isMac = /Mac|iPhone|iPad|iPod/i.test(navigator.platform || navigator.userAgent);
+        shortcutEl.textContent = isMac ? '\u2318' : 'Ctrl';
+      }
+
+      var form = document.getElementById('macro-form');
+      if (!form) return;
+
+      var caloriesEl   = form.querySelector('[data-calories]');
+      var presetEl     = form.querySelector('[data-preset]');
+      var mealsEl      = form.querySelector('[data-meals]');
+      var customPanel  = form.querySelector('[data-custom-panel]');
+      var sliderP      = form.querySelector('[data-slider="protein"]');
+      var sliderC      = form.querySelector('[data-slider="carbs"]');
+      var sliderF      = form.querySelector('[data-slider="fat"]');
+      var pctP         = form.querySelector('[data-pct-protein]');
+      var pctC         = form.querySelector('[data-pct-carbs]');
+      var pctF         = form.querySelector('[data-pct-fat]');
+      var sumLabel     = form.querySelector('[data-custom-sum]');
+
+      var resultBlock  = document.querySelector('[data-result-block]');
+      var errorEl      = document.querySelector('[data-error]');
+      var proveIt      = document.querySelector('[data-prove-it]');
+
+      var outProteinG    = document.querySelector('[data-out-protein-g]');
+      var outProteinKcal = document.querySelector('[data-out-protein-kcal]');
+      var outCarbsG      = document.querySelector('[data-out-carbs-g]');
+      var outCarbsKcal   = document.querySelector('[data-out-carbs-kcal]');
+      var outFatG        = document.querySelector('[data-out-fat-g]');
+      var outFatKcal     = document.querySelector('[data-out-fat-kcal]');
+      var outMeals       = document.querySelector('[data-out-meals]');
+      var outMealKcal    = document.querySelector('[data-out-meal-kcal]');
+      var outMealProtein = document.querySelector('[data-out-meal-protein]');
+      var outMealCarbs   = document.querySelector('[data-out-meal-carbs]');
+      var outMealFat     = document.querySelector('[data-out-meal-fat]');
+
+      function pushInteraction(field) {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: 'calculator_interaction',
+          calculator_name: 'Macro Split Calculator',
+          field: field
+        });
+      }
+
+      form.querySelectorAll('input, select').forEach(function (el) {
+        el.addEventListener('input', function () {
+          pushInteraction(el.getAttribute('data-slider') || el.name || el.id);
+        });
+      });
+
+      if (proveIt) {
+        proveIt.addEventListener('toggle', function () {
+          if (proveIt.open) {
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({ event: 'prove_it', calculator_name: 'Macro Split Calculator' });
+          }
+        });
+      }
+
+      function showCustom() {
+        customPanel.hidden = (presetEl.value !== 'custom');
+      }
+
+      function readSliders() {
+        return {
+          protein: parseInt(sliderP.value, 10),
+          carbs:   parseInt(sliderC.value, 10),
+          fat:     parseInt(sliderF.value, 10)
+        };
+      }
+
+      function writeSliders(r) {
+        sliderP.value = r.protein;
+        sliderC.value = r.carbs;
+        sliderF.value = r.fat;
+        pctP.textContent = r.protein;
+        pctC.textContent = r.carbs;
+        pctF.textContent = r.fat;
+        var sum = r.protein + r.carbs + r.fat;
+        sumLabel.textContent = 'Total: ' + sum + '%' + (Math.abs(sum - 100) > 1 ? ' (must be 100%)' : '');
+      }
+
+      [sliderP, sliderC, sliderF].forEach(function (s) {
+        s.addEventListener('input', function () {
+          var key = s.getAttribute('data-slider');
+          var current = readSliders();
+          var newVal = parseInt(s.value, 10);
+          // current still has the new value at `key`; pass the previous state by
+          // reconstructing: take all three values, but tell redistributeRatio
+          // the key that just changed. The redistribution function reads
+          // `current[others[*]]` only, so the new value at `key` does not affect it.
+          var redistributed = window.MacroSplit.redistributeRatio(current, key, newVal);
+          writeSliders(redistributed);
+        });
+      });
+
+      presetEl.addEventListener('change', function () {
+        showCustom();
+        if (presetEl.value !== 'custom') {
+          var p = window.MacroSplit.PRESETS[presetEl.value];
+          if (p) writeSliders({ protein: p.protein, carbs: p.carbs, fat: p.fat });
+        }
+      });
+
+      function calculate() {
+        errorEl.hidden = true;
+        try {
+          var calories = parseFloat(caloriesEl.value);
+          var meals    = parseInt(mealsEl.value, 10);
+          var preset   = presetEl.value;
+          var custom   = null;
+          if (preset === 'custom') {
+            custom = readSliders();
+          }
+
+          var r = window.MacroSplit.calculateMacroSplit({
+            calories:    calories,
+            preset:      preset,
+            custom:      custom,
+            mealsPerDay: meals
+          });
+
+          outProteinG.textContent    = r.macros.protein.grams;
+          outProteinKcal.textContent = r.macros.protein.kcal;
+          outCarbsG.textContent      = r.macros.carbs.grams;
+          outCarbsKcal.textContent   = r.macros.carbs.kcal;
+          outFatG.textContent        = r.macros.fat.grams;
+          outFatKcal.textContent     = r.macros.fat.kcal;
+          outMeals.textContent       = r.mealsPerDay;
+          outMealKcal.textContent    = r.perMeal.kcal + ' kcal';
+          outMealProtein.textContent = r.perMeal.protein.grams;
+          outMealCarbs.textContent   = r.perMeal.carbs.grams;
+          outMealFat.textContent     = r.perMeal.fat.grams;
+
+          resultBlock.hidden = false;
+
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: 'calculator_result',
+            calculator_name: 'Macro Split Calculator',
+            calories: r.calories,
+            preset: r.preset,
+            protein_g: r.macros.protein.grams,
+            carbs_g: r.macros.carbs.grams,
+            fat_g: r.macros.fat.grams,
+            meals_per_day: r.mealsPerDay
+          });
+        } catch (err) {
+          errorEl.textContent = err.message || 'Could not calculate.';
+          errorEl.hidden = false;
+          resultBlock.hidden = true;
+        }
+      }
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        calculate();
+      });
+
+      // Initial state: hide custom panel unless preset is custom, and run an
+      // initial calculation so the page is useful before the user clicks.
+      showCustom();
+      calculate();
+    })();
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

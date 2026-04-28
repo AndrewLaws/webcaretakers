@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Number Base Converter | WebCaretakers</title>
+  <meta name="description" content="Convert between binary, octal, decimal and hexadecimal in your browser. Live two-way binding, BigInt internals for large values, and an arbitrary-base option from 2 to 36.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/conversions/number-base-converter/">
+  <meta property="og:title" content="Number Base Converter | WebCaretakers">
+  <meta property="og:description" content="Convert between binary, octal, decimal and hexadecimal. Live two-way binding, BigInt internals, arbitrary base 2 to 36. Browser-only.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/conversions/number-base-converter/">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var _stored = null;
+    try { _stored = localStorage.getItem('cookie-consent'); } catch (e) {}
+    var _initial = _stored === 'granted' ? 'granted' : 'denied';
+    gtag('consent', 'default', {
+      ad_storage: _initial, analytics_storage: _initial,
+      ad_user_data: _initial, ad_personalization: _initial,
+      functionality_storage: 'granted', security_storage: 'granted',
+      wait_for_update: 500
+    });
+  </script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Number Base Converter",
+    "url": "https://webcaretakers.com/calculators/conversions/number-base-converter/",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0" },
+    "author": {
+      "@type": "Person",
+      "name": "Andrew Laws",
+      "url": "https://yeseo.io/"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Why use BigInt instead of regular numbers?",
+        "acceptedAnswer": { "@type": "Answer", "text": "JavaScript numbers are IEEE-754 doubles, which run out of integer precision at 2^53 - 1. A 64-bit register-sized value (anything wider than about 16 hex digits) starts to lose its low bits the moment you parse it as a normal Number. BigInt is the platform's arbitrary-precision integer type, so 0xDEADBEEFCAFEBABE round-trips through this converter without dropping a single bit. The page shows a small warning whenever your value goes past Number.MAX_SAFE_INTEGER, so you know the BigInt path is the one that matters." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does it reject characters like 2 in binary or g in hex?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Each base has a fixed alphabet: binary is 0 and 1, octal is 0 to 7, decimal is 0 to 9, hex is 0-9 and a-f. A 2 in a binary field is not a typo we can sensibly recover from, it is a different number system, so the converter flags it instead of guessing. Hex is normalised to lowercase on the way out so the four fields stay visually consistent." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the arbitrary-base panel for?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Sometimes you have a value in base 36 (short URLs, Crockford-style identifiers), base 32 (Nix store hashes), base 12 (timekeeping), or anything in between. The arbitrary-base panel takes any base from 2 to 36, parses your value with that alphabet, and shows the equivalent in all four standard bases. Same BigInt internals, same long-division trail in the prove-it panel." }
+      },
+      {
+        "@type": "Question",
+        "name": "Is this calculator only for positive whole numbers?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. Negative numbers in binary need a separate decision about the encoding (sign-magnitude, two's complement at a fixed width, etc.) and there is no single right answer without knowing the target system. Fractional values are even messier across bases. The tool sticks to non-negative integers because that is what nearly every programmer base-conversion question is actually asking, and ambiguity in the result would make the tool less useful, not more." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-banner-heading" aria-describedby="cookie-banner-text" hidden>
+    <div class="cookie-banner__inner">
+      <h2 id="cookie-banner-heading" class="cookie-banner__heading">A quick word about cookies</h2>
+      <p id="cookie-banner-text" class="cookie-banner__text">
+        We use cookies for analytics, so we can see which calculators people actually use and which ones need work. Nothing creepy, nothing sold on. You can say yes, say no, or read the <a href="/privacy/">privacy policy</a> first. Your choice sticks.
+      </p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-reject>Reject</button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>Accept</button>
+      </div>
+    </div>
+  </div>
+
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">WebCaretakers</a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <ul class="primary-nav__list">
+          <li class="primary-nav__item primary-nav__item--has-menu">
+            <button type="button" class="primary-nav__link" data-menu-toggle aria-haspopup="true" aria-expanded="false">Calculators <span class="primary-nav__caret" aria-hidden="true">▾</span></button>
+            <ul class="primary-nav__submenu">
+              <li><a href="/calculators/ai/">AI</a></li>
+              <li><a href="/calculators/broadband/">Broadband</a></li>
+              <li><a href="/calculators/business/">Business</a></li>
+              <li><a href="/calculators/conversions/">Conversions</a></li>
+              <li><a href="/calculators/cybersecurity/">Cybersecurity</a></li>
+              <li><a href="/calculators/finance/">Finance</a></li>
+              <li><a href="/calculators/fun/">Fun</a></li>
+              <li><a href="/calculators/health/">Health</a></li>
+              <li><a href="/calculators/images/">Images</a></li>
+              <li><a href="/calculators/math/">Math</a></li>
+              <li><a href="/calculators/productivity/">Productivity</a></li>
+              <li><a href="/calculators/property/">Property</a></li>
+              <li><a href="/calculators/seo/">SEO</a></li>
+              <li><a href="/calculators/wedding/">Wedding</a></li>
+              <li><a href="/calculators/writing/">Writing</a></li>
+              <li class="primary-nav__submenu-sep"><a href="/calculators/">See all calculators</a></li>
+            </ul>
+          </li>
+          <li class="primary-nav__item"><a href="/about/" class="primary-nav__link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <main id="main-content">
+      <div class="container">
+        <nav aria-label="Breadcrumb" class="breadcrumbs">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/calculators/">Calculators</a></li>
+            <li><a href="/calculators/conversions/">Conversions</a></li>
+            <li aria-current="page">Number Base Converter</li>
+          </ol>
+        </nav>
+
+        <h1>Number Base Converter</h1>
+        <p class="intro">Convert between binary, octal, decimal and hexadecimal. Type in any of the four fields and the other three update on the spot. There is also an arbitrary-base panel for anything from base 2 to base 36. The maths runs in <code>BigInt</code> under the hood, so 64-bit register-sized values round-trip without losing precision.</p>
+
+        <section class="eli5" aria-label="Plain-English explanation">
+          <h2>Explain like I'm 5 (what even is this calculator?)</h2>
+          <p>Numbers are just an idea. The way we write them on the page is a choice of alphabet. Decimal uses ten digits (0 to 9), binary uses two (0 and 1), hexadecimal uses sixteen (0 to 9, then a to f). The same quantity (255 apples in a barrel) can be written as <code>255</code>, <code>11111111</code>, or <code>ff</code> depending on which alphabet you pick. This page lets you type the quantity once and shows you what it looks like in all of them.</p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="in-content" aria-hidden="true"></div>
+
+        <section class="calculator-card">
+          <h2>Convert</h2>
+
+          <form id="nbc-form" class="calc-form" novalidate autocomplete="off" spellcheck="false">
+            <div class="calc-row">
+              <label for="nbc-bin">Binary (base 2)</label>
+              <input type="text" id="nbc-bin" data-nbc-field="bin" inputmode="numeric" placeholder="e.g. 11111111">
+              <p class="calc-row__hint" data-nbc-error="bin" role="status" aria-live="polite"></p>
+            </div>
+
+            <div class="calc-row">
+              <label for="nbc-oct">Octal (base 8)</label>
+              <input type="text" id="nbc-oct" data-nbc-field="oct" inputmode="numeric" placeholder="e.g. 377">
+              <p class="calc-row__hint" data-nbc-error="oct" role="status" aria-live="polite"></p>
+            </div>
+
+            <div class="calc-row">
+              <label for="nbc-dec">Decimal (base 10)</label>
+              <input type="text" id="nbc-dec" data-nbc-field="dec" inputmode="numeric" placeholder="e.g. 255">
+              <p class="calc-row__hint" data-nbc-error="dec" role="status" aria-live="polite"></p>
+            </div>
+
+            <div class="calc-row">
+              <label for="nbc-hex">Hexadecimal (base 16)</label>
+              <input type="text" id="nbc-hex" data-nbc-field="hex" placeholder="e.g. ff or deadbeef">
+              <p class="calc-row__hint" data-nbc-error="hex" role="status" aria-live="polite"></p>
+            </div>
+
+            <p class="calc-row__hint" data-nbc-safety hidden>
+              <strong>Heads up:</strong> this value is larger than <code>Number.MAX_SAFE_INTEGER</code> (2<sup>53</sup> - 1). The page is using <code>BigInt</code> internally so the conversion is still exact, but if you copy the decimal into other JavaScript code, parse it as a BigInt there too or you will lose the low bits.
+            </p>
+
+            <fieldset class="calc-row">
+              <legend>Arbitrary base (2 to 36)</legend>
+              <div class="calc-row">
+                <label for="nbc-arb-value">Value</label>
+                <input type="text" id="nbc-arb-value" data-nbc-arb-value placeholder="e.g. zz">
+              </div>
+              <div class="calc-row">
+                <label for="nbc-arb-base">Source base</label>
+                <input type="number" id="nbc-arb-base" data-nbc-arb-base min="2" max="36" step="1" value="36" inputmode="numeric">
+              </div>
+              <p class="calc-row__hint" data-nbc-arb-error role="status" aria-live="polite"></p>
+              <p class="calc-row__hint">Type a value and a base. Allowed digits run from 0 to 9 and then a to z (a is 10, z is 35). The four fields above will update with the equivalent in binary, octal, decimal and hex.</p>
+            </fieldset>
+          </form>
+
+          <details class="prove-it" data-prove-it>
+            <summary>Prove it (show the working)</summary>
+            <div data-nbc-prove-body>
+              <p>Type a value in any field to see the working.</p>
+            </div>
+            <p>The conversions all route through a single <code>BigInt</code> decimal value, so every base shown is the same number rendered with a different alphabet. The long-division trail repeats <em>value &divide; base</em> until the quotient hits zero, taking the remainder at each step as the next digit (read bottom-up). That is the algorithm <code>BigInt.prototype.toString(base)</code> uses internally for bases 2 to 36.</p>
+          </details>
+
+          <p class="bookmark-nudge">
+            Useful? Save this calculator: press <kbd data-bookmark-shortcut>Ctrl</kbd> + <kbd>D</kbd> to bookmark it.
+          </p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="below-results" aria-hidden="true"></div>
+
+        <section class="long-form">
+          <h2>When to reach for this</h2>
+          <p>The everyday case is reading a value out of a debugger, a register dump, or a colour picker and wanting to see it in another base without firing up a programming REPL. RGB colours often arrive as hex (<code>#ff8800</code>); CSS sometimes wants decimal RGB. Permission masks on Unix come out in octal (<code>755</code>, <code>644</code>); kernel messages quote them in decimal. A network packet capture might give you a port as hex; you want the decimal port number to grep your firewall log. A bitfield in a protocol spec is described in binary; you want the hex constant to put in your code. Type any of those into the right field here and the other three appear instantly.</p>
+
+          <p>The other case is teaching. The long-division trail in the prove-it panel walks through the algorithm one step at a time. If you are explaining to a junior why <code>255</code> is <code>0xff</code>, having the working written out is more convincing than asking them to trust a black box.</p>
+
+          <h2>Common mistakes</h2>
+          <p>The single biggest pitfall is precision loss. JavaScript's normal <code>Number</code> type is a 64-bit IEEE-754 double, and integers stop being exact past 2<sup>53</sup> - 1. If you ever wrote <code>parseInt('deadbeefcafebabe', 16)</code> in your console you have already met the problem: the low bits get rounded off because the result will not fit in a double. This calculator works in <code>BigInt</code> from end to end, so values like <code>0xFFFFFFFFFFFFFFFF</code> (2<sup>64</sup> - 1) come back exact. The safety note appears whenever you cross the threshold so you remember to use <code>BigInt</code> in any code that consumes the value.</p>
+
+          <p>The next pitfall is mixing alphabets. People sometimes type <code>0x</code> at the start of a hex value out of habit, or a leading zero in front of an octal. Both confuse half the converters on the internet. This one wants the bare digits in the right field, no prefix, and rejects anything that is not a valid digit for that base. Pasting <code>0xff</code> into the hex field will fail because <code>x</code> is not a hex digit; the bare <code>ff</code> is what you want.</p>
+
+          <p>The last common mistake is assuming all calculators handle case the same way. Some require uppercase hex, some require lowercase. This page accepts either and normalises the output to lowercase, partly because lowercase hex is the convention in modern web standards (CSS colours, SRI hashes, JWTs), and partly because mixed-case <code>DeAdBeEf</code> is harder to scan than <code>deadbeef</code>.</p>
+
+          <h2>Why arbitrary bases</h2>
+          <p>Most everyday work happens in 2, 8, 10 or 16, but the system generalises cleanly to any integer base from 2 up to 36 (the cap is set by the alphabet: ten numerals plus twenty-six letters). Base 32 turns up in Nix store hashes and TOTP secrets. Base 36 is a popular short-identifier scheme because it gives you the densest representation that survives a case-insensitive copy and paste. Base 12 (duodecimal) has a small but devoted following because 12 has more useful divisors than 10. The arbitrary-base panel handles all of those with the same BigInt machinery as the four standard bases.</p>
+
+          <h2>Related calculators</h2>
+          <ul class="related-calculators">
+            <li><a href="/calculators/conversions/">All conversion calculators</a></li>
+            <li><a href="/calculators/conversions/unit-converter/">Unit Converter for length, mass, volume and more</a></li>
+            <li><a href="/calculators/conversions/roman-numeral-converter/">Roman Numeral Converter</a></li>
+            <li><a href="/calculators/cybersecurity/hash-generator/">Hash Generator (SHA-256, SHA-512, browser-only)</a></li>
+          </ul>
+        </section>
+
+        <section class="faq" aria-labelledby="faq-heading">
+          <h2 id="faq-heading">Frequently asked questions</h2>
+          <details>
+            <summary>Why use BigInt instead of regular numbers?</summary>
+            <p>JavaScript numbers are IEEE-754 doubles, which run out of integer precision at 2<sup>53</sup> - 1. A 64-bit register-sized value (anything wider than about 16 hex digits) starts to lose its low bits the moment you parse it as a normal <code>Number</code>. <code>BigInt</code> is the platform's arbitrary-precision integer type, so <code>0xDEADBEEFCAFEBABE</code> round-trips through this converter without dropping a single bit. The page shows a small warning whenever your value goes past <code>Number.MAX_SAFE_INTEGER</code>, so you know the <code>BigInt</code> path is the one that matters.</p>
+          </details>
+          <details>
+            <summary>Why does it reject characters like 2 in binary or g in hex?</summary>
+            <p>Each base has a fixed alphabet: binary is 0 and 1, octal is 0 to 7, decimal is 0 to 9, hex is 0-9 and a-f. A <code>2</code> in a binary field is not a typo we can sensibly recover from, it is a different number system, so the converter flags it instead of guessing. Hex is normalised to lowercase on the way out so the four fields stay visually consistent.</p>
+          </details>
+          <details>
+            <summary>What is the arbitrary-base panel for?</summary>
+            <p>Sometimes you have a value in base 36 (short URLs, Crockford-style identifiers), base 32 (Nix store hashes), base 12 (timekeeping), or anything in between. The arbitrary-base panel takes any base from 2 to 36, parses your value with that alphabet, and shows the equivalent in all four standard bases. Same <code>BigInt</code> internals, same long-division trail in the prove-it panel.</p>
+          </details>
+          <details>
+            <summary>Is this calculator only for positive whole numbers?</summary>
+            <p>Yes. Negative numbers in binary need a separate decision about the encoding (sign-magnitude, two's complement at a fixed width, etc.) and there is no single right answer without knowing the target system. Fractional values are even messier across bases. The tool sticks to non-negative integers because that is what nearly every programmer base-conversion question is actually asking, and ambiguity in the result would make the tool less useful, not more.</p>
+          </details>
+          <details>
+            <summary>Does it work offline?</summary>
+            <p>Yes. The conversion runs entirely in your browser. No fetch, no server call, no third-party library. Disconnect your network and the page still converts.</p>
+          </details>
+        </section>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="ad-slot" data-ad-slot="sidebar" aria-hidden="true"></div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="site-footer-nav" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/calculators/">All calculators</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+
+      <section class="site-disclaimer" data-disclaimer aria-labelledby="disclaimer-heading">
+        <h2 id="disclaimer-heading">A quick, necessary word</h2>
+        <p>Every calculator on this site is built to give you a sensible, well-reasoned estimate. It is, however, exactly that: an estimate, for general information only. Nothing you see here is professional, legal, financial, medical, or tax advice, and it should not be treated as such.</p>
+        <p>Before you make a decision that actually matters, talk to a qualified professional who knows your specific situation: an accountant, a solicitor, a doctor, an IT consultant, whoever fits the question. They can factor in the bits a generic tool can't.</p>
+        <p>We take no liability and accept no responsibility for any loss, damage, or questionable life choice arising from acting on the numbers you see here. Use the results as a starting point for a better conversation, not as the final word.</p>
+        <p><strong>Affiliate disclosure:</strong> some links on this site are affiliate links. If you click through and buy or sign up for something, we may earn a small commission at no extra cost to you. It helps keep the calculators free and ad-light. We only recommend things we'd point a friend towards.</p>
+      </section>
+      <p class="site-copyright">&copy; 2026 WebCaretakers. All rights reserved.</p>
+      <p class="site-legal">WebCaretakers is a trading name of <a href="https://yeseo.io/" rel="noopener">Andrew Laws Associates Ltd</a>, registered in England and Wales (company no. 08602332). ICO registration ZA726704.</p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/calculators/number-base-converter.js"></script>
+  <script src="/assets/js/calculators/number-base-converter.page.js"></script>
+  <script>
+    (function () {
+      var shortcutEl = document.querySelector('[data-bookmark-shortcut]');
+      if (shortcutEl) {
+        var isMac = /Mac|iPhone|iPad|iPod/i.test(navigator.platform || navigator.userAgent);
+        shortcutEl.textContent = isMac ? '\u2318' : 'Ctrl';
+      }
+    })();
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>
