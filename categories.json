@@ -69,6 +69,11 @@
           "slug": "standard-deviation-calculator",
           "name": "Standard Deviation Calculator",
           "summary": "Paste a list of numbers and get count, mean, median, range, variance and standard deviation, sample and population, with the working shown step by step."
+        },
+        {
+          "slug": "gcd-lcm-calculator",
+          "name": "GCD and LCM Calculator",
+          "summary": "Find the greatest common divisor (HCF) and lowest common multiple of two or more whole numbers. Shows the Euclidean algorithm, prime factorisations and the combined-prime LCM working."
         }
       ]
     },
@@ -150,6 +155,11 @@
           "slug": "roman-numeral-converter",
           "name": "Roman Numeral Converter",
           "summary": "Convert between numbers and Roman numerals in either direction. Range 1 to 3,999, lowercase normalised, malformed numerals like IIII or VV flagged with the canonical form. Working shown."
+        },
+        {
+          "slug": "fuel-economy-converter",
+          "name": "Fuel Economy Converter",
+          "summary": "Live four-way conversion across MPG (UK), MPG (US), L/100km and km/L. Edit any one field, the other three update on the spot. Anchored on L/100km internally for stable round-trips."
         }
       ]
     },
@@ -310,6 +320,11 @@
           "summary": "Enter two dates to see the gap in years, months, days, weeks, hours and weekdays. Auto-flips reversed dates so the answer is always positive."
         },
         {
+          "slug": "decision-wheel",
+          "name": "Decision Wheel",
+          "summary": "Type a list of options and spin a coloured wheel to pick one. Optional remove-winner mode for tournament-style elimination. Browser-only, uses Web Crypto for an unbiased draw."
+        },
+        {
           "slug": "dice-and-coin-roller",
           "name": "Dice and Coin Roller",
           "summary": "Roll any combination of tabletop dice (2d6, 1d20+5, 4d6kh3) or flip up to 1000 coins. Browser-only, uses Web Crypto for an unbiased draw."
@@ -342,6 +357,11 @@
           "summary": "Plan a chunk of focused work into Pomodoro sessions. Work out sessions needed, total focus and break time, finish time today, and how it splits across days when one day is not enough."
         },
         {
+          "slug": "project-deadline-countdown-calculator",
+          "name": "Project Deadline Countdown Calculator",
+          "summary": "Count the calendar days, working days and working hours left until a project deadline. Tick the days you actually work, paste in any holidays, see the percentage elapsed and a mini-calendar of the days that count."
+        },
+        {
           "slug": "time-card-calculator",
           "name": "Time Card Calculator",
           "summary": "Weekly timesheet calculator. Enter start and end times, plus unpaid breaks, for each day. Returns hours per day, total hours for the week, and total pay if you add an hourly rate. Handles overnight shifts."
@@ -372,6 +392,11 @@
           "slug": "robots-txt-tester",
           "name": "Robots.txt Tester",
           "summary": "Paste a robots.txt and check whether a URL is allowed or blocked for Googlebot, Bingbot or any user-agent. Follows Google's spec, shows the winning rule and why."
+        },
+        {
+          "slug": "serp-snippet-preview",
+          "name": "SERP Snippet Preview Tool",
+          "summary": "Preview how a page title, meta description and URL render in Google's desktop and mobile search results. Truncation calculated by pixel width, not character count."
         }
       ]
     },
@@ -399,6 +424,11 @@
           "slug": "uk-house-move-cost-calculator",
           "name": "UK House Move Cost Calculator",
           "summary": "Total cost of moving home in the UK, broken out line by line. Stamp duty (SDLT, LBTT or LTT), conveyancing, mortgage fees, survey, removals, EPC and estate agent, with a best- and worst-case spread."
+        },
+        {
+          "slug": "uk-section-24-buy-to-let-tax-impact-calculator",
+          "name": "UK Section 24 Buy-to-Let Tax Impact Calculator",
+          "summary": "Compare your individual landlord tax bill before and after Section 24, plus a limited company corporation tax comparison. Shows the full step-by-step working and whether you have been pushed into a higher band."
         }
       ]
     },

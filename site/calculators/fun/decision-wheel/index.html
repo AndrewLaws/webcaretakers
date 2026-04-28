@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Decision Wheel | WebCaretakers</title>
+  <meta name="description" content="Spin a wheel to pick from a list of options. Browser-only, cryptographically unbiased, with an optional remove-winner mode for tournament-style elimination.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/fun/decision-wheel/">
+  <meta property="og:title" content="Decision Wheel | WebCaretakers">
+  <meta property="og:description" content="Spin a wheel to pick from a list of options. Browser-only and cryptographically unbiased.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/fun/decision-wheel/">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var _stored = null;
+    try { _stored = localStorage.getItem('cookie-consent'); } catch (e) {}
+    var _initial = _stored === 'granted' ? 'granted' : 'denied';
+    gtag('consent', 'default', {
+      ad_storage: _initial, analytics_storage: _initial,
+      ad_user_data: _initial, ad_personalization: _initial,
+      functionality_storage: 'granted', security_storage: 'granted',
+      wait_for_update: 500
+    });
+  </script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Decision Wheel",
+    "url": "https://webcaretakers.com/calculators/fun/decision-wheel/",
+    "applicationCategory": "GameApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0" },
+    "author": {
+      "@type": "Person",
+      "name": "Andrew Laws",
+      "url": "https://yeseo.io/"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is the result actually random?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. The winning wedge is chosen up front using crypto.getRandomValues with rejection sampling, the same primitive browsers use for session keys. The animation that follows is choreographed to land on the pre-selected wedge. There is no Math.random and the spin itself does not affect the result." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does my list get sent anywhere?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. Everything happens in your browser. The textarea you paste into never leaves the device. Disconnect the network and the wheel still spins." }
+      },
+      {
+        "@type": "Question",
+        "name": "What does Remove winner do?",
+        "acceptedAnswer": { "@type": "Answer", "text": "When the toggle is on, the winning option is removed from the list before the next spin. Useful for tournament-style elimination, drawing prize positions in order, or running a class through a list of names without the same one coming up twice." }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I weight the options?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes, by repeating an option in the textarea. If Pizza appears three times and Curry once, Pizza has a three-in-four chance per spin. Duplicates are not stripped, so the wheel reflects whatever you paste in." }
+      },
+      {
+        "@type": "Question",
+        "name": "How many options can the wheel handle?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Up to 50. Beyond that the wedges become slivers nobody can read, so the page caps the list and tells you it has done so. If you genuinely need more entries, the Random Name Picker is the better tool." }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    .wheel-stage { position: relative; width: 100%; max-width: 480px; margin: 0 auto 1.25rem; }
+    .wheel-stage svg.wheel { width: 100%; height: auto; display: block; }
+    .wheel-stage .wheel__rotor {
+      transform-origin: 200px 200px;
+      transform: rotate(0deg);
+      transition: transform 0s linear;
+    }
+    .wheel-stage .wheel__rotor.is-spinning {
+      transition: transform 3.6s cubic-bezier(0.18, 0.73, 0.16, 1.00);
+    }
+    .wheel-stage .wheel__pointer {
+      position: absolute;
+      top: -6px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0; height: 0;
+      border-left: 14px solid transparent;
+      border-right: 14px solid transparent;
+      border-top: 24px solid #1a1a1a;
+      filter: drop-shadow(0 1px 2px rgba(0,0,0,0.25));
+      pointer-events: none;
+    }
+    .wheel-stage .wheel__hub {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 14%; height: 14%;
+      background: #1a1a1a;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .wedge-label {
+      font-size: 14px;
+      font-family: inherit;
+      fill: #111;
+      pointer-events: none;
+      dominant-baseline: middle;
+    }
+    .wheel-result {
+      text-align: center;
+      font-size: 1.25rem;
+      margin: 0.5rem 0 1rem;
+      min-height: 1.6em;
+    }
+    .wheel-result strong { font-size: 1.6rem; }
+    .wheel-warning {
+      background: #fff8e1;
+      border: 1px solid #f0d27a;
+      padding: 0.5rem 0.75rem;
+      border-radius: 6px;
+      margin: 0.5rem 0;
+    }
+    .wheel-error {
+      color: #b00020;
+      margin: 0.5rem 0;
+    }
+  </style>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-banner-heading" aria-describedby="cookie-banner-text" hidden>
+    <div class="cookie-banner__inner">
+      <h2 id="cookie-banner-heading" class="cookie-banner__heading">A quick word about cookies</h2>
+      <p id="cookie-banner-text" class="cookie-banner__text">
+        We use cookies for analytics, so we can see which calculators people actually use and which ones need work. Nothing creepy, nothing sold on. You can say yes, say no, or read the <a href="/privacy/">privacy policy</a> first. Your choice sticks.
+      </p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-reject>Reject</button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>Accept</button>
+      </div>
+    </div>
+  </div>
+
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">WebCaretakers</a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <ul class="primary-nav__list">
+          <li class="primary-nav__item primary-nav__item--has-menu">
+            <button type="button" class="primary-nav__link" data-menu-toggle aria-haspopup="true" aria-expanded="false">Calculators <span class="primary-nav__caret" aria-hidden="true">▾</span></button>
+            <ul class="primary-nav__submenu">
+              <li><a href="/calculators/ai/">AI</a></li>
+              <li><a href="/calculators/broadband/">Broadband</a></li>
+              <li><a href="/calculators/business/">Business</a></li>
+              <li><a href="/calculators/conversions/">Conversions</a></li>
+              <li><a href="/calculators/cybersecurity/">Cybersecurity</a></li>
+              <li><a href="/calculators/finance/">Finance</a></li>
+              <li><a href="/calculators/fun/">Fun</a></li>
+              <li><a href="/calculators/health/">Health</a></li>
+              <li><a href="/calculators/images/">Images</a></li>
+              <li><a href="/calculators/math/">Math</a></li>
+              <li><a href="/calculators/productivity/">Productivity</a></li>
+              <li><a href="/calculators/property/">Property</a></li>
+              <li><a href="/calculators/seo/">SEO</a></li>
+              <li><a href="/calculators/wedding/">Wedding</a></li>
+              <li><a href="/calculators/writing/">Writing</a></li>
+              <li class="primary-nav__submenu-sep"><a href="/calculators/">See all calculators</a></li>
+            </ul>
+          </li>
+          <li class="primary-nav__item"><a href="/about/" class="primary-nav__link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <main id="main-content">
+      <div class="container">
+        <nav aria-label="Breadcrumb" class="breadcrumbs">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/calculators/">Calculators</a></li>
+            <li><a href="/calculators/fun/">Fun</a></li>
+            <li aria-current="page">Decision Wheel</li>
+          </ol>
+        </nav>
+
+        <h1>Decision Wheel</h1>
+        <p class="intro">Type a list of options, hit Spin, and let a coloured wheel pick one for you. Useful for classroom raffles, family movie night, deciding what to cook, or any other decision where the deliberation has stopped paying off. The pick is unbiased: every option has exactly the same chance per wedge, drawn from the browser's cryptographic random source.</p>
+
+        <section class="eli5" aria-label="Plain-English explanation">
+          <h2>Explain like I'm 5 (what even is this calculator?)</h2>
+          <p>Imagine writing each choice on a slice of pie, then spinning the pie and seeing which slice the arrow lands on. This page does that, with the slices coloured so you can tell them apart. Nothing you type in gets sent anywhere.</p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="in-content" aria-hidden="true"></div>
+
+        <section class="calculator-card">
+          <h2>Build your wheel</h2>
+          <p class="reassure"><strong>Browser-only.</strong> Your list of options never leaves the device. Picks use the Web Crypto API for an unbiased draw.</p>
+
+          <form id="wheel-form" class="calc-form" novalidate>
+            <div class="calc-row">
+              <label for="wheel-options">Options (one per line, up to 50)</label>
+              <textarea id="wheel-options" data-wheel-options rows="8" placeholder="Pizza
+Curry
+Sushi
+Burgers
+Tacos"></textarea>
+              <p class="calc-row__hint" data-wheel-count>0 options entered.</p>
+            </div>
+
+            <div class="calc-row">
+              <label class="checkbox-row">
+                <input type="checkbox" id="wheel-remove-winner" data-wheel-remove-winner>
+                <span>Remove winner after each spin</span>
+              </label>
+              <p class="calc-row__hint">Off by default. Turn on for tournament-style elimination, or to draw prize positions in order without the same option coming up twice.</p>
+            </div>
+
+            <div class="wheel-stage" data-wheel-stage>
+              <div class="wheel__pointer" aria-hidden="true"></div>
+              <svg class="wheel" viewBox="0 0 400 400" role="img" aria-label="Decision wheel">
+                <g class="wheel__rotor" data-wheel-rotor>
+                  <circle cx="200" cy="200" r="180" fill="#eee" stroke="#1a1a1a" stroke-width="2"></circle>
+                </g>
+              </svg>
+              <div class="wheel__hub" aria-hidden="true"></div>
+            </div>
+
+            <p class="wheel-warning" data-wheel-warning hidden></p>
+            <p class="wheel-result" data-wheel-result aria-live="polite">Add some options and hit Spin.</p>
+            <p class="wheel-error" data-wheel-error hidden></p>
+
+            <div class="calc-row">
+              <button type="submit" class="btn btn--primary" data-wheel-spin>Spin</button>
+              <button type="button" class="btn btn--secondary" data-wheel-reset>Reset</button>
+            </div>
+          </form>
+
+          <details class="prove-it" data-prove-it>
+            <summary>Prove it</summary>
+            <p>The result is selected <em>before</em> the wheel moves. The animation is choreographed to land on the wedge that was already chosen, not the other way around. Here is the order of operations:</p>
+            <ol>
+              <li>Read the options from the textarea, trim whitespace, drop empty lines, cap at 50.</li>
+              <li>Draw a winning index using <code>crypto.getRandomValues</code> with rejection sampling, so every option has exactly the same chance.</li>
+              <li>Compute the final wheel rotation: a fixed number of full spins plus the angle that places the chosen wedge under the pointer.</li>
+              <li>Apply that rotation as a CSS transition. The wedge under the pointer when the wheel stops is, by construction, the one we picked in step 2.</li>
+            </ol>
+            <p>This is the unbiased draw used in step 2. The same pattern is used in the Random Name Picker and Password Generator on this site.</p>
+            <pre><code>// Unbiased integer in [0, n)
+function randomInt(n) {
+  const max = 0xFFFFFFFF;
+  const limit = max - ((max + 1) % n);
+  const buf = new Uint32Array(1);
+  while (true) {
+    crypto.getRandomValues(buf);
+    if (buf[0] &lt;= limit) return buf[0] % n;
+  }
+}
+
+// Decide first, then animate
+const winnerIndex = randomInt(options.length);
+const wedgeCentre = winnerIndex * (360 / options.length) + (360 / options.length) / 2;
+const finalRotation = 5 * 360 + ((360 - wedgeCentre) % 360);
+rotor.style.transform = `rotate(${finalRotation}deg)`;</code></pre>
+            <p>Nothing leaves the device. The page makes no network requests after it has loaded, so your list cannot be exfiltrated. Disconnect your network and the wheel still works.</p>
+          </details>
+
+          <p class="bookmark-nudge">
+            Useful? Save this calculator: press <kbd data-bookmark-shortcut>Ctrl</kbd> + <kbd>D</kbd> to bookmark it.
+          </p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="below-results" aria-hidden="true"></div>
+
+        <section class="long-form">
+          <h2>When a spinning wheel earns its keep</h2>
+          <p>Classroom raffles are the obvious case. End-of-term prize draws, "who reads next?", deciding which group goes to lunch first: anything where the children can see the result being chosen and a clear visual is half the point. A wheel works better than a number generator here because every child can watch the same arrow slow down and stop on a wedge with a name they recognise. The drama is the feature.</p>
+          <p>Family movie night, dinner, weekend plans. Two adults and three children with five different opinions, and the deliberation is taking longer than the activity will. Type the five options, spin once, get on with the day. The wheel is honest theatre: nobody can argue the choice was rigged because the wedges are visible and the arrow lands where it lands.</p>
+          <p>Prize draws at small events. Charity quizzes, school fairs, office Christmas raffles. A spinning wheel feels fairer than a hat, more festive than a spreadsheet, and easier to project on a screen than a command-line tool. Paste the entrants in, spin, announce the winner, repeat. Turn on Remove winner if you are drawing first, second and third places in order, so the same name cannot win twice.</p>
+          <p>Tournament-style elimination is the other use for Remove winner. Round-robin draws, knockout brackets, deciding the order players take their turns: each spin chooses the next entry and removes it from the list. When the wheel runs dry, you have a complete ordering. It is faster than shuffling a deck and the audience can follow what is happening.</p>
+
+          <h2>Common mistakes to avoid</h2>
+          <p>Stray blank lines and trailing spaces are the usual culprit. Spreadsheets and word processors love to drop in extra whitespace on copy-paste. The page strips leading and trailing whitespace on every line and skips empty lines, so you do not need to clean the input by hand, but if your wheel looks like it has a phantom wedge, look for a stray space-only line in the textarea.</p>
+          <p>Treating the wheel as a serious decision-making tool is the other one. For genuinely high-stakes calls (where to live, whether to take the job, whether to break up), a coin flip is the more honest framing: it forces you to notice your own reaction when you see the result. The wheel is for fun, for breaking deadlocks on small choices, and for entertainment. Use the right tool for the right kind of decision.</p>
+          <p>Pasting more than 50 options is the third. Beyond that, the wedges become slivers nobody can read, the labels overlap, and the visual stops working. The page caps the list at 50 and tells you when it has trimmed the rest. For long lists where you just need a fair pick, the Random Name Picker is the better tool.</p>
+
+          <h2>Edge cases this page handles</h2>
+          <ul>
+            <li><strong>Single option.</strong> The wheel renders as a full circle and a warning explains that with only one option entered, that is the result.</li>
+            <li><strong>Empty list.</strong> The Spin button shows a clear message and does not animate.</li>
+            <li><strong>Duplicates.</strong> Kept on purpose, so you can weight an option by repeating it. Three Pizza lines and one Curry line is a three-in-four chance for Pizza.</li>
+            <li><strong>Remove winner with one option left.</strong> Spins, declares the last option as the result, then disables further spins until you add more.</li>
+            <li><strong>Trailing whitespace and blank lines.</strong> Stripped before the wheel renders.</li>
+            <li><strong>Reduced motion.</strong> The animation respects <code>prefers-reduced-motion</code> by shortening the spin and reducing the easing curve.</li>
+          </ul>
+
+          <h2>Related calculators</h2>
+          <p>Other browser-only tools where local-only processing matters.</p>
+          <ul class="related-calculators">
+            <li><a href="/calculators/fun/">All fun calculators</a></li>
+            <li><a href="/calculators/fun/random-name-picker/">Random Name Picker, for longer lists</a></li>
+            <li><a href="/calculators/fun/dice-and-coin-roller/">Dice and Coin Roller</a></li>
+            <li><a href="/calculators/cybersecurity/password-generator/">Password Generator, also Web Crypto</a></li>
+          </ul>
+        </section>
+
+        <section class="faq" aria-labelledby="faq-heading">
+          <h2 id="faq-heading">Frequently asked questions</h2>
+          <details>
+            <summary>Is the result actually random?</summary>
+            <p>Yes. The winning wedge is chosen up front using <code>crypto.getRandomValues</code> with rejection sampling, the same primitive browsers use for session keys. The animation that follows is choreographed to land on the pre-selected wedge. There is no <code>Math.random</code> and the spin itself does not affect the result.</p>
+          </details>
+          <details>
+            <summary>Does my list get sent anywhere?</summary>
+            <p>No. Everything happens in your browser. The textarea you paste into never leaves the device. Disconnect the network and the wheel still spins.</p>
+          </details>
+          <details>
+            <summary>What does Remove winner do?</summary>
+            <p>When the toggle is on, the winning option is removed from the list before the next spin. Useful for tournament-style elimination, drawing prize positions in order, or running a class through a list of names without the same one coming up twice.</p>
+          </details>
+          <details>
+            <summary>Can I weight the options?</summary>
+            <p>Yes, by repeating an option in the textarea. If "Pizza" appears three times and "Curry" once, Pizza has a three-in-four chance per spin. Duplicates are not stripped, so the wheel reflects whatever you paste in.</p>
+          </details>
+          <details>
+            <summary>How many options can the wheel handle?</summary>
+            <p>Up to 50. Beyond that the wedges become slivers nobody can read, so the page caps the list and tells you it has done so. If you genuinely need more entries, the Random Name Picker is the better tool.</p>
+          </details>
+        </section>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="ad-slot" data-ad-slot="sidebar" aria-hidden="true"></div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="site-footer-nav" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/calculators/">All calculators</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+
+      <section class="site-disclaimer" data-disclaimer aria-labelledby="disclaimer-heading">
+        <h2 id="disclaimer-heading">A quick, necessary word</h2>
+        <p>Every calculator on this site is built to give you a sensible, well-reasoned estimate. It is, however, exactly that: an estimate, for general information only. Nothing you see here is professional, legal, financial, medical, or tax advice, and it should not be treated as such.</p>
+        <p>Before you make a decision that actually matters, talk to a qualified professional who knows your specific situation: an accountant, a solicitor, a doctor, an IT consultant, whoever fits the question. They can factor in the bits a generic tool can't.</p>
+        <p>We take no liability and accept no responsibility for any loss, damage, or questionable life choice arising from acting on the numbers you see here. Use the results as a starting point for a better conversation, not as the final word.</p>
+        <p><strong>Affiliate disclosure:</strong> some links on this site are affiliate links. If you click through and buy or sign up for something, we may earn a small commission at no extra cost to you. It helps keep the calculators free and ad-light. We only recommend things we'd point a friend towards.</p>
+      </section>
+      <p class="site-copyright">&copy; 2026 WebCaretakers. All rights reserved.</p>
+      <p class="site-legal">WebCaretakers is a trading name of <a href="https://yeseo.io/" rel="noopener">Andrew Laws Associates Ltd</a>, registered in England and Wales (company no. 08602332). ICO registration ZA726704.</p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/calculators/decision-wheel.js"></script>
+  <script src="/assets/js/calculators/decision-wheel.page.js"></script>
+  <script>
+    (function () {
+      var shortcutEl = document.querySelector('[data-bookmark-shortcut]');
+      if (shortcutEl) {
+        var isMac = /Mac|iPhone|iPad|iPod/i.test(navigator.platform || navigator.userAgent);
+        shortcutEl.textContent = isMac ? '\u2318' : 'Ctrl';
+      }
+    })();
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

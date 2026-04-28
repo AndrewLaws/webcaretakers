@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GCD and LCM Calculator | WebCaretakers</title>
+  <meta name="description" content="Find the greatest common divisor and lowest common multiple of two or more whole numbers. Shows the Euclidean algorithm, prime factorisations and the LCM working step by step.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/math/gcd-lcm-calculator/">
+  <meta property="og:title" content="GCD and LCM Calculator | WebCaretakers">
+  <meta property="og:description" content="Find the greatest common divisor and lowest common multiple of two or more whole numbers, with the working laid out step by step.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/math/gcd-lcm-calculator/">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var _stored = null;
+    try { _stored = localStorage.getItem('cookie-consent'); } catch (e) {}
+    var _initial = _stored === 'granted' ? 'granted' : 'denied';
+    gtag('consent', 'default', {
+      ad_storage: _initial, analytics_storage: _initial,
+      ad_user_data: _initial, ad_personalization: _initial,
+      functionality_storage: 'granted', security_storage: 'granted',
+      wait_for_update: 500
+    });
+  </script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "GCD and LCM Calculator",
+    "url": "https://webcaretakers.com/calculators/math/gcd-lcm-calculator/",
+    "applicationCategory": "EducationalApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "author": {
+      "@type": "Person",
+      "name": "Andrew Laws",
+      "url": "https://yeseo.io/"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the difference between GCD and HCF?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Nothing. GCD (greatest common divisor) and HCF (highest common factor) are two names for exactly the same idea: the largest whole number that divides every number in your list with no remainder. UK schools tend to use HCF, US textbooks and most software libraries use GCD. The number you get back is identical." }
+      },
+      {
+        "@type": "Question",
+        "name": "How is LCM related to GCD?",
+        "acceptedAnswer": { "@type": "Answer", "text": "For two numbers, LCM(a, b) equals (a multiplied by b) divided by GCD(a, b). The two numbers always carry the same total prime power between them, so what the GCD pulls out as shared, the LCM has to put back as the maximum on each side. For three or more numbers, the same identity does not hold directly, but you can still compute LCM pairwise: LCM(a, b, c) is LCM(LCM(a, b), c)." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does this calculator reject zero and negative numbers?",
+        "acceptedAnswer": { "@type": "Answer", "text": "GCD and LCM are normally defined for positive integers. GCD(0, n) is sometimes given as n in advanced texts, but in classroom use zero breaks the LCM (0 times anything is 0). Negatives are usually handled by taking absolute values, which would just hide a typo. To keep the working honest, the page asks for positive whole numbers and flags anything else." }
+      },
+      {
+        "@type": "Question",
+        "name": "How big a number can it factorise?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Up to one trillion (10^12). Trial division up to the square root of the input runs in well under a second at that size in modern browsers. If you need to factorise something larger, a desktop CAS like SageMath or a dedicated number-theory library is the right tool." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does the page send my numbers anywhere?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. All the maths runs in your browser using vanilla JavaScript. The numbers you type never leave your device, and you can disconnect from the network and the page still works." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-banner-heading" aria-describedby="cookie-banner-text" hidden>
+    <div class="cookie-banner__inner">
+      <h2 id="cookie-banner-heading" class="cookie-banner__heading">A quick word about cookies</h2>
+      <p id="cookie-banner-text" class="cookie-banner__text">
+        We use cookies for analytics, so we can see which calculators people actually use and which ones need work. Nothing creepy, nothing sold on. You can say yes, say no, or read the <a href="/privacy/">privacy policy</a> first. Your choice sticks.
+      </p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-reject>Reject</button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>Accept</button>
+      </div>
+    </div>
+  </div>
+
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">WebCaretakers</a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <ul class="primary-nav__list">
+          <li class="primary-nav__item primary-nav__item--has-menu">
+            <button type="button" class="primary-nav__link" data-menu-toggle aria-haspopup="true" aria-expanded="false">Calculators <span class="primary-nav__caret" aria-hidden="true">&#9662;</span></button>
+            <ul class="primary-nav__submenu">
+              <li><a href="/calculators/ai/">AI</a></li>
+              <li><a href="/calculators/broadband/">Broadband</a></li>
+              <li><a href="/calculators/business/">Business</a></li>
+              <li><a href="/calculators/conversions/">Conversions</a></li>
+              <li><a href="/calculators/cybersecurity/">Cybersecurity</a></li>
+              <li><a href="/calculators/finance/">Finance</a></li>
+              <li><a href="/calculators/fun/">Fun</a></li>
+              <li><a href="/calculators/health/">Health</a></li>
+              <li><a href="/calculators/images/">Images</a></li>
+              <li><a href="/calculators/math/">Math</a></li>
+              <li><a href="/calculators/productivity/">Productivity</a></li>
+              <li><a href="/calculators/property/">Property</a></li>
+              <li><a href="/calculators/seo/">SEO</a></li>
+              <li><a href="/calculators/wedding/">Wedding</a></li>
+              <li><a href="/calculators/writing/">Writing</a></li>
+              <li class="primary-nav__submenu-sep"><a href="/calculators/">See all calculators</a></li>
+            </ul>
+          </li>
+          <li class="primary-nav__item"><a href="/about/" class="primary-nav__link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <main id="main-content">
+      <div class="container">
+        <nav aria-label="Breadcrumb" class="breadcrumbs">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/calculators/">Calculators</a></li>
+            <li><a href="/calculators/math/">Math</a></li>
+            <li aria-current="page">GCD and LCM Calculator</li>
+          </ol>
+        </nav>
+
+        <h1>GCD and LCM Calculator</h1>
+        <p class="intro">Enter two or more positive whole numbers and get the greatest common divisor (also called the highest common factor) and the lowest common multiple. The page shows the Euclidean algorithm reductions, the prime factorisation of every input, and how the GCD and LCM fall out of those factorisations.</p>
+
+        <section class="eli5" aria-label="Plain-English explanation">
+          <h2>Explain like I'm 5 (what even is this calculator?)</h2>
+          <p>The GCD is the biggest number that divides every one of your numbers with nothing left over. The LCM is the smallest number that every one of your numbers divides into cleanly. Useful for simplifying fractions (GCD) and for working out when repeating events line up again (LCM).</p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="in-content" aria-hidden="true"></div>
+
+        <section data-calculator class="calculator-card">
+          <h2>Calculate</h2>
+          <p class="reassure"><strong>Browser-only.</strong> The numbers you type are processed in your browser. Nothing is uploaded.</p>
+
+          <form id="gcd-lcm-form" class="calc-form" novalidate>
+            <div class="calc-row">
+              <label for="gcd-lcm-input">Your numbers</label>
+              <textarea id="gcd-lcm-input" data-gcd-lcm-input rows="4" placeholder="Type or paste positive whole numbers separated by commas, spaces or newlines. For example: 12, 18, 24"></textarea>
+              <p class="calc-row__hint">At least two numbers, no more than ten. Each value up to 1,000,000,000,000 (one trillion). Decimals, zero and negatives are not accepted.</p>
+            </div>
+
+            <button type="submit" data-calculate>Calculate</button>
+          </form>
+
+          <div data-calculator-results class="calculator-results">
+            <p class="result-display" data-result>Enter at least two whole numbers and press Calculate.</p>
+            <div data-results-grid class="stats-grid" hidden></div>
+
+            <details class="prove-it" data-prove-it>
+              <summary>Prove it</summary>
+              <div data-prove-it-body></div>
+              <p class="prove-it-source">Methods: Euclidean algorithm for the GCD (gcd(a, b) = gcd(b, a mod b), recurse to b = 0). Prime factorisation by trial division up to the square root of each input. LCM derived two ways, as a cross-check: (a) by the identity LCM(a, b) = a &times; b / GCD(a, b), reduced pairwise for three or more inputs; (b) by taking the highest power of every prime that appears in any input's factorisation.</p>
+            </details>
+          </div>
+
+          <p class="bookmark-nudge">
+            Useful? Save this calculator: press <kbd data-bookmark-shortcut>Ctrl</kbd> + <kbd>D</kbd> to bookmark it.
+          </p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="below-results" aria-hidden="true"></div>
+
+        <section class="long-form">
+          <h2>Where GCD and LCM actually come up</h2>
+          <p>This is one of those topics that looks like a textbook exercise and turns out to be quietly useful. Once you spot the pattern, you see it in fraction simplification, scheduling, gear ratios, music theory, engineering tolerances and any problem where two cycles need to line up.</p>
+
+          <h2>Simplifying fractions: the GCD job</h2>
+          <p>To reduce a fraction to its lowest terms, divide the top and the bottom by their GCD. 18 over 24 has GCD 6, so it simplifies to 3 over 4. 462 over 1,071 looks ugly until you find GCD 21 and reduce to 22 over 51. The Euclidean algorithm is the fastest way to do this by hand, and it is exactly what this page runs: keep replacing the larger number with the remainder when it is divided by the smaller, until the remainder reaches zero. The last non-zero divisor is the GCD.</p>
+
+          <h2>Scheduling repeating events: the LCM job</h2>
+          <p>If bus A leaves every 12 minutes and bus B every 18 minutes, both buses arrive together every LCM(12, 18) = 36 minutes. If three machines need servicing every 4, 6 and 8 weeks, they all need servicing in the same week every LCM(4, 6, 8) = 24 weeks. This kind of "when do they line up again" question is the LCM in disguise. So is the classic gear-ratio puzzle: a 14-tooth gear meshing with a 21-tooth gear returns to the same alignment every LCM(14, 21) = 42 teeth, which is 3 turns of the small gear and 2 of the large.</p>
+
+          <h2>Music, ratios and engineering tolerances</h2>
+          <p>In just intonation, two notes whose frequencies are in a small whole-number ratio sound consonant. Reducing those ratios to lowest terms is GCD work. The "beat frequency" between two slightly different pitches is a related calculation, and it explains why a piano in equal temperament is a careful approximation of these clean ratios rather than the clean ratios themselves.</p>
+          <p>In engineering, when you stack components with periodic features (threads, splines, bearing balls), the LCM of their periods tells you when a misalignment recurs. That feeds into vibration analysis and into how you pick tolerances so faults do not align catastrophically.</p>
+
+          <h2>Two ways to find an LCM, and why we show both</h2>
+          <p>The standard identity, LCM(a, b) = a &times; b / GCD(a, b), is the fastest method by hand. It also tells you something useful: the bigger the GCD, the smaller the LCM relative to the product. Coprime numbers (GCD 1) have the largest possible LCM, equal to the product itself. Numbers where one divides the other (GCD equal to the smaller value) have the smallest LCM, equal to the larger value. Everything else sits between those extremes.</p>
+          <p>The factorisation method generalises more cleanly. Write each input as a product of primes. The GCD takes the lowest power of every prime that appears in <em>every</em> input. The LCM takes the highest power of every prime that appears in <em>any</em> input. For 12 = 2&sup2; &times; 3 and 18 = 2 &times; 3&sup2;, the GCD takes 2&#185; &times; 3&#185; = 6 and the LCM takes 2&sup2; &times; 3&sup2; = 36. The page shows both methods so the answer is auditable from two angles.</p>
+
+          <h2>Common mistakes worth avoiding</h2>
+          <p><strong>Forgetting that LCM is not the product.</strong> LCM(4, 6) is 12, not 24. The product is an upper bound, equal to the LCM only when the inputs are coprime.</p>
+          <p><strong>Mixing up GCD and LCM in fraction work.</strong> Use the GCD to reduce a single fraction. Use the LCM to find a common denominator when adding or subtracting two fractions. They are different jobs.</p>
+          <p><strong>Trying to factorise everything by inspection.</strong> Trial division is reliable for the sizes that come up in school work, but for large numbers it is slow. The Euclidean algorithm sidesteps factorisation entirely for finding a GCD, which is why it is the better hand method when the numbers get awkward.</p>
+
+          <h2>Edge cases the calculator handles</h2>
+          <p>Two coprime numbers (no common factor beyond 1) give GCD 1 and LCM equal to their product. One number that divides the other gives GCD equal to the smaller and LCM equal to the larger. All identical numbers give both GCD and LCM equal to that single value. Large primes, like 999983 and 999979, are coprime and factorise to themselves. Powers of two give clean factorisations and tidy GCDs. The page rejects single inputs, decimals, zero and negatives with a clear message rather than guessing what you meant.</p>
+
+          <h2>Related calculators</h2>
+          <p>Other quick maths tools that pair well with this one.</p>
+          <ul class="related-calculators">
+            <li><a href="/calculators/math/fraction-calculator/">Fraction Calculator</a> for adding and simplifying fractions, which is GCD and LCM in action</li>
+            <li><a href="/calculators/math/percentage-calculator/">Percentage Calculator</a></li>
+            <li><a href="/calculators/math/standard-deviation-calculator/">Standard Deviation Calculator</a></li>
+            <li><a href="/calculators/math/">All math calculators</a></li>
+          </ul>
+        </section>
+
+        <section class="faq" aria-labelledby="faq-heading">
+          <h2 id="faq-heading">Frequently asked questions</h2>
+          <details>
+            <summary>What is the difference between GCD and HCF?</summary>
+            <p>Nothing. GCD (greatest common divisor) and HCF (highest common factor) are two names for exactly the same idea: the largest whole number that divides every number in your list with no remainder. UK schools tend to use HCF, US textbooks and most software libraries use GCD. The number you get back is identical.</p>
+          </details>
+          <details>
+            <summary>How is LCM related to GCD?</summary>
+            <p>For two numbers, LCM(a, b) equals (a multiplied by b) divided by GCD(a, b). The two numbers always carry the same total prime power between them, so what the GCD pulls out as shared, the LCM has to put back as the maximum on each side. For three or more numbers, the same identity does not hold directly, but you can still compute LCM pairwise: LCM(a, b, c) is LCM(LCM(a, b), c).</p>
+          </details>
+          <details>
+            <summary>Why does this calculator reject zero and negative numbers?</summary>
+            <p>GCD and LCM are normally defined for positive integers. GCD(0, n) is sometimes given as n in advanced texts, but in classroom use zero breaks the LCM (0 times anything is 0). Negatives are usually handled by taking absolute values, which would just hide a typo. To keep the working honest, the page asks for positive whole numbers and flags anything else.</p>
+          </details>
+          <details>
+            <summary>How big a number can it factorise?</summary>
+            <p>Up to one trillion (10<sup>12</sup>). Trial division up to the square root of the input runs in well under a second at that size in modern browsers. If you need to factorise something larger, a desktop CAS like SageMath or a dedicated number-theory library is the right tool.</p>
+          </details>
+          <details>
+            <summary>Does the page send my numbers anywhere?</summary>
+            <p>No. All the maths runs in your browser using vanilla JavaScript. The numbers you type never leave your device, and you can disconnect from the network and the page still works.</p>
+          </details>
+        </section>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="ad-slot" data-ad-slot="sidebar" aria-hidden="true"></div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="site-footer-nav" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/calculators/">All calculators</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+
+      <section class="site-disclaimer" data-disclaimer aria-labelledby="disclaimer-heading">
+        <h2 id="disclaimer-heading">A quick, necessary word</h2>
+        <p>Every calculator on this site is built to give you a sensible, well-reasoned estimate. It is, however, exactly that: an estimate, for general information only. Nothing you see here is professional, legal, financial, medical, or tax advice, and it should not be treated as such.</p>
+        <p>Before you make a decision that actually matters, talk to a qualified professional who knows your specific situation: an accountant, a solicitor, a doctor, an IT consultant, whoever fits the question. They can factor in the bits a generic tool can't.</p>
+        <p>We take no liability and accept no responsibility for any loss, damage, or questionable life choice arising from acting on the numbers you see here. Use the results as a starting point for a better conversation, not as the final word.</p>
+        <p><strong>Affiliate disclosure:</strong> some links on this site are affiliate links. If you click through and buy or sign up for something, we may earn a small commission at no extra cost to you. It helps keep the calculators free and ad-light. We only recommend things we'd point a friend towards.</p>
+      </section>
+      <p class="site-copyright">&copy; 2026 WebCaretakers. All rights reserved.</p>
+      <p class="site-legal">WebCaretakers is a trading name of <a href="https://yeseo.io/" rel="noopener">Andrew Laws Associates Ltd</a>, registered in England and Wales (company no. 08602332). ICO registration ZA726704.</p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/calculators/gcd-lcm-calculator.js"></script>
+  <script>
+    (function () {
+      'use strict';
+      var shortcutEl = document.querySelector('[data-bookmark-shortcut]');
+      if (shortcutEl) {
+        var isMac = /Mac|iPhone|iPad|iPod/i.test(navigator.platform || navigator.userAgent);
+        shortcutEl.textContent = isMac ? '\u2318' : 'Ctrl';
+      }
+
+      var form = document.getElementById('gcd-lcm-form');
+      if (!form) return;
+      var input = form.querySelector('[data-gcd-lcm-input]');
+      var resultEl = document.querySelector('[data-result]');
+      var grid = document.querySelector('[data-results-grid]');
+      var proveBody = document.querySelector('[data-prove-it-body]');
+      var proveDetails = document.querySelector('[data-prove-it]');
+
+      function pushInteraction(field) {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: 'calculator_interaction',
+          calculator_name: 'GCD and LCM Calculator',
+          field: field
+        });
+      }
+
+      input.addEventListener('input', function () { pushInteraction('numbers'); });
+
+      if (proveDetails) {
+        proveDetails.addEventListener('toggle', function () {
+          if (proveDetails.open) {
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+              event: 'prove_it',
+              calculator_name: 'GCD and LCM Calculator'
+            });
+          }
+        });
+      }
+
+      function formatFactors(factors) {
+        if (!factors || factors.length === 0) return '1';
+        return factors.map(function (f) {
+          return f.power === 1 ? String(f.prime) : (f.prime + '<sup>' + f.power + '</sup>');
+        }).join(' &times; ');
+      }
+
+      function formatNumber(n) {
+        // Group thousands with commas to make large outputs readable.
+        if (!Number.isFinite(n)) return String(n);
+        return n.toLocaleString('en-GB');
+      }
+
+      function renderResultsGrid(r) {
+        var rows = [
+          ['Numbers', r.values.join(', ')],
+          ['GCD (highest common factor)', '<strong>' + formatNumber(r.gcd) + '</strong>'],
+          ['LCM (lowest common multiple)', '<strong>' + formatNumber(r.lcm) + '</strong>' + (r.lcmExact ? '' : ' <em>(approximate, exceeds safe integer range)</em>')],
+        ];
+        var html = '<dl>';
+        for (var i = 0; i < rows.length; i++) {
+          html += '<div class="stats-grid__row"><dt>' + rows[i][0] + '</dt><dd>' + rows[i][1] + '</dd></div>';
+        }
+        html += '</dl>';
+        grid.innerHTML = html;
+      }
+
+      function renderProveIt(r) {
+        var html = '';
+
+        // Section 1: Euclidean algorithm.
+        html += '<h3>Step 1: Euclidean algorithm for GCD</h3>';
+        html += '<p>Repeatedly replace gcd(a, b) with gcd(b, a mod b) until b reaches 0. The last non-zero a is the GCD.</p>';
+        html += '<table class="prove-it-table"><thead><tr><th>a</th><th>b</th><th>a = q&middot;b + r</th></tr></thead><tbody>';
+        for (var i = 0; i < r.euclideanSteps.length; i++) {
+          var s = r.euclideanSteps[i];
+          var rowExpr;
+          if (s.quotient === null) {
+            rowExpr = 'gcd(' + s.a + ', 0) = ' + s.a;
+          } else {
+            rowExpr = s.a + ' = ' + s.quotient + ' &times; ' + s.b + ' + ' + s.remainder;
+          }
+          html += '<tr><td>' + s.a + '</td><td>' + s.b + '</td><td>' + rowExpr + '</td></tr>';
+        }
+        html += '</tbody></table>';
+        if (r.values.length > 2) {
+          html += '<p class="prove-it-note">Trail shown for the first pair (' + r.values[0] + ', ' + r.values[1] + '). For more than two inputs, the GCD is reduced pairwise.</p>';
+        }
+
+        // Pairwise reductions for 3+ inputs.
+        if (r.pairwiseGcd.length > 0) {
+          html += '<p><strong>Pairwise reduction:</strong></p>';
+          html += '<ul class="prove-it-steps">';
+          for (var k = 0; k < r.pairwiseGcd.length; k++) {
+            var pg = r.pairwiseGcd[k];
+            html += '<li><span>gcd(' + pg.left + ', ' + pg.right + ')</span><strong>= ' + pg.result + '</strong></li>';
+          }
+          html += '</ul>';
+        }
+
+        // Section 2: prime factorisations.
+        html += '<h3>Step 2: prime factorisation of each input</h3>';
+        html += '<table class="prove-it-table"><thead><tr><th>n</th><th>Prime factorisation</th></tr></thead><tbody>';
+        for (var f = 0; f < r.factorisations.length; f++) {
+          var fz = r.factorisations[f];
+          html += '<tr><td>' + fz.value + '</td><td>' + formatFactors(fz.factors) + '</td></tr>';
+        }
+        html += '</tbody></table>';
+
+        // Section 3: combined factorisation table.
+        if (r.combined.length > 0) {
+          html += '<h3>Step 3: lowest and highest power of each prime</h3>';
+          html += '<p>The GCD takes the <em>lowest</em> power of every prime present in every input. The LCM takes the <em>highest</em> power of every prime present in any input.</p>';
+          html += '<table class="prove-it-table"><thead><tr><th>Prime</th>';
+          for (var hh = 0; hh < r.values.length; hh++) {
+            html += '<th>' + r.values[hh] + '</th>';
+          }
+          html += '<th>Min (GCD)</th><th>Max (LCM)</th></tr></thead><tbody>';
+          for (var c = 0; c < r.combined.length; c++) {
+            var row = r.combined[c];
+            html += '<tr><td>' + row.prime + '</td>';
+            for (var pp = 0; pp < row.powers.length; pp++) {
+              html += '<td>' + row.powers[pp] + '</td>';
+            }
+            html += '<td>' + row.minPower + '</td><td>' + row.maxPower + '</td></tr>';
+          }
+          html += '</tbody></table>';
+
+          // Reconstruct GCD/LCM expressions.
+          var gcdExpr = r.combined.filter(function (x) { return x.minPower > 0; }).map(function (x) {
+            return x.minPower === 1 ? String(x.prime) : (x.prime + '<sup>' + x.minPower + '</sup>');
+          }).join(' &times; ') || '1';
+          var lcmExpr = r.combined.filter(function (x) { return x.maxPower > 0; }).map(function (x) {
+            return x.maxPower === 1 ? String(x.prime) : (x.prime + '<sup>' + x.maxPower + '</sup>');
+          }).join(' &times; ') || '1';
+
+          html += '<ul class="prove-it-steps">';
+          html += '<li><span>GCD from minimum prime powers</span><strong>' + gcdExpr + ' = ' + r.gcd + '</strong></li>';
+          html += '<li><span>LCM from maximum prime powers</span><strong>' + lcmExpr + ' = ' + r.lcm + '</strong></li>';
+          html += '</ul>';
+        }
+
+        // Section 4: cross-check via the identity.
+        if (r.values.length === 2) {
+          html += '<h3>Cross-check: LCM identity</h3>';
+          html += '<ul class="prove-it-steps">';
+          html += '<li><span>LCM(a, b) = a &times; b / GCD(a, b)</span><strong>= ' + r.values[0] + ' &times; ' + r.values[1] + ' / ' + r.gcd + ' = ' + r.lcm + '</strong></li>';
+          html += '</ul>';
+        } else if (r.pairwiseLcm.length > 0) {
+          html += '<h3>Cross-check: pairwise LCM</h3>';
+          html += '<ul class="prove-it-steps">';
+          for (var pl = 0; pl < r.pairwiseLcm.length; pl++) {
+            var lp = r.pairwiseLcm[pl];
+            html += '<li><span>lcm(' + lp.left + ', ' + lp.right + ')</span><strong>= ' + lp.result + '</strong></li>';
+          }
+          html += '</ul>';
+        }
+
+        proveBody.innerHTML = html;
+      }
+
+      function calculateAndRender() {
+        var raw = input.value;
+        var parsed = window.GcdLcmCalc.parseIntegers(raw);
+
+        if (parsed.values.length === 0 && parsed.invalid.length === 0) {
+          resultEl.textContent = 'Enter at least two whole numbers and press Calculate.';
+          grid.hidden = true;
+          proveBody.innerHTML = '';
+          return;
+        }
+
+        var r = window.GcdLcmCalc.compute(parsed.values);
+        if (!r.ok) {
+          var msg = r.error;
+          if (parsed.invalid.length > 0) {
+            msg += ' Ignored ' + parsed.invalid.length + ' invalid token' + (parsed.invalid.length === 1 ? '' : 's') + ': ' + parsed.invalid.slice(0, 5).join(', ') + (parsed.invalid.length > 5 ? '\u2026' : '') + '.';
+          }
+          resultEl.textContent = msg;
+          grid.hidden = true;
+          proveBody.innerHTML = '';
+          return;
+        }
+
+        var headline = 'GCD = ' + r.gcd + ', LCM = ' + r.lcm + ' across ' + r.values.length + ' numbers.';
+        if (parsed.invalid.length > 0) {
+          headline += ' Ignored ' + parsed.invalid.length + ' invalid token' + (parsed.invalid.length === 1 ? '' : 's') + ': ' + parsed.invalid.slice(0, 5).join(', ') + (parsed.invalid.length > 5 ? '\u2026' : '') + '.';
+        }
+        resultEl.textContent = headline;
+
+        grid.hidden = false;
+        renderResultsGrid(r);
+        renderProveIt(r);
+
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: 'calculator_result',
+          calculator_name: 'GCD and LCM Calculator',
+          input_count: r.values.length,
+          gcd: r.gcd,
+          lcm: r.lcm
+        });
+      }
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        calculateAndRender();
+      });
+    })();
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

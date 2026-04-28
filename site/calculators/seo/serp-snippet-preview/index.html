@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SERP Snippet Preview Tool | WebCaretakers</title>
+  <meta name="description" content="Preview how your page title, meta description and URL render in Google's desktop and mobile search results. Truncation is measured by pixel width, not character count, so the warning matches what users actually see.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/seo/serp-snippet-preview/">
+  <meta property="og:title" content="SERP Snippet Preview Tool | WebCaretakers">
+  <meta property="og:description" content="Preview your title, description and URL as Google's desktop and mobile snippets, with pixel-accurate truncation warnings.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/seo/serp-snippet-preview/">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var _stored = null;
+    try { _stored = localStorage.getItem('cookie-consent'); } catch (e) {}
+    var _initial = _stored === 'granted' ? 'granted' : 'denied';
+    gtag('consent', 'default', {
+      ad_storage: _initial, analytics_storage: _initial,
+      ad_user_data: _initial, ad_personalization: _initial,
+      functionality_storage: 'granted', security_storage: 'granted',
+      wait_for_update: 500
+    });
+  </script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "SERP Snippet Preview Tool",
+    "url": "https://webcaretakers.com/calculators/seo/serp-snippet-preview/",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0" },
+    "author": {
+      "@type": "Person",
+      "name": "Andrew Laws",
+      "url": "https://yeseo.io/"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Why measure in pixels instead of characters?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Google truncates titles and descriptions by rendered width, not by character count. A title of twelve narrow letters and a title of twelve wide letters are the same character count but very different widths on screen. Tools that warn at 60 characters are wrong for half the strings you give them. This page measures the actual pixel width using the same kind of font Google approximates with, so the warning matches what users will see." }
+      },
+      {
+        "@type": "Question",
+        "name": "How accurate are the pixel numbers?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Close, but not perfect. The desktop title budget of around 600 pixels and the mobile title budget of around 580 pixels are well-documented community measurements of Google's current SERP layout, taken in Arial 20 pixels (Google sometimes uses Roboto or Google Sans, but Arial is a sound proxy for width). Real rendering varies with device DPI, the user's installed fonts, browser font rendering, and Google's own A/B tests of the layout. Treat the result as a tight estimate, not a ruler." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does my title fit on mobile but not desktop?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Mobile and desktop SERPs have different display widths and slightly different fonts. Desktop is the tighter constraint for titles in most cases. Both previews are shown side by side so you can see whether a title that fits one will be cut off on the other. If they disagree, the right answer depends on where most of your traffic is, which Search Console will tell you." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does Google actually show my meta description?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Sometimes. Google rewrites the description for around 60 to 70 percent of queries based on the page content and the user's intent. The description you write is the version that shows on direct queries and brand searches, and it is what shows when Google decides your text answers the query well. The exercise of writing a description that fits the budget and reads as a useful pitch is still worthwhile because that is what users see when it matters most." }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I paste in special characters like emoji or em-dashes?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes, the tool handles them. Emoji, em-dashes, accented characters and non-ASCII punctuation all measure correctly. Google's renderer does strip or substitute some characters in real listings (for example, certain emoji are stripped from titles depending on the query), so a title that fits here may still be tweaked in the wild." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-banner-heading" aria-describedby="cookie-banner-text" hidden>
+    <div class="cookie-banner__inner">
+      <h2 id="cookie-banner-heading" class="cookie-banner__heading">A quick word about cookies</h2>
+      <p id="cookie-banner-text" class="cookie-banner__text">
+        We use cookies for analytics, so we can see which calculators people actually use and which ones need work. Nothing creepy, nothing sold on. You can say yes, say no, or read the <a href="/privacy/">privacy policy</a> first. Your choice sticks.
+      </p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-reject>Reject</button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>Accept</button>
+      </div>
+    </div>
+  </div>
+
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">WebCaretakers</a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <ul class="primary-nav__list">
+          <li class="primary-nav__item primary-nav__item--has-menu">
+            <button type="button" class="primary-nav__link" data-menu-toggle aria-haspopup="true" aria-expanded="false">Calculators <span class="primary-nav__caret" aria-hidden="true">&#9662;</span></button>
+            <ul class="primary-nav__submenu">
+              <li><a href="/calculators/ai/">AI</a></li>
+              <li><a href="/calculators/broadband/">Broadband</a></li>
+              <li><a href="/calculators/business/">Business</a></li>
+              <li><a href="/calculators/conversions/">Conversions</a></li>
+              <li><a href="/calculators/cybersecurity/">Cybersecurity</a></li>
+              <li><a href="/calculators/finance/">Finance</a></li>
+              <li><a href="/calculators/fun/">Fun</a></li>
+              <li><a href="/calculators/health/">Health</a></li>
+              <li><a href="/calculators/images/">Images</a></li>
+              <li><a href="/calculators/math/">Math</a></li>
+              <li><a href="/calculators/productivity/">Productivity</a></li>
+              <li><a href="/calculators/property/">Property</a></li>
+              <li><a href="/calculators/seo/">SEO</a></li>
+              <li><a href="/calculators/wedding/">Wedding</a></li>
+              <li><a href="/calculators/writing/">Writing</a></li>
+              <li class="primary-nav__submenu-sep"><a href="/calculators/">See all calculators</a></li>
+            </ul>
+          </li>
+          <li class="primary-nav__item"><a href="/about/" class="primary-nav__link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <main id="main-content">
+      <div class="container">
+        <nav aria-label="Breadcrumb" class="breadcrumbs">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/calculators/">Calculators</a></li>
+            <li><a href="/calculators/seo/">SEO</a></li>
+            <li aria-current="page">SERP Snippet Preview Tool</li>
+          </ol>
+        </nav>
+
+        <h1>SERP Snippet Preview Tool</h1>
+        <p class="intro">Type a page title, meta description and URL, see how Google renders the listing on desktop and mobile side by side. Truncation is measured in pixels, the same way Google does it, not in characters. Runs entirely in your browser.</p>
+
+        <section class="eli5" aria-label="Plain-English explanation">
+          <h2>Explain like I'm 5 (what even is this calculator?)</h2>
+          <p>Search results have a fixed amount of room for the title and a fixed amount of room for the description. Wide letters take more room than narrow ones, so a 60-character title made of capital W's overflows long before a 60-character title made of lowercase i's. This page renders your text in a copy of Google's font, measures the actual width, and warns you when something will get cut off with a "...".</p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="in-content" aria-hidden="true"></div>
+
+        <section class="calculator-card">
+          <h2>Your snippet</h2>
+          <p class="reassure"><strong>Browser-only.</strong> Your draft titles, descriptions and URLs never leave the page. Useful for client work, staging copy, or anything you would rather not paste into a form on someone else's server.</p>
+
+          <form id="serp-form" class="calc-form" novalidate>
+            <div class="calc-row">
+              <label for="serp-title">Page title</label>
+              <input type="text" id="serp-title" data-serp-title maxlength="200" placeholder="e.g. UK Mortgage Overpayment Calculator | WebCaretakers">
+              <p class="calc-row__hint" data-title-status>Pixel width updates as you type.</p>
+            </div>
+
+            <div class="calc-row">
+              <label for="serp-description">Meta description</label>
+              <textarea id="serp-description" data-serp-description rows="4" maxlength="500" placeholder="e.g. See how much interest you save by overpaying your UK repayment mortgage. Yearly balance comparison and worked example, runs in your browser."></textarea>
+              <p class="calc-row__hint" data-desc-status>Description wraps to two lines on desktop and three on mobile.</p>
+            </div>
+
+            <div class="calc-row">
+              <label for="serp-url">URL</label>
+              <input type="url" id="serp-url" data-serp-url placeholder="https://example.com/blog/post-title/">
+              <p class="calc-row__hint">Used to draw the breadcrumb above the title. Subdirectories render as separator chevrons.</p>
+            </div>
+          </form>
+
+          <div class="serp-previews" aria-live="polite">
+            <article class="serp-card serp-card--desktop" data-preview="desktop">
+              <header class="serp-card__head">
+                <h3>Desktop preview</h3>
+                <span class="serp-card__device">Approx. 600 px title, 990 px description</span>
+              </header>
+              <div class="serp-card__body">
+                <div class="serp-snippet">
+                  <div class="serp-snippet__url" data-desktop-url>example.com</div>
+                  <div class="serp-snippet__title" data-desktop-title>Your title appears here</div>
+                  <div class="serp-snippet__description" data-desktop-description>Your meta description will appear here, wrapped at the desktop budget.</div>
+                </div>
+              </div>
+              <footer class="serp-card__foot">
+                <div class="serp-meter" data-desktop-title-meter>
+                  <span class="serp-meter__label">Title</span>
+                  <span class="serp-meter__value" data-desktop-title-value>0 / 600 px</span>
+                </div>
+                <div class="serp-meter" data-desktop-desc-meter>
+                  <span class="serp-meter__label">Description</span>
+                  <span class="serp-meter__value" data-desktop-desc-value>0 / 990 px</span>
+                </div>
+                <p class="serp-warning" data-desktop-warning hidden></p>
+              </footer>
+            </article>
+
+            <article class="serp-card serp-card--mobile" data-preview="mobile">
+              <header class="serp-card__head">
+                <h3>Mobile preview</h3>
+                <span class="serp-card__device">Approx. 580 px title, 1200 px description over 3 lines</span>
+              </header>
+              <div class="serp-card__body">
+                <div class="serp-snippet serp-snippet--mobile">
+                  <div class="serp-snippet__url" data-mobile-url>example.com</div>
+                  <div class="serp-snippet__title" data-mobile-title>Your title appears here</div>
+                  <div class="serp-snippet__description" data-mobile-description>Your meta description will appear here, wrapped at the mobile budget.</div>
+                </div>
+              </div>
+              <footer class="serp-card__foot">
+                <div class="serp-meter" data-mobile-title-meter>
+                  <span class="serp-meter__label">Title</span>
+                  <span class="serp-meter__value" data-mobile-title-value>0 / 580 px</span>
+                </div>
+                <div class="serp-meter" data-mobile-desc-meter>
+                  <span class="serp-meter__label">Description</span>
+                  <span class="serp-meter__value" data-mobile-desc-value>0 / 1200 px</span>
+                </div>
+                <p class="serp-warning" data-mobile-warning hidden></p>
+              </footer>
+            </article>
+          </div>
+
+          <details class="prove-it" data-prove-it>
+            <summary>Prove it</summary>
+            <div data-prove-it-body>
+              <p>Truncation is calculated by rendered pixel width, not character count. The page measures every string you type with a hidden HTML5 canvas, calling <code>CanvasRenderingContext2D.measureText()</code> in the same font family and size Google's SERP approximates with: Arial 20 px bold for titles, Arial 14 px for descriptions. The figures shown in the meters are the result of that measurement, against the desktop and mobile budgets reported by community testing of Google's current layout.</p>
+              <p>Why pixel width and not characters? "WW" is roughly four times the width of "ii" in Arial. A 55-character title can fit comfortably or overflow badly depending on which letters you use. Character-count tools warn at the wrong moment for both kinds of string.</p>
+              <p>The exact figures used:</p>
+              <ul>
+                <li>Desktop title budget: 600 px (Arial 20 px bold approximation of Google's title font).</li>
+                <li>Mobile title budget: 580 px (Arial 20 px bold; mobile wraps differently).</li>
+                <li>Desktop description: 990 px across 2 lines (Arial 14 px), about 155 to 160 characters in practice.</li>
+                <li>Mobile description: 1200 px across 3 lines (Arial 14 px), about 120 characters per line.</li>
+              </ul>
+              <p>Live measurement of the current title for transparency: <code data-prove-title-width>0</code> px against a budget of <code data-prove-title-budget>600</code> px (desktop). What you see in the SERP itself can vary by a small amount because Google sometimes uses Roboto or its own Google Sans rather than Arial, because device DPI and operating system font rendering vary, and because Google A/B tests its layout. Treat the warning as a tight estimate that matches reality far better than character counting, not as a regulator-grade ruler.</p>
+            </div>
+          </details>
+
+          <p class="bookmark-nudge">
+            Useful? Save this calculator: press <kbd data-bookmark-shortcut>Ctrl</kbd> + <kbd>D</kbd> to bookmark it.
+          </p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="below-results" aria-hidden="true"></div>
+
+        <section class="long-form">
+          <h2>Why pixel width is the only honest answer</h2>
+          <p>For years the standard advice on SERP snippets has been to keep titles under 60 characters and descriptions under 160. The trouble is that the SERP does not count characters. It measures rendered width and cuts when the line overflows the available space. A title made of narrow letters can run to 70 characters without truncation; a title made of wide letters can be cut off at 50. Tools that warn purely on character count tell users their fine title is too long and their too-long title is fine. They are coin-flipping.</p>
+          <p>Pixel-width measurement is straightforward to implement in the browser. A 2D canvas can return the rendered width of any string in any font using <code>measureText()</code>. Render the user's text into a hidden context using a font close to Google's actual SERP font, compare against the budgets Google's current layout uses, and the result reflects what the user will see. No upload, no API call, no library needed.</p>
+
+          <h2>What the budgets actually represent</h2>
+          <p>The desktop title rendering box on Google currently allows around 600 pixels of width before truncation. That is using a font close to Arial 20 px bold (Google sometimes uses Roboto or its own Google Sans, and sub-pixel rendering varies, so an exact figure does not exist). Mobile is slightly tighter at around 580 pixels because the SERP card width is narrower on phones. Descriptions get more room: about 990 pixels of width across two lines on desktop, and about 1200 pixels across three lines on mobile, in Arial 14 px. These budgets shift as Google redesigns the SERP, but the orders of magnitude have been stable for several years.</p>
+
+          <h2>Common ways copy gets clipped that no character counter catches</h2>
+          <p>Brand suffixes are the classic. A title like "How to wire a kitchen ring main safely | Big Brand Trades Limited" reads well and sits at 64 characters, so a character counter calls it borderline. In Arial 20 px bold the brand suffix runs into the cutoff and the user sees "How to wire a kitchen ring main safely | Big Bra...". The fix is to put the differentiating phrase first and either shorten the brand or drop it. The pixel preview makes that obvious in seconds.</p>
+          <p>Capitalised place names and product codes are another. "EXTREME COUNCILLOR ROUNDABOUT REVIEWS" weighs almost twice as much in pixels as a sentence-cased version. Numbers and digits are narrower than letters in most proportional fonts. Special characters like the pipe, ampersand and bullet sit somewhere in the middle. The pixel meter handles all of these without thinking about it.</p>
+
+          <h2>How to use the tool to write better titles</h2>
+          <p>Start with the keyword phrase the page is targeting and put it at the front of the title. Watch the desktop meter. If the meter is green, add a benefit phrase. If still green, add the brand suffix. If the meter goes red, trim from the brand end first, then from the benefit phrase, never from the keyword. Repeat for the mobile meter, which is slightly tighter. The aim is a title that fits both, with the keyword unambiguously in view.</p>
+          <p>Descriptions get more room and they are also more often rewritten by Google, so the perfectionism of the title is wasted here. Aim to fill most of the desktop two-line budget with a clear pitch: what the page covers, the angle that makes it different, and a soft call to action. Avoid stuffing repeats of the keyword. Modern Google ignores them and they cost you words you could spend on substance.</p>
+
+          <h2>When the preview will mislead you</h2>
+          <p>Two situations matter. The first is when Google rewrites the description, which happens for the majority of long-tail queries. The version you wrote shows on direct, short, brand-led queries; on a mid-tail query Google may pick a passage from the page body. A snippet preview cannot show that, by design. The second is rich results: review stars, FAQ accordions, sitelinks, dates and badges all consume vertical space that pushes neighbouring content around. The preview shows the bare snippet without those add-ons. Use Search Console to check live appearance for a high-traffic query before assuming the desktop preview is what users see.</p>
+
+          <h2>Related calculators</h2>
+          <p>Other SEO tools that run in your browser, no upload, no server round-trip.</p>
+          <ul class="related-calculators">
+            <li><a href="/calculators/seo/">All SEO tools</a></li>
+            <li><a href="/calculators/seo/meta-length-checker/">Meta Length Checker</a></li>
+            <li><a href="/calculators/seo/url-slug-generator/">URL Slug Generator</a></li>
+            <li><a href="/calculators/seo/keyword-density-calculator/">Keyword Density Calculator</a></li>
+            <li><a href="/calculators/seo/robots-txt-tester/">Robots.txt Tester</a></li>
+          </ul>
+        </section>
+
+        <section class="faq" aria-labelledby="faq-heading">
+          <h2 id="faq-heading">Frequently asked questions</h2>
+          <details>
+            <summary>Why measure in pixels instead of characters?</summary>
+            <p>Google truncates titles and descriptions by rendered width, not by character count. A title of twelve narrow letters and a title of twelve wide letters are the same character count but very different widths on screen. Tools that warn at 60 characters are wrong for half the strings you give them. This page measures the actual pixel width using the same kind of font Google approximates with, so the warning matches what users will see.</p>
+          </details>
+          <details>
+            <summary>How accurate are the pixel numbers?</summary>
+            <p>Close, but not perfect. The desktop title budget of around 600 pixels and the mobile title budget of around 580 pixels are well-documented community measurements of Google's current SERP layout, taken in Arial 20 pixels (Google sometimes uses Roboto or Google Sans, but Arial is a sound proxy for width). Real rendering varies with device DPI, the user's installed fonts, browser font rendering, and Google's own A/B tests of the layout. Treat the result as a tight estimate, not a ruler.</p>
+          </details>
+          <details>
+            <summary>Why does my title fit on mobile but not desktop?</summary>
+            <p>Mobile and desktop SERPs have different display widths and slightly different fonts. Desktop is the tighter constraint for titles in most cases. Both previews are shown side by side so you can see whether a title that fits one will be cut off on the other. If they disagree, the right answer depends on where most of your traffic is, which Search Console will tell you.</p>
+          </details>
+          <details>
+            <summary>Does Google actually show my meta description?</summary>
+            <p>Sometimes. Google rewrites the description for around 60 to 70 percent of queries based on the page content and the user's intent. The description you write is the version that shows on direct queries and brand searches, and it is what shows when Google decides your text answers the query well. The exercise of writing a description that fits the budget and reads as a useful pitch is still worthwhile because that is what users see when it matters most.</p>
+          </details>
+          <details>
+            <summary>Can I paste in special characters like emoji or em-dashes?</summary>
+            <p>Yes, the tool handles them. Emoji, em-dashes, accented characters and non-ASCII punctuation all measure correctly. Google's renderer does strip or substitute some characters in real listings (for example, certain emoji are stripped from titles depending on the query), so a title that fits here may still be tweaked in the wild.</p>
+          </details>
+        </section>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="ad-slot" data-ad-slot="sidebar" aria-hidden="true"></div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="site-footer-nav" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/calculators/">All calculators</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+
+      <section class="site-disclaimer" data-disclaimer aria-labelledby="disclaimer-heading">
+        <h2 id="disclaimer-heading">A quick, necessary word</h2>
+        <p>Every calculator on this site is built to give you a sensible, well-reasoned estimate. It is, however, exactly that: an estimate, for general information only. Nothing you see here is professional, legal, financial, medical, or tax advice, and it should not be treated as such.</p>
+        <p>Before you make a decision that actually matters, talk to a qualified professional who knows your specific situation: an accountant, a solicitor, a doctor, an IT consultant, whoever fits the question. They can factor in the bits a generic tool can't.</p>
+        <p>We take no liability and accept no responsibility for any loss, damage, or questionable life choice arising from acting on the numbers you see here. Use the results as a starting point for a better conversation, not as the final word.</p>
+        <p><strong>Affiliate disclosure:</strong> some links on this site are affiliate links. If you click through and buy or sign up for something, we may earn a small commission at no extra cost to you. It helps keep the calculators free and ad-light. We only recommend things we'd point a friend towards.</p>
+      </section>
+      <p class="site-copyright">&copy; 2026 WebCaretakers. All rights reserved.</p>
+      <p class="site-legal">WebCaretakers is a trading name of <a href="https://yeseo.io/" rel="noopener">Andrew Laws Associates Ltd</a>, registered in England and Wales (company no. 08602332). ICO registration ZA726704.</p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/calculators/serp-snippet-preview.js"></script>
+  <script src="/assets/js/calculators/serp-snippet-preview.page.js"></script>
+  <script>
+    (function () {
+      var shortcutEl = document.querySelector('[data-bookmark-shortcut]');
+      if (shortcutEl) {
+        var isMac = /Mac|iPhone|iPad|iPod/i.test(navigator.platform || navigator.userAgent);
+        shortcutEl.textContent = isMac ? '\u2318' : 'Ctrl';
+      }
+    })();
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

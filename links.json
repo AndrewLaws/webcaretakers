@@ -7,6 +7,18 @@
   ],
   "links": [
     {
+      "phrase": "Fuel Economy Converter",
+      "url": "/calculators/conversions/fuel-economy-converter/"
+    },
+    {
+      "phrase": "MPG to L/100km",
+      "url": "/calculators/conversions/fuel-economy-converter/"
+    },
+    {
+      "phrase": "convert MPG UK to MPG US",
+      "url": "/calculators/conversions/fuel-economy-converter/"
+    },
+    {
       "phrase": "Standard Deviation Calculator",
       "url": "/calculators/math/standard-deviation-calculator/"
     },
@@ -17,6 +29,18 @@
     {
       "phrase": "variance calculator",
       "url": "/calculators/math/standard-deviation-calculator/"
+    },
+    {
+      "phrase": "GCD and LCM Calculator",
+      "url": "/calculators/math/gcd-lcm-calculator/"
+    },
+    {
+      "phrase": "highest common factor",
+      "url": "/calculators/math/gcd-lcm-calculator/"
+    },
+    {
+      "phrase": "lowest common multiple",
+      "url": "/calculators/math/gcd-lcm-calculator/"
     },
     {
       "phrase": "Time Zone Converter",
@@ -551,6 +575,18 @@
       "url": "/calculators/productivity/time-card-calculator/"
     },
     {
+      "phrase": "Project Deadline Countdown Calculator",
+      "url": "/calculators/productivity/project-deadline-countdown-calculator/"
+    },
+    {
+      "phrase": "working days until deadline",
+      "url": "/calculators/productivity/project-deadline-countdown-calculator/"
+    },
+    {
+      "phrase": "deadline countdown",
+      "url": "/calculators/productivity/project-deadline-countdown-calculator/"
+    },
+    {
       "phrase": "Data Breach Risk Score",
       "url": "/calculators/cybersecurity/data-breach-risk-score/"
     },
@@ -603,6 +639,18 @@
       "url": "/calculators/fun/random-name-picker/"
     },
     {
+      "phrase": "Decision Wheel",
+      "url": "/calculators/fun/decision-wheel/"
+    },
+    {
+      "phrase": "spin the wheel to decide",
+      "url": "/calculators/fun/decision-wheel/"
+    },
+    {
+      "phrase": "random picker wheel",
+      "url": "/calculators/fun/decision-wheel/"
+    },
+    {
       "phrase": "UK Mortgage Overpayment Calculator",
       "url": "/calculators/property/uk-mortgage-overpayment-calculator/"
     },
@@ -649,6 +697,30 @@
     {
       "phrase": "convert roman numerals",
       "url": "/calculators/conversions/roman-numeral-converter/"
+    },
+    {
+      "phrase": "SERP Snippet Preview Tool",
+      "url": "/calculators/seo/serp-snippet-preview/"
+    },
+    {
+      "phrase": "google snippet preview",
+      "url": "/calculators/seo/serp-snippet-preview/"
+    },
+    {
+      "phrase": "title tag preview",
+      "url": "/calculators/seo/serp-snippet-preview/"
+    },
+    {
+      "phrase": "UK Section 24 Buy-to-Let Tax Impact Calculator",
+      "url": "/calculators/property/uk-section-24-buy-to-let-tax-impact-calculator/"
+    },
+    {
+      "phrase": "section 24 landlord tax calculator",
+      "url": "/calculators/property/uk-section-24-buy-to-let-tax-impact-calculator/"
+    },
+    {
+      "phrase": "buy-to-let tax calculator UK",
+      "url": "/calculators/property/uk-section-24-buy-to-let-tax-impact-calculator/"
     }
   ]
 }

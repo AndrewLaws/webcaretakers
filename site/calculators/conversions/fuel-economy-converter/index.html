@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fuel Economy Converter | WebCaretakers</title>
+  <meta name="description" content="Convert fuel economy live across MPG (UK), MPG (US), L/100km and km/L. Edit any field, the other three update on the spot. Useful when comparing imported cars or reading European spec sheets.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/conversions/fuel-economy-converter/">
+  <meta property="og:title" content="Fuel Economy Converter | WebCaretakers">
+  <meta property="og:description" content="Convert fuel economy live across MPG (UK), MPG (US), L/100km and km/L. Edit any field, the other three update on the spot.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/conversions/fuel-economy-converter/">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var _stored = null;
+    try { _stored = localStorage.getItem('cookie-consent'); } catch (e) {}
+    var _initial = _stored === 'granted' ? 'granted' : 'denied';
+    gtag('consent', 'default', {
+      ad_storage: _initial, analytics_storage: _initial,
+      ad_user_data: _initial, ad_personalization: _initial,
+      functionality_storage: 'granted', security_storage: 'granted',
+      wait_for_update: 500
+    });
+  </script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Fuel Economy Converter",
+    "url": "https://webcaretakers.com/calculators/conversions/fuel-economy-converter/",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0" },
+    "author": {
+      "@type": "Person",
+      "name": "Andrew Laws",
+      "url": "https://yeseo.io/"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Why is MPG (UK) different from MPG (US)?",
+        "acceptedAnswer": { "@type": "Answer", "text": "The two countries use different gallons. The imperial gallon is 4.54609 litres, the US gallon is 3.785411784 litres, so a US gallon is about 17 percent smaller. A car that does 30 MPG (UK) does roughly 25 MPG (US) for the same fuel use, because the US is dividing the same miles by a smaller gallon. Always check which gallon a published figure is using before comparing two cars." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why is L/100km the opposite way around to MPG?",
+        "acceptedAnswer": { "@type": "Answer", "text": "MPG measures distance per fixed fuel: bigger is better. L/100km measures fuel per fixed distance: smaller is better. The two are reciprocal, which is why a small drop in L/100km at the efficient end is worth less than the same drop at the thirsty end. Going from 10 to 9 L/100km saves more fuel over a year than going from 5 to 4 L/100km, even though both look like a one-unit improvement. The fuel-per-distance framing makes that effect easier to see, which is part of why most of Europe prefers it." }
+      },
+      {
+        "@type": "Question",
+        "name": "Which countries use which unit?",
+        "acceptedAnswer": { "@type": "Answer", "text": "The UK uses MPG with the imperial gallon. The US and Canada use MPG with the US gallon, although Canada also publishes L/100km on official window stickers. Most of mainland Europe and Australia use L/100km. India, Japan and a few South American countries lean on km/L. If you are comparing a car spec sheet against a number you grew up with, you almost certainly need a conversion." }
+      },
+      {
+        "@type": "Question",
+        "name": "Are the constants on this page exact?",
+        "acceptedAnswer": { "@type": "Answer", "text": "The underlying volume and distance constants are exact: 1 imperial gallon is defined as 4.54609 litres, 1 US gallon is defined as 3.785411784 litres, and 1 mile is exactly 1.609344 kilometres. The combined MPG-to-L/100km factors (282.481 for UK, 235.215 for US) are rounded, but the calculator uses the full-precision derivations internally and only rounds for display. The Conversion factors block on the page lists the source values so you can audit the working." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does the calculator round MPG to one decimal but L/100km to two?",
+        "acceptedAnswer": { "@type": "Answer", "text": "MPG figures published by manufacturers and motoring journalists almost always quote one decimal place, sometimes none. L/100km figures are routinely quoted to two decimals because the unit is smaller in absolute terms and a one-decimal version loses too much resolution at the efficient end (a 4.2 versus 4.3 L/100km difference is real). The rounding mirrors the convention each market actually uses." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-banner-heading" aria-describedby="cookie-banner-text" hidden>
+    <div class="cookie-banner__inner">
+      <h2 id="cookie-banner-heading" class="cookie-banner__heading">A quick word about cookies</h2>
+      <p id="cookie-banner-text" class="cookie-banner__text">
+        We use cookies for analytics, so we can see which calculators people actually use and which ones need work. Nothing creepy, nothing sold on. You can say yes, say no, or read the <a href="/privacy/">privacy policy</a> first. Your choice sticks.
+      </p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-reject>Reject</button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>Accept</button>
+      </div>
+    </div>
+  </div>
+
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">WebCaretakers</a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <ul class="primary-nav__list">
+          <li class="primary-nav__item primary-nav__item--has-menu">
+            <button type="button" class="primary-nav__link" data-menu-toggle aria-haspopup="true" aria-expanded="false">Calculators <span class="primary-nav__caret" aria-hidden="true">&#9662;</span></button>
+            <ul class="primary-nav__submenu">
+              <li><a href="/calculators/ai/">AI</a></li>
+              <li><a href="/calculators/broadband/">Broadband</a></li>
+              <li><a href="/calculators/business/">Business</a></li>
+              <li><a href="/calculators/conversions/">Conversions</a></li>
+              <li><a href="/calculators/cybersecurity/">Cybersecurity</a></li>
+              <li><a href="/calculators/finance/">Finance</a></li>
+              <li><a href="/calculators/fun/">Fun</a></li>
+              <li><a href="/calculators/health/">Health</a></li>
+              <li><a href="/calculators/images/">Images</a></li>
+              <li><a href="/calculators/math/">Math</a></li>
+              <li><a href="/calculators/productivity/">Productivity</a></li>
+              <li><a href="/calculators/property/">Property</a></li>
+              <li><a href="/calculators/seo/">SEO</a></li>
+              <li><a href="/calculators/wedding/">Wedding</a></li>
+              <li><a href="/calculators/writing/">Writing</a></li>
+              <li class="primary-nav__submenu-sep"><a href="/calculators/">See all calculators</a></li>
+            </ul>
+          </li>
+          <li class="primary-nav__item"><a href="/about/" class="primary-nav__link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <main id="main-content">
+      <div class="container">
+        <nav aria-label="Breadcrumb" class="breadcrumbs">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/calculators/">Calculators</a></li>
+            <li><a href="/calculators/conversions/">Conversions</a></li>
+            <li aria-current="page">Fuel Economy Converter</li>
+          </ol>
+        </nav>
+
+        <h1>Fuel Economy Converter</h1>
+        <p class="intro">Convert fuel economy across the four units the world actually uses: MPG (UK imperial gallon), MPG (US gallon), litres per 100km, and km per litre. Edit any one field and the other three update live. Handy for reading European spec sheets in British numbers, comparing imported cars, or sanity-checking what a North American review really means.</p>
+
+        <section class="eli5" aria-label="Plain-English explanation">
+          <h2>Explain like I'm 5 (what even is this calculator?)</h2>
+          <p>Different countries measure how thirsty a car is in different ways. The UK uses one kind of gallon, the US uses a smaller one, most of Europe counts litres per 100 kilometres instead of miles per gallon, and a few countries do kilometres per litre. Same car, four different numbers. Type any one of them and this page works out the other three.</p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="in-content" aria-hidden="true"></div>
+
+        <section class="calculator-card">
+          <h2>Convert</h2>
+          <p class="reassure"><strong>Browser-only.</strong> The maths runs in your browser, nothing is uploaded.</p>
+
+          <form id="fec-form" class="calc-form" novalidate>
+            <div class="fec-grid">
+              <div class="calc-row" data-fec-card="mpgUk">
+                <label for="fec-mpg-uk">MPG (UK, imperial gallon)</label>
+                <input type="number" inputmode="decimal" step="any" min="0" id="fec-mpg-uk" data-fec-field="mpgUk" autocomplete="off" placeholder="e.g. 45">
+                <p class="calc-row__hint">Used in the UK. Imperial gallon = 4.54609 L.</p>
+              </div>
+              <div class="calc-row" data-fec-card="mpgUs">
+                <label for="fec-mpg-us">MPG (US gallon)</label>
+                <input type="number" inputmode="decimal" step="any" min="0" id="fec-mpg-us" data-fec-field="mpgUs" autocomplete="off" placeholder="e.g. 37.5">
+                <p class="calc-row__hint">Used in the US and Canada. US gallon = 3.785411784 L.</p>
+              </div>
+              <div class="calc-row" data-fec-card="l100km">
+                <label for="fec-l100km">L/100km</label>
+                <input type="number" inputmode="decimal" step="any" min="0" id="fec-l100km" data-fec-field="l100km" autocomplete="off" placeholder="e.g. 6.28">
+                <p class="calc-row__hint">Used in most of Europe and Australia. Lower is better.</p>
+              </div>
+              <div class="calc-row" data-fec-card="kml">
+                <label for="fec-kml">km/L</label>
+                <input type="number" inputmode="decimal" step="any" min="0" id="fec-kml" data-fec-field="kml" autocomplete="off" placeholder="e.g. 15.92">
+                <p class="calc-row__hint">Used across parts of Asia and South America.</p>
+              </div>
+            </div>
+            <p class="calc-row__hint">The card with the highlighted border is the field you last edited. The other three are calculated from it.</p>
+          </form>
+
+          <details class="prove-it" data-prove-it>
+            <summary>Prove it (show the working)</summary>
+            <p>The calculator anchors every result on L/100km, then converts out. That keeps round-tripping stable and the maths auditable in one place.</p>
+            <h3>Conversion factors</h3>
+            <ul>
+              <li>1 imperial gallon = <strong>4.54609 litres</strong> (defined value)</li>
+              <li>1 US gallon = <strong>3.785411784 litres</strong> (defined value)</li>
+              <li>1 mile = <strong>1.609344 kilometres</strong> (defined value)</li>
+              <li>MPG (UK) to L/100km factor: (4.54609 &times; 100) &divide; 1.609344 = <strong>282.4809...</strong></li>
+              <li>MPG (US) to L/100km factor: (3.785411784 &times; 100) &divide; 1.609344 = <strong>235.2146...</strong></li>
+            </ul>
+            <h3>Formula chain</h3>
+            <ul>
+              <li>MPG (UK) &rarr; L/100km: 282.481 &divide; mpg_uk</li>
+              <li>MPG (US) &rarr; L/100km: 235.215 &divide; mpg_us</li>
+              <li>km/L &rarr; L/100km: 100 &divide; kml</li>
+              <li>L/100km &rarr; MPG (UK): 282.481 &divide; l100km</li>
+              <li>L/100km &rarr; MPG (US): 235.215 &divide; l100km</li>
+              <li>L/100km &rarr; km/L: 100 &divide; l100km</li>
+            </ul>
+            <h3>Worked example: 60 MPG (UK)</h3>
+            <ol class="working">
+              <li>L/100km = 282.481 &divide; 60 = <strong>4.71 L/100km</strong></li>
+              <li>MPG (US) = 235.215 &divide; 4.7080 = <strong>49.96 MPG (US)</strong></li>
+              <li>km/L = 100 &divide; 4.7080 = <strong>21.24 km/L</strong></li>
+            </ol>
+            <p>Sense-check: a 60 MPG (UK) car should look thirstier in US MPG (it is, 50 MPG-US) because the US gallon is smaller, and should be in the low single digits in L/100km because the car is fairly efficient.</p>
+          </details>
+
+          <p class="bookmark-nudge">
+            Useful? Save this calculator: press <kbd data-bookmark-shortcut>Ctrl</kbd> + <kbd>D</kbd> to bookmark it.
+          </p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="below-results" aria-hidden="true"></div>
+
+        <section class="long-form">
+          <h2>Why MPG (UK) and MPG (US) are not the same number</h2>
+          <p>Both numbers are miles per gallon. The catch is that the gallon is not the same volume on either side of the Atlantic. The UK kept the imperial gallon, defined as exactly 4.54609 litres. The US uses a gallon based on the older Queen Anne wine gallon, defined as exactly 3.785411784 litres. The US gallon is roughly 17 per cent smaller. So the same car burning the same fuel over the same distance scores about 17 per cent fewer MPG in US units than in UK units. A British car magazine quoting 50 MPG and an American magazine quoting 50 MPG are not describing the same car. Translate before you compare.</p>
+
+          <h2>Why L/100km is "inverted" relative to MPG</h2>
+          <p>MPG asks "how far does a fixed amount of fuel take you?" Bigger numbers mean a more efficient car. L/100km asks the opposite question: "how much fuel does it take to cover a fixed distance?" Smaller numbers mean a more efficient car. The two units are reciprocal, but the framing matters in practice. Drops in L/100km at the thirsty end of the scale represent more fuel saved per year than drops at the efficient end. Going from 12 L/100km to 10 L/100km saves you a lot more diesel over 15,000 km than going from 5 L/100km to 4 L/100km, even though the second drop looks like a bigger proportional improvement. MPG hides that effect because it compresses thirsty cars into a narrow band at the bottom of the scale.</p>
+
+          <h2>Who uses which standard</h2>
+          <p>The UK is the main holdout for MPG with the imperial gallon. New car spec sheets, the DVLA, motoring journalists and most consumer reviews still use it. The US and Canada use MPG with the US gallon, although Canadian official window stickers also publish L/100km, which is gradually winning. Most of the European Union, plus Australia and New Zealand, use L/100km exclusively. India, Japan and several South American countries lean on km/L. If you are buying a car shipped in from another market, or reading a specification sheet from a manufacturer's home market, the published economy figure is rarely in the unit you grew up with.</p>
+
+          <h2>Common gotchas when comparing imported cars</h2>
+          <p>The first trap is assuming MPG is MPG. A 40 MPG figure on a US car becomes about 48 MPG on the UK scale. A 40 MPG figure on a UK car drops to about 33 MPG on the US scale. The second trap is mixing test cycles. UK and EU figures historically used NEDC, then WLTP, both lab cycles that flatter modern cars. US EPA figures come from a different cycle that tends to read lower. Two cars with the same real-world economy can advertise wildly different headline numbers because of the cycle, before any unit conversion is applied. Use this converter to put the published figures on the same scale, then knock 10 to 20 per cent off WLTP figures to land somewhere closer to a real motorway average.</p>
+
+          <h2>Edge cases this calculator handles</h2>
+          <p>Zero or negative input blanks the other three fields rather than dividing by zero. A very high MPG figure (a hypermiler claiming 100 MPG-UK) produces a believably small L/100km, around 2.82. A very low MPG figure (a thirsty pickup at 5 MPG-US) produces a believably large L/100km, around 47. Round-tripping is stable: typing a value into one field, copying the resulting value out of another, and pasting it back in any other field will return the original number to within rounding. The internal calculation is anchored on L/100km to avoid drift between the two MPG units.</p>
+
+          <h2>Related calculators</h2>
+          <ul class="related-calculators">
+            <li><a href="/calculators/conversions/">All conversion calculators</a></li>
+            <li><a href="/calculators/conversions/unit-converter/">Unit Converter for length, mass, volume and more</a></li>
+            <li><a href="/calculators/conversions/cooking-measurements-converter/">Cooking Measurements Converter</a></li>
+            <li><a href="/calculators/conversions/time-zone-converter/">Time Zone Converter</a></li>
+          </ul>
+        </section>
+
+        <section class="faq" aria-labelledby="faq-heading">
+          <h2 id="faq-heading">Frequently asked questions</h2>
+          <details>
+            <summary>Why is MPG (UK) different from MPG (US)?</summary>
+            <p>The two countries use different gallons. The imperial gallon is 4.54609 litres, the US gallon is 3.785411784 litres, so a US gallon is about 17 per cent smaller. A car that does 30 MPG (UK) does roughly 25 MPG (US) for the same fuel use, because the US is dividing the same miles by a smaller gallon. Always check which gallon a published figure is using before comparing two cars.</p>
+          </details>
+          <details>
+            <summary>Why is L/100km the opposite way around to MPG?</summary>
+            <p>MPG measures distance per fixed fuel: bigger is better. L/100km measures fuel per fixed distance: smaller is better. The two are reciprocal, which is why a small drop in L/100km at the efficient end is worth less than the same drop at the thirsty end. Going from 10 to 9 L/100km saves more fuel over a year than going from 5 to 4 L/100km, even though both look like a one-unit improvement.</p>
+          </details>
+          <details>
+            <summary>Which countries use which unit?</summary>
+            <p>The UK uses MPG with the imperial gallon. The US and Canada use MPG with the US gallon, although Canada also publishes L/100km on official window stickers. Most of mainland Europe and Australia use L/100km. India, Japan and a few South American countries lean on km/L. If you are comparing a car spec sheet against a number you grew up with, you almost certainly need a conversion.</p>
+          </details>
+          <details>
+            <summary>Are the constants on this page exact?</summary>
+            <p>The underlying volume and distance constants are exact by definition: 1 imperial gallon is 4.54609 litres, 1 US gallon is 3.785411784 litres, and 1 mile is 1.609344 kilometres. The combined MPG-to-L/100km factors (282.481 for UK, 235.215 for US) are rounded for display, but the calculator uses the full-precision derivations internally and only rounds at the end. The Conversion factors block above lists the sources so you can audit the working.</p>
+          </details>
+          <details>
+            <summary>Why does MPG round to one decimal but L/100km to two?</summary>
+            <p>MPG figures published by manufacturers and motoring journalists almost always quote one decimal place, sometimes none. L/100km figures are routinely quoted to two decimals because the unit is smaller in absolute terms and a one-decimal version loses resolution at the efficient end (a 4.2 versus 4.3 L/100km difference is real). The rounding mirrors the convention each market actually uses.</p>
+          </details>
+        </section>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="ad-slot" data-ad-slot="sidebar" aria-hidden="true"></div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="site-footer-nav" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/calculators/">All calculators</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+
+      <section class="site-disclaimer" data-disclaimer aria-labelledby="disclaimer-heading">
+        <h2 id="disclaimer-heading">A quick, necessary word</h2>
+        <p>Every calculator on this site is built to give you a sensible, well-reasoned estimate. It is, however, exactly that: an estimate, for general information only. Nothing you see here is professional, legal, financial, medical, or tax advice, and it should not be treated as such.</p>
+        <p>Before you make a decision that actually matters, talk to a qualified professional who knows your specific situation: an accountant, a solicitor, a doctor, an IT consultant, whoever fits the question. They can factor in the bits a generic tool can't.</p>
+        <p>We take no liability and accept no responsibility for any loss, damage, or questionable life choice arising from acting on the numbers you see here. Use the results as a starting point for a better conversation, not as the final word.</p>
+        <p><strong>Affiliate disclosure:</strong> some links on this site are affiliate links. If you click through and buy or sign up for something, we may earn a small commission at no extra cost to you. It helps keep the calculators free and ad-light. We only recommend things we'd point a friend towards.</p>
+      </section>
+      <p class="site-copyright">&copy; 2026 WebCaretakers. All rights reserved.</p>
+      <p class="site-legal">WebCaretakers is a trading name of <a href="https://yeseo.io/" rel="noopener">Andrew Laws Associates Ltd</a>, registered in England and Wales (company no. 08602332). ICO registration ZA726704.</p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/calculators/fuel-economy-converter.js"></script>
+  <script src="/assets/js/calculators/fuel-economy-converter.page.js"></script>
+  <script>
+    (function () {
+      var shortcutEl = document.querySelector('[data-bookmark-shortcut]');
+      if (shortcutEl) {
+        var isMac = /Mac|iPhone|iPad|iPod/i.test(navigator.platform || navigator.userAgent);
+        shortcutEl.textContent = isMac ? '\u2318' : 'Ctrl';
+      }
+    })();
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

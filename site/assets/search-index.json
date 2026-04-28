@@ -126,6 +126,13 @@
     "category": "Math"
   },
   {
+    "type": "tool",
+    "name": "GCD and LCM Calculator",
+    "summary": "Find the greatest common divisor (HCF) and lowest common multiple of two or more whole numbers. Shows the Euclidean algorithm, prime factorisations and the combined-prime LCM working.",
+    "url": "/calculators/math/gcd-lcm-calculator/",
+    "category": "Math"
+  },
+  {
     "type": "category",
     "name": "Images calculators",
     "summary": "Resize, convert and inspect photos without uploading them anywhere.",
@@ -165,6 +172,13 @@
     "name": "Roman Numeral Converter",
     "summary": "Convert between numbers and Roman numerals in either direction. Range 1 to 3,999, lowercase normalised, malformed numerals like IIII or VV flagged with the canonical form. Working shown.",
     "url": "/calculators/conversions/roman-numeral-converter/",
+    "category": "Conversions"
+  },
+  {
+    "type": "tool",
+    "name": "Fuel Economy Converter",
+    "summary": "Live four-way conversion across MPG (UK), MPG (US), L/100km and km/L. Edit any one field, the other three update on the spot. Anchored on L/100km internally for stable round-trips.",
+    "url": "/calculators/conversions/fuel-economy-converter/",
     "category": "Conversions"
   },
   {
@@ -379,6 +393,13 @@
   },
   {
     "type": "tool",
+    "name": "Decision Wheel",
+    "summary": "Type a list of options and spin a coloured wheel to pick one. Optional remove-winner mode for tournament-style elimination. Browser-only, uses Web Crypto for an unbiased draw.",
+    "url": "/calculators/fun/decision-wheel/",
+    "category": "Fun"
+  },
+  {
+    "type": "tool",
     "name": "Dice and Coin Roller",
     "summary": "Roll any combination of tabletop dice (2d6, 1d20+5, 4d6kh3) or flip up to 1000 coins. Browser-only, uses Web Crypto for an unbiased draw. Nothing transmitted.",
     "url": "/calculators/fun/dice-and-coin-roller/",
@@ -410,6 +431,13 @@
     "name": "Meeting Cost Calculator",
     "summary": "See what a meeting actually costs in money and lost productivity. Per-attendee breakdown, annualised weekly figure, person-hours, plus a live ticker that climbs in real time once you press start.",
     "url": "/calculators/productivity/meeting-cost-calculator/",
+    "category": "Productivity"
+  },
+  {
+    "type": "tool",
+    "name": "Project Deadline Countdown Calculator",
+    "summary": "Count the calendar days, working days and working hours left until a project deadline. Tick the days you actually work, paste in any holidays, see the percentage elapsed and a mini-calendar of the days that count.",
+    "url": "/calculators/productivity/project-deadline-countdown-calculator/",
     "category": "Productivity"
   },
   {
@@ -455,6 +483,13 @@
     "category": "SEO"
   },
   {
+    "type": "tool",
+    "name": "SERP Snippet Preview Tool",
+    "summary": "Preview how a page title, meta description and URL render in Google's desktop and mobile search results. Truncation calculated by pixel width, not character count.",
+    "url": "/calculators/seo/serp-snippet-preview/",
+    "category": "SEO"
+  },
+  {
     "type": "category",
     "name": "Property calculators",
     "summary": "Figures for buying, renting, moving, and maintaining a home.",
@@ -487,6 +522,13 @@
     "name": "UK House Move Cost Calculator",
     "summary": "Total cost of moving home in the UK, broken out line by line. Stamp duty (SDLT, LBTT or LTT), conveyancing, mortgage fees, survey, removals, EPC and estate agent, with a best- and worst-case spread.",
     "url": "/calculators/property/uk-house-move-cost-calculator/",
+    "category": "Property"
+  },
+  {
+    "type": "tool",
+    "name": "UK Section 24 Buy-to-Let Tax Impact Calculator",
+    "summary": "Compare your individual landlord tax bill before and after Section 24, plus a limited company corporation tax comparison. Shows the full step-by-step working and whether you have been pushed into a higher band.",
+    "url": "/calculators/property/uk-section-24-buy-to-let-tax-impact-calculator/",
     "category": "Property"
   },
   {

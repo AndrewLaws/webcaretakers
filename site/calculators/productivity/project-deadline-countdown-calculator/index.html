@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Deadline Countdown Calculator | WebCaretakers</title>
+  <meta name="description" content="Count the calendar days, working days and working hours left until a project deadline. Skips weekends and holidays you paste in. Browser-only, no sign-up.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/productivity/project-deadline-countdown-calculator/">
+  <meta property="og:title" content="Project Deadline Countdown Calculator | WebCaretakers">
+  <meta property="og:description" content="Count calendar days, working days and working hours left until a deadline. Skips weekends and holidays you paste in.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/productivity/project-deadline-countdown-calculator/">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var _stored = null;
+    try { _stored = localStorage.getItem('cookie-consent'); } catch (e) {}
+    var _initial = _stored === 'granted' ? 'granted' : 'denied';
+    gtag('consent', 'default', {
+      ad_storage: _initial, analytics_storage: _initial,
+      ad_user_data: _initial, ad_personalization: _initial,
+      functionality_storage: 'granted', security_storage: 'granted',
+      wait_for_update: 500
+    });
+  </script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Project Deadline Countdown Calculator",
+    "url": "https://webcaretakers.com/calculators/productivity/project-deadline-countdown-calculator/",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0" },
+    "author": {
+      "@type": "Person",
+      "name": "Andrew Laws",
+      "url": "https://yeseo.io/"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Why is the working-day count smaller than calendar days?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Working days exclude any day whose weekday you have not ticked, plus any date that appears in your holidays list. Most people leave Monday to Friday ticked and paste in their public holidays, so weekends and bank holidays drop out and the working-day total is roughly five sevenths of the calendar-day total, minus a few for holidays. The calculator shows both numbers so you can see the gap and plan against the one that matters." }
+      },
+      {
+        "@type": "Question",
+        "name": "What date formats does the holidays box accept?",
+        "acceptedAnswer": { "@type": "Answer", "text": "One date per line, in either YYYY-MM-DD (the ISO format, like 2026-04-03) or DD/MM/YYYY (the UK convention, like 03/04/2026). Lines that do not parse as dates are listed in the prove-it panel so you can fix typos. Blank lines are ignored, and duplicates are deduped." }
+      },
+      {
+        "@type": "Question",
+        "name": "Are time zones a problem if I am working with a remote team?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Not for this calculator. Every date is treated as a local calendar date with no time component, so 30 April is 30 April regardless of where you sit. The standard browser-date trap, where 2026-04-30 silently parses as 2026-05-01 in some time zones, is avoided by constructing the date with explicit year, month and day in the user's local zone." }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I save the result?",
+        "acceptedAnswer": { "@type": "Answer", "text": "There is no account or saved-state feature. Use the bookmark prompt at the bottom of the calculator to keep the page handy, screenshot the result panel, or copy the summary line into your project notes. Everything happens in your browser and nothing is uploaded." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the difference between working days, business days and trading days?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Working days and business days are usually used interchangeably and mean the days a normal office is open, typically Monday to Friday minus public holidays. Trading days are specific to financial markets and exclude additional days when an exchange is closed (some half-day closures, market holidays that are not public holidays, and so on). For ordinary project planning, working days is what you want, and that is what this calculator gives you." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-banner-heading" aria-describedby="cookie-banner-text" hidden>
+    <div class="cookie-banner__inner">
+      <h2 id="cookie-banner-heading" class="cookie-banner__heading">A quick word about cookies</h2>
+      <p id="cookie-banner-text" class="cookie-banner__text">
+        We use cookies for analytics, so we can see which calculators people actually use and which ones need work. Nothing creepy, nothing sold on. You can say yes, say no, or read the <a href="/privacy/">privacy policy</a> first. Your choice sticks.
+      </p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-reject>Reject</button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>Accept</button>
+      </div>
+    </div>
+  </div>
+
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">WebCaretakers</a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <ul class="primary-nav__list">
+          <li class="primary-nav__item primary-nav__item--has-menu">
+            <button type="button" class="primary-nav__link" data-menu-toggle aria-haspopup="true" aria-expanded="false">Calculators <span class="primary-nav__caret" aria-hidden="true">▾</span></button>
+            <ul class="primary-nav__submenu">
+              <li><a href="/calculators/ai/">AI</a></li>
+              <li><a href="/calculators/broadband/">Broadband</a></li>
+              <li><a href="/calculators/business/">Business</a></li>
+              <li><a href="/calculators/conversions/">Conversions</a></li>
+              <li><a href="/calculators/cybersecurity/">Cybersecurity</a></li>
+              <li><a href="/calculators/finance/">Finance</a></li>
+              <li><a href="/calculators/fun/">Fun</a></li>
+              <li><a href="/calculators/health/">Health</a></li>
+              <li><a href="/calculators/images/">Images</a></li>
+              <li><a href="/calculators/math/">Math</a></li>
+              <li><a href="/calculators/productivity/">Productivity</a></li>
+              <li><a href="/calculators/property/">Property</a></li>
+              <li><a href="/calculators/seo/">SEO</a></li>
+              <li><a href="/calculators/wedding/">Wedding</a></li>
+              <li><a href="/calculators/writing/">Writing</a></li>
+              <li class="primary-nav__submenu-sep"><a href="/calculators/">See all calculators</a></li>
+            </ul>
+          </li>
+          <li class="primary-nav__item"><a href="/about/" class="primary-nav__link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <main id="main-content">
+      <div class="container">
+        <nav aria-label="Breadcrumb" class="breadcrumbs">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/calculators/">Calculators</a></li>
+            <li><a href="/calculators/productivity/">Productivity</a></li>
+            <li aria-current="page">Project Deadline Countdown Calculator</li>
+          </ol>
+        </nav>
+
+        <h1>Project Deadline Countdown Calculator</h1>
+        <p class="intro">Count the calendar days, working days and working hours left until a project deadline. Tick the days you actually work, paste in any holidays, and the calculator works the rest out. There is a one-click button for the standard England and Wales 2026 bank holidays if you need them.</p>
+
+        <section class="eli5" aria-label="Plain-English explanation">
+          <h2>Explain like I'm 5 (what even is this calculator?)</h2>
+          <p>You give it a deadline date. It counts how many days are left. It also counts only the days you actually work, so weekends and holidays do not get in the way. Then it tells you how many hours of real work that adds up to, so you can see whether the plan fits or not.</p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="in-content" aria-hidden="true"></div>
+
+        <section class="calculator-card">
+          <h2>Work out the countdown</h2>
+
+          <form id="pdc-form" class="calc-form" novalidate>
+            <div class="calc-row">
+              <label for="pdc-deadline">Project deadline</label>
+              <input type="date" id="pdc-deadline" data-pdc-deadline required>
+              <p class="calc-row__hint">The day the work is due.</p>
+            </div>
+
+            <div class="calc-row">
+              <label for="pdc-start">Start date</label>
+              <input type="date" id="pdc-start" data-pdc-start>
+              <p class="calc-row__hint">Defaults to today. Set this to a project kick-off date if you want the elapsed-percentage figure.</p>
+            </div>
+
+            <fieldset class="calc-row">
+              <legend>Working days of the week</legend>
+              <label><input type="checkbox" data-pdc-day value="1" checked> Mon</label>
+              <label><input type="checkbox" data-pdc-day value="2" checked> Tue</label>
+              <label><input type="checkbox" data-pdc-day value="3" checked> Wed</label>
+              <label><input type="checkbox" data-pdc-day value="4" checked> Thu</label>
+              <label><input type="checkbox" data-pdc-day value="5" checked> Fri</label>
+              <label><input type="checkbox" data-pdc-day value="6"> Sat</label>
+              <label><input type="checkbox" data-pdc-day value="0"> Sun</label>
+              <p class="calc-row__hint">Untick any day you do not work. The defaults match a Monday to Friday office week.</p>
+            </fieldset>
+
+            <div class="calc-row">
+              <label for="pdc-hours">Hours per working day</label>
+              <input type="number" id="pdc-hours" data-pdc-hours value="7.5" min="0" step="0.25" inputmode="decimal">
+              <p class="calc-row__hint">7.5 is the UK office default (a 37.5-hour week minus an unpaid lunch). Drop it for a part-time pattern, raise it for a full eight-hour day.</p>
+            </div>
+
+            <div class="calc-row">
+              <label for="pdc-holidays">Holidays (one per line)</label>
+              <textarea id="pdc-holidays" data-pdc-holidays rows="5" placeholder="2026-04-03&#10;2026-04-06&#10;25/12/2026"></textarea>
+              <div class="calc-row__buttons">
+                <button type="button" class="btn btn--secondary" data-pdc-add-uk>Add UK 2026 bank holidays</button>
+                <button type="button" class="btn btn--ghost" data-pdc-clear-holidays>Clear</button>
+              </div>
+              <p class="calc-row__hint">Accepts YYYY-MM-DD or DD/MM/YYYY. Holidays that fall on a non-working day (a weekend, or a weekday you have not ticked) are ignored, so you cannot accidentally double-count them.</p>
+            </div>
+
+            <div class="calc-row">
+              <button type="submit" class="btn btn--primary" data-pdc-calc>Calculate</button>
+            </div>
+
+            <p class="calc-row__hint" data-pdc-error role="status" aria-live="polite"></p>
+          </form>
+
+          <div class="hash-rows" aria-live="polite">
+            <div class="hash-row" data-pdc-results hidden>
+              <div class="hash-row__head">
+                <h3>Result</h3>
+              </div>
+
+              <p class="hash-row__compare" data-pdc-summary></p>
+
+              <p class="calc-row__hint--error" data-pdc-past-flag hidden><strong>Heads up:</strong> the deadline is in the past. The numbers below are how far past, not how far ahead.</p>
+              <p class="calc-row__hint--error" data-pdc-no-work-flag hidden><strong>Heads up:</strong> you have not ticked any working days, so the working-day and working-hour totals are zero by definition.</p>
+
+              <ul class="pdc-results-grid">
+                <li>
+                  <span class="pdc-results-grid__label">Calendar days</span>
+                  <strong class="pdc-results-grid__value" data-pdc-cal-days>0</strong>
+                </li>
+                <li>
+                  <span class="pdc-results-grid__label">Working days</span>
+                  <strong class="pdc-results-grid__value" data-pdc-work-days>0</strong>
+                </li>
+                <li>
+                  <span class="pdc-results-grid__label">Working hours</span>
+                  <strong class="pdc-results-grid__value" data-pdc-work-hours>0</strong>
+                </li>
+              </ul>
+
+              <div class="pdc-progress" data-pdc-elapsed-row hidden>
+                <label for="pdc-progress-bar">Project elapsed: <strong data-pdc-elapsed-pct>0%</strong></label>
+                <progress id="pdc-progress-bar" data-pdc-progress value="0" max="100" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></progress>
+              </div>
+
+              <div class="pdc-calendar-wrap">
+                <h4>Mini-calendar</h4>
+                <div data-pdc-calendar></div>
+              </div>
+            </div>
+          </div>
+
+          <details class="prove-it" data-prove-it>
+            <summary>Prove it (show the working)</summary>
+            <div data-prove-it-body>
+              <p>Enter a deadline above and press Calculate to see the working.</p>
+            </div>
+          </details>
+
+          <p class="bookmark-nudge">
+            Useful? Save this calculator: press <kbd data-bookmark-shortcut>Ctrl</kbd> + <kbd>D</kbd> to bookmark it.
+          </p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="below-results" aria-hidden="true"></div>
+
+        <section class="long-form">
+          <h2>Why working days matter more than calendar days</h2>
+          <p>Calendar days are tidy. The number ticks down, day by day, regardless of whether anyone is at a desk. That tidiness is also why they mislead. A two-week deadline announced on a Friday looks generous on the calendar (14 days) but is closer to nine working days once you remove the two weekends, and might be eight if there is a bank holiday in there. Counting in calendar days when you should be counting in working days is one of the reliable ways a project quietly slips. The calculator exists to make the gap obvious before you commit to a date.</p>
+
+          <p>The other thing calendar-day arithmetic hides is unequal months. February and August both have public holidays attached at the end (in much of Europe at least), so even if a six-week project always reads as 42 calendar days, the working-day count varies by where in the year you start. Sliding the same plan from May to July can quietly cost you three working days if a couple of bank holidays land inside the new window.</p>
+
+          <h2>Who this is for</h2>
+          <p>Project managers running internal stand-ups, freelancers committing to a delivery date, students working backwards from an essay deadline, contractors estimating a job, anyone who keeps getting blindsided by a bank holiday. The maths is not complicated, but doing it in your head while you are on a call is fiddly. Pasting a list of dates and tweaking a checkbox is faster and harder to get wrong.</p>
+
+          <h2>How the working-day rule is applied</h2>
+          <p>Walk forward one day at a time, starting the day after the start date and finishing on the deadline. For each day, ask two questions. Is this weekday in the set the user ticked? And is this date in the holidays list? A day counts only if the answer to the first is yes and the answer to the second is no. The start day is excluded so that "today is the deadline" reads as zero working days remaining, which is what most people mean by it. The deadline day is included, because if your work is due by close of business on Friday, you probably do mean to work on Friday.</p>
+
+          <p>Holidays that fall on a weekend, or on a weekday you have not ticked, are ignored. They cannot subtract a working day from the count because the day was never going to be a working day in the first place. This is the most common quiet bug in homemade spreadsheets that try to do the same thing: a list of UK bank holidays that double-counts the substitute days.</p>
+
+          <h2>Common mistakes</h2>
+          <p>The biggest mistake is forgetting to add holidays at all. The calendar-vs-working gap people remember is weekends, but a year with eight bank holidays plus annual leave loses you nearly four working weeks on top of the two weekends a month. If a project plan was costed on calendar days, the real working budget is significantly tighter than it looks.</p>
+
+          <p>The second common mistake is mixing up date formats. UK readers write 03/04/2026 and mean 3 April. US readers write 03/04/2026 and mean 4 March. The calculator uses DD/MM/YYYY for the slash format because that is the British convention this site is written in, and accepts the unambiguous YYYY-MM-DD as the alternative. If you are sharing a list with collaborators in another country, paste the ISO format and avoid the argument.</p>
+
+          <p>Third, watch for stretched weeks at the start and end of a project. A "two-month" project starting on the last working day of a month and ending on the first working day of the month two months later contains roughly 41 working days, not 44. The calculator handles this fine, but it is the sort of thing that catches you out if you mentally round to four weeks per month.</p>
+
+          <h2>Working days, business days, trading days</h2>
+          <p>For project planning these terms are mostly interchangeable, but it is worth knowing the distinction. Working days and business days both refer to the days a normal office is open: weekdays minus public holidays. Trading days are a financial-markets concept and refer to the days a particular exchange is open, which can differ from public holidays (Good Friday is a market holiday in the US even though it is not a federal holiday, and individual markets observe their own anniversaries). If you are working with a finance team, ask which one they mean before you assume.</p>
+
+          <h2>Edge cases</h2>
+          <p>If you set the start date and the deadline to the same date, the count is zero working days. If you set the deadline before the start, the calculator reports the gap as a negative number, with the wording flipped to "deadline was X working days ago". If you untick every day of the week, the working-day total is zero by definition and the calculator says so rather than dividing by anything. A holiday on the deadline itself is excluded, so a project due on Christmas Day with Christmas Day in the holidays list comes out one working day shorter than the same project due on Christmas Eve.</p>
+
+          <h2>Related calculators</h2>
+          <ul class="related-calculators">
+            <li><a href="/calculators/productivity/">All productivity calculators</a></li>
+            <li><a href="/calculators/productivity/time-card-calculator/">Time Card Calculator</a></li>
+            <li><a href="/calculators/fun/date-difference-calculator/">Date Difference Calculator</a></li>
+            <li><a href="/calculators/productivity/pomodoro-session-planner/">Pomodoro Session Planner</a></li>
+          </ul>
+        </section>
+
+        <section class="faq" aria-labelledby="faq-heading">
+          <h2 id="faq-heading">Frequently asked questions</h2>
+          <details>
+            <summary>Why is the working-day count smaller than calendar days?</summary>
+            <p>Working days exclude any day whose weekday you have not ticked, plus any date that appears in your holidays list. Most people leave Monday to Friday ticked and paste in their public holidays, so weekends and bank holidays drop out and the working-day total is roughly five sevenths of the calendar-day total, minus a few for holidays. The calculator shows both numbers so you can see the gap and plan against the one that matters.</p>
+          </details>
+          <details>
+            <summary>What date formats does the holidays box accept?</summary>
+            <p>One date per line, in either YYYY-MM-DD (the ISO format, like 2026-04-03) or DD/MM/YYYY (the UK convention, like 03/04/2026). Lines that do not parse as dates are listed in the prove-it panel so you can fix typos. Blank lines are ignored, and duplicates are deduped.</p>
+          </details>
+          <details>
+            <summary>Are time zones a problem if I am working with a remote team?</summary>
+            <p>Not for this calculator. Every date is treated as a local calendar date with no time component, so 30 April is 30 April regardless of where you sit. The standard browser-date trap, where 2026-04-30 silently parses as 2026-05-01 in some time zones, is avoided by constructing the date with explicit year, month and day in the user's local zone.</p>
+          </details>
+          <details>
+            <summary>Can I save the result?</summary>
+            <p>There is no account or saved-state feature. Use the bookmark prompt at the bottom of the calculator to keep the page handy, screenshot the result panel, or copy the summary line into your project notes. Everything happens in your browser and nothing is uploaded.</p>
+          </details>
+          <details>
+            <summary>What is the difference between working days, business days and trading days?</summary>
+            <p>Working days and business days are usually used interchangeably and mean the days a normal office is open, typically Monday to Friday minus public holidays. Trading days are specific to financial markets and exclude additional days when an exchange is closed (some half-day closures, market holidays that are not public holidays, and so on). For ordinary project planning, working days is what you want, and that is what this calculator gives you.</p>
+          </details>
+        </section>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="ad-slot" data-ad-slot="sidebar" aria-hidden="true"></div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="site-footer-nav" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/calculators/">All calculators</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+
+      <section class="site-disclaimer" data-disclaimer aria-labelledby="disclaimer-heading">
+        <h2 id="disclaimer-heading">A quick, necessary word</h2>
+        <p>Every calculator on this site is built to give you a sensible, well-reasoned estimate. It is, however, exactly that: an estimate, for general information only. Nothing you see here is professional, legal, financial, medical, or tax advice, and it should not be treated as such.</p>
+        <p>Before you make a decision that actually matters, talk to a qualified professional who knows your specific situation: an accountant, a solicitor, a doctor, an IT consultant, whoever fits the question. They can factor in the bits a generic tool can't.</p>
+        <p>We take no liability and accept no responsibility for any loss, damage, or questionable life choice arising from acting on the numbers you see here. Use the results as a starting point for a better conversation, not as the final word.</p>
+        <p><strong>Affiliate disclosure:</strong> some links on this site are affiliate links. If you click through and buy or sign up for something, we may earn a small commission at no extra cost to you. It helps keep the calculators free and ad-light. We only recommend things we'd point a friend towards.</p>
+      </section>
+      <p class="site-copyright">&copy; 2026 WebCaretakers. All rights reserved.</p>
+      <p class="site-legal">WebCaretakers is a trading name of <a href="https://yeseo.io/" rel="noopener">Andrew Laws Associates Ltd</a>, registered in England and Wales (company no. 08602332). ICO registration ZA726704.</p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/calculators/project-deadline-countdown-calculator.js"></script>
+  <script src="/assets/js/calculators/project-deadline-countdown-calculator.page.js"></script>
+  <script>
+    (function () {
+      var shortcutEl = document.querySelector('[data-bookmark-shortcut]');
+      if (shortcutEl) {
+        var isMac = /Mac|iPhone|iPad|iPod/i.test(navigator.platform || navigator.userAgent);
+        shortcutEl.textContent = isMac ? '\u2318' : 'Ctrl';
+      }
+    })();
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>
