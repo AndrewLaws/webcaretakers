@@ -7,6 +7,18 @@
   ],
   "links": [
     {
+      "phrase": "Standard Deviation Calculator",
+      "url": "/calculators/math/standard-deviation-calculator/"
+    },
+    {
+      "phrase": "sample standard deviation",
+      "url": "/calculators/math/standard-deviation-calculator/"
+    },
+    {
+      "phrase": "variance calculator",
+      "url": "/calculators/math/standard-deviation-calculator/"
+    },
+    {
       "phrase": "Time Zone Converter",
       "url": "/calculators/conversions/time-zone-converter/"
     },
@@ -613,6 +625,30 @@
     {
       "phrase": "house moving costs UK",
       "url": "/calculators/property/uk-house-move-cost-calculator/"
+    },
+    {
+      "phrase": "Robots.txt Tester",
+      "url": "/calculators/seo/robots-txt-tester/"
+    },
+    {
+      "phrase": "robots.txt checker",
+      "url": "/calculators/seo/robots-txt-tester/"
+    },
+    {
+      "phrase": "test robots.txt",
+      "url": "/calculators/seo/robots-txt-tester/"
+    },
+    {
+      "phrase": "Roman Numeral Converter",
+      "url": "/calculators/conversions/roman-numeral-converter/"
+    },
+    {
+      "phrase": "roman numerals to numbers",
+      "url": "/calculators/conversions/roman-numeral-converter/"
+    },
+    {
+      "phrase": "convert roman numerals",
+      "url": "/calculators/conversions/roman-numeral-converter/"
     }
   ]
 }

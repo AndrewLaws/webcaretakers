@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Standard Deviation Calculator | WebCaretakers</title>
+  <meta name="description" content="Paste a list of numbers and get count, mean, median, range, variance and standard deviation, sample and population, with the working shown step by step.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/math/standard-deviation-calculator/">
+  <meta property="og:title" content="Standard Deviation Calculator | WebCaretakers">
+  <meta property="og:description" content="Paste a list of numbers, get the full descriptive-stats summary including sample and population standard deviation, with the maths shown.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/math/standard-deviation-calculator/">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var _stored = null;
+    try { _stored = localStorage.getItem('cookie-consent'); } catch (e) {}
+    var _initial = _stored === 'granted' ? 'granted' : 'denied';
+    gtag('consent', 'default', {
+      ad_storage: _initial, analytics_storage: _initial,
+      ad_user_data: _initial, ad_personalization: _initial,
+      functionality_storage: 'granted', security_storage: 'granted',
+      wait_for_update: 500
+    });
+  </script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Standard Deviation Calculator",
+    "url": "https://webcaretakers.com/calculators/math/standard-deviation-calculator/",
+    "applicationCategory": "EducationalApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "author": {
+      "@type": "Person",
+      "name": "Andrew Laws",
+      "url": "https://yeseo.io/"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Should I use sample or population standard deviation?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Use sample standard deviation (s, divide by n − 1) when your numbers are a sample drawn from a larger population and you want to estimate the spread of that population. Use population standard deviation (σ, divide by n) only when your numbers are the entire population, every member of it, with nobody left out. In practice, almost every real dataset is a sample, so s is the right default unless you can prove otherwise. The difference between the two shrinks as n grows, but at small sample sizes (n under 30) it matters." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is Bessel's correction and why divide by n − 1?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Bessel's correction is the n − 1 in the denominator of the sample variance formula. The sample mean is itself estimated from the data, which means the deviations from it are slightly smaller, on average, than deviations from the true population mean. Dividing by n instead of n − 1 would underestimate the variance. Subtracting one degree of freedom corrects for the fact that you used the data to estimate the mean before computing the spread." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does this calculator send my numbers anywhere?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. Everything runs in your browser using vanilla JavaScript. The numbers you paste never leave your device. You can disconnect from the network and the calculator still works." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does this give a different answer to my old calculator?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Almost always it is because one calculator returned sample SD (s, n − 1 denominator) and the other returned population SD (σ, n denominator). This page shows both side by side so you can match whichever number the source you are checking against used. If the difference is in the last decimal places only, that is normal floating-point variation between implementations." }
+      },
+      {
+        "@type": "Question",
+        "name": "What delimiters can I use to separate numbers?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Commas, spaces, tabs, semicolons, and newlines are all accepted, mixed freely. Paste a column from a spreadsheet, a comma-separated list from a report, or a space-separated row from a paper. Anything that is not a valid number is reported back to you so you can fix the typo without losing your place." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-banner-heading" aria-describedby="cookie-banner-text" hidden>
+    <div class="cookie-banner__inner">
+      <h2 id="cookie-banner-heading" class="cookie-banner__heading">A quick word about cookies</h2>
+      <p id="cookie-banner-text" class="cookie-banner__text">
+        We use cookies for analytics, so we can see which calculators people actually use and which ones need work. Nothing creepy, nothing sold on. You can say yes, say no, or read the <a href="/privacy/">privacy policy</a> first. Your choice sticks.
+      </p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-reject>Reject</button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>Accept</button>
+      </div>
+    </div>
+  </div>
+
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">WebCaretakers</a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <ul class="primary-nav__list">
+          <li class="primary-nav__item primary-nav__item--has-menu">
+            <button type="button" class="primary-nav__link" data-menu-toggle aria-haspopup="true" aria-expanded="false">Calculators <span class="primary-nav__caret" aria-hidden="true">&#9662;</span></button>
+            <ul class="primary-nav__submenu">
+              <li><a href="/calculators/ai/">AI</a></li>
+              <li><a href="/calculators/broadband/">Broadband</a></li>
+              <li><a href="/calculators/business/">Business</a></li>
+              <li><a href="/calculators/conversions/">Conversions</a></li>
+              <li><a href="/calculators/cybersecurity/">Cybersecurity</a></li>
+              <li><a href="/calculators/finance/">Finance</a></li>
+              <li><a href="/calculators/fun/">Fun</a></li>
+              <li><a href="/calculators/health/">Health</a></li>
+              <li><a href="/calculators/images/">Images</a></li>
+              <li><a href="/calculators/math/">Math</a></li>
+              <li><a href="/calculators/productivity/">Productivity</a></li>
+              <li><a href="/calculators/property/">Property</a></li>
+              <li><a href="/calculators/seo/">SEO</a></li>
+              <li><a href="/calculators/wedding/">Wedding</a></li>
+              <li><a href="/calculators/writing/">Writing</a></li>
+              <li class="primary-nav__submenu-sep"><a href="/calculators/">See all calculators</a></li>
+            </ul>
+          </li>
+          <li class="primary-nav__item"><a href="/about/" class="primary-nav__link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <main id="main-content">
+      <div class="container">
+        <nav aria-label="Breadcrumb" class="breadcrumbs">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/calculators/">Calculators</a></li>
+            <li><a href="/calculators/math/">Math</a></li>
+            <li aria-current="page">Standard Deviation Calculator</li>
+          </ol>
+        </nav>
+
+        <h1>Standard Deviation Calculator</h1>
+        <p class="intro">Paste or type a list of numbers and get the full descriptive-stats summary: count, sum, mean, median, min, max, range, variance and standard deviation. Sample and population versions are shown side by side, with the working laid out so you can audit every step.</p>
+
+        <section class="eli5" aria-label="Plain-English explanation">
+          <h2>Explain like I'm 5 (what even is this calculator?)</h2>
+          <p>Standard deviation is one number that tells you how spread out a list of numbers is. A small standard deviation means the numbers are bunched together near the average. A large one means they are scattered. This page takes your numbers, works out the average, then measures how far each number sits from that average, and gives you a single tidy answer for the spread.</p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="in-content" aria-hidden="true"></div>
+
+        <section data-calculator class="calculator-card">
+          <h2>Calculate</h2>
+          <p class="reassure"><strong>Browser-only.</strong> The numbers you paste are processed in your browser. Nothing is uploaded.</p>
+
+          <form id="sd-form" class="calc-form" novalidate>
+            <div class="calc-row">
+              <label for="sd-input">Your numbers</label>
+              <textarea id="sd-input" data-sd-input rows="6" placeholder="Paste or type numbers separated by commas, spaces, tabs, semicolons or newlines. For example: 2, 4, 4, 4, 5, 5, 7, 9"></textarea>
+              <p class="calc-row__hint">Mix delimiters freely. Pasting a column from a spreadsheet works.</p>
+            </div>
+
+            <fieldset class="calc-row">
+              <legend>Treat the numbers as</legend>
+              <label><input type="radio" name="sd-mode" value="sample" data-sd-mode checked> A sample (use n &minus; 1, gives s)</label>
+              <label><input type="radio" name="sd-mode" value="population" data-sd-mode> The whole population (use n, gives &sigma;)</label>
+              <p class="calc-row__hint">Sample is the right default unless your numbers are every member of the group with no exceptions. Both values are shown either way; this toggle only changes which is highlighted.</p>
+            </fieldset>
+
+            <button type="submit" data-calculate>Calculate</button>
+          </form>
+
+          <div data-calculator-results class="calculator-results">
+            <p class="result-display" data-result>Paste some numbers and press Calculate.</p>
+            <div data-stats-grid class="stats-grid" hidden></div>
+            <div data-histogram class="histogram" hidden>
+              <h3>Distribution</h3>
+              <div data-histogram-body></div>
+            </div>
+
+            <details class="prove-it" data-prove-it>
+              <summary>Prove it</summary>
+              <div data-prove-it-body></div>
+              <p class="prove-it-source">Method: Welford's online algorithm for the running mean and the sum of squared deviations (M2). Population variance &sigma;&sup2; = M2 / n; sample variance s&sup2; = M2 / (n &minus; 1). Standard deviation is the square root of variance. Welford's avoids the precision loss that hits a naive Σx&sup2; − (Σx)&sup2;/n implementation when values are large and close together.</p>
+            </details>
+          </div>
+
+          <p class="bookmark-nudge">
+            Useful? Save this calculator: press <kbd data-bookmark-shortcut>Ctrl</kbd> + <kbd>D</kbd> to bookmark it.
+          </p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="below-results" aria-hidden="true"></div>
+
+        <section class="long-form">
+          <h2>What standard deviation actually tells you</h2>
+          <p>The mean tells you where the centre of a dataset sits. The standard deviation tells you how tightly the rest of the data hugs that centre. Two groups can share the same mean and look completely different: a class where every pupil scored 70 has the same average as a class where half scored 50 and half scored 90, but the spread is wildly different. Standard deviation is the single number that captures that difference.</p>
+          <p>Mathematically it is the square root of the variance, which is itself the average squared distance of each data point from the mean. The squaring matters: it stops positive and negative deviations cancelling out, and it punishes outliers more than small wobbles. The square root at the end brings you back to the original units, so a standard deviation on test marks is itself a number of marks, not a number of marks-squared.</p>
+
+          <h2>Sample versus population: the part most people get wrong</h2>
+          <p>This is the bit that catches people out, and it is worth being explicit about. Population standard deviation, written as &sigma; (sigma), divides the sum of squared deviations by n. Sample standard deviation, written as s, divides by n &minus; 1. The substitution of n &minus; 1 for n is called <strong>Bessel's correction</strong>, and there is a real reason for it.</p>
+          <p>When you compute a standard deviation, you need a mean to compare against. If your numbers are the entire population, you can compute the true mean and the true spread directly: divide by n. But if your numbers are a sample, the mean you have is itself an estimate from the data, and that estimate is, by construction, the value that minimises the sum of squared deviations for the sample. Using it as your reference mean makes the deviations slightly too small. To correct for that, you divide by n &minus; 1 instead. The result is an unbiased estimate of the population variance.</p>
+          <p>The practical rule is simple. If your data is every member of the group, with no one left out, that is a population: use &sigma;. Heights of every player on a single football team is a population if you only care about that team. If your data is a sample drawn from a larger group you cannot fully measure, that is a sample: use s. Heights of 30 randomly chosen Year 9 pupils, used to estimate the spread of all Year 9 pupils in the country, is a sample. Almost every real-world analysis is the second case, which is why s is the sensible default unless you can prove otherwise.</p>
+
+          <h2>Common mistakes the calculator helps you avoid</h2>
+          <p><strong>Picking the wrong divisor.</strong> Old textbooks, and some basic calculators, only show population SD. If you are doing real statistical work on a sample, that result is biased low. This page always shows both, so you can see the size of the gap and pick the right one for the job.</p>
+          <p><strong>Forgetting to square root the variance.</strong> Variance is in squared units, which makes it useless for talking about spread in plain English. The standard deviation is the square root of the variance, and that is the number you usually want to report.</p>
+          <p><strong>Treating SD as a confidence interval.</strong> Standard deviation describes spread, not certainty. The standard error (SD divided by the square root of n) is a different thing, and confidence intervals are a third thing again. They are related, but not interchangeable.</p>
+          <p><strong>Computing it the naive way on large numbers.</strong> If you have ever seen a stats library return a tiny negative variance and crash on the square root, this is why. The textbook formula &Sigma;x&sup2; &minus; (&Sigma;x)&sup2;/n loses catastrophic precision when the values are big and similar. This page uses Welford's online algorithm, which sidesteps the problem by updating a running mean and a running sum of squared deviations one value at a time. Test it with [1,000,000,000, 1,000,000,001, 1,000,000,002] if you want to see the difference.</p>
+
+          <h2>Edge cases worth knowing about</h2>
+          <p>One value: the population SD is zero, because there is no spread. The sample SD is undefined, because the n &minus; 1 in the denominator becomes zero. The page returns the population value and a clear note for the sample.</p>
+          <p>All identical values: both SDs are zero. There is no variation, so there is nothing to measure.</p>
+          <p>Two values: the sample SD is defined and equal to the absolute difference divided by the square root of two. The population SD is half the absolute difference. Both make intuitive sense once you write the maths out.</p>
+          <p>Negative numbers, decimals, and scientific notation are all accepted. The calculator does not assume your data is positive or whole. If a token in your input is not a valid number, it is reported back to you so you can fix it without losing the rest of the list.</p>
+
+          <h2>Related calculators</h2>
+          <p>Other quick maths tools that pair well with this one.</p>
+          <ul class="related-calculators">
+            <li><a href="/calculators/math/percentage-calculator/">Percentage Calculator</a> for the same numbers expressed as a percent</li>
+            <li><a href="/calculators/math/fraction-calculator/">Fraction Calculator</a> for exact-fraction arithmetic</li>
+            <li><a href="/calculators/math/">All math calculators</a></li>
+            <li><a href="/calculators/writing/word-count/">Word Count Tool</a> for descriptive stats on text</li>
+          </ul>
+        </section>
+
+        <section class="faq" aria-labelledby="faq-heading">
+          <h2 id="faq-heading">Frequently asked questions</h2>
+          <details>
+            <summary>Should I use sample or population standard deviation?</summary>
+            <p>Use sample standard deviation (s, divide by n &minus; 1) when your numbers are a sample drawn from a larger population and you want to estimate the spread of that population. Use population standard deviation (&sigma;, divide by n) only when your numbers are the entire population, every member of it, with nobody left out. In practice, almost every real dataset is a sample, so s is the right default unless you can prove otherwise. The difference between the two shrinks as n grows, but at small sample sizes (n under 30) it matters.</p>
+          </details>
+          <details>
+            <summary>What is Bessel's correction and why divide by n &minus; 1?</summary>
+            <p>Bessel's correction is the n &minus; 1 in the denominator of the sample variance formula. The sample mean is itself estimated from the data, which means the deviations from it are slightly smaller, on average, than deviations from the true population mean. Dividing by n instead of n &minus; 1 would underestimate the variance. Subtracting one degree of freedom corrects for the fact that you used the data to estimate the mean before computing the spread.</p>
+          </details>
+          <details>
+            <summary>Does this calculator send my numbers anywhere?</summary>
+            <p>No. Everything runs in your browser using vanilla JavaScript. The numbers you paste never leave your device. You can disconnect from the network and the calculator still works.</p>
+          </details>
+          <details>
+            <summary>Why does this give a different answer to my old calculator?</summary>
+            <p>Almost always it is because one calculator returned sample SD (s, n &minus; 1 denominator) and the other returned population SD (&sigma;, n denominator). This page shows both side by side so you can match whichever number the source you are checking against used. If the difference is in the last decimal places only, that is normal floating-point variation between implementations.</p>
+          </details>
+          <details>
+            <summary>What delimiters can I use to separate numbers?</summary>
+            <p>Commas, spaces, tabs, semicolons, and newlines are all accepted, mixed freely. Paste a column from a spreadsheet, a comma-separated list from a report, or a space-separated row from a paper. Anything that is not a valid number is reported back to you so you can fix the typo without losing your place.</p>
+          </details>
+        </section>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="ad-slot" data-ad-slot="sidebar" aria-hidden="true"></div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="site-footer-nav" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/calculators/">All calculators</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+
+      <section class="site-disclaimer" data-disclaimer aria-labelledby="disclaimer-heading">
+        <h2 id="disclaimer-heading">A quick, necessary word</h2>
+        <p>Every calculator on this site is built to give you a sensible, well-reasoned estimate. It is, however, exactly that: an estimate, for general information only. Nothing you see here is professional, legal, financial, medical, or tax advice, and it should not be treated as such.</p>
+        <p>Before you make a decision that actually matters, talk to a qualified professional who knows your specific situation: an accountant, a solicitor, a doctor, an IT consultant, whoever fits the question. They can factor in the bits a generic tool can't.</p>
+        <p>We take no liability and accept no responsibility for any loss, damage, or questionable life choice arising from acting on the numbers you see here. Use the results as a starting point for a better conversation, not as the final word.</p>
+        <p><strong>Affiliate disclosure:</strong> some links on this site are affiliate links. If you click through and buy or sign up for something, we may earn a small commission at no extra cost to you. It helps keep the calculators free and ad-light. We only recommend things we'd point a friend towards.</p>
+      </section>
+      <p class="site-copyright">&copy; 2026 WebCaretakers. All rights reserved.</p>
+      <p class="site-legal">WebCaretakers is a trading name of <a href="https://yeseo.io/" rel="noopener">Andrew Laws Associates Ltd</a>, registered in England and Wales (company no. 08602332). ICO registration ZA726704.</p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/calculators/standard-deviation-calculator.js"></script>
+  <script>
+    (function () {
+      'use strict';
+      var shortcutEl = document.querySelector('[data-bookmark-shortcut]');
+      if (shortcutEl) {
+        var isMac = /Mac|iPhone|iPad|iPod/i.test(navigator.platform || navigator.userAgent);
+        shortcutEl.textContent = isMac ? '\u2318' : 'Ctrl';
+      }
+
+      var form = document.getElementById('sd-form');
+      if (!form) return;
+      var input = form.querySelector('[data-sd-input]');
+      var modeRadios = form.querySelectorAll('[data-sd-mode]');
+      var resultEl = document.querySelector('[data-result]');
+      var statsGrid = document.querySelector('[data-stats-grid]');
+      var histogramEl = document.querySelector('[data-histogram]');
+      var histogramBody = document.querySelector('[data-histogram-body]');
+      var proveBody = document.querySelector('[data-prove-it-body]');
+      var proveDetails = document.querySelector('[data-prove-it]');
+
+      function pushInteraction(field) {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: 'calculator_interaction',
+          calculator_name: 'Standard Deviation Calculator',
+          field: field
+        });
+      }
+
+      input.addEventListener('input', function () { pushInteraction('numbers'); });
+      modeRadios.forEach(function (r) {
+        r.addEventListener('change', function () { pushInteraction('mode'); });
+      });
+
+      if (proveDetails) {
+        proveDetails.addEventListener('toggle', function () {
+          if (proveDetails.open) {
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+              event: 'prove_it',
+              calculator_name: 'Standard Deviation Calculator'
+            });
+          }
+        });
+      }
+
+      function fmt(n, places) {
+        if (n === null || n === undefined) return 'undefined';
+        if (!Number.isFinite(n)) return String(n);
+        if (Number.isInteger(n) && Math.abs(n) < 1e15) return String(n);
+        var p = places === undefined ? 6 : places;
+        var rounded = Number(n.toFixed(p));
+        return String(rounded);
+      }
+
+      function getMode() {
+        var checked = form.querySelector('[data-sd-mode]:checked');
+        return checked ? checked.value : 'sample';
+      }
+
+      function renderStatsGrid(s, mode) {
+        var sampleHL = mode === 'sample' ? ' stats-grid__row--highlight' : '';
+        var popHL = mode === 'population' ? ' stats-grid__row--highlight' : '';
+        var sampleSDStr = s.sampleStdDev === null
+          ? 'undefined (need at least 2 values)'
+          : fmt(s.sampleStdDev);
+        var sampleVarStr = s.sampleVariance === null
+          ? 'undefined (need at least 2 values)'
+          : fmt(s.sampleVariance);
+        var rows = [
+          ['Count (n)', s.n],
+          ['Sum', fmt(s.sum)],
+          ['Mean (x\u0304)', fmt(s.mean)],
+          ['Median', fmt(s.median)],
+          ['Min', fmt(s.min)],
+          ['Max', fmt(s.max)],
+          ['Range', fmt(s.range)],
+          ['Sum of squared deviations', fmt(s.sumSquaredDeviations)],
+        ];
+        var html = '<dl>';
+        for (var i = 0; i < rows.length; i++) {
+          html += '<div class="stats-grid__row"><dt>' + rows[i][0] + '</dt><dd>' + rows[i][1] + '</dd></div>';
+        }
+        html += '<div class="stats-grid__row' + popHL + '"><dt>Population variance (\u03c3\u00b2)</dt><dd>' + fmt(s.populationVariance) + '</dd></div>';
+        html += '<div class="stats-grid__row' + popHL + '"><dt>Population SD (\u03c3)</dt><dd><strong>' + fmt(s.populationStdDev) + '</strong></dd></div>';
+        html += '<div class="stats-grid__row' + sampleHL + '"><dt>Sample variance (s\u00b2)</dt><dd>' + sampleVarStr + '</dd></div>';
+        html += '<div class="stats-grid__row' + sampleHL + '"><dt>Sample SD (s)</dt><dd><strong>' + sampleSDStr + '</strong></dd></div>';
+        html += '</dl>';
+        statsGrid.innerHTML = html;
+      }
+
+      function renderHistogram(values) {
+        var bins = window.StdDevCalc.histogramBins(values, 10);
+        if (bins.length === 0) {
+          histogramEl.hidden = true;
+          histogramBody.innerHTML = '';
+          return;
+        }
+        var maxCount = 0;
+        for (var i = 0; i < bins.length; i++) {
+          if (bins[i].count > maxCount) maxCount = bins[i].count;
+        }
+        var html = '<ul class="histogram__bars">';
+        for (var j = 0; j < bins.length; j++) {
+          var pct = maxCount === 0 ? 0 : (bins[j].count / maxCount) * 100;
+          var label = fmt(bins[j].from, 3) + ' to ' + fmt(bins[j].to, 3);
+          html += '<li class="histogram__bar">'
+            + '<span class="histogram__label">' + label + '</span>'
+            + '<span class="histogram__track"><span class="histogram__fill" style="width:' + pct.toFixed(1) + '%"></span></span>'
+            + '<span class="histogram__count">' + bins[j].count + '</span>'
+            + '</li>';
+        }
+        html += '</ul>';
+        histogramBody.innerHTML = html;
+        histogramEl.hidden = false;
+      }
+
+      function renderProveIt(values, s, mode) {
+        if (s.n === 0) { proveBody.innerHTML = ''; return; }
+        var rows = window.StdDevCalc.deviationTable(values, s.mean, 10);
+        var html = '<ul class="prove-it-steps">';
+        html += '<li><span>Step 1: count</span><strong>n = ' + s.n + '</strong></li>';
+        html += '<li><span>Step 2: mean</span><strong>x\u0304 = sum / n = ' + fmt(s.sum) + ' / ' + s.n + ' = ' + fmt(s.mean) + '</strong></li>';
+        html += '</ul>';
+
+        html += '<p><strong>Step 3:</strong> deviations from the mean (first ' + rows.length + ' value' + (rows.length === 1 ? '' : 's') + (values.length > rows.length ? ' of ' + values.length : '') + '):</p>';
+        html += '<table class="prove-it-table"><thead><tr><th>i</th><th>x<sub>i</sub></th><th>x<sub>i</sub> &minus; x\u0304</th><th>(x<sub>i</sub> &minus; x\u0304)\u00b2</th></tr></thead><tbody>';
+        for (var i = 0; i < rows.length; i++) {
+          html += '<tr><td>' + rows[i].index + '</td><td>' + fmt(rows[i].value) + '</td><td>' + fmt(rows[i].deviation) + '</td><td>' + fmt(rows[i].squared) + '</td></tr>';
+        }
+        html += '</tbody></table>';
+        if (values.length > rows.length) {
+          html += '<p class="prove-it-note">Showing the first ' + rows.length + ' rows. The sum below is across all ' + values.length + ' values.</p>';
+        }
+
+        html += '<ul class="prove-it-steps">';
+        html += '<li><span>Step 4: sum of squared deviations</span><strong>&Sigma;(x<sub>i</sub> &minus; x\u0304)\u00b2 = ' + fmt(s.sumSquaredDeviations) + '</strong></li>';
+        if (mode === 'population') {
+          html += '<li><span>Step 5: population variance</span><strong>&sigma;\u00b2 = ' + fmt(s.sumSquaredDeviations) + ' / ' + s.n + ' = ' + fmt(s.populationVariance) + '</strong></li>';
+          html += '<li><span>Step 6: population standard deviation</span><strong>&sigma; = &radic;' + fmt(s.populationVariance) + ' = ' + fmt(s.populationStdDev) + '</strong></li>';
+          html += '<li><span>Formula used</span><strong>Population: divide by n.</strong></li>';
+        } else {
+          if (s.sampleVariance === null) {
+            html += '<li><span>Step 5: sample variance</span><strong>undefined: n = 1, so n &minus; 1 = 0 (cannot divide by zero)</strong></li>';
+            html += '<li><span>Step 6: sample standard deviation</span><strong>undefined for n = 1. Population SD is shown instead, which is 0 because a single value has no spread.</strong></li>';
+          } else {
+            html += '<li><span>Step 5: sample variance</span><strong>s\u00b2 = ' + fmt(s.sumSquaredDeviations) + ' / (' + s.n + ' &minus; 1) = ' + fmt(s.sumSquaredDeviations) + ' / ' + (s.n - 1) + ' = ' + fmt(s.sampleVariance) + '</strong></li>';
+            html += '<li><span>Step 6: sample standard deviation</span><strong>s = &radic;' + fmt(s.sampleVariance) + ' = ' + fmt(s.sampleStdDev) + '</strong></li>';
+          }
+          html += '<li><span>Formula used</span><strong>Sample: divide by n &minus; 1 (Bessel\'s correction).</strong></li>';
+        }
+        html += '</ul>';
+        proveBody.innerHTML = html;
+      }
+
+      function calculateAndRender() {
+        var raw = input.value;
+        var parsed = window.StdDevCalc.parseNumbers(raw);
+        var values = parsed.values;
+        var mode = getMode();
+
+        if (values.length === 0) {
+          resultEl.textContent = 'Paste at least one number and press Calculate.';
+          statsGrid.hidden = true;
+          histogramEl.hidden = true;
+          proveBody.innerHTML = '';
+          return;
+        }
+
+        var s = window.StdDevCalc.summarise(values);
+        var headline;
+        if (mode === 'sample') {
+          if (s.sampleStdDev === null) {
+            headline = 'n = 1: sample SD is undefined. Population SD is 0 because a single value has no spread.';
+          } else {
+            headline = 'Sample standard deviation s = ' + fmt(s.sampleStdDev) + ' across ' + s.n + ' values, mean ' + fmt(s.mean) + '.';
+          }
+        } else {
+          headline = 'Population standard deviation \u03c3 = ' + fmt(s.populationStdDev) + ' across ' + s.n + ' values, mean ' + fmt(s.mean) + '.';
+        }
+        if (parsed.invalid.length > 0) {
+          headline += ' Ignored ' + parsed.invalid.length + ' non-numeric token' + (parsed.invalid.length === 1 ? '' : 's') + ': ' + parsed.invalid.slice(0, 5).join(', ') + (parsed.invalid.length > 5 ? '…' : '') + '.';
+        }
+        resultEl.textContent = headline;
+
+        statsGrid.hidden = false;
+        renderStatsGrid(s, mode);
+        renderHistogram(values);
+        renderProveIt(values, s, mode);
+
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: 'calculator_result',
+          calculator_name: 'Standard Deviation Calculator',
+          calculator_mode: mode,
+          n: s.n,
+          mean: s.mean,
+          sample_sd: s.sampleStdDev,
+          population_sd: s.populationStdDev
+        });
+      }
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        calculateAndRender();
+      });
+    })();
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

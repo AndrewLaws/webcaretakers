@@ -119,6 +119,13 @@
     "category": "Math"
   },
   {
+    "type": "tool",
+    "name": "Standard Deviation Calculator",
+    "summary": "Paste a list of numbers and get count, mean, median, range, variance and standard deviation, sample and population, with the working shown step by step.",
+    "url": "/calculators/math/standard-deviation-calculator/",
+    "category": "Math"
+  },
+  {
     "type": "category",
     "name": "Images calculators",
     "summary": "Resize, convert and inspect photos without uploading them anywhere.",
@@ -151,6 +158,13 @@
     "name": "Time Zone Converter",
     "summary": "Convert a date and time between IANA time zones. Pick a source, add as many target zones as you need, see day-of-week, local time and UTC offset for each. DST handled by your OS, browser-only.",
     "url": "/calculators/conversions/time-zone-converter/",
+    "category": "Conversions"
+  },
+  {
+    "type": "tool",
+    "name": "Roman Numeral Converter",
+    "summary": "Convert between numbers and Roman numerals in either direction. Range 1 to 3,999, lowercase normalised, malformed numerals like IIII or VV flagged with the canonical form. Working shown.",
+    "url": "/calculators/conversions/roman-numeral-converter/",
     "category": "Conversions"
   },
   {
@@ -431,6 +445,13 @@
     "name": "Keyword Density Calculator",
     "summary": "Paste an article or page and see word counts plus 1-, 2- and 3-gram keyword density tables. Optional stop-word filter, runs in your browser.",
     "url": "/calculators/seo/keyword-density-calculator/",
+    "category": "SEO"
+  },
+  {
+    "type": "tool",
+    "name": "Robots.txt Tester",
+    "summary": "Paste a robots.txt and check whether a URL is allowed or blocked for any user-agent. Follows Google's spec, shows the winning rule.",
+    "url": "/calculators/seo/robots-txt-tester/",
     "category": "SEO"
   },
   {

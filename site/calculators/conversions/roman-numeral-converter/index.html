@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Roman Numeral Converter | WebCaretakers</title>
+  <meta name="description" content="Convert between numbers and Roman numerals in either direction. Range 1 to 3,999, malformed numerals flagged, every step of the working shown. Browser-only.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/conversions/roman-numeral-converter/">
+  <meta property="og:title" content="Roman Numeral Converter | WebCaretakers">
+  <meta property="og:description" content="Convert between numbers and Roman numerals. Range 1 to 3,999, malformed numerals flagged, every step shown.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/conversions/roman-numeral-converter/">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var _stored = null;
+    try { _stored = localStorage.getItem('cookie-consent'); } catch (e) {}
+    var _initial = _stored === 'granted' ? 'granted' : 'denied';
+    gtag('consent', 'default', {
+      ad_storage: _initial, analytics_storage: _initial,
+      ad_user_data: _initial, ad_personalization: _initial,
+      functionality_storage: 'granted', security_storage: 'granted',
+      wait_for_update: 500
+    });
+  </script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Roman Numeral Converter",
+    "url": "https://webcaretakers.com/calculators/conversions/roman-numeral-converter/",
+    "applicationCategory": "EducationalApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0" },
+    "author": {
+      "@type": "Person",
+      "name": "Andrew Laws",
+      "url": "https://yeseo.io/"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Why does this stop at 3,999?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Standard Roman numerals only have symbols up to M (1,000). The largest value you can write without repeating M four times in a row is MMMCMXCIX, which is 3,999. The Romans extended the system for larger values using a vinculum, an overline that multiplies the symbol by 1,000, so V with a bar over it meant 5,000. Vinculum notation has never settled into a single agreed convention and is rare outside specialist texts, so this converter sticks to the standard 1 to 3,999 range." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why is IIII rejected when clock faces use it?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Standard Roman numerals never repeat the same symbol four times. Four is IV, not IIII. Many traditional clock faces use IIII anyway, partly for visual symmetry against VIII on the opposite side of the dial, and partly because the legend is that Louis XIV preferred it. It is a typographic convention for clocks, not a valid numeral, so the converter flags it as non-standard and offers IV as the canonical form." }
+      },
+      {
+        "@type": "Question",
+        "name": "What about lowercase letters?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Lowercase Roman numerals (i, ii, iv) are common in book front matter and outline numbering. The converter normalises everything to uppercase before parsing, so mcmlxxxiv and MCMLXXXIV both return 1984." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why is IC not 99?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Subtractive pairs in standard Roman numerals are restricted: I can only sit before V or X, X can only sit before L or C, and C can only sit before D or M. So 99 is XCIX (90 + 9), not IC. The converter rejects IC, IL, XM and similar shorthand even though their arithmetic is unambiguous, because they are not part of the agreed system." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-banner-heading" aria-describedby="cookie-banner-text" hidden>
+    <div class="cookie-banner__inner">
+      <h2 id="cookie-banner-heading" class="cookie-banner__heading">A quick word about cookies</h2>
+      <p id="cookie-banner-text" class="cookie-banner__text">
+        We use cookies for analytics, so we can see which calculators people actually use and which ones need work. Nothing creepy, nothing sold on. You can say yes, say no, or read the <a href="/privacy/">privacy policy</a> first. Your choice sticks.
+      </p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-reject>Reject</button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>Accept</button>
+      </div>
+    </div>
+  </div>
+
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">WebCaretakers</a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <ul class="primary-nav__list">
+          <li class="primary-nav__item primary-nav__item--has-menu">
+            <button type="button" class="primary-nav__link" data-menu-toggle aria-haspopup="true" aria-expanded="false">Calculators <span class="primary-nav__caret" aria-hidden="true">▾</span></button>
+            <ul class="primary-nav__submenu">
+              <li><a href="/calculators/ai/">AI</a></li>
+              <li><a href="/calculators/broadband/">Broadband</a></li>
+              <li><a href="/calculators/business/">Business</a></li>
+              <li><a href="/calculators/conversions/">Conversions</a></li>
+              <li><a href="/calculators/cybersecurity/">Cybersecurity</a></li>
+              <li><a href="/calculators/finance/">Finance</a></li>
+              <li><a href="/calculators/fun/">Fun</a></li>
+              <li><a href="/calculators/health/">Health</a></li>
+              <li><a href="/calculators/images/">Images</a></li>
+              <li><a href="/calculators/math/">Math</a></li>
+              <li><a href="/calculators/productivity/">Productivity</a></li>
+              <li><a href="/calculators/property/">Property</a></li>
+              <li><a href="/calculators/seo/">SEO</a></li>
+              <li><a href="/calculators/wedding/">Wedding</a></li>
+              <li><a href="/calculators/writing/">Writing</a></li>
+              <li class="primary-nav__submenu-sep"><a href="/calculators/">See all calculators</a></li>
+            </ul>
+          </li>
+          <li class="primary-nav__item"><a href="/about/" class="primary-nav__link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <main id="main-content">
+      <div class="container">
+        <nav aria-label="Breadcrumb" class="breadcrumbs">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/calculators/">Calculators</a></li>
+            <li><a href="/calculators/conversions/">Conversions</a></li>
+            <li aria-current="page">Roman Numeral Converter</li>
+          </ol>
+        </nav>
+
+        <h1>Roman Numeral Converter</h1>
+        <p class="intro">Convert between regular numbers and Roman numerals in either direction. Range 1 to 3,999. Lowercase is fine. Malformed numerals like IIII or VV are flagged with the canonical form, and the working is shown so you can see how each result was built.</p>
+
+        <section class="eli5" aria-label="Plain-English explanation">
+          <h2>Explain like I'm 5 (what even is this calculator?)</h2>
+          <p>Roman numerals are a way of writing numbers using letters: I is 1, V is 5, X is 10, and so on. Type a number on the left and the Roman numeral appears on the right. Type a Roman numeral on the right and the number appears on the left. The page also shows you how the conversion works, step by step, so you can check the answer rather than just trust it.</p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="in-content" aria-hidden="true"></div>
+
+        <section class="calculator-card">
+          <h2>Convert</h2>
+
+          <form id="roman-form" class="calc-form" novalidate>
+            <div class="calc-row">
+              <label for="rn-number">Number (1 to 3,999)</label>
+              <input type="text" id="rn-number" data-rn-number inputmode="numeric" autocomplete="off" placeholder="e.g. 1984">
+              <p class="calc-row__hint" data-rn-number-error role="status" aria-live="polite"></p>
+            </div>
+
+            <div class="calc-row">
+              <label for="rn-roman">Roman numeral</label>
+              <input type="text" id="rn-roman" data-rn-roman autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="e.g. MCMLXXXIV">
+              <p class="calc-row__hint" data-rn-roman-error role="status" aria-live="polite"></p>
+            </div>
+          </form>
+
+          <div class="hash-rows" aria-live="polite">
+            <div class="hash-row" data-rn-result hidden>
+              <div class="hash-row__head">
+                <h3>Result</h3>
+                <button type="button" class="hash-row__copy" data-rn-copy>Copy</button>
+              </div>
+              <code class="hash-row__value" data-rn-result-value></code>
+              <p class="hash-row__compare" data-rn-result-summary></p>
+            </div>
+          </div>
+
+          <details class="prove-it" data-prove-it>
+            <summary>Prove it (show the working)</summary>
+            <div data-prove-it-body>
+              <p>Enter a value above to see the step-by-step working.</p>
+            </div>
+            <p>Vinculum overlines (V&#x305;, X&#x305;, etc., used historically for values from 5,000 upwards) are intentionally out of scope. There is no single agreed convention and the symbols do not render reliably across fonts.</p>
+          </details>
+
+          <p class="bookmark-nudge">
+            Useful? Save this calculator: press <kbd data-bookmark-shortcut>Ctrl</kbd> + <kbd>D</kbd> to bookmark it.
+          </p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="below-results" aria-hidden="true"></div>
+
+        <section class="long-form">
+          <h2>Where Roman numerals still turn up</h2>
+          <p>The Roman numeral system was the standard way to write numbers in Europe for over a thousand years. Hindu-Arabic digits replaced it for arithmetic during the late Middle Ages because adding XLVII to CXIX is genuinely awful, but Roman numerals never quite went away. They survive wherever the convention is decorative, hierarchical, or carries the weight of formality.</p>
+          <p>The most common everyday sighting is on clock faces. Many traditional dials use I, II, III, IIII, V, VI and so on, with IIII rather than IV in the four o'clock position. Beyond clocks you see Roman numerals on copyright dates at the end of film and television credits (a slightly tedious habit that delays the moment a viewer can spot how old something is), on cornerstones and dedication plaques, and on the front matter of books where the introduction and preface get pages numbered i, ii, iii before the main content starts at page 1.</p>
+          <p>The system is still used to disambiguate regnal names: Elizabeth II, Henry VIII, Louis XIV. Popes use the same convention, John Paul II and Benedict XVI being recent examples. Sports leagues borrow the formality too. The Super Bowl runs on Roman numerals, hence Super Bowl LVIII for the 58th edition. Book and film series number their sequels the same way: Rocky IV, Star Wars Episode IX, Final Fantasy XV.</p>
+
+          <h2>Why the system tops out at 3,999</h2>
+          <p>Standard Roman numerals only have symbols as far as M, which is 1,000. The convention is also that no symbol repeats more than three times in a row, so MMM is 3,000 and MMMM is not allowed. Combine the two rules and the largest value you can build is MMMCMXCIX, which is 3,999. To go higher, the Romans used a vinculum, a horizontal bar drawn over a letter to multiply its value by 1,000. So V with a bar over it meant 5,000, and X with a bar meant 10,000. The notation never settled into a single agreed standard, the bars do not render reliably in modern fonts, and almost nobody encounters values above 3,999 outside of academic transcriptions of inscriptions, so this converter stays inside the standard range and flags anything above it.</p>
+
+          <h2>The IIII versus IV controversy on clock faces</h2>
+          <p>If you look at most traditional analogue clocks, the four o'clock numeral is IIII, not IV. This drives some people up the wall because IV is the canonical form. There are several theories about why clockmakers settled on IIII, and the truth is probably a combination of all of them. The visual-symmetry explanation says IIII balances VIII on the opposite side of the dial more nicely than the lighter IV. The casting explanation says it was easier to mass-produce identical metal numerals if every face used four Is, five Vs, and a handful of Xs, with no IVs. The royal-decree explanation, which is fun but undocumented, says Louis XIV preferred IIII because IV looked too much like the start of his own name. Whatever the reason, IIII on clock faces is a typographic tradition, not a different numeral system. It is still not standard Roman numerals, and this converter rejects it with the canonical IV offered as a replacement.</p>
+
+          <h2>Common mistakes</h2>
+          <p>The two errors people most often make are both about subtractive notation. The first is repeating a symbol four times: writing IIII for 4 or XXXX for 40. The standard rule is no more than three of the same symbol in a row, so 4 is IV and 40 is XL. The second is using subtractive forms that are not in the standard set. People reach for IC to mean 99, on the logic that 100 minus 1 is 99, but the standard says I can only sit before V or X, X can only sit before L or C, and C can only sit before D or M. So 99 is XCIX, not IC, and 1999 is MCMXCIX, not MIM. The converter applies these rules strictly because that is what teachers, examiners, typographers and inscription-cutters expect.</p>
+
+          <h2>Related calculators</h2>
+          <ul class="related-calculators">
+            <li><a href="/calculators/conversions/">All conversion calculators</a></li>
+            <li><a href="/calculators/conversions/unit-converter/">Unit Converter for length, mass, volume and more</a></li>
+            <li><a href="/calculators/math/fraction-calculator/">Fraction Calculator</a></li>
+            <li><a href="/calculators/math/percentage-calculator/">Percentage Calculator</a></li>
+          </ul>
+        </section>
+
+        <section class="faq" aria-labelledby="faq-heading">
+          <h2 id="faq-heading">Frequently asked questions</h2>
+          <details>
+            <summary>Why does this stop at 3,999?</summary>
+            <p>Standard Roman numerals only have symbols up to M (1,000), and no symbol is meant to repeat more than three times. That puts the ceiling at MMMCMXCIX, which is 3,999. The Romans extended the system for larger values using a vinculum, an overline that multiplies the symbol by 1,000, so V with a bar over it meant 5,000. Vinculum notation has never settled into a single agreed convention and the bars do not render reliably in modern fonts, so this converter stays inside the standard 1 to 3,999 range.</p>
+          </details>
+          <details>
+            <summary>Why is IIII rejected when clock faces use it?</summary>
+            <p>Standard Roman numerals never repeat the same symbol four times. Four is IV, not IIII. Many traditional clock faces use IIII anyway, partly for visual symmetry against VIII on the opposite side of the dial, partly because identical numerals were cheaper to cast in bulk, and partly because of an undocumented story that Louis XIV preferred it. It is a typographic convention for clocks, not a valid numeral.</p>
+          </details>
+          <details>
+            <summary>What about lowercase letters?</summary>
+            <p>Lowercase Roman numerals (i, ii, iv) are common in book front matter and in nested outlines. The converter normalises everything to uppercase before parsing, so mcmlxxxiv and MCMLXXXIV both return 1984.</p>
+          </details>
+          <details>
+            <summary>Why is IC not 99?</summary>
+            <p>Subtractive pairs in standard Roman numerals are restricted: I can only sit before V or X, X can only sit before L or C, and C can only sit before D or M. So 99 is XCIX (90 + 9), not IC. The converter rejects IC, IL, XM and similar shorthand even though their arithmetic is unambiguous, because they are not part of the agreed system.</p>
+          </details>
+          <details>
+            <summary>Can I copy the result?</summary>
+            <p>Yes. There is a Copy button next to the result. The text is also selectable in the usual way, and everything happens in your browser. Nothing is sent anywhere.</p>
+          </details>
+        </section>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="ad-slot" data-ad-slot="sidebar" aria-hidden="true"></div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="site-footer-nav" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/calculators/">All calculators</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+
+      <section class="site-disclaimer" data-disclaimer aria-labelledby="disclaimer-heading">
+        <h2 id="disclaimer-heading">A quick, necessary word</h2>
+        <p>Every calculator on this site is built to give you a sensible, well-reasoned estimate. It is, however, exactly that: an estimate, for general information only. Nothing you see here is professional, legal, financial, medical, or tax advice, and it should not be treated as such.</p>
+        <p>Before you make a decision that actually matters, talk to a qualified professional who knows your specific situation: an accountant, a solicitor, a doctor, an IT consultant, whoever fits the question. They can factor in the bits a generic tool can't.</p>
+        <p>We take no liability and accept no responsibility for any loss, damage, or questionable life choice arising from acting on the numbers you see here. Use the results as a starting point for a better conversation, not as the final word.</p>
+        <p><strong>Affiliate disclosure:</strong> some links on this site are affiliate links. If you click through and buy or sign up for something, we may earn a small commission at no extra cost to you. It helps keep the calculators free and ad-light. We only recommend things we'd point a friend towards.</p>
+      </section>
+      <p class="site-copyright">&copy; 2026 WebCaretakers. All rights reserved.</p>
+      <p class="site-legal">WebCaretakers is a trading name of <a href="https://yeseo.io/" rel="noopener">Andrew Laws Associates Ltd</a>, registered in England and Wales (company no. 08602332). ICO registration ZA726704.</p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/calculators/roman-numeral-converter.js"></script>
+  <script src="/assets/js/calculators/roman-numeral-converter.page.js"></script>
+  <script>
+    (function () {
+      var shortcutEl = document.querySelector('[data-bookmark-shortcut]');
+      if (shortcutEl) {
+        var isMac = /Mac|iPhone|iPad|iPod/i.test(navigator.platform || navigator.userAgent);
+        shortcutEl.textContent = isMac ? '\u2318' : 'Ctrl';
+      }
+    })();
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

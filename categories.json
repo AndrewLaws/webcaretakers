@@ -64,6 +64,11 @@
           "slug": "fraction-calculator",
           "name": "Fraction Calculator",
           "summary": "Add, subtract, multiply or divide fractions and mixed numbers. Returns the simplified fraction, the mixed-number form and the decimal, with every step of the working shown."
+        },
+        {
+          "slug": "standard-deviation-calculator",
+          "name": "Standard Deviation Calculator",
+          "summary": "Paste a list of numbers and get count, mean, median, range, variance and standard deviation, sample and population, with the working shown step by step."
         }
       ]
     },
@@ -140,6 +145,11 @@
           "slug": "time-zone-converter",
           "name": "Time Zone Converter",
           "summary": "Convert a date and time between IANA time zones. Pick a source, add as many target zones as you need, see day-of-week, local time and UTC offset for each. DST handled by your OS, browser-only."
+        },
+        {
+          "slug": "roman-numeral-converter",
+          "name": "Roman Numeral Converter",
+          "summary": "Convert between numbers and Roman numerals in either direction. Range 1 to 3,999, lowercase normalised, malformed numerals like IIII or VV flagged with the canonical form. Working shown."
         }
       ]
     },
@@ -357,6 +367,11 @@
           "slug": "keyword-density-calculator",
           "name": "Keyword Density Calculator",
           "summary": "Paste an article or page and see word counts plus 1-, 2- and 3-gram keyword density tables. Optional stop-word filter, runs in your browser."
+        },
+        {
+          "slug": "robots-txt-tester",
+          "name": "Robots.txt Tester",
+          "summary": "Paste a robots.txt and check whether a URL is allowed or blocked for Googlebot, Bingbot or any user-agent. Follows Google's spec, shows the winning rule and why."
         }
       ]
     },

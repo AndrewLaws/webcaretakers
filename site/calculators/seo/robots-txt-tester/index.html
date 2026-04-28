@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Robots.txt Tester | WebCaretakers</title>
+  <meta name="description" content="Paste a robots.txt and check whether a URL is allowed or blocked for Googlebot, Bingbot or any user-agent. Follows Google's spec, shows the winning rule, runs in your browser.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/seo/robots-txt-tester/">
+  <meta property="og:title" content="Robots.txt Tester | WebCaretakers">
+  <meta property="og:description" content="Test whether a URL is allowed or blocked by a robots.txt, with the exact winning rule shown.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/seo/robots-txt-tester/">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var _stored = null;
+    try { _stored = localStorage.getItem('cookie-consent'); } catch (e) {}
+    var _initial = _stored === 'granted' ? 'granted' : 'denied';
+    gtag('consent', 'default', {
+      ad_storage: _initial, analytics_storage: _initial,
+      ad_user_data: _initial, ad_personalization: _initial,
+      functionality_storage: 'granted', security_storage: 'granted',
+      wait_for_update: 500
+    });
+  </script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Robots.txt Tester",
+    "url": "https://webcaretakers.com/calculators/seo/robots-txt-tester/",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0" },
+    "author": {
+      "@type": "Person",
+      "name": "Andrew Laws",
+      "url": "https://yeseo.io/"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Does this tool fetch my live robots.txt?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. You paste the body of the robots.txt yourself and the matching runs entirely in your browser. There is no network call. That keeps unpublished or staging robots files private, and means you can test changes before you deploy them rather than after." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does my Disallow not block the URL I expected?",
+        "acceptedAnswer": { "@type": "Answer", "text": "The most common reason is a longer Allow rule overriding it. Google picks the rule with the longest matching pattern, so Disallow: /a/ loses to Allow: /a/b/ on URLs under /a/b/. The other common cause is case: paths are case-sensitive, so Disallow: /Private/ does not block /private/. Open the prove-it panel below the result to see every candidate rule and which length won." }
+      },
+      {
+        "@type": "Question",
+        "name": "How does the user-agent matching work?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Group selection uses the most specific token whose name is a prefix of the requested user-agent, case-insensitively. So Googlebot-Image gets the Googlebot-Image group if one exists, falling back to the Googlebot group, falling back to the * group. If none match, everything is allowed by default." }
+      },
+      {
+        "@type": "Question",
+        "name": "What do * and $ mean in robots.txt patterns?",
+        "acceptedAnswer": { "@type": "Answer", "text": "An asterisk matches any sequence of characters, including empty. A dollar sign at the end of a pattern anchors it to the end of the URL, so Disallow: /*.pdf$ blocks paths ending in .pdf but not /file.pdf.txt. Both are part of the original Google spec and are widely supported." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why is an empty Disallow line treated as allow?",
+        "acceptedAnswer": { "@type": "Answer", "text": "It is the convention from the original 1994 robots.txt note: a line of Disallow with nothing after the colon means there is nothing to disallow, so everything is allowed for that user-agent. Google still treats it that way. An empty Allow line is a no-op and does not contribute a matching rule." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-banner-heading" aria-describedby="cookie-banner-text" hidden>
+    <div class="cookie-banner__inner">
+      <h2 id="cookie-banner-heading" class="cookie-banner__heading">A quick word about cookies</h2>
+      <p id="cookie-banner-text" class="cookie-banner__text">
+        We use cookies for analytics, so we can see which calculators people actually use and which ones need work. Nothing creepy, nothing sold on. You can say yes, say no, or read the <a href="/privacy/">privacy policy</a> first. Your choice sticks.
+      </p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-reject>Reject</button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>Accept</button>
+      </div>
+    </div>
+  </div>
+
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">WebCaretakers</a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <ul class="primary-nav__list">
+          <li class="primary-nav__item primary-nav__item--has-menu">
+            <button type="button" class="primary-nav__link" data-menu-toggle aria-haspopup="true" aria-expanded="false">Calculators <span class="primary-nav__caret" aria-hidden="true">&#9662;</span></button>
+            <ul class="primary-nav__submenu">
+              <li><a href="/calculators/ai/">AI</a></li>
+              <li><a href="/calculators/broadband/">Broadband</a></li>
+              <li><a href="/calculators/business/">Business</a></li>
+              <li><a href="/calculators/conversions/">Conversions</a></li>
+              <li><a href="/calculators/cybersecurity/">Cybersecurity</a></li>
+              <li><a href="/calculators/finance/">Finance</a></li>
+              <li><a href="/calculators/fun/">Fun</a></li>
+              <li><a href="/calculators/health/">Health</a></li>
+              <li><a href="/calculators/images/">Images</a></li>
+              <li><a href="/calculators/math/">Math</a></li>
+              <li><a href="/calculators/productivity/">Productivity</a></li>
+              <li><a href="/calculators/property/">Property</a></li>
+              <li><a href="/calculators/seo/">SEO</a></li>
+              <li><a href="/calculators/wedding/">Wedding</a></li>
+              <li><a href="/calculators/writing/">Writing</a></li>
+              <li class="primary-nav__submenu-sep"><a href="/calculators/">See all calculators</a></li>
+            </ul>
+          </li>
+          <li class="primary-nav__item"><a href="/about/" class="primary-nav__link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <main id="main-content">
+      <div class="container">
+        <nav aria-label="Breadcrumb" class="breadcrumbs">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/calculators/">Calculators</a></li>
+            <li><a href="/calculators/seo/">SEO</a></li>
+            <li aria-current="page">Robots.txt Tester</li>
+          </ol>
+        </nav>
+
+        <h1>Robots.txt Tester</h1>
+        <p class="intro">Paste a robots.txt body, drop in a URL or path, pick a user-agent, and see whether it is allowed or blocked. The decision follows Google's spec: most-specific user-agent group wins, then the longest matching path rule, with Allow beating Disallow on equal length. Wildcards and end anchors supported. Runs entirely in your browser.</p>
+
+        <section class="eli5" aria-label="Plain-English explanation">
+          <h2>Explain like I'm 5 (what even is this calculator?)</h2>
+          <p>A robots.txt is a small text file at the root of a website that tells crawlers like Googlebot which paths they can fetch and which they should leave alone. The rules look simple, but the order, the wildcards, and the longest-match tie-break catch people out. This page lets you paste your file, test a URL, and see exactly which line in your robots.txt made the call.</p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="in-content" aria-hidden="true"></div>
+
+        <section class="calculator-card">
+          <h2>Test a URL</h2>
+          <p class="reassure"><strong>Browser-only.</strong> Nothing is fetched, nothing is uploaded. The robots.txt body and URLs you paste stay on your device.</p>
+
+          <form id="robots-form" class="calc-form" novalidate>
+            <div class="calc-row">
+              <label for="robots-body">Your robots.txt</label>
+              <textarea id="robots-body" data-robots-body rows="14" spellcheck="false" placeholder="User-agent: *
+Disallow: /private/
+Allow: /private/public.html
+
+User-agent: Googlebot
+Disallow: /no-google/
+
+Sitemap: https://example.com/sitemap.xml"></textarea>
+              <p class="calc-row__hint">Paste the file body. Comments (#) and blank lines are ignored. Malformed lines are skipped, not crashed.</p>
+            </div>
+
+            <fieldset class="calc-row">
+              <legend>Mode</legend>
+              <label><input type="radio" name="robots-mode" value="single" data-mode checked> Single URL</label>
+              <label><input type="radio" name="robots-mode" value="multi" data-mode> Multiple URLs</label>
+            </fieldset>
+
+            <div class="calc-row" data-single-panel>
+              <label for="robots-url">URL or path to test</label>
+              <input type="text" id="robots-url" data-robots-url placeholder="/blog/post or https://example.com/blog/post">
+              <p class="calc-row__hint">Full URLs have the host stripped before matching. Paths without a leading slash get one added.</p>
+            </div>
+
+            <div class="calc-row" data-multi-panel hidden>
+              <label for="robots-urls">URLs to test (one per line)</label>
+              <textarea id="robots-urls" data-robots-urls rows="6" spellcheck="false" placeholder="/
+/blog/
+/private/index.html
+/private/public.html
+/wp-admin/admin-ajax.php"></textarea>
+            </div>
+
+            <div class="calc-row calc-row--inline">
+              <label for="robots-ua-select">User-agent</label>
+              <select id="robots-ua-select" data-ua-select>
+                <option value="*" selected>* (any crawler)</option>
+                <option value="Googlebot">Googlebot</option>
+                <option value="Googlebot-Image">Googlebot-Image</option>
+                <option value="Bingbot">Bingbot</option>
+                <option value="DuckDuckBot">DuckDuckBot</option>
+                <option value="Applebot">Applebot</option>
+                <option value="GPTBot">GPTBot</option>
+                <option value="ClaudeBot">ClaudeBot</option>
+                <option value="other">Other (type below)</option>
+              </select>
+              <input type="text" id="robots-ua-other" data-ua-other placeholder="Custom user-agent name" hidden>
+            </div>
+          </form>
+
+          <div class="robots-result" data-result-area aria-live="polite" hidden>
+            <div data-single-result hidden>
+              <div class="robots-verdict" data-verdict>
+                <span class="robots-verdict__badge" data-verdict-badge>Allowed</span>
+                <span class="robots-verdict__path" data-verdict-path></span>
+              </div>
+              <p class="robots-reason" data-verdict-reason></p>
+              <dl class="robots-meta">
+                <dt>User-agent group</dt><dd data-verdict-group>&mdash;</dd>
+                <dt>Winning rule</dt><dd data-verdict-rule>&mdash;</dd>
+              </dl>
+            </div>
+
+            <div data-multi-result hidden>
+              <h3>Results</h3>
+              <table class="robots-table">
+                <thead>
+                  <tr><th scope="col">URL</th><th scope="col">Status</th><th scope="col">Winning rule</th><th scope="col">UA group</th></tr>
+                </thead>
+                <tbody data-multi-tbody></tbody>
+              </table>
+            </div>
+
+            <div class="robots-sitemaps" data-sitemaps hidden>
+              <h3>Sitemap lines</h3>
+              <ul data-sitemaps-list></ul>
+            </div>
+
+            <div class="robots-warnings" data-warnings hidden>
+              <h3>Lines skipped</h3>
+              <ul data-warnings-list></ul>
+            </div>
+          </div>
+
+          <details class="prove-it" data-prove-it>
+            <summary>Prove it</summary>
+            <div data-prove-it-body>
+              <p>Run a test first and the working appears here: which user-agent group matched, every Allow and Disallow rule that was considered, the length each one would score, and the rule that won. Same logic Google publishes for its own crawler.</p>
+            </div>
+          </details>
+
+          <p class="bookmark-nudge">
+            Useful? Save this calculator: press <kbd data-bookmark-shortcut>Ctrl</kbd> + <kbd>D</kbd> to bookmark it.
+          </p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="below-results" aria-hidden="true"></div>
+
+        <section class="long-form">
+          <h2>What robots.txt actually controls</h2>
+          <p>A robots.txt sits at the root of a domain (https://example.com/robots.txt) and tells well-behaved crawlers which URL paths they may fetch. It is a request, not a fence. Major search engines respect it. Most spammers, scrapers and AI training bots ignore it unless their operator has decided otherwise. If you need to genuinely keep something off the internet, use access control on the server, not a robots.txt entry.</p>
+          <p>The file is also not a noindex tool. Disallow stops a crawler fetching the URL, which means Google may still index the URL based on links and anchor text, just without a snippet. If you want a page out of the index, the right tool is a meta robots noindex tag (or an X-Robots-Tag header) on the page itself, and the page must be crawlable for Google to see the noindex in the first place. Disallowing it instead is the classic mistake that leaves a page in the index forever.</p>
+
+          <h2>How the matching actually works</h2>
+          <p>Google's spec, which most search engines now follow, picks the user-agent group by most specific match. If your file has a Googlebot block and a * block, Googlebot uses the Googlebot block exclusively. It does not fall back to * for rules that are missing from the specific block. That is the single most common misunderstanding.</p>
+          <p>Within the chosen group, every Allow and Disallow is tested against the URL path. The rule with the longest matching pattern wins. On a tie, Allow beats Disallow. Wildcards (*) match any sequence and the dollar sign anchors the end of the URL. Patterns are matched against the path and query string only, the host has no effect on the decision.</p>
+
+          <h2>Common mistakes the tester catches</h2>
+          <p>The first is mixing case. Paths are case-sensitive, so Disallow: /Admin/ does nothing on a site whose admin path is /admin/. The second is forgetting the longer-Allow override: Disallow: /search/ will not block /search/index.html if you also have Allow: /search/index. The third is putting rules above the first User-agent line, which makes them belong to no group, so they are silently ignored. The fourth is using regular expressions: robots.txt does not support them, only * and $.</p>
+
+          <h2>When to test before you ship</h2>
+          <p>Anything you change about a robots.txt is a change in what Google can fetch. The safe sequence is: edit locally, paste the new body in here with a representative list of URLs (a few from each section of the site), check the verdicts, then deploy. If you maintain different rules for different bots, run the same URL list through each user-agent. The most painful robots.txt regressions are the ones that were technically valid and quietly stopped a section being crawled for weeks.</p>
+
+          <h2>Related calculators</h2>
+          <p>Other SEO tools that run in your browser, no upload, no server round-trip.</p>
+          <ul class="related-calculators">
+            <li><a href="/calculators/seo/">All SEO tools</a></li>
+            <li><a href="/calculators/seo/url-slug-generator/">URL Slug Generator</a></li>
+            <li><a href="/calculators/seo/meta-length-checker/">Meta Length Checker</a></li>
+            <li><a href="/calculators/seo/keyword-density-calculator/">Keyword Density Calculator</a></li>
+          </ul>
+        </section>
+
+        <section class="faq" aria-labelledby="faq-heading">
+          <h2 id="faq-heading">Frequently asked questions</h2>
+          <details>
+            <summary>Does this tool fetch my live robots.txt?</summary>
+            <p>No. You paste the body of the robots.txt yourself and the matching runs entirely in your browser. There is no network call. That keeps unpublished or staging robots files private, and means you can test changes before you deploy them rather than after.</p>
+          </details>
+          <details>
+            <summary>Why does my Disallow not block the URL I expected?</summary>
+            <p>The most common reason is a longer Allow rule overriding it. Google picks the rule with the longest matching pattern, so <code>Disallow: /a/</code> loses to <code>Allow: /a/b/</code> on URLs under <code>/a/b/</code>. The other common cause is case: paths are case-sensitive, so <code>Disallow: /Private/</code> does not block <code>/private/</code>. Open the prove-it panel below the result to see every candidate rule and which length won.</p>
+          </details>
+          <details>
+            <summary>How does the user-agent matching work?</summary>
+            <p>Group selection uses the most specific token whose name is a prefix of the requested user-agent, case-insensitively. So <code>Googlebot-Image</code> gets the Googlebot-Image group if one exists, falling back to the Googlebot group, falling back to the <code>*</code> group. If none match, everything is allowed by default.</p>
+          </details>
+          <details>
+            <summary>What do * and $ mean in robots.txt patterns?</summary>
+            <p>An asterisk matches any sequence of characters, including empty. A dollar sign at the end of a pattern anchors it to the end of the URL, so <code>Disallow: /*.pdf$</code> blocks paths ending in <code>.pdf</code> but not <code>/file.pdf.txt</code>. Both are part of the original Google spec and are widely supported.</p>
+          </details>
+          <details>
+            <summary>Why is an empty Disallow line treated as allow?</summary>
+            <p>It is the convention from the original 1994 robots.txt note: a line of <code>Disallow</code> with nothing after the colon means there is nothing to disallow, so everything is allowed for that user-agent. Google still treats it that way. An empty <code>Allow</code> line is a no-op and does not contribute a matching rule.</p>
+          </details>
+          <details>
+            <summary>Will blocking a page in robots.txt remove it from Google?</summary>
+            <p>No, and this is a frequent SEO mistake. Disallow stops the crawler fetching the URL. The URL itself can still appear in the index (without a snippet) based on links pointing at it. To actually de-index a page, leave it crawlable and serve a <code>noindex</code> meta tag or X-Robots-Tag header. Disallowing a page Google has already indexed can leave it in the index for a long time.</p>
+          </details>
+        </section>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="ad-slot" data-ad-slot="sidebar" aria-hidden="true"></div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="site-footer-nav" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/calculators/">All calculators</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+
+      <section class="site-disclaimer" data-disclaimer aria-labelledby="disclaimer-heading">
+        <h2 id="disclaimer-heading">A quick, necessary word</h2>
+        <p>Every calculator on this site is built to give you a sensible, well-reasoned estimate. It is, however, exactly that: an estimate, for general information only. Nothing you see here is professional, legal, financial, medical, or tax advice, and it should not be treated as such.</p>
+        <p>Before you make a decision that actually matters, talk to a qualified professional who knows your specific situation: an accountant, a solicitor, a doctor, an IT consultant, whoever fits the question. They can factor in the bits a generic tool can't.</p>
+        <p>We take no liability and accept no responsibility for any loss, damage, or questionable life choice arising from acting on the numbers you see here. Use the results as a starting point for a better conversation, not as the final word.</p>
+        <p><strong>Affiliate disclosure:</strong> some links on this site are affiliate links. If you click through and buy or sign up for something, we may earn a small commission at no extra cost to you. It helps keep the calculators free and ad-light. We only recommend things we'd point a friend towards.</p>
+      </section>
+      <p class="site-copyright">&copy; 2026 WebCaretakers. All rights reserved.</p>
+      <p class="site-legal">WebCaretakers is a trading name of <a href="https://yeseo.io/" rel="noopener">Andrew Laws Associates Ltd</a>, registered in England and Wales (company no. 08602332). ICO registration ZA726704.</p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/calculators/robots-txt-tester.js"></script>
+  <script>
+  (function () {
+    'use strict';
+
+    var lib = window.RobotsTxtTester;
+    if (!lib) return;
+
+    var bodyIn = document.querySelector('[data-robots-body]');
+    var modeRadios = document.querySelectorAll('[data-mode]');
+    var singlePanel = document.querySelector('[data-single-panel]');
+    var multiPanel  = document.querySelector('[data-multi-panel]');
+    var urlIn = document.querySelector('[data-robots-url]');
+    var urlsIn = document.querySelector('[data-robots-urls]');
+    var uaSelect = document.querySelector('[data-ua-select]');
+    var uaOther  = document.querySelector('[data-ua-other]');
+
+    var resultArea = document.querySelector('[data-result-area]');
+    var singleResult = document.querySelector('[data-single-result]');
+    var multiResult  = document.querySelector('[data-multi-result]');
+    var verdictBadge = document.querySelector('[data-verdict-badge]');
+    var verdictPath  = document.querySelector('[data-verdict-path]');
+    var verdictReason = document.querySelector('[data-verdict-reason]');
+    var verdictGroup = document.querySelector('[data-verdict-group]');
+    var verdictRule  = document.querySelector('[data-verdict-rule]');
+    var multiBody = document.querySelector('[data-multi-tbody]');
+    var sitemapsBox = document.querySelector('[data-sitemaps]');
+    var sitemapsList = document.querySelector('[data-sitemaps-list]');
+    var warningsBox = document.querySelector('[data-warnings]');
+    var warningsList = document.querySelector('[data-warnings-list]');
+    var proveBody = document.querySelector('[data-prove-it-body]');
+    var proveDetails = document.querySelector('[data-prove-it]');
+
+    var debounceTimer = null;
+    var firstResultFired = false;
+
+    function escapeHtml(s) {
+      return String(s == null ? '' : s)
+        .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    }
+
+    function currentUA() {
+      var v = uaSelect.value;
+      if (v === 'other') return (uaOther.value || '').trim() || '*';
+      return v;
+    }
+
+    function currentMode() {
+      for (var i = 0; i < modeRadios.length; i++) {
+        if (modeRadios[i].checked) return modeRadios[i].value;
+      }
+      return 'single';
+    }
+
+    function ruleText(rule) {
+      if (!rule) return 'no matching rule, default allow';
+      var label = rule.type === 'allow' ? 'Allow' : 'Disallow';
+      return label + ': ' + (rule.path || '(empty)') + ' (line ' + rule.line + ')';
+    }
+
+    function renderProveIt(parsed, ua, result) {
+      var lines = [];
+      lines.push('Requested user-agent: ' + (ua || '(none)'));
+      lines.push('Path tested: ' + result.path);
+      lines.push('');
+      if (result.matchedAgent) {
+        lines.push('Matched user-agent group: ' + result.matchedAgent);
+      } else {
+        lines.push('No user-agent group matched and no * group exists, default is allow.');
+      }
+      lines.push('');
+      if (result.candidates && result.candidates.length) {
+        lines.push('Candidate rules in this group:');
+        for (var i = 0; i < result.candidates.length; i++) {
+          var c = result.candidates[i];
+          var label = c.rule.type === 'allow' ? 'Allow' : 'Disallow';
+          var status = c.matches ? 'matches' : 'does not match';
+          var len = c.matches ? (', length ' + c.length) : '';
+          lines.push('  - ' + label + ': ' + (c.rule.path || '(empty)') + '  ' + status + len + '  (line ' + c.rule.line + ')');
+        }
+        lines.push('');
+      } else {
+        lines.push('This group has no Allow or Disallow rules.');
+        lines.push('');
+      }
+      lines.push('Decision: ' + (result.allowed ? 'ALLOWED' : 'BLOCKED'));
+      lines.push('Reason: ' + result.reason);
+      if (result.winningRule) {
+        lines.push('Winning rule: ' + ruleText(result.winningRule));
+      }
+      proveBody.textContent = lines.join('\n');
+    }
+
+    function renderSingle(parsed, ua, result) {
+      singleResult.hidden = false;
+      multiResult.hidden = true;
+      verdictBadge.textContent = result.allowed ? 'Allowed' : 'Blocked';
+      verdictBadge.className = 'robots-verdict__badge ' + (result.allowed ? 'robots-verdict__badge--allow' : 'robots-verdict__badge--block');
+      verdictPath.textContent = result.path + '  (UA: ' + ua + ')';
+      verdictReason.textContent = result.reason;
+      verdictGroup.textContent = result.matchedAgent ? result.matchedAgent : '(no group matched, default allow)';
+      verdictRule.textContent  = ruleText(result.winningRule);
+      renderProveIt(parsed, ua, result);
+    }
+
+    function renderMulti(parsed, ua, rows) {
+      singleResult.hidden = true;
+      multiResult.hidden = false;
+      var html = '';
+      for (var i = 0; i < rows.length; i++) {
+        var r = rows[i];
+        var status = r.allowed
+          ? '<span class="robots-status robots-status--allow">Allowed</span>'
+          : '<span class="robots-status robots-status--block">Blocked</span>';
+        html += '<tr><td><code>' + escapeHtml(r.path) + '</code></td>'
+              + '<td>' + status + '</td>'
+              + '<td>' + escapeHtml(ruleText(r.winningRule)) + '</td>'
+              + '<td>' + escapeHtml(r.matchedAgent || '(none)') + '</td></tr>';
+      }
+      multiBody.innerHTML = html || '<tr><td colspan="4">No URLs to test.</td></tr>';
+
+      // Prove-it: show working for the first row.
+      if (rows.length) renderProveIt(parsed, ua, rows[0]);
+      else proveBody.textContent = 'Add URLs to test, one per line.';
+    }
+
+    function renderSitemaps(parsed) {
+      if (!parsed.sitemaps.length) { sitemapsBox.hidden = true; return; }
+      sitemapsBox.hidden = false;
+      var html = '';
+      for (var i = 0; i < parsed.sitemaps.length; i++) {
+        html += '<li><code>' + escapeHtml(parsed.sitemaps[i]) + '</code></li>';
+      }
+      sitemapsList.innerHTML = html;
+    }
+
+    function renderWarnings(parsed) {
+      if (!parsed.warnings.length) { warningsBox.hidden = true; return; }
+      warningsBox.hidden = false;
+      var html = '';
+      for (var i = 0; i < parsed.warnings.length; i++) {
+        var w = parsed.warnings[i];
+        html += '<li>Line ' + w.line + ': ' + escapeHtml(w.reason) + ' (<code>' + escapeHtml(w.text) + '</code>)</li>';
+      }
+      warningsList.innerHTML = html;
+    }
+
+    function run() {
+      var body = bodyIn.value;
+      var ua = currentUA();
+      var parsed = lib.parse(body);
+
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: 'calculator_interaction',
+        calculator_name: 'Robots.txt Tester',
+        field: 'robots-body'
+      });
+
+      if (!body.trim()) {
+        resultArea.hidden = true;
+        return;
+      }
+
+      resultArea.hidden = false;
+      renderSitemaps(parsed);
+      renderWarnings(parsed);
+
+      var mode = currentMode();
+      if (mode === 'multi') {
+        var urls = (urlsIn.value || '').split(/\r?\n/);
+        var rows = lib.testMany(parsed, { urls: urls, userAgent: ua });
+        renderMulti(parsed, ua, rows);
+        if (!firstResultFired && rows.length) {
+          firstResultFired = true;
+          var blocked = 0;
+          for (var i = 0; i < rows.length; i++) if (!rows[i].allowed) blocked++;
+          window.dataLayer.push({
+            event: 'calculator_result',
+            calculator_name: 'Robots.txt Tester',
+            mode: 'multi',
+            urls_tested: rows.length,
+            urls_blocked: blocked,
+            user_agent: ua
+          });
+        }
+      } else {
+        var url = (urlIn.value || '').trim();
+        if (!url) {
+          singleResult.hidden = true;
+          multiResult.hidden = true;
+          proveBody.textContent = 'Enter a URL or path to test.';
+          return;
+        }
+        var result = lib.test(parsed, { url: url, userAgent: ua });
+        renderSingle(parsed, ua, result);
+        if (!firstResultFired) {
+          firstResultFired = true;
+          window.dataLayer.push({
+            event: 'calculator_result',
+            calculator_name: 'Robots.txt Tester',
+            mode: 'single',
+            allowed: result.allowed,
+            user_agent: ua,
+            matched_agent: result.matchedAgent
+          });
+        }
+      }
+    }
+
+    function schedule() {
+      if (debounceTimer) clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(run, 250);
+    }
+
+    function onModeChange() {
+      var mode = currentMode();
+      singlePanel.hidden = mode !== 'single';
+      multiPanel.hidden  = mode !== 'multi';
+      run();
+    }
+
+    function onUAChange() {
+      uaOther.hidden = uaSelect.value !== 'other';
+      run();
+    }
+
+    bodyIn.addEventListener('input', schedule);
+    urlIn.addEventListener('input', schedule);
+    urlsIn.addEventListener('input', schedule);
+    uaSelect.addEventListener('change', onUAChange);
+    uaOther.addEventListener('input', schedule);
+    for (var i = 0; i < modeRadios.length; i++) {
+      modeRadios[i].addEventListener('change', onModeChange);
+    }
+
+    if (proveDetails) {
+      proveDetails.addEventListener('toggle', function () {
+        if (proveDetails.open) {
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({ event: 'prove_it', calculator_name: 'Robots.txt Tester' });
+        }
+      });
+    }
+
+    // Initial state: nothing to render until the user pastes something.
+  })();
+  </script>
+  <script>
+    (function () {
+      var shortcutEl = document.querySelector('[data-bookmark-shortcut]');
+      if (shortcutEl) {
+        var isMac = /Mac|iPhone|iPad|iPod/i.test(navigator.platform || navigator.userAgent);
+        shortcutEl.textContent = isMac ? '\u2318' : 'Ctrl';
+      }
+    })();
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>
