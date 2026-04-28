@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Embedding Cost Calculator | WebCaretakers</title>
+  <meta name="description" content="Estimate the cost of generating embeddings for a corpus. OpenAI, Cohere, Voyage and custom pricing, with one-off, monthly, weekly or daily refresh options.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/ai/embedding-cost-calculator/">
+  <meta property="og:title" content="Embedding Cost Calculator | WebCaretakers">
+  <meta property="og:description" content="Work out what it costs to embed a corpus of documents. OpenAI, Cohere, Voyage, or your own price per million tokens.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/ai/embedding-cost-calculator/">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var _stored = null;
+    try { _stored = localStorage.getItem('cookie-consent'); } catch (e) {}
+    var _initial = _stored === 'granted' ? 'granted' : 'denied';
+    gtag('consent', 'default', {
+      ad_storage: _initial, analytics_storage: _initial,
+      ad_user_data: _initial, ad_personalization: _initial,
+      functionality_storage: 'granted', security_storage: 'granted',
+      wait_for_update: 500
+    });
+  </script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Embedding Cost Calculator",
+    "url": "https://webcaretakers.com/calculators/ai/embedding-cost-calculator/",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0" },
+    "author": {
+      "@type": "Person",
+      "name": "Andrew Laws",
+      "url": "https://yeseo.io/"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is an embedding?",
+        "acceptedAnswer": { "@type": "Answer", "text": "An embedding is a list of numbers that captures the meaning of a chunk of text. Two passages about the same topic land near each other in that number-space, which is what makes vector search work. You pay an embedding model to turn each chunk of your corpus into one of these vectors, then keep the vectors in a database so you can find similar ones at query time." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why 1.3 tokens per word?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Roughly the ratio you get on average English prose with the OpenAI tokeniser. Code, JSON, and non-English text run higher, often closer to 1.5 or 2. If your corpus is mostly schemas or French legal prose, bump the multiplier or use a tokeniser to count properly. The default is a useful starting heuristic, not gospel." }
+      },
+      {
+        "@type": "Question",
+        "name": "When does refreshing the embeddings actually matter?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Only when the source documents change. If you're indexing a stable knowledge base, embed once and forget. If you're indexing chat transcripts, news articles, or anything that updates, you need a refresh strategy. The calculator lets you model monthly, weekly or daily reruns of the whole corpus, which is the worst case. In practice you'll usually only re-embed the chunks that changed, which costs a fraction of the figure here." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why is text-embedding-3-large six times the price?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Higher dimension count (3072 vs 1536) and a heavier model produce sharper retrieval, especially on hard queries where the small model gets confused. Worth it if your retrieval quality is the bottleneck. If your bottleneck is somewhere else (chunking, reranking, prompt design), the upgrade is wasted spend." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does this include the storage cost in a vector database?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. This is just the embedding bill, the cost of turning text into vectors. The monthly bill from Pinecone, Weaviate, Qdrant, or self-hosted pgvector is a separate line. For that, the RAG Pipeline Cost Calculator is the better fit." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-banner-heading" aria-describedby="cookie-banner-text" hidden>
+    <div class="cookie-banner__inner">
+      <h2 id="cookie-banner-heading" class="cookie-banner__heading">A quick word about cookies</h2>
+      <p id="cookie-banner-text" class="cookie-banner__text">
+        We use cookies for analytics, so we can see which calculators people actually use and which ones need work. Nothing creepy, nothing sold on. You can say yes, say no, or read the <a href="/privacy/">privacy policy</a> first. Your choice sticks.
+      </p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-reject>Reject</button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>Accept</button>
+      </div>
+    </div>
+  </div>
+
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">WebCaretakers</a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <ul class="primary-nav__list">
+          <li class="primary-nav__item primary-nav__item--has-menu">
+            <button type="button" class="primary-nav__link" data-menu-toggle aria-haspopup="true" aria-expanded="false">Calculators <span class="primary-nav__caret" aria-hidden="true">▾</span></button>
+            <ul class="primary-nav__submenu">
+              <li><a href="/calculators/ai/">AI</a></li>
+              <li><a href="/calculators/broadband/">Broadband</a></li>
+              <li><a href="/calculators/business/">Business</a></li>
+              <li><a href="/calculators/conversions/">Conversions</a></li>
+              <li><a href="/calculators/cybersecurity/">Cybersecurity</a></li>
+              <li><a href="/calculators/finance/">Finance</a></li>
+              <li><a href="/calculators/fun/">Fun</a></li>
+              <li><a href="/calculators/health/">Health</a></li>
+              <li><a href="/calculators/images/">Images</a></li>
+              <li><a href="/calculators/math/">Math</a></li>
+              <li><a href="/calculators/productivity/">Productivity</a></li>
+              <li><a href="/calculators/property/">Property</a></li>
+              <li><a href="/calculators/seo/">SEO</a></li>
+              <li><a href="/calculators/wedding/">Wedding</a></li>
+              <li><a href="/calculators/writing/">Writing</a></li>
+              <li class="primary-nav__submenu-sep"><a href="/calculators/">See all calculators</a></li>
+            </ul>
+          </li>
+          <li class="primary-nav__item"><a href="/about/" class="primary-nav__link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <main id="main-content">
+      <div class="container">
+        <nav aria-label="Breadcrumb" class="breadcrumbs">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/calculators/">Calculators</a></li>
+            <li><a href="/calculators/ai/">AI</a></li>
+            <li aria-current="page">Embedding Cost Calculator</li>
+          </ol>
+        </nav>
+
+        <h1>Embedding Cost Calculator</h1>
+        <p class="intro">Work out what it actually costs to turn a pile of documents into vectors. Pick a model (or drop in a custom price), tell it how big the corpus is, and decide whether you're embedding once or refreshing on a schedule. The calculator returns the one-off bill, the monthly run-rate, and a total over the period you care about. USD, list price, browser-only.</p>
+
+        <section class="eli5" aria-label="Plain-English explanation">
+          <h2>Explain like I'm 5 (what even is this calculator?)</h2>
+          <p>An embedding is a number-version of a chunk of text. You pay a model to make one for every chunk of your documents, and then you keep them in a database so you can find similar chunks later. This calculator works out the embedding bill. It does not do the database bill. That's a separate problem.</p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="in-content" aria-hidden="true"></div>
+
+        <section class="calculator-card">
+          <h2>Calculate</h2>
+          <form id="embed-form" class="calc-form" novalidate>
+            <fieldset>
+              <legend>Corpus</legend>
+              <div class="calc-row">
+                <label for="embed-doc-count">Number of documents</label>
+                <input type="number" id="embed-doc-count" name="docCount" min="0" step="1" value="10000">
+              </div>
+              <div class="calc-row">
+                <label for="embed-avg-words">Average words per document</label>
+                <input type="number" id="embed-avg-words" name="avgWords" min="0" step="1" value="500">
+              </div>
+              <div class="calc-row">
+                <label for="embed-words-to-tokens">Words-to-tokens multiplier</label>
+                <input type="number" id="embed-words-to-tokens" name="wordsToTokens" min="0.1" step="0.01" value="1.3">
+                <p class="calc-row__hint">1.3 is a fair default for English prose. Code, JSON or non-English text usually run higher.</p>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>Model</legend>
+              <div class="calc-row">
+                <label for="embed-model">Embedding model</label>
+                <select id="embed-model" name="model" aria-label="Embedding model">
+                  <!-- populated from EMBEDDING_MODELS -->
+                </select>
+              </div>
+              <div class="calc-row" data-custom-row hidden>
+                <label for="embed-custom-price">Custom price ($/M tokens)</label>
+                <input type="number" id="embed-custom-price" name="customPrice" min="0" step="0.001" value="0.05">
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>Refresh schedule</legend>
+              <div class="calc-row">
+                <label for="embed-refresh">Refresh frequency</label>
+                <select id="embed-refresh" name="refresh">
+                  <option value="one-off">One-off (embed once, never again)</option>
+                  <option value="monthly" selected>Monthly</option>
+                  <option value="weekly">Weekly</option>
+                  <option value="daily">Daily</option>
+                </select>
+              </div>
+              <div class="calc-row">
+                <label for="embed-months">Period (months)</label>
+                <input type="number" id="embed-months" name="months" min="1" step="1" value="12">
+              </div>
+            </fieldset>
+
+            <button type="submit" data-calculate>Calculate</button>
+          </form>
+
+          <div data-calculator-results class="calculator-results">
+            <div class="result-summary">
+              <p class="result-display" data-result>Press Calculate to see the bill.</p>
+            </div>
+
+            <div class="mort-breakdown" data-breakdown hidden>
+              <h3>Cost breakdown</h3>
+              <ul>
+                <li><span>Total tokens</span><strong data-result-total-tokens>–</strong></li>
+                <li><span>Model dimensions</span><strong data-result-dimensions>–</strong></li>
+                <li><span>One-off embed cost</span><strong data-result-oneoff>–</strong></li>
+                <li><span>Monthly recurring cost</span><strong data-result-monthly>–</strong></li>
+                <li><span>Per 1,000 documents</span><strong data-result-per-1000>–</strong></li>
+                <li class="mort-breakdown__total"><span>Total over period</span><strong data-result-total>–</strong></li>
+              </ul>
+              <p class="result-caption">
+                Pricing baked in, USD list price. Last verified: <span data-last-verified>—</span>.
+              </p>
+            </div>
+
+            <details class="prove-it" data-prove-it>
+              <summary>Prove it</summary>
+              <div data-prove-it-body></div>
+              <p class="prove-it-source">Total tokens equals documents × average words × words-to-tokens multiplier. The one-off cost is total tokens divided by 1,000,000, multiplied by the model's price per million. Monthly cost is the same per-refresh figure multiplied by refreshes per month (one for monthly, ~4.345 for weekly, ~30.4375 for daily). Total cost over the period is one-off plus monthly times months. List prices only.</p>
+            </details>
+          </div>
+
+          <p class="bookmark-nudge">
+            Useful? Save this calculator: press <kbd data-bookmark-shortcut>Ctrl</kbd> + <kbd>D</kbd> to bookmark it.
+          </p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="below-results" aria-hidden="true"></div>
+
+        <section class="long-form">
+          <h2>What you're actually paying for</h2>
+          <p>An embedding model takes text in and gives you a list of numbers out. That list is a vector, and its length is the model's dimension count: 1536 for OpenAI's small model, 3072 for the large one, 1024 for Cohere and Voyage. Each chunk of your corpus gets its own vector. You pay by the token. Output dimensions don't change the bill, only the price per million input tokens does.</p>
+          <p>The reason embedding bills look small next to LLM inference bills is that you only do it once per chunk per refresh. A million-token corpus on text-embedding-3-small is twenty cents. The same workload on text-embedding-3-large is $1.30. Annoying, sure, but rarely the line on the invoice that keeps the finance team awake. The LLM bill, the one that scales with queries, is almost always the bigger fish.</p>
+
+          <h2>Picking a model without overthinking it</h2>
+          <p>Default to text-embedding-3-small. It's cheap, fast, and good enough for the vast majority of retrieval workloads. If you measure your retrieval quality (recall@k, MRR, that sort of thing) and find the small model misses on hard queries that you can demonstrate matter to your users, then upgrading to large or to a Voyage or Cohere model is a real decision worth running an A/B on. If you haven't measured, you're guessing.</p>
+          <p>The custom-price option exists for two cases: you've negotiated a volume rate that beats the published price, or you're running an open-source embedder yourself (BGE, GTE, the Sentence Transformers family) and want to plug in your own per-token cost based on GPU time.</p>
+
+          <h2>How big is "big" for an embedding workload?</h2>
+          <p>A few rough markers. A typical company knowledge base sits between 50,000 and 5,000,000 tokens, which is pennies to single-digit pounds on any of the cheap models. A medium-sized public help centre lands around 10 to 50 million tokens, still under twenty quid on the small model. Where it starts to bite is corpora in the hundreds of millions of tokens, or workloads where you re-embed the whole corpus weekly or daily because the source data is volatile.</p>
+          <p>If you're staring at a daily-refresh number that looks alarming, the right move is almost always incremental embedding: only re-embed the chunks that actually changed. Most pipelines do this badly or not at all, and it's the single biggest lever on a recurring embedding bill.</p>
+
+          <h2>Things this calculator deliberately doesn't do</h2>
+          <ul>
+            <li><strong>Storage cost.</strong> Pinecone, Weaviate, Qdrant, or pgvector all want a monthly figure for keeping the vectors hot and queryable. That's a separate line, and the RAG Pipeline Cost Calculator covers it.</li>
+            <li><strong>Re-embedding only what changed.</strong> The calculator assumes a worst-case full-corpus refresh on whatever schedule you pick. Your real bill, with smart incremental updates, will usually be a small fraction of the figure shown.</li>
+            <li><strong>Batch discounts.</strong> List prices, not the 50% off you sometimes get on async batch APIs. If you're batching, halve the figure here.</li>
+            <li><strong>Quality.</strong> A cheap embedding model that retrieves the wrong chunks is more expensive than an expensive one that retrieves the right ones, because every retrieval failure costs you an LLM call and an unhappy user. The bill is one input to the decision, not the whole decision.</li>
+          </ul>
+
+          <h2>Related calculators</h2>
+          <ul class="related-calculators">
+            <li><a href="/calculators/ai/rag-pipeline-cost-calculator/">RAG Pipeline Cost Calculator for the full embedding + vector DB + LLM picture</a></li>
+            <li><a href="/calculators/ai/llm-token-usage-calculator/">LLM Token Usage Calculator for the per-query cost on the answer side</a></li>
+            <li><a href="/calculators/ai/fine-tuning-cost-calculator/">AI Fine-Tuning Cost Calculator if your problem is behaviour, not retrieval</a></li>
+          </ul>
+        </section>
+
+        <section class="faq" aria-labelledby="faq-heading">
+          <h2 id="faq-heading">Frequently asked questions</h2>
+          <details>
+            <summary>What is an embedding?</summary>
+            <p>An embedding is a list of numbers that captures the meaning of a chunk of text. Two passages about the same topic land near each other in that number-space, which is what makes vector search work. You pay an embedding model to turn each chunk of your corpus into one of these vectors.</p>
+          </details>
+          <details>
+            <summary>Why 1.3 tokens per word?</summary>
+            <p>Roughly the ratio you get on average English prose with the OpenAI tokeniser. Code, JSON, and non-English text run higher, often closer to 1.5 or 2. If your corpus is mostly schemas or French legal prose, bump the multiplier or use a tokeniser to count properly.</p>
+          </details>
+          <details>
+            <summary>When does refreshing the embeddings actually matter?</summary>
+            <p>Only when the source documents change. If you're indexing a stable knowledge base, embed once and forget. If your corpus updates, you need a refresh strategy. In practice, you'll usually only re-embed the chunks that changed, which costs a fraction of the figure here.</p>
+          </details>
+          <details>
+            <summary>Why is text-embedding-3-large six times the price?</summary>
+            <p>Higher dimension count (3072 vs 1536) and a heavier model produce sharper retrieval, especially on hard queries where the small model gets confused. Worth it if retrieval quality is the bottleneck.</p>
+          </details>
+          <details>
+            <summary>Does this include the storage cost in a vector database?</summary>
+            <p>No. This is just the embedding bill. The monthly bill from Pinecone, Weaviate, Qdrant, or self-hosted pgvector is a separate line, covered by the RAG Pipeline Cost Calculator.</p>
+          </details>
+          <details>
+            <summary>Does this calculator send my numbers anywhere?</summary>
+            <p>No. Everything runs in your browser. Nothing is uploaded.</p>
+          </details>
+        </section>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="ad-slot" data-ad-slot="sidebar" aria-hidden="true"></div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="site-footer-nav" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/calculators/">All calculators</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+
+      <section class="site-disclaimer" data-disclaimer aria-labelledby="disclaimer-heading">
+        <h2 id="disclaimer-heading">A quick, necessary word</h2>
+        <p>Every calculator on this site is built to give you a sensible, well-reasoned estimate. It is, however, exactly that: an estimate, for general information only. Nothing you see here is professional, legal, financial, medical, or tax advice, and it should not be treated as such.</p>
+        <p>Before you make a decision that actually matters, talk to a qualified professional who knows your specific situation: an accountant, a solicitor, a doctor, an IT consultant, whoever fits the question. They can factor in the bits a generic tool can't.</p>
+        <p>We take no liability and accept no responsibility for any loss, damage, or questionable life choice arising from acting on the numbers you see here. Use the results as a starting point for a better conversation, not as the final word.</p>
+        <p><strong>Affiliate disclosure:</strong> some links on this site are affiliate links. If you click through and buy or sign up for something, we may earn a small commission at no extra cost to you. It helps keep the calculators free and ad-light. We only recommend things we'd point a friend towards.</p>
+      </section>
+      <p class="site-copyright">&copy; 2026 WebCaretakers. All rights reserved.</p>
+      <p class="site-legal">WebCaretakers is a trading name of <a href="https://yeseo.io/" rel="noopener">Andrew Laws Associates Ltd</a>, registered in England and Wales (company no. 08602332). ICO registration ZA726704.</p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/calculators/embedding-cost.js"></script>
+  <script>
+    (function () {
+      'use strict';
+
+      var shortcutEl = document.querySelector('[data-bookmark-shortcut]');
+      if (shortcutEl) {
+        var isMac = /Mac|iPhone|iPad|iPod/i.test(navigator.platform || navigator.userAgent);
+        shortcutEl.textContent = isMac ? '⌘' : 'Ctrl';
+      }
+
+      var lib = window.EmbeddingCost;
+      if (!lib) return;
+
+      var form = document.getElementById('embed-form');
+      if (!form) return;
+
+      var docCountEl = form.querySelector('[name="docCount"]');
+      var avgWordsEl = form.querySelector('[name="avgWords"]');
+      var wordsToTokensEl = form.querySelector('[name="wordsToTokens"]');
+      var modelEl = form.querySelector('[name="model"]');
+      var customPriceEl = form.querySelector('[name="customPrice"]');
+      var customRow = form.querySelector('[data-custom-row]');
+      var refreshEl = form.querySelector('[name="refresh"]');
+      var monthsEl = form.querySelector('[name="months"]');
+
+      var resultEl = document.querySelector('[data-result]');
+      var breakdown = document.querySelector('[data-breakdown]');
+      var totalTokensEl = document.querySelector('[data-result-total-tokens]');
+      var dimensionsEl = document.querySelector('[data-result-dimensions]');
+      var oneoffEl = document.querySelector('[data-result-oneoff]');
+      var monthlyEl = document.querySelector('[data-result-monthly]');
+      var totalEl = document.querySelector('[data-result-total]');
+      var per1000El = document.querySelector('[data-result-per-1000]');
+      var lastVerifiedEl = document.querySelector('[data-last-verified]');
+      var proveBody = document.querySelector('[data-prove-it-body]');
+      var proveDetails = document.querySelector('[data-prove-it]');
+
+      // Populate model dropdown.
+      lib.EMBEDDING_MODELS.forEach(function (m) {
+        var opt = document.createElement('option');
+        opt.value = m.id;
+        if (m.id === 'custom') {
+          opt.textContent = m.vendor + ' — ' + m.name;
+        } else {
+          opt.textContent = m.vendor + ' — ' + m.name + ' ($' + m.pricePer1M.toFixed(2) + '/1M)';
+        }
+        if (m.id === 'text-embedding-3-small') opt.selected = true;
+        modelEl.appendChild(opt);
+      });
+
+      lastVerifiedEl.textContent = lib.PRICING_LAST_VERIFIED;
+
+      function toggleCustom() {
+        if (modelEl.value === 'custom') {
+          customRow.hidden = false;
+        } else {
+          customRow.hidden = true;
+        }
+      }
+      toggleCustom();
+      modelEl.addEventListener('change', toggleCustom);
+
+      function fmtUSD(n, dp) {
+        if (typeof n !== 'number' || !isFinite(n)) return '—';
+        var digits = (typeof dp === 'number') ? dp : 2;
+        return '$' + n.toLocaleString('en-US', { minimumFractionDigits: digits, maximumFractionDigits: digits });
+      }
+      function fmtCost(n) {
+        if (n === 0) return '$0.00';
+        if (n < 0.01) return '$' + n.toFixed(6);
+        if (n < 1) return '$' + n.toFixed(4);
+        return fmtUSD(n, 2);
+      }
+      function fmtInt(n) {
+        if (typeof n !== 'number' || !isFinite(n)) return '—';
+        return Math.round(n).toLocaleString('en-GB');
+      }
+      function getNum(el) {
+        if (!el) return 0;
+        var n = parseFloat(el.value);
+        return (isFinite(n) && n >= 0) ? n : 0;
+      }
+
+      // Light interaction tracking.
+      [docCountEl, avgWordsEl, wordsToTokensEl, modelEl, customPriceEl, refreshEl, monthsEl].forEach(function (el) {
+        if (!el) return;
+        function pushInteraction() {
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: 'calculator_interaction',
+            calculator_name: 'embedding-cost-calculator',
+            field: el.name || el.id || ''
+          });
+        }
+        el.addEventListener('input', pushInteraction);
+        el.addEventListener('change', pushInteraction);
+      });
+
+      if (proveDetails) {
+        proveDetails.addEventListener('toggle', function () {
+          if (proveDetails.open) {
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+              event: 'prove_it',
+              calculator_name: 'embedding-cost-calculator'
+            });
+          }
+        });
+      }
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        var docCount = getNum(docCountEl);
+        var avgWords = getNum(avgWordsEl);
+        var wordsToTokens = parseFloat(wordsToTokensEl.value);
+        if (!isFinite(wordsToTokens) || wordsToTokens <= 0) wordsToTokens = 1.3;
+        var modelId = modelEl.value;
+        var customPrice = parseFloat(customPriceEl.value);
+        var refresh = refreshEl.value;
+        var months = parseInt(monthsEl.value, 10);
+        if (!isFinite(months) || months < 1) months = 1;
+
+        try {
+          var r = lib.estimateEmbeddingCost({
+            docCount: docCount,
+            avgWords: avgWords,
+            wordsToTokens: wordsToTokens,
+            modelId: modelId,
+            customPrice: customPrice,
+            refresh: refresh,
+            months: months,
+          });
+
+          breakdown.hidden = false;
+          resultEl.textContent = r.modelLabel + ': ' + fmtCost(r.oneOffCost) + ' to embed once, ' +
+            fmtCost(r.monthlyCost) + ' per month, ' + fmtCost(r.totalCost) + ' over ' + months + ' months.';
+
+          totalTokensEl.textContent = fmtInt(r.totalTokens) + ' tokens';
+          dimensionsEl.textContent = r.dimensions ? (r.dimensions + ' dims') : 'n/a (custom)';
+          oneoffEl.textContent = fmtCost(r.oneOffCost);
+          monthlyEl.textContent = fmtCost(r.monthlyCost);
+          totalEl.textContent = fmtCost(r.totalCost);
+          per1000El.textContent = fmtCost(r.per1000DocsCost);
+
+          proveBody.innerHTML =
+            '<ul>' +
+              '<li><span>Documents</span><strong>' + fmtInt(docCount) + '</strong></li>' +
+              '<li><span>Avg words/doc</span><strong>' + fmtInt(avgWords) + '</strong></li>' +
+              '<li><span>× tokens-per-word</span><strong>' + wordsToTokens + '</strong></li>' +
+              '<li><span>= Total tokens</span><strong>' + fmtInt(r.totalTokens) + '</strong></li>' +
+              '<li><span>Price</span><strong>' + fmtUSD(r.pricePer1M, 2) + ' / 1M tokens</strong></li>' +
+              '<li><span>One-off cost</span><strong>' + fmtCost(r.oneOffCost) + '</strong></li>' +
+              '<li><span>Refreshes/month</span><strong>' + r.refreshesPerMonth.toFixed(4) + '</strong></li>' +
+              '<li><span>Monthly cost</span><strong>' + fmtCost(r.monthlyCost) + '</strong></li>' +
+              '<li><span>Months</span><strong>' + months + '</strong></li>' +
+              '<li><span>Total cost</span><strong>' + fmtCost(r.totalCost) + '</strong></li>' +
+              '<li><span>Per 1,000 docs</span><strong>' + fmtCost(r.per1000DocsCost) + '</strong></li>' +
+            '</ul>';
+
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: 'calculator_result',
+            calculator_name: 'embedding-cost-calculator',
+            model: r.modelId,
+            refresh: r.refresh,
+            total_tokens: r.totalTokens,
+            one_off_cost: r.oneOffCost,
+            monthly_cost: r.monthlyCost,
+            total_cost: r.totalCost,
+          });
+        } catch (err) {
+          resultEl.textContent = err.message || 'Could not calculate.';
+          breakdown.hidden = true;
+          if (proveBody) proveBody.innerHTML = '';
+        }
+      });
+    })();
+  </script>
+
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

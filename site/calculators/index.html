@@ -66,6 +66,13 @@
       },
       {
         "@type": "SoftwareApplication",
+        "name": "Data Breach Cost Estimator",
+        "url": "https://webcaretakers.com/calculators/cybersecurity/data-breach-cost-estimator/",
+        "applicationCategory": "SecurityApplication",
+        "operatingSystem": "Any"
+      },
+      {
+        "@type": "SoftwareApplication",
         "name": "Hash Generator",
         "url": "https://webcaretakers.com/calculators/cybersecurity/hash-generator/",
         "applicationCategory": "SecurityApplication",
@@ -82,6 +89,13 @@
         "@type": "SoftwareApplication",
         "name": "SSL Certificate Expiry Calculator",
         "url": "https://webcaretakers.com/calculators/cybersecurity/ssl-certificate-expiry-calculator/",
+        "applicationCategory": "SecurityApplication",
+        "operatingSystem": "Any"
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "2FA / TOTP Window Calculator",
+        "url": "https://webcaretakers.com/calculators/cybersecurity/totp-window-calculator/",
         "applicationCategory": "SecurityApplication",
         "operatingSystem": "Any"
       },
@@ -125,6 +139,20 @@
         "name": "AI Hallucination Risk Calculator",
         "url": "https://webcaretakers.com/calculators/ai/hallucination-risk-calculator/",
         "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Any"
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "Embedding Cost Calculator",
+        "url": "https://webcaretakers.com/calculators/ai/embedding-cost-calculator/",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Any"
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "Prompt Token Estimator",
+        "url": "https://webcaretakers.com/calculators/ai/prompt-token-estimator/",
+        "applicationCategory": "UtilitiesApplication",
         "operatingSystem": "Any"
       },
       {
@@ -742,6 +770,14 @@
               <h3><a href="/calculators/ai/hallucination-risk-calculator/">AI Hallucination Risk Calculator</a></h3>
               <p>Score the relative risk that an LLM output will hallucinate, given the model class, task, grounding and verification you have in place. Heuristic, browser-only, with the maths shown.</p>
             </li>
+            <li class="category-card">
+              <h3><a href="/calculators/ai/embedding-cost-calculator/">Embedding Cost Calculator</a></h3>
+              <p>Estimate the cost of generating embeddings for a corpus across OpenAI, Cohere, Voyage or a custom price. One-off, monthly, weekly or daily refresh, with total over the period and per-1000-docs cost.</p>
+            </li>
+            <li class="category-card">
+              <h3><a href="/calculators/ai/prompt-token-estimator/">Prompt Token Estimator</a></h3>
+              <p>Paste a prompt, pick a model family, see roughly how many tokens it will use across GPT-4o, Claude, Gemini, Llama and Mistral. Optional cost at your $/1K rate.</p>
+            </li>
           </ul>
         </section>
 
@@ -871,6 +907,10 @@
               <p>Self-assess your breach exposure across passwords, 2FA, software hygiene and phishing awareness. Get a risk score and a prioritised fix list, all in your browser.</p>
             </li>
             <li class="category-card">
+              <h3><a href="/calculators/cybersecurity/data-breach-cost-estimator/">Data Breach Cost Estimator</a></h3>
+              <p>Estimate the financial impact of a data breach using IBM/Ponemon 2024 benchmarks. Per-record cost, GDPR and CCPA fine estimates, and a low/high range to plan against.</p>
+            </li>
+            <li class="category-card">
               <h3><a href="/calculators/cybersecurity/hash-generator/">Hash Generator</a></h3>
               <p>Generate SHA-256, SHA-384, SHA-512 and SHA-1 hashes from text or files. Uses Web Crypto in your browser. Drag a 100MB file in, the hash never leaves the device.</p>
             </li>
@@ -881,6 +921,10 @@
             <li class="category-card">
               <h3><a href="/calculators/cybersecurity/ssl-certificate-expiry-calculator/">SSL Certificate Expiry Calculator</a></h3>
               <p>Paste an expiry date or a certificate's openssl text dump and see days remaining, an urgency band, and the date to put the renewal reminder on. Browser-only date arithmetic, no network call.</p>
+            </li>
+            <li class="category-card">
+              <h3><a href="/calculators/cybersecurity/totp-window-calculator/">2FA / TOTP Window Calculator</a></h3>
+              <p>Reason about your TOTP authentication window. Period, digits, drift and clock skew in; effective acceptance window, per-attempt brute-force odds, attempts-per-second to a 50% hit, and a recommended drift setting out.</p>
             </li>
           </ul>
         </section>

@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prompt Token Estimator | WebCaretakers</title>
+  <meta name="description" content="Paste a prompt, pick a model, see the token count. Rough heuristic estimates for GPT-4o, Claude, Gemini, Llama and Mistral, with optional cost at your $/1K rate.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/ai/prompt-token-estimator/">
+  <meta property="og:title" content="Prompt Token Estimator | WebCaretakers">
+  <meta property="og:description" content="Paste a prompt, pick a model, see the token count. Rough heuristic estimates for GPT, Claude, Gemini, Llama and Mistral.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/ai/prompt-token-estimator/">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var _stored = null;
+    try { _stored = localStorage.getItem('cookie-consent'); } catch (e) {}
+    var _initial = _stored === 'granted' ? 'granted' : 'denied';
+    gtag('consent', 'default', {
+      ad_storage: _initial, analytics_storage: _initial,
+      ad_user_data: _initial, ad_personalization: _initial,
+      functionality_storage: 'granted', security_storage: 'granted',
+      wait_for_update: 500
+    });
+  </script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Prompt Token Estimator",
+    "url": "https://webcaretakers.com/calculators/ai/prompt-token-estimator/",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0" },
+    "author": {
+      "@type": "Person",
+      "name": "Andrew Laws",
+      "url": "https://yeseo.io/"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Why does the token count change when I switch model?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Each model family uses a different tokeniser. GPT models split English prose at roughly 4 characters per token. Anthropic's Claude tokeniser runs slightly tighter at about 3.8. Gemini's is a touch looser at around 4.1. Llama 3 and Mistral both use sentencepiece variants that produce more tokens per character (3.5 and 3.7 respectively). Same prompt, different bills." }
+      },
+      {
+        "@type": "Question",
+        "name": "How accurate is this estimate?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Within about 15% of the real tokeniser count for normal English prose. Code, JSON, non-Latin scripts and emoji-heavy text drift further. If you need the exact figure, paste the text into the provider's official tokeniser tool or call their count-tokens endpoint. For quick budget sense-checks, the heuristic is fine." }
+      },
+      {
+        "@type": "Question",
+        "name": "What goes in the price field?",
+        "acceptedAnswer": { "@type": "Answer", "text": "The input price per 1,000 tokens for the model you picked, in dollars. You will find it on the provider's pricing page (often listed per 1M, in which case divide by 1000). The cost shown is for input only: output tokens are billed at a higher rate and depend on how much the model writes back, which this tool does not try to predict." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does this tool send my prompt anywhere?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. Everything runs in your browser. The text you paste does not leave your device, and there is no API call to a paid service. The estimate is a small piece of arithmetic, not a model invocation." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why estimate at all, instead of running the real tokeniser?",
+        "acceptedAnswer": { "@type": "Answer", "text": "The proper tokeniser bundles (tiktoken for OpenAI, Anthropic's tokeniser, Gemini's count-tokens endpoint) are either heavy enough to slow the page down meaningfully, locked behind a paid API, or both. The chars-per-token rule is the same shorthand the providers use in their own back-of-envelope docs. Good enough for a budget conversation, not good enough for a final invoice." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-banner-heading" aria-describedby="cookie-banner-text" hidden>
+    <div class="cookie-banner__inner">
+      <h2 id="cookie-banner-heading" class="cookie-banner__heading">A quick word about cookies</h2>
+      <p id="cookie-banner-text" class="cookie-banner__text">
+        We use cookies for analytics, so we can see which calculators people actually use and which ones need work. Nothing creepy, nothing sold on. You can say yes, say no, or read the <a href="/privacy/">privacy policy</a> first. Your choice sticks.
+      </p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-reject>Reject</button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>Accept</button>
+      </div>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">WebCaretakers</a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <ul class="primary-nav__list">
+          <li class="primary-nav__item primary-nav__item--has-menu">
+            <button type="button" class="primary-nav__link" data-menu-toggle aria-haspopup="true" aria-expanded="false">Calculators <span class="primary-nav__caret" aria-hidden="true">▾</span></button>
+            <ul class="primary-nav__submenu">
+              <li><a href="/calculators/ai/">AI</a></li>
+              <li><a href="/calculators/broadband/">Broadband</a></li>
+              <li><a href="/calculators/business/">Business</a></li>
+              <li><a href="/calculators/conversions/">Conversions</a></li>
+              <li><a href="/calculators/cybersecurity/">Cybersecurity</a></li>
+              <li><a href="/calculators/finance/">Finance</a></li>
+              <li><a href="/calculators/fun/">Fun</a></li>
+              <li><a href="/calculators/health/">Health</a></li>
+              <li><a href="/calculators/images/">Images</a></li>
+              <li><a href="/calculators/math/">Math</a></li>
+              <li><a href="/calculators/productivity/">Productivity</a></li>
+              <li><a href="/calculators/property/">Property</a></li>
+              <li><a href="/calculators/seo/">SEO</a></li>
+              <li><a href="/calculators/wedding/">Wedding</a></li>
+              <li><a href="/calculators/writing/">Writing</a></li>
+              <li class="primary-nav__submenu-sep"><a href="/calculators/">See all calculators</a></li>
+            </ul>
+          </li>
+          <li class="primary-nav__item"><a href="/about/" class="primary-nav__link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <main id="main-content">
+      <div class="container">
+        <nav aria-label="Breadcrumb" class="breadcrumbs">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/calculators/">Calculators</a></li>
+            <li><a href="/calculators/ai/">AI</a></li>
+            <li aria-current="page">Prompt Token Estimator</li>
+          </ol>
+        </nav>
+
+        <h1>Prompt Token Estimator</h1>
+        <p class="intro">Paste a prompt, pick a model family, see roughly how many tokens it will use. Different tokenisers split text differently, so the same paragraph can cost meaningfully more on Llama than on GPT. Drop in a price per 1K tokens and you also get a rough cost. All in your browser, nothing sent anywhere.</p>
+
+        <section class="eli5" aria-label="Plain-English explanation">
+          <h2>Explain like I'm 5 (what even is this calculator?)</h2>
+          <p>Big AI models charge you per token, which is roughly a chunk of word. Different models chop text up slightly differently, which means the same prompt can cost a different amount depending on whose model is reading it. This tool uses each family's published rule of thumb to give you a sensible estimate before you press send.</p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="in-content" aria-hidden="true"></div>
+
+        <section class="calculator-card">
+          <h2>Estimate the tokens</h2>
+          <p class="reassure"><strong>Heuristic, browser-only.</strong> No API calls, no sign-up, nothing leaves the page.</p>
+
+          <form id="pte-form" class="calc-form" novalidate>
+            <div class="calc-row">
+              <label for="pte-prompt">Your prompt</label>
+              <textarea id="pte-prompt" name="prompt" rows="6" placeholder="Paste a prompt here. The longer the better, since rough estimates get rougher on short snippets."></textarea>
+            </div>
+            <div class="calc-row">
+              <label for="pte-model">Model family</label>
+              <select id="pte-model" name="model">
+                <option value="gpt-4o" selected>GPT-4o (OpenAI)</option>
+                <option value="gpt-4o-mini">GPT-4o mini (OpenAI)</option>
+                <option value="claude-3-5-sonnet">Claude 3.5 Sonnet (Anthropic)</option>
+                <option value="claude-3-7-sonnet">Claude 3.7 Sonnet (Anthropic)</option>
+                <option value="claude-4-opus">Claude 4 Opus (Anthropic)</option>
+                <option value="gemini-1-5-pro">Gemini 1.5 Pro (Google)</option>
+                <option value="gemini-1-5-flash">Gemini 1.5 Flash (Google)</option>
+                <option value="llama-3">Llama 3 70B (Meta)</option>
+                <option value="mistral">Mistral Large</option>
+              </select>
+              <p class="calc-row__hint">Each family's tokeniser packs characters into tokens at a slightly different ratio.</p>
+            </div>
+            <div class="calc-row">
+              <label for="pte-price">Input price per 1,000 tokens (optional, in USD)</label>
+              <input type="number" id="pte-price" name="pricePer1k" min="0" step="0.0001" placeholder="e.g. 0.005">
+              <p class="calc-row__hint">Leave blank if you only want the token count. Providers usually quote per 1M, so divide by 1000.</p>
+            </div>
+            <div class="calc-actions">
+              <button type="button" class="btn btn--primary" data-calculate>Estimate tokens</button>
+            </div>
+          </form>
+
+          <div class="hash-rows" data-result-panel aria-live="polite" hidden>
+            <div class="hash-row">
+              <div class="hash-row__head"><h3>Tokens (approx)</h3></div>
+              <code class="hash-row__value" data-result-tokens>0</code>
+            </div>
+            <div class="hash-row">
+              <div class="hash-row__head"><h3>Words</h3></div>
+              <code class="hash-row__value" data-result-words>0</code>
+            </div>
+            <div class="hash-row">
+              <div class="hash-row__head"><h3>Characters</h3></div>
+              <code class="hash-row__value" data-result-chars>0</code>
+            </div>
+            <div class="hash-row">
+              <div class="hash-row__head"><h3>Estimated input cost</h3></div>
+              <code class="hash-row__value" data-result-cost>—</code>
+            </div>
+          </div>
+
+          <details class="prove-it" data-prove-it>
+            <summary>Prove it</summary>
+            <div data-prove-it-body>
+              <p>Estimate a prompt above to see the working out.</p>
+              <ul data-prove-it-list></ul>
+            </div>
+          </details>
+
+          <p class="bookmark-nudge">
+            Useful? Save this calculator: press <kbd data-bookmark-shortcut>Ctrl</kbd> + <kbd>D</kbd> to bookmark it.
+          </p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="below-results" aria-hidden="true"></div>
+
+        <section class="long-form">
+          <h2>How the estimate works</h2>
+          <p>The maths is a single division. Take the character count of your prompt, divide by the family's chars-per-token figure, round to the nearest whole token. GPT models sit at roughly 4.0, Claude at 3.8, Gemini at 4.1, Mistral at 3.7, and Llama at 3.5. Those numbers come from each provider's own back-of-envelope figures plus a fair bit of public sentencepiece and BPE tokeniser inspection. They are not exact for every prompt, because real tokenisers split words differently depending on what comes before and after, but they land within about 15% for normal English prose.</p>
+
+          <h2>Why the families differ</h2>
+          <p>OpenAI's tiktoken splits English fairly cleanly into common subwords. Anthropic's Claude tokeniser is similar but slightly tighter, which is why the same paragraph tends to cost a few percent more in tokens on Claude. Google's Gemini tokeniser is a little looser on English, which makes it look cheaper per token but does not always translate to a cheaper bill once you compare the actual per-token rates. Llama 3 and Mistral both use sentencepiece variants tuned for multilingual coverage, which means they split English into smaller pieces, more tokens per word, and therefore higher token counts for the same text.</p>
+
+          <h2>What the estimate does not include</h2>
+          <p>Three honest caveats. First, this is input tokens only. Output tokens are billed at a higher rate and depend on how much the model writes back, which is impossible to predict from the prompt alone. Second, code, JSON and non-Latin scripts tokenise very differently from English prose, often badly, so the rule of thumb drifts further on those. Third, the model providers publish exact tokenisers (tiktoken, the Anthropic tokeniser endpoint, Gemini's count-tokens API). If you need the precise figure for a contract or a bill, use those tools, not this one.</p>
+
+          <h2>How to use this in practice</h2>
+          <p>Paste a representative prompt, pick the model you are actually planning to use, and look at the token figure. If it surprises you on the high side, the usual fix is to trim the system prompt: long, hand-crafted prompts with twelve few-shot examples are reassuring to write but expensive to run a million times. If you have the per-1K input price to hand, drop it in for a sanity-check on the per-call cost. Multiply by your call volume and you have the rough monthly figure. For the full daily, monthly and annual breakdown across every major model, the LLM Token Usage Calculator does the comparison-table version of the same job.</p>
+
+          <h2>Related calculators</h2>
+          <ul class="related-calculators">
+            <li><a href="/calculators/ai/llm-token-usage-calculator/">LLM Token Usage Calculator</a> for the full cost projection across every major model.</li>
+            <li><a href="/calculators/ai/hallucination-risk-calculator/">AI Hallucination Risk Calculator</a> for the risk side of the same workload.</li>
+            <li><a href="/calculators/writing/word-count/">Word and character count</a> for the prose-level numbers without the token maths.</li>
+            <li><a href="/calculators/ai/">All AI calculators</a></li>
+          </ul>
+        </section>
+
+        <section class="faq" aria-labelledby="faq-heading">
+          <h2 id="faq-heading">Frequently asked questions</h2>
+          <details>
+            <summary>Why does the token count change when I switch model?</summary>
+            <p>Each model family uses a different tokeniser. GPT models split English prose at roughly 4 characters per token. Anthropic's Claude tokeniser runs slightly tighter at about 3.8. Gemini's is a touch looser at around 4.1. Llama 3 and Mistral both use sentencepiece variants that produce more tokens per character (3.5 and 3.7 respectively). Same prompt, different bills.</p>
+          </details>
+          <details>
+            <summary>How accurate is this estimate?</summary>
+            <p>Within about 15% of the real tokeniser count for normal English prose. Code, JSON, non-Latin scripts and emoji-heavy text drift further. If you need the exact figure, paste the text into the provider's official tokeniser tool or call their count-tokens endpoint. For quick budget sense-checks, the heuristic is fine.</p>
+          </details>
+          <details>
+            <summary>What goes in the price field?</summary>
+            <p>The input price per 1,000 tokens for the model you picked, in dollars. You will find it on the provider's pricing page (often listed per 1M, in which case divide by 1000). The cost shown is for input only: output tokens are billed at a higher rate and depend on how much the model writes back, which this tool does not try to predict.</p>
+          </details>
+          <details>
+            <summary>Does this tool send my prompt anywhere?</summary>
+            <p>No. Everything runs in your browser. The text you paste does not leave your device, and there is no API call to a paid service. The estimate is a small piece of arithmetic, not a model invocation.</p>
+          </details>
+          <details>
+            <summary>Why estimate at all, instead of running the real tokeniser?</summary>
+            <p>The proper tokeniser bundles (tiktoken for OpenAI, Anthropic's tokeniser, Gemini's count-tokens endpoint) are either heavy enough to slow the page down meaningfully, locked behind a paid API, or both. The chars-per-token rule is the same shorthand the providers use in their own back-of-envelope docs. Good enough for a budget conversation, not good enough for a final invoice.</p>
+          </details>
+        </section>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="ad-slot" data-ad-slot="sidebar" aria-hidden="true"></div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="site-footer-nav" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/calculators/">All calculators</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+
+      <section class="site-disclaimer" data-disclaimer aria-labelledby="disclaimer-heading">
+        <h2 id="disclaimer-heading">A quick, necessary word</h2>
+        <p>Every calculator on this site is built to give you a sensible, well-reasoned estimate. It is, however, exactly that: an estimate, for general information only. Nothing you see here is professional, legal, financial, medical, or tax advice, and it should not be treated as such.</p>
+        <p>Before you make a decision that actually matters, talk to a qualified professional who knows your specific situation: an accountant, a solicitor, a doctor, an IT consultant, whoever fits the question. They can factor in the bits a generic tool can't.</p>
+        <p>We take no liability and accept no responsibility for any loss, damage, or questionable life choice arising from acting on the numbers you see here. Use the results as a starting point for a better conversation, not as the final word.</p>
+        <p><strong>Affiliate disclosure:</strong> some links on this site are affiliate links. If you click through and buy or sign up for something, we may earn a small commission at no extra cost to you. It helps keep the calculators free and ad-light. We only recommend things we'd point a friend towards.</p>
+      </section>
+      <p class="site-copyright">&copy; 2026 WebCaretakers. All rights reserved.</p>
+      <p class="site-legal">WebCaretakers is a trading name of <a href="https://yeseo.io/" rel="noopener">Andrew Laws Associates Ltd</a>, registered in England and Wales (company no. 08602332). ICO registration ZA726704.</p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/calculators/prompt-token-estimator.js"></script>
+  <script>
+  (function () {
+    'use strict';
+    var lib = window.PromptTokenEstimator;
+    if (!lib) return;
+
+    var CALC_NAME = 'prompt-token-estimator';
+
+    var promptEl = document.querySelector('[name="prompt"]');
+    var modelEl = document.querySelector('[name="model"]');
+    var priceEl = document.querySelector('[name="pricePer1k"]');
+    var calcBtn = document.querySelector('[data-calculate]');
+    var resultPanel = document.querySelector('[data-result-panel]');
+    var tokensEl = document.querySelector('[data-result-tokens]');
+    var wordsEl = document.querySelector('[data-result-words]');
+    var charsEl = document.querySelector('[data-result-chars]');
+    var costEl = document.querySelector('[data-result-cost]');
+    var proveIt = document.querySelector('[data-prove-it]');
+    var proveBody = proveIt ? proveIt.querySelector('[data-prove-it-body]') : null;
+    var proveList = proveIt ? proveIt.querySelector('[data-prove-it-list]') : null;
+
+    if (!promptEl || !calcBtn) return;
+
+    var firedInteraction = false;
+    function pushInteraction(field) {
+      window.dataLayer = window.dataLayer || [];
+      if (!firedInteraction) {
+        firedInteraction = true;
+        window.dataLayer.push({
+          event: 'calculator_interaction',
+          calculator_name: CALC_NAME,
+          field: field || ''
+        });
+      }
+    }
+
+    function fmtInt(n) {
+      if (typeof n !== 'number' || !isFinite(n)) return '—';
+      return n.toLocaleString('en-GB');
+    }
+
+    function fmtCost(n) {
+      if (n === null || n === undefined || !isFinite(n)) return '—';
+      if (n === 0) return '$0.00';
+      if (n < 0.01) return '$' + n.toFixed(6);
+      if (n < 1) return '$' + n.toFixed(4);
+      return '$' + n.toFixed(2);
+    }
+
+    function calculate() {
+      var prompt = promptEl.value || '';
+      var modelId = modelEl ? modelEl.value : 'gpt-4o';
+      var priceVal = priceEl && priceEl.value !== '' ? parseFloat(priceEl.value) : NaN;
+
+      var r = lib.estimateTokens({ prompt: prompt, model: modelId });
+      var cost = isFinite(priceVal)
+        ? lib.estimateCost({ tokens: r.tokens, pricePer1k: priceVal })
+        : null;
+
+      if (resultPanel) resultPanel.hidden = false;
+      if (tokensEl) tokensEl.textContent = fmtInt(r.tokens);
+      if (wordsEl) wordsEl.textContent = fmtInt(r.words);
+      if (charsEl) charsEl.textContent = fmtInt(r.chars);
+      if (costEl) costEl.textContent = cost === null ? '—' : fmtCost(cost);
+
+      if (proveList) {
+        proveList.innerHTML = '';
+        var rows = [
+          ['Characters', fmtInt(r.chars)],
+          ['Words', fmtInt(r.words)],
+          ['Model family divisor (chars per token)', r.divisor.toFixed(2)],
+          ['Token estimate (chars / divisor, rounded)', fmtInt(r.tokens)]
+        ];
+        if (cost !== null) {
+          rows.push(['Price per 1,000 tokens (input, USD)', '$' + priceVal.toFixed(4)]);
+          rows.push(['Estimated input cost (tokens / 1000 × price)', fmtCost(cost)]);
+        }
+        for (var i = 0; i < rows.length; i++) {
+          var li = document.createElement('li');
+          li.textContent = rows[i][0] + ': ' + rows[i][1];
+          proveList.appendChild(li);
+        }
+      }
+
+      if (proveBody) {
+        var existing = proveBody.querySelector('[data-prove-it-summary]');
+        if (existing) existing.parentNode.removeChild(existing);
+        var p = document.createElement('p');
+        p.setAttribute('data-prove-it-summary', '');
+        p.textContent = 'Total: ' + fmtInt(r.tokens) + ' tokens for ' + fmtInt(r.chars)
+          + ' characters on ' + r.model + '. The estimate is the character count divided by '
+          + r.divisor.toFixed(2) + ', rounded to the nearest whole token. Real tokenisers will land within about 15%.';
+        proveBody.appendChild(p);
+      }
+
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: 'calculator_result',
+        calculator_name: CALC_NAME,
+        model: r.model,
+        tokens: r.tokens,
+        words: r.words,
+        chars: r.chars,
+        cost: cost
+      });
+    }
+
+    calcBtn.addEventListener('click', function () {
+      pushInteraction('prompt');
+      calculate();
+    });
+
+    promptEl.addEventListener('input', function () { pushInteraction('prompt'); });
+    if (modelEl) modelEl.addEventListener('change', function () { pushInteraction('model'); });
+    if (priceEl) priceEl.addEventListener('input', function () { pushInteraction('pricePer1k'); });
+
+    if (proveIt) {
+      proveIt.addEventListener('toggle', function () {
+        if (proveIt.open) {
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({ event: 'prove_it', calculator_name: CALC_NAME });
+        }
+      });
+    }
+
+    var shortcutEl = document.querySelector('[data-bookmark-shortcut]');
+    if (shortcutEl) {
+      var isMac = /Mac|iPhone|iPad|iPod/i.test(navigator.platform || navigator.userAgent);
+      shortcutEl.textContent = isMac ? '⌘' : 'Ctrl';
+    }
+  })();
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

@@ -36,6 +36,13 @@
   },
   {
     "type": "tool",
+    "name": "Data Breach Cost Estimator",
+    "summary": "Estimate the financial impact of a data breach using IBM/Ponemon 2024 benchmarks. Per-record cost by sector, regional and sensitivity multipliers, GDPR and CCPA fine estimates, and a sensible range.",
+    "url": "/calculators/cybersecurity/data-breach-cost-estimator/",
+    "category": "Cybersecurity"
+  },
+  {
+    "type": "tool",
     "name": "Hash Generator",
     "summary": "Generate SHA-256, SHA-384, SHA-512 and SHA-1 hashes from text or files. Uses Web Crypto in your browser. Drag a 100MB file in, the hash never leaves the device.",
     "url": "/calculators/cybersecurity/hash-generator/",
@@ -53,6 +60,13 @@
     "name": "SSL Certificate Expiry Calculator",
     "summary": "Paste an expiry date or a certificate's openssl text dump and see days remaining, urgency band, and the renewal date to set a reminder for. Browser-only date arithmetic, no network call.",
     "url": "/calculators/cybersecurity/ssl-certificate-expiry-calculator/",
+    "category": "Cybersecurity"
+  },
+  {
+    "type": "tool",
+    "name": "2FA / TOTP Window Calculator",
+    "summary": "Reason about your TOTP authentication window. Period, digits, drift and clock skew in; effective acceptance window, per-attempt brute-force odds, attempts-per-second to a 50% hit, and a recommended drift setting out.",
+    "url": "/calculators/cybersecurity/totp-window-calculator/",
     "category": "Cybersecurity"
   },
   {
@@ -102,6 +116,20 @@
     "name": "AI Hallucination Risk Calculator",
     "summary": "Score the relative risk that an LLM output will hallucinate, given the model class, task, grounding and verification you have in place. Heuristic, browser-only, with the maths shown.",
     "url": "/calculators/ai/hallucination-risk-calculator/",
+    "category": "AI"
+  },
+  {
+    "type": "tool",
+    "name": "Embedding Cost Calculator",
+    "summary": "Estimate the cost of generating embeddings for a corpus across OpenAI, Cohere, Voyage or a custom price. One-off, monthly, weekly or daily refresh, with total over the period and per-1000-docs cost.",
+    "url": "/calculators/ai/embedding-cost-calculator/",
+    "category": "AI"
+  },
+  {
+    "type": "tool",
+    "name": "Prompt Token Estimator",
+    "summary": "Paste a prompt, pick a model family, see roughly how many tokens it will use across GPT-4o, Claude, Gemini, Llama and Mistral. Optional cost at your $/1K rate.",
+    "url": "/calculators/ai/prompt-token-estimator/",
     "category": "AI"
   },
   {

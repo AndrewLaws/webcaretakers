@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2FA / TOTP Window Calculator: Acceptance Window and Brute-Force Maths | WebCaretakers</title>
+  <meta name="description" content="Reason about your TOTP authentication window. Pick period, digit count, drift tolerance and clock skew, see effective window in seconds, brute-force odds and a recommended drift setting.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/cybersecurity/totp-window-calculator/">
+  <meta property="og:title" content="2FA / TOTP Window Calculator | WebCaretakers">
+  <meta property="og:description" content="Effective TOTP acceptance window, brute-force probability and a sensible drift setting based on expected clock skew.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/cybersecurity/totp-window-calculator/">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var _stored = null;
+    try { _stored = localStorage.getItem('cookie-consent'); } catch (e) {}
+    var _initial = _stored === 'granted' ? 'granted' : 'denied';
+    gtag('consent', 'default', {
+      ad_storage: _initial, analytics_storage: _initial,
+      ad_user_data: _initial, ad_personalization: _initial,
+      functionality_storage: 'granted', security_storage: 'granted',
+      wait_for_update: 500
+    });
+  </script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "2FA / TOTP Window Calculator",
+    "url": "https://webcaretakers.com/calculators/cybersecurity/totp-window-calculator/",
+    "applicationCategory": "SecurityApplication",
+    "operatingSystem": "Any",
+    "description": "Calculate the effective TOTP acceptance window in seconds, the brute-force probability per attempt expressed as 1-in-N, attempts-per-second to a 50% chance of guessing inside one period, and a recommended drift setting based on expected clock skew. Browser-only, RFC 6238.",
+    "offers": { "@type": "Offer", "price": "0" },
+    "author": { "@type": "Person", "name": "Andrew Laws", "url": "https://yeseo.io/" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the TOTP acceptance window?",
+        "acceptedAnswer": { "@type": "Answer", "text": "It is the span of time during which a generated 6 to 8 digit code will still be accepted by the server. With a 30 second period and a drift tolerance of plus or minus one step, three codes are valid at any moment: the previous one, the current one, and the next one. That is a 90 second total window. Wider drift means a wider window, which means more accepted codes, which means a slightly easier brute-force target." }
+      },
+      {
+        "@type": "Question",
+        "name": "How does drift tolerance affect security?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Each extra step of drift on either side of \"now\" adds another accepted code. With 6 digits, the code space is one million. Drift of plus or minus one means three accepted codes, so the per-attempt probability of a blind guess is three in a million instead of one. Drift of plus or minus two makes it five in a million. The hit to security is small in absolute terms, but RFC 6238 still recommends keeping it tight, ideally one step." }
+      },
+      {
+        "@type": "Question",
+        "name": "What clock skew should I plan for?",
+        "acceptedAnswer": { "@type": "Answer", "text": "On any device that runs a real-time clock with NTP, skew is well under one second. The drift you actually need to tolerate comes from cheap hardware tokens with no network sync, mobile devices that have been offline for a while, or virtual machines whose host clocks have wandered. A safe rule is to set drift to ceil(expected_skew / period). 30 second period, 70 second tolerated skew, three steps. The calculator does this for you." }
+      },
+      {
+        "@type": "Question",
+        "name": "Should I use 7 or 8 digit codes?",
+        "acceptedAnswer": { "@type": "Answer", "text": "RFC 6238 allows 6, 7 or 8 digits. Six is the everyday standard because almost every authenticator app and hardware token supports it. Eight digits is supported by RSA SecurID, YubiKey OATH-TOTP and Google Authenticator on devices that allow it, and raises the code space from one million to one hundred million. For environments where rate limiting on the server is unreliable, 8 digits is a cheap upgrade." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does the algorithm choice (SHA1, SHA256, SHA512) matter?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Not for the brute-force maths. The acceptance window and per-guess probability depend only on the period, digits and drift. Algorithm choice matters for compatibility: every authenticator app supports SHA1, fewer support SHA256, and SHA512 is patchy. SHA1 here is fine, the codes are derived from an HMAC of a counter that turns over every period, not used as a long-lived secret. If your enrolment QR code does not specify an algorithm, the consumer assumes SHA1." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-banner-heading" aria-describedby="cookie-banner-text" hidden>
+    <div class="cookie-banner__inner">
+      <h2 id="cookie-banner-heading" class="cookie-banner__heading">A quick word about cookies</h2>
+      <p id="cookie-banner-text" class="cookie-banner__text">
+        We use cookies for analytics, so we can see which calculators people actually use and which ones need work. Nothing creepy, nothing sold on. You can say yes, say no, or read the <a href="/privacy/">privacy policy</a> first. Your choice sticks.
+      </p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-reject>Reject</button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>Accept</button>
+      </div>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">WebCaretakers</a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <ul class="primary-nav__list">
+          <li class="primary-nav__item primary-nav__item--has-menu">
+            <button type="button" class="primary-nav__link" data-menu-toggle aria-haspopup="true" aria-expanded="false">Calculators <span class="primary-nav__caret" aria-hidden="true">&#9662;</span></button>
+            <ul class="primary-nav__submenu">
+              <li><a href="/calculators/ai/">AI</a></li>
+              <li><a href="/calculators/broadband/">Broadband</a></li>
+              <li><a href="/calculators/business/">Business</a></li>
+              <li><a href="/calculators/conversions/">Conversions</a></li>
+              <li><a href="/calculators/cybersecurity/">Cybersecurity</a></li>
+              <li><a href="/calculators/finance/">Finance</a></li>
+              <li><a href="/calculators/fun/">Fun</a></li>
+              <li><a href="/calculators/health/">Health</a></li>
+              <li><a href="/calculators/images/">Images</a></li>
+              <li><a href="/calculators/math/">Math</a></li>
+              <li><a href="/calculators/productivity/">Productivity</a></li>
+              <li><a href="/calculators/property/">Property</a></li>
+              <li><a href="/calculators/seo/">SEO</a></li>
+              <li><a href="/calculators/wedding/">Wedding</a></li>
+              <li><a href="/calculators/writing/">Writing</a></li>
+              <li class="primary-nav__submenu-sep"><a href="/calculators/">See all calculators</a></li>
+            </ul>
+          </li>
+          <li class="primary-nav__item"><a href="/about/" class="primary-nav__link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <main id="main-content">
+      <div class="container">
+        <nav aria-label="Breadcrumb" class="breadcrumbs">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/calculators/">Calculators</a></li>
+            <li><a href="/calculators/cybersecurity/">Cybersecurity</a></li>
+            <li aria-current="page">2FA / TOTP Window Calculator</li>
+          </ol>
+        </nav>
+
+        <h1>2FA / TOTP Window Calculator</h1>
+        <p class="intro">Pick the period, digit count, algorithm, drift tolerance and the clock skew you expect. The calculator returns the effective acceptance window in seconds, the per-attempt brute-force probability written as 1-in-N, the attempts-per-second a blind attacker would need to reach a 50% chance inside one period, and a recommended drift setting based on the skew you entered. Useful for tuning your auth server, picking sensible defaults, or arguing with a vendor about whether 8-digit codes are worth the hassle.</p>
+
+        <section class="eli5" aria-label="Plain-English explanation">
+          <h2>Explain like I'm 5 (what even is this calculator?)</h2>
+          <p>Your authenticator app spits out a fresh six digit code every 30 seconds. The server has to be a little bit forgiving, because your phone clock and the server clock are never perfectly in sync. So it accepts the code from now, the one from 30 seconds ago, and sometimes the next one too. That forgiving slice of time is the "window". Wider window, easier life for users, easier life for an attacker guessing codes. This page works out exactly how easy.</p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="in-content" aria-hidden="true"></div>
+
+        <section data-calculator class="calculator-card" aria-labelledby="calc-heading">
+          <h2 id="calc-heading">Work out your TOTP window</h2>
+          <form id="totp-form" class="calc-form" novalidate>
+            <div class="calc-row">
+              <label for="inp-period">Period (seconds)</label>
+              <input type="number" id="inp-period" name="period" min="1" step="1" value="30" required>
+              <p class="calc-row__hint">RFC 6238 default is 30. Some hardware tokens use 60.</p>
+            </div>
+
+            <div class="calc-row">
+              <label for="inp-digits">Code digits</label>
+              <select id="inp-digits" name="digits" required>
+                <option value="6" selected>6 (standard)</option>
+                <option value="7">7</option>
+                <option value="8">8 (high security)</option>
+              </select>
+            </div>
+
+            <div class="calc-row">
+              <label for="inp-algo">HMAC algorithm</label>
+              <select id="inp-algo" name="algo" required>
+                <option value="SHA1" selected>SHA1 (default, universal support)</option>
+                <option value="SHA256">SHA256</option>
+                <option value="SHA512">SHA512</option>
+              </select>
+              <p class="calc-row__hint">Algorithm does not change the brute-force odds. It is here for completeness and the prove-it panel.</p>
+            </div>
+
+            <div class="calc-row">
+              <label for="inp-drift">Drift tolerance (steps either side)</label>
+              <input type="number" id="inp-drift" name="drift" min="0" step="1" value="1" required>
+              <p class="calc-row__hint">RFC 6238 recommends at most 1. Each extra step adds two accepted codes.</p>
+            </div>
+
+            <div class="calc-row">
+              <label for="inp-skew">Expected clock skew (seconds, one-sided)</label>
+              <input type="number" id="inp-skew" name="skew" min="0" step="1" value="0" required>
+              <p class="calc-row__hint">How far off the user's device clock might be. Used to suggest a drift setting.</p>
+            </div>
+
+            <button type="submit" data-calculate>Calculate</button>
+          </form>
+
+          <div data-calculator-results class="calculator-results" aria-live="polite">
+            <p class="result-display" data-result-placeholder>Fill in the form and press the button to see the window and the brute-force figures.</p>
+            <div class="result-summary" hidden data-result-summary>
+              <p>Effective acceptance window: <strong data-result-window></strong></p>
+              <p>Per-attempt probability: <strong data-result-prob></strong> (<span data-result-onein></span>)</p>
+              <p>Attempts per second to 50% chance inside one period: <strong data-result-attempts></strong></p>
+              <p>Recommended drift for the skew you entered: <strong data-result-recommended-drift></strong></p>
+
+              <p data-result-warning class="result-warning" hidden role="alert"><strong>Heads up:</strong> the window is wider than 90 seconds. RFC 6238 recommends keeping the validation window narrow. Tighten the drift, or run a once-per-account skew correction instead.</p>
+
+              <details class="prove-it" data-prove-it>
+                <summary>Prove it</summary>
+                <div data-prove-it-body>
+                  <p>The window in seconds is <code>(1 + 2 &times; drift) &times; period</code>. The per-attempt probability is the count of accepted codes divided by the code space, <code>10^digits</code>. The attempts-per-second figure assumes a blind attacker, no rate limiting, no leak: it is <code>ln(0.5) / ln(1 - p) / period</code>, the geometric distribution rearranged for a 50% hit chance inside one period.</p>
+                  <ul data-prove-it-list></ul>
+                  <p class="prove-it-source">Source: RFC 6238 (TOTP), section 5.2 on validation window. Algorithm choice (SHA1, SHA256, SHA512) does not affect these figures; it only changes which authenticators can read your enrolment QR.</p>
+                </div>
+              </details>
+            </div>
+
+            <p class="bookmark-nudge">
+              <strong>Save this calculator:</strong>
+              press <kbd data-bookmark-shortcut>Ctrl</kbd> + <kbd>D</kbd> to bookmark it in your browser.
+            </p>
+          </div>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="below-results" aria-hidden="true"></div>
+
+        <section class="long-form">
+          <h2>Why the window matters more than the digits</h2>
+          <p>Most teams worry about whether to enforce 6 digits or 8 digits and ignore the drift setting entirely, which is the wrong way round. A 6 digit code with a 30 second period and zero drift gives an attacker a one in a million chance per blind attempt. Bump drift to plus or minus three steps because someone in operations got tired of help desk tickets, and you have just multiplied the per-guess probability by seven. That is still small, but it compounds badly when the attacker has any kind of throughput.</p>
+
+          <p>The realistic threat model here is a credential-stuffing bot that has the password, gets thrown at the TOTP gate, and starts spraying. Without rate limiting, even a tiny per-guess probability becomes a 50% chance to land in the same time window the legitimate user is trying to log in. With rate limiting (and you should), the attacker's window of opportunity collapses, but the maths is the right starting point for setting the rate limit threshold.</p>
+
+          <h2>Drift, skew, and the operational reality</h2>
+          <p>Skew is the thing nobody plans for until it bites. A user's phone has been on aeroplane mode for a week, comes back online, and the OS has not yet hit an NTP server. The TOTP code is now 12 minutes off. The server rejects it. The user is locked out, the help desk gets a ticket, and someone in security raises the drift window from 1 to 5 to "fix" the problem. That fixes the symptom and quintuples the brute-force surface.</p>
+          <p>The right answer is to leave drift at plus or minus one step and run a one-off skew correction at enrolment, where the server stores the user-specific clock offset and applies it on every subsequent verification. RFC 6238 anticipates this in section 6: the server can resynchronise per-user. Most production-grade IAM products (Auth0, Okta, AWS Cognito, Keycloak) do this. Roll-your-own implementations usually do not, which is how the drift dial gets cranked.</p>
+
+          <h2>Why the algorithm choice is mostly cosmetic for security</h2>
+          <p>SHA1 has known collision attacks against the hash function, but TOTP does not rely on collision resistance. It uses HMAC-SHA1 with a per-account secret, and the security comes from the secret and the truncation, not from SHA1 being a strong hash. The IETF has not deprecated HMAC-SHA1 for this reason. SHA256 and SHA512 are available because the spec allows them, but compatibility with consumer authenticator apps is patchy, and the security gain is essentially nil. Pick SHA1 for compatibility unless you have a specific compliance reason.</p>
+
+          <h2>Where to set drift in real systems</h2>
+          <ul>
+            <li><strong>AWS Cognito:</strong> drift is fixed at plus or minus one window. You cannot widen it. AWS chose the security side of the trade-off.</li>
+            <li><strong>Auth0:</strong> default plus or minus one. Configurable per tenant up to plus or minus three.</li>
+            <li><strong>Okta:</strong> default plus or minus one. Adaptive, can be widened temporarily on a per-user basis if skew is detected.</li>
+            <li><strong>Keycloak:</strong> "Look-Ahead Window" defaults to one. Operators routinely raise it to three or five to silence support tickets, which is a mistake.</li>
+            <li><strong>Google Authenticator and Microsoft Authenticator (consumer):</strong> client-side only. Drift handling is entirely on the server.</li>
+          </ul>
+
+          <h2>What this calculator does not do</h2>
+          <p>It does not generate codes. It does not validate codes. It does not need a secret. It is a static set of formulas applied to the configuration you choose, run entirely in your browser. Nothing is sent anywhere, because there is nothing sensitive to send. If you need to actually generate a code, an authenticator app is the right tool. If you need to test a specific implementation, run a known test vector from RFC 6238 Appendix B.</p>
+
+          <h2>Related calculators</h2>
+          <ul class="related-calculators">
+            <li><a href="/calculators/cybersecurity/password-strength-calculator/">Password Strength Calculator</a></li>
+            <li><a href="/calculators/cybersecurity/diceware-passphrase-generator/">Diceware Passphrase Generator</a></li>
+            <li><a href="/calculators/cybersecurity/data-breach-risk-score/">Data Breach Risk Score</a></li>
+            <li><a href="/calculators/cybersecurity/">All cybersecurity tools</a></li>
+          </ul>
+        </section>
+
+        <section class="faq" aria-labelledby="faq-heading">
+          <h2 id="faq-heading">Frequently asked questions</h2>
+          <details>
+            <summary>What is the TOTP acceptance window?</summary>
+            <p>The span of time during which a generated code is still accepted. With a 30 second period and drift of plus or minus one step, three codes are valid at any moment: previous, current, next. That is a 90 second window.</p>
+          </details>
+          <details>
+            <summary>How does drift tolerance affect security?</summary>
+            <p>Each step of drift on either side adds another accepted code. Six digit code space is one million. Drift of plus or minus one gives three accepted codes, so per-guess probability is three in a million. The absolute hit is small. RFC 6238 still recommends keeping it tight, ideally a single step.</p>
+          </details>
+          <details>
+            <summary>What clock skew should I plan for?</summary>
+            <p>Devices with NTP run sub-second skew. Realistic skew comes from offline phones, hardware tokens with no sync, or VMs with drifting host clocks. A safe rule is drift = ceil(expected_skew / period). The calculator does this for you.</p>
+          </details>
+          <details>
+            <summary>Should I use 7 or 8 digit codes?</summary>
+            <p>Six is the everyday standard. Eight is supported by RSA SecurID, YubiKey OATH-TOTP, and some authenticators. Eight digits raise the code space from one million to one hundred million, a useful upgrade where server rate limiting is unreliable.</p>
+          </details>
+          <details>
+            <summary>Does SHA1 vs SHA256 vs SHA512 matter?</summary>
+            <p>Not for the brute-force maths. The window and per-guess probability depend only on period, digits and drift. Algorithm choice affects which authenticators can read your enrolment QR. SHA1 is universally supported and remains safe for HMAC use.</p>
+          </details>
+        </section>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="ad-slot" data-ad-slot="sidebar" aria-hidden="true"></div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="site-footer-nav" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/calculators/">All calculators</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+
+      <section class="site-disclaimer" data-disclaimer aria-labelledby="disclaimer-heading">
+        <h2 id="disclaimer-heading">A quick, necessary word</h2>
+        <p>Every calculator on this site is built to give you a sensible, well-reasoned estimate. It is, however, exactly that: an estimate, for general information only. Nothing you see here is professional, legal, financial, medical, or tax advice, and it should not be treated as such.</p>
+        <p>Before you make a decision that actually matters, talk to a qualified professional who knows your specific situation: an accountant, a solicitor, a doctor, an IT consultant, whoever fits the question. They can factor in the bits a generic tool can't.</p>
+        <p>We take no liability and accept no responsibility for any loss, damage, or questionable life choice arising from acting on the numbers you see here. Use the results as a starting point for a better conversation, not as the final word.</p>
+        <p><strong>Affiliate disclosure:</strong> some links on this site are affiliate links. If you click through and buy or sign up for something, we may earn a small commission at no extra cost to you. It helps keep the calculators free and ad-light. We only recommend things we'd point a friend towards.</p>
+      </section>
+      <p class="site-copyright">&copy; 2026 WebCaretakers. All rights reserved.</p>
+      <p class="site-legal">WebCaretakers is a trading name of <a href="https://yeseo.io/" rel="noopener">Andrew Laws Associates Ltd</a>, registered in England and Wales (company no. 08602332). ICO registration ZA726704.</p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/calculators/totp-window-calculator.js"></script>
+  <script>
+    (function () {
+      var form = document.getElementById('totp-form');
+      if (!form) return;
+      var summary = document.querySelector('[data-result-summary]');
+      var placeholder = document.querySelector('[data-result-placeholder]');
+      var windowEl = document.querySelector('[data-result-window]');
+      var probEl = document.querySelector('[data-result-prob]');
+      var oneInEl = document.querySelector('[data-result-onein]');
+      var attemptsEl = document.querySelector('[data-result-attempts]');
+      var recDriftEl = document.querySelector('[data-result-recommended-drift]');
+      var warningEl = document.querySelector('[data-result-warning]');
+      var proveListEl = document.querySelector('[data-prove-it-list]');
+
+      function pushInteraction(field, value) {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: 'calculator_interaction',
+          calculator_name: 'totp-window-calculator',
+          field: field,
+          value: value
+        });
+      }
+
+      form.addEventListener('input', function (e) {
+        var t = e.target;
+        pushInteraction(t.name || t.id, t.value);
+      });
+
+      function fmtSeconds(s) {
+        if (s < 60) return s + ' s';
+        if (s < 3600) return (s / 60).toFixed(1) + ' min (' + s + ' s)';
+        return (s / 3600).toFixed(2) + ' h (' + s + ' s)';
+      }
+
+      function fmtNumber(n) {
+        if (!Number.isFinite(n)) return '∞';
+        if (n >= 1e9) return (n / 1e9).toFixed(2) + ' billion';
+        if (n >= 1e6) return (n / 1e6).toFixed(2) + ' million';
+        if (n >= 1000) return Math.round(n).toLocaleString('en-GB');
+        if (n >= 1) return n.toFixed(2);
+        return n.toExponential(2);
+      }
+
+      function fmtProb(p) {
+        if (p >= 0.001) return (p * 100).toFixed(4) + '%';
+        return p.toExponential(2);
+      }
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var fd = new FormData(form);
+        var input = {
+          period: parseFloat(fd.get('period')),
+          digits: parseInt(fd.get('digits'), 10),
+          algo: fd.get('algo'),
+          drift: parseFloat(fd.get('drift')),
+          skew: parseFloat(fd.get('skew'))
+        };
+
+        var r;
+        try {
+          r = TotpWindowCalculator.assessTotp(input);
+        } catch (err) {
+          placeholder.hidden = false;
+          summary.hidden = true;
+          placeholder.textContent = 'Please check your inputs: ' + err.message;
+          return;
+        }
+
+        placeholder.hidden = true;
+        summary.hidden = false;
+
+        windowEl.textContent = fmtSeconds(r.windowSeconds);
+        probEl.textContent = fmtProb(r.probability);
+        oneInEl.textContent = '1 in ' + fmtNumber(r.oneInN);
+        attemptsEl.textContent = fmtNumber(r.attemptsPerSecondFor50pc) + ' attempts/sec';
+        recDriftEl.textContent = '±' + r.recommendedDrift + ' step' + (r.recommendedDrift === 1 ? '' : 's');
+
+        if (warningEl) {
+          warningEl.hidden = !r.tooWide;
+        }
+
+        if (proveListEl) {
+          var rows = [
+            ['Period', input.period + ' s'],
+            ['Digits', String(input.digits)],
+            ['Algorithm', r.algo],
+            ['Drift tolerance', '±' + input.drift + ' step(s)'],
+            ['Expected clock skew', input.skew + ' s'],
+            ['Accepted codes per moment', String(r.acceptedCodes)],
+            ['Code space (10^digits)', fmtNumber(r.codeSpace)],
+            ['Effective window', fmtSeconds(r.windowSeconds)],
+            ['Per-attempt probability', fmtProb(r.probability)],
+            ['Odds', '1 in ' + fmtNumber(r.oneInN)],
+            ['Attempts/sec for 50% hit in one period', fmtNumber(r.attemptsPerSecondFor50pc)],
+            ['Recommended drift for skew', '±' + r.recommendedDrift]
+          ];
+          proveListEl.innerHTML = rows.map(function (row) {
+            return '<li><span>' + row[0] + '</span><strong>' + row[1] + '</strong></li>';
+          }).join('');
+        }
+
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: 'calculator_result',
+          calculator_name: 'totp-window-calculator',
+          period: input.period,
+          digits: input.digits,
+          algo: r.algo,
+          drift: input.drift,
+          skew: input.skew,
+          window_seconds: r.windowSeconds,
+          probability: r.probability,
+          one_in_n: r.oneInN,
+          recommended_drift: r.recommendedDrift,
+          too_wide: r.tooWide
+        });
+      });
+
+      var proveDetails = document.querySelector('[data-prove-it]');
+      if (proveDetails) {
+        proveDetails.addEventListener('toggle', function () {
+          if (proveDetails.open) {
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+              event: 'prove_it',
+              calculator_name: 'totp-window-calculator'
+            });
+          }
+        });
+      }
+
+      var shortcutEl = document.querySelector('[data-bookmark-shortcut]');
+      if (shortcutEl) {
+        var isMac = /Mac|iPhone|iPad|iPod/i.test(navigator.platform || navigator.userAgent);
+        shortcutEl.textContent = isMac ? '⌘' : 'Ctrl';
+      }
+    })();
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

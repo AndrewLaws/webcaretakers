@@ -175,6 +175,18 @@
       "url": "/calculators/ai/hallucination-risk-calculator/"
     },
     {
+      "phrase": "Prompt Token Estimator",
+      "url": "/calculators/ai/prompt-token-estimator/"
+    },
+    {
+      "phrase": "prompt token counter",
+      "url": "/calculators/ai/prompt-token-estimator/"
+    },
+    {
+      "phrase": "estimate tokens for a prompt",
+      "url": "/calculators/ai/prompt-token-estimator/"
+    },
+    {
       "phrase": "LLM Token Usage Calculator",
       "url": "/calculators/ai/llm-token-usage-calculator/"
     },
@@ -189,6 +201,18 @@
     {
       "phrase": "cost per AI image",
       "url": "/calculators/ai/image-generation-cost-calculator/"
+    },
+    {
+      "phrase": "Embedding Cost Calculator",
+      "url": "/calculators/ai/embedding-cost-calculator/"
+    },
+    {
+      "phrase": "embedding cost calculator",
+      "url": "/calculators/ai/embedding-cost-calculator/"
+    },
+    {
+      "phrase": "OpenAI embedding price calculator",
+      "url": "/calculators/ai/embedding-cost-calculator/"
     },
     {
       "phrase": "RAG Pipeline Cost Calculator",
@@ -707,6 +731,18 @@
       "url": "/calculators/cybersecurity/data-breach-risk-score/"
     },
     {
+      "phrase": "Data Breach Cost Estimator",
+      "url": "/calculators/cybersecurity/data-breach-cost-estimator/"
+    },
+    {
+      "phrase": "data breach cost calculator",
+      "url": "/calculators/cybersecurity/data-breach-cost-estimator/"
+    },
+    {
+      "phrase": "GDPR fine estimator",
+      "url": "/calculators/cybersecurity/data-breach-cost-estimator/"
+    },
+    {
       "phrase": "Hash Generator",
       "url": "/calculators/cybersecurity/hash-generator/"
     },
@@ -853,6 +889,18 @@
     {
       "phrase": "days until SSL certificate expires",
       "url": "/calculators/cybersecurity/ssl-certificate-expiry-calculator/"
+    },
+    {
+      "phrase": "2FA / TOTP Window Calculator",
+      "url": "/calculators/cybersecurity/totp-window-calculator/"
+    },
+    {
+      "phrase": "TOTP window calculator",
+      "url": "/calculators/cybersecurity/totp-window-calculator/"
+    },
+    {
+      "phrase": "TOTP drift tolerance",
+      "url": "/calculators/cybersecurity/totp-window-calculator/"
     },
     {
       "phrase": "Image File Size Estimator",

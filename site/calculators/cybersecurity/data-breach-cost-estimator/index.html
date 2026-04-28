@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data Breach Cost Estimator: What a Breach Could Cost Your Business | WebCaretakers</title>
+  <meta name="description" content="Estimate the financial impact of a data breach using IBM/Ponemon 2024 benchmarks. Per-record cost, regulatory fine estimates for GDPR and CCPA, and a low/high range.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/cybersecurity/data-breach-cost-estimator/">
+  <meta property="og:title" content="Data Breach Cost Estimator | WebCaretakers">
+  <meta property="og:description" content="Estimate breach exposure using IBM/Ponemon 2024 benchmarks. Direct cost, regulatory fine, and a sensible low/high range.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/cybersecurity/data-breach-cost-estimator/">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var _stored = null;
+    try { _stored = localStorage.getItem('cookie-consent'); } catch (e) {}
+    var _initial = _stored === 'granted' ? 'granted' : 'denied';
+    gtag('consent', 'default', {
+      ad_storage: _initial, analytics_storage: _initial,
+      ad_user_data: _initial, ad_personalization: _initial,
+      functionality_storage: 'granted', security_storage: 'granted',
+      wait_for_update: 500
+    });
+  </script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Data Breach Cost Estimator",
+    "url": "https://webcaretakers.com/calculators/cybersecurity/data-breach-cost-estimator/",
+    "applicationCategory": "SecurityApplication",
+    "operatingSystem": "Any",
+    "description": "Estimate the financial impact of a data breach using IBM/Ponemon 2024 public benchmarks. Inputs include records exposed, sector, region, data sensitivity, regulatory regime and annual revenue. Returns direct cost, regulatory fine estimate, total exposure and a low/high range.",
+    "offers": { "@type": "Offer", "price": "0" },
+    "author": { "@type": "Person", "name": "Andrew Laws", "url": "https://yeseo.io/" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Where do the per-record cost figures come from?",
+        "acceptedAnswer": { "@type": "Answer", "text": "From the IBM/Ponemon Cost of a Data Breach 2024 report, which has been the closest thing the industry has to a public benchmark for two decades. The healthcare figure of $408 per record is the highest of the bunch, followed by financial services at $295. The figures are USD averages, so they are a starting point rather than a precise quote for your business." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why is the regulatory fine for GDPR shown as 4% of annual revenue?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Because that is the headline GDPR ceiling: up to 4% of global annual turnover, or 20 million euros, whichever is higher. Real-world fines often land well below the cap, but the cap is the right figure to plan against. If you genuinely cannot afford 4% of last year's revenue going out the door, you cannot afford a serious GDPR breach." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does the calculator reduce direct cost when a breach is reported within 72 hours?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Because IBM's data has consistently shown that breaches contained within roughly three days cost less, both in direct response and in regulator goodwill. We use a flat 10% reduction as a planning estimate, which is roughly in line with the gap between fast and slow responders in the 2024 report. It is not a guarantee that fast disclosure will save you that much, but it is the right direction of travel." }
+      },
+      {
+        "@type": "Question",
+        "name": "Is the CCPA figure of $7,500 per record realistic?",
+        "acceptedAnswer": { "@type": "Answer", "text": "It is the statutory ceiling for intentional violations and the figure most class-action complaints anchor on. Real settlements often land lower, but the CCPA cap is genuinely punishing in aggregate: a leak of 100,000 records exposes you to a theoretical $750 million liability. The calculator uses the cap because that is the planning number, not the average." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why is the total shown as a range?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Because every breach is different. Two companies with identical records exposed will end up paying very different amounts depending on litigation, customer churn, executive time, and how forgiving the regulator is feeling that quarter. The 0.7x to 1.3x range is rough guidance: the lower end if everything goes about as well as it can, the upper end if the press cycle is bad and the lawyers smell blood." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-banner-heading" aria-describedby="cookie-banner-text" hidden>
+    <div class="cookie-banner__inner">
+      <h2 id="cookie-banner-heading" class="cookie-banner__heading">A quick word about cookies</h2>
+      <p id="cookie-banner-text" class="cookie-banner__text">
+        We use cookies for analytics, so we can see which calculators people actually use and which ones need work. Nothing creepy, nothing sold on. You can say yes, say no, or read the <a href="/privacy/">privacy policy</a> first. Your choice sticks.
+      </p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-reject>Reject</button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>Accept</button>
+      </div>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">WebCaretakers</a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <ul class="primary-nav__list">
+          <li class="primary-nav__item primary-nav__item--has-menu">
+            <button type="button" class="primary-nav__link" data-menu-toggle aria-haspopup="true" aria-expanded="false">Calculators <span class="primary-nav__caret" aria-hidden="true">&#9662;</span></button>
+            <ul class="primary-nav__submenu">
+              <li><a href="/calculators/ai/">AI</a></li>
+              <li><a href="/calculators/broadband/">Broadband</a></li>
+              <li><a href="/calculators/business/">Business</a></li>
+              <li><a href="/calculators/conversions/">Conversions</a></li>
+              <li><a href="/calculators/cybersecurity/">Cybersecurity</a></li>
+              <li><a href="/calculators/finance/">Finance</a></li>
+              <li><a href="/calculators/fun/">Fun</a></li>
+              <li><a href="/calculators/health/">Health</a></li>
+              <li><a href="/calculators/images/">Images</a></li>
+              <li><a href="/calculators/math/">Math</a></li>
+              <li><a href="/calculators/productivity/">Productivity</a></li>
+              <li><a href="/calculators/property/">Property</a></li>
+              <li><a href="/calculators/seo/">SEO</a></li>
+              <li><a href="/calculators/wedding/">Wedding</a></li>
+              <li><a href="/calculators/writing/">Writing</a></li>
+              <li class="primary-nav__submenu-sep"><a href="/calculators/">See all calculators</a></li>
+            </ul>
+          </li>
+          <li class="primary-nav__item"><a href="/about/" class="primary-nav__link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <main id="main-content">
+      <div class="container">
+        <nav aria-label="Breadcrumb" class="breadcrumbs">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/calculators/">Calculators</a></li>
+            <li><a href="/calculators/cybersecurity/">Cybersecurity</a></li>
+            <li aria-current="page">Data Breach Cost Estimator</li>
+          </ol>
+        </nav>
+
+        <h1>Data Breach Cost Estimator</h1>
+        <p class="intro">Plug in your records exposed, sector, region and a couple of regulatory details, and get a sensible estimate of what a breach could cost. The per-record figures come from the IBM/Ponemon Cost of a Data Breach 2024 report, the regulatory fines from the headline GDPR and CCPA caps, and the range reflects the fact that no two breaches play out the same way.</p>
+
+        <section class="eli5" aria-label="Plain-English explanation">
+          <h2>Explain like I'm 5 (what even is this calculator?)</h2>
+          <p>Imagine someone leaves the back door open and a load of customer records walk out. The bill that lands afterwards has three parts: clean-up costs (notification, credit monitoring, lawyers, lost customers), a fine from the regulator if you fall under one, and the slow drag of reputational damage. This calculator adds those up using public benchmarks, so you get a planning number rather than a wishful one.</p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="in-content" aria-hidden="true"></div>
+
+        <section data-calculator class="calculator-card" aria-labelledby="calc-heading">
+          <h2 id="calc-heading">Estimate your exposure</h2>
+          <form id="breach-cost-form" class="calc-form" novalidate>
+            <div class="calc-row">
+              <label for="inp-records">Records exposed</label>
+              <input type="number" id="inp-records" name="records" min="0" step="1" value="10000" required>
+              <p class="calc-row__hint">Customer rows, employee rows, or any combination. The total count of individuals whose data was in the leaked set.</p>
+            </div>
+
+            <div class="calc-row">
+              <label for="inp-sector">Sector</label>
+              <select id="inp-sector" name="sector" required>
+                <option value="healthcare">Healthcare ($408 / record)</option>
+                <option value="financial">Financial ($295 / record)</option>
+                <option value="tech" selected>Technology ($244 / record)</option>
+                <option value="services">Services ($215 / record)</option>
+                <option value="retail">Retail ($172 / record)</option>
+                <option value="public">Public sector ($156 / record)</option>
+                <option value="other">Other ($200 / record)</option>
+              </select>
+              <p class="calc-row__hint">Per-record costs from IBM/Ponemon Cost of a Data Breach 2024.</p>
+            </div>
+
+            <div class="calc-row">
+              <label for="inp-region">Region</label>
+              <select id="inp-region" name="region" required>
+                <option value="us">United States (1.0x)</option>
+                <option value="eu">European Union (0.85x)</option>
+                <option value="uk" selected>United Kingdom (0.92x)</option>
+                <option value="other">Other / global (0.7x)</option>
+              </select>
+              <p class="calc-row__hint">US breaches cost more on average. UK and EU come in slightly lower; the rest of the world lower still.</p>
+            </div>
+
+            <div class="calc-row">
+              <label for="inp-sensitivity">Data sensitivity</label>
+              <select id="inp-sensitivity" name="sensitivity" required>
+                <option value="pii" selected>PII only (1.0x)</option>
+                <option value="financial">Financial data + PII (1.2x)</option>
+                <option value="health">Health data + PII (1.4x)</option>
+                <option value="credentials">Credentials / passwords (1.1x)</option>
+              </select>
+              <p class="calc-row__hint">More sensitive data costs more to clean up: notification, credit monitoring, legal exposure and customer churn all climb.</p>
+            </div>
+
+            <div class="calc-row">
+              <label for="inp-regulatory">Regulatory regime</label>
+              <select id="inp-regulatory" name="regulatory" required>
+                <option value="none">None / not applicable</option>
+                <option value="gdpr" selected>GDPR (up to 4% of global revenue)</option>
+                <option value="ccpa">CCPA ($7,500 per record cap)</option>
+              </select>
+              <p class="calc-row__hint">If both apply, pick the one likely to bite hardest in your scenario.</p>
+            </div>
+
+            <div class="calc-row">
+              <label for="inp-revenue">Annual revenue (used for GDPR fine cap)</label>
+              <input type="number" id="inp-revenue" name="revenue" min="0" step="1000" value="20000000">
+              <p class="calc-row__hint">Used to estimate the GDPR fine ceiling at 4% of global annual revenue. Ignored for CCPA and "none".</p>
+            </div>
+
+            <div class="calc-row calc-row--checkbox">
+              <label>
+                <input type="checkbox" id="inp-72h" name="reported72h" value="1">
+                Reported within 72 hours (10% reduction on direct cost)
+              </label>
+              <p class="calc-row__hint">Fast containment and notification consistently reduce direct response cost in the IBM data.</p>
+            </div>
+
+            <button type="submit" data-calculate>Estimate the cost</button>
+          </form>
+
+          <div data-calculator-results class="calculator-results" aria-live="polite">
+            <p class="result-display" data-result-placeholder>Fill in the form and press the button to see the estimate.</p>
+            <div class="result-summary" hidden data-result-summary>
+              <p>Direct cost (response, notification, churn): <strong data-result-direct></strong></p>
+              <p>Regulatory fine estimate: <strong data-result-fine></strong></p>
+              <p>Total exposure: <strong data-result-total></strong></p>
+              <p>Realistic range: <strong data-result-range></strong></p>
+              <p>Effective per-record cost: <strong data-result-per-record></strong></p>
+
+              <details class="prove-it" data-prove-it>
+                <summary>Prove it</summary>
+                <div data-prove-it-body>
+                  <p>The direct cost is records times the per-record figure for your sector, multiplied by the region and sensitivity factors, with the 10% reduction applied if the breach was reported within 72 hours. The regulatory fine is added on top, and the total is then bracketed by a 0.7x low and 1.3x high to give a planning range.</p>
+                  <ul data-prove-it-list></ul>
+                  <p class="prove-it-source">Per-record figures: IBM/Ponemon Cost of a Data Breach 2024. GDPR cap: 4% of global annual revenue. CCPA: up to $7,500 per record for intentional violations. The range reflects real-world variance, not statistical uncertainty.</p>
+                </div>
+              </details>
+            </div>
+
+            <p class="bookmark-nudge">
+              <strong>Save this calculator:</strong>
+              press <kbd data-bookmark-shortcut>Ctrl</kbd> + <kbd>D</kbd> to bookmark it in your browser.
+            </p>
+          </div>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="below-results" aria-hidden="true"></div>
+
+        <section class="long-form">
+          <h2>Why "what would a breach cost us" is a harder question than it should be</h2>
+          <p>The real number is never one number. A breach costs you a wedge of incident response, a wedge of legal advice, a wedge of notification and credit monitoring for affected customers, a wedge of churn from the customers who quietly leave anyway, and, depending on which regulator you fall under, a fine that can dwarf all of the above. IBM and Ponemon publish a cost-per-record figure every year because nobody else has the appetite to chase down every line item across thousands of breaches, and the calculator above is built on top of their 2024 numbers because they are the closest thing the industry has to a public benchmark.</p>
+
+          <h2>What the per-record figure actually contains</h2>
+          <p>It is not just lawyers. The IBM number bundles four broad categories: detection and escalation (forensics, audit, crisis comms), notification (letters, call centres, regulator filings), post-breach response (credit monitoring, identity protection, customer support uplift) and lost business (churn, downtime, reputation damage). Healthcare comes in highest at $408 per record because health data is regulated to the eyeballs, the litigation tail is long, and the systems involved are usually older than the people running them. Public sector is lowest, partly because customer churn is not really a thing when your "customers" are the citizens of a country.</p>
+
+          <h2>Why GDPR scales the fine to your revenue, and CCPA scales it to your records</h2>
+          <p>GDPR was written to bite multinationals: a flat fine would be a rounding error for a tech giant, but 4% of global annual turnover gets attention in the boardroom. The cap is rarely the actual fine that lands, but it is the right number to plan against. CCPA went the other way: a per-record statutory damages figure that scales linearly with the size of the leak. A breach of a million records exposes you to a theoretical $7.5 billion in CCPA damages, which is why the headline figures in the press are so eye-watering. Real settlements rarely hit the cap, but they often hit a meaningful fraction of it, and class action lawyers will anchor every negotiation on the cap.</p>
+
+          <h2>The 72-hour reporting reduction</h2>
+          <p>Both GDPR and a growing list of US state laws expect rapid disclosure: GDPR specifies 72 hours, the SEC has its own four-day rule for material breaches at listed companies, and other jurisdictions are converging on similar windows. The IBM data shows that breaches contained quickly cost noticeably less, both because the response is shorter and because regulators tend to be less punitive when they are not reading about it in the press first. The flat 10% reduction is a rough planning figure rather than a guaranteed saving, but the direction is the right one: fast and honest beats slow and hopeful, every time.</p>
+
+          <h2>What this calculator deliberately does not try to model</h2>
+          <p>Stock price impact, executive turnover, the cost of upgrading the security programme afterwards, or the long tail of reputational damage that creeps into customer acquisition costs over the following two years. Those are real, but they are case-by-case and not amenable to a public benchmark. Treat the total here as the floor: the bill that lands in the first twelve months. Anything else is on top.</p>
+
+          <h2>Related calculators</h2>
+          <ul class="related-calculators">
+            <li><a href="/calculators/cybersecurity/data-breach-risk-score/">Data Breach Risk Score</a></li>
+            <li><a href="/calculators/cybersecurity/password-strength-calculator/">Password Strength Calculator</a></li>
+            <li><a href="/calculators/cybersecurity/">All cybersecurity calculators</a></li>
+          </ul>
+        </section>
+
+        <section class="faq" aria-labelledby="faq-heading">
+          <h2 id="faq-heading">Frequently asked questions</h2>
+          <details>
+            <summary>Where do the per-record cost figures come from?</summary>
+            <p>From the IBM/Ponemon Cost of a Data Breach 2024 report, which has been the closest thing the industry has to a public benchmark for two decades. Healthcare leads at $408, financial at $295, tech at $244. The figures are USD averages, so they are a starting point, not a quote.</p>
+          </details>
+          <details>
+            <summary>Why is the GDPR fine shown as 4% of annual revenue?</summary>
+            <p>Because that is the headline GDPR ceiling: up to 4% of global annual turnover, or 20 million euros, whichever is higher. Real-world fines often land well below the cap, but the cap is the right figure to plan against.</p>
+          </details>
+          <details>
+            <summary>Why does the calculator reduce direct cost when a breach is reported within 72 hours?</summary>
+            <p>IBM's data has consistently shown that breaches contained within roughly three days cost less, both in direct response and in regulator goodwill. We use a flat 10% reduction as a planning estimate, which lines up with the gap between fast and slow responders in the 2024 report.</p>
+          </details>
+          <details>
+            <summary>Is the CCPA figure of $7,500 per record realistic?</summary>
+            <p>It is the statutory ceiling for intentional violations and the figure most class-action complaints anchor on. Real settlements often land lower, but the cap is the right planning number because it is what plaintiffs' lawyers will negotiate against.</p>
+          </details>
+          <details>
+            <summary>Why is the total shown as a range?</summary>
+            <p>Because every breach is different. Two companies with identical records exposed will pay very different amounts depending on litigation, churn and regulator mood. The 0.7x to 1.3x range reflects that real-world variance.</p>
+          </details>
+        </section>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="ad-slot" data-ad-slot="sidebar" aria-hidden="true"></div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="site-footer-nav" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/calculators/">All calculators</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+
+      <section class="site-disclaimer" data-disclaimer aria-labelledby="disclaimer-heading">
+        <h2 id="disclaimer-heading">A quick, necessary word</h2>
+        <p>Every calculator on this site is built to give you a sensible, well-reasoned estimate. It is, however, exactly that: an estimate, for general information only. Nothing you see here is professional, legal, financial, medical, or tax advice, and it should not be treated as such.</p>
+        <p>Before you make a decision that actually matters, talk to a qualified professional who knows your specific situation: an accountant, a solicitor, a doctor, an IT consultant, whoever fits the question. They can factor in the bits a generic tool can't.</p>
+        <p>We take no liability and accept no responsibility for any loss, damage, or questionable life choice arising from acting on the numbers you see here. Use the results as a starting point for a better conversation, not as the final word.</p>
+        <p><strong>Affiliate disclosure:</strong> some links on this site are affiliate links. If you click through and buy or sign up for something, we may earn a small commission at no extra cost to you. It helps keep the calculators free and ad-light. We only recommend things we'd point a friend towards.</p>
+      </section>
+      <p class="site-copyright">&copy; 2026 WebCaretakers. All rights reserved.</p>
+      <p class="site-legal">WebCaretakers is a trading name of <a href="https://yeseo.io/" rel="noopener">Andrew Laws Associates Ltd</a>, registered in England and Wales (company no. 08602332). ICO registration ZA726704.</p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/calculators/data-breach-cost-estimator.js"></script>
+  <script>
+    (function () {
+      'use strict';
+      var lib = window.DataBreachCostEstimator;
+      if (!lib) return;
+      var form = document.getElementById('breach-cost-form');
+      if (!form) return;
+      var summary = document.querySelector('[data-result-summary]');
+      var placeholder = document.querySelector('[data-result-placeholder]');
+      var directEl = document.querySelector('[data-result-direct]');
+      var fineEl = document.querySelector('[data-result-fine]');
+      var totalEl = document.querySelector('[data-result-total]');
+      var rangeEl = document.querySelector('[data-result-range]');
+      var perRecordEl = document.querySelector('[data-result-per-record]');
+      var proveListEl = document.querySelector('[data-prove-it-list]');
+
+      function fmt(n) {
+        if (!Number.isFinite(n)) return '-';
+        return '$' + Math.round(n).toLocaleString('en-US');
+      }
+
+      function pushInteraction(field, value) {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: 'calculator_interaction',
+          calculator_name: 'data-breach-cost-estimator',
+          field: field,
+          value: value
+        });
+      }
+
+      form.addEventListener('input', function (e) {
+        var t = e.target;
+        pushInteraction(t.name || t.id, t.value);
+      });
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var fd = new FormData(form);
+        var input = {
+          records: parseFloat(fd.get('records')),
+          sector: fd.get('sector'),
+          region: fd.get('region'),
+          sensitivity: fd.get('sensitivity'),
+          regulatory: fd.get('regulatory'),
+          revenue: parseFloat(fd.get('revenue')) || 0,
+          reported72h: fd.get('reported72h') === '1' || fd.get('reported72h') === 'on'
+        };
+
+        try {
+          var r = lib.estimateBreachCost(input);
+        } catch (err) {
+          placeholder.hidden = false;
+          summary.hidden = true;
+          placeholder.textContent = 'Please check your inputs: ' + err.message;
+          return;
+        }
+
+        placeholder.hidden = true;
+        summary.hidden = false;
+
+        directEl.textContent = fmt(r.directCost);
+        fineEl.textContent = fmt(r.regulatoryFine);
+        totalEl.textContent = fmt(r.total);
+        rangeEl.textContent = fmt(r.low) + ' to ' + fmt(r.high);
+        perRecordEl.textContent = '$' + r.perRecord.toFixed(2);
+
+        if (proveListEl) {
+          var rows = [
+            ['Records exposed', r.records.toLocaleString('en-US')],
+            ['Sector', r.sector.name + ' ($' + r.sector.perRecord + ' / record)'],
+            ['Region', r.region.name + ' (' + r.region.multiplier + 'x)'],
+            ['Sensitivity', r.sensitivity.name + ' (' + r.sensitivity.multiplier + 'x)'],
+            ['Effective per-record cost', '$' + r.perRecord.toFixed(2)],
+            ['Reported within 72h', r.reported72h ? 'Yes (10% reduction applied)' : 'No'],
+            ['Direct cost', fmt(r.directCost)],
+            ['Regulatory regime', r.regulatory.name],
+            ['Regulatory fine estimate', fmt(r.regulatoryFine)],
+            ['Total exposure', fmt(r.total)],
+            ['Range low (0.7x)', fmt(r.low)],
+            ['Range high (1.3x)', fmt(r.high)]
+          ];
+          proveListEl.innerHTML = rows.map(function (row) {
+            return '<li><span>' + row[0] + '</span><strong>' + row[1] + '</strong></li>';
+          }).join('');
+        }
+
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: 'calculator_result',
+          calculator_name: 'data-breach-cost-estimator',
+          records: r.records,
+          sector: r.sector.slug,
+          region: r.region.slug,
+          sensitivity: r.sensitivity.slug,
+          regulatory: r.regulatory.slug,
+          reported_72h: r.reported72h,
+          direct_cost: r.directCost,
+          regulatory_fine: r.regulatoryFine,
+          total: r.total,
+          per_record: r.perRecord
+        });
+      });
+
+      var proveDetails = document.querySelector('[data-prove-it]');
+      if (proveDetails) {
+        proveDetails.addEventListener('toggle', function () {
+          if (proveDetails.open) {
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+              event: 'prove_it',
+              calculator_name: 'data-breach-cost-estimator'
+            });
+          }
+        });
+      }
+
+      var shortcutEl = document.querySelector('[data-bookmark-shortcut]');
+      if (shortcutEl) {
+        var isMac = /Mac|iPhone|iPad|iPod/i.test(navigator.platform || navigator.userAgent);
+        shortcutEl.textContent = isMac ? '⌘' : 'Ctrl';
+      }
+    })();
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>
