@@ -25,6 +25,11 @@
           "slug": "ai-vs-human-writer-cost-calculator",
           "name": "AI vs Human Writer Cost Calculator",
           "summary": "Compare the monthly cost of producing written content via an LLM against a human writer. Per-word or per-hour human rates, side-by-side model table, honest about editorial trade-offs."
+        },
+        {
+          "slug": "fine-tuning-cost-calculator",
+          "name": "AI Fine-Tuning Cost Calculator",
+          "summary": "Estimate the cost of fine-tuning an LLM. Training cost across GPT-4o, GPT-4o-mini, Llama-3 on Together, and Mistral-7B, with the per-1000-call hosted inference cost for the tuned model."
         }
       ]
     },
@@ -39,9 +44,19 @@
           "summary": "Estimate the download and upload speeds your household needs based on streaming, video calls, gaming, smart devices, and remote work."
         },
         {
+          "slug": "cloud-backup-time-estimator",
+          "name": "Cloud Backup Time Estimator",
+          "summary": "Work out how long the first cloud backup will take on Backblaze, iDrive or any other provider. Factors in protocol overhead, the realistic upload haircut, and overnight-only schedules."
+        },
+        {
           "slug": "web-hosting-estimator",
           "name": "Web Hosting Storage & Bandwidth Estimator",
           "summary": "Work out how much storage and monthly bandwidth your website needs based on your traffic, page weight, media files, and downloadable content. See which hosting tier fits."
+        },
+        {
+          "slug": "file-download-time-calculator",
+          "name": "File Download Time Calculator",
+          "summary": "Work out how long a file will take to download given your line speed. Decimal MB, GB and TB, megabit and gigabit speeds, with a 5% protocol overhead included and the working shown."
         }
       ]
     },
@@ -101,6 +116,11 @@
           "slug": "heic-to-jpg-converter",
           "name": "HEIC to JPG Converter",
           "summary": "Convert iPhone HEIC and HEIF photos to JPG, PNG or WebP in your browser. Drop one file or a holiday's worth, get downloads back. Files never leave your device."
+        },
+        {
+          "slug": "aspect-ratio-calculator",
+          "name": "Aspect Ratio Calculator",
+          "summary": "Work out the matching width or height that keeps an image or video at the same aspect ratio. Live two-way binding, simplified ratio shown via GCD, preset ratios in one click."
         }
       ]
     },
@@ -128,6 +148,11 @@
           "slug": "hash-generator",
           "name": "Hash Generator",
           "summary": "Generate SHA-256, SHA-384, SHA-512 and SHA-1 hashes from text or files. Uses Web Crypto in your browser. Drag a 100MB file in, hash never leaves the device."
+        },
+        {
+          "slug": "diceware-passphrase-generator",
+          "name": "Diceware Passphrase Generator",
+          "summary": "Generate a memorable Diceware passphrase from the EFF short wordlist (1,296 words) using Web Crypto. Pick word count, separator and capitalisation, see honest entropy figures. Browser-only."
         }
       ]
     },
@@ -479,6 +504,11 @@
       "name": "Writing",
       "tagline": "Tools for writers, editors, and anyone working with words.",
       "tools": [
+        {
+          "slug": "flesch-reading-ease-calculator",
+          "name": "Flesch Reading Ease Score Calculator",
+          "summary": "Paste text to get the Flesch Reading Ease score and Flesch-Kincaid Grade Level, with the underlying word, sentence and syllable counts."
+        },
         {
           "slug": "read-time-calculator",
           "name": "Read Time Calculator",

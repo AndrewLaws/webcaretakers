@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Fine-Tuning Cost Calculator | WebCaretakers</title>
+  <meta name="description" content="Estimate the cost of fine-tuning an LLM. Training cost across GPT-4o, GPT-4o-mini, Llama-3 on Together, and Mistral-7B, with hosted inference cost for the tuned model. USD, no sign-up.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/ai/fine-tuning-cost-calculator/">
+  <meta property="og:title" content="AI Fine-Tuning Cost Calculator | WebCaretakers">
+  <meta property="og:description" content="Estimate the cost of fine-tuning an LLM and the per-1000-call cost of running the tuned model.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/ai/fine-tuning-cost-calculator/">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var _stored = null;
+    try { _stored = localStorage.getItem('cookie-consent'); } catch (e) {}
+    var _initial = _stored === 'granted' ? 'granted' : 'denied';
+    gtag('consent', 'default', {
+      ad_storage: _initial, analytics_storage: _initial,
+      ad_user_data: _initial, ad_personalization: _initial,
+      functionality_storage: 'granted', security_storage: 'granted',
+      wait_for_update: 500
+    });
+  </script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "AI Fine-Tuning Cost Calculator",
+    "url": "https://webcaretakers.com/calculators/ai/fine-tuning-cost-calculator/",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0" },
+    "author": {
+      "@type": "Person",
+      "name": "Andrew Laws",
+      "url": "https://yeseo.io/"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How is training cost worked out?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Total training tokens equals your data tokens multiplied by the number of epochs. The bill is then total training tokens divided by one million, multiplied by the provider's training rate per million tokens. So a 500,000 token dataset trained for 3 epochs is 1.5M training tokens, and at $3 per million you would pay $4.50." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why is hosted inference more expensive on a tuned model?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Tuned models run on dedicated capacity, not the shared base-model fleet, so providers charge a premium. OpenAI's tuned GPT-4o-mini and GPT-4o list at roughly 2x and 1.5x the base inference rates respectively. Together and Mistral keep tuned and base inference closer in price. The calculator uses the live published tuned rates per provider, not a flat multiplier." }
+      },
+      {
+        "@type": "Question",
+        "name": "Should I count words or tokens?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Tokens, if you can. If you only have a word count, the calculator converts at 1.33 tokens per English word, which is the rough heuristic OpenAI publishes. For non-English text the ratio shifts, often higher, so under-budget if you're working in languages with a different script or longer compounds." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why is three epochs the default?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Three is what most fine-tuning guides land on as a sensible starting point for instruction-style datasets. One epoch under-fits, ten over-fits. The right number depends on dataset size and quality, so treat the default as a budget anchor rather than a recommendation." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does the calculator include data prep or evaluation cost?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. List training and tuned inference rates only. Cleaning the data, writing eval scripts, and the LLM calls behind any LLM-as-judge evaluation harness are all extra. On a real project they often cost more than the training itself, especially for the first iteration." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-banner-heading" aria-describedby="cookie-banner-text" hidden>
+    <div class="cookie-banner__inner">
+      <h2 id="cookie-banner-heading" class="cookie-banner__heading">A quick word about cookies</h2>
+      <p id="cookie-banner-text" class="cookie-banner__text">
+        We use cookies for analytics, so we can see which calculators people actually use and which ones need work. Nothing creepy, nothing sold on. You can say yes, say no, or read the <a href="/privacy/">privacy policy</a> first. Your choice sticks.
+      </p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-reject>Reject</button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>Accept</button>
+      </div>
+    </div>
+  </div>
+
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">WebCaretakers</a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <ul class="primary-nav__list">
+          <li class="primary-nav__item primary-nav__item--has-menu">
+            <button type="button" class="primary-nav__link" data-menu-toggle aria-haspopup="true" aria-expanded="false">Calculators <span class="primary-nav__caret" aria-hidden="true">▾</span></button>
+            <ul class="primary-nav__submenu">
+              <li><a href="/calculators/ai/">AI</a></li>
+              <li><a href="/calculators/broadband/">Broadband</a></li>
+              <li><a href="/calculators/business/">Business</a></li>
+              <li><a href="/calculators/conversions/">Conversions</a></li>
+              <li><a href="/calculators/cybersecurity/">Cybersecurity</a></li>
+              <li><a href="/calculators/finance/">Finance</a></li>
+              <li><a href="/calculators/fun/">Fun</a></li>
+              <li><a href="/calculators/health/">Health</a></li>
+              <li><a href="/calculators/images/">Images</a></li>
+              <li><a href="/calculators/math/">Math</a></li>
+              <li><a href="/calculators/productivity/">Productivity</a></li>
+              <li><a href="/calculators/property/">Property</a></li>
+              <li><a href="/calculators/seo/">SEO</a></li>
+              <li><a href="/calculators/wedding/">Wedding</a></li>
+              <li><a href="/calculators/writing/">Writing</a></li>
+              <li class="primary-nav__submenu-sep"><a href="/calculators/">See all calculators</a></li>
+            </ul>
+          </li>
+          <li class="primary-nav__item"><a href="/about/" class="primary-nav__link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <main id="main-content">
+      <div class="container">
+        <nav aria-label="Breadcrumb" class="breadcrumbs">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/calculators/">Calculators</a></li>
+            <li><a href="/calculators/ai/">AI</a></li>
+            <li aria-current="page">AI Fine-Tuning Cost Calculator</li>
+          </ol>
+        </nav>
+
+        <h1>AI Fine-Tuning Cost Calculator</h1>
+        <p class="intro">Work out what it costs to fine-tune an LLM, plus what the tuned model will cost to run afterwards. Pick a model, drop in your training data tokens (or word count, with auto-conversion), set the number of epochs, and the calculator returns the training bill and the per-1000-call hosted inference cost. USD, list price, browser-only.</p>
+
+        <section class="eli5" aria-label="Plain-English explanation">
+          <h2>Explain like I'm 5 (what even is this calculator?)</h2>
+          <p>Fine-tuning is when you take a pre-trained model and teach it to be better at one specific job using your own examples. You pay twice: once to do the training (data tokens times number of passes through the data), and again every time you call the tuned model afterwards, at a slightly higher rate than the base model. This calculator works both numbers out so you do not get a surprise on the invoice.</p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="in-content" aria-hidden="true"></div>
+
+        <section class="calculator-card">
+          <h2>Calculate</h2>
+          <form id="ft-form" class="calc-form" novalidate>
+            <fieldset>
+              <legend>Training data</legend>
+              <div class="calc-row">
+                <label for="ft-data-tokens">Training data tokens</label>
+                <input type="number" id="ft-data-tokens" data-data-tokens min="0" step="1" value="500000">
+                <p class="calc-row__hint">If you only have a word count, use the field below and the calculator will convert.</p>
+              </div>
+              <div class="calc-row">
+                <label for="ft-data-words">Or training data words</label>
+                <input type="number" id="ft-data-words" data-data-words min="0" step="1" placeholder="e.g. 376000">
+                <p class="calc-row__hint" data-words-token-hint>Converts at 1.33 tokens per word.</p>
+              </div>
+              <div class="calc-row">
+                <label for="ft-epochs">Epochs</label>
+                <input type="number" id="ft-epochs" data-epochs min="1" step="1" value="3">
+                <p class="calc-row__hint">Number of full passes over the dataset. Three is a sensible starting point for most instruction-style sets.</p>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>Model</legend>
+              <div class="calc-row">
+                <label for="ft-model">Fine-tunable model</label>
+                <select id="ft-model" data-model aria-label="Fine-tunable model">
+                  <!-- populated from TUNING_MODELS -->
+                </select>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>Inference (per call)</legend>
+              <div class="calc-row">
+                <label for="ft-input-tokens">Average input tokens per call</label>
+                <input type="number" id="ft-input-tokens" data-input-tokens min="0" step="1" value="500">
+              </div>
+              <div class="calc-row">
+                <label for="ft-output-tokens">Average output tokens per call</label>
+                <input type="number" id="ft-output-tokens" data-output-tokens min="0" step="1" value="200">
+              </div>
+            </fieldset>
+
+            <button type="submit" data-calculate>Calculate</button>
+          </form>
+
+          <div data-calculator-results class="calculator-results">
+            <div class="result-summary">
+              <p class="result-display" data-result>Press Calculate to see the bill.</p>
+            </div>
+
+            <div class="mort-breakdown" data-breakdown hidden>
+              <h3>Cost breakdown</h3>
+              <ul>
+                <li><span>Data tokens</span><strong data-line-data-tokens>–</strong></li>
+                <li><span>Epochs</span><strong data-line-epochs>–</strong></li>
+                <li><span>Total training tokens</span><strong data-line-training-tokens>–</strong></li>
+                <li><span>Training rate</span><strong data-line-training-rate>–</strong></li>
+                <li class="mort-breakdown__total"><span>Training cost</span><strong data-line-training-cost>–</strong></li>
+                <li><span>Tuned input rate</span><strong data-line-tuned-input>–</strong></li>
+                <li><span>Tuned output rate</span><strong data-line-tuned-output>–</strong></li>
+                <li><span>Inference cost per call</span><strong data-line-inference-call>–</strong></li>
+                <li class="mort-breakdown__total"><span>Inference cost per 1000 calls</span><strong data-line-inference-1000>–</strong></li>
+              </ul>
+              <p class="result-caption">
+                Pricing baked in, USD list price. Last verified: <span data-last-verified>—</span>.
+              </p>
+            </div>
+
+            <details class="prove-it" data-prove-it>
+              <summary>Prove it</summary>
+              <div data-prove-it-body>
+                <h4>Training</h4>
+                <div data-prove-it-training></div>
+                <h4>Inference</h4>
+                <div data-prove-it-inference></div>
+              </div>
+              <p class="prove-it-source">Training cost is (data tokens × epochs) ÷ 1,000,000 × the model's training rate per million tokens. Inference cost per call is (input tokens × tuned input rate + output tokens × tuned output rate) ÷ 1,000,000, then multiplied by 1000 for the per-1000-call figure. Word counts are converted at 1.33 tokens per word, the published English heuristic. List prices only, no caching, no batch discount.</p>
+            </details>
+          </div>
+
+          <p class="bookmark-nudge">
+            Useful? Save this calculator: press <kbd data-bookmark-shortcut>Ctrl</kbd> + <kbd>D</kbd> to bookmark it.
+          </p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="below-results" aria-hidden="true"></div>
+
+        <section class="long-form">
+          <h2>What fine-tuning actually buys you</h2>
+          <p>Fine-tuning takes a pre-trained model and shifts its behaviour on a narrow task using examples you supply. Done well, it gets a small model behaving like a much larger one on that one job. Done badly, it makes a capable model worse, more expensive to run, and locked into your provider's tuned-inference fleet. The maths on this page covers the bill. It does not cover whether you should be doing it at all.</p>
+          <p>Reach for fine-tuning when you have a stable task, a clear quality bar, and at least a few hundred high-quality examples. Style transfer (turn a generic model into one that writes like your house style), structured output that the base model gets close on but not consistently, and classification or extraction with a domain vocabulary the base model has not seen enough of. Avoid fine-tuning when the underlying problem is missing context. If the model needs facts it does not have, retrieval-augmented generation will beat fine-tuning on cost, freshness, and accuracy.</p>
+
+          <h2>Reading the bill</h2>
+          <p>Two costs sit in tension. Training is one-off (per training run): you pay for every token of data, multiplied by the number of epochs. Inference is the recurring cost: every call to the tuned model afterwards is billed at the provider's tuned-inference rate. On OpenAI, the tuned rate is meaningfully above base. On Together and Mistral, the gap is smaller. So the question is rarely "is the training cost worth it?" and almost always "can I absorb the higher inference rate at my expected call volume?"</p>
+          <p>A worked example. A 500,000-token dataset on GPT-4o-mini at 3 epochs is 1.5M training tokens at $3 per million, so $4.50 to train. The tuned inference rate is $0.30 input and $1.20 output per million. At 500 input tokens and 200 output tokens per call, that is $0.39 per 1000 calls. Cheap. Switch to GPT-4o and the same training run costs $112.50, and inference becomes $4.88 per 1000 calls, which is over twelve times more per call. Whether that is worth it depends entirely on whether the tuned mini hits your quality bar or you genuinely need the heavier model.</p>
+
+          <h2>Common mistakes that cost real money</h2>
+          <ul>
+            <li><strong>Counting words instead of tokens.</strong> The 1.33 ratio is rough. Code, JSON, and non-English text run higher. If your dataset is mostly schemas or French legal prose, expect a 30 to 50 percent under-estimate from word counts. Use a tokeniser if accuracy matters.</li>
+            <li><strong>Training too many epochs.</strong> Each extra epoch is another full pass through the data at the same per-token rate. Past three or four, you are usually buying overfitting, not improvement. Run a short eval after each epoch and stop when quality plateaus.</li>
+            <li><strong>Forgetting the inference premium.</strong> A tuned model that costs the same to train as a competitor but 2x to run will lose every cost comparison at any reasonable call volume. Always project the inference cost out to your monthly call rate before committing.</li>
+            <li><strong>Tuning before trying a system prompt.</strong> A well-written system prompt with a few in-prompt examples will hit the quality bar for most tasks. Try that first. Tuning is the right answer when prompting plateaus, not before.</li>
+          </ul>
+
+          <h2>Edge cases worth thinking through</h2>
+          <p>Multi-turn datasets are billed by total token count across the conversation, not per turn. If your training examples include long system prompts repeated across thousands of rows, factor that in. Some providers count the system prompt once per example, others per turn. Check the docs before you assume.</p>
+          <p>If you re-train every time the source data changes, the training cost becomes recurring. Decide upfront whether tuning is a one-shot exercise or a monthly job, because the answer changes the cost calculus completely. A weekly retrain on a 500,000-token dataset is fifty-two times the figure shown here, and at that point a static tuned model probably is not the right tool.</p>
+
+          <h2>Related calculators</h2>
+          <ul class="related-calculators">
+            <li><a href="/calculators/ai/llm-token-usage-calculator/">LLM Token Usage Calculator for the underlying base-model maths</a></li>
+            <li><a href="/calculators/ai/rag-pipeline-cost-calculator/">RAG Pipeline Cost Calculator if your problem is missing context, not behaviour</a></li>
+            <li><a href="/calculators/ai/ai-vs-human-writer-cost-calculator/">AI vs Human Writer Cost Calculator for content workloads</a></li>
+            <li><a href="/calculators/business/roi-calculator/">ROI calculator for the business case behind a tuning project</a></li>
+          </ul>
+        </section>
+
+        <section class="faq" aria-labelledby="faq-heading">
+          <h2 id="faq-heading">Frequently asked questions</h2>
+          <details>
+            <summary>How is training cost worked out?</summary>
+            <p>Total training tokens equals your data tokens multiplied by the number of epochs. The bill is then total training tokens divided by one million, multiplied by the provider's training rate per million tokens. So a 500,000-token dataset trained for 3 epochs is 1.5M training tokens, and at $3 per million you would pay $4.50.</p>
+          </details>
+          <details>
+            <summary>Why is hosted inference more expensive on a tuned model?</summary>
+            <p>Tuned models run on dedicated capacity, not the shared base-model fleet, so providers charge a premium. OpenAI's tuned GPT-4o-mini and GPT-4o list at roughly 2x and 1.5x the base inference rates respectively. Together and Mistral keep tuned and base inference closer in price. The calculator uses the live published tuned rates per provider, not a flat multiplier.</p>
+          </details>
+          <details>
+            <summary>Should I count words or tokens?</summary>
+            <p>Tokens, if you can. If you only have a word count, the calculator converts at 1.33 tokens per English word, which is the rough heuristic OpenAI publishes. For non-English text, code, or JSON, the ratio shifts higher, so under-budget your figure when working with those.</p>
+          </details>
+          <details>
+            <summary>Why is three epochs the default?</summary>
+            <p>Three is what most fine-tuning guides land on as a sensible starting point for instruction-style datasets. One epoch under-fits, ten over-fits. The right number depends on dataset size and quality, so treat the default as a budget anchor rather than a recommendation.</p>
+          </details>
+          <details>
+            <summary>Does the calculator include data prep or evaluation cost?</summary>
+            <p>No. List training and tuned inference rates only. Cleaning the data, writing eval scripts, and the LLM calls behind any LLM-as-judge evaluation harness are all extra. On a real project they often cost more than the training itself, especially for the first iteration.</p>
+          </details>
+          <details>
+            <summary>Does this calculator send my numbers anywhere?</summary>
+            <p>No. Everything runs in your browser. Nothing is uploaded.</p>
+          </details>
+        </section>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="ad-slot" data-ad-slot="sidebar" aria-hidden="true"></div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="site-footer-nav" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/calculators/">All calculators</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+
+      <section class="site-disclaimer" data-disclaimer aria-labelledby="disclaimer-heading">
+        <h2 id="disclaimer-heading">A quick, necessary word</h2>
+        <p>Every calculator on this site is built to give you a sensible, well-reasoned estimate. It is, however, exactly that: an estimate, for general information only. Nothing you see here is professional, legal, financial, medical, or tax advice, and it should not be treated as such.</p>
+        <p>Before you make a decision that actually matters, talk to a qualified professional who knows your specific situation: an accountant, a solicitor, a doctor, an IT consultant, whoever fits the question. They can factor in the bits a generic tool can't.</p>
+        <p>We take no liability and accept no responsibility for any loss, damage, or questionable life choice arising from acting on the numbers you see here. Use the results as a starting point for a better conversation, not as the final word.</p>
+        <p><strong>Affiliate disclosure:</strong> some links on this site are affiliate links. If you click through and buy or sign up for something, we may earn a small commission at no extra cost to you. It helps keep the calculators free and ad-light. We only recommend things we'd point a friend towards.</p>
+      </section>
+      <p class="site-copyright">&copy; 2026 WebCaretakers. All rights reserved.</p>
+      <p class="site-legal">WebCaretakers is a trading name of <a href="https://yeseo.io/" rel="noopener">Andrew Laws Associates Ltd</a>, registered in England and Wales (company no. 08602332). ICO registration ZA726704.</p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/calculators/fine-tuning-cost.js"></script>
+  <script>
+    (function () {
+      'use strict';
+
+      var shortcutEl = document.querySelector('[data-bookmark-shortcut]');
+      if (shortcutEl) {
+        var isMac = /Mac|iPhone|iPad|iPod/i.test(navigator.platform || navigator.userAgent);
+        shortcutEl.textContent = isMac ? '\u2318' : 'Ctrl';
+      }
+
+      var lib = window.FineTuningCost;
+      if (!lib) return;
+
+      var form = document.getElementById('ft-form');
+      if (!form) return;
+
+      var dataTokensEl = form.querySelector('[data-data-tokens]');
+      var dataWordsEl = form.querySelector('[data-data-words]');
+      var epochsEl = form.querySelector('[data-epochs]');
+      var modelEl = form.querySelector('[data-model]');
+      var inputTokensEl = form.querySelector('[data-input-tokens]');
+      var outputTokensEl = form.querySelector('[data-output-tokens]');
+      var wordsHintEl = form.querySelector('[data-words-token-hint]');
+
+      var resultEl = document.querySelector('[data-result]');
+      var breakdown = document.querySelector('[data-breakdown]');
+      var lineDataTokens = document.querySelector('[data-line-data-tokens]');
+      var lineEpochs = document.querySelector('[data-line-epochs]');
+      var lineTrainingTokens = document.querySelector('[data-line-training-tokens]');
+      var lineTrainingRate = document.querySelector('[data-line-training-rate]');
+      var lineTrainingCost = document.querySelector('[data-line-training-cost]');
+      var lineTunedInput = document.querySelector('[data-line-tuned-input]');
+      var lineTunedOutput = document.querySelector('[data-line-tuned-output]');
+      var lineInferenceCall = document.querySelector('[data-line-inference-call]');
+      var lineInference1000 = document.querySelector('[data-line-inference-1000]');
+      var lastVerifiedEl = document.querySelector('[data-last-verified]');
+      var proveTraining = document.querySelector('[data-prove-it-training]');
+      var proveInference = document.querySelector('[data-prove-it-inference]');
+      var proveDetails = document.querySelector('[data-prove-it]');
+
+      // Populate the model dropdown, default GPT-4o-mini.
+      lib.TUNING_MODELS.forEach(function (m) {
+        var opt = document.createElement('option');
+        opt.value = m.id;
+        opt.textContent = m.vendor + ' — ' + m.name + ' ($' + m.trainingPer1M.toFixed(2) + '/1M training)';
+        if (m.id === 'gpt-4o-mini') opt.selected = true;
+        modelEl.appendChild(opt);
+      });
+
+      lastVerifiedEl.textContent = lib.PRICING_LAST_VERIFIED;
+
+      function fmtUSD(n, dp) {
+        if (typeof n !== 'number' || !isFinite(n)) return '—';
+        var digits = (typeof dp === 'number') ? dp : 2;
+        return '$' + n.toLocaleString('en-US', { minimumFractionDigits: digits, maximumFractionDigits: digits });
+      }
+      function fmtCost(n) {
+        if (n === 0) return '$0.00';
+        if (n < 0.01) return '$' + n.toFixed(6);
+        if (n < 1) return '$' + n.toFixed(4);
+        return fmtUSD(n, 2);
+      }
+      function fmtInt(n) {
+        if (typeof n !== 'number' || !isFinite(n)) return '—';
+        return n.toLocaleString('en-GB');
+      }
+      function findBy(arr, id) {
+        for (var i = 0; i < arr.length; i++) if (arr[i].id === id) return arr[i];
+        return arr[0];
+      }
+      function getNum(el) {
+        if (!el) return 0;
+        var n = parseFloat(el.value);
+        return (isFinite(n) && n >= 0) ? n : 0;
+      }
+      function getInt(el, fallback) {
+        if (!el) return fallback;
+        var n = parseInt(el.value, 10);
+        return (isFinite(n) && n >= 1) ? n : fallback;
+      }
+
+      // Word → token live conversion hint.
+      function updateWordsHint() {
+        var words = parseFloat(dataWordsEl.value);
+        if (isFinite(words) && words > 0) {
+          var tokens = lib.wordsToTokens(words);
+          wordsHintEl.textContent = words.toLocaleString('en-GB') + ' words ≈ ' + tokens.toLocaleString('en-GB') + ' tokens (1.33 per word).';
+        } else {
+          wordsHintEl.textContent = 'Converts at 1.33 tokens per word.';
+        }
+      }
+      dataWordsEl.addEventListener('input', updateWordsHint);
+
+      // Light interaction tracking.
+      [dataTokensEl, dataWordsEl, epochsEl, modelEl, inputTokensEl, outputTokensEl].forEach(function (el) {
+        if (!el) return;
+        function pushInteraction() {
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: 'calculator_interaction',
+            calculator_name: 'AI Fine-Tuning Cost Calculator',
+            field: el.name || el.id || ''
+          });
+        }
+        el.addEventListener('input', pushInteraction);
+        el.addEventListener('change', pushInteraction);
+      });
+
+      if (proveDetails) {
+        proveDetails.addEventListener('toggle', function () {
+          if (proveDetails.open) {
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+              event: 'prove_it',
+              calculator_name: 'AI Fine-Tuning Cost Calculator'
+            });
+          }
+        });
+      }
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        // Resolve data tokens. Tokens field wins if filled; otherwise convert words.
+        var dataTokens = getNum(dataTokensEl);
+        if (dataTokens === 0) {
+          var words = parseFloat(dataWordsEl.value);
+          if (isFinite(words) && words > 0) {
+            dataTokens = lib.wordsToTokens(words);
+          }
+        }
+        var epochs = getInt(epochsEl, 3);
+        var model = findBy(lib.TUNING_MODELS, modelEl.value);
+        var inputTokens = getNum(inputTokensEl);
+        var outputTokens = getNum(outputTokensEl);
+
+        try {
+          var r = lib.estimate({
+            dataTokens: dataTokens,
+            epochs: epochs,
+            inputTokens: inputTokens,
+            outputTokens: outputTokens,
+            model: model,
+          });
+
+          breakdown.hidden = false;
+          resultEl.textContent = model.vendor + ' ' + model.name + ': ' +
+            fmtCost(r.trainingCost) + ' to train (' + fmtInt(r.totalTrainingTokens) + ' training tokens), ' +
+            fmtCost(r.inferencePer1000) + ' per 1000 inference calls.';
+
+          lineDataTokens.textContent = fmtInt(r.dataTokens);
+          lineEpochs.textContent = String(r.epochs);
+          lineTrainingTokens.textContent = fmtInt(r.totalTrainingTokens);
+          lineTrainingRate.textContent = fmtUSD(r.trainingPer1M, 2) + ' / 1M tokens';
+          lineTrainingCost.textContent = fmtCost(r.trainingCost);
+          lineTunedInput.textContent = fmtUSD(r.tunedInputPer1M, 2) + ' / 1M tokens';
+          lineTunedOutput.textContent = fmtUSD(r.tunedOutputPer1M, 2) + ' / 1M tokens';
+          lineInferenceCall.textContent = fmtCost(r.inferencePerCall);
+          lineInference1000.textContent = fmtCost(r.inferencePer1000);
+
+          proveTraining.innerHTML =
+            '<ul>' +
+              '<li><span>Data tokens</span><strong>' + fmtInt(r.dataTokens) + '</strong></li>' +
+              '<li><span>× Epochs</span><strong>' + r.epochs + '</strong></li>' +
+              '<li><span>= Total training tokens</span><strong>' + fmtInt(r.totalTrainingTokens) + '</strong></li>' +
+              '<li><span>÷ 1,000,000 × $' + r.trainingPer1M.toFixed(2) + '/1M</span><strong>' + fmtCost(r.trainingCost) + '</strong></li>' +
+            '</ul>';
+
+          proveInference.innerHTML =
+            '<ul>' +
+              '<li><span>Input tokens × $' + r.tunedInputPer1M.toFixed(2) + '/1M</span><strong>' + fmtCost(r.inferenceInputCostPerCall) + '</strong></li>' +
+              '<li><span>Output tokens × $' + r.tunedOutputPer1M.toFixed(2) + '/1M</span><strong>' + fmtCost(r.inferenceOutputCostPerCall) + '</strong></li>' +
+              '<li><span>= Per call</span><strong>' + fmtCost(r.inferencePerCall) + '</strong></li>' +
+              '<li><span>× 1000 calls</span><strong>' + fmtCost(r.inferencePer1000) + '</strong></li>' +
+            '</ul>';
+
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: 'calculator_result',
+            calculator_name: 'AI Fine-Tuning Cost Calculator',
+            model: r.modelId,
+            data_tokens: r.dataTokens,
+            epochs: r.epochs,
+            training_tokens: r.totalTrainingTokens,
+            training_cost: r.trainingCost,
+            inference_per_1000: r.inferencePer1000,
+          });
+        } catch (err) {
+          resultEl.textContent = err.message || 'Could not calculate.';
+          breakdown.hidden = true;
+          if (proveTraining) proveTraining.innerHTML = '';
+          if (proveInference) proveInference.innerHTML = '';
+        }
+      });
+    })();
+  </script>
+
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

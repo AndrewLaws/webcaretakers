@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aspect Ratio Calculator | WebCaretakers</title>
+  <meta name="description" content="Work out the matching width or height that keeps an image or video at the same aspect ratio. Live two-way binding, simplified ratio shown (e.g. 1920x1080 = 16:9), preset ratios in one click. Browser-only.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/images/aspect-ratio-calculator/">
+  <meta property="og:title" content="Aspect Ratio Calculator | WebCaretakers">
+  <meta property="og:description" content="Work out the matching width or height that keeps an image or video at the same aspect ratio. Live two-way binding, simplified ratio shown, preset ratios in one click.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/images/aspect-ratio-calculator/">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var _stored = null;
+    try { _stored = localStorage.getItem('cookie-consent'); } catch (e) {}
+    var _initial = _stored === 'granted' ? 'granted' : 'denied';
+    gtag('consent', 'default', {
+      ad_storage: _initial, analytics_storage: _initial,
+      ad_user_data: _initial, ad_personalization: _initial,
+      functionality_storage: 'granted', security_storage: 'granted',
+      wait_for_update: 500
+    });
+  </script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Aspect Ratio Calculator",
+    "url": "https://webcaretakers.com/calculators/images/aspect-ratio-calculator/",
+    "applicationCategory": "MultimediaApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0" },
+    "author": {
+      "@type": "Person",
+      "name": "Andrew Laws",
+      "url": "https://yeseo.io/"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is an aspect ratio?",
+        "acceptedAnswer": { "@type": "Answer", "text": "An aspect ratio is the relationship between the width and the height of an image or video, written as W:H. A 1920 by 1080 frame has the same shape as a 1280 by 720 frame and as a 16 by 9 frame, because each one reduces to 16:9 when you divide both numbers by their greatest common divisor. The ratio describes the shape of the rectangle, the pixel count gives its size." }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I work out the new height when I resize an image?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Take the new width, divide it by the original width to get the scale factor, then multiply the original height by that scale factor. For example, resizing 1920 by 1080 down to 800 wide gives a scale of 800 divided by 1920, which is roughly 0.4167. Multiply 1080 by 0.4167 and you get 450. The calculator on this page does the maths for you and shows the working in the prove-it panel." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does my image look stretched or squashed when I resize it?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Because the new width and height are not in the same ratio as the original. If you change one dimension and leave the other alone, the picture distorts. Either set both new dimensions in the original ratio (which is what this calculator helps you do) or crop the image to a new ratio first, then resize." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is a preset ratio and when should I use one?",
+        "acceptedAnswer": { "@type": "Answer", "text": "A preset is a common shape used by a particular medium. 16:9 is HD video and most monitors. 9:16 is vertical phone video, Reels and TikTok. 1:1 is the Instagram square. 4:3 covers older TVs and a lot of slide decks. 3:2 is most DSLR photography. 21:9 is ultrawide cinematic. Click a preset on this page to set the ratio, then enter a target width or height to get the matching dimension." }
+      },
+      {
+        "@type": "Question",
+        "name": "Is the calculation done in my browser?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. The maths is plain integer division and multiplication, run by JavaScript in the page you are looking at. Nothing is uploaded, no API is called, no analytics on the numbers themselves. You can disconnect from the network and the calculator still works." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-banner-heading" aria-describedby="cookie-banner-text" hidden>
+    <div class="cookie-banner__inner">
+      <h2 id="cookie-banner-heading" class="cookie-banner__heading">A quick word about cookies</h2>
+      <p id="cookie-banner-text" class="cookie-banner__text">
+        We use cookies for analytics, so we can see which calculators people actually use and which ones need work. Nothing creepy, nothing sold on. You can say yes, say no, or read the <a href="/privacy/">privacy policy</a> first. Your choice sticks.
+      </p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-reject>Reject</button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>Accept</button>
+      </div>
+    </div>
+  </div>
+
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">WebCaretakers</a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <ul class="primary-nav__list">
+          <li class="primary-nav__item primary-nav__item--has-menu">
+            <button type="button" class="primary-nav__link" data-menu-toggle aria-haspopup="true" aria-expanded="false">Calculators <span class="primary-nav__caret" aria-hidden="true">&#9662;</span></button>
+            <ul class="primary-nav__submenu">
+              <li><a href="/calculators/ai/">AI</a></li>
+              <li><a href="/calculators/broadband/">Broadband</a></li>
+              <li><a href="/calculators/business/">Business</a></li>
+              <li><a href="/calculators/conversions/">Conversions</a></li>
+              <li><a href="/calculators/cybersecurity/">Cybersecurity</a></li>
+              <li><a href="/calculators/finance/">Finance</a></li>
+              <li><a href="/calculators/fun/">Fun</a></li>
+              <li><a href="/calculators/health/">Health</a></li>
+              <li><a href="/calculators/images/">Images</a></li>
+              <li><a href="/calculators/math/">Math</a></li>
+              <li><a href="/calculators/productivity/">Productivity</a></li>
+              <li><a href="/calculators/property/">Property</a></li>
+              <li><a href="/calculators/seo/">SEO</a></li>
+              <li><a href="/calculators/wedding/">Wedding</a></li>
+              <li><a href="/calculators/writing/">Writing</a></li>
+              <li class="primary-nav__submenu-sep"><a href="/calculators/">See all calculators</a></li>
+            </ul>
+          </li>
+          <li class="primary-nav__item"><a href="/about/" class="primary-nav__link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <main id="main-content">
+      <div class="container">
+        <nav aria-label="Breadcrumb" class="breadcrumbs">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/calculators/">Calculators</a></li>
+            <li><a href="/calculators/images/">Images</a></li>
+            <li aria-current="page">Aspect Ratio Calculator</li>
+          </ol>
+        </nav>
+
+        <h1>Aspect Ratio Calculator</h1>
+        <p class="intro">Enter your original width and height, then a target width or a target height. The other side is filled in for you, in the same ratio. Useful for resizing images, planning video crops, sizing thumbnails, and working out whether a frame is 16:9, 4:3, or something more awkward.</p>
+
+        <section class="eli5" aria-label="Plain-English explanation">
+          <h2>Explain like I'm 5 (what even is this calculator?)</h2>
+          <p>An aspect ratio is the shape of a rectangle, written as width to height. If your photo is 1920 wide and 1080 tall, that ratio simplifies to 16:9, the standard widescreen shape. When you shrink the photo to fit a 800-pixel-wide slot, the height has to drop to 450 to keep the same shape, otherwise the picture stretches. This page does that arithmetic and shows the simplified ratio so you know what shape you are dealing with.</p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="in-content" aria-hidden="true"></div>
+
+        <section class="calculator-card">
+          <h2>Work out the matching dimension</h2>
+
+          <form id="ar-form" class="calc-form" novalidate>
+            <div class="calc-row">
+              <fieldset>
+                <legend>Original dimensions</legend>
+                <label for="ar-original-w">Width (px)</label>
+                <input type="number" inputmode="numeric" min="1" step="1" id="ar-original-w" data-ar-original-w placeholder="e.g. 1920">
+                <label for="ar-original-h">Height (px)</label>
+                <input type="number" inputmode="numeric" min="1" step="1" id="ar-original-h" data-ar-original-h placeholder="e.g. 1080">
+              </fieldset>
+            </div>
+
+            <div class="calc-row">
+              <fieldset>
+                <legend>Target (fill one, the other follows)</legend>
+                <label for="ar-target-w">Target width (px)</label>
+                <input type="number" inputmode="numeric" min="1" step="1" id="ar-target-w" data-ar-target-w placeholder="e.g. 800">
+                <label for="ar-target-h">Target height (px)</label>
+                <input type="number" inputmode="numeric" min="1" step="1" id="ar-target-h" data-ar-target-h placeholder="auto-filled from width">
+              </fieldset>
+            </div>
+
+            <p class="calc-row__hint" data-ar-error role="alert"></p>
+          </form>
+
+          <div class="ar-result" aria-live="polite">
+            <p class="ar-result__label">Simplified ratio</p>
+            <p class="ar-result__value" data-ar-ratio></p>
+          </div>
+
+          <div class="ar-presets" data-ar-presets>
+            <p><strong>Apply a preset ratio:</strong></p>
+            <ul class="ar-preset-list">
+              <li><button type="button" class="ar-preset" data-ar-preset="16:9">16:9 <span>HD video, monitors</span></button></li>
+              <li><button type="button" class="ar-preset" data-ar-preset="4:3">4:3 <span>Older TV, slides</span></button></li>
+              <li><button type="button" class="ar-preset" data-ar-preset="3:2">3:2 <span>DSLR, 35mm</span></button></li>
+              <li><button type="button" class="ar-preset" data-ar-preset="1:1">1:1 <span>Instagram square</span></button></li>
+              <li><button type="button" class="ar-preset" data-ar-preset="9:16">9:16 <span>Vertical, Reels, TikTok</span></button></li>
+              <li><button type="button" class="ar-preset" data-ar-preset="21:9">21:9 <span>Ultrawide, cinematic</span></button></li>
+            </ul>
+            <p class="calc-row__hint">Clicking a preset sets the original to the preset's canonical W:H, then re-derives the target from whichever target field already has a value.</p>
+          </div>
+
+          <details class="prove-it" data-prove-it>
+            <summary>Prove it</summary>
+            <div data-prove-it-body>
+              <p>Enter the original width and height, plus a target width or target height, to see the simplified ratio (via the GCD), the scale factor and the derived dimension.</p>
+            </div>
+          </details>
+
+          <p class="bookmark-nudge">
+            Useful? Save this calculator: press <kbd data-bookmark-shortcut>Ctrl</kbd> + <kbd>D</kbd> to bookmark it.
+          </p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="below-results" aria-hidden="true"></div>
+
+        <section class="long-form">
+          <h2>What aspect ratio actually means</h2>
+          <p>An aspect ratio is the shape of a rectangle expressed as a pair of integers, width to height, written with a colon. 1920 by 1080 and 1280 by 720 are different sizes, but they share the same shape, because both reduce to 16:9 once you divide top and bottom by their greatest common divisor. The ratio describes shape, the pixel count describes size, and confusing the two is the most common reason an image ends up stretched or squashed in a layout.</p>
+
+          <h2>Why the GCD matters</h2>
+          <p>To know that 1920 by 1080 is 16:9 you have to find the greatest common divisor (GCD) of the two numbers, which is 120. Divide both sides by 120 and you have 16 and 9. The Euclidean algorithm does this in a handful of steps and is the same routine used to simplify fractions. The prove-it panel above shows the GCD for whatever original dimensions you entered, so you can see the reduction rather than take it on trust.</p>
+
+          <h2>Common ratios and where you meet them</h2>
+          <ul>
+            <li><strong>16:9</strong> is the default for HD and 4K video, YouTube, most laptop and desktop monitors, and modern TVs.</li>
+            <li><strong>9:16</strong> is the same shape rotated, used by Instagram Reels, TikTok, YouTube Shorts and any vertical phone video.</li>
+            <li><strong>4:3</strong> survives in older TVs, iPad screens, and a lot of slide decks. PowerPoint defaulted to 4:3 for years.</li>
+            <li><strong>3:2</strong> is the dominant ratio in DSLR and mirrorless photography, inherited from 35mm film.</li>
+            <li><strong>1:1</strong> is the Instagram square, profile photos, and album art.</li>
+            <li><strong>21:9</strong> is ultrawide cinematic, used by anamorphic film and ultrawide gaming monitors.</li>
+          </ul>
+
+          <h2>Common mistakes when resizing</h2>
+          <p>The first is changing one dimension and leaving the other alone. If your image is 1920 by 1080 and you set the new width to 800 without recalculating the height, you have not resized the image, you have stretched it. The second is rounding too aggressively. Browsers and image libraries can cope with non-integer pixel dimensions internally, but exported files have to be whole numbers, so a slight rounding adjustment is normal. The calculator on this page rounds to the nearest whole pixel and shows the unrounded scale factor in the prove-it panel, in case you need exact numbers for code.</p>
+
+          <h2>Cropping versus resizing</h2>
+          <p>Resizing keeps the same shape and changes the size. Cropping changes the shape and discards pixels. If the medium you are exporting to has a different ratio (a 16:9 thumbnail from a 3:2 original, say), you have to crop first, then resize. Choosing whether to crop the top, bottom, or both sides is an editorial decision: a portrait usually crops symmetrically, a landscape often crops more from the sky than the foreground. Once you have decided the crop, this calculator is the right tool for the resize that follows.</p>
+
+          <h2>When you actually need this calculator</h2>
+          <p>You need it any time the medium you are exporting for has a fixed slot. Article hero images at 1200 by 630 for Open Graph cards. YouTube thumbnails at 1280 by 720. Email banners at a fixed pixel width. Print at a fixed point size. Each of those is a target dimension, and the safe move is to start from the original aspect, work out the matching partner, and only then crop or letterbox to fit.</p>
+
+          <h2>Related calculators</h2>
+          <p>Other browser-only image and conversion tools, in the same family.</p>
+          <ul class="related-calculators">
+            <li><a href="/calculators/images/photo-resizer/">Photo Resizer for the actual file</a></li>
+            <li><a href="/calculators/images/image-compressor/">Image Compressor for file-size targets</a></li>
+            <li><a href="/calculators/images/heic-to-jpg-converter/">HEIC to JPG Converter for iPhone photos</a></li>
+            <li><a href="/calculators/math/gcd-lcm-calculator/">GCD and LCM Calculator for the underlying maths</a></li>
+          </ul>
+        </section>
+
+        <section class="faq" aria-labelledby="faq-heading">
+          <h2 id="faq-heading">Frequently asked questions</h2>
+          <details>
+            <summary>What is an aspect ratio?</summary>
+            <p>An aspect ratio is the relationship between the width and the height of an image or video, written as W:H. A 1920 by 1080 frame has the same shape as a 1280 by 720 frame and as a 16 by 9 frame, because each one reduces to 16:9 when you divide both numbers by their greatest common divisor. The ratio describes the shape of the rectangle, the pixel count gives its size.</p>
+          </details>
+          <details>
+            <summary>How do I work out the new height when I resize an image?</summary>
+            <p>Take the new width, divide it by the original width to get the scale factor, then multiply the original height by that scale factor. For example, resizing 1920 by 1080 down to 800 wide gives a scale of 800 divided by 1920, which is roughly 0.4167. Multiply 1080 by 0.4167 and you get 450. The calculator on this page does the maths for you and shows the working in the prove-it panel.</p>
+          </details>
+          <details>
+            <summary>Why does my image look stretched or squashed when I resize it?</summary>
+            <p>Because the new width and height are not in the same ratio as the original. If you change one dimension and leave the other alone, the picture distorts. Either set both new dimensions in the original ratio (which is what this calculator helps you do) or crop the image to a new ratio first, then resize.</p>
+          </details>
+          <details>
+            <summary>What is a preset ratio and when should I use one?</summary>
+            <p>A preset is a common shape used by a particular medium. 16:9 is HD video and most monitors. 9:16 is vertical phone video, Reels and TikTok. 1:1 is the Instagram square. 4:3 covers older TVs and a lot of slide decks. 3:2 is most DSLR photography. 21:9 is ultrawide cinematic. Click a preset on this page to set the ratio, then enter a target width or height to get the matching dimension.</p>
+          </details>
+          <details>
+            <summary>Is the calculation done in my browser?</summary>
+            <p>Yes. The maths is plain integer division and multiplication, run by JavaScript in the page you are looking at. Nothing is uploaded, no API is called, no analytics on the numbers themselves. You can disconnect from the network and the calculator still works.</p>
+          </details>
+        </section>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="ad-slot" data-ad-slot="sidebar" aria-hidden="true"></div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="site-footer-nav" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/calculators/">All calculators</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+
+      <section class="site-disclaimer" data-disclaimer aria-labelledby="disclaimer-heading">
+        <h2 id="disclaimer-heading">A quick, necessary word</h2>
+        <p>Every calculator on this site is built to give you a sensible, well-reasoned estimate. It is, however, exactly that: an estimate, for general information only. Nothing you see here is professional, legal, financial, medical, or tax advice, and it should not be treated as such.</p>
+        <p>Before you make a decision that actually matters, talk to a qualified professional who knows your specific situation: an accountant, a solicitor, a doctor, an IT consultant, whoever fits the question. They can factor in the bits a generic tool can't.</p>
+        <p>We take no liability and accept no responsibility for any loss, damage, or questionable life choice arising from acting on the numbers you see here. Use the results as a starting point for a better conversation, not as the final word.</p>
+        <p><strong>Affiliate disclosure:</strong> some links on this site are affiliate links. If you click through and buy or sign up for something, we may earn a small commission at no extra cost to you. It helps keep the calculators free and ad-light. We only recommend things we'd point a friend towards.</p>
+      </section>
+      <p class="site-copyright">&copy; 2026 WebCaretakers. All rights reserved.</p>
+      <p class="site-legal">WebCaretakers is a trading name of <a href="https://yeseo.io/" rel="noopener">Andrew Laws Associates Ltd</a>, registered in England and Wales (company no. 08602332). ICO registration ZA726704.</p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/calculators/aspect-ratio-calculator.js"></script>
+  <script src="/assets/js/calculators/aspect-ratio-calculator.page.js"></script>
+  <script>
+    (function () {
+      var shortcutEl = document.querySelector('[data-bookmark-shortcut]');
+      if (shortcutEl) {
+        var isMac = /Mac|iPhone|iPad|iPod/i.test(navigator.platform || navigator.userAgent);
+        shortcutEl.textContent = isMac ? '\u2318' : 'Ctrl';
+      }
+    })();
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

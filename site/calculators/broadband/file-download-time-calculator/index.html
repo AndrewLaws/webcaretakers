@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>File Download Time Calculator | WebCaretakers</title>
+  <meta name="description" content="Work out how long a file will actually take to download given your line speed. Decimal megabytes, megabits and gigabits handled correctly, with a 5% protocol overhead baked in and the working shown.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/broadband/file-download-time-calculator/">
+  <meta property="og:title" content="File Download Time Calculator | WebCaretakers">
+  <meta property="og:description" content="Work out how long a file will actually take to download given your line speed. Real-world overhead included, working shown.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/broadband/file-download-time-calculator/">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var _stored = null;
+    try { _stored = localStorage.getItem('cookie-consent'); } catch (e) {}
+    var _initial = _stored === 'granted' ? 'granted' : 'denied';
+    gtag('consent', 'default', {
+      ad_storage: _initial, analytics_storage: _initial,
+      ad_user_data: _initial, ad_personalization: _initial,
+      functionality_storage: 'granted', security_storage: 'granted',
+      wait_for_update: 500
+    });
+  </script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "File Download Time Calculator",
+    "url": "https://webcaretakers.com/calculators/broadband/file-download-time-calculator/",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0" },
+    "author": {
+      "@type": "Person",
+      "name": "Andrew Laws",
+      "url": "https://yeseo.io/"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Why doesn't a 100 Mbps line download a 100 MB file in one second?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Because Mbps is megabits per second and MB is megabytes, and there are eight bits in a byte. 100 Mbps is 100,000,000 bits per second, which is 12.5 megabytes per second of raw throughput. So a 100 MB file takes about 8 seconds at the wire, before you add the protocol overhead. The mismatch between bits-for-speed and bytes-for-storage is the single biggest reason real-world downloads feel slower than the headline number suggests." }
+      },
+      {
+        "@type": "Question",
+        "name": "Where does the 5% overhead come from?",
+        "acceptedAnswer": { "@type": "Answer", "text": "TCP/IP wraps every packet in headers, TLS adds a handshake and per-record overhead, and the connection ramps up slowly under TCP slow-start. Add retransmits on any packet loss and the typical real-world overhead sits between three and eight percent. Five percent is a sensible single number for an estimate. On a clean fibre line at full speed it can be lower, on a flaky mobile connection it is higher." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why decimal megabytes (1,000,000 bytes) and not binary (1,048,576)?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Because that is what every party in the transaction advertises in. ISPs sell speed in decimal Mbps. Storage vendors sell drives in decimal GB. Operating systems are split: macOS and most Linux file managers use decimal, Windows uses binary and labels it MB anyway, which is where confusion creeps in. For a download-time estimate the decimal numbers line up with the labels on both ends, so that is what we use." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does the result still feel optimistic on my actual connection?",
+        "acceptedAnswer": { "@type": "Answer", "text": "The calculator assumes you are getting the full advertised speed end to end. In practice the bottleneck is often somewhere else: a busy Wi-Fi network, an old router, a slow server at the other end, peak-time congestion in the ISP's network, or a CDN node a long way away. If a download is consistently much slower than the calculator predicts, the line speed is probably not the limiting factor, the route is." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does the calculator work for uploads as well?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. The maths is the same in either direction, so put your upload speed in instead of your download speed and the result is your upload time. Just remember that on standard fibre-to-the-cabinet lines, upload is usually capped much lower than download, often around 20 Mbps even on a 200 Mbps download package. Full fibre lines are typically symmetric or close to it." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-banner-heading" aria-describedby="cookie-banner-text" hidden>
+    <div class="cookie-banner__inner">
+      <h2 id="cookie-banner-heading" class="cookie-banner__heading">A quick word about cookies</h2>
+      <p id="cookie-banner-text" class="cookie-banner__text">
+        We use cookies for analytics, so we can see which calculators people actually use and which ones need work. Nothing creepy, nothing sold on. You can say yes, say no, or read the <a href="/privacy/">privacy policy</a> first. Your choice sticks.
+      </p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-reject>Reject</button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>Accept</button>
+      </div>
+    </div>
+  </div>
+
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">WebCaretakers</a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <ul class="primary-nav__list">
+          <li class="primary-nav__item primary-nav__item--has-menu">
+            <button type="button" class="primary-nav__link" data-menu-toggle aria-haspopup="true" aria-expanded="false">Calculators <span class="primary-nav__caret" aria-hidden="true">&#x25BE;</span></button>
+            <ul class="primary-nav__submenu">
+              <li><a href="/calculators/ai/">AI</a></li>
+              <li><a href="/calculators/broadband/">Broadband</a></li>
+              <li><a href="/calculators/business/">Business</a></li>
+              <li><a href="/calculators/conversions/">Conversions</a></li>
+              <li><a href="/calculators/cybersecurity/">Cybersecurity</a></li>
+              <li><a href="/calculators/finance/">Finance</a></li>
+              <li><a href="/calculators/fun/">Fun</a></li>
+              <li><a href="/calculators/health/">Health</a></li>
+              <li><a href="/calculators/images/">Images</a></li>
+              <li><a href="/calculators/math/">Math</a></li>
+              <li><a href="/calculators/productivity/">Productivity</a></li>
+              <li><a href="/calculators/property/">Property</a></li>
+              <li><a href="/calculators/seo/">SEO</a></li>
+              <li><a href="/calculators/wedding/">Wedding</a></li>
+              <li><a href="/calculators/writing/">Writing</a></li>
+              <li class="primary-nav__submenu-sep"><a href="/calculators/">See all calculators</a></li>
+            </ul>
+          </li>
+          <li class="primary-nav__item"><a href="/about/" class="primary-nav__link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <main id="main-content">
+      <div class="container">
+        <nav aria-label="Breadcrumb" class="breadcrumbs">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/calculators/">Calculators</a></li>
+            <li><a href="/calculators/broadband/">Broadband</a></li>
+            <li aria-current="page">File Download Time Calculator</li>
+          </ol>
+        </nav>
+
+        <h1>File Download Time Calculator</h1>
+        <p class="intro">Enter a file size and a line speed, get a realistic download time. Bits and bytes converted properly, decimal multipliers (so they match how ISPs and storage vendors advertise), and a 5% protocol overhead added to reflect what TCP/IP actually delivers on a real connection. The full working is shown so you can audit the result.</p>
+
+        <section class="eli5" aria-label="Plain-English explanation">
+          <h2>Explain like I'm 5 (what even is this calculator?)</h2>
+          <p>Broadband speeds are sold in megabits per second. File sizes are sold in megabytes. There are eight bits in a byte, so the headline speed is one eighth of what you might expect if you assumed both numbers were the same kind of thing. This page does the conversion for you, adds the small overhead the network actually consumes, and tells you how long the download will take in days, hours, minutes and seconds.</p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="in-content" aria-hidden="true"></div>
+
+        <section class="calculator-card">
+          <h2>Work out a download time</h2>
+
+          <form id="fdt-form" class="calc-form" data-fdt-form novalidate>
+            <div class="calc-row">
+              <label for="fdt-size">File size</label>
+              <div class="calc-row__group">
+                <input type="number" id="fdt-size" data-fdt-size inputmode="decimal" min="0" step="any" autocomplete="off" placeholder="e.g. 80">
+                <select id="fdt-size-unit" data-fdt-size-unit aria-label="File size unit">
+                  <option value="MB">MB</option>
+                  <option value="GB" selected>GB</option>
+                  <option value="TB">TB</option>
+                </select>
+              </div>
+              <p class="calc-row__hint">Decimal units. 1 GB = 1,000 MB, the way every download page advertises it.</p>
+            </div>
+
+            <div class="calc-row">
+              <label for="fdt-speed">Line speed</label>
+              <div class="calc-row__group">
+                <input type="number" id="fdt-speed" data-fdt-speed inputmode="decimal" min="0" step="any" autocomplete="off" placeholder="e.g. 100">
+                <select id="fdt-speed-unit" data-fdt-speed-unit aria-label="Line speed unit">
+                  <option value="Mbps" selected>Mbps</option>
+                  <option value="Gbps">Gbps</option>
+                </select>
+              </div>
+              <p class="calc-row__hint">The number ISPs put on the ad, in megabits per second.</p>
+            </div>
+
+            <p class="calc-row__hint" data-fdt-error role="status" aria-live="polite"></p>
+          </form>
+
+          <div class="hash-rows" aria-live="polite">
+            <div class="hash-row" data-fdt-result hidden>
+              <div class="hash-row__head">
+                <h3>Estimated download time</h3>
+              </div>
+              <code class="hash-row__value" data-fdt-result-value></code>
+              <p class="hash-row__compare" data-fdt-result-summary></p>
+            </div>
+          </div>
+
+          <div data-fdt-comparisons class="comparisons-wrap"></div>
+
+          <details class="prove-it" data-prove-it>
+            <summary>Prove it (show the working)</summary>
+            <div data-prove-it-body>
+              <p>Enter a file size and a line speed to see the workings.</p>
+            </div>
+            <p>The 5% overhead figure is a single sensible number for an estimate. Real-world TCP/IP, TLS handshake and retransmits sit in the 3 to 8 percent range. On a perfectly clean line at full speed the overhead is closer to 3 percent. On a flaky mobile connection it can be more than 10 percent. If you want a no-overhead figure, multiply the answer by 1 / 1.05.</p>
+          </details>
+
+          <p class="bookmark-nudge">
+            Useful? Save this calculator: press <kbd data-bookmark-shortcut>Ctrl</kbd> + <kbd>D</kbd> to bookmark it.
+          </p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="below-results" aria-hidden="true"></div>
+
+        <section class="long-form">
+          <h2>Why the headline speed never feels right</h2>
+          <p>The single most common surprise with broadband is the gap between the speed on the ad and the speed on the file you are actually downloading. A 100 Mbps line is advertised as a hundred-something, the file is fifty-something MB, the download takes longer than fifty seconds, and it feels like the ISP is lying. The ISP is not lying, but they are also not making it easy. 100 Mbps is 100 million bits per second. A 50 MB file is 50 million bytes, which is 400 million bits. Divide one by the other and the answer is four seconds, plus the small overhead the protocol consumes. Once you have the conversion clear in your head, the numbers stop being mysterious.</p>
+
+          <h2>What actually slows real downloads down</h2>
+          <p>The calculator assumes the line is the bottleneck. Often it is not. On a busy Wi-Fi network the link to the router is the constraint, especially on older 2.4 GHz radios in a flat with a dozen neighbours on the same channel. On a long download from a small server, the server's upload pipe or its disk is the limit. On peak-time downloads through a congested ISP route, packet loss creeps up and TCP backs off. On mobile, the radio link varies second to second. If a download is consistently a long way below what the calculator predicts, the line speed is probably not the bottleneck. A speed test directly to a nearby server (Ookla, Fast.com) tells you whether you are getting what you pay for. If that test is fine but real downloads are slow, the issue is somewhere else in the path.</p>
+
+          <h2>Bits, bytes, decimal and binary</h2>
+          <p>The calculator uses decimal multipliers, where 1 GB is 1,000,000,000 bytes. ISPs use decimal. Storage vendors use decimal. macOS and most Linux file managers report decimal. Windows is the awkward one: it shows binary numbers (1 GB = 1,073,741,824 bytes) but labels them MB and GB anyway, which is where most of the confusion comes from. The strict labels for the binary versions are MiB, GiB and TiB (mebibyte, gibibyte, tebibyte). For a download-time estimate the decimal numbers line up cleanly with both the line speed and the published file size, so that is what this page uses. If you are working with a Windows file size and you want to be exact, multiply the displayed number by 1.0737 to get the decimal-equivalent in GB.</p>
+
+          <h2>When the calculator is honest, and when it is not</h2>
+          <p>The result is honest as a back-of-the-envelope estimate for a single download on a connection that is otherwise idle, where you are getting close to the advertised speed. It is not honest for: shared Wi-Fi during a family film night, downloads from a slow source, peak-time torrents that vary minute by minute, or any scenario where the line speed is not the binding constraint. Use it to set expectations before you queue up a 90 GB game install, not as a benchmark to argue with your ISP about. For that you need a sustained speed test on a wired connection at the same time of day.</p>
+
+          <h2>Related calculators</h2>
+          <ul class="related-calculators">
+            <li><a href="/calculators/broadband/">All broadband calculators</a></li>
+            <li><a href="/calculators/broadband/broadband-bandwidth-calculator/">Broadband Bandwidth Calculator</a></li>
+            <li><a href="/calculators/broadband/web-hosting-estimator/">Web Hosting Storage and Bandwidth Estimator</a></li>
+          </ul>
+        </section>
+
+        <section class="faq" aria-labelledby="faq-heading">
+          <h2 id="faq-heading">Frequently asked questions</h2>
+          <details>
+            <summary>Why doesn't a 100 Mbps line download a 100 MB file in one second?</summary>
+            <p>Because Mbps is megabits per second and MB is megabytes, and there are eight bits in a byte. 100 Mbps is 100,000,000 bits per second, which is 12.5 megabytes per second of raw throughput. So a 100 MB file takes about 8 seconds at the wire, before you add the protocol overhead. The mismatch between bits-for-speed and bytes-for-storage is the single biggest reason real-world downloads feel slower than the headline number suggests.</p>
+          </details>
+          <details>
+            <summary>Where does the 5% overhead come from?</summary>
+            <p>TCP/IP wraps every packet in headers, TLS adds a handshake and per-record overhead, and the connection ramps up slowly under TCP slow-start. Add retransmits on any packet loss and the typical real-world overhead sits between three and eight percent. Five percent is a sensible single number for an estimate. On a clean fibre line at full speed it can be lower, on a flaky mobile connection it is higher.</p>
+          </details>
+          <details>
+            <summary>Why decimal megabytes (1,000,000 bytes) and not binary (1,048,576)?</summary>
+            <p>Because that is what every party in the transaction advertises in. ISPs sell speed in decimal Mbps. Storage vendors sell drives in decimal GB. Operating systems are split: macOS and most Linux file managers use decimal, Windows uses binary and labels it MB anyway, which is where confusion creeps in. For a download-time estimate the decimal numbers line up with the labels on both ends, so that is what we use.</p>
+          </details>
+          <details>
+            <summary>Why does the result still feel optimistic on my actual connection?</summary>
+            <p>The calculator assumes you are getting the full advertised speed end to end. In practice the bottleneck is often somewhere else: a busy Wi-Fi network, an old router, a slow server at the other end, peak-time congestion in the ISP's network, or a CDN node a long way away. If a download is consistently much slower than the calculator predicts, the line speed is probably not the limiting factor, the route is.</p>
+          </details>
+          <details>
+            <summary>Does the calculator work for uploads as well?</summary>
+            <p>Yes. The maths is the same in either direction, so put your upload speed in instead of your download speed and the result is your upload time. Just remember that on standard fibre-to-the-cabinet lines, upload is usually capped much lower than download, often around 20 Mbps even on a 200 Mbps download package. Full fibre lines are typically symmetric or close to it.</p>
+          </details>
+        </section>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="ad-slot" data-ad-slot="sidebar" aria-hidden="true"></div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="site-footer-nav" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/calculators/">All calculators</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+
+      <section class="site-disclaimer" data-disclaimer aria-labelledby="disclaimer-heading">
+        <h2 id="disclaimer-heading">A quick, necessary word</h2>
+        <p>Every calculator on this site is built to give you a sensible, well-reasoned estimate. It is, however, exactly that: an estimate, for general information only. Nothing you see here is professional, legal, financial, medical, or tax advice, and it should not be treated as such.</p>
+        <p>Before you make a decision that actually matters, talk to a qualified professional who knows your specific situation: an accountant, a solicitor, a doctor, an IT consultant, whoever fits the question. They can factor in the bits a generic tool can't.</p>
+        <p>We take no liability and accept no responsibility for any loss, damage, or questionable life choice arising from acting on the numbers you see here. Use the results as a starting point for a better conversation, not as the final word.</p>
+        <p><strong>Affiliate disclosure:</strong> some links on this site are affiliate links. If you click through and buy or sign up for something, we may earn a small commission at no extra cost to you. It helps keep the calculators free and ad-light. We only recommend things we'd point a friend towards.</p>
+      </section>
+      <p class="site-copyright">&copy; 2026 WebCaretakers. All rights reserved.</p>
+      <p class="site-legal">WebCaretakers is a trading name of <a href="https://yeseo.io/" rel="noopener">Andrew Laws Associates Ltd</a>, registered in England and Wales (company no. 08602332). ICO registration ZA726704.</p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/calculators/file-download-time-calculator.js"></script>
+  <script src="/assets/js/calculators/file-download-time-calculator.page.js"></script>
+  <script>
+    (function () {
+      var shortcutEl = document.querySelector('[data-bookmark-shortcut]');
+      if (shortcutEl) {
+        var isMac = /Mac|iPhone|iPad|iPod/i.test(navigator.platform || navigator.userAgent);
+        shortcutEl.textContent = isMac ? '\u2318' : 'Ctrl';
+      }
+    })();
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

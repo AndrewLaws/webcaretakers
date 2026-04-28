@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cloud Backup Time Estimator: How Long Will Your First Backup Take? | WebCaretakers</title>
+  <meta name="description" content="Work out how long an initial cloud backup will take for Backblaze, iDrive, Carbonite or any other provider. Factors in protocol overhead, the realistic upload haircut, and overnight-only schedules.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/broadband/cloud-backup-time-estimator/">
+  <meta property="og:title" content="Cloud Backup Time Estimator | WebCaretakers">
+  <meta property="og:description" content="Estimate how long an initial cloud backup will take. Realistic upload speed haircut, protocol overhead, and overnight-only mode included.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/broadband/cloud-backup-time-estimator/">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var _stored = null;
+    try { _stored = localStorage.getItem('cookie-consent'); } catch (e) {}
+    var _initial = _stored === 'granted' ? 'granted' : 'denied';
+    gtag('consent', 'default', {
+      ad_storage: _initial, analytics_storage: _initial,
+      ad_user_data: _initial, ad_personalization: _initial,
+      functionality_storage: 'granted', security_storage: 'granted',
+      wait_for_update: 500
+    });
+  </script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Cloud Backup Time Estimator",
+    "url": "https://webcaretakers.com/calculators/broadband/cloud-backup-time-estimator/",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "description": "Estimate how long an initial cloud backup will take based on data size, upload speed, protocol overhead and a realistic line-efficiency haircut. Includes an overnight-only mode for users who throttle backups out of work hours.",
+    "offers": { "@type": "Offer", "price": "0" },
+    "author": { "@type": "Person", "name": "Andrew Laws", "url": "https://yeseo.io/" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Why does an initial cloud backup take so long?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Most home and small-office connections have far less upload than download. A 500 Mbps download line might only push 50 Mbps up, and that ceiling is what backups are bound by. Add in the realistic 70-80% real-world utilisation, plus 10% or so for TLS, chunking and provider metadata, and a few terabytes can take many days even on a fast line. After the first run, subsequent backups only ship the files that changed, so they finish in minutes." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why use 80% as the default efficiency?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Sustained uploads almost never hit advertised line speed. Wi-Fi attenuation, contention with downloads, the provider's own ingest rate limits, TCP backoff under packet loss, and the slowest hop on the route all chip away at it. Backblaze and iDrive's own documentation talks about throttling, threading and time-of-day effects. 80% is the realistic middle. 70% is more honest for Wi-Fi over a busy household. 100% is what you get on a wired link to an unloaded server in lab conditions, briefly." }
+      },
+      {
+        "@type": "Question",
+        "name": "What does overnight-only mode actually do?",
+        "acceptedAnswer": { "@type": "Answer", "text": "It assumes the backup client only uploads between 8pm and 8am, leaving work hours alone. That is 12 hours of backup per 24 hours, so wall-clock time doubles compared to a continuous upload. Most providers, including Backblaze and iDrive, let you schedule a backup window or throttle during work hours, which is the same idea." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does the result include changes after the first backup?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. This is the initial seed-upload estimate, which is the figure that surprises people. Once it has finished, the client only sends the deltas: a few megabytes a day for most users, occasionally more if you generate large media files. If your worry is keeping ongoing backups current, the upload speed needed is much smaller than the seed figure suggests." }
+      },
+      {
+        "@type": "Question",
+        "name": "Should I post a hard drive instead?",
+        "acceptedAnswer": { "@type": "Answer", "text": "If the calculator says days or weeks, it can be cheaper and faster to use a seed-load service. Backblaze offers Restore by Mail and historically had a Fireball seed device. iDrive offers iDrive Express, which couriers a USB drive to you, you copy data onto it, and post it back. For multi-terabyte first backups on slow links, this is usually the right call." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-banner-heading" aria-describedby="cookie-banner-text" hidden>
+    <div class="cookie-banner__inner">
+      <h2 id="cookie-banner-heading" class="cookie-banner__heading">A quick word about cookies</h2>
+      <p id="cookie-banner-text" class="cookie-banner__text">
+        We use cookies for analytics, so we can see which calculators people actually use and which ones need work. Nothing creepy, nothing sold on. You can say yes, say no, or read the <a href="/privacy/">privacy policy</a> first. Your choice sticks.
+      </p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-reject>Reject</button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>Accept</button>
+      </div>
+    </div>
+  </div>
+
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">WebCaretakers</a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <ul class="primary-nav__list">
+          <li class="primary-nav__item primary-nav__item--has-menu">
+            <button type="button" class="primary-nav__link" data-menu-toggle aria-haspopup="true" aria-expanded="false">Calculators <span class="primary-nav__caret" aria-hidden="true">&#9662;</span></button>
+            <ul class="primary-nav__submenu">
+              <li><a href="/calculators/ai/">AI</a></li>
+              <li><a href="/calculators/broadband/">Broadband</a></li>
+              <li><a href="/calculators/business/">Business</a></li>
+              <li><a href="/calculators/conversions/">Conversions</a></li>
+              <li><a href="/calculators/cybersecurity/">Cybersecurity</a></li>
+              <li><a href="/calculators/finance/">Finance</a></li>
+              <li><a href="/calculators/fun/">Fun</a></li>
+              <li><a href="/calculators/health/">Health</a></li>
+              <li><a href="/calculators/images/">Images</a></li>
+              <li><a href="/calculators/math/">Math</a></li>
+              <li><a href="/calculators/productivity/">Productivity</a></li>
+              <li><a href="/calculators/property/">Property</a></li>
+              <li><a href="/calculators/seo/">SEO</a></li>
+              <li><a href="/calculators/wedding/">Wedding</a></li>
+              <li><a href="/calculators/writing/">Writing</a></li>
+              <li class="primary-nav__submenu-sep"><a href="/calculators/">See all calculators</a></li>
+            </ul>
+          </li>
+          <li class="primary-nav__item"><a href="/about/" class="primary-nav__link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <main id="main-content">
+      <div class="container">
+        <nav aria-label="Breadcrumb" class="breadcrumbs">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/calculators/">Calculators</a></li>
+            <li><a href="/calculators/broadband/">Broadband</a></li>
+            <li aria-current="page">Cloud Backup Time Estimator</li>
+          </ol>
+        </nav>
+
+        <h1>Cloud Backup Time Estimator</h1>
+        <p class="intro">Work out how long your first cloud backup will actually take, factoring in the bits providers like Backblaze and iDrive don't always spell out: protocol overhead, the realistic 70-80% utilisation of your advertised upload speed, and the option to only run overnight.</p>
+
+        <section class="eli5" aria-label="Plain-English explanation">
+          <h2>Explain like I'm 5 (what even is this calculator?)</h2>
+          <p>Tell it how much data you want to back up and how fast your upload is. It tells you, honestly, how many days, hours and minutes the first run will take. The first cloud backup is the slow one, after that the client only ships changes and you stop noticing it.</p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="in-content" aria-hidden="true"></div>
+
+        <section data-calculator class="calculator-card" aria-labelledby="calc-heading">
+          <h2 id="calc-heading">Estimate the first backup</h2>
+          <form id="backup-form" class="calc-form" novalidate>
+            <div class="calc-row">
+              <label for="inp-data">How much data are you backing up?</label>
+              <div class="calc-row__inline">
+                <input type="number" id="inp-data" name="dataValue" min="0" step="0.1" value="500" required>
+                <select id="inp-data-unit" name="dataUnit" aria-label="Data unit">
+                  <option value="GB" selected>GB</option>
+                  <option value="TB">TB</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="calc-row">
+              <label for="inp-speed">Advertised upload speed</label>
+              <div class="calc-row__inline">
+                <input type="number" id="inp-speed" name="speedValue" min="0.1" step="0.1" value="50" required>
+                <select id="inp-speed-unit" name="speedUnit" aria-label="Speed unit">
+                  <option value="Mbps" selected>Mbps</option>
+                  <option value="Gbps">Gbps</option>
+                </select>
+              </div>
+              <p class="calc-row__hint">Use the upload figure from your speed test, not the headline download number.</p>
+            </div>
+
+            <div class="calc-row">
+              <label for="inp-efficiency">Realistic line efficiency: <output for="inp-efficiency" data-efficiency-output>80%</output></label>
+              <input type="range" id="inp-efficiency" name="efficiency" min="70" max="100" step="10" value="80" list="efficiency-ticks">
+              <datalist id="efficiency-ticks">
+                <option value="70" label="70%"></option>
+                <option value="80" label="80%"></option>
+                <option value="90" label="90%"></option>
+                <option value="100" label="100%"></option>
+              </datalist>
+              <p class="calc-row__hint">Sustained uploads rarely hit the advertised line speed. 80% is a sensible default. Drop to 70% over Wi-Fi in a busy household, raise to 90-100% on a clean wired link.</p>
+            </div>
+
+            <div class="calc-row calc-row--checkbox">
+              <label for="inp-overnight">Only back up overnight (8pm to 8am)</label>
+              <input type="checkbox" id="inp-overnight" name="overnightOnly">
+            </div>
+
+            <button type="submit" data-calculate>Estimate the time</button>
+          </form>
+
+          <div data-calculator-results class="calculator-results" aria-live="polite">
+            <p class="result-display" data-result-placeholder>Fill in the form and press the button to see how long the first backup will take.</p>
+            <div class="result-summary" hidden data-result-summary>
+              <p>Continuous upload: <strong data-result-continuous></strong></p>
+              <p data-result-overnight-row hidden>Overnight-only (8pm to 8am): <strong data-result-overnight></strong></p>
+              <p class="calc-row__hint" data-result-note></p>
+
+              <details class="prove-it" data-prove-it>
+                <summary>Prove it</summary>
+                <div data-prove-it-body>
+                  <p>The maths, end to end, so you can audit it.</p>
+                  <ul data-prove-it-list></ul>
+                  <p class="prove-it-source">10% protocol overhead is a round figure for TLS plus the provider's own chunking and metadata. The 70-100% efficiency slider reflects the gap between advertised line speed and what sustained uploads actually achieve, which Backblaze, iDrive and Carbonite all document in their throughput notes.</p>
+                </div>
+              </details>
+            </div>
+
+            <p class="bookmark-nudge">
+              <strong>Save this calculator:</strong>
+              press <kbd data-bookmark-shortcut>Ctrl</kbd> + <kbd>D</kbd> to bookmark it in your browser.
+            </p>
+          </div>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="below-results" aria-hidden="true"></div>
+
+        <div data-cta="next-step" class="cta-block">
+          <h3>Upload too slow for the timeline you need?</h3>
+          <p>Compare broadband packages with faster upload speeds. Full fibre (FTTP) typically gives you symmetric or near-symmetric upload, which can shave days off a multi-terabyte first backup.</p>
+          <a href="https://www.awin1.com/cread.php?awinmid=12213&awinaffid=202051&ued=https%3A%2F%2Fwww.broadband.co.uk%2F" class="cta-link" rel="noopener sponsored" data-cta-link>Compare broadband deals at broadband.co.uk</a>
+        </div>
+
+        <section class="long-form">
+          <h2>Why the first cloud backup feels endless</h2>
+          <p>Cloud backup providers like Backblaze, iDrive and Carbonite are very good at the steady-state job: once they have a copy of everything, they only ship the bits that changed since the last run. Most users never notice them after the first week. The first week is the catch. The seed-upload, where the client has to push every photo, document, video and project file you have ever cared about, is the slow part. On a 50 Mbps upload line, half a terabyte at a realistic 80% efficiency takes around 28 hours of continuous upload. A full terabyte takes nearly two and a half days. Five terabytes runs into a fortnight. None of that is the provider's fault. It is your line.</p>
+
+          <h2>Why the realistic figure beats the line speed figure</h2>
+          <p>Run a speed test, get 50 Mbps up, divide bits by bits, get a clean answer. That answer is wrong by 20-30% in practice for backups specifically. Sustained uploads have to share the line with everything else the household is doing, deal with TCP backoff when the network drops a packet, sit behind Wi-Fi if you are not wired in, and respect any throttling the provider applies at busy times. Backblaze talks openly about thread counts, ISP rate-limits during work hours, and the gap between burst and sustained throughput. iDrive's documentation says the same thing in different words. The realistic figure for sustained backup upload is 70-80% of advertised, sometimes lower. This calculator lets you pick the assumption you trust and shows the working.</p>
+
+          <h2>What 10% protocol overhead is for</h2>
+          <p>Every byte of your data is wrapped in TLS for encryption, chunked into manageable blocks, tagged with metadata and indexed at the provider. None of that wrapping is free. Across the major backup providers, the realistic overhead lands around 10%, sometimes a little less for very large files where the per-chunk metadata is amortised, sometimes a little more for many tiny files. The calculator uses 10% as a flat figure, which is honest enough for planning purposes and a long way better than ignoring it altogether.</p>
+
+          <h2>When to switch on overnight-only</h2>
+          <p>If anyone in the house works from home, runs video calls, or just cares about Netflix not buffering, a backup hammering the line during the day is going to cause friction. Most providers let you schedule the backup window or throttle hard during work hours. The calculator's overnight-only toggle assumes the backup client gets the full line from 8pm to 8am and nothing during the day, so the wall-clock time doubles. In practice that is the right trade for households on slower upload, and worth the longer total because the connection stays usable.</p>
+
+          <h2>Common mistakes when estimating</h2>
+          <ul>
+            <li><strong>Using the download number.</strong> Backups are upload-bound. On standard FTTC, upload is much lower than download. Always plug in the upload figure.</li>
+            <li><strong>Assuming 100% efficiency.</strong> A clean wired link to a fast server in lab conditions might briefly hit advertised. Real backups, over hours, do not.</li>
+            <li><strong>Forgetting the overhead.</strong> 10% sounds small until you stretch it across a fortnight. It is the difference between finishing on a Friday and finishing on a Sunday.</li>
+            <li><strong>Forgetting deduplication and exclusions.</strong> The figure assumes you really do back up the data you typed in. Most providers exclude system files and cache directories by default, which can shave a meaningful slice off, especially on Macs and Windows machines with large local caches.</li>
+          </ul>
+
+          <h2>If the answer says "weeks", consider seed-loading</h2>
+          <p>Both Backblaze and iDrive offer a way to skip the seed-upload entirely. iDrive Express ships a USB drive to your door, you copy your data onto it, and post it back. Backblaze has historically offered a similar Restore by Mail service for downloads and previously had a Fireball seed device. If the calculator tells you the first backup will take a fortnight, a posted drive is usually the better answer. Carbonite's pricing model treats heavy seeding differently, so check their current options before committing.</p>
+
+          <h2>Related calculators</h2>
+          <ul class="related-calculators">
+            <li><a href="/calculators/broadband/broadband-bandwidth-calculator/">Work out how much broadband speed you need</a></li>
+            <li><a href="/calculators/broadband/web-hosting-estimator/">Estimate hosting bandwidth and storage</a></li>
+            <li><a href="/calculators/broadband/">All broadband calculators</a></li>
+          </ul>
+        </section>
+
+        <section class="faq" aria-labelledby="faq-heading">
+          <h2 id="faq-heading">Frequently asked questions</h2>
+          <details>
+            <summary>Why does an initial cloud backup take so long?</summary>
+            <p>Most home and small-office connections have far less upload than download. A 500 Mbps download line might only push 50 Mbps up, and that ceiling is what backups are bound by. Add in the realistic 70-80% real-world utilisation, plus 10% or so for TLS, chunking and provider metadata, and a few terabytes can take many days even on a fast line. After the first run, subsequent backups only ship the files that changed, so they finish in minutes.</p>
+          </details>
+          <details>
+            <summary>Why use 80% as the default efficiency?</summary>
+            <p>Sustained uploads almost never hit advertised line speed. Wi-Fi attenuation, contention with downloads, the provider's own ingest rate limits, TCP backoff under packet loss, and the slowest hop on the route all chip away at it. Backblaze and iDrive's own documentation talks about throttling, threading and time-of-day effects. 80% is the realistic middle. 70% is more honest for Wi-Fi over a busy household. 100% is what you get on a wired link to an unloaded server in lab conditions, briefly.</p>
+          </details>
+          <details>
+            <summary>What does overnight-only mode actually do?</summary>
+            <p>It assumes the backup client only uploads between 8pm and 8am, leaving work hours alone. That is 12 hours of backup per 24 hours, so wall-clock time doubles compared to a continuous upload. Most providers, including Backblaze and iDrive, let you schedule a backup window or throttle during work hours, which is the same idea.</p>
+          </details>
+          <details>
+            <summary>Does the result include changes after the first backup?</summary>
+            <p>No. This is the initial seed-upload estimate, which is the figure that surprises people. Once it has finished, the client only sends the deltas: a few megabytes a day for most users, occasionally more if you generate large media files.</p>
+          </details>
+          <details>
+            <summary>Should I post a hard drive instead?</summary>
+            <p>If the calculator says days or weeks, it can be cheaper and faster to use a seed-load service. Backblaze offers Restore by Mail. iDrive offers iDrive Express, which couriers a USB drive to you, you copy data onto it, and post it back. For multi-terabyte first backups on slow links, this is usually the right call.</p>
+          </details>
+        </section>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="ad-slot" data-ad-slot="sidebar" aria-hidden="true"></div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="site-footer-nav" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/calculators/">All calculators</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+
+      <section class="site-disclaimer" data-disclaimer aria-labelledby="disclaimer-heading">
+        <h2 id="disclaimer-heading">A quick, necessary word</h2>
+        <p>Every calculator on this site is built to give you a sensible, well-reasoned estimate. It is, however, exactly that: an estimate, for general information only. Nothing you see here is professional, legal, financial, medical, or tax advice, and it should not be treated as such.</p>
+        <p>Before you make a decision that actually matters, talk to a qualified professional who knows your specific situation: an accountant, a solicitor, a doctor, an IT consultant, whoever fits the question. They can factor in the bits a generic tool can't.</p>
+        <p>We take no liability and accept no responsibility for any loss, damage, or questionable life choice arising from acting on the numbers you see here. Use the results as a starting point for a better conversation, not as the final word.</p>
+        <p><strong>Affiliate disclosure:</strong> some links on this site are affiliate links. If you click through and buy or sign up for something, we may earn a small commission at no extra cost to you. It helps keep the calculators free and ad-light. We only recommend things we'd point a friend towards.</p>
+      </section>
+      <p class="site-copyright">&copy; 2026 WebCaretakers. All rights reserved.</p>
+      <p class="site-legal">WebCaretakers is a trading name of <a href="https://yeseo.io/" rel="noopener">Andrew Laws Associates Ltd</a>, registered in England and Wales (company no. 08602332). ICO registration ZA726704.</p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/calculators/cloud-backup-time-estimator.js"></script>
+  <script>
+    (function () {
+      var form = document.getElementById('backup-form');
+      if (!form) return;
+      var summary = document.querySelector('[data-result-summary]');
+      var placeholder = document.querySelector('[data-result-placeholder]');
+      var continuousEl = document.querySelector('[data-result-continuous]');
+      var overnightRow = document.querySelector('[data-result-overnight-row]');
+      var overnightEl = document.querySelector('[data-result-overnight]');
+      var noteEl = document.querySelector('[data-result-note]');
+      var proveListEl = document.querySelector('[data-prove-it-list]');
+      var efficiencyOutput = document.querySelector('[data-efficiency-output]');
+      var efficiencyEl = document.getElementById('inp-efficiency');
+
+      function pushInteraction(field, value) {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: 'calculator_interaction',
+          calculator_name: 'cloud-backup-time-estimator',
+          field: field,
+          value: value
+        });
+      }
+
+      function updateEfficiencyOutput() {
+        if (efficiencyOutput) efficiencyOutput.textContent = efficiencyEl.value + '%';
+      }
+      if (efficiencyEl) {
+        updateEfficiencyOutput();
+        efficiencyEl.addEventListener('input', updateEfficiencyOutput);
+      }
+
+      form.addEventListener('input', function (e) {
+        var t = e.target;
+        var val = t.type === 'checkbox' ? t.checked : t.value;
+        pushInteraction(t.name || t.id, val);
+      });
+
+      function fmt(b) {
+        return CloudBackupTimeEstimator.formatDuration(b);
+      }
+
+      function fmtBps(bps) {
+        if (bps >= 1e9) return (bps / 1e9).toFixed(2) + ' Gbps';
+        if (bps >= 1e6) return (bps / 1e6).toFixed(2) + ' Mbps';
+        if (bps >= 1e3) return (bps / 1e3).toFixed(2) + ' kbps';
+        return bps.toFixed(0) + ' bps';
+      }
+
+      function fmtBits(bits) {
+        if (bits >= 1e12) return (bits / 1e12).toFixed(2) + ' Tb';
+        if (bits >= 1e9) return (bits / 1e9).toFixed(2) + ' Gb';
+        if (bits >= 1e6) return (bits / 1e6).toFixed(2) + ' Mb';
+        return bits.toString() + ' b';
+      }
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var fd = new FormData(form);
+        var input = {
+          dataValue: parseFloat(fd.get('dataValue')) || 0,
+          dataUnit: fd.get('dataUnit'),
+          speedValue: parseFloat(fd.get('speedValue')) || 0,
+          speedUnit: fd.get('speedUnit'),
+          efficiency: (parseFloat(fd.get('efficiency')) || 80) / 100,
+          overnightOnly: form.querySelector('[name="overnightOnly"]').checked
+        };
+
+        try {
+          var r = CloudBackupTimeEstimator.estimateBackupTime(input);
+        } catch (err) {
+          placeholder.hidden = false;
+          summary.hidden = true;
+          placeholder.textContent = 'Please check your inputs: ' + err.message;
+          return;
+        }
+
+        placeholder.hidden = true;
+        summary.hidden = false;
+
+        var continuousText = fmt(r.continuousBreakdown);
+        continuousEl.textContent = continuousText;
+
+        if (r.overnightOnly) {
+          overnightRow.hidden = false;
+          overnightEl.textContent = fmt(r.breakdown);
+          noteEl.textContent = 'Overnight-only doubles the wall-clock time because the backup runs 12 hours per 24.';
+        } else {
+          overnightRow.hidden = true;
+          noteEl.textContent = 'Tick the overnight-only box if you only want the backup to run between 8pm and 8am.';
+        }
+
+        if (proveListEl) {
+          var rows = [
+            ['Total data', (input.dataValue) + ' ' + input.dataUnit + ' (' + r.totalBytes.toLocaleString() + ' bytes)'],
+            ['Total bits to send', fmtBits(r.totalBits)],
+            ['Advertised upload', fmtBps(r.advertisedBps)],
+            ['Efficiency haircut', Math.round(r.efficiency * 100) + '% of advertised'],
+            ['Effective line throughput', fmtBps(r.effectiveLineBps)],
+            ['Protocol/encryption overhead', Math.round(r.protocolOverhead * 100) + '%'],
+            ['Effective payload throughput', fmtBps(r.payloadBps)],
+            ['Continuous upload time (seconds)', Math.round(r.totalSeconds).toLocaleString()],
+            ['Continuous wall-clock', fmt(r.continuousBreakdown)]
+          ];
+          if (r.overnightOnly) {
+            rows.push(['Overnight duty cycle', '12h per 24h (multiplier x2)']);
+            rows.push(['Overnight wall-clock', fmt(r.breakdown)]);
+          }
+          proveListEl.innerHTML = rows.map(function (row) {
+            return '<li><span>' + row[0] + '</span><strong>' + row[1] + '</strong></li>';
+          }).join('');
+        }
+
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: 'calculator_result',
+          calculator_name: 'cloud-backup-time-estimator',
+          data_value: input.dataValue,
+          data_unit: input.dataUnit,
+          speed_value: input.speedValue,
+          speed_unit: input.speedUnit,
+          efficiency: input.efficiency,
+          overnight_only: input.overnightOnly,
+          wall_clock_seconds: Math.round(r.wallClockSeconds)
+        });
+      });
+
+      var proveDetails = document.querySelector('[data-prove-it]');
+      if (proveDetails) {
+        proveDetails.addEventListener('toggle', function () {
+          if (proveDetails.open) {
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+              event: 'prove_it',
+              calculator_name: 'cloud-backup-time-estimator'
+            });
+          }
+        });
+      }
+
+      var shortcutEl = document.querySelector('[data-bookmark-shortcut]');
+      if (shortcutEl) {
+        var isMac = /Mac|iPhone|iPad|iPod/i.test(navigator.platform || navigator.userAgent);
+        shortcutEl.textContent = isMac ? '\u2318' : 'Ctrl';
+      }
+
+      var ctaLink = document.querySelector('[data-cta-link]');
+      if (ctaLink) {
+        ctaLink.addEventListener('click', function () {
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: 'cta_click',
+            calculator_name: 'cloud-backup-time-estimator',
+            cta: 'compare-broadband-plans'
+          });
+        });
+      }
+    })();
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

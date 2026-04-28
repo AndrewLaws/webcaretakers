@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flesch Reading Ease Score Calculator | WebCaretakers</title>
+  <meta name="description" content="Paste text and get the Flesch Reading Ease score and Flesch-Kincaid Grade Level, with the underlying word, sentence and syllable counts. Runs in your browser, nothing uploaded.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/writing/flesch-reading-ease-calculator/">
+  <meta property="og:title" content="Flesch Reading Ease Score Calculator | WebCaretakers">
+  <meta property="og:description" content="Paste text and get the Flesch Reading Ease score and Flesch-Kincaid Grade Level, live as you type.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/writing/flesch-reading-ease-calculator/">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var _stored = null;
+    try { _stored = localStorage.getItem('cookie-consent'); } catch (e) {}
+    var _initial = _stored === 'granted' ? 'granted' : 'denied';
+    gtag('consent', 'default', {
+      ad_storage: _initial, analytics_storage: _initial,
+      ad_user_data: _initial, ad_personalization: _initial,
+      functionality_storage: 'granted', security_storage: 'granted',
+      wait_for_update: 500
+    });
+  </script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Flesch Reading Ease Score Calculator",
+    "url": "https://webcaretakers.com/calculators/writing/flesch-reading-ease-calculator/",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0" },
+    "author": {
+      "@type": "Person",
+      "name": "Andrew Laws",
+      "url": "https://yeseo.io/"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is a good Flesch Reading Ease score?",
+        "acceptedAnswer": { "@type": "Answer", "text": "For general web writing aimed at a broad public audience, aim for 60 or higher. That puts you in the 'plain English' band, readable by an average 13 to 15 year old. Newspapers tend to land between 60 and 70. Academic and legal writing typically scores below 30. The right target depends on your audience: a paper for specialists in a field can sit lower without being a problem, but a homepage that scores 25 will lose readers." }
+      },
+      {
+        "@type": "Question",
+        "name": "How accurate is the syllable counting?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Approximate. The page uses a vowel-group heuristic with a silent-e rule, which gets common English words right most of the time but drifts on unusual spellings, technical jargon and loanwords. The whole Flesch family of scores is built on rough syllable counts, so a small wobble does not change the band you fall into. If you need word-by-word precision for a specific document, run a manual pass on the longer words." }
+      },
+      {
+        "@type": "Question",
+        "name": "Reading Ease versus Grade Level: which should I use?",
+        "acceptedAnswer": { "@type": "Answer", "text": "They are two views of the same data. Reading Ease is a 0 to 100 score where higher is easier, and is the friendlier number to share with non-specialist stakeholders. Grade Level maps to US school years and is the format most word processors and editing tools default to. Use whichever your audience already understands. The two move in opposite directions: as Reading Ease goes up, Grade Level goes down." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does my text leave the browser?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. The whole calculation runs in JavaScript on your device. You can disconnect from the network and the score still updates as you type. Nothing is uploaded, logged or stored." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-banner-heading" aria-describedby="cookie-banner-text" hidden>
+    <div class="cookie-banner__inner">
+      <h2 id="cookie-banner-heading" class="cookie-banner__heading">A quick word about cookies</h2>
+      <p id="cookie-banner-text" class="cookie-banner__text">
+        We use cookies for analytics, so we can see which calculators people actually use and which ones need work. Nothing creepy, nothing sold on. You can say yes, say no, or read the <a href="/privacy/">privacy policy</a> first. Your choice sticks.
+      </p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-reject>Reject</button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>Accept</button>
+      </div>
+    </div>
+  </div>
+
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">WebCaretakers</a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <ul class="primary-nav__list">
+          <li class="primary-nav__item primary-nav__item--has-menu">
+            <button type="button" class="primary-nav__link" data-menu-toggle aria-haspopup="true" aria-expanded="false">Calculators <span class="primary-nav__caret" aria-hidden="true">▾</span></button>
+            <ul class="primary-nav__submenu">
+              <li><a href="/calculators/ai/">AI</a></li>
+              <li><a href="/calculators/broadband/">Broadband</a></li>
+              <li><a href="/calculators/business/">Business</a></li>
+              <li><a href="/calculators/conversions/">Conversions</a></li>
+              <li><a href="/calculators/cybersecurity/">Cybersecurity</a></li>
+              <li><a href="/calculators/finance/">Finance</a></li>
+              <li><a href="/calculators/fun/">Fun</a></li>
+              <li><a href="/calculators/health/">Health</a></li>
+              <li><a href="/calculators/images/">Images</a></li>
+              <li><a href="/calculators/math/">Math</a></li>
+              <li><a href="/calculators/productivity/">Productivity</a></li>
+              <li><a href="/calculators/property/">Property</a></li>
+              <li><a href="/calculators/seo/">SEO</a></li>
+              <li><a href="/calculators/wedding/">Wedding</a></li>
+              <li><a href="/calculators/writing/">Writing</a></li>
+              <li class="primary-nav__submenu-sep"><a href="/calculators/">See all calculators</a></li>
+            </ul>
+          </li>
+          <li class="primary-nav__item"><a href="/about/" class="primary-nav__link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <main id="main-content">
+      <div class="container">
+        <nav aria-label="Breadcrumb" class="breadcrumbs">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/calculators/">Calculators</a></li>
+            <li><a href="/calculators/writing/">Writing</a></li>
+            <li aria-current="page">Flesch Reading Ease Score Calculator</li>
+          </ol>
+        </nav>
+
+        <h1>Flesch Reading Ease Score Calculator</h1>
+        <p class="intro">Paste text and see its Flesch Reading Ease score and Flesch-Kincaid Grade Level, live as you type, with the word, sentence and syllable counts that produced them. Useful for checking that a homepage, an explainer, or a piece of B2B copy is not punching above the audience's reading level.</p>
+
+        <section class="eli5" aria-label="Plain-English explanation">
+          <h2>Explain like I'm 5 (what even is this calculator?)</h2>
+          <p>Long sentences and long words are harder to read. Short sentences and short words are easier. Rudolf Flesch turned that obvious idea into a formula in the 1940s, scoring text from 0 (very hard) to 100 (very easy). Paste your draft, get the score, decide whether to simplify.</p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="in-content" aria-hidden="true"></div>
+
+        <section class="calculator-card">
+          <h2>Score some text</h2>
+          <p class="reassure"><strong>Browser-only.</strong> The score is calculated in your browser. Nothing is uploaded, logged or stored. You can disconnect your network and the page still works.</p>
+
+          <form id="fre-form" class="calc-form" novalidate>
+            <div class="calc-row">
+              <label for="fre-input">Your text</label>
+              <textarea id="fre-input" data-fre-input rows="10" placeholder="Type or paste any text. The scores update as you type."></textarea>
+              <p class="calc-row__hint">No length limit. Empty input shows zero counts.</p>
+            </div>
+          </form>
+
+          <div class="hash-rows" data-fre-result aria-live="polite" hidden>
+            <div class="hash-row">
+              <div class="hash-row__head">
+                <h3>Reading Ease</h3>
+              </div>
+              <code class="hash-row__value" data-fre-ease></code>
+              <p class="hash-row__compare"><span data-fre-band></span></p>
+            </div>
+            <div class="hash-row">
+              <div class="hash-row__head">
+                <h3>Flesch-Kincaid Grade Level</h3>
+              </div>
+              <code class="hash-row__value" data-fre-grade></code>
+              <p class="hash-row__compare"><span>Maps to US school year. Lower is easier.</span></p>
+            </div>
+            <div class="hash-row">
+              <div class="hash-row__head">
+                <h3>Counts</h3>
+              </div>
+              <p class="hash-row__compare">
+                Words: <strong data-fre-words>0</strong> &middot;
+                Sentences: <strong data-fre-sentences>0</strong> &middot;
+                Syllables: <strong data-fre-syllables>0</strong>
+              </p>
+            </div>
+          </div>
+
+          <details class="prove-it" data-prove-it>
+            <summary>Prove it</summary>
+            <div data-prove-it-body>
+              <p>Type or paste text above to see the working out.</p>
+            </div>
+          </details>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="below-results" aria-hidden="true"></div>
+
+        <section class="long-form">
+          <h2>What the score is actually measuring</h2>
+          <p>The Flesch Reading Ease score combines two ratios: the average sentence length (words per sentence), and the average word length (syllables per word). Long sentences and long words push the score down. Short sentences and short words push it up. The formula is calibrated against real reader-comprehension testing in the 1940s and has held up surprisingly well as a quick proxy for clarity. The Flesch-Kincaid Grade Level rearranges the same two inputs into a US school year, which is the format most word processors default to. They are two presentations of the same underlying data.</p>
+
+          <h2>What a usable target looks like</h2>
+          <p>For general public-facing web copy, aim for 60 or higher on Reading Ease, which is roughly an 8th to 9th grade level. Tabloid newspapers tend to land in the high 60s. The Reader's Digest sat around 65. A homepage scoring 30 is not unreadable, but it is asking the visitor to work harder than most will bother to. Specialist writing for a specialist audience can score lower without it being a problem, because the audience knows the long words and is willing to read longer sentences. The score is a tool for noticing drift, not a rule.</p>
+
+          <h2>Common mistakes that drag the score down</h2>
+          <p>The two big ones are stacked subordinate clauses (one long sentence carrying three ideas, joined with commas and "which") and unnecessary Latinate vocabulary (utilise instead of use, commence instead of start, terminate instead of end). Both are easy to fix without losing nuance: split the sentence, swap the word. The other one to watch is filler at the start of sentences, where "It is important to note that" buys you a 7-word run-up to the actual point. Cut it.</p>
+
+          <h2>Edge cases the formula handles badly</h2>
+          <p>The Flesch family was built for prose. It misreads bullet lists, code samples, tables, and anything heavy on proper nouns. A page about Schopenhauer or pneumonoultramicroscopicsilicovolcanoconiosis will score lower than its actual readability, because the formula penalises long words even when the long word is the right word. Headings, captions and one-word answers also fight the sentence-length ratio. Paste prose blocks for a sensible reading. For mixed pages, score the body copy on its own.</p>
+
+          <h2>Why the syllable count is approximate</h2>
+          <p>English syllable counting is genuinely hard: silent letters, dipthongs, loanwords from French and German, and irregular endings all break simple rules. This page uses a vowel-group heuristic with a silent-e fix, which is the standard quick approach and gets common words right most of the time. It will occasionally over- or under-count by one on unusual words. The score moves slightly as a result. The bands are wide enough that a small drift does not change the headline reading.</p>
+
+          <h2>Related calculators</h2>
+          <ul class="related-calculators">
+            <li><a href="/calculators/writing/word-count/">Word Count Tool</a> for live word, sentence and character counts.</li>
+            <li><a href="/calculators/writing/read-time-calculator/">Read Time Calculator</a> for estimated silent and aloud reading times.</li>
+            <li><a href="/calculators/writing/">All writing calculators</a></li>
+          </ul>
+        </section>
+
+        <section class="faq" aria-labelledby="faq-heading">
+          <h2 id="faq-heading">Frequently asked questions</h2>
+          <details>
+            <summary>What is a good Flesch Reading Ease score?</summary>
+            <p>For general web writing aimed at a broad public audience, aim for 60 or higher. That puts you in the "plain English" band, readable by an average 13 to 15 year old. Newspapers tend to land between 60 and 70. Academic and legal writing typically scores below 30. The right target depends on your audience: a paper for specialists in a field can sit lower without being a problem, but a homepage that scores 25 will lose readers.</p>
+          </details>
+          <details>
+            <summary>How accurate is the syllable counting?</summary>
+            <p>Approximate. The page uses a vowel-group heuristic with a silent-e rule, which gets common English words right most of the time but drifts on unusual spellings, technical jargon and loanwords. The whole Flesch family of scores is built on rough syllable counts, so a small wobble does not change the band you fall into. If you need word-by-word precision for a specific document, run a manual pass on the longer words.</p>
+          </details>
+          <details>
+            <summary>Reading Ease versus Grade Level: which should I use?</summary>
+            <p>They are two views of the same data. Reading Ease is a 0 to 100 score where higher is easier, and is the friendlier number to share with non-specialist stakeholders. Grade Level maps to US school years and is the format most word processors and editing tools default to. Use whichever your audience already understands. The two move in opposite directions: as Reading Ease goes up, Grade Level goes down.</p>
+          </details>
+          <details>
+            <summary>Does my text leave the browser?</summary>
+            <p>No. The whole calculation runs in JavaScript on your device. You can disconnect from the network and the score still updates as you type. Nothing is uploaded, logged or stored.</p>
+          </details>
+        </section>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="ad-slot" data-ad-slot="sidebar" aria-hidden="true"></div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="site-footer-nav" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/calculators/">All calculators</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+
+      <section class="site-disclaimer" data-disclaimer aria-labelledby="disclaimer-heading">
+        <h2 id="disclaimer-heading">A quick, necessary word</h2>
+        <p>Every calculator on this site is built to give you a sensible, well-reasoned estimate. It is, however, exactly that: an estimate, for general information only. Nothing you see here is professional, legal, financial, medical, or tax advice, and it should not be treated as such.</p>
+        <p>Before you make a decision that actually matters, talk to a qualified professional who knows your specific situation: an accountant, a solicitor, a doctor, an IT consultant, whoever fits the question. They can factor in the bits a generic tool can't.</p>
+        <p>We take no liability and accept no responsibility for any loss, damage, or questionable life choice arising from acting on the numbers you see here. Use the results as a starting point for a better conversation, not as the final word.</p>
+        <p><strong>Affiliate disclosure:</strong> some links on this site are affiliate links. If you click through and buy or sign up for something, we may earn a small commission at no extra cost to you. It helps keep the calculators free and ad-light. We only recommend things we'd point a friend towards.</p>
+      </section>
+      <p class="site-copyright">&copy; 2026 WebCaretakers. All rights reserved.</p>
+      <p class="site-legal">WebCaretakers is a trading name of <a href="https://yeseo.io/" rel="noopener">Andrew Laws Associates Ltd</a>, registered in England and Wales (company no. 08602332). ICO registration ZA726704.</p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/calculators/flesch-reading-ease-calculator.js"></script>
+  <script src="/assets/js/calculators/flesch-reading-ease-calculator.page.js"></script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

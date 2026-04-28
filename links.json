@@ -7,6 +7,30 @@
   ],
   "links": [
     {
+      "phrase": "Aspect Ratio Calculator",
+      "url": "/calculators/images/aspect-ratio-calculator/"
+    },
+    {
+      "phrase": "image aspect ratio",
+      "url": "/calculators/images/aspect-ratio-calculator/"
+    },
+    {
+      "phrase": "resize image keep aspect ratio",
+      "url": "/calculators/images/aspect-ratio-calculator/"
+    },
+    {
+      "phrase": "File Download Time Calculator",
+      "url": "/calculators/broadband/file-download-time-calculator/"
+    },
+    {
+      "phrase": "how long will my download take",
+      "url": "/calculators/broadband/file-download-time-calculator/"
+    },
+    {
+      "phrase": "Mbps to MB conversion",
+      "url": "/calculators/broadband/file-download-time-calculator/"
+    },
+    {
       "phrase": "Fuel Economy Converter",
       "url": "/calculators/conversions/fuel-economy-converter/"
     },
@@ -103,6 +127,18 @@
       "url": "/calculators/ai/ai-vs-human-writer-cost-calculator/"
     },
     {
+      "phrase": "AI Fine-Tuning Cost Calculator",
+      "url": "/calculators/ai/fine-tuning-cost-calculator/"
+    },
+    {
+      "phrase": "fine-tuning cost calculator",
+      "url": "/calculators/ai/fine-tuning-cost-calculator/"
+    },
+    {
+      "phrase": "LLM fine-tuning price",
+      "url": "/calculators/ai/fine-tuning-cost-calculator/"
+    },
+    {
       "phrase": "LLM Token Usage Calculator",
       "url": "/calculators/ai/llm-token-usage-calculator/"
     },
@@ -153,6 +189,18 @@
     {
       "phrase": "broadband calculators",
       "url": "/calculators/broadband/"
+    },
+    {
+      "phrase": "Cloud Backup Time Estimator",
+      "url": "/calculators/broadband/cloud-backup-time-estimator/"
+    },
+    {
+      "phrase": "cloud backup time calculator",
+      "url": "/calculators/broadband/cloud-backup-time-estimator/"
+    },
+    {
+      "phrase": "how long will my cloud backup take",
+      "url": "/calculators/broadband/cloud-backup-time-estimator/"
     },
     {
       "phrase": "Percentage Calculator",
@@ -401,6 +449,18 @@
     {
       "phrase": "savings goal calculator",
       "url": "/calculators/finance/savings-goal-calculator/"
+    },
+    {
+      "phrase": "Flesch Reading Ease Score Calculator",
+      "url": "/calculators/writing/flesch-reading-ease-calculator/"
+    },
+    {
+      "phrase": "flesch reading ease",
+      "url": "/calculators/writing/flesch-reading-ease-calculator/"
+    },
+    {
+      "phrase": "flesch kincaid grade level",
+      "url": "/calculators/writing/flesch-reading-ease-calculator/"
     },
     {
       "phrase": "Read Time Calculator",
@@ -721,6 +781,18 @@
     {
       "phrase": "buy-to-let tax calculator UK",
       "url": "/calculators/property/uk-section-24-buy-to-let-tax-impact-calculator/"
+    },
+    {
+      "phrase": "Diceware Passphrase Generator",
+      "url": "/calculators/cybersecurity/diceware-passphrase-generator/"
+    },
+    {
+      "phrase": "memorable passphrase generator",
+      "url": "/calculators/cybersecurity/diceware-passphrase-generator/"
+    },
+    {
+      "phrase": "EFF wordlist passphrase",
+      "url": "/calculators/cybersecurity/diceware-passphrase-generator/"
     }
   ]
 }

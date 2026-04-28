@@ -42,6 +42,13 @@
     "category": "Cybersecurity"
   },
   {
+    "type": "tool",
+    "name": "Diceware Passphrase Generator",
+    "summary": "Generate a memorable Diceware passphrase from the EFF short wordlist (1,296 words) using Web Crypto. Pick word count, separator and capitalisation, see honest entropy figures. Browser-only.",
+    "url": "/calculators/cybersecurity/diceware-passphrase-generator/",
+    "category": "Cybersecurity"
+  },
+  {
     "type": "category",
     "name": "AI calculators",
     "summary": "Tools for working with AI APIs and large language models.",
@@ -77,6 +84,13 @@
     "category": "AI"
   },
   {
+    "type": "tool",
+    "name": "AI Fine-Tuning Cost Calculator",
+    "summary": "Estimate the cost of fine-tuning an LLM. Training cost across GPT-4o, GPT-4o-mini, Llama-3 on Together, and Mistral-7B, with the per-1000-call hosted inference cost for the tuned model.",
+    "url": "/calculators/ai/fine-tuning-cost-calculator/",
+    "category": "AI"
+  },
+  {
     "type": "category",
     "name": "Broadband calculators",
     "summary": "Work out the speed, bandwidth, and plan that actually fits your household or office.",
@@ -92,9 +106,23 @@
   },
   {
     "type": "tool",
+    "name": "Cloud Backup Time Estimator",
+    "summary": "Work out how long the first cloud backup will take on Backblaze, iDrive or any other provider. Factors in protocol overhead, the realistic upload haircut, and overnight-only schedules.",
+    "url": "/calculators/broadband/cloud-backup-time-estimator/",
+    "category": "Broadband"
+  },
+  {
+    "type": "tool",
     "name": "Web Hosting Storage & Bandwidth Estimator",
     "summary": "Work out how much storage and monthly bandwidth your website needs based on your traffic, page weight, media files, and downloadable content. See which hosting tier fits.",
     "url": "/calculators/broadband/web-hosting-estimator/",
+    "category": "Broadband"
+  },
+  {
+    "type": "tool",
+    "name": "File Download Time Calculator",
+    "summary": "Work out how long a file will take to download given your line speed. Decimal MB, GB and TB, megabit and gigabit speeds, with a 5% protocol overhead included and the working shown.",
+    "url": "/calculators/broadband/file-download-time-calculator/",
     "category": "Broadband"
   },
   {
@@ -144,6 +172,13 @@
     "name": "Photo Resizer",
     "summary": "Resize and convert photos in your browser. Pick a width, a height, a format and a quality. Your image never leaves your device.",
     "url": "/calculators/images/photo-resizer/",
+    "category": "Images"
+  },
+  {
+    "type": "tool",
+    "name": "Aspect Ratio Calculator",
+    "summary": "Work out the matching width or height that keeps an image or video at the same aspect ratio. Live two-way binding, simplified ratio shown via GCD, preset ratios in one click.",
+    "url": "/calculators/images/aspect-ratio-calculator/",
     "category": "Images"
   },
   {
@@ -592,6 +627,13 @@
     "name": "Writing calculators",
     "summary": "Tools for writers, editors, and anyone working with words.",
     "url": "/calculators/writing/",
+    "category": "Writing"
+  },
+  {
+    "type": "tool",
+    "name": "Flesch Reading Ease Score Calculator",
+    "summary": "Paste text to get the Flesch Reading Ease score and Flesch-Kincaid Grade Level, with the underlying word, sentence and syllable counts.",
+    "url": "/calculators/writing/flesch-reading-ease-calculator/",
     "category": "Writing"
   },
   {

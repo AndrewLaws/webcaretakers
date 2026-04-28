@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diceware Passphrase Generator | WebCaretakers</title>
+  <meta name="description" content="Generate a memorable Diceware passphrase from the EFF short wordlist (1,296 words) using Web Crypto. Honest entropy figures, separator and capitalisation options, browser-only.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/cybersecurity/diceware-passphrase-generator/">
+  <meta property="og:title" content="Diceware Passphrase Generator | WebCaretakers">
+  <meta property="og:description" content="Generate a memorable Diceware passphrase from the EFF short wordlist using Web Crypto. Browser-only.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/cybersecurity/diceware-passphrase-generator/">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var _stored = null;
+    try { _stored = localStorage.getItem('cookie-consent'); } catch (e) {}
+    var _initial = _stored === 'granted' ? 'granted' : 'denied';
+    gtag('consent', 'default', {
+      ad_storage: _initial, analytics_storage: _initial,
+      ad_user_data: _initial, ad_personalization: _initial,
+      functionality_storage: 'granted', security_storage: 'granted',
+      wait_for_update: 500
+    });
+  </script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Diceware Passphrase Generator",
+    "url": "https://webcaretakers.com/calculators/cybersecurity/diceware-passphrase-generator/",
+    "applicationCategory": "SecurityApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0" },
+    "author": {
+      "@type": "Person",
+      "name": "Andrew Laws",
+      "url": "https://yeseo.io/"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Why use a Diceware passphrase instead of a random string?",
+        "acceptedAnswer": { "@type": "Answer", "text": "For passwords you have to type yourself, master passwords for a password manager, full-disk encryption, laptop login, a memorable passphrase wins. You will not write it on a Post-it because you can recall it. A six-word Diceware phrase carries about 62 bits of entropy, which is more than most random 10-character passwords once you account for how people actually pick characters." }
+      },
+      {
+        "@type": "Question",
+        "name": "Is the randomness real?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. The page draws from crypto.getRandomValues, the browser's cryptographic random source, the same one used to negotiate TLS sessions. Math.random is never used. Each word is chosen using rejection sampling against the 1,296-word list, so there is no modulo bias." }
+      },
+      {
+        "@type": "Question",
+        "name": "How many words do I need?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Five words is reasonable for low-stakes accounts. Six is the sensible floor for anything that matters. Seven or eight for password manager master keys and disk encryption. Three or four are deliberately offered for short demos and one-off throwaway logins, but they are not strong on their own." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does the page send my passphrase anywhere?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. The wordlist is baked into the page, the random draw is local, and the rendered passphrase never leaves your browser. You can disconnect from the network, generate, copy, and close the tab. Nothing is uploaded." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why this wordlist specifically?",
+        "acceptedAnswer": { "@type": "Answer", "text": "The EFF short wordlist (1,296 words, average length around 4.5 characters) was published by the Electronic Frontier Foundation in 2016. Words are filtered for memorability and unique three-letter prefixes, which makes them faster to type and harder to confuse. Each word contributes log2(1,296) ≈ 10.34 bits of entropy." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-banner-heading" aria-describedby="cookie-banner-text" hidden>
+    <div class="cookie-banner__inner">
+      <h2 id="cookie-banner-heading" class="cookie-banner__heading">A quick word about cookies</h2>
+      <p id="cookie-banner-text" class="cookie-banner__text">
+        We use cookies for analytics, so we can see which calculators people actually use and which ones need work. Nothing creepy, nothing sold on. You can say yes, say no, or read the <a href="/privacy/">privacy policy</a> first. Your choice sticks.
+      </p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-reject>Reject</button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>Accept</button>
+      </div>
+    </div>
+  </div>
+
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">WebCaretakers</a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <ul class="primary-nav__list">
+          <li class="primary-nav__item primary-nav__item--has-menu">
+            <button type="button" class="primary-nav__link" data-menu-toggle aria-haspopup="true" aria-expanded="false">Calculators <span class="primary-nav__caret" aria-hidden="true">&#9662;</span></button>
+            <ul class="primary-nav__submenu">
+              <li><a href="/calculators/ai/">AI</a></li>
+              <li><a href="/calculators/broadband/">Broadband</a></li>
+              <li><a href="/calculators/business/">Business</a></li>
+              <li><a href="/calculators/conversions/">Conversions</a></li>
+              <li><a href="/calculators/cybersecurity/">Cybersecurity</a></li>
+              <li><a href="/calculators/finance/">Finance</a></li>
+              <li><a href="/calculators/fun/">Fun</a></li>
+              <li><a href="/calculators/health/">Health</a></li>
+              <li><a href="/calculators/images/">Images</a></li>
+              <li><a href="/calculators/math/">Math</a></li>
+              <li><a href="/calculators/productivity/">Productivity</a></li>
+              <li><a href="/calculators/property/">Property</a></li>
+              <li><a href="/calculators/seo/">SEO</a></li>
+              <li><a href="/calculators/wedding/">Wedding</a></li>
+              <li><a href="/calculators/writing/">Writing</a></li>
+              <li class="primary-nav__submenu-sep"><a href="/calculators/">See all calculators</a></li>
+            </ul>
+          </li>
+          <li class="primary-nav__item"><a href="/about/" class="primary-nav__link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <main id="main-content">
+      <div class="container">
+        <nav aria-label="Breadcrumb" class="breadcrumbs">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/calculators/">Calculators</a></li>
+            <li><a href="/calculators/cybersecurity/">Cybersecurity</a></li>
+            <li aria-current="page">Diceware Passphrase Generator</li>
+          </ol>
+        </nav>
+
+        <h1>Diceware Passphrase Generator</h1>
+        <p class="intro">Build a memorable passphrase by drawing words from the EFF short wordlist (1,296 words). Each word contributes about 10.34 bits of entropy, so a six-word phrase carries roughly 62 bits, more than enough to resist offline brute force for years. Randomness comes from the browser's cryptographic random source. Nothing you generate leaves the device.</p>
+
+        <section class="eli5" aria-label="Plain-English explanation">
+          <h2>Explain like I'm 5 (what even is this calculator?)</h2>
+          <p>Picture rolling five dice and looking up the result on a printed list of 1,296 words. Each roll gives you one word. String six of them together and you have a password your brain can actually hold ("acid-bagel-gecko-quiet-tutu-zone") that a computer would still take an absurd amount of time to guess. This page does the rolling for you using your browser's secure random number generator, then prints the phrase.</p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="in-content" aria-hidden="true"></div>
+
+        <section class="calculator-card">
+          <h2>Generate a passphrase</h2>
+          <p class="reassure"><strong>Browser-only.</strong> The wordlist is baked into the page, the random draw runs locally with <code>crypto.getRandomValues</code>, and the passphrase is never sent anywhere. Disconnect your network and try it: still works.</p>
+
+          <div class="result-summary">
+            <p class="result-display" data-passphrase aria-live="polite" style="font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; word-break: break-all; font-size: 1.25rem;">Press Generate.</p>
+            <div class="calc-row">
+              <button type="button" data-generate>Generate</button>
+              <button type="button" data-copy>Copy</button>
+            </div>
+          </div>
+
+          <form id="dice-form" class="calc-form" novalidate onsubmit="return false;">
+            <div class="calc-row">
+              <label for="dice-words">Number of words: <strong data-word-count-value>6</strong></label>
+              <input type="range" id="dice-words" data-word-count min="3" max="10" step="1" value="6">
+            </div>
+
+            <div class="calc-row">
+              <label for="dice-sep">Separator</label>
+              <select id="dice-sep" data-separator>
+                <option value="space">Space ( )</option>
+                <option value="hyphen" selected>Hyphen (-)</option>
+                <option value="dot">Dot (.)</option>
+                <option value="none">None</option>
+              </select>
+            </div>
+
+            <fieldset class="calc-row">
+              <legend>Capitalisation</legend>
+              <label><input type="radio" name="dice-cap" value="none" data-cap checked> None</label>
+              <label><input type="radio" name="dice-cap" value="first" data-cap> First letter of each word</label>
+              <label><input type="radio" name="dice-cap" value="random" data-cap> One word at random</label>
+            </fieldset>
+          </form>
+
+          <div class="mort-breakdown">
+            <ul>
+              <li><span>Words</span><strong data-stat-words>6</strong></li>
+              <li><span>Entropy</span><strong data-stat-entropy>62.0 bits</strong></li>
+              <li><span>Resistance</span><strong data-stat-resistance>—</strong></li>
+            </ul>
+          </div>
+
+          <details class="prove-it" data-prove-it>
+            <summary>Prove it</summary>
+            <div data-prove-it-body>
+              <p>Press <strong>Generate</strong> to see the working for the current passphrase.</p>
+            </div>
+            <p class="prove-it-source">Wordlist: EFF Short Wordlist #1, 1,296 words, published by the Electronic Frontier Foundation in 2016 (<a href="https://www.eff.org/dice" rel="noopener">eff.org/dice</a>). Entropy formula: <code>bits = words &times; log2(1296)</code>. log2(1,296) is about 10.3398, so each extra word adds roughly 10.34 bits. A 6-word phrase is approximately 62 bits. Memorable beats random for human-typed passwords because users do not write down what they can recall, and a passphrase they can recall is one they will not weaken by sticking on a note next to the screen.</p>
+          </details>
+
+          <p class="bookmark-nudge">
+            Useful? Save this calculator: press <kbd data-bookmark-shortcut>Ctrl</kbd> + <kbd>D</kbd> to bookmark it.
+          </p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="below-results" aria-hidden="true"></div>
+
+        <section class="long-form">
+          <h2>What "Diceware" actually means</h2>
+          <p>Diceware is a method described by Arnold Reinhold in 1995. The original version uses five physical dice, a printed list of 7,776 words (one for every five-digit code from 11111 to 66666), and pen and paper. Roll five dice, read off the word, repeat. Each word adds log2(7776), about 12.92 bits, of entropy to the phrase. Reinhold's argument was that ordinary humans have no business typing 18 character random strings into things they want to remember, and that a memorable phrase drawn from a published wordlist gets to the same security floor by a kinder route.</p>
+          <p>This page uses the EFF short wordlist instead. Published by the Electronic Frontier Foundation in 2016, it trims the count to 1,296 words but filters them for memorability, length, and unique three-letter prefixes. Each word contributes a little less entropy (10.34 bits versus 12.92) but is shorter and easier to type, so for the same total entropy budget you end up with a phrase you actually want to use. Six EFF-short words give about 62 bits, which is broadly equivalent to five long-list words.</p>
+
+          <h2>Why a generated passphrase beats a chosen one</h2>
+          <p>Humans pick badly. Asked to invent a memorable phrase, people lean on song lyrics, pet names, dates, the names of children. None of that is random. An attacker who knows you, or who has access to the dictionaries of common phrases that fall out of every breach, will get there in minutes. Diceware works precisely because the choice is delegated to the dice, and the dice do not know that "TrustNo1" is a clever Mulder reference. They just roll.</p>
+          <p>The same applies to "personalising" a generated phrase by replacing one of the words with something meaningful. Doing so collapses the entropy of that word from 10.34 bits to whatever the attacker's guess space is, often less than 5. Generate the phrase, type it as it comes, and resist the urge to redecorate.</p>
+
+          <h2>Length, separators and shoulder surfing</h2>
+          <p>The separator is mostly cosmetic but worth thinking about. Hyphens and dots are easy to type one-handed and play nicely with most password rules. Spaces are the most readable but get rejected by some legacy systems that treat the space as a delimiter. None at all (acidbagelgeckoquiettutuzone) is fine when you are pasting from a manager but punishing to type live. Capitalising one word at random is a small bonus that satisfies "must contain an uppercase letter" rules without dragging the whole phrase into shouting.</p>
+
+          <h2>Where this is the wrong tool</h2>
+          <p>Anything that lives entirely inside a password manager and gets auto-filled is better off as a long random string. Random characters are denser per symbol and you will never type them by hand, so the typing-friendliness of Diceware buys you nothing. Use the random Password Generator for those. Reach for Diceware when you have to remember the password yourself: master keys, full-disk encryption, the SSH key passphrase you put on your laptop.</p>
+
+          <h2>How the random draw works</h2>
+          <p>Each word is picked by drawing a 32-bit unsigned integer from <code>crypto.getRandomValues</code>, then mapping it to <code>[0, 1296)</code> using rejection sampling. The naive approach (modulo the integer by 1,296) is biased: 2^32 is not a multiple of 1,296, so some words get drawn very slightly more often than others. Rejection sampling discards any draw that lands in the biased tail and redraws, giving a perfectly uniform distribution over the wordlist. The cost is a handful of extra draws on average. The benefit is a passphrase whose entropy is exactly what the maths claims.</p>
+
+          <h2>Related calculators</h2>
+          <p>Other browser-only tools where local-only processing matters.</p>
+          <ul class="related-calculators">
+            <li><a href="/calculators/cybersecurity/password-generator/">Password Generator (random characters)</a></li>
+            <li><a href="/calculators/cybersecurity/password-strength-calculator/">Password Strength Calculator</a></li>
+            <li><a href="/calculators/cybersecurity/">All cybersecurity tools</a></li>
+          </ul>
+        </section>
+
+        <section class="faq" aria-labelledby="faq-heading">
+          <h2 id="faq-heading">Frequently asked questions</h2>
+          <details>
+            <summary>Why use a Diceware passphrase instead of a random string?</summary>
+            <p>For passwords you have to type yourself, master passwords for a password manager, full-disk encryption, laptop login, a memorable passphrase wins. You will not write it on a Post-it because you can recall it. A six-word Diceware phrase carries about 62 bits of entropy, which is more than most random 10-character passwords once you account for how people actually pick characters.</p>
+          </details>
+          <details>
+            <summary>Is the randomness real?</summary>
+            <p>Yes. The page draws from <code>crypto.getRandomValues</code>, the browser's cryptographic random source, the same one used to negotiate TLS sessions. <code>Math.random</code> is never used. Each word is chosen using rejection sampling against the 1,296-word list, so there is no modulo bias.</p>
+          </details>
+          <details>
+            <summary>How many words do I need?</summary>
+            <p>Five words is reasonable for low-stakes accounts. Six is the sensible floor for anything that matters. Seven or eight for password manager master keys and disk encryption. Three or four are deliberately offered for short demos and one-off throwaway logins, but they are not strong on their own.</p>
+          </details>
+          <details>
+            <summary>Does the page send my passphrase anywhere?</summary>
+            <p>No. The wordlist is baked into the page, the random draw is local, and the rendered passphrase never leaves your browser. You can disconnect from the network, generate, copy, and close the tab. Nothing is uploaded.</p>
+          </details>
+          <details>
+            <summary>Why this wordlist specifically?</summary>
+            <p>The EFF short wordlist (1,296 words, average length around 4.5 characters) was published by the Electronic Frontier Foundation in 2016. Words are filtered for memorability and unique three-letter prefixes, which makes them faster to type and harder to confuse. Each word contributes log2(1,296), about 10.34 bits, of entropy.</p>
+          </details>
+        </section>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="ad-slot" data-ad-slot="sidebar" aria-hidden="true"></div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="site-footer-nav" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/calculators/">All calculators</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+
+      <section class="site-disclaimer" data-disclaimer aria-labelledby="disclaimer-heading">
+        <h2 id="disclaimer-heading">A quick, necessary word</h2>
+        <p>Every calculator on this site is built to give you a sensible, well-reasoned estimate. It is, however, exactly that: an estimate, for general information only. Nothing you see here is professional, legal, financial, medical, or tax advice, and it should not be treated as such.</p>
+        <p>Before you make a decision that actually matters, talk to a qualified professional who knows your specific situation: an accountant, a solicitor, a doctor, an IT consultant, whoever fits the question. They can factor in the bits a generic tool can't.</p>
+        <p>We take no liability and accept no responsibility for any loss, damage, or questionable life choice arising from acting on the numbers you see here. Use the results as a starting point for a better conversation, not as the final word.</p>
+        <p><strong>Affiliate disclosure:</strong> some links on this site are affiliate links. If you click through and buy or sign up for something, we may earn a small commission at no extra cost to you. It helps keep the calculators free and ad-light. We only recommend things we'd point a friend towards.</p>
+      </section>
+      <p class="site-copyright">&copy; 2026 WebCaretakers. All rights reserved.</p>
+      <p class="site-legal">WebCaretakers is a trading name of <a href="https://yeseo.io/" rel="noopener">Andrew Laws Associates Ltd</a>, registered in England and Wales (company no. 08602332). ICO registration ZA726704.</p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/calculators/diceware-passphrase-generator.js"></script>
+  <script src="/assets/js/calculators/diceware-passphrase-generator.page.js"></script>
+  <script>
+    (function () {
+      var shortcutEl = document.querySelector('[data-bookmark-shortcut]');
+      if (shortcutEl) {
+        var isMac = /Mac|iPhone|iPad|iPod/i.test(navigator.platform || navigator.userAgent);
+        shortcutEl.textContent = isMac ? '\u2318' : 'Ctrl';
+      }
+    })();
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>
