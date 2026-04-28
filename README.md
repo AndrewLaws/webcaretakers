@@ -1,6 +1,6 @@
 # WebCaretakers.com: Calculator Hub
 
-A growing hub of calculators and tools targeting long-tail SEO keywords in web, marketing, AI, SEO, finance, health, property, and tech. Built on a 25-year-old domain with historical authority in web hosting, broadband, email marketing, and small business IT. Currently 79 live calculators across 15 categories; full list is the source-of-truth `categories.json`. Roadmap targets 220+ tools long term.
+A growing hub of calculators and tools targeting long-tail SEO keywords in web, marketing, AI, SEO, finance, health, property, and tech. Built on a 25-year-old domain with historical authority in web hosting, broadband, email marketing, and small business IT. Currently 85 live calculators across 15 categories; full list is the source-of-truth `categories.json`. Roadmap targets 220+ tools long term.
 
 ## Revenue model
 
