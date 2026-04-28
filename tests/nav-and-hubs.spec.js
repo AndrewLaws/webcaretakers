@@ -43,6 +43,23 @@ test.describe('Primary nav', () => {
   });
 });
 
+test.describe('Homepage "New this week" section', () => {
+  test('renders four cards with links to calculator pages', async ({ page }) => {
+    await page.goto('/');
+    const section = page.locator('[data-newest-calculators]');
+    await expect(section).toBeVisible();
+    await expect(section.getByRole('heading', { level: 2, name: 'New this week' })).toBeVisible();
+    const cards = section.locator('.category-card');
+    await expect(cards).toHaveCount(4);
+    const links = await section.locator('.category-card h3 a').evaluateAll(
+      (els) => els.map((a) => a.getAttribute('href'))
+    );
+    for (const href of links) {
+      expect(href).toMatch(/^\/calculators\/[a-z]+\/[a-z0-9-]+\/$/);
+    }
+  });
+});
+
 test.describe('All-calculators hub', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/calculators/');

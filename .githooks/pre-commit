@@ -10,6 +10,9 @@ cd "$REPO_ROOT"
 node scripts/generate-site-files.js
 git add site/sitemap.xml site/robots.txt site/llms.txt
 
+node scripts/update-readme-count.js
+git add README.md
+
 node scripts/internal-links.js
 # Stage any HTML updates the link sweeper produced
 git diff --name-only --diff-filter=M | grep -E '^site/.+\.html$' | xargs -I {} git add {} || true
