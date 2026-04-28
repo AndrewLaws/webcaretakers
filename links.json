@@ -139,6 +139,18 @@
       "url": "/calculators/ai/fine-tuning-cost-calculator/"
     },
     {
+      "phrase": "AI Hallucination Risk Calculator",
+      "url": "/calculators/ai/hallucination-risk-calculator/"
+    },
+    {
+      "phrase": "LLM hallucination risk score",
+      "url": "/calculators/ai/hallucination-risk-calculator/"
+    },
+    {
+      "phrase": "AI hallucination calculator",
+      "url": "/calculators/ai/hallucination-risk-calculator/"
+    },
+    {
       "phrase": "LLM Token Usage Calculator",
       "url": "/calculators/ai/llm-token-usage-calculator/"
     },

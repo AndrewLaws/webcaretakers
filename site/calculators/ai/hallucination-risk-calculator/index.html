@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Hallucination Risk Calculator | WebCaretakers</title>
+  <meta name="description" content="Score the relative risk that an LLM output will hallucinate, given the model class, task, grounding and verification you have in place. A heuristic sense-check, not a benchmark.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/ai/hallucination-risk-calculator/">
+  <meta property="og:title" content="AI Hallucination Risk Calculator | WebCaretakers">
+  <meta property="og:description" content="Score the relative risk that an LLM output will hallucinate, given your deployment context. Browser-only, opinionated, honest.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/ai/hallucination-risk-calculator/">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var _stored = null;
+    try { _stored = localStorage.getItem('cookie-consent'); } catch (e) {}
+    var _initial = _stored === 'granted' ? 'granted' : 'denied';
+    gtag('consent', 'default', {
+      ad_storage: _initial, analytics_storage: _initial,
+      ad_user_data: _initial, ad_personalization: _initial,
+      functionality_storage: 'granted', security_storage: 'granted',
+      wait_for_update: 500
+    });
+  </script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "AI Hallucination Risk Calculator",
+    "url": "https://webcaretakers.com/calculators/ai/hallucination-risk-calculator/",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0" },
+    "author": {
+      "@type": "Person",
+      "name": "Andrew Laws",
+      "url": "https://yeseo.io/"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is this score based on a real benchmark?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. The numbers are an opinionated heuristic. The base task weights are loosely informed by published evaluation rates (TruthfulQA, HaluEval, SimpleQA), and the multipliers reflect how much grounding and verification have been shown to reduce hallucination in practice. Treat the score as a sense-check before a design review, not as evidence in a regulator-facing report. If you need defensible numbers, run the model against your own evaluation set." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does grounding lower the score so much?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Because, in practice, it does. Most hallucinations come from the model filling gaps with plausible-sounding text. Give the model a verified source to quote from, and the failure mode shifts from inventing facts to occasionally misreading the source, which is a much smaller class of error. A verified knowledge graph is even stronger because the model is constrained to lookup rather than generation. The multipliers (1.0, 0.7, 0.5, 0.3) match the rough order of magnitude reported in retrieval-augmented evaluation studies." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does the recommendation change with stakes if the score does not?",
+        "acceptedAnswer": { "@type": "Answer", "text": "A Moderate score is fine for an internal drafting assistant and unacceptable for a clinical decision aid. The score measures how likely the output is to contain a hallucination. The stakes measure how much that matters. Both feed the recommendation, but only the deployment context goes into the score, because we did not want a high-stakes setting to inflate the number and make a low-risk configuration look bad. The recommendation is where the two combine." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why is citation generation rated highest?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Because LLMs are notorious for fabricated references. The model knows what a citation looks like (author, year, journal, DOI) and will happily produce one that does not exist, often for a real author writing in the right field. This pattern keeps appearing in legal filings, academic papers and policy briefs, with consequences ranging from awkward to professionally fatal. If you ask a model for citations without a retrieval step, expect about half of them to be wrong on a hard question." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does fine-tuning really reduce hallucinations?",
+        "acceptedAnswer": { "@type": "Answer", "text": "On the domain it was tuned for, usually yes. A small model fine-tuned on a focused domain corpus often beats a much larger general model on factual accuracy within that domain, because it has seen the right vocabulary, conventions and edge cases. Off-domain, fine-tuning helps less, and can even make things worse if the tuning data was thin. The 0.7 multiplier here assumes you stay within the domain you tuned for." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-banner-heading" aria-describedby="cookie-banner-text" hidden>
+    <div class="cookie-banner__inner">
+      <h2 id="cookie-banner-heading" class="cookie-banner__heading">A quick word about cookies</h2>
+      <p id="cookie-banner-text" class="cookie-banner__text">
+        We use cookies for analytics, so we can see which calculators people actually use and which ones need work. Nothing creepy, nothing sold on. You can say yes, say no, or read the <a href="/privacy/">privacy policy</a> first. Your choice sticks.
+      </p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-reject>Reject</button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>Accept</button>
+      </div>
+    </div>
+  </div>
+
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">WebCaretakers</a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <ul class="primary-nav__list">
+          <li class="primary-nav__item primary-nav__item--has-menu">
+            <button type="button" class="primary-nav__link" data-menu-toggle aria-haspopup="true" aria-expanded="false">Calculators <span class="primary-nav__caret" aria-hidden="true">▾</span></button>
+            <ul class="primary-nav__submenu">
+              <li><a href="/calculators/ai/">AI</a></li>
+              <li><a href="/calculators/broadband/">Broadband</a></li>
+              <li><a href="/calculators/business/">Business</a></li>
+              <li><a href="/calculators/conversions/">Conversions</a></li>
+              <li><a href="/calculators/cybersecurity/">Cybersecurity</a></li>
+              <li><a href="/calculators/finance/">Finance</a></li>
+              <li><a href="/calculators/fun/">Fun</a></li>
+              <li><a href="/calculators/health/">Health</a></li>
+              <li><a href="/calculators/images/">Images</a></li>
+              <li><a href="/calculators/math/">Math</a></li>
+              <li><a href="/calculators/productivity/">Productivity</a></li>
+              <li><a href="/calculators/property/">Property</a></li>
+              <li><a href="/calculators/seo/">SEO</a></li>
+              <li><a href="/calculators/wedding/">Wedding</a></li>
+              <li><a href="/calculators/writing/">Writing</a></li>
+              <li class="primary-nav__submenu-sep"><a href="/calculators/">See all calculators</a></li>
+            </ul>
+          </li>
+          <li class="primary-nav__item"><a href="/about/" class="primary-nav__link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <main id="main-content">
+      <div class="container">
+        <nav aria-label="Breadcrumb" class="breadcrumbs">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/calculators/">Calculators</a></li>
+            <li><a href="/calculators/ai/">AI</a></li>
+            <li aria-current="page">AI Hallucination Risk Calculator</li>
+          </ol>
+        </nav>
+
+        <h1>AI Hallucination Risk Calculator</h1>
+        <p class="intro">Score the relative risk that an LLM output will contain a hallucination, given the model class, task, grounding and verification you have in place. The score is a 0-100 sense-check, not a benchmark. The recommendation factors in how much hallucination would actually cost in your context.</p>
+
+        <section class="eli5" aria-label="Plain-English explanation">
+          <h2>Explain like I'm 5 (what even is this calculator?)</h2>
+          <p>You tell it which model you are using, what you are using it for, whether the model can look things up, and who or what checks the answer before it goes anywhere. It returns a risk score from 0 (very safe) to 100 (alarming) and a sentence or two on what to do about it. The maths is a multiplication, not a black box, and the Prove-it panel shows every number.</p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="in-content" aria-hidden="true"></div>
+
+        <section class="calculator-card">
+          <h2>Score your setup</h2>
+          <p class="reassure"><strong>Heuristic, browser-only.</strong> No API calls, no sign-up, nothing leaves the page. The maths is pure multiplication and you can audit every step in the Prove-it panel.</p>
+
+          <form data-hr-form class="calc-form" novalidate>
+            <div class="calc-row">
+              <label for="hr-model-class">Model class</label>
+              <select id="hr-model-class" data-model-class>
+                <option value="frontier">Frontier-tier (GPT-5, Claude Opus, Gemini Ultra)</option>
+                <option value="midTier" selected>Mid-tier (Sonnet, GPT-4o-mini, Gemini Flash)</option>
+                <option value="small">Small (7B-13B open weights, Haiku-class)</option>
+                <option value="fineTunedDomain">Fine-tuned for the domain</option>
+              </select>
+              <p class="calc-row__hint">Frontier multiplier 1.0, mid 1.4, small 2.2, fine-tuned 0.7.</p>
+            </div>
+
+            <div class="calc-row">
+              <label for="hr-task-type">Task type</label>
+              <select id="hr-task-type" data-task-type>
+                <option value="creative">Creative writing or brainstorming</option>
+                <option value="generalQA" selected>General Q&amp;A</option>
+                <option value="code">Code generation</option>
+                <option value="factual">Factual lookup</option>
+                <option value="numerical">Numerical reasoning or calculation</option>
+                <option value="citation">Citation or reference generation</option>
+              </select>
+              <p class="calc-row__hint">Base risk (out of 100) ranges from 10 for creative to 85 for citations.</p>
+            </div>
+
+            <div class="calc-row">
+              <label for="hr-grounding">Grounding</label>
+              <select id="hr-grounding" data-grounding>
+                <option value="none" selected>No grounding (model knowledge only)</option>
+                <option value="webSearch">Web search at query time</option>
+                <option value="rag">RAG over a curated corpus</option>
+                <option value="knowledgeGraph">Verified knowledge graph or structured DB</option>
+              </select>
+              <p class="calc-row__hint">Multiplier: none 1.0, web 0.7, RAG 0.5, knowledge graph 0.3.</p>
+            </div>
+
+            <div class="calc-row">
+              <label for="hr-verification">Output verification</label>
+              <select id="hr-verification" data-verification>
+                <option value="none" selected>No verification</option>
+                <option value="human">Human review before publish</option>
+                <option value="secondPass">Second-pass LLM check</option>
+                <option value="programmatic">Programmatic checker (regex, schema, unit test)</option>
+              </select>
+              <p class="calc-row__hint">Multiplier: none 1.0, human 0.4, second-pass 0.7, programmatic 0.5.</p>
+            </div>
+
+            <div class="calc-row">
+              <label for="hr-stakes">Stakes</label>
+              <select id="hr-stakes" data-stakes>
+                <option value="low">Low (drafting, ideation, internal notes)</option>
+                <option value="medium" selected>Medium (customer-facing copy, marketing)</option>
+                <option value="high">High (legal, financial, health information for a real user)</option>
+                <option value="safetyCritical">Safety-critical (medical, aviation, nuclear, life-affecting)</option>
+              </select>
+              <p class="calc-row__hint">Stakes shape the recommendation, not the numeric score.</p>
+            </div>
+
+            <div class="calc-row">
+              <button type="submit" class="calc-submit" data-calculate>Calculate risk</button>
+            </div>
+          </form>
+
+          <section class="result-panel" data-result hidden aria-live="polite">
+            <h3>Risk score</h3>
+            <p class="result-headline"><strong data-score>0</strong> / 100 &middot; <span data-band>Low</span></p>
+            <p class="result-recommendation" data-recommendation></p>
+
+            <h4>Breakdown</h4>
+            <ul class="result-breakdown" data-breakdown></ul>
+          </section>
+
+          <details class="prove-it" data-prove-it>
+            <summary>Prove it</summary>
+            <p>The score is a single product of four numbers, then clamped to 100:</p>
+            <p><code>score = baseRisk(task) &times; multiplier(model) &times; multiplier(grounding) &times; multiplier(verification)</code></p>
+            <p>Worked example. Mid-tier model (1.4), factual lookup (base 55), web search grounding (0.7), human review (0.4):</p>
+            <p><code>55 &times; 1.4 &times; 0.7 &times; 0.4 = 21.56 &rArr; 22</code></p>
+            <p>If the raw product is over 100, the displayed score is 100. The cap is there because a "180" risk score is meaningless and would distract from the real point: anything above 75 is already in the "do not ship" band.</p>
+            <p><strong>What this is not.</strong> The numbers are opinionated, informed by published evaluation rates (TruthfulQA, HaluEval, SimpleQA) and operational experience, but not derived from a formal model. Two reasonable practitioners could pick different multipliers within an order of magnitude. Use this to spot obvious problems in a design before review, not to certify a system. If you need a defensible figure, run the actual model against your own evaluation set.</p>
+            <p><strong>Stakes is intentionally outside the score.</strong> A Moderate score is acceptable for an internal drafting bot and unacceptable for a clinical decision aid. Mixing stakes into the score would hide that difference. The recommendation is where context enters the picture.</p>
+          </details>
+
+          <p class="bookmark-nudge">
+            Useful? Save this calculator: press <kbd data-bookmark-shortcut>Ctrl</kbd> + <kbd>D</kbd> to bookmark it.
+          </p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="below-results" aria-hidden="true"></div>
+
+        <section class="long-form">
+          <h2>When to use this</h2>
+          <p>Run the calculator before a design review for any LLM-touching feature, and again after the design has been agreed but before code freeze. The first pass surfaces the obvious mistakes (small model, no grounding, citation-heavy task, high stakes). The second confirms that the controls actually went in. It is a sense-check, the same way a 30-second pre-flight glance at the dials catches the worst-case errors without replacing the actual checklist.</p>
+
+          <p>Where it earns its keep is in conversations with people who do not work with LLMs day to day. Product managers, lawyers, clinical leads. They will reasonably ask "how risky is this?" and a number on a four-band label is more useful than a paragraph of caveats. Show them the breakdown so they can see what would push the number up or down, and they end up driving the design themselves.</p>
+
+          <h2>Common mistakes that show up in the score</h2>
+          <p>Three keep recurring. First, asking a small or mid-tier model to generate citations or numerical reasoning without grounding. The score lands in High or Critical and that is the right answer: the failure mode is too well documented to ignore. Second, treating "second-pass LLM check" as equivalent to human review. It is not. Two language models share most of their failure modes, so a second-pass check catches the obvious mistakes and rubber-stamps the subtle ones. The multiplier (0.7) reflects that. Third, assuming fine-tuning on a small domain corpus rescues a poor base model. It helps within the domain you tuned for, and almost not at all outside it. The 0.7 multiplier on the fine-tuned class is generous, and only valid in the narrow case.</p>
+
+          <h2>Edge cases the heuristic does not cover</h2>
+          <p>Multimodal hallucinations (a model misreading an image or chart) are not modelled here. The grounding multipliers assume the source itself is reliable; if your RAG corpus is full of marketing copy or out-of-date documentation, the model will quote that confidently and the score will look better than the reality. Adversarial inputs are also out of scope: a user trying to jailbreak the system around its grounding belongs in a security review, not a hallucination heuristic. And finally, agentic loops where the model takes actions: every additional turn compounds error rate, which the single-step score does not capture. If you are building an agent, treat the result here as the single-step floor and assume the multi-step rate is meaningfully higher.</p>
+
+          <h2>How the multipliers were chosen</h2>
+          <p>The model class numbers come from public hallucination evaluations on factual tasks. Frontier models score in the 5-15 percent range on hard factual benchmarks. Mid-tier models cluster around 20-30 percent on the same benchmarks, which is roughly 1.4&times; worse, hence the multiplier. Small open-weights models often double that again, hence 2.2. Fine-tuned domain models, when stayed within domain, beat much larger general models, with reductions of 30-50 percent commonly reported, hence 0.7. The grounding multipliers come from RAG evaluations: web search reduces hallucinations by roughly a third, RAG over a curated corpus by half, and a structured knowledge graph or database by two-thirds or more, because the failure mode collapses from generation to lookup. Verification multipliers are based on the operational reality that a qualified human reviewer catches most factual errors (0.4), a programmatic checker catches structured errors but misses semantic ones (0.5), and a second-pass LLM catches the obvious slips but shares the subtle blind spots of the first pass (0.7).</p>
+
+          <h2>Related calculators</h2>
+          <ul class="related-calculators">
+            <li><a href="/calculators/ai/llm-token-usage-calculator/">LLM Token Usage Calculator</a> for the cost side of the same workload.</li>
+            <li><a href="/calculators/ai/rag-pipeline-cost-calculator/">RAG Pipeline Cost Calculator</a> if grounding via RAG is the lever you want to pull.</li>
+            <li><a href="/calculators/ai/fine-tuning-cost-calculator/">AI Fine-Tuning Cost Calculator</a> if you are weighing fine-tuning a small model against running a larger one.</li>
+            <li><a href="/calculators/ai/">All AI calculators</a></li>
+          </ul>
+        </section>
+
+        <section class="faq" aria-labelledby="faq-heading">
+          <h2 id="faq-heading">Frequently asked questions</h2>
+          <details>
+            <summary>Is this score based on a real benchmark?</summary>
+            <p>No. The numbers are an opinionated heuristic. The base task weights are loosely informed by published evaluation rates (TruthfulQA, HaluEval, SimpleQA), and the multipliers reflect how much grounding and verification have been shown to reduce hallucination in practice. Treat the score as a sense-check before a design review, not as evidence in a regulator-facing report. If you need defensible numbers, run the model against your own evaluation set.</p>
+          </details>
+          <details>
+            <summary>Why does grounding lower the score so much?</summary>
+            <p>Because, in practice, it does. Most hallucinations come from the model filling gaps with plausible-sounding text. Give the model a verified source to quote from, and the failure mode shifts from inventing facts to occasionally misreading the source, which is a much smaller class of error. A verified knowledge graph is even stronger because the model is constrained to lookup rather than generation. The multipliers (1.0, 0.7, 0.5, 0.3) match the rough order of magnitude reported in retrieval-augmented evaluation studies.</p>
+          </details>
+          <details>
+            <summary>Why does the recommendation change with stakes if the score does not?</summary>
+            <p>A Moderate score is fine for an internal drafting assistant and unacceptable for a clinical decision aid. The score measures how likely the output is to contain a hallucination. The stakes measure how much that matters. Both feed the recommendation, but only the deployment context goes into the score, because we did not want a high-stakes setting to inflate the number and make a low-risk configuration look bad. The recommendation is where the two combine.</p>
+          </details>
+          <details>
+            <summary>Why is citation generation rated highest?</summary>
+            <p>Because LLMs are notorious for fabricated references. The model knows what a citation looks like (author, year, journal, DOI) and will happily produce one that does not exist, often for a real author writing in the right field. This pattern keeps appearing in legal filings, academic papers and policy briefs, with consequences ranging from awkward to professionally fatal. If you ask a model for citations without a retrieval step, expect about half of them to be wrong on a hard question.</p>
+          </details>
+          <details>
+            <summary>Does fine-tuning really reduce hallucinations?</summary>
+            <p>On the domain it was tuned for, usually yes. A small model fine-tuned on a focused domain corpus often beats a much larger general model on factual accuracy within that domain, because it has seen the right vocabulary, conventions and edge cases. Off-domain, fine-tuning helps less, and can even make things worse if the tuning data was thin. The 0.7 multiplier here assumes you stay within the domain you tuned for.</p>
+          </details>
+        </section>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="ad-slot" data-ad-slot="sidebar" aria-hidden="true"></div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="site-footer-nav" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/calculators/">All calculators</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+
+      <section class="site-disclaimer" data-disclaimer aria-labelledby="disclaimer-heading">
+        <h2 id="disclaimer-heading">A quick, necessary word</h2>
+        <p>Every calculator on this site is built to give you a sensible, well-reasoned estimate. It is, however, exactly that: an estimate, for general information only. Nothing you see here is professional, legal, financial, medical, or tax advice, and it should not be treated as such.</p>
+        <p>Before you make a decision that actually matters, talk to a qualified professional who knows your specific situation: an accountant, a solicitor, a doctor, an IT consultant, whoever fits the question. They can factor in the bits a generic tool can't.</p>
+        <p>We take no liability and accept no responsibility for any loss, damage, or questionable life choice arising from acting on the numbers you see here. Use the results as a starting point for a better conversation, not as the final word.</p>
+        <p><strong>Affiliate disclosure:</strong> some links on this site are affiliate links. If you click through and buy or sign up for something, we may earn a small commission at no extra cost to you. It helps keep the calculators free and ad-light. We only recommend things we'd point a friend towards.</p>
+      </section>
+      <p class="site-copyright">&copy; 2026 WebCaretakers. All rights reserved.</p>
+      <p class="site-legal">WebCaretakers is a trading name of <a href="https://yeseo.io/" rel="noopener">Andrew Laws Associates Ltd</a>, registered in England and Wales (company no. 08602332). ICO registration ZA726704.</p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/calculators/hallucination-risk-calculator.js"></script>
+  <script>
+    (function () {
+      var shortcutEl = document.querySelector('[data-bookmark-shortcut]');
+      if (shortcutEl) {
+        var isMac = /Mac|iPhone|iPad|iPod/i.test(navigator.platform || navigator.userAgent);
+        shortcutEl.textContent = isMac ? '\u2318' : 'Ctrl';
+      }
+    })();
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

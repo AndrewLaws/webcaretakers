@@ -30,6 +30,11 @@
           "slug": "fine-tuning-cost-calculator",
           "name": "AI Fine-Tuning Cost Calculator",
           "summary": "Estimate the cost of fine-tuning an LLM. Training cost across GPT-4o, GPT-4o-mini, Llama-3 on Together, and Mistral-7B, with the per-1000-call hosted inference cost for the tuned model."
+        },
+        {
+          "slug": "hallucination-risk-calculator",
+          "name": "AI Hallucination Risk Calculator",
+          "summary": "Score the relative risk that an LLM output will hallucinate, given the model class, task, grounding and verification you have in place. Heuristic, browser-only, with the maths shown."
         }
       ]
     },

@@ -91,6 +91,13 @@
     "category": "AI"
   },
   {
+    "type": "tool",
+    "name": "AI Hallucination Risk Calculator",
+    "summary": "Score the relative risk that an LLM output will hallucinate, given the model class, task, grounding and verification you have in place. Heuristic, browser-only, with the maths shown.",
+    "url": "/calculators/ai/hallucination-risk-calculator/",
+    "category": "AI"
+  },
+  {
     "type": "category",
     "name": "Broadband calculators",
     "summary": "Work out the speed, bandwidth, and plan that actually fits your household or office.",
