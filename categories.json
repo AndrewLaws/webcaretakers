@@ -317,6 +317,11 @@
           "summary": "Create a .ics calendar file for any event. Set the date, time, timezone, location and recurrence, then download and import into Google Calendar, Apple Calendar, Outlook, or any other calendar app."
         },
         {
+          "slug": "meeting-cost-calculator",
+          "name": "Meeting Cost Calculator",
+          "summary": "See what a meeting actually costs in money and lost productivity. Per-attendee breakdown, annualised weekly figure, person-hours, plus a live ticker that climbs in real time once you press start."
+        },
+        {
           "slug": "pomodoro-session-planner",
           "name": "Pomodoro Session Planner",
           "summary": "Plan a chunk of focused work into Pomodoro sessions. Work out sessions needed, total focus and break time, finish time today, and how it splits across days when one day is not enough."

@@ -386,6 +386,13 @@
   },
   {
     "type": "tool",
+    "name": "Meeting Cost Calculator",
+    "summary": "See what a meeting actually costs in money and lost productivity. Per-attendee breakdown, annualised weekly figure, person-hours, plus a live ticker that climbs in real time once you press start.",
+    "url": "/calculators/productivity/meeting-cost-calculator/",
+    "category": "Productivity"
+  },
+  {
+    "type": "tool",
     "name": "Time Card Calculator",
     "summary": "Weekly timesheet calculator. Enter start and end times, plus unpaid breaks, for each day. Returns hours per day, total hours for the week, and total pay if you add an hourly rate. Handles overnight shifts.",
     "url": "/calculators/productivity/time-card-calculator/",
