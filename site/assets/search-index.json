@@ -462,6 +462,13 @@
     "category": "Property"
   },
   {
+    "type": "tool",
+    "name": "UK House Move Cost Calculator",
+    "summary": "Total cost of moving home in the UK, broken out line by line. Stamp duty (SDLT, LBTT or LTT), conveyancing, mortgage fees, survey, removals, EPC and estate agent, with a best- and worst-case spread.",
+    "url": "/calculators/property/uk-house-move-cost-calculator/",
+    "category": "Property"
+  },
+  {
     "type": "category",
     "name": "Wedding calculators",
     "summary": "Planning tools for weddings. Timeline generators, date calculators, and checklists.",

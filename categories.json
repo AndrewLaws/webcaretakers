@@ -379,6 +379,11 @@
           "slug": "uk-rent-vs-buy-calculator",
           "name": "UK Rent vs Buy Calculator",
           "summary": "Compare the net cost of buying a UK home against renting over any horizon. Stamp duty, mortgage interest, maintenance, selling costs and the opportunity cost of the deposit all included."
+        },
+        {
+          "slug": "uk-house-move-cost-calculator",
+          "name": "UK House Move Cost Calculator",
+          "summary": "Total cost of moving home in the UK, broken out line by line. Stamp duty (SDLT, LBTT or LTT), conveyancing, mortgage fees, survey, removals, EPC and estate agent, with a best- and worst-case spread."
         }
       ]
     },
