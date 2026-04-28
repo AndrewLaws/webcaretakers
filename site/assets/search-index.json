@@ -365,6 +365,13 @@
   },
   {
     "type": "tool",
+    "name": "Dice and Coin Roller",
+    "summary": "Roll any combination of tabletop dice (2d6, 1d20+5, 4d6kh3) or flip up to 1000 coins. Browser-only, uses Web Crypto for an unbiased draw. Nothing transmitted.",
+    "url": "/calculators/fun/dice-and-coin-roller/",
+    "category": "Fun"
+  },
+  {
+    "type": "tool",
     "name": "Random Name Picker",
     "summary": "Paste a list of names, choose how many to pick, get a fair random selection. Browser-only, uses Web Crypto for unbiased picks. Nothing you paste leaves the device.",
     "url": "/calculators/fun/random-name-picker/",

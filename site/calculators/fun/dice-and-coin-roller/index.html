@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dice and Coin Roller | WebCaretakers</title>
+  <meta name="description" content="Roll any combination of tabletop dice (2d6, 1d20+5, 4d6kh3) or flip up to 1000 coins. Browser-only, uses Web Crypto for an unbiased draw. Nothing transmitted.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/fun/dice-and-coin-roller/">
+  <meta property="og:title" content="Dice and Coin Roller | WebCaretakers">
+  <meta property="og:description" content="Roll tabletop dice or flip coins. Cryptographically unbiased, browser-only.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/fun/dice-and-coin-roller/">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var _stored = null;
+    try { _stored = localStorage.getItem('cookie-consent'); } catch (e) {}
+    var _initial = _stored === 'granted' ? 'granted' : 'denied';
+    gtag('consent', 'default', {
+      ad_storage: _initial, analytics_storage: _initial,
+      ad_user_data: _initial, ad_personalization: _initial,
+      functionality_storage: 'granted', security_storage: 'granted',
+      wait_for_update: 500
+    });
+  </script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Dice and Coin Roller",
+    "url": "https://webcaretakers.com/calculators/fun/dice-and-coin-roller/",
+    "applicationCategory": "GameApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0" },
+    "author": {
+      "@type": "Person",
+      "name": "Andrew Laws",
+      "url": "https://yeseo.io/"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is the roll actually random?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. Every die face and coin flip is drawn from crypto.getRandomValues, the cryptographically strong random source the browser uses for session keys. Modulo bias is removed with rejection sampling, so a d6 face is exactly 1-in-6 and a coin flip is exactly 50/50. There is no Math.random anywhere in the page." }
+      },
+      {
+        "@type": "Question",
+        "name": "What dice notation does it understand?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Standard tabletop notation: count d sides, with an optional modifier and an optional keep-highest or keep-lowest. Examples: d6 (one six-sided die), 3d8 (three eight-sided), 1d20+5 (a d20 with a +5 bonus), 4d6kh3 (roll four six-sided dice and keep the best three, as used for D&D ability scores). The hard caps are 100 dice and 1000 sides per die." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does anything I roll get sent anywhere?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. The page makes no network calls during a roll. You can disconnect from the network and the roller still works. Open your browser's network tab and watch nothing happen as you roll." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why use Web Crypto for a dice roller?",
+        "acceptedAnswer": { "@type": "Answer", "text": "It is overkill for a casual roll, and the right call for one people might use to settle a real bet, allocate sweets, or generate a tabletop character. Math.random is a non-cryptographic pseudo-random sequence: fine for shuffling visuals, not fine if anyone might suspect the result is rigged. Web Crypto plus rejection sampling produces a draw that is provably uniform and that you can audit in the Prove it panel." }
+      },
+      {
+        "@type": "Question",
+        "name": "How is roll history stored?",
+        "acceptedAnswer": { "@type": "Answer", "text": "In memory for the life of the page. The last 20 rolls are kept and displayed in the History panel. Refresh the page or click Clear history and the list is gone. Nothing is persisted to disk and nothing is sent off the device." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-banner-heading" aria-describedby="cookie-banner-text" hidden>
+    <div class="cookie-banner__inner">
+      <h2 id="cookie-banner-heading" class="cookie-banner__heading">A quick word about cookies</h2>
+      <p id="cookie-banner-text" class="cookie-banner__text">
+        We use cookies for analytics, so we can see which calculators people actually use and which ones need work. Nothing creepy, nothing sold on. You can say yes, say no, or read the <a href="/privacy/">privacy policy</a> first. Your choice sticks.
+      </p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-reject>Reject</button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>Accept</button>
+      </div>
+    </div>
+  </div>
+
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">WebCaretakers</a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <ul class="primary-nav__list">
+          <li class="primary-nav__item primary-nav__item--has-menu">
+            <button type="button" class="primary-nav__link" data-menu-toggle aria-haspopup="true" aria-expanded="false">Calculators <span class="primary-nav__caret" aria-hidden="true">&#x25BE;</span></button>
+            <ul class="primary-nav__submenu">
+              <li><a href="/calculators/ai/">AI</a></li>
+              <li><a href="/calculators/broadband/">Broadband</a></li>
+              <li><a href="/calculators/business/">Business</a></li>
+              <li><a href="/calculators/conversions/">Conversions</a></li>
+              <li><a href="/calculators/cybersecurity/">Cybersecurity</a></li>
+              <li><a href="/calculators/finance/">Finance</a></li>
+              <li><a href="/calculators/fun/">Fun</a></li>
+              <li><a href="/calculators/health/">Health</a></li>
+              <li><a href="/calculators/images/">Images</a></li>
+              <li><a href="/calculators/math/">Math</a></li>
+              <li><a href="/calculators/productivity/">Productivity</a></li>
+              <li><a href="/calculators/property/">Property</a></li>
+              <li><a href="/calculators/seo/">SEO</a></li>
+              <li><a href="/calculators/wedding/">Wedding</a></li>
+              <li><a href="/calculators/writing/">Writing</a></li>
+              <li class="primary-nav__submenu-sep"><a href="/calculators/">See all calculators</a></li>
+            </ul>
+          </li>
+          <li class="primary-nav__item"><a href="/about/" class="primary-nav__link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <main id="main-content">
+      <div class="container">
+        <nav aria-label="Breadcrumb" class="breadcrumbs">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/calculators/">Calculators</a></li>
+            <li><a href="/calculators/fun/">Fun</a></li>
+            <li aria-current="page">Dice and Coin Roller</li>
+          </ol>
+        </nav>
+
+        <h1>Dice and Coin Roller</h1>
+        <p class="intro">Roll any combination of tabletop dice or flip up to 1000 coins. The notation is standard: 2d6, 1d20+5, 4d6kh3 to roll four six-sided dice and keep the best three. Every result is drawn from the browser's cryptographic random source, with modulo bias stripped out by rejection sampling, so the odds are exactly what they should be.</p>
+
+        <section class="eli5" aria-label="Plain-English explanation">
+          <h2>Explain like I'm 5 (what even is this calculator?)</h2>
+          <p>It rolls dice for you, or flips coins, when you can't be bothered to find a real one or you don't trust whoever did. The result is fair, you can see how the page got there, and nothing about the roll leaves your device.</p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="in-content" aria-hidden="true"></div>
+
+        <section class="calculator-card">
+          <h2>Roll something</h2>
+          <p class="reassure"><strong>Browser-only.</strong> The roller never calls a server. Picks come from the Web Crypto API.</p>
+
+          <div class="calc-row">
+            <div role="tablist" aria-label="Roll mode" class="mode-tabs">
+              <button type="button" role="tab" aria-selected="true" data-mode-tab="dice" class="btn btn--secondary">Dice</button>
+              <button type="button" role="tab" aria-selected="false" data-mode-tab="coin" class="btn btn--secondary">Coins</button>
+            </div>
+          </div>
+
+          <form id="dice-form" class="calc-form" data-mode-panel="dice" novalidate>
+            <div class="calc-row">
+              <label for="dice-notation">Dice notation</label>
+              <input type="text" id="dice-notation" data-dice-notation value="1d20" placeholder="e.g. 2d6, 1d20+5, 4d6kh3" autocomplete="off" autocapitalize="off" spellcheck="false">
+              <p class="calc-row__hint">Format: <code>count d sides &plusmn; modifier</code>, optionally <code>kh</code> or <code>kl</code> for keep-highest / keep-lowest. Caps: 100 dice, sides 2-1000.</p>
+            </div>
+
+            <fieldset class="calc-row dice-presets">
+              <legend>Quick rolls</legend>
+              <div class="dice-presets__buttons">
+                <button type="button" class="btn btn--ghost" data-dice-preset="1d4">d4</button>
+                <button type="button" class="btn btn--ghost" data-dice-preset="1d6">d6</button>
+                <button type="button" class="btn btn--ghost" data-dice-preset="1d8">d8</button>
+                <button type="button" class="btn btn--ghost" data-dice-preset="1d10">d10</button>
+                <button type="button" class="btn btn--ghost" data-dice-preset="1d12">d12</button>
+                <button type="button" class="btn btn--ghost" data-dice-preset="1d20">d20</button>
+                <button type="button" class="btn btn--ghost" data-dice-preset="1d100">d100</button>
+              </div>
+              <p class="calc-row__hint">A preset replaces the notation field and rolls immediately.</p>
+            </fieldset>
+
+            <div class="calc-row">
+              <button type="submit" class="btn btn--primary" data-dice-roll>Roll</button>
+            </div>
+          </form>
+
+          <form id="coin-form" class="calc-form" data-mode-panel="coin" hidden novalidate>
+            <div class="calc-row">
+              <label for="coin-count">Number of coins</label>
+              <input type="number" id="coin-count" data-coin-count min="1" max="1000" value="1" inputmode="numeric">
+              <p class="calc-row__hint">Up to 1000 flips at once. Small N (50 or fewer) shows every flip; larger N shows a summary.</p>
+            </div>
+            <div class="calc-row">
+              <button type="submit" class="btn btn--primary" data-coin-flip>Flip</button>
+            </div>
+          </form>
+
+          <div data-roll-results class="calculator-results" aria-live="polite">
+            <p class="result-display" data-roll-status>Pick a mode and roll.</p>
+            <div data-roll-detail></div>
+            <p class="picker-results__error" data-roll-error hidden></p>
+          </div>
+
+          <details class="prove-it" data-prove-it>
+            <summary>Prove it</summary>
+            <p>Every die face and every coin flip is drawn from <code>crypto.getRandomValues</code>, the browser's cryptographic random source. The same primitive your bank's website uses to generate session keys.</p>
+            <p>The naive <code>rand &percnt; n</code> reduction introduces bias: if 2^32 is not an exact multiple of n, the lower remainders show up slightly more often. We avoid that with rejection sampling. Any draw above the largest multiple of n that fits in 2^32 is discarded and re-drawn. The expected number of redraws per face is at most 1, even on a d1000.</p>
+            <p>For dice, every individual die's face is shown alongside the sum so you can audit the result. If you used <code>kh</code> or <code>kl</code>, the kept dice are highlighted: the others were rolled and discarded, exactly as the notation specifies.</p>
+            <p>For coins, the page does the same trick on a 2-sided draw: the H/T sequence is the raw output, and the heads/tails counters are derived from it.</p>
+            <pre><code>// Unbiased integer in [0, n)
+function randomInt(n) {
+  const max = 0xFFFFFFFF;
+  const limit = max - ((max + 1) % n);
+  const buf = new Uint32Array(1);
+  while (true) {
+    crypto.getRandomValues(buf);
+    if (buf[0] &lt;= limit) return buf[0] % n;
+  }
+}
+
+// d-sided die
+const face = randomInt(sides) + 1;
+
+// Coin flip
+const flip = randomInt(2) === 0 ? 'H' : 'T';</code></pre>
+            <p>Nothing leaves the device. The page makes no network requests after it loads, so the result is unpredictable to the operator and the user alike: it is whatever the browser's RNG happened to produce, and nobody else gets to see it. Disconnect your network and roll again to confirm.</p>
+            <p data-prove-it-detail></p>
+          </details>
+
+          <p class="bookmark-nudge">
+            Useful? Save this calculator: press <kbd data-bookmark-shortcut>Ctrl</kbd> + <kbd>D</kbd> to bookmark it.
+          </p>
+        </section>
+
+        <section class="calculator-card" aria-labelledby="history-heading">
+          <h2 id="history-heading">Roll history</h2>
+          <p class="reassure">The last 20 rolls in this session. Cleared when you refresh.</p>
+          <ol class="history-list" data-history-list></ol>
+          <p class="result-display" data-history-empty>No rolls yet.</p>
+          <button type="button" class="btn btn--secondary" data-history-clear>Clear history</button>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="below-results" aria-hidden="true"></div>
+
+        <section class="long-form">
+          <h2>When a fair roll actually matters</h2>
+          <p>Tabletop roleplaying is the obvious case. A D&amp;D character's ability scores are traditionally 4d6, drop the lowest, repeated six times. A loaded RNG that quietly favours the top of the range hands the player a paladin who is good at everything and breaks the campaign's balance for the next year. The same applies to to-hit rolls, saving throws, damage dice, and the dramatic d20 at the table. If you forgot your dice bag at home, this page is a clean substitute that nobody at the table can accuse of fixing the result.</p>
+          <p>Classroom probability lessons are the other strong fit. Asking a class to predict the distribution of 100 d6 rolls and then actually doing the experiment in front of them is a better lesson than any textbook chart. The roll history makes it easy to read the results back. Same for coins: 1000 flips, count the heads, plot it. The point of the demo, that the empirical distribution converges to the theoretical one as N grows, lands harder when the students see it happen on a tool that they know is fair.</p>
+          <p>Settling decisions is the underrated use. Two reasonable choices, neither side budging, the discussion going round in circles. Open this page, flip a coin, get on with the day. The tool removes the social cost of someone "deciding": the coin decided. If the loser feels strongly enough to argue with the result, the question wasn't actually 50/50 and you have new information.</p>
+
+          <h2>Why Web Crypto for a dice tool</h2>
+          <p>It is overkill, and that is the point. <code>Math.random</code> in modern browsers is a high-quality pseudo-random sequence, perfectly fine for animation timing and shuffle effects. It is not, by spec, cryptographically secure. A determined operator could in theory predict the next output from a sequence of past outputs. For a casual roll on a casual page that does not matter. For a tool where someone might use the result to settle a small bet, allocate the last slice of cake, or generate a character that will define a year of weekly Friday-night sessions, it does. Web Crypto plus rejection sampling is the cheap, audited, by-the-book way to make the result genuinely uniform. The Prove it panel above shows the exact code so a sceptical user can read it and decide for themselves.</p>
+
+          <h2>Common mistakes to avoid</h2>
+          <p>Misreading the notation is the most frequent. <code>2d6</code> is two six-sided dice (range 2 to 12). <code>d12</code> is one twelve-sided die (range 1 to 12). They look similar and produce very different distributions: 2d6 is bell-shaped and centred on 7, d12 is flat. If you are rolling for a game where the curve matters, double-check which one you actually wanted.</p>
+          <p>Using keep-highest with the wrong number is the second. <code>4d6kh3</code> rolls four dice and keeps the best three: it is the classic D&amp;D 5e ability-score roll. <code>4d6kh4</code> would be the same as plain <code>4d6</code>: there is nothing to drop. The page will reject <code>3d6kh4</code> outright because you cannot keep four out of three.</p>
+          <p>Asking for a million coins is the third. The cap is 1000 per flip session for sanity reasons, both for the page DOM and to keep the on-screen sequence readable. If you genuinely want to simulate a million coin flips for a probability demo, run the page in a script (the library is exported on <code>window.DiceAndCoinRoller</code>) or run it in batches and add up the totals.</p>
+
+          <h2>Edge cases this page handles</h2>
+          <ul>
+            <li><strong>Modifier of zero.</strong> <code>1d20+0</code> works and resolves to 1d20.</li>
+            <li><strong>Negative modifier.</strong> <code>1d20-2</code> subtracts 2 from the roll. Total can be 0 or negative on a low roll.</li>
+            <li><strong>Keep more than rolled.</strong> Rejected at parse time with a clear message.</li>
+            <li><strong>Single coin.</strong> One H or one T, no statistical waffle.</li>
+            <li><strong>1000 coins.</strong> Summary stats only; per-flip sequence omitted to keep the page responsive.</li>
+            <li><strong>50-or-fewer coins.</strong> Per-flip sequence shown alongside the summary.</li>
+            <li><strong>History full.</strong> Oldest roll drops off as the 21st roll lands, so the list never grows past 20.</li>
+          </ul>
+
+          <h2>Related calculators</h2>
+          <p>Other browser-only tools where local-only processing matters.</p>
+          <ul class="related-calculators">
+            <li><a href="/calculators/fun/">All fun calculators</a></li>
+            <li><a href="/calculators/fun/random-name-picker/">Random Name Picker, also Web Crypto</a></li>
+            <li><a href="/calculators/cybersecurity/password-generator/">Password Generator</a></li>
+            <li><a href="/calculators/cybersecurity/hash-generator/">Hash Generator</a></li>
+          </ul>
+        </section>
+
+        <section class="faq" aria-labelledby="faq-heading">
+          <h2 id="faq-heading">Frequently asked questions</h2>
+          <details>
+            <summary>Is the roll actually random?</summary>
+            <p>Yes. Every die face and coin flip is drawn from <code>crypto.getRandomValues</code>, the cryptographically strong random source the browser uses for session keys. Modulo bias is removed with rejection sampling, so a d6 face is exactly 1-in-6 and a coin flip is exactly 50/50. There is no <code>Math.random</code> anywhere in the page.</p>
+          </details>
+          <details>
+            <summary>What dice notation does it understand?</summary>
+            <p>Standard tabletop notation: count d sides, with an optional modifier and an optional keep-highest or keep-lowest. Examples: <code>d6</code> (one six-sided die), <code>3d8</code> (three eight-sided), <code>1d20+5</code> (a d20 with a +5 bonus), <code>4d6kh3</code> (four six-sided dice, keep the best three, used for D&amp;D ability scores). Hard caps: 100 dice, 1000 sides per die.</p>
+          </details>
+          <details>
+            <summary>Does anything I roll get sent anywhere?</summary>
+            <p>No. The page makes no network calls during a roll. You can disconnect from the network and the roller still works. Open your browser's network tab and watch nothing happen as you roll.</p>
+          </details>
+          <details>
+            <summary>Why use Web Crypto for a dice roller?</summary>
+            <p>It is overkill for a casual roll, and the right call for one people might use to settle a real bet, allocate sweets, or generate a tabletop character. <code>Math.random</code> is a non-cryptographic pseudo-random sequence: fine for shuffling visuals, not fine if anyone might suspect the result is rigged. Web Crypto plus rejection sampling produces a draw that is provably uniform.</p>
+          </details>
+          <details>
+            <summary>How is roll history stored?</summary>
+            <p>In memory for the life of the page. The last 20 rolls are kept and displayed in the History panel. Refresh the page or click Clear history and the list is gone. Nothing is persisted to disk and nothing is sent off the device.</p>
+          </details>
+        </section>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="ad-slot" data-ad-slot="sidebar" aria-hidden="true"></div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="site-footer-nav" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/calculators/">All calculators</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+
+      <section class="site-disclaimer" data-disclaimer aria-labelledby="disclaimer-heading">
+        <h2 id="disclaimer-heading">A quick, necessary word</h2>
+        <p>Every calculator on this site is built to give you a sensible, well-reasoned estimate. It is, however, exactly that: an estimate, for general information only. Nothing you see here is professional, legal, financial, medical, or tax advice, and it should not be treated as such.</p>
+        <p>Before you make a decision that actually matters, talk to a qualified professional who knows your specific situation: an accountant, a solicitor, a doctor, an IT consultant, whoever fits the question. They can factor in the bits a generic tool can't.</p>
+        <p>We take no liability and accept no responsibility for any loss, damage, or questionable life choice arising from acting on the numbers you see here. Use the results as a starting point for a better conversation, not as the final word.</p>
+        <p><strong>Affiliate disclosure:</strong> some links on this site are affiliate links. If you click through and buy or sign up for something, we may earn a small commission at no extra cost to you. It helps keep the calculators free and ad-light. We only recommend things we'd point a friend towards.</p>
+      </section>
+      <p class="site-copyright">&copy; 2026 WebCaretakers. All rights reserved.</p>
+      <p class="site-legal">WebCaretakers is a trading name of <a href="https://yeseo.io/" rel="noopener">Andrew Laws Associates Ltd</a>, registered in England and Wales (company no. 08602332). ICO registration ZA726704.</p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/calculators/dice-and-coin-roller.js"></script>
+  <script>
+    (function () {
+      'use strict';
+
+      var shortcutEl = document.querySelector('[data-bookmark-shortcut]');
+      if (shortcutEl) {
+        var isMac = /Mac|iPhone|iPad|iPod/i.test(navigator.platform || navigator.userAgent);
+        shortcutEl.textContent = isMac ? '\u2318' : 'Ctrl';
+      }
+
+      var lib = window.DiceAndCoinRoller;
+      if (!lib) return;
+
+      var diceForm = document.getElementById('dice-form');
+      var coinForm = document.getElementById('coin-form');
+      var notationEl = document.querySelector('[data-dice-notation]');
+      var coinCountEl = document.querySelector('[data-coin-count]');
+      var statusEl = document.querySelector('[data-roll-status]');
+      var detailEl = document.querySelector('[data-roll-detail]');
+      var errorEl = document.querySelector('[data-roll-error]');
+      var historyListEl = document.querySelector('[data-history-list]');
+      var historyEmptyEl = document.querySelector('[data-history-empty]');
+      var historyClearEl = document.querySelector('[data-history-clear]');
+      var modeTabs = document.querySelectorAll('[data-mode-tab]');
+      var presetButtons = document.querySelectorAll('[data-dice-preset]');
+      var proveIt = document.querySelector('[data-prove-it]');
+
+      var firstInteractionTracked = false;
+      var history = [];
+      var HISTORY_MAX = 20;
+
+      function trackInteraction(field) {
+        if (firstInteractionTracked) return;
+        firstInteractionTracked = true;
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: 'calculator_interaction',
+          calculator_name: 'Dice and Coin Roller',
+          field: field
+        });
+      }
+
+      function clearError() {
+        errorEl.hidden = true;
+        errorEl.textContent = '';
+      }
+
+      function showError(msg) {
+        errorEl.hidden = false;
+        errorEl.textContent = msg;
+      }
+
+      function setMode(mode) {
+        modeTabs.forEach(function (b) {
+          var on = b.getAttribute('data-mode-tab') === mode;
+          b.setAttribute('aria-selected', on ? 'true' : 'false');
+        });
+        document.querySelector('[data-mode-panel="dice"]').hidden = (mode !== 'dice');
+        document.querySelector('[data-mode-panel="coin"]').hidden = (mode !== 'coin');
+        clearError();
+      }
+
+      function pushHistory(record) {
+        history.unshift(record);
+        if (history.length > HISTORY_MAX) history.length = HISTORY_MAX;
+        renderHistory();
+      }
+
+      function renderHistory() {
+        historyListEl.innerHTML = '';
+        if (history.length === 0) {
+          historyEmptyEl.hidden = false;
+          return;
+        }
+        historyEmptyEl.hidden = true;
+        history.forEach(function (rec) {
+          var li = document.createElement('li');
+          li.textContent = lib.formatRoll(rec);
+          historyListEl.appendChild(li);
+        });
+      }
+
+      function renderDiceResult(parsed, result) {
+        var html = '';
+        html += '<p class="result-display"><strong>Total: ' + result.total + '</strong></p>';
+        html += '<p>Rolled <strong>' + parsed.count + 'd' + parsed.sides + '</strong>: ';
+        html += result.rolls.map(function (v) {
+          var kept = result.kept.indexOf(v) !== -1;
+          return '<span class="' + (kept ? 'die-kept' : 'die-dropped') + '">' + v + '</span>';
+        }).join(', ');
+        html += '.</p>';
+        if (parsed.keep) {
+          html += '<p>Kept (' + parsed.keep.type + parsed.keep.n + '): ' + result.kept.join(', ') + '.</p>';
+        }
+        if (result.modifier) {
+          html += '<p>Modifier: ' + (result.modifier > 0 ? '+' : '') + result.modifier + '.</p>';
+        }
+        detailEl.innerHTML = html;
+      }
+
+      function renderCoinResult(n, result) {
+        var html = '';
+        html += '<p class="result-display"><strong>' + result.heads + ' heads, ' + result.tails + ' tails</strong></p>';
+        if (n <= 50) {
+          html += '<p class="coin-sequence">';
+          html += result.flips.map(function (f) {
+            return '<span class="coin-flip coin-flip--' + (f === 'H' ? 'h' : 't') + '">' + f + '</span>';
+          }).join(' ');
+          html += '</p>';
+        } else {
+          var pctH = (result.heads / n * 100).toFixed(1);
+          var pctT = (result.tails / n * 100).toFixed(1);
+          html += '<p>Heads: ' + pctH + '%, Tails: ' + pctT + '%. (Per-flip sequence omitted for readability when N > 50.)</p>';
+        }
+        detailEl.innerHTML = html;
+      }
+
+      function rollFromNotation(text) {
+        clearError();
+        var parsed = lib.parseDiceNotation(text);
+        if (!parsed.ok) {
+          showError(parsed.message);
+          statusEl.textContent = 'No roll made.';
+          detailEl.innerHTML = '';
+          return;
+        }
+        var result = lib.rollDice(parsed);
+        statusEl.textContent = 'Rolled ' + text + '.';
+        renderDiceResult(parsed, result);
+        var record = {
+          mode: 'dice',
+          notation: text,
+          rolls: result.rolls,
+          kept: result.kept,
+          modifier: result.modifier,
+          total: result.total
+        };
+        pushHistory(record);
+
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: 'calculator_result',
+          calculator_name: 'Dice and Coin Roller',
+          mode: 'dice',
+          notation: text,
+          total: result.total
+        });
+      }
+
+      function flipCoinsFromForm() {
+        clearError();
+        var n = parseInt(coinCountEl.value, 10);
+        if (!isFinite(n) || n < 1) {
+          showError('Enter at least 1 coin.');
+          return;
+        }
+        if (n > lib.LIMITS.COIN_MAX) {
+          showError('Maximum is ' + lib.LIMITS.COIN_MAX + ' coins.');
+          return;
+        }
+        var result;
+        try {
+          result = lib.flipCoins(n);
+        } catch (e) {
+          showError(e.message || 'Could not flip coins.');
+          return;
+        }
+        statusEl.textContent = 'Flipped ' + n + ' coin' + (n === 1 ? '' : 's') + '.';
+        renderCoinResult(n, result);
+        pushHistory({
+          mode: 'coin',
+          count: n,
+          heads: result.heads,
+          tails: result.tails,
+          flips: result.flips
+        });
+
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: 'calculator_result',
+          calculator_name: 'Dice and Coin Roller',
+          mode: 'coin',
+          coin_count: n,
+          heads: result.heads,
+          tails: result.tails
+        });
+      }
+
+      modeTabs.forEach(function (b) {
+        b.addEventListener('click', function () {
+          var mode = b.getAttribute('data-mode-tab');
+          trackInteraction('mode');
+          setMode(mode);
+        });
+      });
+
+      presetButtons.forEach(function (b) {
+        b.addEventListener('click', function () {
+          var p = b.getAttribute('data-dice-preset');
+          notationEl.value = p;
+          trackInteraction('preset');
+          rollFromNotation(p);
+        });
+      });
+
+      diceForm.addEventListener('submit', function (ev) {
+        ev.preventDefault();
+        trackInteraction('dice_notation');
+        rollFromNotation(notationEl.value || '');
+      });
+
+      coinForm.addEventListener('submit', function (ev) {
+        ev.preventDefault();
+        trackInteraction('coin_count');
+        flipCoinsFromForm();
+      });
+
+      notationEl.addEventListener('input', function () { trackInteraction('dice_notation'); });
+      coinCountEl.addEventListener('input', function () { trackInteraction('coin_count'); });
+
+      historyClearEl.addEventListener('click', function () {
+        history = [];
+        renderHistory();
+      });
+
+      if (proveIt) {
+        proveIt.addEventListener('toggle', function () {
+          if (proveIt.open) {
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+              event: 'prove_it',
+              calculator_name: 'Dice and Coin Roller'
+            });
+          }
+        });
+      }
+
+      renderHistory();
+    })();
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>
