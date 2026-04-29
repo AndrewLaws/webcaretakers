@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Streaming Quality Calculator: What Quality Will My Broadband Actually Stream? | WebCaretakers</title>
+  <meta name="description" content="Work out the streaming quality your broadband can actually sustain across Netflix, Disney+, Prime Video and YouTube. Handles concurrent streams and headroom for other traffic.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/broadband/streaming-quality-calculator/">
+  <meta property="og:title" content="Streaming Quality Calculator | WebCaretakers">
+  <meta property="og:description" content="Tell it your link speed, how many streams, and the service. Get a realistic verdict on whether your line will sustain it, with the working shown.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/broadband/streaming-quality-calculator/">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var _stored = null;
+    try { _stored = localStorage.getItem('cookie-consent'); } catch (e) {}
+    var _initial = _stored === 'granted' ? 'granted' : 'denied';
+    gtag('consent', 'default', {
+      ad_storage: _initial, analytics_storage: _initial,
+      ad_user_data: _initial, ad_personalization: _initial,
+      functionality_storage: 'granted', security_storage: 'granted',
+      wait_for_update: 500
+    });
+  </script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Streaming Quality Calculator",
+    "url": "https://webcaretakers.com/calculators/broadband/streaming-quality-calculator/",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "description": "Tells you what streaming quality your broadband can actually sustain across Netflix, Disney+, Prime Video and YouTube, given concurrent streams and a headroom for other household traffic.",
+    "offers": { "@type": "Offer", "price": "0" },
+    "author": { "@type": "Person", "name": "Andrew Laws", "url": "https://yeseo.io/" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Why does Netflix need 25 Mbps for 4K when YouTube manages on less?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Codec choice. Netflix uses HEVC for most 4K, and Dolby Vision titles step up further again. YouTube leans on VP9 and AV1, which are more efficient at the same visual quality, so a 4K stream can sit closer to 15-20 Mbps. Same picture, different packaging." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is headroom and why default to 20%?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Headroom is the share of your line you keep back for everything that is not the streaming itself: Zoom calls, cloud backups, smart speakers, the occasional download. 20% is a sensible middle. Drop it to 10% if it is just a quiet film night, push it to 30-40% if someone is on calls or gaming at the same time." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does it ask for concurrent streams?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Because the line is shared. Two people watching 1080p Netflix on different tellies need roughly twice the bandwidth of one. The calculator multiplies the per-stream figure by the count, so the verdict reflects what the household is actually doing, not just one device." }
+      },
+      {
+        "@type": "Question",
+        "name": "What does the verdict actually mean?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Comfortable means the line has at least 25% surplus over the demand, so it will cope with bursts. Tight means it fits but with little to spare, expect occasional buffering when something else fires up. Insufficient means the demand is over the usable line speed, and either the picture will drop quality or it will buffer outright." }
+      },
+      {
+        "@type": "Question",
+        "name": "Is the per-stream figure the same for every show?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. The numbers here are the steady-state average each provider publishes for that quality tier. A high-action scene with lots of motion can briefly spike well above the average, a static talking-heads scene can sit well below. Plan for the average, leave headroom for the spikes." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-banner-heading" aria-describedby="cookie-banner-text" hidden>
+    <div class="cookie-banner__inner">
+      <h2 id="cookie-banner-heading" class="cookie-banner__heading">A quick word about cookies</h2>
+      <p id="cookie-banner-text" class="cookie-banner__text">
+        We use cookies for analytics, so we can see which calculators people actually use and which ones need work. Nothing creepy, nothing sold on. You can say yes, say no, or read the <a href="/privacy/">privacy policy</a> first. Your choice sticks.
+      </p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-reject>Reject</button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>Accept</button>
+      </div>
+    </div>
+  </div>
+
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">WebCaretakers</a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <ul class="primary-nav__list">
+          <li class="primary-nav__item primary-nav__item--has-menu">
+            <button type="button" class="primary-nav__link" data-menu-toggle aria-haspopup="true" aria-expanded="false">Calculators <span class="primary-nav__caret" aria-hidden="true">&#9662;</span></button>
+            <ul class="primary-nav__submenu">
+              <li><a href="/calculators/ai/">AI</a></li>
+              <li><a href="/calculators/broadband/">Broadband</a></li>
+              <li><a href="/calculators/business/">Business</a></li>
+              <li><a href="/calculators/conversions/">Conversions</a></li>
+              <li><a href="/calculators/cybersecurity/">Cybersecurity</a></li>
+              <li><a href="/calculators/finance/">Finance</a></li>
+              <li><a href="/calculators/fun/">Fun</a></li>
+              <li><a href="/calculators/health/">Health</a></li>
+              <li><a href="/calculators/images/">Images</a></li>
+              <li><a href="/calculators/math/">Math</a></li>
+              <li><a href="/calculators/productivity/">Productivity</a></li>
+              <li><a href="/calculators/property/">Property</a></li>
+              <li><a href="/calculators/seo/">SEO</a></li>
+              <li><a href="/calculators/wedding/">Wedding</a></li>
+              <li><a href="/calculators/writing/">Writing</a></li>
+              <li class="primary-nav__submenu-sep"><a href="/calculators/">See all calculators</a></li>
+            </ul>
+          </li>
+          <li class="primary-nav__item"><a href="/about/" class="primary-nav__link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <main id="main-content">
+      <div class="container">
+        <nav aria-label="Breadcrumb" class="breadcrumbs">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/calculators/">Calculators</a></li>
+            <li><a href="/calculators/broadband/">Broadband</a></li>
+            <li aria-current="page">Streaming Quality Calculator</li>
+          </ol>
+        </nav>
+
+        <h1>Streaming Quality Calculator</h1>
+        <p class="intro">Tell the calculator your line speed, how many telly-shaped things are on at once, and which service. It will tell you, plainly, whether your broadband can actually hold the picture quality you have asked for, or whether it is going to spend the evening apologetically dropping to 720p.</p>
+
+        <section class="eli5" aria-label="Plain-English explanation">
+          <h2>Explain like I'm 5 (what even is this calculator?)</h2>
+          <p>Different streaming services need different amounts of speed for the same picture quality. Netflix 4K is hungrier than YouTube 4K. Two people streaming need roughly twice the speed of one. This tool adds it up and tells you whether your broadband is up to it.</p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="in-content" aria-hidden="true"></div>
+
+        <section data-calculator class="calculator-card" aria-labelledby="calc-heading">
+          <h2 id="calc-heading">Check what your line can stream</h2>
+          <form id="streaming-form" class="calc-form" novalidate>
+            <div class="calc-row">
+              <label for="inp-link-speed">Your broadband download speed (Mbps)</label>
+              <input type="number" id="inp-link-speed" name="linkSpeed" min="1" step="0.1" value="100" required>
+              <p class="calc-row__hint">Use the figure from a recent speed test, not the headline ad number.</p>
+            </div>
+
+            <div class="calc-row">
+              <label for="inp-concurrent">Concurrent streams in the household</label>
+              <input type="number" id="inp-concurrent" name="concurrent" min="1" step="1" value="2" required>
+              <p class="calc-row__hint">How many devices will be streaming at the same time.</p>
+            </div>
+
+            <div class="calc-row">
+              <label for="inp-service">Streaming service</label>
+              <select id="inp-service" name="service">
+                <option value="netflix" selected>Netflix</option>
+                <option value="disney-plus">Disney+</option>
+                <option value="prime-video">Prime Video</option>
+                <option value="youtube">YouTube</option>
+                <option value="generic">Generic / other</option>
+              </select>
+              <p class="calc-row__hint">Each service publishes its own bitrate ladder. YouTube is lighter than Netflix at the same quality because of newer codecs.</p>
+            </div>
+
+            <div class="calc-row">
+              <label for="inp-target-quality">Target quality</label>
+              <select id="inp-target-quality" name="targetQuality">
+                <option value="480p">480p SD</option>
+                <option value="720p">720p HD</option>
+                <option value="1080p" selected>1080p Full HD</option>
+                <option value="4k-hdr">4K HDR</option>
+                <option value="4k-dv">4K Dolby Vision</option>
+              </select>
+            </div>
+
+            <div class="calc-row">
+              <label for="inp-headroom">Headroom for other traffic: <output for="inp-headroom" data-headroom-output>20%</output></label>
+              <input type="range" id="inp-headroom" name="headroom" min="0" max="50" step="5" value="20">
+              <p class="calc-row__hint">The share of your line reserved for everything that is not this stream: video calls, backups, smart devices. 20% is a sensible default.</p>
+            </div>
+
+            <button type="submit" data-calculate>Check my line</button>
+          </form>
+
+          <div data-calculator-results class="calculator-results" aria-live="polite">
+            <p class="result-display" data-result-placeholder>Fill in the form and press the button to see whether your line can sustain it.</p>
+            <div class="result-summary" hidden data-result-summary>
+              <p>Per stream: <strong data-result-per-stream></strong></p>
+              <p>Total demand: <strong data-result-total></strong></p>
+              <p>Surplus or deficit: <strong data-result-surplus></strong></p>
+              <p>Verdict: <strong data-result-verdict></strong></p>
+              <p>Highest tier this line can hold at your concurrency: <strong data-result-best-tier></strong></p>
+
+              <details class="prove-it" data-prove-it>
+                <summary>Prove it</summary>
+                <div data-prove-it-body>
+                  <p>The maths, end to end, so you can audit it. Per stream means the per-stream Mbps required for the chosen service and quality tier.</p>
+                  <ul data-prove-it-list></ul>
+                  <p class="prove-it-source">Bitrate ladders are taken from each provider's published help pages. Netflix and Disney+ publish their 4K recommendations directly; Prime Video sits a touch lower in practice; YouTube uses VP9 and AV1, which are more efficient codecs and run lighter at the same quality.</p>
+                </div>
+              </details>
+            </div>
+
+            <p class="bookmark-nudge">
+              <strong>Save this calculator:</strong>
+              press <kbd data-bookmark-shortcut>Ctrl</kbd> + <kbd>D</kbd> to bookmark it in your browser.
+            </p>
+          </div>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="below-results" aria-hidden="true"></div>
+
+        <div data-cta="next-step" class="cta-block">
+          <h3>Line not fast enough for the picture you want?</h3>
+          <p>Compare broadband packages with faster download speeds. Full fibre (FTTP) usually clears multiple 4K streams without breaking a sweat, and the price difference is smaller than people expect.</p>
+          <a href="https://www.awin1.com/cread.php?awinmid=12213&awinaffid=202051&ued=https%3A%2F%2Fwww.broadband.co.uk%2F" class="cta-link" rel="noopener sponsored" data-cta-link>Compare broadband deals at broadband.co.uk</a>
+        </div>
+
+        <section class="long-form">
+          <h2>Why "my broadband is fast enough" is the wrong question</h2>
+          <p>Most people frame it as a single number: my line is 80 Mbps, so it must be fine. The trouble is that streaming quality is a per-stream cost, and a household is rarely doing one thing at a time. A film in the lounge, an iPad in the kitchen, a Switch downloading an update, someone on a video call upstairs. Each of those takes its own slice of the line. The right question is not "is my broadband fast enough", it is "is my broadband fast enough for everything I am asking it to do at once". That is what this calculator works out.</p>
+
+          <h2>The bitrate ladders, explained</h2>
+          <p>Each streaming service publishes a recommended download speed for each quality tier. They are not identical. Netflix's published figure for 4K HDR is around 25 Mbps, with Dolby Vision titles climbing higher again. Disney+ sits in roughly the same ballpark for 4K. Prime Video tends to come in a touch lower in practice. YouTube is the outlier: because it uses VP9 and now AV1, both more efficient codecs than HEVC, the same picture quality fits in noticeably less bandwidth. A YouTube 4K stream can run at 15 to 20 Mbps where Netflix 4K wants 25.</p>
+          <p>SD and HD are simpler. Across all the major services, 480p sits around 3 Mbps, 720p around 5 Mbps, and 1080p around 8 Mbps. Two 1080p streams on Netflix or Disney+ is roughly 16 Mbps of demand, plus your headroom, plus whatever else is running. On a 50 Mbps line, that is fine. On a 30 Mbps line with someone on a Teams call, you are going to feel it.</p>
+
+          <h2>What headroom is for</h2>
+          <p>The headroom slider exists because nobody actually uses 100% of their line for one thing. There is always a smart speaker checking in, a laptop syncing iCloud, a phone uploading photos in the background. The default 20% is the realistic middle. If it is a quiet evening and the rest of the house has gone to bed, drop it to 10%. If someone is on a Zoom call or backing up to Backblaze, push it to 30 or 40%. The verdict at the bottom of the page bands accordingly: Comfortable means at least a quarter spare, Tight means it just about fits, Insufficient means the maths does not work and your stream will downgrade or buffer.</p>
+
+          <h2>Concurrent streams are the killer</h2>
+          <p>Single-stream maths is reassuring. Concurrent maths is honest. Three people each watching their own 1080p Netflix is 24 Mbps of demand at minimum, and that is before the family Hue lights and the smart doorbell get a look-in. On a 35 Mbps line, that is already past the comfort threshold. On a 25 Mbps line, somebody is dropping to 720p whether they like it or not. The "highest tier this line can hold at your concurrency" output is the practical answer: given how many streams you have asked for, what is the best picture quality the line can actually hold steady?</p>
+
+          <h2>Common mistakes when planning</h2>
+          <ul>
+            <li><strong>Using the headline ad speed.</strong> Most lines, especially over Wi-Fi, sit a fair bit under the ad number once you are a few rooms away from the router. Run a real speed test on the device that will be doing the streaming.</li>
+            <li><strong>Forgetting upload-bound activity.</strong> Cloud backup and video calls are upload-bound, and the household share that calculator does not show. If anyone in the house works from home, plan around their upload as well.</li>
+            <li><strong>Treating 4K HDR and 4K Dolby Vision as the same thing.</strong> Netflix's Dolby Vision titles run noticeably hungrier than its standard 4K HDR. If a film is showing the DV badge, expect closer to 40 Mbps than 25.</li>
+            <li><strong>Assuming Wi-Fi is the same as the line.</strong> A 900 Mbps full fibre line still feels rotten over a ten-year-old router two walls away. The bottleneck is sometimes inside the house.</li>
+          </ul>
+
+          <h2>What to do if the verdict says Insufficient</h2>
+          <p>Three options, in order of cost. First, drop the target quality. 1080p is genuinely fine for most rooms, especially under 50 inches; the gap to 4K is smaller in practice than the gap from 720p to 1080p. Second, sort the Wi-Fi: a mesh system or a wired drop to the main TV often unlocks a chunk of the speed you are already paying for. Third, upgrade the line. Full fibre is the answer if it is available, and across most of the UK it is increasingly available. If you are still on FTTC and 4K matters to you, an upgrade is the genuine fix.</p>
+
+          <h2>Related calculators</h2>
+          <ul class="related-calculators">
+            <li><a href="/calculators/broadband/broadband-bandwidth-calculator/">Work out how much broadband speed you need</a></li>
+            <li><a href="/calculators/broadband/latency-impact-calculator/">Latency impact on streaming and gaming</a></li>
+            <li><a href="/calculators/broadband/">All broadband calculators</a></li>
+          </ul>
+        </section>
+
+        <section class="faq" aria-labelledby="faq-heading">
+          <h2 id="faq-heading">Frequently asked questions</h2>
+          <details>
+            <summary>Why does Netflix need 25 Mbps for 4K when YouTube manages on less?</summary>
+            <p>Codec choice. Netflix uses HEVC for most 4K, and Dolby Vision titles step up further again. YouTube leans on VP9 and AV1, which are more efficient at the same visual quality, so a 4K stream can sit closer to 15-20 Mbps.</p>
+          </details>
+          <details>
+            <summary>What is headroom and why default to 20%?</summary>
+            <p>Headroom is the share of your line you keep back for everything that is not the streaming itself: Zoom calls, cloud backups, smart speakers. 20% is a sensible middle. Drop it to 10% if it is just a quiet film night, push it to 30-40% if someone is on calls or gaming at the same time.</p>
+          </details>
+          <details>
+            <summary>Why does it ask for concurrent streams?</summary>
+            <p>Because the line is shared. Two people watching 1080p Netflix on different tellies need roughly twice the bandwidth of one. The calculator multiplies the per-stream figure by the count, so the verdict reflects what the household is actually doing.</p>
+          </details>
+          <details>
+            <summary>What does the verdict actually mean?</summary>
+            <p>Comfortable means the line has at least 25% surplus over the demand. Tight means it fits but with little to spare, expect occasional buffering when something else fires up. Insufficient means the demand is over the usable line speed, and the picture will drop quality or buffer.</p>
+          </details>
+          <details>
+            <summary>Is the per-stream figure the same for every show?</summary>
+            <p>No. The numbers here are the steady-state average each provider publishes for that quality tier. High-motion scenes can briefly spike well above the average. Plan for the average, leave headroom for the spikes.</p>
+          </details>
+        </section>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="ad-slot" data-ad-slot="sidebar" aria-hidden="true"></div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="site-footer-nav" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/calculators/">All calculators</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+
+      <section class="site-disclaimer" data-disclaimer aria-labelledby="disclaimer-heading">
+        <h2 id="disclaimer-heading">A quick, necessary word</h2>
+        <p>Every calculator on this site is built to give you a sensible, well-reasoned estimate. It is, however, exactly that: an estimate, for general information only. Nothing you see here is professional, legal, financial, medical, or tax advice, and it should not be treated as such.</p>
+        <p>Before you make a decision that actually matters, talk to a qualified professional who knows your specific situation: an accountant, a solicitor, a doctor, an IT consultant, whoever fits the question. They can factor in the bits a generic tool can't.</p>
+        <p>We take no liability and accept no responsibility for any loss, damage, or questionable life choice arising from acting on the numbers you see here. Use the results as a starting point for a better conversation, not as the final word.</p>
+        <p><strong>Affiliate disclosure:</strong> some links on this site are affiliate links. If you click through and buy or sign up for something, we may earn a small commission at no extra cost to you. It helps keep the calculators free and ad-light. We only recommend things we'd point a friend towards.</p>
+      </section>
+      <p class="site-copyright">&copy; 2026 WebCaretakers. All rights reserved.</p>
+      <p class="site-legal">WebCaretakers is a trading name of <a href="https://yeseo.io/" rel="noopener">Andrew Laws Associates Ltd</a>, registered in England and Wales (company no. 08602332). ICO registration ZA726704.</p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/calculators/streaming-quality-calculator.js"></script>
+  <script>
+    (function () {
+      var form = document.getElementById('streaming-form');
+      if (!form) return;
+      var summary = document.querySelector('[data-result-summary]');
+      var placeholder = document.querySelector('[data-result-placeholder]');
+      var perStreamEl = document.querySelector('[data-result-per-stream]');
+      var totalEl = document.querySelector('[data-result-total]');
+      var surplusEl = document.querySelector('[data-result-surplus]');
+      var verdictEl = document.querySelector('[data-result-verdict]');
+      var bestTierEl = document.querySelector('[data-result-best-tier]');
+      var proveListEl = document.querySelector('[data-prove-it-list]');
+      var headroomOutput = document.querySelector('[data-headroom-output]');
+      var headroomEl = document.getElementById('inp-headroom');
+
+      function pushInteraction(field, value) {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: 'calculator_interaction',
+          calculator_name: 'streaming-quality-calculator',
+          field: field,
+          value: value
+        });
+      }
+
+      function updateHeadroomOutput() {
+        if (headroomOutput) headroomOutput.textContent = headroomEl.value + '%';
+      }
+      if (headroomEl) {
+        updateHeadroomOutput();
+        headroomEl.addEventListener('input', updateHeadroomOutput);
+      }
+
+      form.addEventListener('input', function (e) {
+        var t = e.target;
+        var val = t.type === 'checkbox' ? t.checked : t.value;
+        pushInteraction(t.name || t.id, val);
+      });
+
+      function fmtMbps(v) {
+        return (Math.round(v * 10) / 10) + ' Mbps';
+      }
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var fd = new FormData(form);
+        var input = {
+          linkSpeed: parseFloat(fd.get('linkSpeed')) || 0,
+          concurrent: parseInt(fd.get('concurrent'), 10) || 0,
+          service: fd.get('service'),
+          targetQuality: fd.get('targetQuality'),
+          headroom: parseFloat(fd.get('headroom')) || 0,
+        };
+
+        try {
+          var r = StreamingQualityCalculator.evaluateStreamingQuality(input);
+        } catch (err) {
+          placeholder.hidden = false;
+          summary.hidden = true;
+          placeholder.textContent = 'Please check your inputs: ' + err.message;
+          return;
+        }
+
+        placeholder.hidden = true;
+        summary.hidden = false;
+
+        perStreamEl.textContent = fmtMbps(r.perStreamMbps) + ' (' + r.tierLabel + ')';
+        totalEl.textContent = fmtMbps(r.totalDemandMbps) + ' across ' + r.concurrent + ' stream' + (r.concurrent === 1 ? '' : 's');
+        var surplusText = r.surplusMbps >= 0
+          ? fmtMbps(r.surplusMbps) + ' spare'
+          : fmtMbps(Math.abs(r.surplusMbps)) + ' short';
+        surplusEl.textContent = surplusText;
+        verdictEl.textContent = r.verdict;
+        bestTierEl.textContent = r.bestTierLabel || 'None: even SD does not fit at this concurrency';
+
+        if (proveListEl) {
+          var rows = [
+            ['Link speed', fmtMbps(r.linkSpeed)],
+            ['Headroom reserved', r.headroom + '%'],
+            ['Usable for streaming', fmtMbps(r.usableMbps)],
+            ['Per stream (' + r.service + ', ' + r.tierLabel + ')', fmtMbps(r.perStreamMbps)],
+            ['Concurrent streams', String(r.concurrent)],
+            ['Total demand', fmtMbps(r.totalDemandMbps)],
+            ['Surplus / deficit', (r.surplusMbps >= 0 ? '+' : '') + fmtMbps(r.surplusMbps)],
+            ['Per-stream cap given concurrency', fmtMbps(r.perStreamCap)],
+            ['Best sustainable tier', r.bestTierLabel || 'None'],
+            ['Verdict', r.verdict]
+          ];
+          proveListEl.innerHTML = rows.map(function (row) {
+            return '<li><span>' + row[0] + '</span><strong>' + row[1] + '</strong></li>';
+          }).join('');
+        }
+
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: 'calculator_result',
+          calculator_name: 'streaming-quality-calculator',
+          link_speed: input.linkSpeed,
+          concurrent: input.concurrent,
+          service: input.service,
+          target_quality: input.targetQuality,
+          headroom: input.headroom,
+          per_stream_mbps: r.perStreamMbps,
+          total_demand_mbps: r.totalDemandMbps,
+          surplus_mbps: r.surplusMbps,
+          verdict: r.verdict,
+          best_tier: r.bestTier
+        });
+      });
+
+      var proveDetails = document.querySelector('[data-prove-it]');
+      if (proveDetails) {
+        proveDetails.addEventListener('toggle', function () {
+          if (proveDetails.open) {
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+              event: 'prove_it',
+              calculator_name: 'streaming-quality-calculator'
+            });
+          }
+        });
+      }
+
+      var shortcutEl = document.querySelector('[data-bookmark-shortcut]');
+      if (shortcutEl) {
+        var isMac = /Mac|iPhone|iPad|iPod/i.test(navigator.platform || navigator.userAgent);
+        shortcutEl.textContent = isMac ? '⌘' : 'Ctrl';
+      }
+
+      var ctaLink = document.querySelector('[data-cta-link]');
+      if (ctaLink) {
+        ctaLink.addEventListener('click', function () {
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: 'cta_click',
+            calculator_name: 'streaming-quality-calculator',
+            cta: 'compare-broadband-plans'
+          });
+        });
+      }
+    })();
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

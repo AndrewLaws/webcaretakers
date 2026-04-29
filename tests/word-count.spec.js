@@ -79,5 +79,5 @@ test('prove-it workings populated', async ({ page }) => {
 
 test('writing hub lists word count tool', async ({ page }) => {
   await page.goto('/calculators/writing/');
-  await expect(page.locator('a[href="/calculators/writing/word-count/"]')).toBeVisible();
+  await expect(page.locator('a[href="/calculators/writing/word-count/"]').first()).toBeVisible();
 });

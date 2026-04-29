@@ -138,10 +138,10 @@ test('JSON-LD blocks parse and contain SoftwareApplication and FAQPage', async (
 
 test('SEO hub lists SERP Snippet Preview Tool', async ({ page }) => {
   await page.goto('/calculators/seo/');
-  await expect(page.locator('a[href="/calculators/seo/serp-snippet-preview/"]')).toBeVisible();
+  await expect(page.locator('a[href="/calculators/seo/serp-snippet-preview/"]').first()).toBeVisible();
 });
 
 test('all-calculators hub lists SERP Snippet Preview Tool', async ({ page }) => {
   await page.goto('/calculators/');
-  await expect(page.locator('a[href="/calculators/seo/serp-snippet-preview/"]')).toBeVisible();
+  await expect(page.locator('a[href="/calculators/seo/serp-snippet-preview/"]').first()).toBeVisible();
 });

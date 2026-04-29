@@ -107,10 +107,10 @@ test('JSON-LD blocks parse and contain SoftwareApplication and FAQPage', async (
 
 test('SEO hub lists serp-ctr-estimator', async ({ page }) => {
   await page.goto('/calculators/seo/');
-  await expect(page.locator('a[href="/calculators/seo/serp-ctr-estimator/"]')).toBeVisible();
+  await expect(page.locator('a[href="/calculators/seo/serp-ctr-estimator/"]').first()).toBeVisible();
 });
 
 test('all-calculators hub lists serp-ctr-estimator', async ({ page }) => {
   await page.goto('/calculators/');
-  await expect(page.locator('a[href="/calculators/seo/serp-ctr-estimator/"]')).toBeVisible();
+  await expect(page.locator('a[href="/calculators/seo/serp-ctr-estimator/"]').first()).toBeVisible();
 });

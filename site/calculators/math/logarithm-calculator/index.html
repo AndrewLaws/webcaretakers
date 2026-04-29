@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Logarithm Calculator | WebCaretakers</title>
+  <meta name="description" content="Calculate log base b of x for any positive base. Solve for the log, for x, or for the base. High-precision result, change-of-base working and a useful identities reminder.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/math/logarithm-calculator/">
+  <meta property="og:title" content="Logarithm Calculator | WebCaretakers">
+  <meta property="og:description" content="Compute log_b(x) for any base. Includes change-of-base working, inverse check and identities.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/math/logarithm-calculator/">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var _stored = null;
+    try { _stored = localStorage.getItem('cookie-consent'); } catch (e) {}
+    var _initial = _stored === 'granted' ? 'granted' : 'denied';
+    gtag('consent', 'default', {
+      ad_storage: _initial, analytics_storage: _initial,
+      ad_user_data: _initial, ad_personalization: _initial,
+      functionality_storage: 'granted', security_storage: 'granted',
+      wait_for_update: 500
+    });
+  </script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Logarithm Calculator",
+    "url": "https://webcaretakers.com/calculators/math/logarithm-calculator/",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "author": {
+      "@type": "Person",
+      "name": "Andrew Laws",
+      "url": "https://yeseo.io/"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is a logarithm, in plain English?",
+        "acceptedAnswer": { "@type": "Answer", "text": "A logarithm is the exponent question turned around. If b raised to some power gives you x, the logarithm log base b of x is that power. So because 10 cubed is 1000, log base 10 of 1000 is 3. It is the same maths as exponentiation, just asking the other side of the question." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the change-of-base formula?",
+        "acceptedAnswer": { "@type": "Answer", "text": "log base b of x equals ln(x) divided by ln(b). Any natural log on a calculator can be re-expressed as a log in any other base, which is exactly how this tool computes the answer for arbitrary bases." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why do logarithms reject zero and negative numbers?",
+        "acceptedAnswer": { "@type": "Answer", "text": "In the real numbers there is no exponent of a positive base that gives a zero or a negative result. b to the power of anything stays positive when b is positive. The logarithm is only defined on positive inputs without stepping into complex numbers." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the difference between log, ln and log10?",
+        "acceptedAnswer": { "@type": "Answer", "text": "ln is the natural logarithm, base e (about 2.71828). log10 is the common logarithm, base 10. Plain log on its own is ambiguous: maths textbooks tend to mean log base e, engineering textbooks tend to mean log base 10, and computer science tends to mean log base 2. Always state the base if there is any doubt." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does this calculator send my numbers anywhere?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. Everything runs in your browser using vanilla JavaScript. The numbers you type never leave your device. You can disconnect from the network and the calculator still works." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-banner-heading" aria-describedby="cookie-banner-text" hidden>
+    <div class="cookie-banner__inner">
+      <h2 id="cookie-banner-heading" class="cookie-banner__heading">A quick word about cookies</h2>
+      <p id="cookie-banner-text" class="cookie-banner__text">
+        We use cookies for analytics, so we can see which calculators people actually use and which ones need work. Nothing creepy, nothing sold on. You can say yes, say no, or read the <a href="/privacy/">privacy policy</a> first. Your choice sticks.
+      </p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-reject>Reject</button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>Accept</button>
+      </div>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">WebCaretakers</a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <ul class="primary-nav__list">
+          <li class="primary-nav__item primary-nav__item--has-menu">
+            <button type="button" class="primary-nav__link" data-menu-toggle aria-haspopup="true" aria-expanded="false">Calculators <span class="primary-nav__caret" aria-hidden="true">&#9662;</span></button>
+            <ul class="primary-nav__submenu">
+              <li><a href="/calculators/ai/">AI</a></li>
+              <li><a href="/calculators/broadband/">Broadband</a></li>
+              <li><a href="/calculators/business/">Business</a></li>
+              <li><a href="/calculators/conversions/">Conversions</a></li>
+              <li><a href="/calculators/cybersecurity/">Cybersecurity</a></li>
+              <li><a href="/calculators/finance/">Finance</a></li>
+              <li><a href="/calculators/fun/">Fun</a></li>
+              <li><a href="/calculators/health/">Health</a></li>
+              <li><a href="/calculators/images/">Images</a></li>
+              <li><a href="/calculators/math/">Math</a></li>
+              <li><a href="/calculators/productivity/">Productivity</a></li>
+              <li><a href="/calculators/property/">Property</a></li>
+              <li><a href="/calculators/seo/">SEO</a></li>
+              <li><a href="/calculators/wedding/">Wedding</a></li>
+              <li><a href="/calculators/writing/">Writing</a></li>
+              <li class="primary-nav__submenu-sep"><a href="/calculators/">See all calculators</a></li>
+            </ul>
+          </li>
+          <li class="primary-nav__item"><a href="/about/" class="primary-nav__link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <main id="main-content">
+      <div class="container">
+        <nav aria-label="Breadcrumb" class="breadcrumbs">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/calculators/">Calculators</a></li>
+            <li><a href="/calculators/math/">Math</a></li>
+            <li aria-current="page">Logarithm Calculator</li>
+          </ol>
+        </nav>
+
+        <h1>Logarithm Calculator</h1>
+        <p class="intro">Work out log base b of x for any positive base, including the common log (base 10), the natural log (base e) and the binary log (base 2). Switch the calculator round to solve for x or to solve for the base instead. Working shown via the change-of-base formula, with an inverse check on every answer.</p>
+
+        <section class="eli5" aria-label="Plain-English explanation">
+          <h2>Explain like I'm 5 (what even is this calculator?)</h2>
+          <p>A logarithm asks the question "what power do I raise this base to, to get this number?". Two cubed is eight, so log base 2 of 8 is 3. Ten squared is a hundred, so log base 10 of 100 is 2. That is the whole game. Type in your numbers, pick your base, and the calculator does the arithmetic and shows you exactly how it got there.</p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="in-content" aria-hidden="true"></div>
+
+        <section data-calculator class="calculator-card">
+          <h2>Calculate</h2>
+          <p class="reassure"><strong>Browser-only.</strong> The numbers you enter are processed in your browser. Nothing is uploaded.</p>
+
+          <form id="log-form" class="calc-form" novalidate>
+            <div class="calc-row calc-row--inline">
+              <label for="log-mode">What do you want to solve for?</label>
+              <select id="log-mode" name="mode">
+                <option value="log" selected>The log result (given x and the base)</option>
+                <option value="value">x (given the base and the log result)</option>
+                <option value="base">The base (given x and the log result)</option>
+              </select>
+            </div>
+
+            <div class="calc-row calc-row--inline" data-row-value>
+              <label for="log-value">Value (x)</label>
+              <input type="number" id="log-value" name="value" step="any" inputmode="decimal" placeholder="e.g. 1000">
+            </div>
+
+            <div class="calc-row calc-row--inline">
+              <label for="log-base">Base</label>
+              <select id="log-base" name="base">
+                <option value="10" selected>10 (common log)</option>
+                <option value="e">e (natural log)</option>
+                <option value="2">2 (binary log)</option>
+                <option value="custom">Custom base</option>
+              </select>
+            </div>
+
+            <div class="calc-row calc-row--inline" data-row-custom-base hidden>
+              <label for="log-custom-base">Custom base value</label>
+              <input type="number" id="log-custom-base" name="customBase" step="any" inputmode="decimal" placeholder="e.g. 5">
+            </div>
+
+            <div class="calc-row calc-row--inline" data-row-log-result hidden>
+              <label for="log-result-input">Known log result</label>
+              <input type="number" id="log-result-input" name="logResult" step="any" inputmode="decimal" placeholder="e.g. 3">
+            </div>
+
+            <p class="calc-row__hint">Logarithms are only defined for positive values. The base must be positive and cannot equal 1.</p>
+
+            <button type="submit" data-calculate>Calculate</button>
+          </form>
+
+          <div data-calculator-results class="calculator-results">
+            <p class="result-display" data-result-value>Enter a value and press Calculate.</p>
+            <div class="stats-grid" data-stats-grid hidden>
+              <div class="stats-grid__row"><dt>Inverse check</dt><dd data-result-inverse></dd></div>
+            </div>
+            <div data-result-working class="result-working"></div>
+
+            <details class="prove-it" data-prove-it>
+              <summary>Prove it</summary>
+              <ul data-prove-it-list class="prove-it-steps"></ul>
+              <div data-prove-it-body></div>
+              <p class="prove-it-source">Method: change-of-base, log_b(x) = ln(x) / ln(b). Inverse modes use x = b^result and b = x^(1/result) respectively.</p>
+            </details>
+          </div>
+
+          <p class="bookmark-nudge">
+            Useful? Save this calculator: press <kbd data-bookmark-shortcut>Ctrl</kbd> + <kbd>D</kbd> to bookmark it.
+          </p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="below-results" aria-hidden="true"></div>
+
+        <section class="long-form">
+          <h2>Useful logarithm identities to keep in your head</h2>
+          <p>Logarithms compress multiplication into addition, which is why they show up everywhere from sound levels (decibels) to earthquake scales (Richter) to information theory (bits, base 2) to the pH scale in chemistry. The identities below are the ones worth remembering, because they let you re-shape any expression into a form you can compute by hand or with this calculator.</p>
+          <ul>
+            <li><strong>Product:</strong> log_b(xy) = log_b(x) + log_b(y). Multiplying inside becomes adding outside.</li>
+            <li><strong>Quotient:</strong> log_b(x / y) = log_b(x) &minus; log_b(y). Dividing inside becomes subtracting outside.</li>
+            <li><strong>Power:</strong> log_b(x^n) = n &middot; log_b(x). An exponent inside hops out as a multiplier.</li>
+            <li><strong>Change of base:</strong> log_b(x) = log_k(x) / log_k(b) for any other valid base k. This is how computers compute log base 2 or base 7 from a built-in natural log.</li>
+            <li><strong>Inverse:</strong> b^(log_b(x)) = x and log_b(b^x) = x. The exponential function and the logarithm undo each other when the bases match.</li>
+            <li><strong>Special values:</strong> log_b(1) = 0 for any valid base, because anything to the power zero is one. log_b(b) = 1 for any valid base, because anything to the power one is itself.</li>
+          </ul>
+
+          <h2>When you actually need a logarithm</h2>
+          <p>Anywhere a quantity grows or shrinks by a constant ratio rather than a constant amount. Compound interest doubles your money in a fixed number of years, not a fixed number of pounds. Bacterial cultures multiply by a factor every twenty minutes. Sound intensity perceived by the ear is roughly logarithmic in physical pressure, which is why a 10 dB jump sounds about twice as loud rather than 10 units louder. Any time the question is "how many times do I have to multiply by this factor to get from here to there", you are asking a logarithm.</p>
+
+          <h2>Common mistakes the calculator helps you avoid</h2>
+          <p><strong>Mixing up log and ln.</strong> Most scientific calculators have separate buttons. log usually means base 10 and ln always means base e. If a textbook just writes log without specifying, check the convention of the field: maths usually means base e, engineering usually means base 10, computer science usually means base 2.</p>
+          <p><strong>Trying to take the log of a negative.</strong> log_b(&minus;5) has no answer in the real numbers. The calculator catches this and tells you, rather than returning NaN with no explanation.</p>
+          <p><strong>Trying to use a base of 1.</strong> 1 to any power is still 1, so log_1(x) is undefined for any x other than 1, and indeterminate when x is 1. The calculator rejects base 1 with a clear message.</p>
+          <p><strong>Confusing the inverse.</strong> If log_b(x) = y, then x = b^y, not y^b. The "inverse check" line on the result is there precisely to make this explicit, so you can sanity-check the answer at a glance.</p>
+
+          <h2>Related calculators</h2>
+          <p>Other maths tools that pair well with this one.</p>
+          <ul class="related-calculators">
+            <li><a href="/calculators/math/quadratic-equation-solver/">Quadratic Equation Solver</a> for the other workhorse of school algebra</li>
+            <li><a href="/calculators/math/standard-deviation-calculator/">Standard Deviation Calculator</a> for descriptive stats on a list of numbers</li>
+            <li><a href="/calculators/math/gcd-lcm-calculator/">GCD and LCM Calculator</a> for integer factor work</li>
+            <li><a href="/calculators/math/">All math calculators</a></li>
+          </ul>
+        </section>
+
+        <section class="faq" aria-labelledby="faq-heading">
+          <h2 id="faq-heading">Frequently asked questions</h2>
+          <details>
+            <summary>What is a logarithm, in plain English?</summary>
+            <p>A logarithm is the exponent question turned around. If b raised to some power gives you x, the logarithm log base b of x is that power. So because 10 cubed is 1000, log base 10 of 1000 is 3. It is the same maths as exponentiation, just asking the other side of the question.</p>
+          </details>
+          <details>
+            <summary>What is the change-of-base formula?</summary>
+            <p>log base b of x equals ln(x) divided by ln(b). Any natural log on a calculator can be re-expressed as a log in any other base, which is exactly how this tool computes the answer for arbitrary bases.</p>
+          </details>
+          <details>
+            <summary>Why do logarithms reject zero and negative numbers?</summary>
+            <p>In the real numbers there is no exponent of a positive base that gives a zero or a negative result. b to the power of anything stays positive when b is positive. The logarithm is only defined on positive inputs without stepping into complex numbers.</p>
+          </details>
+          <details>
+            <summary>What is the difference between log, ln and log10?</summary>
+            <p>ln is the natural logarithm, base e (about 2.71828). log10 is the common logarithm, base 10. Plain log on its own is ambiguous: maths textbooks tend to mean log base e, engineering textbooks tend to mean log base 10, and computer science tends to mean log base 2. Always state the base if there is any doubt.</p>
+          </details>
+          <details>
+            <summary>Does this calculator send my numbers anywhere?</summary>
+            <p>No. Everything runs in your browser using vanilla JavaScript. The numbers you type never leave your device. You can disconnect from the network and the calculator still works.</p>
+          </details>
+        </section>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="ad-slot" data-ad-slot="sidebar" aria-hidden="true"></div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="site-footer-nav" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/calculators/">All calculators</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+
+      <section class="site-disclaimer" data-disclaimer aria-labelledby="disclaimer-heading">
+        <h2 id="disclaimer-heading">A quick, necessary word</h2>
+        <p>Every calculator on this site is built to give you a sensible, well-reasoned estimate. It is, however, exactly that: an estimate, for general information only. Nothing you see here is professional, legal, financial, medical, or tax advice, and it should not be treated as such.</p>
+        <p>Before you make a decision that actually matters, talk to a qualified professional who knows your specific situation: an accountant, a solicitor, a doctor, an IT consultant, whoever fits the question. They can factor in the bits a generic tool can't.</p>
+        <p>We take no liability and accept no responsibility for any loss, damage, or questionable life choice arising from acting on the numbers you see here. Use the results as a starting point for a better conversation, not as the final word.</p>
+        <p><strong>Affiliate disclosure:</strong> some links on this site are affiliate links. If you click through and buy or sign up for something, we may earn a small commission at no extra cost to you. It helps keep the calculators free and ad-light. We only recommend things we'd point a friend towards.</p>
+      </section>
+      <p class="site-copyright">&copy; 2026 WebCaretakers. All rights reserved.</p>
+      <p class="site-legal">WebCaretakers is a trading name of <a href="https://yeseo.io/" rel="noopener">Andrew Laws Associates Ltd</a>, registered in England and Wales (company no. 08602332). ICO registration ZA726704.</p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/calculators/logarithm-calculator.js"></script>
+  <script>
+    (function () {
+      'use strict';
+      var shortcutEl = document.querySelector('[data-bookmark-shortcut]');
+      if (shortcutEl) {
+        var isMac = /Mac|iPhone|iPad|iPod/i.test(navigator.platform || navigator.userAgent);
+        shortcutEl.textContent = isMac ? '⌘' : 'Ctrl';
+      }
+
+      var form = document.getElementById('log-form');
+      if (!form) return;
+      var modeSel    = form.querySelector('[name="mode"]');
+      var valueInput = form.querySelector('[name="value"]');
+      var baseSel    = form.querySelector('[name="base"]');
+      var customBaseInput = form.querySelector('[name="customBase"]');
+      var logResultInput  = form.querySelector('[name="logResult"]');
+
+      var rowValue   = form.querySelector('[data-row-value]');
+      var rowCustom  = form.querySelector('[data-row-custom-base]');
+      var rowResult  = form.querySelector('[data-row-log-result]');
+
+      var resultValueEl   = document.querySelector('[data-result-value]');
+      var resultInverseEl = document.querySelector('[data-result-inverse]');
+      var resultWorkingEl = document.querySelector('[data-result-working]');
+      var statsGrid       = document.querySelector('[data-stats-grid]');
+      var proveList       = document.querySelector('[data-prove-it-list]');
+      var proveBody       = document.querySelector('[data-prove-it-body]');
+      var proveDetails    = document.querySelector('[data-prove-it]');
+
+      function updateRowVisibility() {
+        var mode = modeSel.value;
+        // value mode: hide x input, show known log result
+        // base mode: show x input, show known log result, hide base select irrelevance? base still needed for solve only when not 'base' mode
+        if (mode === 'log') {
+          rowValue.hidden = false;
+          rowResult.hidden = true;
+        } else if (mode === 'value') {
+          rowValue.hidden = true;
+          rowResult.hidden = false;
+        } else if (mode === 'base') {
+          rowValue.hidden = false;
+          rowResult.hidden = false;
+        }
+        rowCustom.hidden = baseSel.value !== 'custom' || mode === 'base';
+      }
+      modeSel.addEventListener('change', updateRowVisibility);
+      baseSel.addEventListener('change', updateRowVisibility);
+      updateRowVisibility();
+
+      function pushInteraction(field) {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: 'calculator_interaction',
+          calculator_name: 'logarithm-calculator',
+          field: field
+        });
+      }
+      [valueInput, customBaseInput, logResultInput].forEach(function (el) {
+        if (!el) return;
+        el.addEventListener('input', function () { pushInteraction(el.name); });
+      });
+
+      if (proveDetails) {
+        proveDetails.addEventListener('toggle', function () {
+          if (proveDetails.open) {
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+              event: 'prove_it',
+              calculator_name: 'logarithm-calculator'
+            });
+          }
+        });
+      }
+
+      function fmt(n) { return window.LogarithmCalculator.formatNumber(n); }
+
+      function baseLabel(b) {
+        if (Math.abs(b - Math.E) < 1e-12) return 'e';
+        return fmt(b);
+      }
+
+      function render(r, ctx) {
+        if (r.kind === 'invalid') {
+          resultValueEl.textContent = r.error;
+          resultInverseEl.textContent = '';
+          resultWorkingEl.innerHTML = '';
+          statsGrid.hidden = true;
+          if (proveList) proveList.innerHTML = '';
+          if (proveBody) proveBody.innerHTML = '';
+          return;
+        }
+
+        var headline, inverseLine, working = '';
+        var steps = [];
+
+        if (r.mode === 'log') {
+          headline = 'log base ' + baseLabel(r.base) + ' of ' + fmt(r.value) + ' = ' + fmt(r.result);
+          inverseLine = 'Inverse: x = ' + baseLabel(r.base) + '^' + fmt(r.result) + ' = ' + fmt(r.inverse);
+          working = '<p>Using the change-of-base formula, log_b(x) = ln(x) / ln(b):</p>' +
+                    '<p>log_' + baseLabel(r.base) + '(' + fmt(r.value) + ') = ln(' + fmt(r.value) + ') / ln(' + baseLabel(r.base) + ') = ' +
+                    fmt(r.lnValue) + ' / ' + fmt(r.lnBase) + ' = ' + fmt(r.result) + '</p>';
+          steps = [
+            'Mode: solve for the log result.',
+            'Inputs: x = ' + fmt(r.value) + ', base = ' + baseLabel(r.base) + '.',
+            'Change of base: log_b(x) = ln(x) / ln(b).',
+            'ln(' + fmt(r.value) + ') = ' + fmt(r.lnValue) + '.',
+            'ln(' + baseLabel(r.base) + ') = ' + fmt(r.lnBase) + '.',
+            'Divide: ' + fmt(r.lnValue) + ' / ' + fmt(r.lnBase) + ' = ' + fmt(r.result) + '.',
+            'Inverse check: ' + baseLabel(r.base) + '^' + fmt(r.result) + ' = ' + fmt(r.inverse) + '.'
+          ];
+        } else if (r.mode === 'value') {
+          headline = 'x = ' + fmt(r.result);
+          inverseLine = 'Inverse: log base ' + baseLabel(r.base) + ' of ' + fmt(r.result) + ' = ' + fmt(r.logResult);
+          working = '<p>Solving for x given the base and the log result, by reversing the change-of-base relationship: x = b^result.</p>' +
+                    '<p>x = ' + baseLabel(r.base) + '^' + fmt(r.logResult) + ' = ' + fmt(r.result) + '</p>';
+          steps = [
+            'Mode: solve for x.',
+            'Inputs: base = ' + baseLabel(r.base) + ', log result = ' + fmt(r.logResult) + '.',
+            'Rearrange log_b(x) = y to x = b^y.',
+            'x = ' + baseLabel(r.base) + '^' + fmt(r.logResult) + ' = ' + fmt(r.result) + '.'
+          ];
+        } else if (r.mode === 'base') {
+          headline = 'base = ' + fmt(r.result);
+          inverseLine = 'Inverse: ' + fmt(r.result) + '^' + fmt(r.logResult) + ' = ' + fmt(r.inverse);
+          working = '<p>Solving for the base given x and the log result, by reversing the change-of-base relationship: b = x^(1/result).</p>' +
+                    '<p>b = ' + fmt(r.value) + '^(1/' + fmt(r.logResult) + ') = ' + fmt(r.result) + '</p>';
+          steps = [
+            'Mode: solve for the base.',
+            'Inputs: x = ' + fmt(r.value) + ', log result = ' + fmt(r.logResult) + '.',
+            'Rearrange log_b(x) = y to b = x^(1/y).',
+            'b = ' + fmt(r.value) + '^(1/' + fmt(r.logResult) + ') = ' + fmt(r.result) + '.',
+            'Inverse check: ' + fmt(r.result) + '^' + fmt(r.logResult) + ' = ' + fmt(r.inverse) + '.'
+          ];
+        }
+
+        resultValueEl.textContent = headline;
+        resultInverseEl.textContent = inverseLine;
+        resultWorkingEl.innerHTML = working;
+        statsGrid.hidden = false;
+
+        if (proveList) {
+          proveList.innerHTML = steps.map(function (s) { return '<li>' + s + '</li>'; }).join('');
+        }
+        if (proveBody) {
+          proveBody.innerHTML = '<p>' + headline + '</p><p>' + inverseLine + '</p>';
+        }
+      }
+
+      function readNumber(el) {
+        var raw = el && el.value;
+        if (raw === null || raw === undefined || String(raw).trim() === '') return NaN;
+        var n = Number(raw);
+        return Number.isFinite(n) ? n : NaN;
+      }
+
+      function calculateAndRender() {
+        var mode = modeSel.value;
+        var base = window.LogarithmCalculator.resolveBase(baseSel.value, customBaseInput.value);
+        var opts = { mode: mode, base: base };
+
+        if (mode === 'log') {
+          opts.value = readNumber(valueInput);
+        } else if (mode === 'value') {
+          opts.logResult = readNumber(logResultInput);
+        } else if (mode === 'base') {
+          opts.value = readNumber(valueInput);
+          opts.logResult = readNumber(logResultInput);
+        }
+
+        var r = window.LogarithmCalculator.computeLog(opts);
+        render(r);
+
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: 'calculator_result',
+          calculator_name: 'logarithm-calculator',
+          mode: mode,
+          base: Number.isFinite(base) ? base : null,
+          result: r.kind === 'ok' ? r.result : null,
+          kind: r.kind
+        });
+      }
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        calculateAndRender();
+      });
+    })();
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

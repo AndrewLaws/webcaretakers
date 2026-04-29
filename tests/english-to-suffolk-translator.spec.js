@@ -93,5 +93,5 @@ test('dataLayer fires on first input', async ({ page }) => {
 
 test('Writing hub lists the translator', async ({ page }) => {
   await page.goto('/calculators/writing/');
-  await expect(page.locator('a[href="/calculators/writing/english-to-suffolk-translator/"]')).toBeVisible();
+  await expect(page.locator('a[href="/calculators/writing/english-to-suffolk-translator/"]').first()).toBeVisible();
 });

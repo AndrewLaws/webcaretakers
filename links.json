@@ -263,6 +263,18 @@
       "url": "/calculators/broadband/cloud-backup-time-estimator/"
     },
     {
+      "phrase": "Streaming Quality Calculator",
+      "url": "/calculators/broadband/streaming-quality-calculator/"
+    },
+    {
+      "phrase": "streaming quality calculator",
+      "url": "/calculators/broadband/streaming-quality-calculator/"
+    },
+    {
+      "phrase": "what streaming quality can my broadband handle",
+      "url": "/calculators/broadband/streaming-quality-calculator/"
+    },
+    {
       "phrase": "Percentage Calculator",
       "url": "/calculators/math/percentage-calculator/"
     },
@@ -997,6 +1009,66 @@
     {
       "phrase": "is my ping good enough",
       "url": "/calculators/broadband/latency-impact-calculator/"
+    },
+    {
+      "phrase": "ISP Speed Reality Check",
+      "url": "/calculators/broadband/isp-speed-reality-check/"
+    },
+    {
+      "phrase": "isp speed reality check",
+      "url": "/calculators/broadband/isp-speed-reality-check/"
+    },
+    {
+      "phrase": "actual broadband speed vs advertised",
+      "url": "/calculators/broadband/isp-speed-reality-check/"
+    },
+    {
+      "phrase": "Logarithm Calculator",
+      "url": "/calculators/math/logarithm-calculator/"
+    },
+    {
+      "phrase": "logarithm calculator",
+      "url": "/calculators/math/logarithm-calculator/"
+    },
+    {
+      "phrase": "log base change of base formula",
+      "url": "/calculators/math/logarithm-calculator/"
+    },
+    {
+      "phrase": "Combinations & Permutations Calculator",
+      "url": "/calculators/math/combinations-permutations-calculator/"
+    },
+    {
+      "phrase": "combinations permutations calculator",
+      "url": "/calculators/math/combinations-permutations-calculator/"
+    },
+    {
+      "phrase": "nCr nPr factorial calculator",
+      "url": "/calculators/math/combinations-permutations-calculator/"
+    },
+    {
+      "phrase": "Image DPI / Print Size Calculator",
+      "url": "/calculators/images/image-dpi-print-size-calculator/"
+    },
+    {
+      "phrase": "image dpi print size calculator",
+      "url": "/calculators/images/image-dpi-print-size-calculator/"
+    },
+    {
+      "phrase": "pixels to print size DPI",
+      "url": "/calculators/images/image-dpi-print-size-calculator/"
+    },
+    {
+      "phrase": "Color Depth & Storage Calculator",
+      "url": "/calculators/images/color-depth-calculator/"
+    },
+    {
+      "phrase": "color depth calculator",
+      "url": "/calculators/images/color-depth-calculator/"
+    },
+    {
+      "phrase": "bit depth image storage size",
+      "url": "/calculators/images/color-depth-calculator/"
     }
   ]
 }

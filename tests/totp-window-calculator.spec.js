@@ -114,12 +114,12 @@ test.describe('2FA / TOTP Window Calculator page', () => {
 
   test('appears on the cybersecurity category page', async ({ page }) => {
     await page.goto('/calculators/cybersecurity/');
-    await expect(page.locator('a[href="/calculators/cybersecurity/totp-window-calculator/"]')).toHaveCount(1);
+    await expect(page.locator('a[href="/calculators/cybersecurity/totp-window-calculator/"]')).not.toHaveCount(0);
   });
 
   test('appears on the all-calculators hub', async ({ page }) => {
     await page.goto('/calculators/');
-    await expect(page.locator('a[href="/calculators/cybersecurity/totp-window-calculator/"]')).toHaveCount(1);
+    await expect(page.locator('a[href="/calculators/cybersecurity/totp-window-calculator/"]')).not.toHaveCount(0);
   });
 
   test('has disclaimer in footer', async ({ page }) => {

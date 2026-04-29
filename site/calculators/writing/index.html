@@ -157,10 +157,28 @@
         <h1>Writing calculators</h1>
         <p class="intro hub-intro">Tools for writers, editors, and anyone who has ever needed to know whether a bit of prose is too long, too short, or just right. Nothing here gets uploaded or stored. Paste your text in, get the numbers, close the tab.</p>
 
+        <section class="long-form">
+          <h2>What writing calculators actually solve</h2>
+          <p>Writing is mostly judgement. No tool is going to tell you whether a sentence is good. What a tool can do, and where the calculators in this category earn their place, is answer the small mechanical questions that get in the way of the judgement: is this paragraph too dense for the audience, will this headline land at half-strength because it is twelve words long, has the word "leverage" snuck in three times in the same section, is the read time on this article going to scare a casual visitor off. None of those questions need a person, and none of them need an upload to a third-party server. They need a quick, accurate count, and the headspace to keep writing.</p>
+          <p>The other reason these tools exist is privacy. A surprising number of free writing tools quietly send your draft to a server, log it, and in some cases use it as training data. For an unpublished blog post that is annoying. For a resignation letter, a complaint to a regulator, a pitch deck draft, a piece of confidential client work, or anything covered by an NDA, it is a problem. Everything in this category runs in the browser. The text is parsed locally, the counts are calculated locally, nothing is uploaded.</p>
+
+          <h3>Where the inputs come from</h3>
+          <p>The input is always the same: paste the draft. The interesting question is which version of the draft. For readability scoring, paste the body copy without the headline and the boilerplate. Counting an H1 with eight short words alongside a long paragraph drags the average sentence length down and gives you a misleading score. The <a href="/calculators/writing/flesch-reading-ease-calculator/">Flesch Reading Ease Calculator</a> wants the prose, not the page furniture.</p>
+          <p>For read-time estimates, the same logic applies but with a wrinkle. The <a href="/calculators/writing/read-time-calculator/">Read Time Calculator</a> gives you both silent and read-aloud figures, because they are useful for different things. Silent is what you put on a blog post header. Read-aloud is what matters for a speech, a podcast script, a wedding reading, or a video voiceover. A typical podcast or audiobook narrator runs at 150 to 160 words per minute. A wedding reading wants closer to 130. The defaults are sensible but configurable, because no two voices are the same.</p>
+          <p>For headline scoring, paste the actual headline you are considering, not a paraphrase. The <a href="/calculators/writing/headline-power-word-score/">Headline Power-Word Score</a> looks at length, power-word density, sentiment skew, presence of numbers, and the stop-word ratio. It is a diagnostic, not a verdict. A perfectly good headline can score in the middle of the range; a clickbait headline can score at the top. Use it to spot the headline you wrote at 4pm on a Friday that is missing something, not to optimise away your judgement.</p>
+
+          <h3>Common mistakes</h3>
+          <p>The first is treating Flesch scores as a target. Aiming for "Reading Ease 70" on every piece of writing produces flat, primary-school prose. The right score depends on the audience. Tabloid front pages sit around 60 to 70. Broadsheet feature writing is happily in the 50s. Academic and legal writing lives in the 30s and 40s and there is no point pretending otherwise. The score is a sense-check, not a goal.</p>
+          <p>The second is over-trusting word count limits. A meta description has a pixel limit, not a character limit, but a tweet has a real character ceiling, an SMS has a real ceiling, and an SEO title gets pixel-truncated by Google. The <a href="/calculators/writing/word-count/">Word Count Tool</a> shows the four most common limits side by side because they each work differently and confusing them is how content ends up cut off.</p>
+          <p>The third is editing for the score instead of the reader. A tool can tell you a sentence is 38 words long and probably worth breaking up. It cannot tell you whether the rhythm of a particular long sentence is doing useful work in a particular paragraph. Sometimes a long sentence is exactly right. Use the numbers as a prompt to look at the writing again, not as an instruction to chop.</p>
+
+          <p>If you only bookmark one tool from this category, make it the <a href="/calculators/writing/word-count/">Word Count Tool</a>. It does the boring counting jobs that come up in every writing day, and it never asks for your email. More tools are queued up: a passive-voice highlighter, a sentence-length distribution viewer, and a transition-word frequency checker.</p>
+        </section>
+
         <ul class="category-grid">
           <li class="category-card">
             <h2><a href="/calculators/writing/flesch-reading-ease-calculator/">Flesch Reading Ease Score Calculator</a></h2>
-            <p>Paste text and see its Flesch Reading Ease score and Flesch-Kincaid Grade Level live as you type, with the word, sentence and syllable counts that produced them.</p>
+            <p>Paste text and see its <a href="/calculators/writing/flesch-reading-ease-calculator/">Flesch Reading Ease</a> score and Flesch-Kincaid Grade Level live as you type, with the word, sentence and syllable counts that produced them.</p>
           </li>
           <li class="category-card">
             <h2><a href="/calculators/writing/read-time-calculator/">Read Time Calculator</a></h2>

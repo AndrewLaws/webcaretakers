@@ -67,7 +67,7 @@ test('prove-it workings populated with counts', async ({ page }) => {
 
 test('writing hub lists read time calculator', async ({ page }) => {
   await page.goto('/calculators/writing/');
-  await expect(page.locator('a[href="/calculators/writing/read-time-calculator/"]')).toBeVisible();
+  await expect(page.locator('a[href="/calculators/writing/read-time-calculator/"]').first()).toBeVisible();
 });
 
 test('primary nav includes Writing link', async ({ page }) => {

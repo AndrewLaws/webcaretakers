@@ -89,5 +89,5 @@ test('prove-it workings populated', async ({ page }) => {
 
 test('fun hub lists this calculator', async ({ page }) => {
   await page.goto('/calculators/fun/');
-  await expect(page.locator('a[href="/calculators/fun/date-difference-calculator/"]')).toBeVisible();
+  await expect(page.locator('a[href="/calculators/fun/date-difference-calculator/"]').first()).toBeVisible();
 });

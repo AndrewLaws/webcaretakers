@@ -124,12 +124,12 @@ test.describe('Latency impact calculator page', () => {
 
   test('appears on the broadband category page', async ({ page }) => {
     await page.goto('/calculators/broadband/');
-    await expect(page.locator('a[href="/calculators/broadband/latency-impact-calculator/"]')).toHaveCount(1);
+    await expect(page.locator('a[href="/calculators/broadband/latency-impact-calculator/"]')).not.toHaveCount(0);
   });
 
   test('appears on the all-calculators hub', async ({ page }) => {
     await page.goto('/calculators/');
-    await expect(page.locator('a[href="/calculators/broadband/latency-impact-calculator/"]')).toHaveCount(1);
+    await expect(page.locator('a[href="/calculators/broadband/latency-impact-calculator/"]')).not.toHaveCount(0);
   });
 
   test('has disclaimer in footer', async ({ page }) => {

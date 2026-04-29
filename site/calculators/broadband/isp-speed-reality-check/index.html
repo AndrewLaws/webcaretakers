@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ISP Speed Reality Check: What Speed Will You Actually Get? | WebCaretakers</title>
+  <meta name="description" content="Compare the broadband speed your ISP advertises against the realistic speed you will actually see, factoring in line type, attenuation, wifi loss and peak hour contention.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/broadband/isp-speed-reality-check/">
+  <meta property="og:title" content="ISP Speed Reality Check | WebCaretakers">
+  <meta property="og:description" content="Estimate the realistic broadband speed you actually get versus what your ISP sells. Line attenuation, wifi loss and peak hour contention all factored in.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/broadband/isp-speed-reality-check/">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var _stored = null;
+    try { _stored = localStorage.getItem('cookie-consent'); } catch (e) {}
+    var _initial = _stored === 'granted' ? 'granted' : 'denied';
+    gtag('consent', 'default', {
+      ad_storage: _initial, analytics_storage: _initial,
+      ad_user_data: _initial, ad_personalization: _initial,
+      functionality_storage: 'granted', security_storage: 'granted',
+      wait_for_update: 500
+    });
+  </script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "ISP Speed Reality Check",
+    "url": "https://webcaretakers.com/calculators/broadband/isp-speed-reality-check/",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "description": "Estimate what broadband speed you actually get versus what your ISP advertises, based on connection type, distance from cabinet, line quality, router placement, wifi standard and peak hour contention.",
+    "offers": { "@type": "Offer", "price": "0" },
+    "author": { "@type": "Person", "name": "Andrew Laws", "url": "https://yeseo.io/" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Why am I not getting the broadband speed I pay for?",
+        "acceptedAnswer": { "@type": "Answer", "text": "ISPs advertise the maximum theoretical sync speed your line can hit in lab conditions. What you actually get depends on the connection type, how far you sit from the street cabinet on FTTC and ADSL, the quality of the copper between your home and the cabinet, where your router sits in the house, the wifi standard your router supports, and how busy the local network is at the time of day you test. All of those chip away at the headline figure." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does the distance from the cabinet really matter?",
+        "acceptedAnswer": { "@type": "Answer", "text": "On FTTC (fibre to the cabinet) and ADSL2+, yes, a lot. Both technologies still rely on copper from the cabinet to your house, and the signal weakens with distance. A property 200 metres from the cabinet might sync at 80 Mbps. The same line at 1.5 kilometres might be lucky to see 25. On full fibre (FTTP) the fibre runs all the way to the property, so distance is no longer the bottleneck." }
+      },
+      {
+        "@type": "Question",
+        "name": "How much speed do I lose to wifi?",
+        "acceptedAnswer": { "@type": "Answer", "text": "More than most people think. Sat next to the router on wifi 6, you might lose 10 to 20 percent. Two walls away on older wifi 4 or 5, you can lose more than half. The router standard sets a hard ceiling on what wifi can deliver regardless of how fast the line is, which is why a 900 Mbps full fibre line through a wifi 4 router will never push much more than 150 Mbps to the device." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is peak hour contention?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Broadband providers oversubscribe their networks because most users do not all stream at once. During peak hours, typically 7pm to 11pm, more people are online and the shared parts of the network get busier. Speeds at peak can dip 10 to 20 percent below off-peak figures. Ofcom's voluntary code requires UK ISPs to publish realistic peak speeds, which is why ads now quote average speeds at 8pm." }
+      },
+      {
+        "@type": "Question",
+        "name": "Should I switch ISP if I am getting much less than advertised?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Maybe. First check whether the bottleneck is the line, the router or the wifi. If a wired test next to the router still falls well short of the advertised sync speed, talk to the ISP, they may be able to fix a fault. If the wired sync is fine but wifi is poor, a router upgrade is cheaper than switching provider. If the line itself simply cannot deliver and FTTP is available in your area, that is the real upgrade path." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-banner-heading" aria-describedby="cookie-banner-text" hidden>
+    <div class="cookie-banner__inner">
+      <h2 id="cookie-banner-heading" class="cookie-banner__heading">A quick word about cookies</h2>
+      <p id="cookie-banner-text" class="cookie-banner__text">
+        We use cookies for analytics, so we can see which calculators people actually use and which ones need work. Nothing creepy, nothing sold on. You can say yes, say no, or read the <a href="/privacy/">privacy policy</a> first. Your choice sticks.
+      </p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-reject>Reject</button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>Accept</button>
+      </div>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">WebCaretakers</a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <ul class="primary-nav__list">
+          <li class="primary-nav__item primary-nav__item--has-menu">
+            <button type="button" class="primary-nav__link" data-menu-toggle aria-haspopup="true" aria-expanded="false">Calculators <span class="primary-nav__caret" aria-hidden="true">&#9662;</span></button>
+            <ul class="primary-nav__submenu">
+              <li><a href="/calculators/ai/">AI</a></li>
+              <li><a href="/calculators/broadband/">Broadband</a></li>
+              <li><a href="/calculators/business/">Business</a></li>
+              <li><a href="/calculators/conversions/">Conversions</a></li>
+              <li><a href="/calculators/cybersecurity/">Cybersecurity</a></li>
+              <li><a href="/calculators/finance/">Finance</a></li>
+              <li><a href="/calculators/fun/">Fun</a></li>
+              <li><a href="/calculators/health/">Health</a></li>
+              <li><a href="/calculators/images/">Images</a></li>
+              <li><a href="/calculators/math/">Math</a></li>
+              <li><a href="/calculators/productivity/">Productivity</a></li>
+              <li><a href="/calculators/property/">Property</a></li>
+              <li><a href="/calculators/seo/">SEO</a></li>
+              <li><a href="/calculators/wedding/">Wedding</a></li>
+              <li><a href="/calculators/writing/">Writing</a></li>
+              <li class="primary-nav__submenu-sep"><a href="/calculators/">See all calculators</a></li>
+            </ul>
+          </li>
+          <li class="primary-nav__item"><a href="/about/" class="primary-nav__link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <main id="main-content">
+      <div class="container">
+        <nav aria-label="Breadcrumb" class="breadcrumbs">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/calculators/">Calculators</a></li>
+            <li><a href="/calculators/broadband/">Broadband</a></li>
+            <li aria-current="page">ISP Speed Reality Check</li>
+          </ol>
+        </nav>
+
+        <h1>ISP Speed Reality Check</h1>
+        <p class="intro">Your ISP sells you a number. Your devices show you a different number. This calculator works out the gap, how big it is, and which bit of the chain (the line, the router, the wifi, the time of day) is doing the damage.</p>
+
+        <section class="eli5" aria-label="Plain-English explanation">
+          <h2>Explain like I'm 5 (what even is this calculator?)</h2>
+          <p>Tell it the speed your ISP advertised, what kind of broadband you have, where the router lives in the house, and what time of day you usually test. It tells you, in plain numbers, how fast you should actually expect things to feel, and what is to blame for the gap.</p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="in-content" aria-hidden="true"></div>
+
+        <section data-calculator class="calculator-card" aria-labelledby="calc-heading">
+          <h2 id="calc-heading">Check your real-world speed</h2>
+          <form id="reality-form" class="calc-form" novalidate>
+            <div class="calc-row">
+              <label for="inp-advertised">Advertised speed (Mbps)</label>
+              <input type="number" id="inp-advertised" name="advertisedSpeed" min="1" step="1" value="100" required>
+              <p class="calc-row__hint">The headline download speed your ISP sells you.</p>
+            </div>
+
+            <div class="calc-row">
+              <label for="inp-connection">Connection type</label>
+              <select id="inp-connection" name="connectionType" required>
+                <option value="fttp" selected>FTTP (full fibre)</option>
+                <option value="fttc">FTTC / VDSL (fibre to the cabinet)</option>
+                <option value="adsl">ADSL2+</option>
+                <option value="cable-docsis30">Cable (DOCSIS 3.0)</option>
+                <option value="cable-docsis31">Cable (DOCSIS 3.1)</option>
+                <option value="5g-fwa">5G fixed wireless</option>
+                <option value="4g-fwa">4G fixed wireless</option>
+              </select>
+            </div>
+
+            <div class="calc-row">
+              <label for="inp-distance">Distance from cabinet (metres)</label>
+              <input type="number" id="inp-distance" name="distanceFromCabinet" min="0" step="10" value="300">
+              <p class="calc-row__hint">Only matters for FTTC / VDSL and ADSL. Ignored on full fibre, cable and fixed wireless.</p>
+            </div>
+
+            <div class="calc-row">
+              <label for="inp-quality">Line quality</label>
+              <select id="inp-quality" name="lineQuality" required>
+                <option value="excellent">Excellent (new copper, no joints)</option>
+                <option value="good" selected>Good (typical)</option>
+                <option value="average">Average (older copper)</option>
+                <option value="poor">Poor (long copper, joints, damp)</option>
+              </select>
+            </div>
+
+            <div class="calc-row">
+              <label for="inp-router-location">Where is your device, relative to the router?</label>
+              <select id="inp-router-location" name="routerLocation" required>
+                <option value="next-to-device">Next to the router (or wired)</option>
+                <option value="same-room" selected>Same room</option>
+                <option value="one-wall">One wall away</option>
+                <option value="two-walls">Two walls (or a floor) away</option>
+              </select>
+            </div>
+
+            <div class="calc-row">
+              <label for="inp-router-standard">Router wifi standard</label>
+              <select id="inp-router-standard" name="routerStandard" required>
+                <option value="wifi4">Wifi 4 (802.11n)</option>
+                <option value="wifi5">Wifi 5 (802.11ac)</option>
+                <option value="wifi6" selected>Wifi 6 (802.11ax)</option>
+                <option value="wifi6e">Wifi 6E</option>
+                <option value="wifi7">Wifi 7</option>
+              </select>
+            </div>
+
+            <div class="calc-row calc-row--checkbox">
+              <label for="inp-peak">Testing during peak hours (7pm to 11pm)</label>
+              <input type="checkbox" id="inp-peak" name="peakHour">
+            </div>
+
+            <button type="submit" data-calculate>Run the reality check</button>
+          </form>
+
+          <div data-calculator-results class="calculator-results" aria-live="polite">
+            <p class="result-display" data-result-placeholder>Fill in the form and press the button to see how your real speed compares to the advertised one.</p>
+            <div class="result-summary" hidden data-result-summary>
+              <p>Estimated wired sync speed: <strong data-result-wired></strong></p>
+              <p>Estimated speed at the device (over wifi): <strong data-result-wifi></strong></p>
+              <p>Percentage of advertised: <strong data-result-percent></strong></p>
+              <p>Main bottleneck: <strong data-result-bottleneck></strong></p>
+              <p>Recommendation: <span data-result-recommendation></span></p>
+
+              <details class="prove-it" data-prove-it>
+                <summary>Prove it</summary>
+                <div data-prove-it-body>
+                  <p>Here is the working from advertised speed down to the figure your device sees. Each step takes a slice off in the order signals actually drop in the real world.</p>
+                  <ul data-prove-it-list></ul>
+                  <p class="prove-it-source">Attenuation rules of thumb come from the ITU G.993.2 (VDSL2) and G.992.5 (ADSL2+) curves; wifi caps reflect typical real-world throughput, which is well below the marketing PHY rate (the IEEE link rate). Peak-hour contention follows the Ofcom voluntary speed code published average for UK fixed-line ISPs.</p>
+                </div>
+              </details>
+            </div>
+
+            <p class="bookmark-nudge">
+              <strong>Save this calculator:</strong>
+              press <kbd data-bookmark-shortcut>Ctrl</kbd> + <kbd>D</kbd> to bookmark it in your browser.
+            </p>
+          </div>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="below-results" aria-hidden="true"></div>
+
+        <div data-cta="next-step" class="cta-block">
+          <h3>Reality check came back disappointing?</h3>
+          <p>If the line itself is the bottleneck, a faster package, or full fibre where it is available, is the real fix. Compare what is on offer at your address.</p>
+          <a href="https://www.awin1.com/cread.php?awinmid=12213&awinaffid=202051&ued=https%3A%2F%2Fwww.broadband.co.uk%2F" class="cta-link" rel="noopener sponsored" data-cta-link>Compare broadband deals at broadband.co.uk</a>
+        </div>
+
+        <section class="long-form">
+          <h2>Why your real speed is almost never the advertised speed</h2>
+          <p>Broadband adverts quote a number that, technically, exists. It is the figure the line could sync at if every variable lined up at once: a short, clean piece of copper, a router parked in the next room from your laptop, a wifi standard newer than your kettle, and a Tuesday afternoon when nobody else is online. That number is real, in the sense that an Olympic 100 metre time is real. It is not, however, the number you experience on a Wednesday evening with three streams running and the router behind a fish tank.</p>
+
+          <p>The gap between sold speed and felt speed has four main culprits. Line attenuation, where the copper between your house and the cabinet eats signal, hits FTTC and ADSL hardest and full fibre not at all. Wifi loss eats anything wireless, with the size of the bite set by the router standard and how many walls between you and it. Router standard caps anything wifi can do regardless of how fast the line is. Peak hour contention takes a flat percentage off everyone's evening because the network is busier. This calculator pulls all four apart so you can see which one is actually costing you.</p>
+
+          <h2>FTTC, FTTP and the difference distance makes</h2>
+          <p>On FTTC, the fibre stops at the green street cabinet and copper takes over from there. That copper is the limiting factor: at around 200 metres a VDSL2 line can sync at the full 80 Mbps. By 500 metres it is closer to 60. By 1.5 kilometres you are lucky to see 25, and by 2 kilometres you are squarely back in ADSL territory. ADSL2+ is the same physics, on older copper, with a softer ceiling. FTTP runs the fibre all the way to the property and the copper limit goes away entirely. If your address has FTTP available and you are still on FTTC, distance is the upgrade conversation.</p>
+
+          <h2>Cable and fixed wireless are different beasts</h2>
+          <p>DOCSIS 3.0 cable lines typically deliver close to advertised in the morning and noticeably less at peak, because cable has historically been a shared local segment. DOCSIS 3.1 is much better at handling load and tends to keep its evening speeds within a few percent of off-peak. 5G fixed wireless can be excellent or rotten depending on signal strength to the local mast and how many other people are connected to it. 4G FWA is fine for an emergency, but on a busy mast it gives up quickly. None of those technologies suffer from copper attenuation, but contention and signal strength take their place.</p>
+
+          <h2>Why your wifi is probably the real bottleneck</h2>
+          <p>If you have a 500 Mbps line and your laptop reports 90 Mbps, the line is not the problem. The wifi is. Real-world wifi throughput, the figure that ends up at the device, is roughly half the marketing PHY rate at best, and falls off a cliff with each wall. Wifi 4 caps out around 150 Mbps in practice. Wifi 5 manages 300 to 500 Mbps in the same room. Wifi 6 starts approaching the gigabit line speeds full fibre offers, and 6E and 7 widen that further with the 6 GHz band. If you upgraded your line and not the router, you paid for capacity you cannot reach.</p>
+
+          <h2>Peak hour contention, and why ads now quote 8pm</h2>
+          <p>Ofcom's voluntary code on broadband speeds requires UK ISPs to publish a realistic peak-time average, measured at 8pm on a weekday, alongside any "up to" figure they advertise. The gap between the two is usually 10 to 20 percent. The reason is contention: the local exchange, the backhaul to the wider internet, and the ISP's own capacity are all sized on an assumption that not everyone is streaming at the same time. When everyone does, those shared bits get squeezed. There is nothing wrong with the line. There is just more demand on the network.</p>
+
+          <h2>If the calculator says your speed is fine and it does not feel fine</h2>
+          <p>Speed is not the only thing that makes a connection feel fast. Latency, jitter and packet loss can ruin an otherwise quick line, especially for video calls and gaming. If the reality check says you should be getting close to advertised but the experience is still bad, it is worth running a <a href="/calculators/broadband/latency-impact-calculator/">latency impact check</a> and a <a href="/calculators/broadband/vpn-throughput-calculator/">VPN throughput estimate</a> if you are routing through one. Bandwidth is the easy thing to talk about. Latency is the thing that actually decides whether your call freezes.</p>
+
+          <h2>Related calculators</h2>
+          <ul class="related-calculators">
+            <li><a href="/calculators/broadband/broadband-bandwidth-calculator/">Work out how much speed your household actually needs</a></li>
+            <li><a href="/calculators/broadband/latency-impact-calculator/">Check how latency affects gaming, calls and browsing</a></li>
+            <li><a href="/calculators/broadband/vpn-throughput-calculator/">Estimate effective speed through a VPN</a></li>
+            <li><a href="/calculators/broadband/">All broadband calculators</a></li>
+          </ul>
+        </section>
+
+        <section class="faq" aria-labelledby="faq-heading">
+          <h2 id="faq-heading">Frequently asked questions</h2>
+          <details>
+            <summary>Why am I not getting the broadband speed I pay for?</summary>
+            <p>ISPs advertise the maximum sync speed your line can hit in lab conditions. Distance from the cabinet, copper quality, where the router lives, the wifi standard it supports and peak-hour contention all chip pieces off the headline figure.</p>
+          </details>
+          <details>
+            <summary>Does distance from the cabinet really matter?</summary>
+            <p>On FTTC and ADSL, yes, a lot. On FTTP it does not, because the fibre runs all the way to the property.</p>
+          </details>
+          <details>
+            <summary>How much speed do I lose to wifi?</summary>
+            <p>More than most people think. Two walls away on wifi 4 you can lose more than half the line speed. Wifi 6 next to the router barely registers a hit.</p>
+          </details>
+          <details>
+            <summary>What is peak-hour contention?</summary>
+            <p>Shared parts of the network get busier in the evening, so speeds dip 10 to 20 percent at peak compared to off-peak. UK ISPs now have to publish a realistic 8pm average alongside any "up to" figure.</p>
+          </details>
+          <details>
+            <summary>Should I switch ISP if I am getting much less than advertised?</summary>
+            <p>Find out what the bottleneck is first. If wired sync is fine and the wifi is poor, a router upgrade is cheaper than switching. If the line itself is the limit and FTTP is available, that is the upgrade conversation.</p>
+          </details>
+        </section>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="ad-slot" data-ad-slot="sidebar" aria-hidden="true"></div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="site-footer-nav" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/calculators/">All calculators</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+
+      <section class="site-disclaimer" data-disclaimer aria-labelledby="disclaimer-heading">
+        <h2 id="disclaimer-heading">A quick, necessary word</h2>
+        <p>Every calculator on this site is built to give you a sensible, well-reasoned estimate. It is, however, exactly that: an estimate, for general information only. Nothing you see here is professional, legal, financial, medical, or tax advice, and it should not be treated as such.</p>
+        <p>Before you make a decision that actually matters, talk to a qualified professional who knows your specific situation: an accountant, a solicitor, a doctor, an IT consultant, whoever fits the question. They can factor in the bits a generic tool can't.</p>
+        <p>We take no liability and accept no responsibility for any loss, damage, or questionable life choice arising from acting on the numbers you see here. Use the results as a starting point for a better conversation, not as the final word.</p>
+        <p><strong>Affiliate disclosure:</strong> some links on this site are affiliate links. If you click through and buy or sign up for something, we may earn a small commission at no extra cost to you. It helps keep the calculators free and ad-light. We only recommend things we'd point a friend towards.</p>
+      </section>
+      <p class="site-copyright">&copy; 2026 WebCaretakers. All rights reserved.</p>
+      <p class="site-legal">WebCaretakers is a trading name of <a href="https://yeseo.io/" rel="noopener">Andrew Laws Associates Ltd</a>, registered in England and Wales (company no. 08602332). ICO registration ZA726704.</p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var form = document.getElementById('reality-form');
+      if (!form) return;
+      var summary = document.querySelector('[data-result-summary]');
+      var placeholder = document.querySelector('[data-result-placeholder]');
+      var wiredEl = document.querySelector('[data-result-wired]');
+      var wifiEl = document.querySelector('[data-result-wifi]');
+      var percentEl = document.querySelector('[data-result-percent]');
+      var bottleneckEl = document.querySelector('[data-result-bottleneck]');
+      var recEl = document.querySelector('[data-result-recommendation]');
+      var proveListEl = document.querySelector('[data-prove-it-list]');
+
+      // Connection type sync efficiency: how close to the advertised figure the wired sync gets
+      // before any line attenuation is applied. FTTP/cable-31 are tightest; ADSL/4G the loosest.
+      var CONNECTION_BASE = {
+        'fttp': 0.98,
+        'fttc': 0.92,
+        'adsl': 0.85,
+        'cable-docsis30': 0.90,
+        'cable-docsis31': 0.97,
+        '5g-fwa': 0.85,
+        '4g-fwa': 0.70
+      };
+
+      // Connections affected by copper distance from the cabinet
+      var DISTANCE_AFFECTED = { 'fttc': true, 'adsl': true };
+
+      var QUALITY_FACTOR = {
+        'excellent': 1.00,
+        'good': 0.95,
+        'average': 0.88,
+        'poor': 0.78
+      };
+
+      // Wifi caps, real-world throughput in Mbps (not marketing PHY rate)
+      var WIFI_CAP = {
+        'wifi4': 150,
+        'wifi5': 500,
+        'wifi6': 900,
+        'wifi6e': 1400,
+        'wifi7': 2200
+      };
+
+      // Multiplier applied to the wifi cap based on router location
+      var LOCATION_FACTOR = {
+        'next-to-device': 1.00, // wired or right next to the router, no wifi loss
+        'same-room': 0.85,
+        'one-wall': 0.65,
+        'two-walls': 0.40
+      };
+
+      var PEAK_FACTOR = 0.85;
+
+      function distanceAttenuation(metres) {
+        // Rough VDSL/ADSL curve: full speed up to 200 m, then linear decay.
+        if (metres <= 200) return 1.0;
+        if (metres >= 2000) return 0.25;
+        // 200 m -> 1.0, 2000 m -> 0.25
+        return 1.0 - ((metres - 200) / 1800) * 0.75;
+      }
+
+      function fmtMbps(v) {
+        return v.toFixed(1) + ' Mbps';
+      }
+
+      function pushInteraction(field, value) {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: 'calculator_interaction',
+          calculator_name: 'isp-speed-reality-check',
+          field: field,
+          value: value
+        });
+      }
+
+      form.addEventListener('input', function (e) {
+        var t = e.target;
+        var val = t.type === 'checkbox' ? t.checked : t.value;
+        pushInteraction(t.name || t.id, val);
+      });
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        var fd = new FormData(form);
+        var advertised = parseFloat(fd.get('advertisedSpeed')) || 0;
+        var connectionType = fd.get('connectionType');
+        var distance = parseFloat(fd.get('distanceFromCabinet')) || 0;
+        var lineQuality = fd.get('lineQuality');
+        var routerLocation = fd.get('routerLocation');
+        var routerStandard = fd.get('routerStandard');
+        var peakHour = form.querySelector('[name="peakHour"]').checked;
+
+        if (advertised <= 0) {
+          placeholder.hidden = false;
+          summary.hidden = true;
+          placeholder.textContent = 'Please enter an advertised speed greater than zero.';
+          return;
+        }
+
+        var connectionBase = CONNECTION_BASE[connectionType] || 0.9;
+        var qualityFactor = QUALITY_FACTOR[lineQuality] || 0.9;
+        var distanceFactor = DISTANCE_AFFECTED[connectionType] ? distanceAttenuation(distance) : 1.0;
+
+        // Wired sync: advertised speed knocked down by connection-type efficiency,
+        // line quality, and (for copper-based) distance from the cabinet.
+        var wiredSync = advertised * connectionBase * qualityFactor * distanceFactor;
+
+        // Peak hour contention applies to the line, before wifi.
+        var contentionFactor = peakHour ? PEAK_FACTOR : 1.0;
+        var lineDelivered = wiredSync * contentionFactor;
+
+        // Wifi cap is the hard ceiling the router/wifi standard can push to a device,
+        // attenuated by where the device sits relative to the router.
+        var wifiCeiling = (WIFI_CAP[routerStandard] || 500) * (LOCATION_FACTOR[routerLocation] || 0.85);
+
+        // Final figure at the device is the lower of the line delivered and the wifi ceiling.
+        var atDevice = Math.min(lineDelivered, wifiCeiling);
+
+        var percent = (atDevice / advertised) * 100;
+
+        // Identify bottleneck
+        var bottleneck;
+        var lineLossPct = (1 - (wiredSync / advertised)) * 100;
+        var wifiLossPct = wifiCeiling < lineDelivered ? ((lineDelivered - wifiCeiling) / advertised) * 100 : 0;
+        var contentionLossPct = peakHour ? ((wiredSync - lineDelivered) / advertised) * 100 : 0;
+
+        if (wifiCeiling < lineDelivered && (lineDelivered - wifiCeiling) > advertised * 0.05) {
+          // Distinguish router-standard cap (a low absolute ceiling) from location-based wifi loss
+          var rawCap = WIFI_CAP[routerStandard] || 500;
+          if (rawCap < lineDelivered) {
+            bottleneck = 'Router wifi standard (' + routerStandard.replace('wifi', 'wifi ') + ' caps below your line speed)';
+          } else {
+            bottleneck = 'Wifi loss (router placement or walls between you and the router)';
+          }
+        } else if (lineLossPct > 15 && DISTANCE_AFFECTED[connectionType]) {
+          bottleneck = 'Line attenuation (copper distance from the cabinet)';
+        } else if (lineLossPct > 15) {
+          bottleneck = 'Line quality and connection type';
+        } else if (peakHour && contentionLossPct > 5) {
+          bottleneck = 'Peak hour contention';
+        } else {
+          bottleneck = 'Nothing dramatic, you are getting roughly what you pay for';
+        }
+
+        // Recommendation
+        var recommendation;
+        if (percent >= 80) {
+          recommendation = 'Your line is delivering close to what you pay for. If it still feels slow, latency or a single bad device is more likely the cause than bandwidth.';
+        } else if (bottleneck.indexOf('wifi') !== -1 || bottleneck.indexOf('Router') !== -1) {
+          recommendation = 'Move the router closer, run a wired connection where you can, or upgrade to a wifi 6 or 7 router. The line is fine, the last few metres are not.';
+        } else if (bottleneck.indexOf('Line') !== -1) {
+          recommendation = 'The copper between you and the cabinet is the limit. If FTTP is available at your address, that is the upgrade. Otherwise a faster FTTC tier will not change much.';
+        } else if (bottleneck.indexOf('Peak') !== -1) {
+          recommendation = 'Off-peak you should see closer to advertised. If peak speeds are unusable for what you do, ISPs with better contention ratios (or full fibre) are the fix.';
+        } else {
+          recommendation = 'A mix of small losses rather than one big culprit. Worth a wired test next to the router to see whether the wifi or the line is doing the most damage.';
+        }
+
+        placeholder.hidden = true;
+        summary.hidden = false;
+        wiredEl.textContent = fmtMbps(wiredSync);
+        wifiEl.textContent = fmtMbps(atDevice);
+        percentEl.textContent = percent.toFixed(0) + '% of advertised';
+        bottleneckEl.textContent = bottleneck;
+        recEl.textContent = recommendation;
+
+        if (proveListEl) {
+          var rows = [
+            ['Advertised speed', fmtMbps(advertised)],
+            ['Connection-type efficiency', Math.round(connectionBase * 100) + '% (' + connectionType + ')'],
+            ['Line-quality factor', Math.round(qualityFactor * 100) + '% (' + lineQuality + ')'],
+            ['Distance attenuation', Math.round(distanceFactor * 100) + '%' + (DISTANCE_AFFECTED[connectionType] ? ' at ' + distance + ' m from cabinet' : ' (not applicable)')],
+            ['Estimated wired sync', fmtMbps(wiredSync)],
+            ['Peak-hour contention', peakHour ? Math.round(PEAK_FACTOR * 100) + '% (peak)' : '100% (off-peak)'],
+            ['Line delivered to router', fmtMbps(lineDelivered)],
+            ['Wifi standard cap', fmtMbps(WIFI_CAP[routerStandard] || 500) + ' (' + routerStandard + ')'],
+            ['Router placement factor', Math.round((LOCATION_FACTOR[routerLocation] || 0.85) * 100) + '% (' + routerLocation + ')'],
+            ['Effective wifi ceiling', fmtMbps(wifiCeiling)],
+            ['Speed at the device (lower of the two)', fmtMbps(atDevice)],
+            ['As a percentage of advertised', percent.toFixed(0) + '%']
+          ];
+          proveListEl.innerHTML = rows.map(function (row) {
+            return '<li><span>' + row[0] + '</span><strong>' + row[1] + '</strong></li>';
+          }).join('');
+        }
+
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: 'calculator_result',
+          calculator_name: 'isp-speed-reality-check',
+          advertised_speed: advertised,
+          connection_type: connectionType,
+          line_quality: lineQuality,
+          router_location: routerLocation,
+          router_standard: routerStandard,
+          peak_hour: peakHour,
+          estimated_wired_mbps: Math.round(wiredSync * 10) / 10,
+          estimated_wifi_mbps: Math.round(atDevice * 10) / 10,
+          percent_of_advertised: Math.round(percent)
+        });
+      });
+
+      var proveDetails = document.querySelector('[data-prove-it]');
+      if (proveDetails) {
+        proveDetails.addEventListener('toggle', function () {
+          if (proveDetails.open) {
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+              event: 'prove_it',
+              calculator_name: 'isp-speed-reality-check'
+            });
+          }
+        });
+      }
+
+      var shortcutEl = document.querySelector('[data-bookmark-shortcut]');
+      if (shortcutEl) {
+        var isMac = /Mac|iPhone|iPad|iPod/i.test(navigator.platform || navigator.userAgent);
+        shortcutEl.textContent = isMac ? '⌘' : 'Ctrl';
+      }
+
+      var ctaLink = document.querySelector('[data-cta-link]');
+      if (ctaLink) {
+        ctaLink.addEventListener('click', function () {
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: 'cta_click',
+            calculator_name: 'isp-speed-reality-check',
+            cta: 'compare-broadband-plans'
+          });
+        });
+      }
+    })();
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

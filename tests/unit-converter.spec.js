@@ -83,7 +83,7 @@ test('dataLayer fires on first input', async ({ page }) => {
 
 test('Conversions hub lists unit converter', async ({ page }) => {
   await page.goto('/calculators/conversions/');
-  await expect(page.locator('a[href="/calculators/conversions/unit-converter/"]')).toBeVisible();
+  await expect(page.locator('a[href="/calculators/conversions/unit-converter/"]').first()).toBeVisible();
 });
 
 test('nav includes Conversions link', async ({ page }) => {

@@ -155,6 +155,13 @@
   },
   {
     "type": "tool",
+    "name": "Streaming Quality Calculator",
+    "summary": "Tells you what streaming quality your broadband can actually sustain across Netflix, Disney+, Prime Video and YouTube. Handles concurrent streams and headroom for other household traffic.",
+    "url": "/calculators/broadband/streaming-quality-calculator/",
+    "category": "Broadband"
+  },
+  {
+    "type": "tool",
     "name": "Web Hosting Storage & Bandwidth Estimator",
     "summary": "Work out how much storage and monthly bandwidth your website needs based on your traffic, page weight, media files, and downloadable content. See which hosting tier fits.",
     "url": "/calculators/broadband/web-hosting-estimator/",
@@ -782,5 +789,40 @@
     "summary": "See how ping, jitter and packet loss affect cloud gaming, FPS, video calls, browsing or SSH. Get a verdict per use case and an effective TCP throughput cap.",
     "url": "/calculators/broadband/latency-impact-calculator/",
     "category": "Broadband"
+  },
+  {
+    "type": "tool",
+    "name": "ISP Speed Reality Check",
+    "summary": "Compare your advertised ISP speed against what you actually get. Models line attenuation, wifi loss, router standard caps and peak-hour contention to estimate the real wired and wifi speeds at your end.",
+    "url": "/calculators/broadband/isp-speed-reality-check/",
+    "category": "Broadband"
+  },
+  {
+    "type": "tool",
+    "name": "Logarithm Calculator",
+    "summary": "Calculate log_b(x) for any base, plus solve for x or b given the other two. Handles base 10, base e, base 2 and any custom base, with full step-by-step working using the change-of-base formula.",
+    "url": "/calculators/math/logarithm-calculator/",
+    "category": "Math"
+  },
+  {
+    "type": "tool",
+    "name": "Combinations & Permutations Calculator",
+    "summary": "Compute nCr, nPr, factorials and multinomial coefficients with arbitrary precision via BigInt. Supports with-repetition variants and shows the formula and working for each result.",
+    "url": "/calculators/math/combinations-permutations-calculator/",
+    "category": "Math"
+  },
+  {
+    "type": "tool",
+    "name": "Image DPI / Print Size Calculator",
+    "summary": "Two-way DPI to print size converter. Solve for print size, DPI or pixel count needed, with a quality verdict (photo print, good, acceptable, pixelated) at the resulting DPI.",
+    "url": "/calculators/images/image-dpi-print-size-calculator/",
+    "category": "Images"
+  },
+  {
+    "type": "tool",
+    "name": "Color Depth & Storage Calculator",
+    "summary": "Calculate uncompressed image storage size and total representable colours at any bit depth. Compares 1-bit through 48-bit, with realistic JPEG and PNG compression estimates.",
+    "url": "/calculators/images/color-depth-calculator/",
+    "category": "Images"
   }
 ]

@@ -85,6 +85,18 @@
           "position": 6,
           "url": "https://webcaretakers.com/calculators/broadband/latency-impact-calculator/",
           "name": "Latency Impact Calculator"
+        },
+        {
+          "@type": "ListItem",
+          "position": 7,
+          "url": "https://webcaretakers.com/calculators/broadband/streaming-quality-calculator/",
+          "name": "Streaming Quality Calculator"
+        },
+        {
+          "@type": "ListItem",
+          "position": 8,
+          "url": "https://webcaretakers.com/calculators/broadband/isp-speed-reality-check/",
+          "name": "ISP Speed Reality Check"
         }
       ]
     }
@@ -157,6 +169,21 @@
         <h1>Broadband calculators</h1>
         <p class="intro hub-intro">Tools for picking the right broadband speed, plan and package without getting lost in marketing jargon. Every number comes with its workings, so you can see exactly why the tool recommended what it did.</p>
 
+        <section class="long-form">
+          <h2>What these calculators are really for</h2>
+          <p>Broadband marketing has been engineered, very deliberately, to make comparison hard. The headline number is a maximum, not an average. Upload speeds are listed in a smaller font, when they're listed at all. "Unlimited" usually has a fair-use clause buried in the small print, and the price you see is for the first twelve months on a twenty-four month contract. By the time you've pulled three providers' websites side by side and tried to work out which one your household actually needs, you've already wasted half a Saturday morning.</p>
+          <p>The tools here exist to short-circuit that. Tell the calculator what your household actually does (how many video streams, who's on calls, whether anyone games), and it gives you a defensible minimum speed. Tell the file-download tool how big the file is and what your connection runs at, and it gives you a realistic time including protocol overhead. None of it is magic. It's just maths that nobody on a sales page wants to do for you.</p>
+          <h2>Where to source the input numbers</h2>
+          <p>The single most useful number is your actual current connection speed, not the one the provider claims. Run a speed test on a wired connection, plugged directly into the router, with nothing else streaming. That tells you what you have today. Compare it to what the <a href="/calculators/broadband/broadband-bandwidth-calculator/">Broadband Bandwidth Calculator</a> says you need, and the gap (or the surplus) is the conversation worth having.</p>
+          <p>For business or hosting questions, the inputs are different. Page weight you can pull from any browser's network tab, traffic from your analytics, monthly data transfer from your hosting dashboard. Round up rather than down, because the consequence of running out of bandwidth on a viral day is more expensive than the consequence of paying for a tier you don't quite use. The <a href="/calculators/broadband/web-hosting-estimator/">Web Hosting Storage and Bandwidth Estimator</a> lets you stress-test that with realistic traffic spikes baked in.</p>
+          <h2>Mistakes that turn a fast line into a slow one</h2>
+          <p>The most common is blaming the line when the bottleneck is the Wi-Fi. A 900 Mbps full-fibre service on a router shoved behind a TV in a back room, two plasterboard walls and a microwave away from the user, is going to feel like 50 Mbps. Plug into the router with a cable before you decide the provider is at fault.</p>
+          <p>The second is ignoring upload speed. Cloud backup, video calls, large file sharing, multiplayer gaming: all of these are gated by upload, not download. On older fibre-to-the-cabinet connections, upload is often capped at a tenth of the download speed or less. If your work depends on uploading, full fibre matters far more than the headline download number.</p>
+          <p>The third is forgetting latency. A 1 Gbps connection with 80 ms of jitter on every packet is worse for video calls than a 50 Mbps connection with a clean 10 ms ping. Throughput tells you how fat the pipe is. Latency tells you how responsive it feels. The <a href="/calculators/broadband/latency-impact-calculator/">Latency Impact Calculator</a> separates them out so you can spot which one is actually causing the lag.</p>
+          <h3>Picking between the tools</h3>
+          <p>If you're shopping for a household plan, start with the <a href="/calculators/broadband/broadband-bandwidth-calculator/">bandwidth calculator</a>. If you're sizing a website's hosting, the web hosting estimator. If you're working out whether to wait for that download or go and make a cup of tea, the file download time tool. They're built to answer one question each, well, rather than one tool that pretends to answer all of them.</p>
+        </section>
+
         <ul class="category-grid">
           <li class="category-card">
             <h2><a href="/calculators/broadband/broadband-bandwidth-calculator/">Broadband Bandwidth Calculator</a></h2>
@@ -181,6 +208,14 @@
           <li class="category-card">
             <h2><a href="/calculators/broadband/latency-impact-calculator/">Latency Impact Calculator</a></h2>
             <p>See how ping, jitter and packet loss affect cloud gaming, FPS, video calls, browsing or SSH. Get a verdict per use case and an effective TCP throughput cap.</p>
+          </li>
+          <li class="category-card">
+            <h2><a href="/calculators/broadband/streaming-quality-calculator/">Streaming Quality Calculator</a></h2>
+            <p>Tells you what streaming quality your broadband can actually sustain across Netflix, Disney+, Prime Video and YouTube. Handles concurrent streams and headroom for other household traffic.</p>
+          </li>
+          <li class="category-card">
+            <h2><a href="/calculators/broadband/isp-speed-reality-check/">ISP Speed Reality Check</a></h2>
+            <p>Compare what your ISP advertises with the realistic speed you actually get. Factors in connection type, distance from cabinet, line quality, router placement, wifi standard and peak hour contention, and tells you which one is the bottleneck.</p>
           </li>
         </ul>
 

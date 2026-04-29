@@ -91,7 +91,7 @@ test.describe('Health category hub', () => {
   });
 
   test('lists the BMI Calculator', async ({ page }) => {
-    await expect(page.getByRole('link', { name: 'BMI Calculator', includeHidden: true })).toBeVisible();
+    await expect(page.getByRole('link', { name: 'BMI Calculator', includeHidden: true }).first()).toBeVisible();
   });
 
   test('has CollectionPage JSON-LD', async ({ page }) => {

@@ -2,35 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://webcaretakers.com/</loc>
-    <lastmod>2026-04-23</lastmod>
+    <lastmod>2026-04-28</lastmod>
   </url>
   <url>
     <loc>https://webcaretakers.com/about/</loc>
-    <lastmod>2026-04-23</lastmod>
+    <lastmod>2026-04-27</lastmod>
   </url>
   <url>
     <loc>https://webcaretakers.com/calculators/</loc>
-    <lastmod>2026-04-26</lastmod>
+    <lastmod>2026-04-28</lastmod>
   </url>
   <url>
     <loc>https://webcaretakers.com/calculators/ai/</loc>
-    <lastmod>2026-04-26</lastmod>
-  </url>
-  <url>
-    <loc>https://webcaretakers.com/calculators/ai/image-generation-cost-calculator/</loc>
-    <lastmod>2026-04-26</lastmod>
-  </url>
-  <url>
-    <loc>https://webcaretakers.com/calculators/ai/llm-token-usage-calculator/</loc>
-    <lastmod>2026-04-26</lastmod>
-  </url>
-  <url>
-    <loc>https://webcaretakers.com/calculators/ai/rag-pipeline-cost-calculator/</loc>
-    <lastmod>2026-04-26</lastmod>
+    <lastmod>2026-04-28</lastmod>
   </url>
   <url>
     <loc>https://webcaretakers.com/calculators/ai/ai-vs-human-writer-cost-calculator/</loc>
     <lastmod>2026-04-27</lastmod>
+  </url>
+  <url>
+    <loc>https://webcaretakers.com/calculators/ai/embedding-cost-calculator/</loc>
+    <lastmod>2026-04-28</lastmod>
   </url>
   <url>
     <loc>https://webcaretakers.com/calculators/ai/fine-tuning-cost-calculator/</loc>
@@ -41,24 +33,28 @@
     <lastmod>2026-04-28</lastmod>
   </url>
   <url>
-    <loc>https://webcaretakers.com/calculators/ai/embedding-cost-calculator/</loc>
-    <lastmod>2026-04-28</lastmod>
+    <loc>https://webcaretakers.com/calculators/ai/image-generation-cost-calculator/</loc>
+    <lastmod>2026-04-27</lastmod>
+  </url>
+  <url>
+    <loc>https://webcaretakers.com/calculators/ai/llm-token-usage-calculator/</loc>
+    <lastmod>2026-04-27</lastmod>
   </url>
   <url>
     <loc>https://webcaretakers.com/calculators/ai/prompt-token-estimator/</loc>
     <lastmod>2026-04-28</lastmod>
   </url>
   <url>
+    <loc>https://webcaretakers.com/calculators/ai/rag-pipeline-cost-calculator/</loc>
+    <lastmod>2026-04-27</lastmod>
+  </url>
+  <url>
     <loc>https://webcaretakers.com/calculators/broadband/</loc>
-    <lastmod>2026-04-23</lastmod>
+    <lastmod>2026-04-28</lastmod>
   </url>
   <url>
     <loc>https://webcaretakers.com/calculators/broadband/broadband-bandwidth-calculator/</loc>
-    <lastmod>2026-04-23</lastmod>
-  </url>
-  <url>
-    <loc>https://webcaretakers.com/calculators/broadband/web-hosting-estimator/</loc>
-    <lastmod>2026-04-23</lastmod>
+    <lastmod>2026-04-27</lastmod>
   </url>
   <url>
     <loc>https://webcaretakers.com/calculators/broadband/cloud-backup-time-estimator/</loc>
@@ -69,100 +65,124 @@
     <lastmod>2026-04-28</lastmod>
   </url>
   <url>
-    <loc>https://webcaretakers.com/calculators/business/</loc>
-    <lastmod>2026-04-23</lastmod>
+    <loc>https://webcaretakers.com/calculators/broadband/isp-speed-reality-check/</loc>
+    <lastmod>2026-04-29</lastmod>
   </url>
   <url>
-    <loc>https://webcaretakers.com/calculators/business/break-even-calculator/</loc>
-    <lastmod>2026-04-23</lastmod>
+    <loc>https://webcaretakers.com/calculators/broadband/latency-impact-calculator/</loc>
+    <lastmod>2026-04-28</lastmod>
   </url>
   <url>
-    <loc>https://webcaretakers.com/calculators/business/domain-renewal-true-cost-calculator/</loc>
-    <lastmod>2026-04-23</lastmod>
+    <loc>https://webcaretakers.com/calculators/broadband/streaming-quality-calculator/</loc>
+    <lastmod>2026-04-29</lastmod>
   </url>
   <url>
-    <loc>https://webcaretakers.com/calculators/business/email-marketing-roi-calculator/</loc>
-    <lastmod>2026-04-23</lastmod>
+    <loc>https://webcaretakers.com/calculators/broadband/vpn-throughput-calculator/</loc>
+    <lastmod>2026-04-28</lastmod>
   </url>
   <url>
-    <loc>https://webcaretakers.com/calculators/business/freelance-day-rate-calculator/</loc>
-    <lastmod>2026-04-23</lastmod>
-  </url>
-  <url>
-    <loc>https://webcaretakers.com/calculators/business/it-support-build-vs-buy-calculator/</loc>
-    <lastmod>2026-04-23</lastmod>
-  </url>
-  <url>
-    <loc>https://webcaretakers.com/calculators/business/profit-margin-calculator/</loc>
-    <lastmod>2026-04-23</lastmod>
-  </url>
-  <url>
-    <loc>https://webcaretakers.com/calculators/business/roi-calculator/</loc>
-    <lastmod>2026-04-23</lastmod>
-  </url>
-  <url>
-    <loc>https://webcaretakers.com/calculators/business/seo-roi-calculator/</loc>
-    <lastmod>2026-04-23</lastmod>
-  </url>
-  <url>
-    <loc>https://webcaretakers.com/calculators/business/uk-vat-calculator/</loc>
-    <lastmod>2026-04-23</lastmod>
-  </url>
-  <url>
-    <loc>https://webcaretakers.com/calculators/business/website-speed-budget-calculator/</loc>
-    <lastmod>2026-04-23</lastmod>
-  </url>
-  <url>
-    <loc>https://webcaretakers.com/calculators/conversions/</loc>
-    <lastmod>2026-04-23</lastmod>
-  </url>
-  <url>
-    <loc>https://webcaretakers.com/calculators/conversions/unit-converter/</loc>
-    <lastmod>2026-04-23</lastmod>
-  </url>
-  <url>
-    <loc>https://webcaretakers.com/calculators/conversions/time-zone-converter/</loc>
+    <loc>https://webcaretakers.com/calculators/broadband/web-hosting-estimator/</loc>
     <lastmod>2026-04-27</lastmod>
   </url>
   <url>
-    <loc>https://webcaretakers.com/calculators/conversions/roman-numeral-converter/</loc>
+    <loc>https://webcaretakers.com/calculators/business/</loc>
+    <lastmod>2026-04-27</lastmod>
+  </url>
+  <url>
+    <loc>https://webcaretakers.com/calculators/business/break-even-calculator/</loc>
+    <lastmod>2026-04-27</lastmod>
+  </url>
+  <url>
+    <loc>https://webcaretakers.com/calculators/business/domain-renewal-true-cost-calculator/</loc>
+    <lastmod>2026-04-27</lastmod>
+  </url>
+  <url>
+    <loc>https://webcaretakers.com/calculators/business/email-marketing-roi-calculator/</loc>
+    <lastmod>2026-04-27</lastmod>
+  </url>
+  <url>
+    <loc>https://webcaretakers.com/calculators/business/freelance-day-rate-calculator/</loc>
+    <lastmod>2026-04-27</lastmod>
+  </url>
+  <url>
+    <loc>https://webcaretakers.com/calculators/business/it-support-build-vs-buy-calculator/</loc>
+    <lastmod>2026-04-27</lastmod>
+  </url>
+  <url>
+    <loc>https://webcaretakers.com/calculators/business/profit-margin-calculator/</loc>
+    <lastmod>2026-04-27</lastmod>
+  </url>
+  <url>
+    <loc>https://webcaretakers.com/calculators/business/roi-calculator/</loc>
+    <lastmod>2026-04-27</lastmod>
+  </url>
+  <url>
+    <loc>https://webcaretakers.com/calculators/business/seo-roi-calculator/</loc>
+    <lastmod>2026-04-27</lastmod>
+  </url>
+  <url>
+    <loc>https://webcaretakers.com/calculators/business/uk-vat-calculator/</loc>
+    <lastmod>2026-04-27</lastmod>
+  </url>
+  <url>
+    <loc>https://webcaretakers.com/calculators/business/website-speed-budget-calculator/</loc>
+    <lastmod>2026-04-27</lastmod>
+  </url>
+  <url>
+    <loc>https://webcaretakers.com/calculators/conversions/</loc>
+    <lastmod>2026-04-28</lastmod>
+  </url>
+  <url>
+    <loc>https://webcaretakers.com/calculators/conversions/cooking-measurements-converter/</loc>
     <lastmod>2026-04-27</lastmod>
   </url>
   <url>
     <loc>https://webcaretakers.com/calculators/conversions/fuel-economy-converter/</loc>
-    <lastmod>2026-04-27</lastmod>
+    <lastmod>2026-04-28</lastmod>
   </url>
   <url>
     <loc>https://webcaretakers.com/calculators/conversions/number-base-converter/</loc>
     <lastmod>2026-04-28</lastmod>
   </url>
   <url>
+    <loc>https://webcaretakers.com/calculators/conversions/roman-numeral-converter/</loc>
+    <lastmod>2026-04-28</lastmod>
+  </url>
+  <url>
+    <loc>https://webcaretakers.com/calculators/conversions/time-zone-converter/</loc>
+    <lastmod>2026-04-27</lastmod>
+  </url>
+  <url>
+    <loc>https://webcaretakers.com/calculators/conversions/unit-converter/</loc>
+    <lastmod>2026-04-27</lastmod>
+  </url>
+  <url>
     <loc>https://webcaretakers.com/calculators/cybersecurity/</loc>
-    <lastmod>2026-04-26</lastmod>
-  </url>
-  <url>
-    <loc>https://webcaretakers.com/calculators/cybersecurity/password-strength-calculator/</loc>
-    <lastmod>2026-04-26</lastmod>
-  </url>
-  <url>
-    <loc>https://webcaretakers.com/calculators/cybersecurity/password-generator/</loc>
-    <lastmod>2026-04-26</lastmod>
-  </url>
-  <url>
-    <loc>https://webcaretakers.com/calculators/cybersecurity/data-breach-risk-score/</loc>
-    <lastmod>2026-04-26</lastmod>
+    <lastmod>2026-04-28</lastmod>
   </url>
   <url>
     <loc>https://webcaretakers.com/calculators/cybersecurity/data-breach-cost-estimator/</loc>
     <lastmod>2026-04-28</lastmod>
   </url>
   <url>
-    <loc>https://webcaretakers.com/calculators/cybersecurity/hash-generator/</loc>
-    <lastmod>2026-04-26</lastmod>
+    <loc>https://webcaretakers.com/calculators/cybersecurity/data-breach-risk-score/</loc>
+    <lastmod>2026-04-27</lastmod>
   </url>
   <url>
     <loc>https://webcaretakers.com/calculators/cybersecurity/diceware-passphrase-generator/</loc>
     <lastmod>2026-04-28</lastmod>
+  </url>
+  <url>
+    <loc>https://webcaretakers.com/calculators/cybersecurity/hash-generator/</loc>
+    <lastmod>2026-04-27</lastmod>
+  </url>
+  <url>
+    <loc>https://webcaretakers.com/calculators/cybersecurity/password-generator/</loc>
+    <lastmod>2026-04-27</lastmod>
+  </url>
+  <url>
+    <loc>https://webcaretakers.com/calculators/cybersecurity/password-strength-calculator/</loc>
+    <lastmod>2026-04-27</lastmod>
   </url>
   <url>
     <loc>https://webcaretakers.com/calculators/cybersecurity/ssl-certificate-expiry-calculator/</loc>
@@ -174,63 +194,67 @@
   </url>
   <url>
     <loc>https://webcaretakers.com/calculators/finance/</loc>
-    <lastmod>2026-04-23</lastmod>
+    <lastmod>2026-04-27</lastmod>
   </url>
   <url>
     <loc>https://webcaretakers.com/calculators/finance/compound-interest-calculator/</loc>
-    <lastmod>2026-04-23</lastmod>
+    <lastmod>2026-04-27</lastmod>
   </url>
   <url>
     <loc>https://webcaretakers.com/calculators/finance/debt-payoff-calculator/</loc>
-    <lastmod>2026-04-23</lastmod>
+    <lastmod>2026-04-27</lastmod>
   </url>
   <url>
     <loc>https://webcaretakers.com/calculators/finance/loan-calculator/</loc>
-    <lastmod>2026-04-23</lastmod>
+    <lastmod>2026-04-27</lastmod>
   </url>
   <url>
     <loc>https://webcaretakers.com/calculators/finance/mortgage-calculator/</loc>
-    <lastmod>2026-04-23</lastmod>
+    <lastmod>2026-04-27</lastmod>
   </url>
   <url>
     <loc>https://webcaretakers.com/calculators/finance/savings-goal-calculator/</loc>
-    <lastmod>2026-04-23</lastmod>
+    <lastmod>2026-04-27</lastmod>
   </url>
   <url>
     <loc>https://webcaretakers.com/calculators/finance/tip-calculator/</loc>
-    <lastmod>2026-04-23</lastmod>
+    <lastmod>2026-04-27</lastmod>
   </url>
   <url>
     <loc>https://webcaretakers.com/calculators/finance/uk-mortgage-calculator/</loc>
-    <lastmod>2026-04-23</lastmod>
+    <lastmod>2026-04-27</lastmod>
   </url>
   <url>
     <loc>https://webcaretakers.com/calculators/finance/uk-salary-tax-calculator/</loc>
-    <lastmod>2026-04-23</lastmod>
+    <lastmod>2026-04-27</lastmod>
   </url>
   <url>
     <loc>https://webcaretakers.com/calculators/finance/uk-stamp-duty-calculator/</loc>
-    <lastmod>2026-04-23</lastmod>
+    <lastmod>2026-04-27</lastmod>
   </url>
   <url>
     <loc>https://webcaretakers.com/calculators/fun/</loc>
-    <lastmod>2026-04-23</lastmod>
+    <lastmod>2026-04-28</lastmod>
   </url>
   <url>
     <loc>https://webcaretakers.com/calculators/fun/age-in-months-calculator/</loc>
-    <lastmod>2026-04-23</lastmod>
+    <lastmod>2026-04-27</lastmod>
   </url>
   <url>
     <loc>https://webcaretakers.com/calculators/fun/date-difference-calculator/</loc>
-    <lastmod>2026-04-23</lastmod>
+    <lastmod>2026-04-27</lastmod>
   </url>
   <url>
     <loc>https://webcaretakers.com/calculators/fun/decision-wheel/</loc>
-    <lastmod>2026-04-27</lastmod>
+    <lastmod>2026-04-28</lastmod>
   </url>
   <url>
     <loc>https://webcaretakers.com/calculators/fun/dice-and-coin-roller/</loc>
-    <lastmod>2026-04-27</lastmod>
+    <lastmod>2026-04-28</lastmod>
+  </url>
+  <url>
+    <loc>https://webcaretakers.com/calculators/fun/magic-8-ball/</loc>
+    <lastmod>2026-04-28</lastmod>
   </url>
   <url>
     <loc>https://webcaretakers.com/calculators/fun/random-name-picker/</loc>
@@ -238,62 +262,94 @@
   </url>
   <url>
     <loc>https://webcaretakers.com/calculators/health/</loc>
-    <lastmod>2026-04-24</lastmod>
+    <lastmod>2026-04-28</lastmod>
   </url>
   <url>
     <loc>https://webcaretakers.com/calculators/health/bmi-calculator/</loc>
-    <lastmod>2026-04-23</lastmod>
+    <lastmod>2026-04-27</lastmod>
   </url>
   <url>
     <loc>https://webcaretakers.com/calculators/health/calorie-calculator/</loc>
-    <lastmod>2026-04-23</lastmod>
-  </url>
-  <url>
-    <loc>https://webcaretakers.com/calculators/health/pregnancy-due-date-calculator/</loc>
-    <lastmod>2026-04-24</lastmod>
-  </url>
-  <url>
-    <loc>https://webcaretakers.com/calculators/health/running-pace-calculator/</loc>
-    <lastmod>2026-04-23</lastmod>
-  </url>
-  <url>
-    <loc>https://webcaretakers.com/calculators/health/tdee-calculator/</loc>
-    <lastmod>2026-04-24</lastmod>
+    <lastmod>2026-04-27</lastmod>
   </url>
   <url>
     <loc>https://webcaretakers.com/calculators/health/macro-split-calculator/</loc>
     <lastmod>2026-04-28</lastmod>
   </url>
   <url>
-    <loc>https://webcaretakers.com/calculators/images/</loc>
-    <lastmod>2026-04-23</lastmod>
+    <loc>https://webcaretakers.com/calculators/health/pregnancy-due-date-calculator/</loc>
+    <lastmod>2026-04-27</lastmod>
   </url>
   <url>
-    <loc>https://webcaretakers.com/calculators/images/photo-resizer/</loc>
-    <lastmod>2026-04-23</lastmod>
+    <loc>https://webcaretakers.com/calculators/health/running-pace-calculator/</loc>
+    <lastmod>2026-04-27</lastmod>
+  </url>
+  <url>
+    <loc>https://webcaretakers.com/calculators/health/tdee-calculator/</loc>
+    <lastmod>2026-04-27</lastmod>
+  </url>
+  <url>
+    <loc>https://webcaretakers.com/calculators/images/</loc>
+    <lastmod>2026-04-28</lastmod>
   </url>
   <url>
     <loc>https://webcaretakers.com/calculators/images/aspect-ratio-calculator/</loc>
     <lastmod>2026-04-28</lastmod>
   </url>
   <url>
+    <loc>https://webcaretakers.com/calculators/images/color-depth-calculator/</loc>
+    <lastmod>2026-04-29</lastmod>
+  </url>
+  <url>
+    <loc>https://webcaretakers.com/calculators/images/heic-to-jpg-converter/</loc>
+    <lastmod>2026-04-27</lastmod>
+  </url>
+  <url>
+    <loc>https://webcaretakers.com/calculators/images/image-compressor/</loc>
+    <lastmod>2026-04-27</lastmod>
+  </url>
+  <url>
+    <loc>https://webcaretakers.com/calculators/images/image-dpi-print-size-calculator/</loc>
+    <lastmod>2026-04-29</lastmod>
+  </url>
+  <url>
     <loc>https://webcaretakers.com/calculators/images/image-file-size-estimator/</loc>
     <lastmod>2026-04-28</lastmod>
   </url>
   <url>
-    <loc>https://webcaretakers.com/calculators/math/</loc>
-    <lastmod>2026-04-23</lastmod>
+    <loc>https://webcaretakers.com/calculators/images/photo-resizer/</loc>
+    <lastmod>2026-04-27</lastmod>
   </url>
   <url>
-    <loc>https://webcaretakers.com/calculators/math/percentage-calculator/</loc>
-    <lastmod>2026-04-23</lastmod>
+    <loc>https://webcaretakers.com/calculators/images/webp-to-jpg-converter/</loc>
+    <lastmod>2026-04-27</lastmod>
+  </url>
+  <url>
+    <loc>https://webcaretakers.com/calculators/math/</loc>
+    <lastmod>2026-04-28</lastmod>
+  </url>
+  <url>
+    <loc>https://webcaretakers.com/calculators/math/combinations-permutations-calculator/</loc>
+    <lastmod>2026-04-29</lastmod>
+  </url>
+  <url>
+    <loc>https://webcaretakers.com/calculators/math/discount-calculator/</loc>
+    <lastmod>2026-04-27</lastmod>
   </url>
   <url>
     <loc>https://webcaretakers.com/calculators/math/fraction-calculator/</loc>
     <lastmod>2026-04-27</lastmod>
   </url>
   <url>
-    <loc>https://webcaretakers.com/calculators/math/standard-deviation-calculator/</loc>
+    <loc>https://webcaretakers.com/calculators/math/gcd-lcm-calculator/</loc>
+    <lastmod>2026-04-28</lastmod>
+  </url>
+  <url>
+    <loc>https://webcaretakers.com/calculators/math/logarithm-calculator/</loc>
+    <lastmod>2026-04-29</lastmod>
+  </url>
+  <url>
+    <loc>https://webcaretakers.com/calculators/math/percentage-calculator/</loc>
     <lastmod>2026-04-27</lastmod>
   </url>
   <url>
@@ -301,147 +357,27 @@
     <lastmod>2026-04-28</lastmod>
   </url>
   <url>
-    <loc>https://webcaretakers.com/calculators/math/gcd-lcm-calculator/</loc>
-    <lastmod>2026-04-27</lastmod>
+    <loc>https://webcaretakers.com/calculators/math/standard-deviation-calculator/</loc>
+    <lastmod>2026-04-28</lastmod>
   </url>
   <url>
     <loc>https://webcaretakers.com/calculators/productivity/</loc>
-    <lastmod>2026-04-23</lastmod>
+    <lastmod>2026-04-28</lastmod>
   </url>
   <url>
     <loc>https://webcaretakers.com/calculators/productivity/ical-event-generator/</loc>
-    <lastmod>2026-04-23</lastmod>
+    <lastmod>2026-04-27</lastmod>
   </url>
   <url>
     <loc>https://webcaretakers.com/calculators/productivity/meeting-cost-calculator/</loc>
+    <lastmod>2026-04-28</lastmod>
+  </url>
+  <url>
+    <loc>https://webcaretakers.com/calculators/productivity/pomodoro-session-planner/</loc>
     <lastmod>2026-04-27</lastmod>
   </url>
   <url>
     <loc>https://webcaretakers.com/calculators/productivity/project-deadline-countdown-calculator/</loc>
-    <lastmod>2026-04-27</lastmod>
-  </url>
-  <url>
-    <loc>https://webcaretakers.com/calculators/productivity/time-card-calculator/</loc>
-    <lastmod>2026-04-27</lastmod>
-  </url>
-  <url>
-    <loc>https://webcaretakers.com/calculators/property/</loc>
-    <lastmod>2026-04-27</lastmod>
-  </url>
-  <url>
-    <loc>https://webcaretakers.com/calculators/property/rental-yield-calculator/</loc>
-    <lastmod>2026-04-23</lastmod>
-  </url>
-  <url>
-    <loc>https://webcaretakers.com/calculators/property/uk-mortgage-overpayment-calculator/</loc>
-    <lastmod>2026-04-27</lastmod>
-  </url>
-  <url>
-    <loc>https://webcaretakers.com/calculators/property/uk-rent-vs-buy-calculator/</loc>
-    <lastmod>2026-04-26</lastmod>
-  </url>
-  <url>
-    <loc>https://webcaretakers.com/calculators/property/uk-house-move-cost-calculator/</loc>
-    <lastmod>2026-04-27</lastmod>
-  </url>
-  <url>
-    <loc>https://webcaretakers.com/calculators/property/uk-section-24-buy-to-let-tax-impact-calculator/</loc>
-    <lastmod>2026-04-27</lastmod>
-  </url>
-  <url>
-    <loc>https://webcaretakers.com/calculators/seo/</loc>
-    <lastmod>2026-04-23</lastmod>
-  </url>
-  <url>
-    <loc>https://webcaretakers.com/calculators/seo/keyword-density-calculator/</loc>
-    <lastmod>2026-04-27</lastmod>
-  </url>
-  <url>
-    <loc>https://webcaretakers.com/calculators/seo/meta-length-checker/</loc>
-    <lastmod>2026-04-23</lastmod>
-  </url>
-  <url>
-    <loc>https://webcaretakers.com/calculators/seo/robots-txt-tester/</loc>
-    <lastmod>2026-04-27</lastmod>
-  </url>
-  <url>
-    <loc>https://webcaretakers.com/calculators/seo/serp-snippet-preview/</loc>
-    <lastmod>2026-04-27</lastmod>
-  </url>
-  <url>
-    <loc>https://webcaretakers.com/calculators/seo/url-slug-generator/</loc>
-    <lastmod>2026-04-23</lastmod>
-  </url>
-  <url>
-    <loc>https://webcaretakers.com/calculators/wedding/</loc>
-    <lastmod>2026-04-23</lastmod>
-  </url>
-  <url>
-    <loc>https://webcaretakers.com/calculators/wedding/save-the-date-calculator/</loc>
-    <lastmod>2026-04-23</lastmod>
-  </url>
-  <url>
-    <loc>https://webcaretakers.com/calculators/wedding/wedding-anniversary-calculator/</loc>
-    <lastmod>2026-04-23</lastmod>
-  </url>
-  <url>
-    <loc>https://webcaretakers.com/calculators/wedding/wedding-budget-calculator/</loc>
-    <lastmod>2026-04-23</lastmod>
-  </url>
-  <url>
-    <loc>https://webcaretakers.com/calculators/wedding/wedding-catering-calculator/</loc>
-    <lastmod>2026-04-23</lastmod>
-  </url>
-  <url>
-    <loc>https://webcaretakers.com/calculators/wedding/wedding-day-timeline/</loc>
-    <lastmod>2026-04-23</lastmod>
-  </url>
-  <url>
-    <loc>https://webcaretakers.com/calculators/wedding/wedding-drinks-calculator/</loc>
-    <lastmod>2026-04-23</lastmod>
-  </url>
-  <url>
-    <loc>https://webcaretakers.com/calculators/wedding/wedding-table-planner/</loc>
-    <lastmod>2026-04-23</lastmod>
-  </url>
-  <url>
-    <loc>https://webcaretakers.com/calculators/writing/</loc>
-    <lastmod>2026-04-23</lastmod>
-  </url>
-  <url>
-    <loc>https://webcaretakers.com/calculators/writing/english-to-suffolk-translator/</loc>
-    <lastmod>2026-04-23</lastmod>
-  </url>
-  <url>
-    <loc>https://webcaretakers.com/calculators/writing/flesch-reading-ease-calculator/</loc>
-    <lastmod>2026-04-28</lastmod>
-  </url>
-  <url>
-    <loc>https://webcaretakers.com/calculators/writing/read-time-calculator/</loc>
-    <lastmod>2026-04-23</lastmod>
-  </url>
-  <url>
-    <loc>https://webcaretakers.com/calculators/writing/suffolk-lorem-ipsum/</loc>
-    <lastmod>2026-04-23</lastmod>
-  </url>
-  <url>
-    <loc>https://webcaretakers.com/calculators/writing/word-count/</loc>
-    <lastmod>2026-04-23</lastmod>
-  </url>
-  <url>
-    <loc>https://webcaretakers.com/contact/</loc>
-    <lastmod>2026-04-23</lastmod>
-  </url>
-  <url>
-    <loc>https://webcaretakers.com/privacy/</loc>
-    <lastmod>2026-04-23</lastmod>
-  </url>
-  <url>
-    <loc>https://webcaretakers.com/terms/</loc>
-    <lastmod>2026-04-23</lastmod>
-  </url>
-  <url>
-    <loc>https://webcaretakers.com/calculators/fun/magic-8-ball/</loc>
     <lastmod>2026-04-28</lastmod>
   </url>
   <url>
@@ -449,7 +385,19 @@
     <lastmod>2026-04-28</lastmod>
   </url>
   <url>
-    <loc>https://webcaretakers.com/calculators/seo/serp-ctr-estimator/</loc>
+    <loc>https://webcaretakers.com/calculators/productivity/time-card-calculator/</loc>
+    <lastmod>2026-04-27</lastmod>
+  </url>
+  <url>
+    <loc>https://webcaretakers.com/calculators/property/</loc>
+    <lastmod>2026-04-28</lastmod>
+  </url>
+  <url>
+    <loc>https://webcaretakers.com/calculators/property/rental-yield-calculator/</loc>
+    <lastmod>2026-04-27</lastmod>
+  </url>
+  <url>
+    <loc>https://webcaretakers.com/calculators/property/uk-house-move-cost-calculator/</loc>
     <lastmod>2026-04-28</lastmod>
   </url>
   <url>
@@ -457,15 +405,115 @@
     <lastmod>2026-04-28</lastmod>
   </url>
   <url>
+    <loc>https://webcaretakers.com/calculators/property/uk-mortgage-overpayment-calculator/</loc>
+    <lastmod>2026-04-27</lastmod>
+  </url>
+  <url>
+    <loc>https://webcaretakers.com/calculators/property/uk-rent-vs-buy-calculator/</loc>
+    <lastmod>2026-04-27</lastmod>
+  </url>
+  <url>
+    <loc>https://webcaretakers.com/calculators/property/uk-section-24-buy-to-let-tax-impact-calculator/</loc>
+    <lastmod>2026-04-28</lastmod>
+  </url>
+  <url>
+    <loc>https://webcaretakers.com/calculators/seo/</loc>
+    <lastmod>2026-04-28</lastmod>
+  </url>
+  <url>
+    <loc>https://webcaretakers.com/calculators/seo/keyword-density-calculator/</loc>
+    <lastmod>2026-04-27</lastmod>
+  </url>
+  <url>
+    <loc>https://webcaretakers.com/calculators/seo/meta-length-checker/</loc>
+    <lastmod>2026-04-27</lastmod>
+  </url>
+  <url>
+    <loc>https://webcaretakers.com/calculators/seo/robots-txt-tester/</loc>
+    <lastmod>2026-04-28</lastmod>
+  </url>
+  <url>
+    <loc>https://webcaretakers.com/calculators/seo/serp-ctr-estimator/</loc>
+    <lastmod>2026-04-28</lastmod>
+  </url>
+  <url>
+    <loc>https://webcaretakers.com/calculators/seo/serp-snippet-preview/</loc>
+    <lastmod>2026-04-28</lastmod>
+  </url>
+  <url>
+    <loc>https://webcaretakers.com/calculators/seo/url-slug-generator/</loc>
+    <lastmod>2026-04-27</lastmod>
+  </url>
+  <url>
+    <loc>https://webcaretakers.com/calculators/wedding/</loc>
+    <lastmod>2026-04-27</lastmod>
+  </url>
+  <url>
+    <loc>https://webcaretakers.com/calculators/wedding/save-the-date-calculator/</loc>
+    <lastmod>2026-04-27</lastmod>
+  </url>
+  <url>
+    <loc>https://webcaretakers.com/calculators/wedding/wedding-anniversary-calculator/</loc>
+    <lastmod>2026-04-27</lastmod>
+  </url>
+  <url>
+    <loc>https://webcaretakers.com/calculators/wedding/wedding-budget-calculator/</loc>
+    <lastmod>2026-04-27</lastmod>
+  </url>
+  <url>
+    <loc>https://webcaretakers.com/calculators/wedding/wedding-catering-calculator/</loc>
+    <lastmod>2026-04-27</lastmod>
+  </url>
+  <url>
+    <loc>https://webcaretakers.com/calculators/wedding/wedding-day-timeline/</loc>
+    <lastmod>2026-04-27</lastmod>
+  </url>
+  <url>
+    <loc>https://webcaretakers.com/calculators/wedding/wedding-drinks-calculator/</loc>
+    <lastmod>2026-04-27</lastmod>
+  </url>
+  <url>
+    <loc>https://webcaretakers.com/calculators/wedding/wedding-table-planner/</loc>
+    <lastmod>2026-04-27</lastmod>
+  </url>
+  <url>
+    <loc>https://webcaretakers.com/calculators/writing/</loc>
+    <lastmod>2026-04-28</lastmod>
+  </url>
+  <url>
+    <loc>https://webcaretakers.com/calculators/writing/english-to-suffolk-translator/</loc>
+    <lastmod>2026-04-27</lastmod>
+  </url>
+  <url>
+    <loc>https://webcaretakers.com/calculators/writing/flesch-reading-ease-calculator/</loc>
+    <lastmod>2026-04-28</lastmod>
+  </url>
+  <url>
     <loc>https://webcaretakers.com/calculators/writing/headline-power-word-score/</loc>
     <lastmod>2026-04-28</lastmod>
   </url>
   <url>
-    <loc>https://webcaretakers.com/calculators/broadband/vpn-throughput-calculator/</loc>
-    <lastmod>2026-04-28</lastmod>
+    <loc>https://webcaretakers.com/calculators/writing/read-time-calculator/</loc>
+    <lastmod>2026-04-27</lastmod>
   </url>
   <url>
-    <loc>https://webcaretakers.com/calculators/broadband/latency-impact-calculator/</loc>
-    <lastmod>2026-04-28</lastmod>
+    <loc>https://webcaretakers.com/calculators/writing/suffolk-lorem-ipsum/</loc>
+    <lastmod>2026-04-27</lastmod>
+  </url>
+  <url>
+    <loc>https://webcaretakers.com/calculators/writing/word-count/</loc>
+    <lastmod>2026-04-27</lastmod>
+  </url>
+  <url>
+    <loc>https://webcaretakers.com/contact/</loc>
+    <lastmod>2026-04-27</lastmod>
+  </url>
+  <url>
+    <loc>https://webcaretakers.com/privacy/</loc>
+    <lastmod>2026-04-27</lastmod>
+  </url>
+  <url>
+    <loc>https://webcaretakers.com/terms/</loc>
+    <lastmod>2026-04-27</lastmod>
   </url>
 </urlset>

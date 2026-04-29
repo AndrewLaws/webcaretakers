@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image DPI / Print Size Calculator | WebCaretakers</title>
+  <meta name="description" content="Work out print size from pixels and DPI, the DPI you'll get at a chosen print size, or the pixels you need for a sharp print. Quality verdict included.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/images/image-dpi-print-size-calculator/">
+  <meta property="og:title" content="Image DPI / Print Size Calculator | WebCaretakers">
+  <meta property="og:description" content="Two-way DPI and print size converter, with a quality verdict so you know whether the print will look sharp or visibly pixelated.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/images/image-dpi-print-size-calculator/">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var _stored = null;
+    try { _stored = localStorage.getItem('cookie-consent'); } catch (e) {}
+    var _initial = _stored === 'granted' ? 'granted' : 'denied';
+    gtag('consent', 'default', {
+      ad_storage: _initial, analytics_storage: _initial,
+      ad_user_data: _initial, ad_personalization: _initial,
+      functionality_storage: 'granted', security_storage: 'granted',
+      wait_for_update: 500
+    });
+  </script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Image DPI / Print Size Calculator",
+    "url": "https://webcaretakers.com/calculators/images/image-dpi-print-size-calculator/",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "description": "Convert between pixel dimensions, DPI and print size in either direction. Tells you whether the result will look sharp or visibly pixelated.",
+    "offers": { "@type": "Offer", "price": "0" },
+    "author": { "@type": "Person", "name": "Andrew Laws", "url": "https://yeseo.io/" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is DPI and why does it matter for printing?",
+        "acceptedAnswer": { "@type": "Answer", "text": "DPI stands for dots per inch, and it describes how densely a printer lays down ink across a page. PPI (pixels per inch) is the digital cousin: how many of your image's pixels land in each inch of the print. The two are used interchangeably for print planning. Below 150 PPI, the human eye starts to spot the squares at normal viewing distance. 300 PPI is the long-standing gold standard for photo prints because it lands comfortably above what most people can resolve at arm's length." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does the same photo look great on screen and bad in print?",
+        "acceptedAnswer": { "@type": "Answer", "text": "A modern phone screen is around 460 PPI, packed tight, viewed from 30cm away. A 6x4 print held at the same distance needs roughly 300 PPI to look as sharp. The pixel count that filled your phone screen will not necessarily fill the print. A 1024 by 768 image looks fine on a laptop and looks chunky stretched across an A4 page, because the same pixels are spread thinner. This calculator tells you whether the maths works out before you commit to the print." }
+      },
+      {
+        "@type": "Question",
+        "name": "Is 300 DPI always required?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. 300 PPI is the standard for held-in-the-hand photo prints because that is roughly the upper limit of what the human eye can resolve at reading distance. Posters viewed from a metre away can drop to 200 PPI without a visible difference. Billboards seen from 30 metres can sit at 30 PPI and still look sharp. The right number depends on viewing distance, not absolute quality. Use 300 for photos and books, 200 for posters, less for anything seen from across a room." }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I upscale a small image to print bigger?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Sort of. Upscalers, including the AI ones, invent plausible detail to fill in the gaps. They can take a low-resolution photo from visibly pixelated to acceptable, but they cannot recover detail that was never captured. For a print that has to look sharp under inspection, the right answer is almost always to start with a higher-resolution original. For a poster glanced at from across a room, an upscaled image is usually fine." }
+      },
+      {
+        "@type": "Question",
+        "name": "What are cm and inches doing in the same calculator?",
+        "acceptedAnswer": { "@type": "Answer", "text": "DPI is defined per inch, but most of the world measures print sizes in centimetres. The calculator does the conversion silently: 1 inch is 2.54 cm. Pick whichever unit matches the print size you actually have written down, the underlying maths is the same." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-banner-heading" aria-describedby="cookie-banner-text" hidden>
+    <div class="cookie-banner__inner">
+      <h2 id="cookie-banner-heading" class="cookie-banner__heading">A quick word about cookies</h2>
+      <p id="cookie-banner-text" class="cookie-banner__text">
+        We use cookies for analytics, so we can see which calculators people actually use and which ones need work. Nothing creepy, nothing sold on. You can say yes, say no, or read the <a href="/privacy/">privacy policy</a> first. Your choice sticks.
+      </p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-reject>Reject</button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>Accept</button>
+      </div>
+    </div>
+  </div>
+
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">WebCaretakers</a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <ul class="primary-nav__list">
+          <li class="primary-nav__item primary-nav__item--has-menu">
+            <button type="button" class="primary-nav__link" data-menu-toggle aria-haspopup="true" aria-expanded="false">Calculators <span class="primary-nav__caret" aria-hidden="true">&#9662;</span></button>
+            <ul class="primary-nav__submenu">
+              <li><a href="/calculators/ai/">AI</a></li>
+              <li><a href="/calculators/broadband/">Broadband</a></li>
+              <li><a href="/calculators/business/">Business</a></li>
+              <li><a href="/calculators/conversions/">Conversions</a></li>
+              <li><a href="/calculators/cybersecurity/">Cybersecurity</a></li>
+              <li><a href="/calculators/finance/">Finance</a></li>
+              <li><a href="/calculators/fun/">Fun</a></li>
+              <li><a href="/calculators/health/">Health</a></li>
+              <li><a href="/calculators/images/">Images</a></li>
+              <li><a href="/calculators/math/">Math</a></li>
+              <li><a href="/calculators/productivity/">Productivity</a></li>
+              <li><a href="/calculators/property/">Property</a></li>
+              <li><a href="/calculators/seo/">SEO</a></li>
+              <li><a href="/calculators/wedding/">Wedding</a></li>
+              <li><a href="/calculators/writing/">Writing</a></li>
+              <li class="primary-nav__submenu-sep"><a href="/calculators/">See all calculators</a></li>
+            </ul>
+          </li>
+          <li class="primary-nav__item"><a href="/about/" class="primary-nav__link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <main id="main-content">
+      <div class="container">
+        <nav aria-label="Breadcrumb" class="breadcrumbs">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/calculators/">Calculators</a></li>
+            <li><a href="/calculators/images/">Images</a></li>
+            <li aria-current="page">Image DPI / Print Size Calculator</li>
+          </ol>
+        </nav>
+
+        <h1>Image DPI / Print Size Calculator</h1>
+        <p class="intro">Three jobs, one calculator. Work out the print size you'll get from a given pixel count at a chosen DPI. Or work out the DPI you'll end up with if you push your existing pixels across a fixed print size. Or work out the pixel dimensions you need to capture for a print to look sharp at a given DPI. Quality verdict at the end so you know whether to print it or not.</p>
+
+        <section class="eli5" aria-label="Plain-English explanation">
+          <h2>Explain like I'm 5 (what even is this calculator?)</h2>
+          <p>Pixels are tiny squares. Printers spread those squares across paper. Spread them too thin and you can see the squares from arm's length, which looks rubbish. DPI (dots per inch) is the spreadiness measure. 300 DPI for a photo print is the gold standard because the squares are tight enough that your eye can't pick them out. This calculator does the spreadiness arithmetic three different ways depending on what you already know.</p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="in-content" aria-hidden="true"></div>
+
+        <section data-calculator class="calculator-card" aria-labelledby="calc-heading">
+          <h2 id="calc-heading">Run the numbers</h2>
+          <p class="reassure"><strong>Browser-only.</strong> No image is uploaded. The maths is plain integer arithmetic and a 2.54 conversion factor.</p>
+
+          <form id="dpi-form" class="calc-form" novalidate>
+            <div class="calc-row">
+              <label for="inp-mode">What do you want to work out?</label>
+              <select id="inp-mode" name="mode">
+                <option value="size-from-pixels" selected>Print size, from pixel dimensions and DPI</option>
+                <option value="dpi-from-print">DPI, from pixel dimensions and a target print size</option>
+                <option value="pixels-needed">Pixel dimensions needed, for a print at a given DPI</option>
+              </select>
+            </div>
+
+            <div class="calc-row">
+              <label for="inp-unit">Print size unit</label>
+              <select id="inp-unit" name="unit">
+                <option value="inches" selected>Inches</option>
+                <option value="cm">Centimetres</option>
+              </select>
+            </div>
+
+            <div class="calc-row" data-row-pixels>
+              <label for="inp-pw">Pixels wide</label>
+              <input type="number" id="inp-pw" name="pixelsWide" min="1" step="1" value="3000" inputmode="numeric">
+              <label for="inp-ph">Pixels high</label>
+              <input type="number" id="inp-ph" name="pixelsHigh" min="1" step="1" value="2000" inputmode="numeric">
+            </div>
+
+            <div class="calc-row" data-row-print>
+              <label for="inp-prw">Print width</label>
+              <input type="number" id="inp-prw" name="printWidth" min="0.01" step="0.01" value="10" inputmode="decimal">
+              <label for="inp-prh">Print height</label>
+              <input type="number" id="inp-prh" name="printHeight" min="0.01" step="0.01" value="6.67" inputmode="decimal">
+            </div>
+
+            <div class="calc-row" data-row-dpi>
+              <label for="inp-dpi">DPI / PPI</label>
+              <input type="number" id="inp-dpi" name="dpi" min="1" step="1" value="300" inputmode="numeric">
+              <p class="calc-row__hint">300 for photo prints, 200 for posters, 150 minimum for anything held in the hand.</p>
+            </div>
+
+            <button type="submit" data-calculate>Calculate</button>
+            <p class="calc-row__hint" data-error role="alert"></p>
+          </form>
+
+          <div class="calculator-results" aria-live="polite">
+            <div class="result-summary" data-result-summary hidden>
+              <p data-result-row-print-size hidden>Print size: <strong data-result-print-size></strong></p>
+              <p data-result-row-dpi hidden>DPI / PPI: <strong data-result-dpi></strong></p>
+              <p data-result-row-pixels hidden>Pixels needed: <strong data-result-pixels></strong></p>
+              <p>Quality at this resolution: <strong data-result-quality></strong></p>
+            </div>
+
+            <details class="prove-it" data-prove-it>
+              <summary>Prove it</summary>
+              <div data-prove-it-body>
+                <p>Run a calculation to see the working.</p>
+                <ul data-prove-it-list></ul>
+              </div>
+            </details>
+
+            <p class="bookmark-nudge">
+              Useful? Save this calculator: press <kbd data-bookmark-shortcut>Ctrl</kbd> + <kbd>D</kbd> to bookmark it.
+            </p>
+          </div>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="below-results" aria-hidden="true"></div>
+
+        <section class="long-form">
+          <h2>Why DPI is really PPI in disguise</h2>
+          <p>Strictly, DPI (dots per inch) is a printer specification: how many ink droplets the print head can lay down per inch of paper. PPI (pixels per inch) is the image specification: how many of your file's pixels you are mapping to each inch of the output. They are not technically the same thing, but in everyday print talk they are used interchangeably, because for most consumer printing, one image pixel ends up roughly in one printer-dot zone. Pedants will correct you, the rest of the print industry will not. Both numbers describe the same end result: how dense the picture is on the page.</p>
+
+          <h2>The 300 PPI rule, and when to break it</h2>
+          <p>The 300 PPI standard for photo prints comes from human visual acuity. At a comfortable reading distance of about 30 to 40 centimetres, the human eye can resolve roughly 300 distinct features per inch. Below that, you start spotting the structure. Above that, you are paying for resolution your audience cannot see. It is not a magic number, it is a viewing-distance number. A poster on a wall, viewed from a metre away, can sit at 200 PPI without anyone noticing. A pub sign read from across the room is fine at 100 PPI. A motorway billboard, photographed at 30 PPI, looks crisp because you are 30 metres away. Pick the PPI that matches the viewing distance, not the one a stock photo site told you was mandatory.</p>
+
+          <h2>The three modes, and when each one is the right tool</h2>
+          <p>The first mode answers "what size print can I get from this file." You hand it your camera's pixel count and a DPI you trust, it gives you the print dimensions that meet that quality bar. Useful when a client sends you a file and asks how big you can go.</p>
+          <p>The second mode answers "is this file good enough for a print I have already committed to." A wedding album that has to be 30 by 30 cm, a photo you want at A3, a frame you bought before checking the file. Punch in the pixels you have and the print size you need, the calculator hands back the DPI you'll actually achieve and tells you whether that's a print to be proud of or a print to apologise for.</p>
+          <p>The third mode answers "what should I capture or render at." If you are shooting for a known print size, or rendering a digital illustration with a final print in mind, the calculator tells you the minimum pixel canvas you need to start with.</p>
+
+          <h2>Common mistakes</h2>
+          <p>The first is treating DPI as a property of the file. JPEG metadata can carry a DPI tag, but it is purely informational; the underlying pixel data is the same regardless. Changing the DPI tag in Photoshop without resampling does nothing to the image, it only changes the print size that opens by default. The pixels do not get sharper, the file does not get smaller, the print does not improve. PPI is a relationship between pixel count and print size, not an attribute of the file itself.</p>
+          <p>The second is using cm and inches interchangeably without converting. DPI is defined per inch. A 30 cm print is 11.81 inches. The calculator handles this for you, but if you are doing the maths in your head, do not divide pixel count by centimetres and call it DPI.</p>
+          <p>The third is forgetting the print is 2D. The calculator uses the width axis for its DPI verdict because images are usually scaled to fit the longer side, and width is the convention. If your image and your print have different aspect ratios, the print will be cropped, letterboxed or stretched on one axis. The <a href="/calculators/images/aspect-ratio-calculator/">aspect ratio calculator</a> on this site handles that side of the problem.</p>
+
+          <h2>Related calculators</h2>
+          <ul class="related-calculators">
+            <li><a href="/calculators/images/aspect-ratio-calculator/">Aspect Ratio Calculator for matching print and image shapes</a></li>
+            <li><a href="/calculators/images/photo-resizer/">Photo Resizer to actually resample the file</a></li>
+            <li><a href="/calculators/images/image-file-size-estimator/">Image File Size Estimator for the saved file's bytes</a></li>
+            <li><a href="/calculators/images/">All image tools</a></li>
+          </ul>
+        </section>
+
+        <section class="faq" aria-labelledby="faq-heading">
+          <h2 id="faq-heading">Frequently asked questions</h2>
+          <details>
+            <summary>What is DPI and why does it matter for printing?</summary>
+            <p>DPI stands for dots per inch, and it describes how densely a printer lays down ink across a page. PPI (pixels per inch) is the digital cousin: how many of your image's pixels land in each inch of the print. The two are used interchangeably for print planning. Below 150 PPI, the human eye starts to spot the squares at normal viewing distance. 300 PPI is the long-standing gold standard for photo prints because it lands comfortably above what most people can resolve at arm's length.</p>
+          </details>
+          <details>
+            <summary>Why does the same photo look great on screen and bad in print?</summary>
+            <p>A modern phone screen is around 460 PPI, packed tight, viewed from 30cm away. A 6x4 print held at the same distance needs roughly 300 PPI to look as sharp. The pixel count that filled your phone screen will not necessarily fill the print. A 1024 by 768 image looks fine on a laptop and looks chunky stretched across an A4 page, because the same pixels are spread thinner. This calculator tells you whether the maths works out before you commit to the print.</p>
+          </details>
+          <details>
+            <summary>Is 300 DPI always required?</summary>
+            <p>No. 300 PPI is the standard for held-in-the-hand photo prints because that is roughly the upper limit of what the human eye can resolve at reading distance. Posters viewed from a metre away can drop to 200 PPI without a visible difference. Billboards seen from 30 metres can sit at 30 PPI and still look sharp. The right number depends on viewing distance, not absolute quality. Use 300 for photos and books, 200 for posters, less for anything seen from across a room.</p>
+          </details>
+          <details>
+            <summary>Can I upscale a small image to print bigger?</summary>
+            <p>Sort of. Upscalers, including the AI ones, invent plausible detail to fill in the gaps. They can take a low-resolution photo from visibly pixelated to acceptable, but they cannot recover detail that was never captured. For a print that has to look sharp under inspection, the right answer is almost always to start with a higher-resolution original. For a poster glanced at from across a room, an upscaled image is usually fine.</p>
+          </details>
+          <details>
+            <summary>What are cm and inches doing in the same calculator?</summary>
+            <p>DPI is defined per inch, but most of the world measures print sizes in centimetres. The calculator does the conversion silently: 1 inch is 2.54 cm. Pick whichever unit matches the print size you actually have written down, the underlying maths is the same.</p>
+          </details>
+        </section>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="ad-slot" data-ad-slot="sidebar" aria-hidden="true"></div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="site-footer-nav" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/calculators/">All calculators</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+
+      <section class="site-disclaimer" data-disclaimer aria-labelledby="disclaimer-heading">
+        <h2 id="disclaimer-heading">A quick, necessary word</h2>
+        <p>Every calculator on this site is built to give you a sensible, well-reasoned estimate. It is, however, exactly that: an estimate, for general information only. Nothing you see here is professional, legal, financial, medical, or tax advice, and it should not be treated as such.</p>
+        <p>Before you make a decision that actually matters, talk to a qualified professional who knows your specific situation: an accountant, a solicitor, a doctor, an IT consultant, whoever fits the question. They can factor in the bits a generic tool can't.</p>
+        <p>We take no liability and accept no responsibility for any loss, damage, or questionable life choice arising from acting on the numbers you see here. Use the results as a starting point for a better conversation, not as the final word.</p>
+        <p><strong>Affiliate disclosure:</strong> some links on this site are affiliate links. If you click through and buy or sign up for something, we may earn a small commission at no extra cost to you. It helps keep the calculators free and ad-light. We only recommend things we'd point a friend towards.</p>
+      </section>
+      <p class="site-copyright">&copy; 2026 WebCaretakers. All rights reserved.</p>
+      <p class="site-legal">WebCaretakers is a trading name of <a href="https://yeseo.io/" rel="noopener">Andrew Laws Associates Ltd</a>, registered in England and Wales (company no. 08602332). ICO registration ZA726704.</p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var CM_PER_INCH = 2.54;
+      var form = document.getElementById('dpi-form');
+      if (!form) return;
+
+      var modeEl = form.querySelector('[name="mode"]');
+      var unitEl = form.querySelector('[name="unit"]');
+      var rowPixels = form.querySelector('[data-row-pixels]');
+      var rowPrint = form.querySelector('[data-row-print]');
+      var rowDpi = form.querySelector('[data-row-dpi]');
+      var errorEl = form.querySelector('[data-error]');
+
+      var summary = document.querySelector('[data-result-summary]');
+      var rowResPrint = document.querySelector('[data-result-row-print-size]');
+      var rowResDpi = document.querySelector('[data-result-row-dpi]');
+      var rowResPixels = document.querySelector('[data-result-row-pixels]');
+      var elPrintSize = document.querySelector('[data-result-print-size]');
+      var elDpi = document.querySelector('[data-result-dpi]');
+      var elPixels = document.querySelector('[data-result-pixels]');
+      var elQuality = document.querySelector('[data-result-quality]');
+      var proveListEl = document.querySelector('[data-prove-it-list]');
+
+      function applyModeVisibility() {
+        var mode = modeEl.value;
+        if (mode === 'size-from-pixels') {
+          rowPixels.hidden = false;
+          rowPrint.hidden = true;
+          rowDpi.hidden = false;
+        } else if (mode === 'dpi-from-print') {
+          rowPixels.hidden = false;
+          rowPrint.hidden = false;
+          rowDpi.hidden = true;
+        } else { // pixels-needed
+          rowPixels.hidden = true;
+          rowPrint.hidden = false;
+          rowDpi.hidden = false;
+        }
+      }
+      modeEl.addEventListener('change', applyModeVisibility);
+      applyModeVisibility();
+
+      function qualityVerdict(dpi) {
+        if (dpi >= 300) return { label: '300+ PPI, photo-print quality', key: 'photo' };
+        if (dpi >= 200) return { label: '200-299 PPI, good for posters', key: 'good' };
+        if (dpi >= 150) return { label: '150-199 PPI, acceptable at arm\'s length', key: 'acceptable' };
+        return { label: 'Under 150 PPI, visibly pixelated when held in the hand', key: 'pixelated' };
+      }
+
+      function fmtNum(n, dp) {
+        if (dp === undefined) dp = 2;
+        var rounded = Math.round(n * Math.pow(10, dp)) / Math.pow(10, dp);
+        return rounded.toString();
+      }
+
+      function formatPrintSize(widthInches, heightInches, unit) {
+        if (unit === 'cm') {
+          return fmtNum(widthInches * CM_PER_INCH) + ' cm x ' + fmtNum(heightInches * CM_PER_INCH) + ' cm';
+        }
+        return fmtNum(widthInches) + ' in x ' + fmtNum(heightInches) + ' in';
+      }
+
+      function setError(msg) {
+        errorEl.textContent = msg || '';
+      }
+
+      function pushResult(payload) {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push(Object.assign({
+          event: 'calculator_result',
+          calculator_name: 'image-dpi-print-size-calculator'
+        }, payload));
+      }
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        setError('');
+
+        var mode = modeEl.value;
+        var unit = unitEl.value;
+        var fd = new FormData(form);
+        var pw = parseFloat(fd.get('pixelsWide'));
+        var ph = parseFloat(fd.get('pixelsHigh'));
+        var prw = parseFloat(fd.get('printWidth'));
+        var prh = parseFloat(fd.get('printHeight'));
+        var dpi = parseFloat(fd.get('dpi'));
+
+        // Convert print width/height to inches for internal maths.
+        var prwInches = unit === 'cm' ? prw / CM_PER_INCH : prw;
+        var prhInches = unit === 'cm' ? prh / CM_PER_INCH : prh;
+
+        var resultPayload = { mode: mode, unit: unit };
+        var proveRows = [];
+        var verdictDpi = 0;
+
+        rowResPrint.hidden = true;
+        rowResDpi.hidden = true;
+        rowResPixels.hidden = true;
+
+        try {
+          if (mode === 'size-from-pixels') {
+            if (!(pw > 0) || !(ph > 0) || !(dpi > 0)) throw new Error('Enter positive numbers for pixels and DPI.');
+            var widthInches = pw / dpi;
+            var heightInches = ph / dpi;
+            elPrintSize.textContent = formatPrintSize(widthInches, heightInches, unit);
+            rowResPrint.hidden = false;
+            verdictDpi = dpi;
+            proveRows.push(['Pixel dimensions', pw + ' x ' + ph + ' px']);
+            proveRows.push(['Target DPI', dpi + ' PPI']);
+            proveRows.push(['Print width (in)', fmtNum(widthInches, 3) + ' in (= pixelsWide / DPI)']);
+            proveRows.push(['Print height (in)', fmtNum(heightInches, 3) + ' in (= pixelsHigh / DPI)']);
+            if (unit === 'cm') {
+              proveRows.push(['Print width (cm)', fmtNum(widthInches * CM_PER_INCH) + ' cm (x 2.54)']);
+              proveRows.push(['Print height (cm)', fmtNum(heightInches * CM_PER_INCH) + ' cm (x 2.54)']);
+            }
+            resultPayload.print_width_inches = widthInches;
+            resultPayload.print_height_inches = heightInches;
+            resultPayload.dpi = dpi;
+          } else if (mode === 'dpi-from-print') {
+            if (!(pw > 0) || !(ph > 0) || !(prwInches > 0) || !(prhInches > 0)) throw new Error('Enter positive numbers for pixels and print size.');
+            var dpiW = pw / prwInches;
+            var dpiH = ph / prhInches;
+            // Use the smaller of the two as the conservative verdict.
+            var dpiResult = Math.min(dpiW, dpiH);
+            elDpi.textContent = Math.round(dpiResult) + ' PPI (width axis: ' + Math.round(dpiW) + ', height axis: ' + Math.round(dpiH) + ')';
+            rowResDpi.hidden = false;
+            verdictDpi = dpiResult;
+            proveRows.push(['Pixel dimensions', pw + ' x ' + ph + ' px']);
+            proveRows.push(['Print size', fmtNum(prw) + ' x ' + fmtNum(prh) + ' ' + unit]);
+            if (unit === 'cm') {
+              proveRows.push(['Print size in inches', fmtNum(prwInches, 3) + ' x ' + fmtNum(prhInches, 3) + ' in']);
+            }
+            proveRows.push(['DPI on width axis', fmtNum(dpiW, 1) + ' (= pixelsWide / printWidthInches)']);
+            proveRows.push(['DPI on height axis', fmtNum(dpiH, 1) + ' (= pixelsHigh / printHeightInches)']);
+            proveRows.push(['Conservative DPI used for verdict', Math.round(dpiResult) + ' PPI']);
+            resultPayload.dpi = dpiResult;
+            resultPayload.print_width_inches = prwInches;
+            resultPayload.print_height_inches = prhInches;
+          } else { // pixels-needed
+            if (!(prwInches > 0) || !(prhInches > 0) || !(dpi > 0)) throw new Error('Enter positive numbers for print size and DPI.');
+            var needW = Math.round(prwInches * dpi);
+            var needH = Math.round(prhInches * dpi);
+            elPixels.textContent = needW + ' x ' + needH + ' pixels';
+            rowResPixels.hidden = false;
+            verdictDpi = dpi;
+            proveRows.push(['Print size', fmtNum(prw) + ' x ' + fmtNum(prh) + ' ' + unit]);
+            if (unit === 'cm') {
+              proveRows.push(['Print size in inches', fmtNum(prwInches, 3) + ' x ' + fmtNum(prhInches, 3) + ' in']);
+            }
+            proveRows.push(['Target DPI', dpi + ' PPI']);
+            proveRows.push(['Pixels wide needed', needW + ' (= printWidthInches x DPI)']);
+            proveRows.push(['Pixels high needed', needH + ' (= printHeightInches x DPI)']);
+            resultPayload.pixels_wide = needW;
+            resultPayload.pixels_high = needH;
+            resultPayload.dpi = dpi;
+          }
+        } catch (err) {
+          setError(err.message);
+          summary.hidden = true;
+          return;
+        }
+
+        var verdict = qualityVerdict(verdictDpi);
+        elQuality.textContent = verdict.label;
+        resultPayload.quality = verdict.key;
+        summary.hidden = false;
+
+        if (proveListEl) {
+          proveListEl.innerHTML = proveRows.map(function (row) {
+            return '<li><span>' + row[0] + '</span><strong>' + row[1] + '</strong></li>';
+          }).join('');
+        }
+
+        pushResult(resultPayload);
+      });
+
+      var proveDetails = document.querySelector('[data-prove-it]');
+      if (proveDetails) {
+        proveDetails.addEventListener('toggle', function () {
+          if (proveDetails.open) {
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+              event: 'prove_it',
+              calculator_name: 'image-dpi-print-size-calculator'
+            });
+          }
+        });
+      }
+
+      var shortcutEl = document.querySelector('[data-bookmark-shortcut]');
+      if (shortcutEl) {
+        var isMac = /Mac|iPhone|iPad|iPod/i.test(navigator.platform || navigator.userAgent);
+        shortcutEl.textContent = isMac ? '⌘' : 'Ctrl';
+      }
+    })();
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

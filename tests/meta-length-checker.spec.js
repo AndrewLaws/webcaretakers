@@ -66,7 +66,7 @@ test('dataLayer fires on first input', async ({ page }) => {
 
 test('SEO hub lists meta length checker', async ({ page }) => {
   await page.goto('/calculators/seo/');
-  await expect(page.locator('a[href="/calculators/seo/meta-length-checker/"]')).toBeVisible();
+  await expect(page.locator('a[href="/calculators/seo/meta-length-checker/"]').first()).toBeVisible();
 });
 
 test('prove-it workings populated', async ({ page }) => {

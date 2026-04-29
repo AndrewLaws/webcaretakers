@@ -262,7 +262,7 @@
 
           <h2>Things this calculator deliberately doesn't do</h2>
           <ul>
-            <li><strong>Storage cost.</strong> Pinecone, Weaviate, Qdrant, or pgvector all want a monthly figure for keeping the vectors hot and queryable. That's a separate line, and the RAG Pipeline Cost Calculator covers it.</li>
+            <li><strong>Storage cost.</strong> Pinecone, Weaviate, Qdrant, or pgvector all want a monthly figure for keeping the vectors hot and queryable. That's a separate line, and the <a href="/calculators/ai/rag-pipeline-cost-calculator/">RAG Pipeline Cost Calculator</a> covers it.</li>
             <li><strong>Re-embedding only what changed.</strong> The calculator assumes a worst-case full-corpus refresh on whatever schedule you pick. Your real bill, with smart incremental updates, will usually be a small fraction of the figure shown.</li>
             <li><strong>Batch discounts.</strong> List prices, not the 50% off you sometimes get on async batch APIs. If you're batching, halve the figure here.</li>
             <li><strong>Quality.</strong> A cheap embedding model that retrieves the wrong chunks is more expensive than an expensive one that retrieves the right ones, because every retrieval failure costs you an LLM call and an unhappy user. The bill is one input to the decision, not the whole decision.</li>

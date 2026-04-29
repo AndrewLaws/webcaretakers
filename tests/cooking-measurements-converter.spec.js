@@ -144,7 +144,7 @@ test('dataLayer fires calculator_interaction on input', async ({ page }) => {
 
 test('Conversions hub lists Cooking Measurements Converter', async ({ page }) => {
   await page.goto('/calculators/conversions/');
-  await expect(page.locator('a[href="/calculators/conversions/cooking-measurements-converter/"]')).toBeVisible();
+  await expect(page.locator('a[href="/calculators/conversions/cooking-measurements-converter/"]').first()).toBeVisible();
 });
 
 test.describe('Prove it panel', () => {

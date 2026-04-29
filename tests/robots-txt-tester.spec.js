@@ -127,10 +127,10 @@ test('JSON-LD blocks parse and contain SoftwareApplication and FAQPage', async (
 
 test('SEO hub lists robots.txt tester', async ({ page }) => {
   await page.goto('/calculators/seo/');
-  await expect(page.locator('a[href="/calculators/seo/robots-txt-tester/"]')).toBeVisible();
+  await expect(page.locator('a[href="/calculators/seo/robots-txt-tester/"]').first()).toBeVisible();
 });
 
 test('all-calculators hub lists robots.txt tester', async ({ page }) => {
   await page.goto('/calculators/');
-  await expect(page.locator('a[href="/calculators/seo/robots-txt-tester/"]')).toBeVisible();
+  await expect(page.locator('a[href="/calculators/seo/robots-txt-tester/"]').first()).toBeVisible();
 });

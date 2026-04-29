@@ -71,7 +71,7 @@ test('dataLayer fires once slug produced', async ({ page }) => {
 
 test('SEO hub lists URL slug generator', async ({ page }) => {
   await page.goto('/calculators/seo/');
-  await expect(page.locator('a[href="/calculators/seo/url-slug-generator/"]')).toBeVisible();
+  await expect(page.locator('a[href="/calculators/seo/url-slug-generator/"]').first()).toBeVisible();
 });
 
 test('primary nav includes SEO link', async ({ page }) => {

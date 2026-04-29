@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Combinations &amp; Permutations Calculator | WebCaretakers</title>
+  <meta name="description" content="Work out nCr, nPr, factorials and multinomials with arbitrary precision. Handles repetition variants and shows the formula and step-by-step working.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/math/combinations-permutations-calculator/">
+  <meta property="og:title" content="Combinations & Permutations Calculator | WebCaretakers">
+  <meta property="og:description" content="nCr, nPr, factorial and multinomial with arbitrary precision and the working shown.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/math/combinations-permutations-calculator/">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var _stored = null;
+    try { _stored = localStorage.getItem('cookie-consent'); } catch (e) {}
+    var _initial = _stored === 'granted' ? 'granted' : 'denied';
+    gtag('consent', 'default', {
+      ad_storage: _initial, analytics_storage: _initial,
+      ad_user_data: _initial, ad_personalization: _initial,
+      functionality_storage: 'granted', security_storage: 'granted',
+      wait_for_update: 500
+    });
+  </script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Combinations & Permutations Calculator",
+    "url": "https://webcaretakers.com/calculators/math/combinations-permutations-calculator/",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "author": {
+      "@type": "Person",
+      "name": "Andrew Laws",
+      "url": "https://yeseo.io/"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the difference between a combination and a permutation?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Order. A permutation cares which thing came first, second, third. A combination does not. Picking three friends to come for a curry is a combination: it is the same group whether you texted Alex first or last. Working out the podium at a race is a permutation: gold, silver and bronze are different jobs and the order is the whole point." }
+      },
+      {
+        "@type": "Question",
+        "name": "When should I use the repetition option?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Tick repetition when the same item can be chosen more than once. Three scoops from five ice-cream flavours, where you are allowed two scoops of pistachio, is combinations with repetition. A four-digit PIN where digits can repeat is permutations with repetition. Without the tick, the calculator assumes each item can be picked at most once." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does the calculator cap n at 500?",
+        "acceptedAnswer": { "@type": "Answer", "text": "It does the maths in arbitrary-precision integers using JavaScript BigInt, so accuracy is not the issue. The cap is about readability. 500 factorial has over 1100 digits. Past that point the screen fills up with a wall of digits that nobody is going to read, so we stop short and give you a usable answer." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is a multinomial coefficient and when do I need one?",
+        "acceptedAnswer": { "@type": "Answer", "text": "A multinomial counts the number of distinct ways to split n items into named groups of fixed sizes. The classic example is the number of distinct rearrangements of MISSISSIPPI: 11 letters made of 1 M, 4 I, 4 S and 2 P, giving 11! divided by (1! 4! 4! 2!) which is 34,650. Pop the group sizes into the calculator separated by commas." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does this calculator send my numbers anywhere?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. The whole thing runs in your browser using vanilla JavaScript. The values you type never leave your device. You can disconnect from the network and the calculator still works." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-banner-heading" aria-describedby="cookie-banner-text" hidden>
+    <div class="cookie-banner__inner">
+      <h2 id="cookie-banner-heading" class="cookie-banner__heading">A quick word about cookies</h2>
+      <p id="cookie-banner-text" class="cookie-banner__text">
+        We use cookies for analytics, so we can see which calculators people actually use and which ones need work. Nothing creepy, nothing sold on. You can say yes, say no, or read the <a href="/privacy/">privacy policy</a> first. Your choice sticks.
+      </p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-reject>Reject</button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>Accept</button>
+      </div>
+    </div>
+  </div>
+
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">WebCaretakers</a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <ul class="primary-nav__list">
+          <li class="primary-nav__item primary-nav__item--has-menu">
+            <button type="button" class="primary-nav__link" data-menu-toggle aria-haspopup="true" aria-expanded="false">Calculators <span class="primary-nav__caret" aria-hidden="true">&#9662;</span></button>
+            <ul class="primary-nav__submenu">
+              <li><a href="/calculators/ai/">AI</a></li>
+              <li><a href="/calculators/broadband/">Broadband</a></li>
+              <li><a href="/calculators/business/">Business</a></li>
+              <li><a href="/calculators/conversions/">Conversions</a></li>
+              <li><a href="/calculators/cybersecurity/">Cybersecurity</a></li>
+              <li><a href="/calculators/finance/">Finance</a></li>
+              <li><a href="/calculators/fun/">Fun</a></li>
+              <li><a href="/calculators/health/">Health</a></li>
+              <li><a href="/calculators/images/">Images</a></li>
+              <li><a href="/calculators/math/">Math</a></li>
+              <li><a href="/calculators/productivity/">Productivity</a></li>
+              <li><a href="/calculators/property/">Property</a></li>
+              <li><a href="/calculators/seo/">SEO</a></li>
+              <li><a href="/calculators/wedding/">Wedding</a></li>
+              <li><a href="/calculators/writing/">Writing</a></li>
+              <li class="primary-nav__submenu-sep"><a href="/calculators/">See all calculators</a></li>
+            </ul>
+          </li>
+          <li class="primary-nav__item"><a href="/about/" class="primary-nav__link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <main id="main-content">
+      <div class="container">
+        <nav aria-label="Breadcrumb" class="breadcrumbs">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/calculators/">Calculators</a></li>
+            <li><a href="/calculators/math/">Math</a></li>
+            <li aria-current="page">Combinations &amp; Permutations Calculator</li>
+          </ol>
+        </nav>
+
+        <h1>Combinations &amp; Permutations Calculator</h1>
+        <p class="intro">Work out nCr, nPr, factorials and multinomial coefficients with arbitrary precision. Tick the repetition box for the with-repeats variants. The calculator shows the formula it used and walks through the working underneath, so you can check the answer rather than take it on faith.</p>
+
+        <section class="eli5" aria-label="Plain-English explanation">
+          <h2>Explain like I'm 5 (what even is this calculator?)</h2>
+          <p>Imagine you have a bag of sweets and you want to know how many different ways you can pick a few of them. If you only care which sweets you ended up with, that is a combination. If the order you picked them in matters too, that is a permutation. This calculator counts both. The numbers get big fast, so it does the maths in proper whole numbers (no rounding) and shows you the formula it used.</p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="in-content" aria-hidden="true"></div>
+
+        <section data-calculator class="calculator-card">
+          <h2>Calculate</h2>
+          <p class="reassure"><strong>Browser-only.</strong> The numbers you enter are processed in your browser. Nothing is uploaded.</p>
+
+          <form id="cp-form" class="calc-form" novalidate>
+            <div class="calc-row calc-row--inline">
+              <label for="cp-mode">Mode</label>
+              <select id="cp-mode" name="mode">
+                <option value="combinations">Combinations (nCr)</option>
+                <option value="permutations">Permutations (nPr)</option>
+                <option value="both">Both (nCr and nPr)</option>
+                <option value="factorial-only">Factorial only (n!)</option>
+                <option value="multinomial">Multinomial</option>
+              </select>
+            </div>
+            <div class="calc-row calc-row--inline" data-field-n>
+              <label for="cp-n">n (total items)</label>
+              <input type="number" id="cp-n" name="n" min="0" step="1" inputmode="numeric" placeholder="e.g. 10">
+            </div>
+            <div class="calc-row calc-row--inline" data-field-r>
+              <label for="cp-r">r (chosen)</label>
+              <input type="number" id="cp-r" name="r" min="0" step="1" inputmode="numeric" placeholder="e.g. 3">
+            </div>
+            <div class="calc-row calc-row--inline" data-field-repetition>
+              <label for="cp-repetition">
+                <input type="checkbox" id="cp-repetition" name="repetition">
+                With repetition (items can be chosen more than once)
+              </label>
+            </div>
+            <div class="calc-row calc-row--inline" data-field-multinomial hidden>
+              <label for="cp-multinomial">Group sizes (comma-separated, sum to n)</label>
+              <input type="text" id="cp-multinomial" name="multinomialGroups" placeholder="e.g. 1,4,4,2 for MISSISSIPPI">
+            </div>
+            <p class="calc-row__hint">n is capped at 500 to keep the page snappy. The arithmetic itself is exact, using arbitrary-precision integers.</p>
+
+            <button type="submit" data-calculate>Calculate</button>
+          </form>
+
+          <div data-calculator-results class="calculator-results">
+            <div class="stats-grid">
+              <div class="stats-grid__row"><dt>nCr (combinations)</dt><dd data-result-nCr>&mdash;</dd></div>
+              <div class="stats-grid__row"><dt>nPr (permutations)</dt><dd data-result-nPr>&mdash;</dd></div>
+              <div class="stats-grid__row"><dt>n!</dt><dd data-result-factorial>&mdash;</dd></div>
+            </div>
+            <p class="result-display" data-result-working>Enter your values and press Calculate.</p>
+
+            <details class="prove-it" data-prove-it>
+              <summary>Prove it</summary>
+              <div data-prove-it-body></div>
+              <ul data-prove-it-list class="prove-it-steps"></ul>
+              <p class="prove-it-source">Method: nCr = n! / (r! (n &minus; r)!), nPr = n! / (n &minus; r)!. With repetition: combinations become C(n + r &minus; 1, r) and permutations become n^r. Multinomial: n! / &prod;(k&#x1D62;!). All arithmetic uses JavaScript BigInt so the answers are exact, no floating-point fuzziness.</p>
+            </details>
+          </div>
+
+          <p class="bookmark-nudge">
+            Useful? Save this calculator: press <kbd data-bookmark-shortcut>Ctrl</kbd> + <kbd>D</kbd> to bookmark it.
+          </p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="below-results" aria-hidden="true"></div>
+
+        <section class="long-form">
+          <h2>What the calculator is actually doing</h2>
+          <p>For combinations without repetition, the formula is nCr = n! / (r! (n &minus; r)!). It counts the number of ways to choose r items from n distinct items when the order does not matter. For permutations without repetition, the formula is nPr = n! / (n &minus; r)!, which counts arrangements where the order does matter. The relationship between them is straightforward: every combination of r items can be arranged in r! different orders, so nPr = nCr &times; r!.</p>
+          <p>The repetition variants are different beasts. Combinations with repetition uses the stars-and-bars count, C(n + r &minus; 1, r), which works out how many multisets of size r you can build from n distinct types. Permutations with repetition is the simplest of the four: n choices, made r times, gives n raised to the power r. PIN codes, dice rolls and licence plates all live in this last bucket.</p>
+
+          <h2>When you actually need this</h2>
+          <p>Probability problems lean on combinations and permutations more than any other piece of maths. The number of five-card poker hands is 52C5 = 2,598,960, which is the denominator under almost every probability you will ever calculate at the table. Lottery odds are nCr divided into one. Birthday-paradox style questions need permutations to count the bad outcomes. Anywhere you are counting "how many distinct ways could this happen", the chances are you want one of the four formulas above.</p>
+          <p>Outside textbook probability the same maths quietly underpins genetics (counting allele combinations), combinatorial chemistry (how many distinct molecules can be assembled from a kit of fragments), tournament scheduling (how many round-robin pairings exist), and an enormous chunk of cryptography. The maths is small. The applications are not.</p>
+
+          <h2>Common mistakes the calculator helps you avoid</h2>
+          <p><strong>Mixing up nCr and nPr.</strong> If the order matters, you want nPr. If it does not, you want nCr. A surprising number of probability errors trace back to using the wrong one. The "both" mode is there so you can sanity-check by computing both and seeing which one matches the situation you have in mind.</p>
+          <p><strong>Forgetting about repetition.</strong> A four-digit PIN has 10,000 combinations, not 5,040. The difference is whether digits can repeat. Without the repetition tick, the calculator assumes each item is used at most once. Tick the box and the formula switches.</p>
+          <p><strong>Computing the factorial the long way.</strong> By hand, working out 100! to divide it by 50! and another 50! is a tedious mess. The calculator uses the multiplicative form of nCr, which never builds the giant numerator at all, so even something like 500C250 comes back instantly.</p>
+          <p><strong>Hitting the precision wall in a spreadsheet.</strong> Excel's COMBIN function and most online calculators silently fall over at around 13C7 or so when the intermediate factorials overflow a double-precision float. This calculator uses BigInt throughout, which is exact for any integer no matter how huge.</p>
+
+          <h2>Edge cases worth knowing about</h2>
+          <p>r = 0: there is exactly one way to choose nothing. nC0 = 1, nP0 = 1, 0! = 1. The calculator returns the right answer rather than choking on the corner case.</p>
+          <p>r = n: nCn = 1 (one way to choose all of them) and nPn = n! (every possible ordering of the full set).</p>
+          <p>r &gt; n without repetition: impossible, so the count is zero. The calculator flags it as an input error rather than silently returning 0, on the grounds that it is more useful to spot the bug.</p>
+          <p>Very large multinomials: the multinomial coefficient grows even faster than nCr because every group factorial in the denominator is small relative to the n! on top. The calculator handles it with BigInt and shows a scientific-notation hint alongside the exact number when the digit count gets unwieldy.</p>
+
+          <h2>Related calculators</h2>
+          <p>Other maths tools that pair well with this one.</p>
+          <ul class="related-calculators">
+            <li><a href="/calculators/math/quadratic-equation-solver/">Quadratic Equation Solver</a> for the other classic closed-form formula every student meets</li>
+            <li><a href="/calculators/math/standard-deviation-calculator/">Standard Deviation Calculator</a> for descriptive stats once you have a list of outcomes</li>
+            <li><a href="/calculators/math/gcd-lcm-calculator/">GCD and LCM Calculator</a> for the integer-divisor maths that lives next door</li>
+            <li><a href="/calculators/math/">All math calculators</a></li>
+          </ul>
+        </section>
+
+        <section class="faq" aria-labelledby="faq-heading">
+          <h2 id="faq-heading">Frequently asked questions</h2>
+          <details>
+            <summary>What is the difference between a combination and a permutation?</summary>
+            <p>Order. A permutation cares which thing came first, second, third. A combination does not. Picking three friends to come for a curry is a combination: it is the same group whether you texted Alex first or last. Working out the podium at a race is a permutation: gold, silver and bronze are different jobs and the order is the whole point.</p>
+          </details>
+          <details>
+            <summary>When should I use the repetition option?</summary>
+            <p>Tick repetition when the same item can be chosen more than once. Three scoops from five ice-cream flavours, where you are allowed two scoops of pistachio, is combinations with repetition. A four-digit PIN where digits can repeat is permutations with repetition. Without the tick, the calculator assumes each item can be picked at most once.</p>
+          </details>
+          <details>
+            <summary>Why does the calculator cap n at 500?</summary>
+            <p>It does the maths in arbitrary-precision integers using JavaScript BigInt, so accuracy is not the issue. The cap is about readability. 500 factorial has over 1100 digits. Past that point the screen fills up with a wall of digits that nobody is going to read, so we stop short and give you a usable answer.</p>
+          </details>
+          <details>
+            <summary>What is a multinomial coefficient and when do I need one?</summary>
+            <p>A multinomial counts the number of distinct ways to split n items into named groups of fixed sizes. The classic example is the number of distinct rearrangements of MISSISSIPPI: 11 letters made of 1 M, 4 I, 4 S and 2 P, giving 11! divided by (1! 4! 4! 2!) which is 34,650. Pop the group sizes into the calculator separated by commas.</p>
+          </details>
+          <details>
+            <summary>Does this calculator send my numbers anywhere?</summary>
+            <p>No. The whole thing runs in your browser using vanilla JavaScript. The values you type never leave your device. You can disconnect from the network and the calculator still works.</p>
+          </details>
+        </section>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="ad-slot" data-ad-slot="sidebar" aria-hidden="true"></div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="site-footer-nav" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/calculators/">All calculators</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+
+      <section class="site-disclaimer" data-disclaimer aria-labelledby="disclaimer-heading">
+        <h2 id="disclaimer-heading">A quick, necessary word</h2>
+        <p>Every calculator on this site is built to give you a sensible, well-reasoned estimate. It is, however, exactly that: an estimate, for general information only. Nothing you see here is professional, legal, financial, medical, or tax advice, and it should not be treated as such.</p>
+        <p>Before you make a decision that actually matters, talk to a qualified professional who knows your specific situation: an accountant, a solicitor, a doctor, an IT consultant, whoever fits the question. They can factor in the bits a generic tool can't.</p>
+        <p>We take no liability and accept no responsibility for any loss, damage, or questionable life choice arising from acting on the numbers you see here. Use the results as a starting point for a better conversation, not as the final word.</p>
+        <p><strong>Affiliate disclosure:</strong> some links on this site are affiliate links. If you click through and buy or sign up for something, we may earn a small commission at no extra cost to you. It helps keep the calculators free and ad-light. We only recommend things we'd point a friend towards.</p>
+      </section>
+      <p class="site-copyright">&copy; 2026 WebCaretakers. All rights reserved.</p>
+      <p class="site-legal">WebCaretakers is a trading name of <a href="https://yeseo.io/" rel="noopener">Andrew Laws Associates Ltd</a>, registered in England and Wales (company no. 08602332). ICO registration ZA726704.</p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/calculators/combinations-permutations.js"></script>
+  <script>
+    (function () {
+      'use strict';
+      var shortcutEl = document.querySelector('[data-bookmark-shortcut]');
+      if (shortcutEl) {
+        var isMac = /Mac|iPhone|iPad|iPod/i.test(navigator.platform || navigator.userAgent);
+        shortcutEl.textContent = isMac ? '⌘' : 'Ctrl';
+      }
+
+      var CALC_NAME = 'combinations-permutations-calculator';
+      var form = document.getElementById('cp-form');
+      if (!form) return;
+
+      var modeEl = form.querySelector('[name="mode"]');
+      var nEl = form.querySelector('[name="n"]');
+      var rEl = form.querySelector('[name="r"]');
+      var repEl = form.querySelector('[name="repetition"]');
+      var multiEl = form.querySelector('[name="multinomialGroups"]');
+
+      var fieldN = form.querySelector('[data-field-n]');
+      var fieldR = form.querySelector('[data-field-r]');
+      var fieldRep = form.querySelector('[data-field-repetition]');
+      var fieldMulti = form.querySelector('[data-field-multinomial]');
+
+      var nCrEl = document.querySelector('[data-result-nCr]');
+      var nPrEl = document.querySelector('[data-result-nPr]');
+      var factEl = document.querySelector('[data-result-factorial]');
+      var workingEl = document.querySelector('[data-result-working]');
+      var proveDetails = document.querySelector('[data-prove-it]');
+      var proveBody = document.querySelector('[data-prove-it-body]');
+      var proveList = document.querySelector('[data-prove-it-list]');
+
+      function showFieldsForMode() {
+        var mode = modeEl.value;
+        fieldR.hidden = (mode === 'factorial-only' || mode === 'multinomial');
+        fieldRep.hidden = (mode === 'factorial-only' || mode === 'multinomial');
+        fieldN.hidden = (mode === 'multinomial');
+        fieldMulti.hidden = (mode !== 'multinomial');
+      }
+      modeEl.addEventListener('change', showFieldsForMode);
+      showFieldsForMode();
+
+      [nEl, rEl, modeEl, repEl, multiEl].forEach(function (el) {
+        if (!el) return;
+        el.addEventListener('input', function () {
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: 'calculator_interaction',
+            calculator_name: CALC_NAME,
+            field: el.name || el.id
+          });
+        });
+      });
+
+      if (proveDetails) {
+        proveDetails.addEventListener('toggle', function () {
+          if (proveDetails.open) {
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+              event: 'prove_it',
+              calculator_name: CALC_NAME
+            });
+          }
+        });
+      }
+
+      function fmt(big) {
+        return window.CombinationsPermutations.formatBig(big);
+      }
+
+      function clearResults() {
+        nCrEl.innerHTML = '&mdash;';
+        nPrEl.innerHTML = '&mdash;';
+        factEl.innerHTML = '&mdash;';
+        proveBody.innerHTML = '';
+        proveList.innerHTML = '';
+      }
+
+      function renderProveIt(input, result) {
+        var steps = [];
+        if (result.mode === 'multinomial') {
+          var groupsStr = input.multinomialGroups;
+          steps.push('Groups: ' + groupsStr + ' (sum n = ' + result.n + ')');
+          steps.push('Formula: n! / (k1! &times; k2! &times; ... &times; km!)');
+          steps.push('Numerator: ' + result.n + '! = ' + fmt(window.CombinationsPermutations.factorial(result.n)));
+          var denomParts = result.groups.map(function (g) { return g + '!'; }).join(' &times; ');
+          steps.push('Denominator: ' + denomParts);
+          steps.push('Result: ' + fmt(result.multinomial));
+          proveBody.innerHTML = '<p>The multinomial coefficient counts the distinct arrangements when items fall into named groups. Worked through using factorials.</p>';
+        } else if (result.mode === 'factorial-only') {
+          steps.push('n = ' + result.n);
+          steps.push(result.n + '! = 1 &times; 2 &times; ... &times; ' + result.n);
+          steps.push('Result: ' + fmt(result.factorialN));
+          proveBody.innerHTML = '<p>Factorial of n is the product of every whole number from 1 up to n. The answer below uses BigInt so it stays exact.</p>';
+        } else {
+          steps.push('n = ' + result.n + ', r = ' + result.r + (result.repetition ? ' (with repetition)' : ''));
+          steps.push('n! = ' + fmt(result.factorialN));
+          steps.push('r! = ' + fmt(result.factorialR));
+          if (result.factorialNminusR != null) {
+            steps.push('(n &minus; r)! = ' + fmt(result.factorialNminusR));
+          }
+          if (result.nCr !== undefined) {
+            steps.push('Formula: ' + result.formulaC);
+            steps.push('nCr = ' + fmt(result.nCr));
+          }
+          if (result.nPr !== undefined) {
+            steps.push('Formula: ' + result.formulaP);
+            steps.push('nPr = ' + fmt(result.nPr));
+          }
+          proveBody.innerHTML = '<p>Walking through the factorial pieces, then dividing them down to the final count. All arithmetic is exact (BigInt).</p>';
+        }
+        proveList.innerHTML = steps.map(function (s) { return '<li>' + s + '</li>'; }).join('');
+      }
+
+      function calculateAndRender() {
+        clearResults();
+        var mode = modeEl.value;
+        var input = {
+          mode: mode,
+          n: nEl.value === '' ? NaN : parseInt(nEl.value, 10),
+          r: rEl.value === '' ? NaN : parseInt(rEl.value, 10),
+          repetition: !!repEl.checked,
+          multinomialGroups: multiEl.value
+        };
+
+        var result;
+        try {
+          result = window.CombinationsPermutations.compute(input);
+        } catch (err) {
+          workingEl.textContent = err.message;
+          return;
+        }
+
+        if (result.mode === 'multinomial') {
+          factEl.textContent = fmt(window.CombinationsPermutations.factorial(result.n));
+          workingEl.innerHTML = 'Multinomial coefficient = <strong>' + fmt(result.multinomial) + '</strong>';
+        } else if (result.mode === 'factorial-only') {
+          factEl.textContent = fmt(result.factorialN);
+          workingEl.innerHTML = result.n + '! = <strong>' + fmt(result.factorialN) + '</strong>';
+        } else {
+          factEl.textContent = fmt(result.factorialN);
+          if (result.nCr !== undefined) nCrEl.textContent = fmt(result.nCr);
+          if (result.nPr !== undefined) nPrEl.textContent = fmt(result.nPr);
+          var bits = [];
+          if (result.nCr !== undefined) bits.push('nCr = ' + fmt(result.nCr));
+          if (result.nPr !== undefined) bits.push('nPr = ' + fmt(result.nPr));
+          workingEl.innerHTML = bits.join(' &nbsp;|&nbsp; ');
+        }
+
+        renderProveIt(input, result);
+
+        var payload = {
+          event: 'calculator_result',
+          calculator_name: CALC_NAME,
+          mode: result.mode,
+          repetition: !!input.repetition
+        };
+        if (result.n !== undefined) payload.n = Number(result.n);
+        if (result.r !== undefined) payload.r = Number(result.r);
+        if (result.nCr !== undefined) payload.nCr = result.nCr.toString();
+        if (result.nPr !== undefined) payload.nPr = result.nPr.toString();
+        if (result.factorialN !== undefined) payload.factorial = result.factorialN.toString();
+        if (result.multinomial !== undefined) payload.multinomial = result.multinomial.toString();
+
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push(payload);
+      }
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        calculateAndRender();
+      });
+    })();
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

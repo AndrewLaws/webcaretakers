@@ -125,6 +125,7 @@ test('dataLayer fires calculator_interaction on input change', async ({ page }) 
 test('dataLayer fires prove_it when details opened', async ({ page }) => {
   await page.goto(URL);
   await page.locator('details[data-prove-it] summary').click();
+  await page.waitForFunction(() => window.dataLayer.some((e) => e.event === 'prove_it'));
   const dl = await page.evaluate(() => window.dataLayer);
   const hit = dl.find(e => e.event === 'prove_it' && e.calculator_name === 'Time Zone Converter');
   expect(hit).toBeTruthy();
@@ -132,7 +133,7 @@ test('dataLayer fires prove_it when details opened', async ({ page }) => {
 
 test('Conversions hub lists Time Zone Converter', async ({ page }) => {
   await page.goto('/calculators/conversions/');
-  await expect(page.locator('a[href="/calculators/conversions/time-zone-converter/"]')).toBeVisible();
+  await expect(page.locator('a[href="/calculators/conversions/time-zone-converter/"]').first()).toBeVisible();
 });
 
 test('All calculators hub lists Time Zone Converter', async ({ page }) => {

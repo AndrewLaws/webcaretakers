@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Color Depth &amp; Storage Calculator: Bits, Bytes and Total Colours | WebCaretakers</title>
+  <meta name="description" content="Work out the uncompressed size of an image, the total number of colours each bit depth can represent, and how it compares to a typical JPEG or PNG.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/images/color-depth-calculator/">
+  <meta property="og:title" content="Color Depth & Storage Calculator | WebCaretakers">
+  <meta property="og:description" content="Work out the uncompressed size of an image, the total colours each bit depth can represent, and how it compares to JPEG or PNG.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/images/color-depth-calculator/">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var _stored = null;
+    try { _stored = localStorage.getItem('cookie-consent'); } catch (e) {}
+    var _initial = _stored === 'granted' ? 'granted' : 'denied';
+    gtag('consent', 'default', {
+      ad_storage: _initial, analytics_storage: _initial,
+      ad_user_data: _initial, ad_personalization: _initial,
+      functionality_storage: 'granted', security_storage: 'granted',
+      wait_for_update: 500
+    });
+  </script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Color Depth & Storage Calculator",
+    "url": "https://webcaretakers.com/calculators/images/color-depth-calculator/",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "description": "Calculate the uncompressed storage size of an image at any bit depth, the total number of colours that bit depth can represent, and how the raw figure compares to a typical JPEG or PNG.",
+    "offers": { "@type": "Offer", "price": "0" },
+    "author": { "@type": "Person", "name": "Andrew Laws", "url": "https://yeseo.io/" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What does bit depth actually mean?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Bit depth is the number of bits used to describe a single pixel. One bit gives you two states, black or white. Eight bits gives you 256 shades or palette entries. Twenty-four bits gives you the standard 16.7 million colours of an RGB image, eight bits per channel for red, green and blue. Higher bit depths exist for HDR and professional editing, where the headroom matters more than the file size." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why is the raw size so much bigger than the JPEG on disk?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Raw, uncompressed pixel data is the worst case. JPEG throws away detail your eye barely sees and packs the rest cleverly, landing at roughly 10:1 of raw for a typical photograph at quality 80-85. PNG keeps every pixel exactly but uses lossless deflate compression, which on photos lands around 2:1. Both ratios depend on content: a flat sky compresses much smaller, a forest canopy much larger." }
+      },
+      {
+        "@type": "Question",
+        "name": "What's the difference between 8-bit grayscale and 8-bit indexed?",
+        "acceptedAnswer": { "@type": "Answer", "text": "They store the same number of bits per pixel, so the file size is the same. The difference is what the byte means. In grayscale, the value is the brightness, 0 black through 255 white. In indexed colour, the value is a lookup into a palette of up to 256 colours that lives in the file header. Same storage, different interpretation." }
+      },
+      {
+        "@type": "Question",
+        "name": "When would I ever use 30, 36 or 48-bit colour?",
+        "acceptedAnswer": { "@type": "Answer", "text": "30-bit (Rec.2020 HDR) is the colour space used by HDR video and high-end displays, ten bits per channel. 36-bit and 48-bit are professional editing and capture formats: 12 or 16 bits per channel give you headroom for heavy curves and exposure adjustments without banding. The trade-off is that the files double or triple in size. Most consumer workflows do not need them." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does animation multiply the size linearly?",
+        "acceptedAnswer": { "@type": "Answer", "text": "An uncompressed animation stores every frame in full, so ten frames is ten times the data of one. Real animated formats like APNG, animated WebP or video codecs like H.264 and AV1 can save a lot through inter-frame compression, only storing the difference between frames. The figure here is the uncompressed worst case, useful for sizing memory and pipeline buffers, not for predicting an MP4." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-banner-heading" aria-describedby="cookie-banner-text" hidden>
+    <div class="cookie-banner__inner">
+      <h2 id="cookie-banner-heading" class="cookie-banner__heading">A quick word about cookies</h2>
+      <p id="cookie-banner-text" class="cookie-banner__text">
+        We use cookies for analytics, so we can see which calculators people actually use and which ones need work. Nothing creepy, nothing sold on. You can say yes, say no, or read the <a href="/privacy/">privacy policy</a> first. Your choice sticks.
+      </p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-reject>Reject</button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>Accept</button>
+      </div>
+    </div>
+  </div>
+
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">WebCaretakers</a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <ul class="primary-nav__list">
+          <li class="primary-nav__item primary-nav__item--has-menu">
+            <button type="button" class="primary-nav__link" data-menu-toggle aria-haspopup="true" aria-expanded="false">Calculators <span class="primary-nav__caret" aria-hidden="true">&#9662;</span></button>
+            <ul class="primary-nav__submenu">
+              <li><a href="/calculators/ai/">AI</a></li>
+              <li><a href="/calculators/broadband/">Broadband</a></li>
+              <li><a href="/calculators/business/">Business</a></li>
+              <li><a href="/calculators/conversions/">Conversions</a></li>
+              <li><a href="/calculators/cybersecurity/">Cybersecurity</a></li>
+              <li><a href="/calculators/finance/">Finance</a></li>
+              <li><a href="/calculators/fun/">Fun</a></li>
+              <li><a href="/calculators/health/">Health</a></li>
+              <li><a href="/calculators/images/">Images</a></li>
+              <li><a href="/calculators/math/">Math</a></li>
+              <li><a href="/calculators/productivity/">Productivity</a></li>
+              <li><a href="/calculators/property/">Property</a></li>
+              <li><a href="/calculators/seo/">SEO</a></li>
+              <li><a href="/calculators/wedding/">Wedding</a></li>
+              <li><a href="/calculators/writing/">Writing</a></li>
+              <li class="primary-nav__submenu-sep"><a href="/calculators/">See all calculators</a></li>
+            </ul>
+          </li>
+          <li class="primary-nav__item"><a href="/about/" class="primary-nav__link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <main id="main-content">
+      <div class="container">
+        <nav aria-label="Breadcrumb" class="breadcrumbs">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/calculators/">Calculators</a></li>
+            <li><a href="/calculators/images/">Images</a></li>
+            <li aria-current="page">Color Depth &amp; Storage Calculator</li>
+          </ol>
+        </nav>
+
+        <h1>Color Depth &amp; Storage Calculator</h1>
+        <p class="intro">Work out the uncompressed size of an image at any bit depth, the total number of colours that depth can represent, and how the raw figure compares to a typical JPEG or PNG. Useful for capacity planning, teaching the topic, or sanity-checking what HDR really costs in bytes.</p>
+
+        <section class="eli5" aria-label="Plain-English explanation">
+          <h2>Explain like I'm 5 (what even is this calculator?)</h2>
+          <p>Every pixel in an image is a number. Bit depth is how big that number is allowed to get. One bit per pixel: black or white. Twenty-four bits per pixel: any of 16.7 million colours. Tell the calculator the dimensions and the bit depth and it works out the raw storage and the colour count, then shows you how a JPEG or PNG would shrink it down.</p>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="in-content" aria-hidden="true"></div>
+
+        <section data-calculator class="calculator-card" aria-labelledby="calc-heading">
+          <h2 id="calc-heading">Calculate raw size and total colours</h2>
+          <form id="cd-form" class="calc-form" novalidate>
+            <div class="calc-row">
+              <label for="cd-pixels-wide">Pixels wide</label>
+              <input type="number" id="cd-pixels-wide" name="pixelsWide" min="1" step="1" value="1920" required inputmode="numeric">
+            </div>
+            <div class="calc-row">
+              <label for="cd-pixels-high">Pixels high</label>
+              <input type="number" id="cd-pixels-high" name="pixelsHigh" min="1" step="1" value="1080" required inputmode="numeric">
+            </div>
+            <div class="calc-row">
+              <label for="cd-bit-depth">Bit depth</label>
+              <select id="cd-bit-depth" name="bitDepth">
+                <option value="1">1-bit (black and white, 2 colours)</option>
+                <option value="8-grayscale">8-bit grayscale (256 shades)</option>
+                <option value="8-indexed">8-bit indexed colour (256-entry palette)</option>
+                <option value="16-grayscale">16-bit grayscale (65,536 shades)</option>
+                <option value="24" selected>24-bit RGB (16.7 million, the web standard)</option>
+                <option value="30">30-bit HDR Rec.2020 (10 bits per channel)</option>
+                <option value="32">32-bit RGBA (24-bit colour plus 8-bit alpha)</option>
+                <option value="36">36-bit deep colour (12 bits per channel)</option>
+                <option value="48">48-bit deep colour (16 bits per channel)</option>
+                <option value="custom">Custom bits per pixel</option>
+              </select>
+            </div>
+            <div class="calc-row" data-cd-custom-row hidden>
+              <label for="cd-custom-bits">Custom bits per pixel</label>
+              <input type="number" id="cd-custom-bits" name="customBits" min="1" max="64" step="1" value="10" inputmode="numeric">
+              <p class="calc-row__hint">Whole number between 1 and 64.</p>
+            </div>
+            <div class="calc-row">
+              <label for="cd-frames">Frames (animation or multi-page)</label>
+              <input type="number" id="cd-frames" name="frames" min="1" step="1" value="1" inputmode="numeric">
+              <p class="calc-row__hint">Leave at 1 for a still image. Set higher for an animation or multi-page document where every frame is stored uncompressed.</p>
+            </div>
+
+            <button type="submit" data-calculate>Calculate</button>
+          </form>
+
+          <div data-calculator-results class="calculator-results" aria-live="polite">
+            <p class="result-display" data-result-placeholder>Fill in the form and press the button to see the raw size and colour count.</p>
+            <div class="result-summary" hidden data-result-summary>
+              <p>Bits per pixel: <strong data-result-bits-per-pixel></strong></p>
+              <p>Raw, uncompressed size: <strong data-result-raw-size></strong></p>
+              <p>Total representable colours: <strong data-result-colors></strong></p>
+              <p>Roughly as a JPEG (around 10:1): <strong data-result-jpeg-est></strong></p>
+              <p>Roughly as a PNG (around 2:1): <strong data-result-png-est></strong></p>
+
+              <details class="prove-it" data-prove-it>
+                <summary>Prove it</summary>
+                <div data-prove-it-body>
+                  <p>The maths, end to end, so you can audit it.</p>
+                  <ul data-prove-it-list></ul>
+                  <p class="prove-it-source">Total colours is 2 raised to the bits per pixel. Raw bytes is pixels wide times pixels high times bits per pixel, divided by eight, multiplied by frames. JPEG and PNG ratios are typical-photograph round figures, not promises.</p>
+                </div>
+              </details>
+            </div>
+
+            <p class="bookmark-nudge">
+              <strong>Save this calculator:</strong>
+              press <kbd data-bookmark-shortcut>Ctrl</kbd> + <kbd>D</kbd> to bookmark it in your browser.
+            </p>
+          </div>
+        </section>
+
+        <div class="ad-slot" data-ad-slot="below-results" aria-hidden="true"></div>
+
+        <section class="long-form">
+          <h2>What bit depth actually buys you</h2>
+          <p>A pixel is just a number. Bit depth is the size of the box that number lives in. One bit per pixel gives you two states, which is enough for a fax or an old Kindle screen. Eight bits per pixel gives you 256 distinct values, which is plenty for grayscale photography or for a small palette. Twenty-four bits per pixel, eight each for red, green and blue, gives you 16,777,216 colours: the universal RGB you see on the web. Above that, the headroom is for professionals who need to push images through heavy edits without banding, or for HDR displays that can actually show more than the standard range.</p>
+
+          <h2>Why the raw size matters even when nothing ships uncompressed</h2>
+          <p>Three reasons the raw figure is worth knowing. The first is memory. When an image is decoded for display, it sits in RAM at full uncompressed size, regardless of how small the JPEG was on disk. A browser opening a 24 megapixel photo will allocate roughly 100 MB just to hold it. The second is processing. Image pipelines, GPUs and video codecs all work on uncompressed buffers. Knowing the raw size tells you whether a frame fits in cache, in VRAM, or whether you need to tile. The third is upper-bound estimation. The compressed file is always smaller than the raw figure, so the raw number is a useful ceiling for "what is the worst case here".</p>
+
+          <h2>The 10:1 and 2:1 ratios are rules of thumb, not guarantees</h2>
+          <p>JPEG at quality 80 to 85 lands around 10:1 of raw for a typical photograph. PNG, which is lossless, lands around 2:1 for the same photograph. Both numbers move with content. A photo of an empty sky compresses much harder, sometimes 30:1 for JPEG. A photo of a forest, every pixel different, compresses much less, sometimes 5:1. Use the ratios here as the planning figure for typical photographic input. For graphics with flat colour, screenshots or UI mockups, PNG can comfortably beat 10:1, while JPEG produces ugly artefacts on the same content. The right format always depends on the picture.</p>
+
+          <h2>HDR, deep colour, and the cost of headroom</h2>
+          <p>30-bit Rec.2020 is the HDR standard for video and high-end displays, ten bits per channel instead of eight. That extra two bits per channel sounds modest but quadruples the per-channel range and removes most of the visible banding in gradients on capable displays. 36-bit and 48-bit, twelve or sixteen bits per channel, are mostly editing and capture formats. RAW files from professional cameras land at 14 or 16 bits per channel because the headroom lets you recover shadows, push exposure and colour-grade without losing detail. The cost is linear in storage: a 48-bit image is twice the raw size of a 24-bit one at the same dimensions.</p>
+
+          <h2>Animation: linear in frames, until you compress it</h2>
+          <p>The frames input multiplies the single-frame raw size by the frame count. That is the honest worst case for an uncompressed animation, like a sequence of TIFFs in a render farm or a frame buffer holding every frame in memory. Real animated formats do better. APNG and animated WebP delta-encode between frames, dropping the cost of areas that did not change. Video codecs like H.264 and AV1 do far more sophisticated motion compensation, often landing the per-frame cost ten or twenty times below the still-image figure. The calculator is the upper bound, useful for memory planning, not the figure for an MP4 on disk.</p>
+
+          <h2>Common mistakes</h2>
+          <ul>
+            <li><strong>Confusing bits per channel with bits per pixel.</strong> 8-bit colour usually means 8 bits per channel, which is 24 bits per pixel for RGB. The calculator asks for bits per pixel directly to avoid the ambiguity.</li>
+            <li><strong>Treating JPEG as 24-bit storage.</strong> JPEG is 24-bit when decoded into memory, but the file on disk is much smaller because of lossy compression. The raw figure here is decoded size, the JPEG estimate is on-disk size.</li>
+            <li><strong>Forgetting the alpha channel.</strong> RGBA is 32 bits, not 24. If your image has transparency, pick the 32-bit option, otherwise you will undercount by a third.</li>
+            <li><strong>Treating animation as free.</strong> Uncompressed, every frame costs the same as the first. Compressed, savings depend on how much actually changes between frames.</li>
+          </ul>
+
+          <h2>Related calculators</h2>
+          <ul class="related-calculators">
+            <li><a href="/calculators/images/image-file-size-estimator/">Image File Size Estimator, for compressed-format planning</a></li>
+            <li><a href="/calculators/images/aspect-ratio-calculator/">Aspect Ratio Calculator</a></li>
+            <li><a href="/calculators/images/photo-resizer/">Photo Resizer, browser-only</a></li>
+            <li><a href="/calculators/images/">All image tools</a></li>
+          </ul>
+        </section>
+
+        <section class="faq" aria-labelledby="faq-heading">
+          <h2 id="faq-heading">Frequently asked questions</h2>
+          <details>
+            <summary>What does bit depth actually mean?</summary>
+            <p>Bit depth is the number of bits used to describe a single pixel. One bit gives you two states, black or white. Eight bits gives you 256 shades or palette entries. Twenty-four bits gives you the standard 16.7 million colours of an RGB image, eight bits per channel for red, green and blue. Higher bit depths exist for HDR and professional editing, where the headroom matters more than the file size.</p>
+          </details>
+          <details>
+            <summary>Why is the raw size so much bigger than the JPEG on disk?</summary>
+            <p>Raw, uncompressed pixel data is the worst case. JPEG throws away detail your eye barely sees and packs the rest cleverly, landing at roughly 10:1 of raw for a typical photograph at quality 80-85. PNG keeps every pixel exactly but uses lossless deflate compression, which on photos lands around 2:1. Both ratios depend on content: a flat sky compresses much smaller, a forest canopy much larger.</p>
+          </details>
+          <details>
+            <summary>What's the difference between 8-bit grayscale and 8-bit indexed?</summary>
+            <p>They store the same number of bits per pixel, so the file size is the same. The difference is what the byte means. In grayscale, the value is the brightness, 0 black through 255 white. In indexed colour, the value is a lookup into a palette of up to 256 colours that lives in the file header. Same storage, different interpretation.</p>
+          </details>
+          <details>
+            <summary>When would I ever use 30, 36 or 48-bit colour?</summary>
+            <p>30-bit (Rec.2020 HDR) is the colour space used by HDR video and high-end displays, ten bits per channel. 36-bit and 48-bit are professional editing and capture formats: 12 or 16 bits per channel give you headroom for heavy curves and exposure adjustments without banding. The trade-off is that the files double or triple in size. Most consumer workflows do not need them.</p>
+          </details>
+          <details>
+            <summary>Why does animation multiply the size linearly?</summary>
+            <p>An uncompressed animation stores every frame in full, so ten frames is ten times the data of one. Real animated formats like APNG, animated WebP or video codecs like H.264 and AV1 can save a lot through inter-frame compression, only storing the difference between frames. The figure here is the uncompressed worst case, useful for sizing memory and pipeline buffers, not for predicting an MP4.</p>
+          </details>
+        </section>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="ad-slot" data-ad-slot="sidebar" aria-hidden="true"></div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="site-footer-nav" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/calculators/">All calculators</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+
+      <section class="site-disclaimer" data-disclaimer aria-labelledby="disclaimer-heading">
+        <h2 id="disclaimer-heading">A quick, necessary word</h2>
+        <p>Every calculator on this site is built to give you a sensible, well-reasoned estimate. It is, however, exactly that: an estimate, for general information only. Nothing you see here is professional, legal, financial, medical, or tax advice, and it should not be treated as such.</p>
+        <p>Before you make a decision that actually matters, talk to a qualified professional who knows your specific situation: an accountant, a solicitor, a doctor, an IT consultant, whoever fits the question. They can factor in the bits a generic tool can't.</p>
+        <p>We take no liability and accept no responsibility for any loss, damage, or questionable life choice arising from acting on the numbers you see here. Use the results as a starting point for a better conversation, not as the final word.</p>
+        <p><strong>Affiliate disclosure:</strong> some links on this site are affiliate links. If you click through and buy or sign up for something, we may earn a small commission at no extra cost to you. It helps keep the calculators free and ad-light. We only recommend things we'd point a friend towards.</p>
+      </section>
+      <p class="site-copyright">&copy; 2026 WebCaretakers. All rights reserved.</p>
+      <p class="site-legal">WebCaretakers is a trading name of <a href="https://yeseo.io/" rel="noopener">Andrew Laws Associates Ltd</a>, registered in England and Wales (company no. 08602332). ICO registration ZA726704.</p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/calculators/color-depth-calculator.js"></script>
+  <script>
+    (function () {
+      var form = document.getElementById('cd-form');
+      if (!form) return;
+      var summary = document.querySelector('[data-result-summary]');
+      var placeholder = document.querySelector('[data-result-placeholder]');
+      var bitsEl = document.querySelector('[data-result-bits-per-pixel]');
+      var rawEl = document.querySelector('[data-result-raw-size]');
+      var colorsEl = document.querySelector('[data-result-colors]');
+      var jpegEl = document.querySelector('[data-result-jpeg-est]');
+      var pngEl = document.querySelector('[data-result-png-est]');
+      var proveListEl = document.querySelector('[data-prove-it-list]');
+      var customRow = document.querySelector('[data-cd-custom-row]');
+      var bitDepthEl = document.querySelector('[name="bitDepth"]');
+
+      function syncCustomRow() {
+        if (!customRow) return;
+        customRow.hidden = bitDepthEl.value !== 'custom';
+      }
+      if (bitDepthEl) {
+        syncCustomRow();
+        bitDepthEl.addEventListener('change', syncCustomRow);
+      }
+
+      form.addEventListener('input', function (e) {
+        var t = e.target;
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: 'calculator_interaction',
+          calculator_name: 'color-depth-calculator',
+          field: t.name || t.id,
+          value: t.value
+        });
+      });
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var fd = new FormData(form);
+        var input = {
+          pixelsWide: parseFloat(fd.get('pixelsWide')) || 0,
+          pixelsHigh: parseFloat(fd.get('pixelsHigh')) || 0,
+          bitDepth: fd.get('bitDepth'),
+          customBits: parseFloat(fd.get('customBits')) || 0,
+          frames: parseFloat(fd.get('frames')) || 1
+        };
+
+        try {
+          var r = ColorDepthCalculator.calculateColorDepth(input);
+        } catch (err) {
+          placeholder.hidden = false;
+          summary.hidden = true;
+          placeholder.textContent = 'Please check your inputs: ' + err.message;
+          return;
+        }
+
+        placeholder.hidden = true;
+        summary.hidden = false;
+
+        bitsEl.textContent = r.bitsPerPixel + ' bits per pixel';
+        rawEl.textContent = ColorDepthCalculator.formatBytes(r.totalBytes);
+        colorsEl.textContent = ColorDepthCalculator.formatColorCount(r.totalColors);
+        jpegEl.textContent = ColorDepthCalculator.formatBytes(r.jpegEstimateBytes);
+        pngEl.textContent = ColorDepthCalculator.formatBytes(r.pngEstimateBytes);
+
+        if (proveListEl) {
+          var rows = [
+            ['Pixels wide', r.pixelsWide.toLocaleString('en-GB')],
+            ['Pixels high', r.pixelsHigh.toLocaleString('en-GB')],
+            ['Total pixels', r.totalPixels.toLocaleString('en-GB')],
+            ['Bits per pixel', r.bitsPerPixel],
+            ['Frames', r.frames],
+            ['Single-frame bits', r.singleFrameBits.toLocaleString('en-GB')],
+            ['Total bits', r.totalBits.toLocaleString('en-GB')],
+            ['Total bytes (raw)', r.totalBytes.toLocaleString('en-GB')],
+            ['Raw size', ColorDepthCalculator.formatBytes(r.totalBytes)],
+            ['Total representable colours', ColorDepthCalculator.formatColorCount(r.totalColors)],
+            ['Typical JPEG (~' + r.jpegRatio + ':1)', ColorDepthCalculator.formatBytes(r.jpegEstimateBytes)],
+            ['Typical PNG (~' + r.pngRatio + ':1)', ColorDepthCalculator.formatBytes(r.pngEstimateBytes)]
+          ];
+          proveListEl.innerHTML = rows.map(function (row) {
+            return '<li><span>' + row[0] + '</span><strong>' + row[1] + '</strong></li>';
+          }).join('');
+        }
+
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: 'calculator_result',
+          calculator_name: 'color-depth-calculator',
+          pixels_wide: r.pixelsWide,
+          pixels_high: r.pixelsHigh,
+          bits_per_pixel: r.bitsPerPixel,
+          frames: r.frames,
+          total_bytes: r.totalBytes,
+          total_colors: r.totalColors
+        });
+      });
+
+      var proveDetails = document.querySelector('[data-prove-it]');
+      if (proveDetails) {
+        proveDetails.addEventListener('toggle', function () {
+          if (proveDetails.open) {
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+              event: 'prove_it',
+              calculator_name: 'color-depth-calculator'
+            });
+          }
+        });
+      }
+
+      var shortcutEl = document.querySelector('[data-bookmark-shortcut]');
+      if (shortcutEl) {
+        var isMac = /Mac|iPhone|iPad|iPod/i.test(navigator.platform || navigator.userAgent);
+        shortcutEl.textContent = isMac ? '⌘' : 'Ctrl';
+      }
+    })();
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

@@ -85,6 +85,18 @@
           "position": 6,
           "url": "https://webcaretakers.com/calculators/images/image-file-size-estimator/",
           "name": "Image File Size Estimator"
+        },
+        {
+          "@type": "ListItem",
+          "position": 7,
+          "url": "https://webcaretakers.com/calculators/images/color-depth-calculator/",
+          "name": "Color Depth & Storage Calculator"
+        },
+        {
+          "@type": "ListItem",
+          "position": 8,
+          "url": "https://webcaretakers.com/calculators/images/image-dpi-print-size-calculator/",
+          "name": "Image DPI / Print Size Calculator"
         }
       ]
     }
@@ -157,6 +169,26 @@
         <h1>Image tools</h1>
         <p class="intro hub-intro">Tools for working with photos without sending them to anyone's server. Everything runs in your browser, using your own device's memory and CPU. Nothing is uploaded, stored, or logged.</p>
 
+        <section class="long-form">
+          <h2>What image tools actually do for you</h2>
+          <p>An image tool fixes one of three problems: the file is too big, the dimensions are wrong, or the format is incompatible with whatever you are trying to put it into. Anything more elaborate is usually editing rather than processing, and is a job for a proper editor. The tools here keep the picture intact and adjust the wrapper.</p>
+          <p>The reason that matters in 2026 is that phone cameras now produce 4-to-12MB files by default, and most of the places those files are going to land (a website, an email, a CV, a marketplace listing) cannot deal with that, or will silently re-encode the image in ways you would not like if you saw the result. Doing the resize or compression yourself, in advance, leaves you in control of the output. It also means the original on your phone stays untouched.</p>
+          <h3>Where the inputs come from</h3>
+          <p>Mostly: your camera roll, a screenshot, or a download. A few practical notes.</p>
+          <ul>
+            <li><strong>Source resolution.</strong> Start with the original file rather than a copy that has already been compressed by a messaging app. WhatsApp, iMessage, and most social platforms re-encode images on the way through, which softens detail and adds artefacts. If you have the original, use it. The <a href="/calculators/images/photo-resizer/">Photo Resizer</a> will down-scale far more cleanly from a 4000-pixel original than from a 1080-pixel re-share.</li>
+            <li><strong>Target dimensions.</strong> Find out what the destination actually wants before you resize. LinkedIn, eBay, Etsy, Companies House, and the DVLA all publish exact pixel sizes for the spots they expect images in. Resizing to the right number first is much tidier than resizing twice.</li>
+            <li><strong>Aspect ratio.</strong> If you need a specific shape (16:9 for a video thumbnail, 1:1 for a profile picture, 4:5 for an Instagram portrait) work that out before you start cropping. The <a href="/calculators/images/aspect-ratio-calculator/">Aspect Ratio Calculator</a> handles the maths so you do not end up with a picture that is almost the right shape and slightly squashed.</li>
+            <li><strong>Format.</strong> JPG for photographs, PNG for screenshots and graphics with sharp edges or transparency, WebP for the web when you control the receiving end, HEIC for Apple devices that can read it. Sending a HEIC to a Windows user who has never installed the codec is the modern equivalent of sending a fax to a houseplant.</li>
+          </ul>
+          <h3>Common mistakes people make with images</h3>
+          <p>Up-scaling is the worst one. Making a 600-pixel image into a 2400-pixel image does not add any detail; it just stretches the existing pixels and adds blur. If a destination needs a bigger image than you have, retake it or find a higher-resolution source. No browser tool can invent detail that was never captured.</p>
+          <p>Compressing twice is the second. Each pass of JPG compression throws information away, so a file that has been saved as JPG, edited, and saved as JPG again is noticeably softer than one that was compressed only on the way out. Edit in PNG or the source format, compress once at the end. The <a href="/calculators/images/image-compressor/">Image Compressor</a> is happy to take a PNG in and give a JPG out so you only pay the compression cost once.</p>
+          <p>The third is shipping huge images for no reason. A 3MB hero image on a website costs every visitor real time to download, especially on mobile, and Google's Core Web Vitals score notices. Most web images do not need to be more than 200 to 400KB, and almost none need to be more than 1MB. Check the file size before you upload, not after.</p>
+          <h3>How to choose between the tools here</h3>
+          <p>If the file is too big for an upload form, compressor first. If the picture is the wrong size, resizer. If the receiving end refuses the format, converter. If you are setting up a graphic from scratch and need the right shape, aspect ratio. We will keep adding format converters as new ones get common enough to matter (AVIF is on the list), and the order on the page roughly tracks how often each one gets reached for.</p>
+        </section>
+
         <ul class="category-grid">
           <li class="category-card">
             <h2><a href="/calculators/images/photo-resizer/">Photo Resizer</a></h2>
@@ -181,6 +213,14 @@
           <li class="category-card">
             <h2><a href="/calculators/images/image-file-size-estimator/">Image File Size Estimator</a></h2>
             <p>Estimate the file size of a JPEG, PNG, WebP, AVIF or HEIC from its pixel dimensions and quality, before you encode anything. Side-by-side comparison of all five formats.</p>
+          </li>
+          <li class="category-card">
+            <h2><a href="/calculators/images/color-depth-calculator/">Color Depth &amp; Storage Calculator</a></h2>
+            <p>Calculate the uncompressed size of an image at any bit depth, the total colours that depth can represent, and how it compares to a typical JPEG or PNG.</p>
+          </li>
+          <li class="category-card">
+            <h2><a href="/calculators/images/image-dpi-print-size-calculator/">Image DPI / Print Size Calculator</a></h2>
+            <p>Convert between pixels, DPI and print size in either direction. Quality verdict tells you whether the print will look sharp or visibly pixelated.</p>
           </li>
         </ul>
 

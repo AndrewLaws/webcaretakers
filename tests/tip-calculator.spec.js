@@ -95,5 +95,5 @@ test('prove-it workings populated', async ({ page }) => {
 
 test('finance hub lists tip calculator', async ({ page }) => {
   await page.goto('/calculators/finance/');
-  await expect(page.locator('a[href="/calculators/finance/tip-calculator/"]')).toBeVisible();
+  await expect(page.locator('a[href="/calculators/finance/tip-calculator/"]').first()).toBeVisible();
 });

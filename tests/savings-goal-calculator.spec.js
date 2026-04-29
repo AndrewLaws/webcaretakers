@@ -105,5 +105,5 @@ test('prove-it workings populated', async ({ page }) => {
 
 test('finance hub lists savings goal calculator', async ({ page }) => {
   await page.goto('/calculators/finance/');
-  await expect(page.locator('a[href="/calculators/finance/savings-goal-calculator/"]')).toBeVisible();
+  await expect(page.locator('a[href="/calculators/finance/savings-goal-calculator/"]').first()).toBeVisible();
 });

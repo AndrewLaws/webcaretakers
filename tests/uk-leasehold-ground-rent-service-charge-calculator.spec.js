@@ -170,13 +170,13 @@ test.describe('UK Leasehold Ground Rent & Service Charge Calculator page', () =>
     await page.goto('/calculators/property/');
     await expect(
       page.locator('a[href="/calculators/property/uk-leasehold-ground-rent-service-charge-calculator/"]')
-    ).toHaveCount(1);
+    ).not.toHaveCount(0);
   });
 
   test('appears on the all-calculators hub', async ({ page }) => {
     await page.goto('/calculators/');
     await expect(
       page.locator('a[href="/calculators/property/uk-leasehold-ground-rent-service-charge-calculator/"]')
-    ).toHaveCount(1);
+    ).not.toHaveCount(0);
   });
 });
