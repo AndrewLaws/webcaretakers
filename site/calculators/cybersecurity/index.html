@@ -102,6 +102,70 @@
     }
   }
   </script>
+  <!-- breadcrumb-jsonld -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://webcaretakers.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Calculators",
+      "item": "https://webcaretakers.com/calculators/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Cybersecurity",
+      "item": "https://webcaretakers.com/calculators/cybersecurity/"
+    }
+  ]
+}
+  </script>
+  <!-- org-jsonld -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "WebCaretakers",
+  "url": "https://webcaretakers.com/",
+  "founder": {
+    "@type": "Person",
+    "name": "Andrew Laws"
+  },
+  "sameAs": [
+    "https://yeseo.io/",
+    "https://www.linkedin.com/in/andrewlaws/"
+  ]
+}
+  </script>
+  <!-- person-jsonld -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Andrew Laws",
+  "jobTitle": "SEO consultant and founder, Yeseo",
+  "url": "https://yeseo.io/",
+  "sameAs": [
+    "https://www.linkedin.com/in/andrewlaws/",
+    "https://yeseo.io/"
+  ],
+  "knowsAbout": [
+    "SEO",
+    "search engine optimisation",
+    "website performance",
+    "calculator tools"
+  ]
+}
+  </script>
 </head>
 <body>
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
@@ -221,7 +285,7 @@
 
         <section class="long-form">
           <h2>Why a browser-only password tool is the only kind worth using</h2>
-          <p>Plenty of "free password generator" sites work by sending your generated password back to the server, or logging the seed they used. Even when they don't, the password has briefly existed on someone else's machine. For a tool whose entire purpose is generating something nobody else should ever see, that is the wrong architecture.</p>
+          <p>Plenty of &quot;free <a href="/calculators/cybersecurity/password-generator/">password generator</a>&quot; sites work by sending your generated password back to the server, or logging the seed they used. Even when they don't, the password has briefly existed on someone else's machine. For a tool whose entire purpose is generating something nobody else should ever see, that is the wrong architecture.</p>
           <p>Everything in this section uses your own browser's cryptographic primitives: the Web Crypto API for hashing, <code>crypto.getRandomValues</code> for entropy, and pure JavaScript for the rest. If your Wi-Fi dropped while you were generating a password, the tool would still work. Open the page, disconnect, generate a password, copy it, close the tab. Nothing leaves the device.</p>
         </section>
       </div>

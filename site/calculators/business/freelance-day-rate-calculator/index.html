@@ -93,6 +93,76 @@
     ]
   }
   </script>
+  <!-- breadcrumb-jsonld -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://webcaretakers.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Calculators",
+      "item": "https://webcaretakers.com/calculators/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Business",
+      "item": "https://webcaretakers.com/calculators/business/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "Freelance Day Rate Calculator",
+      "item": "https://webcaretakers.com/calculators/business/freelance-day-rate-calculator/"
+    }
+  ]
+}
+  </script>
+  <!-- org-jsonld -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "WebCaretakers",
+  "url": "https://webcaretakers.com/",
+  "founder": {
+    "@type": "Person",
+    "name": "Andrew Laws"
+  },
+  "sameAs": [
+    "https://yeseo.io/",
+    "https://www.linkedin.com/in/andrewlaws/"
+  ]
+}
+  </script>
+  <!-- person-jsonld -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Andrew Laws",
+  "jobTitle": "SEO consultant and founder, Yeseo",
+  "url": "https://yeseo.io/",
+  "sameAs": [
+    "https://www.linkedin.com/in/andrewlaws/",
+    "https://yeseo.io/"
+  ],
+  "knowsAbout": [
+    "SEO",
+    "search engine optimisation",
+    "website performance",
+    "calculator tools"
+  ]
+}
+  </script>
 </head>
 <body>
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
@@ -264,6 +334,15 @@
             <p>Freelancers rarely have 100% utilisation. There are gaps between contracts, time spent pitching new business, and occasional slow periods. A 15% downtime buffer means that even if you only bill 85% of your available days, you still hit your income target.</p>
           </details>
         </section>
+        <section class="related-calcs" aria-labelledby="related-heading">
+          <h2 id="related-heading">Related calculators</h2>
+          <ul class="related-calcs__list">
+      <li><a href="/calculators/business/uk-vat-calculator/">UK VAT Calculator</a></li>
+      <li><a href="/calculators/business/roi-calculator/">ROI Calculator</a></li>
+      <li><a href="/calculators/business/seo-roi-calculator/">SEO ROI Calculator</a></li>
+          </ul>
+        </section>
+
       </div>
     </main>
 

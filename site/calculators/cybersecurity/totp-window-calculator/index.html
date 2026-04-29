@@ -81,6 +81,76 @@
     ]
   }
   </script>
+  <!-- breadcrumb-jsonld -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://webcaretakers.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Calculators",
+      "item": "https://webcaretakers.com/calculators/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Cybersecurity",
+      "item": "https://webcaretakers.com/calculators/cybersecurity/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "2FA / TOTP Window Calculator",
+      "item": "https://webcaretakers.com/calculators/cybersecurity/totp-window-calculator/"
+    }
+  ]
+}
+  </script>
+  <!-- org-jsonld -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "WebCaretakers",
+  "url": "https://webcaretakers.com/",
+  "founder": {
+    "@type": "Person",
+    "name": "Andrew Laws"
+  },
+  "sameAs": [
+    "https://yeseo.io/",
+    "https://www.linkedin.com/in/andrewlaws/"
+  ]
+}
+  </script>
+  <!-- person-jsonld -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Andrew Laws",
+  "jobTitle": "SEO consultant and founder, Yeseo",
+  "url": "https://yeseo.io/",
+  "sameAs": [
+    "https://www.linkedin.com/in/andrewlaws/",
+    "https://yeseo.io/"
+  ],
+  "knowsAbout": [
+    "SEO",
+    "search engine optimisation",
+    "website performance",
+    "calculator tools"
+  ]
+}
+  </script>
 </head>
 <body>
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
@@ -284,6 +354,15 @@
             <p>Not for the brute-force maths. The window and per-guess probability depend only on period, digits and drift. Algorithm choice affects which authenticators can read your enrolment QR. SHA1 is universally supported and remains safe for HMAC use.</p>
           </details>
         </section>
+        <section class="related-calcs" aria-labelledby="related-heading">
+          <h2 id="related-heading">Related calculators</h2>
+          <ul class="related-calcs__list">
+      <li><a href="/calculators/cybersecurity/password-strength-calculator/">Password Strength Calculator</a></li>
+      <li><a href="/calculators/cybersecurity/password-generator/">Password Generator</a></li>
+      <li><a href="/calculators/cybersecurity/data-breach-risk-score/">Data Breach Risk Score</a></li>
+          </ul>
+        </section>
+
       </div>
     </main>
 

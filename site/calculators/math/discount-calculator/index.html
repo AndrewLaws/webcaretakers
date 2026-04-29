@@ -82,6 +82,76 @@
     ]
   }
   </script>
+  <!-- breadcrumb-jsonld -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://webcaretakers.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Calculators",
+      "item": "https://webcaretakers.com/calculators/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Math",
+      "item": "https://webcaretakers.com/calculators/math/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "Discount Calculator",
+      "item": "https://webcaretakers.com/calculators/math/discount-calculator/"
+    }
+  ]
+}
+  </script>
+  <!-- org-jsonld -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "WebCaretakers",
+  "url": "https://webcaretakers.com/",
+  "founder": {
+    "@type": "Person",
+    "name": "Andrew Laws"
+  },
+  "sameAs": [
+    "https://yeseo.io/",
+    "https://www.linkedin.com/in/andrewlaws/"
+  ]
+}
+  </script>
+  <!-- person-jsonld -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Andrew Laws",
+  "jobTitle": "SEO consultant and founder, Yeseo",
+  "url": "https://yeseo.io/",
+  "sameAs": [
+    "https://www.linkedin.com/in/andrewlaws/",
+    "https://yeseo.io/"
+  ],
+  "knowsAbout": [
+    "SEO",
+    "search engine optimisation",
+    "website performance",
+    "calculator tools"
+  ]
+}
+  </script>
 </head>
 <body>
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
@@ -396,6 +466,15 @@
             <p>No. Across the pair, you pay 1.5 times the unit price for two items, so the per-unit price is 0.75 times the original. That is 25% off, not 50%.</p>
           </details>
         </section>
+        <section class="related-calcs" aria-labelledby="related-heading">
+          <h2 id="related-heading">Related calculators</h2>
+          <ul class="related-calcs__list">
+      <li><a href="/calculators/math/fraction-calculator/">Fraction Calculator</a></li>
+      <li><a href="/calculators/math/standard-deviation-calculator/">Standard Deviation Calculator</a></li>
+      <li><a href="/calculators/math/gcd-lcm-calculator/">GCD and LCM Calculator</a></li>
+          </ul>
+        </section>
+
       </div>
     </main>
 

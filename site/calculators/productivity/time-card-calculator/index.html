@@ -85,6 +85,76 @@
     ]
   }
   </script>
+  <!-- breadcrumb-jsonld -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://webcaretakers.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Calculators",
+      "item": "https://webcaretakers.com/calculators/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Productivity",
+      "item": "https://webcaretakers.com/calculators/productivity/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "Time Card Calculator",
+      "item": "https://webcaretakers.com/calculators/productivity/time-card-calculator/"
+    }
+  ]
+}
+  </script>
+  <!-- org-jsonld -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "WebCaretakers",
+  "url": "https://webcaretakers.com/",
+  "founder": {
+    "@type": "Person",
+    "name": "Andrew Laws"
+  },
+  "sameAs": [
+    "https://yeseo.io/",
+    "https://www.linkedin.com/in/andrewlaws/"
+  ]
+}
+  </script>
+  <!-- person-jsonld -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Andrew Laws",
+  "jobTitle": "SEO consultant and founder, Yeseo",
+  "url": "https://yeseo.io/",
+  "sameAs": [
+    "https://www.linkedin.com/in/andrewlaws/",
+    "https://yeseo.io/"
+  ],
+  "knowsAbout": [
+    "SEO",
+    "search engine optimisation",
+    "website performance",
+    "calculator tools"
+  ]
+}
+  </script>
 </head>
 <body>
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
@@ -277,6 +347,15 @@
             <p>No. It runs entirely in your browser. Times, breaks and rate are not uploaded, not stored, and not shared. Close the tab and they are gone.</p>
           </details>
         </section>
+        <section class="related-calcs" aria-labelledby="related-heading">
+          <h2 id="related-heading">Related calculators</h2>
+          <ul class="related-calcs__list">
+      <li><a href="/calculators/productivity/ical-event-generator/">iCal Event Generator</a></li>
+      <li><a href="/calculators/productivity/meeting-cost-calculator/">Meeting Cost Calculator</a></li>
+      <li><a href="/calculators/productivity/pomodoro-session-planner/">Pomodoro Session Planner</a></li>
+          </ul>
+        </section>
+
       </div>
     </main>
 

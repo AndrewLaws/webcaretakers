@@ -84,6 +84,76 @@
     ]
   }
   </script>
+  <!-- breadcrumb-jsonld -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://webcaretakers.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Calculators",
+      "item": "https://webcaretakers.com/calculators/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Cybersecurity",
+      "item": "https://webcaretakers.com/calculators/cybersecurity/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "Diceware Passphrase Generator",
+      "item": "https://webcaretakers.com/calculators/cybersecurity/diceware-passphrase-generator/"
+    }
+  ]
+}
+  </script>
+  <!-- org-jsonld -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "WebCaretakers",
+  "url": "https://webcaretakers.com/",
+  "founder": {
+    "@type": "Person",
+    "name": "Andrew Laws"
+  },
+  "sameAs": [
+    "https://yeseo.io/",
+    "https://www.linkedin.com/in/andrewlaws/"
+  ]
+}
+  </script>
+  <!-- person-jsonld -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Andrew Laws",
+  "jobTitle": "SEO consultant and founder, Yeseo",
+  "url": "https://yeseo.io/",
+  "sameAs": [
+    "https://www.linkedin.com/in/andrewlaws/",
+    "https://yeseo.io/"
+  ],
+  "knowsAbout": [
+    "SEO",
+    "search engine optimisation",
+    "website performance",
+    "calculator tools"
+  ]
+}
+  </script>
 </head>
 <body>
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
@@ -268,6 +338,15 @@
             <p>The EFF short wordlist (1,296 words, average length around 4.5 characters) was published by the Electronic Frontier Foundation in 2016. Words are filtered for memorability and unique three-letter prefixes, which makes them faster to type and harder to confuse. Each word contributes log2(1,296), about 10.34 bits, of entropy.</p>
           </details>
         </section>
+        <section class="related-calcs" aria-labelledby="related-heading">
+          <h2 id="related-heading">Related calculators</h2>
+          <ul class="related-calcs__list">
+      <li><a href="/calculators/cybersecurity/ssl-certificate-expiry-calculator/">SSL Certificate Expiry Calculator</a></li>
+      <li><a href="/calculators/cybersecurity/totp-window-calculator/">2FA / TOTP Window Calculator</a></li>
+      <li><a href="/calculators/cybersecurity/password-strength-calculator/">Password Strength Calculator</a></li>
+          </ul>
+        </section>
+
       </div>
     </main>
 

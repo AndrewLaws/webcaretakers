@@ -84,6 +84,76 @@
     ]
   }
   </script>
+  <!-- breadcrumb-jsonld -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://webcaretakers.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Calculators",
+      "item": "https://webcaretakers.com/calculators/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "SEO",
+      "item": "https://webcaretakers.com/calculators/seo/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "Robots.txt Tester",
+      "item": "https://webcaretakers.com/calculators/seo/robots-txt-tester/"
+    }
+  ]
+}
+  </script>
+  <!-- org-jsonld -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "WebCaretakers",
+  "url": "https://webcaretakers.com/",
+  "founder": {
+    "@type": "Person",
+    "name": "Andrew Laws"
+  },
+  "sameAs": [
+    "https://yeseo.io/",
+    "https://www.linkedin.com/in/andrewlaws/"
+  ]
+}
+  </script>
+  <!-- person-jsonld -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Andrew Laws",
+  "jobTitle": "SEO consultant and founder, Yeseo",
+  "url": "https://yeseo.io/",
+  "sameAs": [
+    "https://www.linkedin.com/in/andrewlaws/",
+    "https://yeseo.io/"
+  ],
+  "knowsAbout": [
+    "SEO",
+    "search engine optimisation",
+    "website performance",
+    "calculator tools"
+  ]
+}
+  </script>
 </head>
 <body>
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
@@ -315,6 +385,15 @@ Sitemap: https://example.com/sitemap.xml"></textarea>
             <p>No, and this is a frequent SEO mistake. Disallow stops the crawler fetching the URL. The URL itself can still appear in the index (without a snippet) based on links pointing at it. To actually de-index a page, leave it crawlable and serve a <code>noindex</code> meta tag or X-Robots-Tag header. Disallowing a page Google has already indexed can leave it in the index for a long time.</p>
           </details>
         </section>
+        <section class="related-calcs" aria-labelledby="related-heading">
+          <h2 id="related-heading">Related calculators</h2>
+          <ul class="related-calcs__list">
+      <li><a href="/calculators/seo/serp-ctr-estimator/">CTR by SERP Position Estimator</a></li>
+      <li><a href="/calculators/seo/serp-snippet-preview/">SERP Snippet Preview Tool</a></li>
+      <li><a href="/calculators/seo/url-slug-generator/">URL Slug Generator</a></li>
+          </ul>
+        </section>
+
       </div>
     </main>
 

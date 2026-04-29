@@ -1411,3 +1411,40 @@ button.prove-it[aria-expanded="true"] { background: #ececec; }
   outline-offset: 2px;
   background: #eff6ff;
 }
+
+/* Related calculators block */
+.related-calcs {
+  max-width: 64rem;
+  margin: 3rem auto 1rem;
+  padding: 1.5rem;
+  border-top: 1px solid #e5e7eb;
+}
+.related-calcs h2 {
+  font-size: 1.25rem;
+  margin: 0 0 1rem;
+}
+.related-calcs__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+.related-calcs__list li {
+  margin: 0;
+}
+.related-calcs__list a {
+  display: block;
+  padding: 0.75rem 1rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.15s, background-color 0.15s;
+}
+.related-calcs__list a:hover,
+.related-calcs__list a:focus {
+  border-color: #1d4ed8;
+  background: #f8fafc;
+}

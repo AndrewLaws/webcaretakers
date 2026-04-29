@@ -84,6 +84,76 @@
     ]
   }
   </script>
+  <!-- breadcrumb-jsonld -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://webcaretakers.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Calculators",
+      "item": "https://webcaretakers.com/calculators/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "AI",
+      "item": "https://webcaretakers.com/calculators/ai/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "AI Hallucination Risk Calculator",
+      "item": "https://webcaretakers.com/calculators/ai/hallucination-risk-calculator/"
+    }
+  ]
+}
+  </script>
+  <!-- org-jsonld -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "WebCaretakers",
+  "url": "https://webcaretakers.com/",
+  "founder": {
+    "@type": "Person",
+    "name": "Andrew Laws"
+  },
+  "sameAs": [
+    "https://yeseo.io/",
+    "https://www.linkedin.com/in/andrewlaws/"
+  ]
+}
+  </script>
+  <!-- person-jsonld -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Andrew Laws",
+  "jobTitle": "SEO consultant and founder, Yeseo",
+  "url": "https://yeseo.io/",
+  "sameAs": [
+    "https://www.linkedin.com/in/andrewlaws/",
+    "https://yeseo.io/"
+  ],
+  "knowsAbout": [
+    "SEO",
+    "search engine optimisation",
+    "website performance",
+    "calculator tools"
+  ]
+}
+  </script>
 </head>
 <body>
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
@@ -300,6 +370,15 @@
             <p>On the domain it was tuned for, usually yes. A small model fine-tuned on a focused domain corpus often beats a much larger general model on factual accuracy within that domain, because it has seen the right vocabulary, conventions and edge cases. Off-domain, fine-tuning helps less, and can even make things worse if the tuning data was thin. The 0.7 multiplier here assumes you stay within the domain you tuned for.</p>
           </details>
         </section>
+        <section class="related-calcs" aria-labelledby="related-heading">
+          <h2 id="related-heading">Related calculators</h2>
+          <ul class="related-calcs__list">
+      <li><a href="/calculators/ai/embedding-cost-calculator/">Embedding Cost Calculator</a></li>
+      <li><a href="/calculators/ai/prompt-token-estimator/">Prompt Token Estimator</a></li>
+      <li><a href="/calculators/ai/llm-token-usage-calculator/">LLM Token Usage Calculator</a></li>
+          </ul>
+        </section>
+
       </div>
     </main>
 

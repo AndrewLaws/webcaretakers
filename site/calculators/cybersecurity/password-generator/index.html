@@ -84,6 +84,76 @@
     ]
   }
   </script>
+  <!-- breadcrumb-jsonld -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://webcaretakers.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Calculators",
+      "item": "https://webcaretakers.com/calculators/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Cybersecurity",
+      "item": "https://webcaretakers.com/calculators/cybersecurity/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "Password Generator",
+      "item": "https://webcaretakers.com/calculators/cybersecurity/password-generator/"
+    }
+  ]
+}
+  </script>
+  <!-- org-jsonld -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "WebCaretakers",
+  "url": "https://webcaretakers.com/",
+  "founder": {
+    "@type": "Person",
+    "name": "Andrew Laws"
+  },
+  "sameAs": [
+    "https://yeseo.io/",
+    "https://www.linkedin.com/in/andrewlaws/"
+  ]
+}
+  </script>
+  <!-- person-jsonld -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Andrew Laws",
+  "jobTitle": "SEO consultant and founder, Yeseo",
+  "url": "https://yeseo.io/",
+  "sameAs": [
+    "https://www.linkedin.com/in/andrewlaws/",
+    "https://yeseo.io/"
+  ],
+  "knowsAbout": [
+    "SEO",
+    "search engine optimisation",
+    "website performance",
+    "calculator tools"
+  ]
+}
+  </script>
 </head>
 <body>
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
@@ -278,6 +348,15 @@
             <p>The page shows estimated crack time at 10 billion guesses per second, the rough rate of a well-funded attacker against fast hashes. Slow hashes (bcrypt, Argon2) push the figure several orders of magnitude further out. Treat the displayed time as a worst case.</p>
           </details>
         </section>
+        <section class="related-calcs" aria-labelledby="related-heading">
+          <h2 id="related-heading">Related calculators</h2>
+          <ul class="related-calcs__list">
+      <li><a href="/calculators/cybersecurity/data-breach-risk-score/">Data Breach Risk Score</a></li>
+      <li><a href="/calculators/cybersecurity/data-breach-cost-estimator/">Data Breach Cost Estimator</a></li>
+      <li><a href="/calculators/cybersecurity/hash-generator/">Hash Generator</a></li>
+          </ul>
+        </section>
+
       </div>
     </main>
 

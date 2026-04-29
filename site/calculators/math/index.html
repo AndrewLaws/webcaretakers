@@ -102,6 +102,70 @@
     }
   }
   </script>
+  <!-- breadcrumb-jsonld -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://webcaretakers.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Calculators",
+      "item": "https://webcaretakers.com/calculators/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Math",
+      "item": "https://webcaretakers.com/calculators/math/"
+    }
+  ]
+}
+  </script>
+  <!-- org-jsonld -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "WebCaretakers",
+  "url": "https://webcaretakers.com/",
+  "founder": {
+    "@type": "Person",
+    "name": "Andrew Laws"
+  },
+  "sameAs": [
+    "https://yeseo.io/",
+    "https://www.linkedin.com/in/andrewlaws/"
+  ]
+}
+  </script>
+  <!-- person-jsonld -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Andrew Laws",
+  "jobTitle": "SEO consultant and founder, Yeseo",
+  "url": "https://yeseo.io/",
+  "sameAs": [
+    "https://www.linkedin.com/in/andrewlaws/",
+    "https://yeseo.io/"
+  ],
+  "knowsAbout": [
+    "SEO",
+    "search engine optimisation",
+    "website performance",
+    "calculator tools"
+  ]
+}
+  </script>
 </head>
 <body>
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
@@ -186,7 +250,7 @@
           <p>The second is rounding too early. If a calculation has three steps and you round to two decimal places after each one, the final answer can drift by enough to matter. Keep the full precision in the calculator and only round the result at the end, when you are ready to communicate it.</p>
           <p>The third is treating averages as if they tell the whole story. An average salary of £40,000 in a small company can mean everyone earns roughly £40,000, or it can mean nine people earn £30,000 and one earns £130,000. The <a href="/calculators/math/standard-deviation-calculator/">Standard Deviation Calculator</a> exists because that second number, the spread, is often more interesting than the average itself.</p>
           <h3>How to choose between the tools here</h3>
-          <p>If you have a price and a percentage, percentage or discount calculator. If you have ingredients and a different number of portions, <a href="/calculators/math/fraction-calculator/">fraction calculator</a>. If you have a column of numbers and want to know how much they vary, standard deviation. If you are solving a quadratic for homework or a nostalgic reason, the solver is upstairs. We will keep adding tools where the maths is short enough to do in your head if you are sharp, and embarrassing to get wrong if you are not.</p>
+          <p>If you have a price and a percentage, percentage or <a href="/calculators/math/discount-calculator/">discount calculator</a>. If you have ingredients and a different number of portions, <a href="/calculators/math/fraction-calculator/">fraction calculator</a>. If you have a column of numbers and want to know how much they vary, standard deviation. If you are solving a quadratic for homework or a nostalgic reason, the solver is upstairs. We will keep adding tools where the maths is short enough to do in your head if you are sharp, and embarrassing to get wrong if you are not.</p>
         </section>
 
         <ul class="category-grid">

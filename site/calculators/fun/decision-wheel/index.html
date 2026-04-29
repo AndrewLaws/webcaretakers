@@ -143,6 +143,76 @@
       margin: 0.5rem 0;
     }
   </style>
+  <!-- breadcrumb-jsonld -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://webcaretakers.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Calculators",
+      "item": "https://webcaretakers.com/calculators/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Fun",
+      "item": "https://webcaretakers.com/calculators/fun/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "Decision Wheel",
+      "item": "https://webcaretakers.com/calculators/fun/decision-wheel/"
+    }
+  ]
+}
+  </script>
+  <!-- org-jsonld -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "WebCaretakers",
+  "url": "https://webcaretakers.com/",
+  "founder": {
+    "@type": "Person",
+    "name": "Andrew Laws"
+  },
+  "sameAs": [
+    "https://yeseo.io/",
+    "https://www.linkedin.com/in/andrewlaws/"
+  ]
+}
+  </script>
+  <!-- person-jsonld -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Andrew Laws",
+  "jobTitle": "SEO consultant and founder, Yeseo",
+  "url": "https://yeseo.io/",
+  "sameAs": [
+    "https://www.linkedin.com/in/andrewlaws/",
+    "https://yeseo.io/"
+  ],
+  "knowsAbout": [
+    "SEO",
+    "search engine optimisation",
+    "website performance",
+    "calculator tools"
+  ]
+}
+  </script>
 </head>
 <body>
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
@@ -307,7 +377,7 @@ rotor.style.transform = `rotate(${finalRotation}deg)`;</code></pre>
           <h2>Common mistakes to avoid</h2>
           <p>Stray blank lines and trailing spaces are the usual culprit. Spreadsheets and word processors love to drop in extra whitespace on copy-paste. The page strips leading and trailing whitespace on every line and skips empty lines, so you do not need to clean the input by hand, but if your wheel looks like it has a phantom wedge, look for a stray space-only line in the textarea.</p>
           <p>Treating the wheel as a serious decision-making tool is the other one. For genuinely high-stakes calls (where to live, whether to take the job, whether to break up), a coin flip is the more honest framing: it forces you to notice your own reaction when you see the result. The wheel is for fun, for breaking deadlocks on small choices, and for entertainment. Use the right tool for the right kind of decision.</p>
-          <p>Pasting more than 50 options is the third. Beyond that, the wedges become slivers nobody can read, the labels overlap, and the visual stops working. The page caps the list at 50 and tells you when it has trimmed the rest. For long lists where you just need a fair pick, the Random Name Picker is the better tool.</p>
+          <p>Pasting more than 50 options is the third. Beyond that, the wedges become slivers nobody can read, the labels overlap, and the visual stops working. The page caps the list at 50 and tells you when it has trimmed the rest. For long lists where you just need a fair pick, the <a href="/calculators/fun/random-name-picker/">Random Name Picker</a> is the better tool.</p>
 
           <h2>Edge cases this page handles</h2>
           <ul>
@@ -352,6 +422,15 @@ rotor.style.transform = `rotate(${finalRotation}deg)`;</code></pre>
             <p>Up to 50. Beyond that the wedges become slivers nobody can read, so the page caps the list and tells you it has done so. If you genuinely need more entries, the Random Name Picker is the better tool.</p>
           </details>
         </section>
+        <section class="related-calcs" aria-labelledby="related-heading">
+          <h2 id="related-heading">Related calculators</h2>
+          <ul class="related-calcs__list">
+      <li><a href="/calculators/fun/dice-and-coin-roller/">Dice and Coin Roller</a></li>
+      <li><a href="/calculators/fun/magic-8-ball/">Magic 8-Ball Generator</a></li>
+      <li><a href="/calculators/fun/random-name-picker/">Random Name Picker</a></li>
+          </ul>
+        </section>
+
       </div>
     </main>
 

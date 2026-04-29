@@ -88,6 +88,76 @@
     ]
   }
   </script>
+  <!-- breadcrumb-jsonld -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://webcaretakers.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Calculators",
+      "item": "https://webcaretakers.com/calculators/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Property",
+      "item": "https://webcaretakers.com/calculators/property/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "UK Section 24 Buy-to-Let Tax Impact Calculator",
+      "item": "https://webcaretakers.com/calculators/property/uk-section-24-buy-to-let-tax-impact-calculator/"
+    }
+  ]
+}
+  </script>
+  <!-- org-jsonld -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "WebCaretakers",
+  "url": "https://webcaretakers.com/",
+  "founder": {
+    "@type": "Person",
+    "name": "Andrew Laws"
+  },
+  "sameAs": [
+    "https://yeseo.io/",
+    "https://www.linkedin.com/in/andrewlaws/"
+  ]
+}
+  </script>
+  <!-- person-jsonld -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Andrew Laws",
+  "jobTitle": "SEO consultant and founder, Yeseo",
+  "url": "https://yeseo.io/",
+  "sameAs": [
+    "https://www.linkedin.com/in/andrewlaws/",
+    "https://yeseo.io/"
+  ],
+  "knowsAbout": [
+    "SEO",
+    "search engine optimisation",
+    "website performance",
+    "calculator tools"
+  ]
+}
+  </script>
 </head>
 <body>
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
@@ -303,6 +373,15 @@
             <p>The credit is 20% of the lower of three figures: the finance costs themselves (mortgage interest), the property profit after expenses (excluding finance costs), and adjusted total income above the personal allowance. The "lower of" rule is what catches landlords with low non-property income off guard, because the credit can be smaller than the simple 20% of mortgage interest you might expect.</p>
           </details>
         </section>
+        <section class="related-calcs" aria-labelledby="related-heading">
+          <h2 id="related-heading">Related calculators</h2>
+          <ul class="related-calcs__list">
+      <li><a href="/calculators/property/rental-yield-calculator/">Rental Yield Calculator</a></li>
+      <li><a href="/calculators/property/uk-mortgage-overpayment-calculator/">UK Mortgage Overpayment Calculator</a></li>
+      <li><a href="/calculators/property/uk-rent-vs-buy-calculator/">UK Rent vs Buy Calculator</a></li>
+          </ul>
+        </section>
+
       </div>
     </main>
 

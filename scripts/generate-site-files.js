@@ -74,6 +74,44 @@ function buildSitemap(pages, baseUrl, getLastmodFn = getLastmod) {
   return lines.join('\n') + '\n';
 }
 
+function buildSitemapIndex(sitemapFilenames, baseUrl, lastmod) {
+  const lines = [
+    '<?xml version="1.0" encoding="UTF-8"?>',
+    '<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+  ];
+  for (const filename of sitemapFilenames) {
+    lines.push('  <sitemap>');
+    lines.push(`    <loc>${escapeXml(baseUrl + '/' + filename)}</loc>`);
+    lines.push(`    <lastmod>${lastmod}</lastmod>`);
+    lines.push('  </sitemap>');
+  }
+  lines.push('</sitemapindex>');
+  return lines.join('\n') + '\n';
+}
+
+// Group pages into buckets keyed by sitemap filename. URLs under
+// /calculators/{slug}/ go into sitemap-{slug}.xml; everything else
+// (homepage, /about/, /contact/, /privacy/, /terms/, /calculators/) goes
+// into sitemap-pages.xml. Future calc additions slot in automatically as
+// long as they live under /calculators/{slug}/.
+function partitionPagesForSitemaps(pages) {
+  const buckets = new Map();
+  const pagesKey = 'sitemap-pages.xml';
+  for (const p of pages) {
+    const m = p.url.match(/^\/calculators\/([^/]+)\//);
+    const key = m ? `sitemap-${m[1]}.xml` : pagesKey;
+    if (!buckets.has(key)) buckets.set(key, []);
+    buckets.get(key).push(p);
+  }
+  // Sort keys so output is deterministic: pages first, then category sitemaps
+  // alphabetically.
+  const ordered = new Map();
+  if (buckets.has(pagesKey)) ordered.set(pagesKey, buckets.get(pagesKey));
+  const catKeys = [...buckets.keys()].filter((k) => k !== pagesKey).sort();
+  for (const k of catKeys) ordered.set(k, buckets.get(k));
+  return ordered;
+}
+
 function buildRobots(baseUrl) {
   return [
     'User-agent: *',
@@ -141,9 +179,26 @@ function buildLlmsTxt(pages, siteName, siteDescription, baseUrl) {
 
 function generate() {
   const pages = scanPages(SITE_DIR);
+
+  // Remove any stale per-category sitemaps from a previous run so deleted
+  // categories don't linger as orphan files.
+  for (const f of fs.readdirSync(SITE_DIR)) {
+    if (/^sitemap(-[a-z0-9-]+)?\.xml$/.test(f)) {
+      fs.unlinkSync(path.join(SITE_DIR, f));
+    }
+  }
+
+  const buckets = partitionPagesForSitemaps(pages);
+  const today = new Date().toISOString().split('T')[0];
+  for (const [filename, bucketPages] of buckets) {
+    fs.writeFileSync(
+      path.join(SITE_DIR, filename),
+      buildSitemap(bucketPages, BASE_URL),
+    );
+  }
   fs.writeFileSync(
     path.join(SITE_DIR, 'sitemap.xml'),
-    buildSitemap(pages, BASE_URL),
+    buildSitemapIndex([...buckets.keys()], BASE_URL, today),
   );
   fs.writeFileSync(path.join(SITE_DIR, 'robots.txt'), buildRobots(BASE_URL));
   fs.writeFileSync(
@@ -166,6 +221,8 @@ function generate() {
 module.exports = {
   scanPages,
   buildSitemap,
+  buildSitemapIndex,
+  partitionPagesForSitemaps,
   buildRobots,
   buildLlmsTxt,
   buildSearchIndex,
@@ -178,5 +235,5 @@ module.exports = {
 
 if (require.main === module) {
   const count = generate();
-  console.log(`Generated sitemap.xml, robots.txt, llms.txt, search-index.json (${count} page${count === 1 ? '' : 's'})`);
+  console.log(`Generated sitemap index + per-category sitemaps, robots.txt, llms.txt, search-index.json (${count} page${count === 1 ? '' : 's'})`);
 }
