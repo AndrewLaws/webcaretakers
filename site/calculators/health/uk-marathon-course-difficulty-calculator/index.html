@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UK Marathon Course Difficulty Calculator | WebCaretakers</title>
+  <meta name="description" content="UK marathon course difficulty calculator. Drop in a GPX file and a target flat pace, get an adjusted finish time, the toughest sections, and the time you'll hit each climb.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/health/uk-marathon-course-difficulty-calculator/">
+  <link rel="alternate" hreflang="en-GB" href="https://webcaretakers.com/calculators/health/uk-marathon-course-difficulty-calculator/">
+  <link rel="alternate" hreflang="x-default" href="https://webcaretakers.com/calculators/health/uk-marathon-course-difficulty-calculator/">
+  <meta property="og:title" content="UK Marathon Course Difficulty Calculator | WebCaretakers">
+  <meta property="og:description" content="Upload a GPX route, set a target flat pace, see the adjusted finish time and the toughest sections of the course flagged with the time you'll hit them.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/health/uk-marathon-course-difficulty-calculator/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="UK Marathon Course Difficulty Calculator | WebCaretakers">
+  <meta name="twitter:description" content="Upload a GPX route, set a target flat pace, see the adjusted finish time and the toughest sections of the course flagged with the time you'll hit them.">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var _stored = null;
+    try { _stored = localStorage.getItem('cookie-consent'); } catch (e) {}
+    var _initial = _stored === 'granted' ? 'granted' : 'denied';
+    gtag('consent', 'default', {
+      ad_storage: _initial, analytics_storage: _initial,
+      ad_user_data: _initial, ad_personalization: _initial,
+      functionality_storage: 'granted', security_storage: 'granted',
+      wait_for_update: 500
+    });
+  </script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "UK Marathon Course Difficulty Calculator",
+  "url": "https://webcaretakers.com/calculators/health/uk-marathon-course-difficulty-calculator/",
+  "description": "Upload a GPX route file and a target flat pace, get a terrain-adjusted finish time prediction, the toughest sections of the course, and the time you will hit each climb. Uses a Strava-style empirical Grade-Adjusted Pace model with late-race fatigue weighting.",
+  "applicationCategory": "HealthApplication",
+  "operatingSystem": "Any",
+  "inLanguage": "en-GB",
+  "countriesSupported": "GB",
+  "offers": {
+    "@type": "Offer",
+    "price": "0"
+  },
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "WebCaretakers",
+    "url": "https://webcaretakers.com/"
+  },
+  "dateModified": "2026-04-29",
+  "author": {
+    "@type": "Person",
+    "name": "Andrew Laws",
+    "url": "https://andrewlaws.com/"
+  }
+}
+  </script>
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Where do I get a GPX file for a marathon course?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most major UK marathons publish an official GPX or KML on their website (London, Manchester, Brighton, Edinburgh and others). If they don't, you can usually find a recent finisher's activity on Strava or a route on Plotaroute or Komoot and export the GPX from there. Save the file to your device, then upload it here."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does the calculator say my downhill is slower than flat?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Two reasons. First, downhill speed benefit caps out at about a 9% gradient (around 12% faster than flat). Beyond that the braking forces you have to apply to control the descent eat into the speed gain, and past about 18% you are no faster than flat. Second, late-race downhills attract an eccentric-damage penalty: by the time your quads are cooked at km 35, a steep descent hurts and you slow down rather than speeding up. The calculator applies both effects."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does the calculator know hills hurt more late in the race?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Each kilometre of the course gets a fatigue multiplier based on where it falls in the race. A 5% climb at km 38 is treated as roughly 30% more metabolically expensive than the same climb at km 4, because by the late race your glycogen is depleted and your form is going. That is why the Comrades Down Run is arguably harder than the Up: the brutal descents come when your legs are already shot."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does the calculator use a Strava-style GAP model and not Minetti?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Minetti's 2002 equation is the academic gold standard, but it was derived from treadmill testing and significantly overstates downhill speed benefit (by up to a factor of three) compared with what real road runners actually do. Strava re-derived their Grade-Adjusted Pace model from millions of real-world runs and it caps the downhill benefit at around 12%. For predicting marathon finish time on a real course, the Strava-style curve is more honest."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does the difficulty rating mean?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Flat: under 5 metres of ascent per kilometre and under 1% slowdown versus a flat target. Rolling: gentle undulation. Hilly: meaningful elevation that requires a different pacing strategy. Brutal: a course like Snowdonia or the Yorkshire Marathon's hilly variants where the elevation profile dictates the race plan, not the other way round."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is my GPX file uploaded anywhere?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Everything happens in your browser. The file is parsed locally, the maths runs on your device, and nothing is sent to a server. You can disconnect from the internet after the page loads and the calculator will still work."
+      }
+    }
+  ]
+}
+  </script>
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://webcaretakers.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://webcaretakers.com/calculators/" },
+    { "@type": "ListItem", "position": 3, "name": "Health", "item": "https://webcaretakers.com/calculators/health/" },
+    { "@type": "ListItem", "position": 4, "name": "UK Marathon Course Difficulty Calculator", "item": "https://webcaretakers.com/calculators/health/uk-marathon-course-difficulty-calculator/" }
+  ]
+}
+  </script>
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "WebCaretakers",
+  "url": "https://webcaretakers.com/",
+  "founder": { "@type": "Person", "name": "Andrew Laws" },
+  "sameAs": [
+    "https://andrewlaws.com/",
+    "https://yeseo.io/",
+    "https://lawsie.com/",
+    "https://www.linkedin.com/in/andrewlaws/"
+  ]
+}
+  </script>
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Andrew Laws",
+  "jobTitle": "SEO consultant and founder, Yeseo",
+  "url": "https://andrewlaws.com/",
+  "sameAs": [
+    "https://www.linkedin.com/in/andrewlaws/",
+    "https://yeseo.io/",
+    "https://lawsie.com/",
+    "https://andrewlaws.com/"
+  ],
+  "knowsAbout": [
+    "SEO",
+    "search engine optimisation",
+    "website performance",
+    "calculator tools"
+  ]
+}
+  </script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-banner-heading" aria-describedby="cookie-banner-text" hidden>
+    <div class="cookie-banner__inner">
+      <h2 id="cookie-banner-heading" class="cookie-banner__heading">A quick word about cookies</h2>
+      <p id="cookie-banner-text" class="cookie-banner__text">
+        We use cookies for analytics, so we can see which calculators people actually use and which ones need work. Nothing creepy, nothing sold on. You can say yes, say no, or read the <a href="/privacy/">privacy policy</a> first. Your choice sticks.
+      </p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-reject>Reject</button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>Accept</button>
+      </div>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">WebCaretakers</a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <ul class="primary-nav__list">
+          <li class="primary-nav__item primary-nav__item--has-menu">
+            <button type="button" class="primary-nav__link" data-menu-toggle aria-haspopup="true" aria-expanded="false">Calculators <span class="primary-nav__caret" aria-hidden="true">▾</span></button>
+            <ul class="primary-nav__submenu">
+              <li><a href="/calculators/ai/">AI</a></li>
+              <li><a href="/calculators/broadband/">Broadband</a></li>
+              <li><a href="/calculators/business/">Business</a></li>
+              <li><a href="/calculators/conversions/">Conversions</a></li>
+              <li><a href="/calculators/cybersecurity/">Cybersecurity</a></li>
+              <li><a href="/calculators/finance/">Finance</a></li>
+              <li><a href="/calculators/fun/">Fun</a></li>
+              <li><a href="/calculators/health/">Health</a></li>
+              <li><a href="/calculators/images/">Images</a></li>
+              <li><a href="/calculators/math/">Math</a></li>
+              <li><a href="/calculators/productivity/">Productivity</a></li>
+              <li><a href="/calculators/property/">Property</a></li>
+              <li><a href="/calculators/seo/">SEO</a></li>
+              <li><a href="/calculators/wedding/">Wedding</a></li>
+              <li><a href="/calculators/writing/">Writing</a></li>
+              <li class="primary-nav__submenu-sep"><a href="/calculators/">See all calculators</a></li>
+            </ul>
+          </li>
+          <li class="primary-nav__item"><a href="/about/" class="primary-nav__link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <main id="main-content">
+      <div class="container">
+        <nav aria-label="Breadcrumb" class="breadcrumbs">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/calculators/">Calculators</a></li>
+            <li><a href="/calculators/health/">Health</a></li>
+            <li aria-current="page">UK Marathon Course Difficulty Calculator</li>
+          </ol>
+        </nav>
+
+        <h1>UK Marathon Course Difficulty Calculator</h1>
+
+        <div class="eli5">
+          <h2>Explain like I'm 5</h2>
+          <p>A marathon's elevation profile matters as much as the total ascent: a hill at km 38 hurts roughly twice as much as the same hill at km 4. Drop in the GPX file for your race, set the pace you'd run on a flat course, and the calculator works out a realistic finish time, flags the toughest sections, and tells you what time of day you'll hit each climb.</p>
+        </div>
+
+        <section data-calculator class="calculator-card">
+          <form class="calc-form" novalidate>
+            <fieldset class="calc-fieldset">
+              <legend>Your course and target pace</legend>
+
+              <div class="calc-row">
+                <label for="gpxFile">Upload a GPX file</label>
+                <input type="file" id="gpxFile" data-input-gpx accept=".gpx,application/gpx+xml,text/xml,application/xml">
+                <p class="calc-help">Get one from your race's official website, your Strava activity for the course, or a route on Plotaroute or Komoot. The file is parsed in your browser. Nothing is uploaded.</p>
+              </div>
+
+              <div class="calc-row">
+                <label for="flatPace">Target flat-course pace (MM:SS per km)</label>
+                <input type="text" id="flatPace" data-input-flat-pace placeholder="e.g. 5:30" value="5:30">
+                <p class="calc-help">The pace you'd run for the full distance on a flat course in good conditions. Use the <a href="/calculators/health/running-pace-calculator/">Running Pace Calculator</a> to work this out from a recent race.</p>
+              </div>
+
+              <div class="calc-row">
+                <label for="experience">Marathon experience</label>
+                <select id="experience" data-input-experience>
+                  <option value="first-timer">First-timer (this is my debut marathon)</option>
+                  <option value="recreational" selected>Recreational (a few marathons under my belt)</option>
+                  <option value="experienced">Experienced (regular marathoner, structured training)</option>
+                </select>
+                <p class="calc-help">Scales the late-race fatigue penalty. First-timers fade more on the back half; experienced runners hold pace longer.</p>
+              </div>
+            </fieldset>
+
+            <button type="button" data-calculate>Calculate</button>
+            <p class="calc-error" data-error hidden></p>
+          </form>
+
+          <div class="calculator-results" data-results hidden>
+            <h2>Course summary</h2>
+            <div class="mort-breakdown">
+              <ul>
+                <li class="mort-breakdown__total"><span>Adjusted finish time</span><strong data-line-adjusted>–</strong></li>
+                <li><span>Flat-pace finish time</span><strong data-line-flat>–</strong></li>
+                <li><span>Course slowdown</span><strong data-line-slowdown>–</strong></li>
+                <li><span>Difficulty rating</span><strong data-line-rating>–</strong></li>
+                <li><span>Total distance</span><strong data-line-distance>–</strong></li>
+                <li><span>Total ascent</span><strong data-line-ascent>–</strong></li>
+                <li><span>Total descent</span><strong data-line-descent>–</strong></li>
+                <li><span>Ascent per km</span><strong data-line-ascent-per-km>–</strong></li>
+              </ul>
+            </div>
+
+            <h3>Toughest sections</h3>
+            <p data-no-climbs hidden>This course is flat enough that no significant climbs were detected. Lucky you.</p>
+            <div class="table-scroll" data-tough-wrapper>
+              <table class="scenarios-table">
+                <thead>
+                  <tr>
+                    <th>Climb</th>
+                    <th>Length</th>
+                    <th>Average grade</th>
+                    <th>Ascent</th>
+                    <th>Predicted arrival</th>
+                    <th>Category</th>
+                  </tr>
+                </thead>
+                <tbody data-tough-body></tbody>
+              </table>
+            </div>
+
+            <details class="prove-it">
+              <summary>Show workings</summary>
+              <div data-prove-it-body class="prove-it__body"></div>
+            </details>
+          </div>
+        </section>
+
+        <section class="long-form">
+          <h2>Why total ascent isn't the whole story</h2>
+          <p>If you've ever read a race brief that says "1,200 ft of total elevation gain" and felt none the wiser, you're not alone. Total ascent is a useful number, but it's a blunt one. Two marathons with identical 1,200 ft of climbing can produce wildly different finish times depending on whether the hills come at km 5 or km 35, whether the descents are gentle or steep, and whether the course makes you grind out the climbs late or rewards a strong opening.</p>
+          <p>The classic example is the Comrades Marathon in South Africa. It runs in alternating directions year on year, the "Up Run" and the "Down Run". On paper the Down Run looks easier: you net descend over 87 km. In practice it's arguably harder, because the steep downhill sections come in the final third when the quadriceps are already shredded from earlier descents. Runners actually slow on the downhills near the end because eccentric muscle damage makes them painful. The same gradient that gave a free 12% pace benefit at km 20 becomes a forced slowdown at km 75.</p>
+          <p>That's the insight this calculator is built around. Where the hills fall matters as much as how big they are.</p>
+
+          <h2>Grade-Adjusted Pace, the honest version</h2>
+          <p>The starting point is converting elevation change into a pace adjustment. The academic gold standard is the Minetti equation, derived from treadmill metabolic testing in 2002. The problem with Minetti for road racing is that it was calibrated against energy cost, not actual achievable speed, and it overstates the downhill speed benefit by up to a factor of three. A 5% downhill in Minetti looks like a 25% pace boost. In reality, on a road, with road shoes, with the braking forces you have to apply to keep your stride under control, you'll get maybe 8 to 10%.</p>
+          <p>Strava re-derived their Grade-Adjusted Pace model from millions of real-world runs, normalised by heart rate rather than calculated metabolic cost. Their data shows the downhill benefit caps out at around -9% gradient (about 12% faster than flat), and at gradients steeper than -18% there's no benefit at all. Past that point you're braking your way down, not running. This calculator uses a Strava-style curve. It will not flatter you with predictions of negative-split miracles on technical descents.</p>
+          <p>For uphills, the model is roughly polynomial: a 5% climb costs about 20% in pace, a 10% climb about 45%. Those numbers are stable across the literature, because uphills don't have the same "real-world braking" complication that downhills do.</p>
+
+          <h2>Where the hill falls: the fatigue weighting</h2>
+          <p>Every kilometre of the course gets a position-based fatigue multiplier on top of the GAP factor. The maths is calibrated against what coaches and physiologists have been saying for decades:</p>
+          <ul>
+            <li><strong>Uphills</strong> get progressively heavier across the race. A climb in the final 10 km is treated as roughly 30% more metabolically expensive than the same climb in the first 10 km. By km 38 you're glycogen-depleted, your form is going, and your ability to produce force is diminished. The same gradient that felt manageable in the opening miles will not feel manageable now.</li>
+            <li><strong>Downhills</strong> get an eccentric-damage penalty in the back half. For the first 60% of the race there's no penalty: fresh quads handle descents fine, and you bank the speed benefit. After that, a steep downhill (steeper than about 5%) starts attracting a penalty that grows quadratically into the finish. By the final kilometre, a properly steep descent can be slower than running it flat. This is where the "Comrades Down Run" effect lives in the model.</li>
+          </ul>
+          <p>The "Marathon experience" dropdown scales this whole effect. First-timers fade harder on the back half; experienced marathoners with a deep aerobic base and structured training fade less. The default sits in the middle.</p>
+
+          <h2>Climb detection and what counts as "tough"</h2>
+          <p>Strava's cycling climb categorisation multiplies the length of a climb (in metres) by its average gradient (in percent). A score above 8,000 gets a category. We use the same formula but lower the floor to 4,000, because anything that's sustained at 3% for over a kilometre and a half is worth a runner's attention even if a cyclist would shrug at it.</p>
+          <p>Before detecting climbs the calculator runs a moving-average smoother across the elevation profile. Without smoothing, GPS noise produces hundreds of micro-hills that don't exist on the actual road. A 9-point window gets rid of the noise without losing the real climbs.</p>
+          <p>The "Predicted arrival" column tells you the time you'll hit the start of each climb if you run the rest of the course at the model's per-segment pace. Treat it as a pacing aid: it's the hour mark when you should mentally prepare for the section, not a guarantee.</p>
+
+          <h2>Where to get a GPX file</h2>
+          <p>Most major UK marathons publish an official GPX or KML on their website: London, Manchester, Brighton, Edinburgh, Yorkshire and Loch Ness all do, and the smaller events are catching up. If your race doesn't, you can usually find a recent finisher's activity on Strava (filter by the race name) and export the GPX from their public activity. Plotaroute and Komoot also host community-made route files. Save the file to your device, then upload it here.</p>
+
+          <h2>What this calculator deliberately doesn't model</h2>
+          <p>Surface (tarmac vs trail vs grass), camber, weather on the day, wind direction relative to the course, hydration strategy, what you ate the night before. All of those matter and none of them are in a GPX file. Treat the predicted finish time as a course-aware target effort, not a guarantee. The point isn't to predict your time to the second; it's to tell you in advance which kilometres will hurt the most, so you can pace accordingly and not blow up at km 35 because you didn't realise the closing miles climbed.</p>
+
+          <p><em>Built on the Strava empirical GAP model and the fatigue-weighting principles described in the running coaching literature. Coach feedback for this tool came from Sarah Elizabeth Jones at <a href="https://lovelymarathon.com/coaching?utm_source=webcaretakers.com&amp;utm_medium=referral&amp;utm_campaign=marathon-course-difficulty-calculator">Lovely Marathon coaching</a>, who pointed out that "where the hills fall" is the bit most calculators get wrong.</em></p>
+
+          <h2>Related calculators</h2>
+          <ul class="related-calculators">
+            <li><a href="/calculators/health/running-pace-calculator/">Work out your flat-pace target with the Running Pace Calculator</a></li>
+            <li><a href="/calculators/health/calorie-calculator/">Calorie and BMR for marathon training</a></li>
+            <li><a href="/calculators/health/macro-split-calculator/">Macro split for endurance training</a></li>
+            <li><a href="/calculators/health/tdee-calculator/">TDEE during a marathon block</a></li>
+          </ul>
+        </section>
+
+        <section class="faq">
+          <h2>Common questions</h2>
+          <details>
+            <summary>Where do I get a GPX file for a marathon course?</summary>
+            <p>Most major UK marathons publish an official GPX or KML on their website (London, Manchester, Brighton, Edinburgh and others). If they don't, you can usually find a recent finisher's activity on Strava or a route on Plotaroute or Komoot and export the GPX from there. Save the file to your device, then upload it here.</p>
+          </details>
+          <details>
+            <summary>Why does the calculator say my downhill is slower than flat?</summary>
+            <p>Two reasons. First, downhill speed benefit caps out at about a 9% gradient (around 12% faster than flat). Beyond that the braking forces you have to apply to control the descent eat into the speed gain, and past about 18% you are no faster than flat. Second, late-race downhills attract an eccentric-damage penalty: by the time your quads are cooked at km 35, a steep descent hurts and you slow down rather than speeding up. The calculator applies both effects.</p>
+          </details>
+          <details>
+            <summary>How does the calculator know hills hurt more late in the race?</summary>
+            <p>Each kilometre of the course gets a fatigue multiplier based on where it falls in the race. A 5% climb at km 38 is treated as roughly 30% more metabolically expensive than the same climb at km 4, because by the late race your glycogen is depleted and your form is going. That is why the Comrades Down Run is arguably harder than the Up: the brutal descents come when your legs are already shot.</p>
+          </details>
+          <details>
+            <summary>Why does the calculator use a Strava-style GAP model and not Minetti?</summary>
+            <p>Minetti's 2002 equation is the academic gold standard, but it was derived from treadmill testing and significantly overstates downhill speed benefit (by up to a factor of three) compared with what real road runners actually do. Strava re-derived their Grade-Adjusted Pace model from millions of real-world runs and it caps the downhill benefit at around 12%. For predicting marathon finish time on a real course, the Strava-style curve is more honest.</p>
+          </details>
+          <details>
+            <summary>What does the difficulty rating mean?</summary>
+            <p>Flat: under 5 metres of ascent per kilometre and under 1% slowdown versus a flat target. Rolling: gentle undulation. Hilly: meaningful elevation that requires a different pacing strategy. Brutal: a course like Snowdonia or the Yorkshire Marathon's hilly variants where the elevation profile dictates the race plan, not the other way round.</p>
+          </details>
+          <details>
+            <summary>Is my GPX file uploaded anywhere?</summary>
+            <p>No. Everything happens in your browser. The file is parsed locally, the maths runs on your device, and nothing is sent to a server. You can disconnect from the internet after the page loads and the calculator will still work.</p>
+          </details>
+        </section>
+
+        <p class="author-byline">Last updated 29 April 2026 by <a href="/about/">Andrew Laws</a>.</p>
+
+        <section class="related-calcs" aria-labelledby="related-heading">
+          <h2 id="related-heading">Related calculators</h2>
+          <ul class="related-calcs__list">
+            <li><a href="/calculators/health/running-pace-calculator/">Running Pace Calculator</a></li>
+            <li><a href="/calculators/health/calorie-calculator/">Calorie Calculator</a></li>
+            <li><a href="/calculators/health/macro-split-calculator/">Macro Split Calculator</a></li>
+          </ul>
+        </section>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="ad-slot" data-ad-slot="sidebar" aria-hidden="true"></div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="site-footer-nav" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/calculators/">All calculators</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+      <section class="site-disclaimer" data-disclaimer aria-labelledby="disclaimer-heading">
+        <h2 id="disclaimer-heading">A quick, necessary word</h2>
+        <p>Every calculator on this site is built to give you a sensible, well-reasoned estimate. It is, however, exactly that: an estimate, for general information only. Nothing you see here is professional, legal, financial, medical, or tax advice, and it should not be treated as such.</p>
+        <p>Before you make a decision that actually matters, talk to a qualified professional who knows your specific situation: an accountant, a solicitor, a doctor, an IT consultant, whoever fits the question. They can factor in the bits a generic tool can't.</p>
+        <p>We take no liability and accept no responsibility for any loss, damage, or questionable life choice arising from acting on the numbers you see here. Use the results as a starting point for a better conversation, not as the final word.</p>
+        <p><strong>Affiliate disclosure:</strong> some links on this site are affiliate links. If you click through and buy or sign up for something, we may earn a small commission at no extra cost to you. It helps keep the calculators free and ad-light. We only recommend things we'd point a friend towards.</p>
+      </section>
+      <p class="site-copyright">&copy; 2026 WebCaretakers. All rights reserved.</p>
+      <p class="site-legal">WebCaretakers is a trading name of <a href="https://yeseo.io/" rel="noopener">Andrew Laws Associates Ltd</a>, registered in England and Wales (company no. 08602332). ICO registration ZA726704.</p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/calculators/uk-marathon-course-difficulty.js"></script>
+  <script>
+  (function () {
+    'use strict';
+
+    var fileInput   = document.querySelector('[data-input-gpx]');
+    var paceInput   = document.querySelector('[data-input-flat-pace]');
+    var expSelect   = document.querySelector('[data-input-experience]');
+    var calcBtn     = document.querySelector('[data-calculate]');
+    var errorEl     = document.querySelector('[data-error]');
+    var resultsEl   = document.querySelector('[data-results]');
+    var toughBody   = document.querySelector('[data-tough-body]');
+    var toughWrap   = document.querySelector('[data-tough-wrapper]');
+    var noClimbsEl  = document.querySelector('[data-no-climbs]');
+    var proveBody   = document.querySelector('[data-prove-it-body]');
+
+    var gpxText = null;
+    var gpxFilename = null;
+
+    function showError(msg) {
+      errorEl.textContent = msg;
+      errorEl.hidden = false;
+      resultsEl.hidden = true;
+    }
+    function clearError() { errorEl.hidden = true; errorEl.textContent = ''; }
+
+    fileInput.addEventListener('change', function () {
+      var file = fileInput.files && fileInput.files[0];
+      if (!file) { gpxText = null; gpxFilename = null; return; }
+      gpxFilename = file.name;
+      var reader = new FileReader();
+      reader.onload = function () { gpxText = reader.result; };
+      reader.onerror = function () { showError('Could not read the GPX file. Try saving it again or use a different file.'); };
+      reader.readAsText(file);
+    });
+
+    calcBtn.addEventListener('click', function () {
+      clearError();
+      if (!gpxText) { showError('Pick a GPX file to upload first.'); return; }
+
+      var paceSecs = MarathonCourseDifficulty.parsePace(paceInput.value);
+      if (isNaN(paceSecs) || paceSecs <= 0) {
+        showError('Enter a target flat pace in MM:SS format, e.g. 5:30.');
+        return;
+      }
+
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: 'calculator_interaction',
+        calculator_name: 'UK Marathon Course Difficulty Calculator',
+        gpx_filename: gpxFilename || 'unknown',
+      });
+
+      try {
+        var parsed = MarathonCourseDifficulty.parseGPX(gpxText);
+        var r = MarathonCourseDifficulty.calculateCourse({
+          points: parsed.points,
+          flatPaceSecsPerKm: paceSecs,
+          experience: expSelect.value,
+        });
+
+        document.querySelector('[data-line-adjusted]').textContent  = MarathonCourseDifficulty.formatTimeOfDay(r.adjustedTimeSecs);
+        document.querySelector('[data-line-flat]').textContent      = MarathonCourseDifficulty.formatTimeOfDay(r.flatTimeSecs);
+        var slowdownLabel = (r.slowdownSecs >= 0 ? '+' : '−') + MarathonCourseDifficulty.formatTimeOfDay(Math.abs(r.slowdownSecs))
+                          + ' (' + (r.slowdownPct >= 0 ? '+' : '') + r.slowdownPct + '%)';
+        document.querySelector('[data-line-slowdown]').textContent  = slowdownLabel;
+        document.querySelector('[data-line-rating]').textContent    = r.difficultyRating.charAt(0).toUpperCase() + r.difficultyRating.slice(1);
+        document.querySelector('[data-line-distance]').textContent  = r.totalDistKm + ' km';
+        document.querySelector('[data-line-ascent]').textContent    = r.totalAscentM + ' m';
+        document.querySelector('[data-line-descent]').textContent   = r.totalDescentM + ' m';
+        document.querySelector('[data-line-ascent-per-km]').textContent = r.ascentPerKm + ' m/km';
+
+        toughBody.innerHTML = '';
+        if (r.toughSections.length === 0) {
+          noClimbsEl.hidden = false;
+          toughWrap.hidden = true;
+        } else {
+          noClimbsEl.hidden = true;
+          toughWrap.hidden = false;
+          r.toughSections.forEach(function (c, idx) {
+            var tr = document.createElement('tr');
+            var startKm = (c.startM / 1000).toFixed(1);
+            var endKm   = (c.endM   / 1000).toFixed(1);
+            tr.innerHTML = '<td>Climb ' + (idx + 1) + ' (km ' + startKm + ' to ' + endKm + ')</td>'
+                         + '<td>' + Math.round(c.lengthM) + ' m</td>'
+                         + '<td>' + c.avgGradePct.toFixed(1) + '%</td>'
+                         + '<td>' + Math.round(c.ascentM) + ' m</td>'
+                         + '<td>' + c.predictedArrival + '</td>'
+                         + '<td>' + (c.category ? 'Cat ' + c.category : 'Minor') + '</td>';
+            toughBody.appendChild(tr);
+          });
+        }
+
+        // workings
+        var lines = [
+          'GPX: ' + (gpxFilename || 'uploaded file'),
+          'Trackpoints: ' + parsed.points.length,
+          'Distance: ' + r.totalDistKm + ' km (raw GPX cumulative haversine between trkpts)',
+          'Total ascent (smoothed): ' + r.totalAscentM + ' m',
+          'Total descent (smoothed): ' + r.totalDescentM + ' m',
+          '',
+          'Flat pace target: ' + MarathonCourseDifficulty.formatPace(paceSecs) + ' /km',
+          'Flat-pace finish time: ' + MarathonCourseDifficulty.formatTimeOfDay(r.flatTimeSecs) + ' (' + r.totalDistKm + ' km × ' + paceSecs + ' s/km)',
+          '',
+          'Per-segment adjustment: pace = flatPace × GAP(grade) × fatigue(raceFraction, direction)',
+          'GAP curve: Strava-style empirical (downhill benefit caps at -9%, no benefit past -18%)',
+          'Fatigue scale: ' + expSelect.value,
+          '',
+          'Adjusted finish time: ' + MarathonCourseDifficulty.formatTimeOfDay(r.adjustedTimeSecs),
+          'Course slowdown vs flat: ' + r.slowdownSecs + ' s (' + r.slowdownPct + '%)',
+          'Difficulty rating: ' + r.difficultyRating + ' (ascent/km = ' + r.ascentPerKm + ', slowdown = ' + r.slowdownPct + '%)',
+          '',
+          'Climbs detected: ' + r.climbs.length + ' (Strava categorisation, length × grade ≥ 4000 to flag)',
+        ];
+        proveBody.textContent = lines.join('\n');
+
+        resultsEl.hidden = false;
+
+        window.dataLayer.push({
+          event:                'calculator_result',
+          calculator_name:      'UK Marathon Course Difficulty Calculator',
+          adjusted_time_secs:   r.adjustedTimeSecs,
+          slowdown_pct:         r.slowdownPct,
+          difficulty_rating:    r.difficultyRating,
+          total_dist_km:        r.totalDistKm,
+        });
+      } catch (e) {
+        showError(e.message || 'Could not process that GPX file.');
+      }
+    });
+  })();
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>
