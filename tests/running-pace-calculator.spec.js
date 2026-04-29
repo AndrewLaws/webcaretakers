@@ -158,17 +158,16 @@ test('health hub lists this calculator', async ({ page }) => {
 
 // --- Race conditions & training (advanced) ---
 
-test('advanced section is collapsed by default', async ({ page }) => {
+test('advanced section is open by default', async ({ page }) => {
   await page.goto(URL);
   const adv = page.locator('[data-advanced]');
   await expect(adv).toBeVisible();
-  // <details> open attribute absent when collapsed
-  expect(await adv.evaluate(el => el.open)).toBe(false);
+  // <details open> means runners see the new inputs without having to click
+  expect(await adv.evaluate(el => el.open)).toBe(true);
 });
 
-test('expanding advanced section reveals all five new inputs', async ({ page }) => {
+test('all five new inputs are visible on first load', async ({ page }) => {
   await page.goto(URL);
-  await page.locator('[data-advanced] summary').click();
   await expect(page.locator('[data-input-race-size]')).toBeVisible();
   await expect(page.locator('[data-input-sex]')).toBeVisible();
   await expect(page.locator('[data-input-mileage]')).toBeVisible();
@@ -176,9 +175,8 @@ test('expanding advanced section reveals all five new inputs', async ({ page }) 
   await expect(page.locator('[data-input-race-temp]')).toBeVisible();
 });
 
-test('default advanced expand + calculate produces same basic pace as before', async ({ page }) => {
+test('default advanced inputs + calculate produces same basic pace as before', async ({ page }) => {
   await page.goto(URL);
-  await page.locator('[data-advanced] summary').click();
   await page.fill('[data-input-distance]', '10');
   await page.fill('[data-input-time]', '50:00');
   await page.click('[data-calculate]');
@@ -198,7 +196,6 @@ test('breakdown table is visible after calculate', async ({ page }) => {
 
 test('heat differential of 10°C clearly increases predicted time', async ({ page }) => {
   await page.goto(URL);
-  await page.locator('[data-advanced] summary').click();
   await page.fill('[data-input-distance]', '10');
   await page.fill('[data-input-time]', '50:00');
   // Cool first
