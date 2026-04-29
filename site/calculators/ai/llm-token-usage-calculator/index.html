@@ -10,6 +10,10 @@
   <meta property="og:description" content="Estimate LLM API costs across Claude, GPT, Gemini and DeepSeek. Side-by-side model comparison.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://webcaretakers.com/calculators/ai/llm-token-usage-calculator/">
+  <!-- twitter-card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="LLM Token Usage Calculator | WebCaretakers">
+  <meta name="twitter:description" content="Estimate LLM API costs across Claude, GPT, Gemini and DeepSeek. Side-by-side model comparison.">
   <meta name="robots" content="index, follow">
   <link rel="stylesheet" href="/assets/css/main.css">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -36,53 +40,80 @@
   })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
 
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "LLM Token Usage Calculator",
-    "url": "https://webcaretakers.com/calculators/ai/llm-token-usage-calculator/",
-    "applicationCategory": "DeveloperApplication",
-    "operatingSystem": "Any",
-    "offers": { "@type": "Offer", "price": "0" },
-    "author": {
-      "@type": "Person",
-      "name": "Andrew Laws",
-      "url": "https://yeseo.io/"
-    }
-  }
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "LLM Token Usage Calculator",
+  "url": "https://webcaretakers.com/calculators/ai/llm-token-usage-calculator/",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Andrew Laws",
+    "url": "https://yeseo.io/"
+  },
+  "dateModified": "2026-04-29"
+}
   </script>
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "Why is my actual bill different from this estimate?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Three reasons usually. First, the calculator uses a 4-characters-per-token approximation, which lands inside roughly 15% of the true tokeniser count for English prose but drifts further for code, JSON and non-Latin scripts. Second, real workloads include retries, system prompts you forgot, conversation history, and the occasional runaway response. Third, this tool does not model prompt-caching discounts, batch-API discounts, image or audio tokens, or vision add-ons. Treat the number as a first-pass estimate, not an invoice." }
-      },
-      {
-        "@type": "Question",
-        "name": "What is a token?",
-        "acceptedAnswer": { "@type": "Answer", "text": "A token is the unit a language model bills on. Roughly speaking, a token is about four characters of English text, or three quarters of a word. Different model families (GPT, Claude, Gemini) use slightly different tokenisers, so the exact count for the same prompt varies between providers. If you need the precise number, paste the text into the provider's official tokeniser tool or call their count-tokens endpoint." }
-      },
-      {
-        "@type": "Question",
-        "name": "Does this include caching or batch discounts?",
-        "acceptedAnswer": { "@type": "Answer", "text": "No. The figures are standard, non-cached, non-batch list prices. Anthropic, OpenAI and Google all offer prompt caching that knocks 50 to 90 percent off repeated input tokens, and batch APIs that knock another 50 percent off in exchange for slower turnaround. If you are running a high-volume workload with stable system prompts, your real bill will be lower than this calculator suggests." }
-      },
-      {
-        "@type": "Question",
-        "name": "How often is the pricing updated?",
-        "acceptedAnswer": { "@type": "Answer", "text": "The Last verified date on the page tells you when the figures were last checked against the providers' official pricing pages. Pricing is baked into the page so it is fast and works without any API calls, but that means it can drift if a provider drops their prices and we have not yet pushed the update. Always sanity-check against the provider's own pricing page before signing off a budget." }
-      },
-      {
-        "@type": "Question",
-        "name": "What about embedding models?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Embedding models are priced separately from chat models, and the cost shape is different: you pay per token of input only, no output tokens. They are also typically two or three orders of magnitude cheaper. This calculator focuses on chat and completion models, which is where the bulk of LLM spend sits. If you need an embedding cost estimate, multiply your total document tokens by the provider's embedding rate (often a few cents per million tokens)." }
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Why is my actual bill different from this estimate?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Three reasons usually. The four-chars-per-token approximation is close but not exact (about ±15% for English prose, more for code or non-Latin scripts). Real workloads include retries, system prompts, conversation history and the occasional runaway response. And this tool does not model prompt caching, batch discounts, image or audio tokens, or vision add-ons. Treat the figure as a first-pass estimate, not an invoice."
       }
-    ]
-  }
+    },
+    {
+      "@type": "Question",
+      "name": "What is a token?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A token is the unit a language model bills on. Roughly four characters of English text, or about three quarters of a word. Different model families use different tokenisers, so the exact count for the same prompt varies between providers. For the precise number, paste the text into the provider's official tokeniser tool or call their count-tokens endpoint."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does this include caching or batch discounts?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. The figures are standard, non-cached, non-batch list prices. Prompt caching can knock 50 to 90 percent off repeated input tokens, and batch APIs take another 50 percent off in exchange for slower turnaround. High-volume workloads with stable system prompts will pay less than this calculator suggests."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How often is the pricing updated?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The Last verified date on the page tells you when the figures were last checked against the providers' official pricing pages. Pricing is baked into the page so it loads fast and works without any API calls, but that means it can drift if a provider drops their prices and we have not yet pushed the update. Sanity-check against the provider's own pricing page before signing off a budget."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What about embedding models?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Embedding models are priced separately, with input-only billing and rates two or three orders of magnitude lower than chat models. This calculator focuses on chat and completion models, which is where the real spend sits. For an embedding cost, multiply your total document tokens by the provider's embedding rate (often a few cents per million)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does this calculator send my prompts anywhere?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Everything runs in your browser. The text you paste never leaves your device."
+      }
+    }
+  ]
+}
   </script>
   <!-- breadcrumb-jsonld -->
   <script type="application/ld+json">
@@ -429,6 +460,8 @@
             <p>No. Everything runs in your browser. The text you paste never leaves your device.</p>
           </details>
         </section>
+        <!-- author-byline -->
+        <p class="author-byline">Last updated 29 April 2026 by <a href="/about/">Andrew Laws</a>.</p>
         <section class="related-calcs" aria-labelledby="related-heading">
           <h2 id="related-heading">Related calculators</h2>
           <ul class="related-calcs__list">

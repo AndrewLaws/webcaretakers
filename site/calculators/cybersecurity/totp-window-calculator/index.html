@@ -10,6 +10,10 @@
   <meta property="og:description" content="Effective TOTP acceptance window, brute-force probability and a sensible drift setting based on expected clock skew.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://webcaretakers.com/calculators/cybersecurity/totp-window-calculator/">
+  <!-- twitter-card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="2FA / TOTP Window Calculator | WebCaretakers">
+  <meta name="twitter:description" content="Effective TOTP acceptance window, brute-force probability and a sensible drift setting based on expected clock skew.">
   <meta name="robots" content="index, follow">
   <link rel="stylesheet" href="/assets/css/main.css">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -36,50 +40,73 @@
   })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
 
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "2FA / TOTP Window Calculator",
-    "url": "https://webcaretakers.com/calculators/cybersecurity/totp-window-calculator/",
-    "applicationCategory": "SecurityApplication",
-    "operatingSystem": "Any",
-    "description": "Calculate the effective TOTP acceptance window in seconds, the brute-force probability per attempt expressed as 1-in-N, attempts-per-second to a 50% chance of guessing inside one period, and a recommended drift setting based on expected clock skew. Browser-only, RFC 6238.",
-    "offers": { "@type": "Offer", "price": "0" },
-    "author": { "@type": "Person", "name": "Andrew Laws", "url": "https://yeseo.io/" }
-  }
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "2FA / TOTP Window Calculator",
+  "url": "https://webcaretakers.com/calculators/cybersecurity/totp-window-calculator/",
+  "applicationCategory": "SecurityApplication",
+  "operatingSystem": "Any",
+  "description": "Calculate the effective TOTP acceptance window in seconds, the brute-force probability per attempt expressed as 1-in-N, attempts-per-second to a 50% chance of guessing inside one period, and a recommended drift setting based on expected clock skew. Browser-only, RFC 6238.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Andrew Laws",
+    "url": "https://yeseo.io/"
+  },
+  "dateModified": "2026-04-29"
+}
   </script>
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "What is the TOTP acceptance window?",
-        "acceptedAnswer": { "@type": "Answer", "text": "It is the span of time during which a generated 6 to 8 digit code will still be accepted by the server. With a 30 second period and a drift tolerance of plus or minus one step, three codes are valid at any moment: the previous one, the current one, and the next one. That is a 90 second total window. Wider drift means a wider window, which means more accepted codes, which means a slightly easier brute-force target." }
-      },
-      {
-        "@type": "Question",
-        "name": "How does drift tolerance affect security?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Each extra step of drift on either side of \"now\" adds another accepted code. With 6 digits, the code space is one million. Drift of plus or minus one means three accepted codes, so the per-attempt probability of a blind guess is three in a million instead of one. Drift of plus or minus two makes it five in a million. The hit to security is small in absolute terms, but RFC 6238 still recommends keeping it tight, ideally one step." }
-      },
-      {
-        "@type": "Question",
-        "name": "What clock skew should I plan for?",
-        "acceptedAnswer": { "@type": "Answer", "text": "On any device that runs a real-time clock with NTP, skew is well under one second. The drift you actually need to tolerate comes from cheap hardware tokens with no network sync, mobile devices that have been offline for a while, or virtual machines whose host clocks have wandered. A safe rule is to set drift to ceil(expected_skew / period). 30 second period, 70 second tolerated skew, three steps. The calculator does this for you." }
-      },
-      {
-        "@type": "Question",
-        "name": "Should I use 7 or 8 digit codes?",
-        "acceptedAnswer": { "@type": "Answer", "text": "RFC 6238 allows 6, 7 or 8 digits. Six is the everyday standard because almost every authenticator app and hardware token supports it. Eight digits is supported by RSA SecurID, YubiKey OATH-TOTP and Google Authenticator on devices that allow it, and raises the code space from one million to one hundred million. For environments where rate limiting on the server is unreliable, 8 digits is a cheap upgrade." }
-      },
-      {
-        "@type": "Question",
-        "name": "Does the algorithm choice (SHA1, SHA256, SHA512) matter?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Not for the brute-force maths. The acceptance window and per-guess probability depend only on the period, digits and drift. Algorithm choice matters for compatibility: every authenticator app supports SHA1, fewer support SHA256, and SHA512 is patchy. SHA1 here is fine, the codes are derived from an HMAC of a counter that turns over every period, not used as a long-lived secret. If your enrolment QR code does not specify an algorithm, the consumer assumes SHA1." }
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the TOTP acceptance window?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The span of time during which a generated code is still accepted. With a 30 second period and drift of plus or minus one step, three codes are valid at any moment: previous, current, next. That is a 90 second window."
       }
-    ]
-  }
+    },
+    {
+      "@type": "Question",
+      "name": "How does drift tolerance affect security?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Each step of drift on either side adds another accepted code. Six digit code space is one million. Drift of plus or minus one gives three accepted codes, so per-guess probability is three in a million. The absolute hit is small. RFC 6238 still recommends keeping it tight, ideally a single step."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What clock skew should I plan for?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Devices with NTP run sub-second skew. Realistic skew comes from offline phones, hardware tokens with no sync, or VMs with drifting host clocks. A safe rule is drift = ceil(expected_skew / period). The calculator does this for you."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I use 7 or 8 digit codes?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Six is the everyday standard. Eight is supported by RSA SecurID, YubiKey OATH-TOTP, and some authenticators. Eight digits raise the code space from one million to one hundred million, a useful upgrade where server rate limiting is unreliable."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does SHA1 vs SHA256 vs SHA512 matter?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not for the brute-force maths. The window and per-guess probability depend only on period, digits and drift. Algorithm choice affects which authenticators can read your enrolment QR. SHA1 is universally supported and remains safe for HMAC use."
+      }
+    }
+  ]
+}
   </script>
   <!-- breadcrumb-jsonld -->
   <script type="application/ld+json">
@@ -358,6 +385,8 @@
             <p>Not for the brute-force maths. The window and per-guess probability depend only on period, digits and drift. Algorithm choice affects which authenticators can read your enrolment QR. SHA1 is universally supported and remains safe for HMAC use.</p>
           </details>
         </section>
+        <!-- author-byline -->
+        <p class="author-byline">Last updated 29 April 2026 by <a href="/about/">Andrew Laws</a>.</p>
         <section class="related-calcs" aria-labelledby="related-heading">
           <h2 id="related-heading">Related calculators</h2>
           <ul class="related-calcs__list">

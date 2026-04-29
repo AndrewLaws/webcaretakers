@@ -6,6 +6,7 @@
 
 - [WebCaretakers | Free online calculators, no sign-up, workings shown](https://webcaretakers.com/): Small, focused online calculators for everyday decisions. Every tool runs in your browser, no sign-up, and every result shows its workings.
 - [About WebCaretakers | Andrew Laws](https://webcaretakers.com/about/): WebCaretakers is a free calculator hub built and maintained by Andrew Laws, an SEO and web practitioner since 1999. Here is who is behind it and why it exists.
+- [Andrew Laws | Author and calculator builder, WebCaretakers](https://webcaretakers.com/author/andrew-laws/): Andrew Laws is the author and builder of every calculator on WebCaretakers. SEO and web practitioner since 1999, founder of Yeseo. Full list of tools by category.
 - [All Calculators | WebCaretakers](https://webcaretakers.com/calculators/): Every calculator on WebCaretakers, grouped by category. Browse broadband, finance, health, property and more. No sign-up, browser-only, show the workings.
 - [AI Calculators | WebCaretakers](https://webcaretakers.com/calculators/ai/): Calculators for working with AI APIs and language models. Token estimation, cost projection across providers, all browser-based with no sign-up.
 - [AI vs Human Writer Cost Calculator | WebCaretakers](https://webcaretakers.com/calculators/ai/ai-vs-human-writer-cost-calculator/): Compare the monthly cost of producing written content with an LLM versus a human writer. Per-word and per-hour rates, model pricing, breakeven and side-by-side model table.

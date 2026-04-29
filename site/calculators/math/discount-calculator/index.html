@@ -10,6 +10,10 @@
   <meta property="og:description" content="Sale price, stacked discounts, tax, and Buy X Get Y Free in one tool.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://webcaretakers.com/calculators/math/discount-calculator/">
+  <!-- twitter-card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Discount Calculator | WebCaretakers">
+  <meta name="twitter:description" content="Sale price, stacked discounts, tax, and Buy X Get Y Free in one tool.">
   <meta name="robots" content="index, follow">
   <link rel="stylesheet" href="/assets/css/main.css">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -36,51 +40,75 @@
   })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
 
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "Discount Calculator",
-    "url": "https://webcaretakers.com/calculators/math/discount-calculator/",
-    "description": "Sale price calculator covering single discounts, stacked discounts, tax-inclusive or exclusive pricing, and Buy X Get Y Free deals.",
-    "applicationCategory": "BusinessApplication",
-    "operatingSystem": "Any",
-    "inLanguage": "en-GB",
-    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "GBP" },
-    "author": { "@type": "Person", "name": "Andrew Laws", "url": "https://yeseo.io/" }
-  }
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Discount Calculator",
+  "url": "https://webcaretakers.com/calculators/math/discount-calculator/",
+  "description": "Sale price calculator covering single discounts, stacked discounts, tax-inclusive or exclusive pricing, and Buy X Get Y Free deals.",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Any",
+  "inLanguage": "en-GB",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "GBP"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Andrew Laws",
+    "url": "https://yeseo.io/"
+  },
+  "dateModified": "2026-04-29"
+}
   </script>
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "How do I calculate a discount?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Multiply the original price by the discount percent, divide by 100, and take that off. For 25% off £80: 80 \u00d7 25 \u00f7 100 = 20 saved, leaving 80 \u2212 20 = £60. The shortcut is to multiply the original price by (1 \u2212 discount/100), so 80 \u00d7 0.75 = 60." }
-      },
-      {
-        "@type": "Question",
-        "name": "How do I work out the original price from a sale price?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Divide the sale price by (1 \u2212 discount/100). A jumper at £45 with 25% off had an original price of 45 \u00f7 0.75 = £60. The amount saved is the difference: £15." }
-      },
-      {
-        "@type": "Question",
-        "name": "Do stacked discounts add up?",
-        "acceptedAnswer": { "@type": "Answer", "text": "No. Each discount is applied to the running price, not the original. 30% off then 20% off is 1 \u2212 (0.7 \u00d7 0.8) = 0.44, so 44% off in total, not 50%. The order does not change the final number, but the apparent total is always less than the sum." }
-      },
-      {
-        "@type": "Question",
-        "name": "How do I work out percentage saved?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Take the amount saved, divide by the original price, multiply by 100. Save £15 on a £60 item: (15 \u00f7 60) \u00d7 100 = 25%. Or take the sale price and original: 1 \u2212 (sale \u00f7 original) gives the same fraction." }
-      },
-      {
-        "@type": "Question",
-        "name": "What is Buy One Get One Half Price as a discount?",
-        "acceptedAnswer": { "@type": "Answer", "text": "You pay full price for one and half price for the other. Two items, total cost 1.5 \u00d7 the unit price, so the per-unit price is 0.75 \u00d7 the original. That is a 25% effective discount, not 50%." }
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do I calculate a discount?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Multiply the original price by (1 minus discount/100). 25% off £80 is 80 times 0.75 = £60. The amount saved is the difference, £20."
       }
-    ]
-  }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I work out the original price from a sale price?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Divide the sale price by (1 minus discount/100). A £45 item at 25% off had an original price of 45 divided by 0.75 = £60."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do stacked discounts add up?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Each discount applies to the running price. 30% then 20% is 1 minus (0.7 times 0.8) = 0.44, so 44% off, not 50%."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I work out percentage saved?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Divide the amount saved by the original price, then multiply by 100. Save £15 on a £60 item: (15 divided by 60) times 100 = 25%."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Buy One Get One Half Price really half off?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Across the pair, you pay 1.5 times the unit price for two items, so the per-unit price is 0.75 times the original. That is 25% off, not 50%."
+      }
+    }
+  ]
+}
   </script>
   <!-- breadcrumb-jsonld -->
   <script type="application/ld+json">
@@ -470,6 +498,8 @@
             <p>No. Across the pair, you pay 1.5 times the unit price for two items, so the per-unit price is 0.75 times the original. That is 25% off, not 50%.</p>
           </details>
         </section>
+        <!-- author-byline -->
+        <p class="author-byline">Last updated 29 April 2026 by <a href="/about/">Andrew Laws</a>.</p>
         <section class="related-calcs" aria-labelledby="related-heading">
           <h2 id="related-heading">Related calculators</h2>
           <ul class="related-calcs__list">

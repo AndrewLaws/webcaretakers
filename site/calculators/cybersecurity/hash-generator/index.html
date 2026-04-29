@@ -10,6 +10,10 @@
   <meta property="og:description" content="Generate SHA-256, SHA-384, SHA-512 and SHA-1 hashes from text or files entirely in your browser. Web Crypto, no upload.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://webcaretakers.com/calculators/cybersecurity/hash-generator/">
+  <!-- twitter-card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Hash Generator | WebCaretakers">
+  <meta name="twitter:description" content="Generate SHA-256, SHA-384, SHA-512 and SHA-1 hashes from text or files entirely in your browser. Web Crypto, no upload.">
   <meta name="robots" content="index, follow">
   <link rel="stylesheet" href="/assets/css/main.css">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -36,53 +40,80 @@
   })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
 
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "Hash Generator",
-    "url": "https://webcaretakers.com/calculators/cybersecurity/hash-generator/",
-    "applicationCategory": "DeveloperApplication",
-    "operatingSystem": "Any",
-    "offers": { "@type": "Offer", "price": "0" },
-    "author": {
-      "@type": "Person",
-      "name": "Andrew Laws",
-      "url": "https://yeseo.io/"
-    }
-  }
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Hash Generator",
+  "url": "https://webcaretakers.com/calculators/cybersecurity/hash-generator/",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Andrew Laws",
+    "url": "https://yeseo.io/"
+  },
+  "dateModified": "2026-04-29"
+}
   </script>
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "Does the file or text get uploaded anywhere?",
-        "acceptedAnswer": { "@type": "Answer", "text": "No. Hashing runs entirely in your browser using the Web Crypto API. You can disconnect from the network, type or drop a file in, and the hashes still appear. Nothing is sent to a server." }
-      },
-      {
-        "@type": "Question",
-        "name": "Why is MD5 not included?",
-        "acceptedAnswer": { "@type": "Answer", "text": "MD5 is not supported by the browser's Web Crypto API, and pulling in a third-party MD5 library to add it would bloat the page for an algorithm nobody should be using on new work. MD5 is broken for collision resistance. If you need to verify a vendor that still publishes MD5 sums, run md5sum locally on the command line. For everything else, SHA-256 is the right default." }
-      },
-      {
-        "@type": "Question",
-        "name": "Should I use this to hash passwords?",
-        "acceptedAnswer": { "@type": "Answer", "text": "No. SHA-256 of a password is fast enough that an attacker with a stolen database can try billions of guesses a second on a GPU. Password storage needs a slow, salted hash designed for the job, like bcrypt, scrypt or argon2id, run on the server. This tool is for file integrity, build artefacts, mirror checks and the like." }
-      },
-      {
-        "@type": "Question",
-        "name": "Why are SHA-256 and SHA-512 fine but SHA-1 weak?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Both SHA-256 and SHA-512 are part of the SHA-2 family and have no known practical collision attacks. SHA-1, by contrast, fell to the SHAttered collision attack in 2017, and stronger attacks have followed. SHA-1 still appears in legacy systems and Git internals, so it is included here for compatibility, but do not use it to confirm anything is genuine on a new system." }
-      },
-      {
-        "@type": "Question",
-        "name": "What does base64 give me that hex does not?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Hex is the conventional way to print a hash and what most tooling expects. Base64 is shorter (about a third smaller) and is the format used in Subresource Integrity attributes, some HTTP headers, and a few build manifests. If the system you are checking against publishes its hash in base64, switch the toggle to base64 here and compare directly." }
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does the file or text get uploaded anywhere?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Hashing runs entirely in your browser using the Web Crypto API. You can disconnect from the network, type or drop a file in, and the hashes still appear. Nothing is sent to a server."
       }
-    ]
-  }
+    },
+    {
+      "@type": "Question",
+      "name": "Why is MD5 not included?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "MD5 is not supported by the browser's Web Crypto API, and pulling in a third-party MD5 library to add it would bloat the page for an algorithm nobody should be using on new work. MD5 is broken for collision resistance. If you need to verify a vendor that still publishes MD5 sums, run md5sum locally on the command line. For everything else, SHA-256 is the right default."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I use this to hash passwords?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. SHA-256 of a password is fast enough that an attacker with a stolen database can try billions of guesses a second on a GPU. Password storage needs a slow, salted hash designed for the job, like bcrypt, scrypt or argon2id, run on the server. This tool is for file integrity, build artefacts, mirror checks and the like."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why are SHA-256 and SHA-512 fine but SHA-1 weak?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Both SHA-256 and SHA-512 are part of the SHA-2 family and have no known practical collision attacks. SHA-1, by contrast, fell to the SHAttered collision attack in 2017, and stronger attacks have followed. SHA-1 still appears in legacy systems and Git internals, so it is included here for compatibility, but do not use it to confirm anything is genuine on a new system."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does base64 give me that hex does not?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Hex is the conventional way to print a hash and what most tooling expects. Base64 is shorter, about a third smaller, and is the format used in Subresource Integrity attributes, some HTTP headers, and a few build manifests. If the system you are checking against publishes its hash in base64, switch the toggle to base64 here and compare directly."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How big a file can it actually handle?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Up to about 100 MB hashes comfortably on most machines. Bigger files work too, but the whole file has to fit in browser memory because the Web Crypto digest takes one buffer. For multi-gigabyte ISOs, the command line is faster: shasum -a 256 file.iso on macOS or Linux, Get-FileHash file.iso in PowerShell on Windows."
+      }
+    }
+  ]
+}
   </script>
   <!-- breadcrumb-jsonld -->
   <script type="application/ld+json">
@@ -406,6 +437,8 @@
             <p>Up to about 100 MB hashes comfortably on most machines. Bigger files work too, but the whole file has to fit in browser memory because the Web Crypto digest takes one buffer. For multi-gigabyte ISOs, the command line is faster: <code>shasum -a 256 file.iso</code> on macOS or Linux, <code>Get-FileHash file.iso</code> in PowerShell on Windows.</p>
           </details>
         </section>
+        <!-- author-byline -->
+        <p class="author-byline">Last updated 29 April 2026 by <a href="/about/">Andrew Laws</a>.</p>
         <section class="related-calcs" aria-labelledby="related-heading">
           <h2 id="related-heading">Related calculators</h2>
           <ul class="related-calcs__list">

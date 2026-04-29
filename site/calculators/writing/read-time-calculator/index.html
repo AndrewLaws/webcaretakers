@@ -10,6 +10,10 @@
   <meta property="og:description" content="Estimate read time for any text, silent or aloud, with word and character counts.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://webcaretakers.com/calculators/writing/read-time-calculator/">
+  <!-- twitter-card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Read Time Calculator | WebCaretakers">
+  <meta name="twitter:description" content="Estimate read time for any text, silent or aloud, with word and character counts.">
   <meta name="robots" content="index, follow">
   <link rel="stylesheet" href="/assets/css/main.css">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -36,54 +40,71 @@
   })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
 
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "Read Time Calculator",
-    "url": "https://webcaretakers.com/calculators/writing/read-time-calculator/",
-    "description": "Estimate read time for any pasted text, silent and aloud, with configurable words-per-minute. Also shows word, character and sentence counts.",
-    "applicationCategory": "UtilitiesApplication",
-    "operatingSystem": "Any",
-    "offers": { "@type": "Offer", "price": "0" },
-    "isPartOf": {
-      "@type": "WebSite",
-      "name": "WebCaretakers",
-      "url": "https://webcaretakers.com/"
-    }
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Read Time Calculator",
+  "url": "https://webcaretakers.com/calculators/writing/read-time-calculator/",
+  "description": "Estimate read time for any pasted text, silent and aloud, with configurable words-per-minute. Also shows word, character and sentence counts.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0"
+  },
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "WebCaretakers",
+    "url": "https://webcaretakers.com/"
+  },
+  "dateModified": "2026-04-29",
+  "author": {
+    "@type": "Person",
+    "name": "Andrew Laws",
+    "url": "https://andrewlaws.com/"
   }
+}
   </script>
 
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "How fast does the average person read?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Adult silent reading speeds cluster between 200 and 300 words per minute for typical prose, with 250 WPM as a near-universal default. Reading aloud or working through dense technical material drops to roughly 130 to 180 WPM; 150 is a reasonable default. This calculator uses 250 silent and 150 aloud unless you override them."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Why are read-time figures always slightly off?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Because reading speed varies with material, reader, and mood. A news story at 250 WPM is not the same thing as a legal contract at 250 WPM. Treat the number as a useful estimate rather than a stopwatch reading. If you need it to be more precise for a specific audience, time a representative sample and set the WPM to match."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Where does the text go?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Nowhere. The entire calculation runs in your browser. Nothing is sent to our servers, logged, or retained. You can paste a confidential draft into this tool with no more risk than typing it into a private document."
-        }
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How fast does the average person read?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Adult silent reading lands between 200 and 300 WPM for typical prose (mean around 238 WPM). Reading aloud is 130-180 WPM. Technical material is slower."
       }
-    ]
-  }
+    },
+    {
+      "@type": "Question",
+      "name": "Why are read-time estimates always slightly off?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Reading speed varies with material, reader, and mood. Treat the number as an estimate, not a stopwatch. If you need precision for a specific audience, time a sample and match the WPM."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Where does my text go?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nowhere. Everything runs in your browser. Paste a confidential draft in safely."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it handle Markdown, HTML or formatting?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It counts words, not tags. Markdown, HTML and other plain-text formatting are all counted as tokens, so very heavy formatting may slightly inflate the count. For almost all use cases this is close enough."
+      }
+    }
+  ]
+}
   </script>
   <!-- breadcrumb-jsonld -->
   <script type="application/ld+json">
@@ -309,6 +330,8 @@
             <p>It counts words, not tags. Markdown, HTML and other plain-text formatting are all counted as tokens, so very heavy formatting may slightly inflate the count. For almost all use cases this is close enough.</p>
           </details>
         </section>
+        <!-- author-byline -->
+        <p class="author-byline">Last updated 29 April 2026 by <a href="/about/">Andrew Laws</a>.</p>
         <section class="related-calcs" aria-labelledby="related-heading">
           <h2 id="related-heading">Related calculators</h2>
           <ul class="related-calcs__list">

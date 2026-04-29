@@ -1448,3 +1448,19 @@ button.prove-it[aria-expanded="true"] { background: #ececec; }
   border-color: #1d4ed8;
   background: #f8fafc;
 }
+
+/* Author byline on calc pages */
+.author-byline {
+  text-align: center;
+  font-size: 0.85rem;
+  color: #6b7280;
+  margin: 2rem 0 1rem;
+}
+.author-byline a {
+  color: inherit;
+  text-decoration: none;
+}
+.author-byline a:hover,
+.author-byline a:focus {
+  text-decoration: underline;
+}

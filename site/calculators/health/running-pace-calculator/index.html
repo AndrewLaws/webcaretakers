@@ -10,6 +10,10 @@
   <meta property="og:description" content="Work out your running pace, finish time, or distance. Metric and imperial, with race time predictions for 5K, 10K, half marathon and marathon.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://webcaretakers.com/calculators/health/running-pace-calculator/">
+  <!-- twitter-card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Running Pace Calculator | WebCaretakers">
+  <meta name="twitter:description" content="Work out your running pace, finish time, or distance. Metric and imperial, with race time predictions for 5K, 10K, half marathon and marathon.">
   <meta name="robots" content="index, follow">
   <link rel="stylesheet" href="/assets/css/main.css">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -36,62 +40,71 @@
   })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
 
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "Running Pace Calculator",
-    "url": "https://webcaretakers.com/calculators/health/running-pace-calculator/",
-    "description": "Calculate running pace from distance and time, finish time from pace and distance, or distance from pace and time. Includes race time predictions for 5K, 10K, half marathon and marathon.",
-    "applicationCategory": "HealthApplication",
-    "operatingSystem": "Any",
-    "offers": { "@type": "Offer", "price": "0" },
-    "isPartOf": {
-      "@type": "WebSite",
-      "name": "WebCaretakers",
-      "url": "https://webcaretakers.com/"
-    }
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Running Pace Calculator",
+  "url": "https://webcaretakers.com/calculators/health/running-pace-calculator/",
+  "description": "Calculate running pace from distance and time, finish time from pace and distance, or distance from pace and time. Includes race time predictions for 5K, 10K, half marathon and marathon.",
+  "applicationCategory": "HealthApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0"
+  },
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "WebCaretakers",
+    "url": "https://webcaretakers.com/"
+  },
+  "dateModified": "2026-04-29",
+  "author": {
+    "@type": "Person",
+    "name": "Andrew Laws",
+    "url": "https://andrewlaws.com/"
   }
+}
   </script>
 
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "How is running pace calculated?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Pace is time divided by distance. If you run 10 km in 50 minutes, your pace is 50 ÷ 10 = 5 minutes per km. Conversely, time = pace × distance, and distance = time ÷ pace. This calculator works all three ways: fill in any two values and it calculates the third."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "What is a good running pace per km for beginners?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "A comfortable beginner pace is typically 7:00 to 9:00 minutes per km, which is around 6.5 to 8.5 km/h. What matters more than the number is running at a pace where you can hold a conversation. Your pace will naturally improve with consistent training."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "What is the difference between pace per km and pace per mile?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "One mile is 1.60934 km, so pace per mile is always longer than pace per km. A 5:00 /km pace equals roughly 8:03 /mile. Road races in the UK are measured in km; in the US, many runners use miles. This calculator shows both so you can compare times regardless of which system your race uses."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "How does the race time prediction work?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "The predictions assume you maintain exactly the same pace for the entire race. In practice, most runners slow slightly over longer distances due to fatigue. The predictions are a useful starting point for planning race strategy, but treat them as a ceiling rather than a guarantee for longer events."
-        }
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How is running pace calculated?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Pace = time ÷ distance. Ran 10 km in 50 minutes? Pace = 50 ÷ 10 = 5:00 per km. Time = pace × distance, and distance = time ÷ pace."
       }
-    ]
-  }
+    },
+    {
+      "@type": "Question",
+      "name": "What is a good running pace for beginners?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A comfortable beginner pace is typically 7:00 to 9:00 per km (6.5 to 8.5 km/h). The right pace is one where you can hold a short conversation, and if you cannot, slow down."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between pace per km and pace per mile?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "One mile is 1.60934 km, so pace per mile is always longer. A 5:00 /km pace equals approximately 8:03 /mile. Both are shown in the results."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How accurate are the race time predictions?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "They assume a constant pace for the full distance. This is realistic for shorter distances. For half marathons and marathons, most runners slow, so treat the prediction as a pace-effort target rather than a guaranteed finish time."
+      }
+    }
+  ]
+}
   </script>
   <!-- breadcrumb-jsonld -->
   <script type="application/ld+json">
@@ -358,6 +371,8 @@
             <p>They assume a constant pace for the full distance. This is realistic for shorter distances. For half marathons and marathons, most runners slow, so treat the prediction as a pace-effort target rather than a guaranteed finish time.</p>
           </details>
         </section>
+        <!-- author-byline -->
+        <p class="author-byline">Last updated 29 April 2026 by <a href="/about/">Andrew Laws</a>.</p>
         <section class="related-calcs" aria-labelledby="related-heading">
           <h2 id="related-heading">Related calculators</h2>
           <ul class="related-calcs__list">

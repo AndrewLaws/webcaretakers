@@ -10,6 +10,10 @@
   <meta property="og:description" content="Days remaining, urgency band and a recommended renewal date for any SSL certificate. Browser-only, no network call.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://webcaretakers.com/calculators/cybersecurity/ssl-certificate-expiry-calculator/">
+  <!-- twitter-card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="SSL Certificate Expiry Calculator | WebCaretakers">
+  <meta name="twitter:description" content="Days remaining, urgency band and a recommended renewal date for any SSL certificate. Browser-only, no network call.">
   <meta name="robots" content="index, follow">
   <link rel="stylesheet" href="/assets/css/main.css">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -36,48 +40,72 @@
   })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
 
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "SSL Certificate Expiry Calculator",
-    "url": "https://webcaretakers.com/calculators/cybersecurity/ssl-certificate-expiry-calculator/",
-    "applicationCategory": "SecurityApplication",
-    "operatingSystem": "Any",
-    "offers": { "@type": "Offer", "price": "0" },
-    "author": {
-      "@type": "Person",
-      "name": "Andrew Laws",
-      "url": "https://yeseo.io/"
-    }
-  }
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "SSL Certificate Expiry Calculator",
+  "url": "https://webcaretakers.com/calculators/cybersecurity/ssl-certificate-expiry-calculator/",
+  "applicationCategory": "SecurityApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Andrew Laws",
+    "url": "https://yeseo.io/"
+  },
+  "dateModified": "2026-04-29"
+}
   </script>
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "Does this tool actually check my live SSL certificate?",
-        "acceptedAnswer": { "@type": "Answer", "text": "No. This is a date-arithmetic helper, not an SSL validator. It does not contact your server, does not validate the chain, and does not check OCSP or CT logs. It takes an expiry date or a pasted certificate's text dump, and tells you how long is left and when to renew. For a live check, use openssl s_client -connect host:443 or a monitoring service." }
-      },
-      {
-        "@type": "Question",
-        "name": "Why 30 days as the default renewal lead time?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Thirty days is the threshold most operations teams use as their renewal trigger, and it is what most monitoring services flag at by default. It gives enough room to handle a failed validation, a delayed DNS change, or a vendor sign-off without anyone losing a weekend. If your renewal process is faster (let's encrypt with full automation), drop the lead time. If it is slower (corporate change-management for a wildcard cert), push it out to 45 or 60 days." }
-      },
-      {
-        "@type": "Question",
-        "name": "How does the PEM-paste mode work?",
-        "acceptedAnswer": { "@type": "Answer", "text": "It does not parse the certificate's ASN.1 structure. It scans the text you pasted for the standard openssl text-dump line: \"Not After : Apr 28 12:00:00 2026 GMT\", and reads the date from that line. So paste either the output of openssl x509 -in cert.pem -noout -text, or anything that contains that one line. If your tooling prints the validity in a different format, switch to date mode and type the expiry directly." }
-      },
-      {
-        "@type": "Question",
-        "name": "What do the urgency bands mean?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Negative days remaining is Expired (browsers will warn or block users). 0 to 7 days is Critical (renew today). 8 to 30 days is Warning (inside the standard renewal window). 31 to 60 days is Caution (worth scheduling). More than 60 days is Healthy. The bands are deliberately conservative: a certificate that expires on a Friday night with no on-call is the same problem whether it expires this week or next." }
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does this tool actually check my live SSL certificate?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. This is a date-arithmetic helper, not an SSL validator. It does not contact your server, does not validate the chain, and does not check OCSP or CT logs. It takes an expiry date or a pasted certificate's text dump, and tells you how long is left and when to renew. For a live check, use openssl s_client -connect host:443 or a monitoring service."
       }
-    ]
-  }
+    },
+    {
+      "@type": "Question",
+      "name": "Why 30 days as the default renewal lead time?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Thirty days is the threshold most operations teams use as their renewal trigger, and it is what most monitoring services flag at by default. It gives enough room to handle a failed validation, a delayed DNS change, or a vendor sign-off without anyone losing a weekend. If your renewal process is faster (Let's Encrypt with full automation), drop the lead time. If it is slower (corporate change-management for a wildcard cert), push it out to 45 or 60 days."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does the PEM-paste mode work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It does not parse the certificate's ASN.1 structure. It scans the text you pasted for the standard openssl text-dump line: Not After : Apr 28 12:00:00 2026 GMT, and reads the date from that line. So paste either the output of openssl x509 -in cert.pem -noout -text, or anything that contains that one line. If your tooling prints the validity in a different format, switch to date mode and type the expiry directly."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What do the urgency bands mean?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Negative days remaining is Expired (browsers will warn or block users). 0 to 7 days is Critical (renew today). 8 to 30 days is Warning (inside the standard renewal window). 31 to 60 days is Caution (worth scheduling). More than 60 days is Healthy. The bands are deliberately conservative: a certificate that expires on a Friday night with no on-call is the same problem whether it expires this week or next."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it handle short-lived certificates like Let's Encrypt's 90-day default?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, but the default 30-day lead time is too generous for a 90-day cert. Drop the lead time to 7 or 14 days for any pipeline that renews automatically. The bands themselves still apply, and the days-remaining figure is unchanged."
+      }
+    }
+  ]
+}
   </script>
   <!-- breadcrumb-jsonld -->
   <script type="application/ld+json">
@@ -338,6 +366,8 @@
             <p>Yes, but the default 30-day lead time is too generous for a 90-day cert. Drop the lead time to 7 or 14 days for any pipeline that renews automatically. The bands themselves still apply, and the days-remaining figure is unchanged.</p>
           </details>
         </section>
+        <!-- author-byline -->
+        <p class="author-byline">Last updated 29 April 2026 by <a href="/about/">Andrew Laws</a>.</p>
         <section class="related-calcs" aria-labelledby="related-heading">
           <h2 id="related-heading">Related calculators</h2>
           <ul class="related-calcs__list">

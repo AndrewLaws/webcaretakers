@@ -10,6 +10,10 @@
   <meta property="og:description" content="Estimate breach exposure using IBM/Ponemon 2024 benchmarks. Direct cost, regulatory fine, and a sensible low/high range.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://webcaretakers.com/calculators/cybersecurity/data-breach-cost-estimator/">
+  <!-- twitter-card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Data Breach Cost Estimator | WebCaretakers">
+  <meta name="twitter:description" content="Estimate breach exposure using IBM/Ponemon 2024 benchmarks. Direct cost, regulatory fine, and a sensible low/high range.">
   <meta name="robots" content="index, follow">
   <link rel="stylesheet" href="/assets/css/main.css">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -36,50 +40,73 @@
   })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
 
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "Data Breach Cost Estimator",
-    "url": "https://webcaretakers.com/calculators/cybersecurity/data-breach-cost-estimator/",
-    "applicationCategory": "SecurityApplication",
-    "operatingSystem": "Any",
-    "description": "Estimate the financial impact of a data breach using IBM/Ponemon 2024 public benchmarks. Inputs include records exposed, sector, region, data sensitivity, regulatory regime and annual revenue. Returns direct cost, regulatory fine estimate, total exposure and a low/high range.",
-    "offers": { "@type": "Offer", "price": "0" },
-    "author": { "@type": "Person", "name": "Andrew Laws", "url": "https://yeseo.io/" }
-  }
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Data Breach Cost Estimator",
+  "url": "https://webcaretakers.com/calculators/cybersecurity/data-breach-cost-estimator/",
+  "applicationCategory": "SecurityApplication",
+  "operatingSystem": "Any",
+  "description": "Estimate the financial impact of a data breach using IBM/Ponemon 2024 public benchmarks. Inputs include records exposed, sector, region, data sensitivity, regulatory regime and annual revenue. Returns direct cost, regulatory fine estimate, total exposure and a low/high range.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Andrew Laws",
+    "url": "https://yeseo.io/"
+  },
+  "dateModified": "2026-04-29"
+}
   </script>
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "Where do the per-record cost figures come from?",
-        "acceptedAnswer": { "@type": "Answer", "text": "From the IBM/Ponemon Cost of a Data Breach 2024 report, which has been the closest thing the industry has to a public benchmark for two decades. The healthcare figure of $408 per record is the highest of the bunch, followed by financial services at $295. The figures are USD averages, so they are a starting point rather than a precise quote for your business." }
-      },
-      {
-        "@type": "Question",
-        "name": "Why is the regulatory fine for GDPR shown as 4% of annual revenue?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Because that is the headline GDPR ceiling: up to 4% of global annual turnover, or 20 million euros, whichever is higher. Real-world fines often land well below the cap, but the cap is the right figure to plan against. If you genuinely cannot afford 4% of last year's revenue going out the door, you cannot afford a serious GDPR breach." }
-      },
-      {
-        "@type": "Question",
-        "name": "Why does the calculator reduce direct cost when a breach is reported within 72 hours?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Because IBM's data has consistently shown that breaches contained within roughly three days cost less, both in direct response and in regulator goodwill. We use a flat 10% reduction as a planning estimate, which is roughly in line with the gap between fast and slow responders in the 2024 report. It is not a guarantee that fast disclosure will save you that much, but it is the right direction of travel." }
-      },
-      {
-        "@type": "Question",
-        "name": "Is the CCPA figure of $7,500 per record realistic?",
-        "acceptedAnswer": { "@type": "Answer", "text": "It is the statutory ceiling for intentional violations and the figure most class-action complaints anchor on. Real settlements often land lower, but the CCPA cap is genuinely punishing in aggregate: a leak of 100,000 records exposes you to a theoretical $750 million liability. The calculator uses the cap because that is the planning number, not the average." }
-      },
-      {
-        "@type": "Question",
-        "name": "Why is the total shown as a range?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Because every breach is different. Two companies with identical records exposed will end up paying very different amounts depending on litigation, customer churn, executive time, and how forgiving the regulator is feeling that quarter. The 0.7x to 1.3x range is rough guidance: the lower end if everything goes about as well as it can, the upper end if the press cycle is bad and the lawyers smell blood." }
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Where do the per-record cost figures come from?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "From the IBM/Ponemon Cost of a Data Breach 2024 report, which has been the closest thing the industry has to a public benchmark for two decades. Healthcare leads at $408, financial at $295, tech at $244. The figures are USD averages, so they are a starting point, not a quote."
       }
-    ]
-  }
+    },
+    {
+      "@type": "Question",
+      "name": "Why is the GDPR fine shown as 4% of annual revenue?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Because that is the headline GDPR ceiling: up to 4% of global annual turnover, or 20 million euros, whichever is higher. Real-world fines often land well below the cap, but the cap is the right figure to plan against."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does the calculator reduce direct cost when a breach is reported within 72 hours?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "IBM's data has consistently shown that breaches contained within roughly three days cost less, both in direct response and in regulator goodwill. We use a flat 10% reduction as a planning estimate, which lines up with the gap between fast and slow responders in the 2024 report."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is the CCPA figure of $7,500 per record realistic?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It is the statutory ceiling for intentional violations and the figure most class-action complaints anchor on. Real settlements often land lower, but the cap is the right planning number because it is what plaintiffs' lawyers will negotiate against."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why is the total shown as a range?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Because every breach is different. Two companies with identical records exposed will pay very different amounts depending on litigation, churn and regulator mood. The 0.7x to 1.3x range reflects that real-world variance."
+      }
+    }
+  ]
+}
   </script>
   <!-- breadcrumb-jsonld -->
   <script type="application/ld+json">
@@ -376,6 +403,8 @@
             <p>Because every breach is different. Two companies with identical records exposed will pay very different amounts depending on litigation, churn and regulator mood. The 0.7x to 1.3x range reflects that real-world variance.</p>
           </details>
         </section>
+        <!-- author-byline -->
+        <p class="author-byline">Last updated 29 April 2026 by <a href="/about/">Andrew Laws</a>.</p>
         <section class="related-calcs" aria-labelledby="related-heading">
           <h2 id="related-heading">Related calculators</h2>
           <ul class="related-calcs__list">

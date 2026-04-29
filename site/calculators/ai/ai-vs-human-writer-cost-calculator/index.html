@@ -10,6 +10,10 @@
   <meta property="og:description" content="Compare LLM cost against human writer cost for a given monthly word volume. Honest about quality trade-offs.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://webcaretakers.com/calculators/ai/ai-vs-human-writer-cost-calculator/">
+  <!-- twitter-card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="AI vs Human Writer Cost Calculator | WebCaretakers">
+  <meta name="twitter:description" content="Compare LLM cost against human writer cost for a given monthly word volume. Honest about quality trade-offs.">
   <meta name="robots" content="index, follow">
   <link rel="stylesheet" href="/assets/css/main.css">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -36,58 +40,89 @@
   })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
 
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "AI vs Human Writer Cost Calculator",
-    "url": "https://webcaretakers.com/calculators/ai/ai-vs-human-writer-cost-calculator/",
-    "applicationCategory": "BusinessApplication",
-    "operatingSystem": "Any",
-    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-    "author": {
-      "@type": "Person",
-      "name": "Andrew Laws",
-      "url": "https://yeseo.io/"
-    }
-  }
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "AI vs Human Writer Cost Calculator",
+  "url": "https://webcaretakers.com/calculators/ai/ai-vs-human-writer-cost-calculator/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Andrew Laws",
+    "url": "https://yeseo.io/"
+  },
+  "dateModified": "2026-04-29"
+}
   </script>
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "Is the LLM number really comparable to hiring a writer?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Not exactly. The LLM cost is the raw API bill for generating draft text. A real publishing operation also pays for the editor who fact-checks, restructures, fixes the voice and removes the AI tells. A human writer's price already bakes those things in. To compare like with like, add an editorial cost to the LLM column equal to the time you'll spend cleaning each draft. For most teams that's between 30 minutes and two hours per article." }
-      },
-      {
-        "@type": "Question",
-        "name": "Why does the per-word LLM cost look so low?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Because raw token output is genuinely cheap. A 1,000-word article on a mid-tier model is a few cents of API spend. The expensive bit of content is the thinking, the research, the editorial judgement and the legal review, not the keystrokes. The calculator shows the keystrokes cost honestly, then the long-form section talks about everything you still have to pay for around it." }
-      },
-      {
-        "@type": "Question",
-        "name": "What human writer rate should I plug in?",
-        "acceptedAnswer": { "@type": "Answer", "text": "For UK and US freelance content writers in 2026, $0.10 to $0.25 per word is the working range. Specialist writers (B2B SaaS, finance, medical) charge $0.30 to $1.00 per word. Cheap content-mill rates ($0.02 to $0.05) buy what they buy. If you pay hourly, $40 to $80/hour at 400 to 600 finished words per hour is the realistic band for a competent writer." }
-      },
-      {
-        "@type": "Question",
-        "name": "Does this include caching, fine-tuning or batch discounts?",
-        "acceptedAnswer": { "@type": "Answer", "text": "No. The figures use standard, non-cached, non-batch list prices. Prompt caching can knock 50 to 90 percent off repeated input tokens, which matters if your system prompt is long and shared across every article. Batch APIs cut another 50 percent in exchange for slower turnaround. If you are running this at scale with a stable system prompt, expect your real bill to be lower than the calculator suggests." }
-      },
-      {
-        "@type": "Question",
-        "name": "When does a human writer make sense over an LLM?",
-        "acceptedAnswer": { "@type": "Answer", "text": "When the topic needs original reporting, expert interviews, lived experience, legal accuracy, or a recognisable voice. When the brand is small enough that one bad piece dents trust. When the audience can spot AI prose at fifty paces. When you need an opinion that holds up under scrutiny. The LLM column wins on volume and speed; the human column wins on credibility and original thought. Most serious publishers use both and are honest about which is which." }
-      },
-      {
-        "@type": "Question",
-        "name": "Why is the breakeven sometimes 'human is never cheaper'?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Because both costs scale linearly with word volume in this calculator: there is no fixed-cost base for either side, just a per-word rate. If the LLM per-word rate is below the human per-word rate, the human side will always cost more, no matter the volume. The calculator surfaces that honestly rather than inventing a fake breakeven number." }
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is the LLM number really comparable to hiring a writer?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not exactly. The LLM cost is the raw API bill for generating draft text. A real publishing operation also pays for the editor who fact-checks, restructures, fixes the voice and removes the AI tells. A human writer's price already bakes those things in. To compare like with like, add an editorial cost to the LLM column equal to the time you'll spend cleaning each draft. For most teams that's between 30 minutes and two hours per article."
       }
-    ]
-  }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does the per-word LLM cost look so low?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Because raw token output is genuinely cheap. A 1,000-word article on a mid-tier model is a few cents of API spend. The expensive bit of content is the thinking, the research, the editorial judgement and the legal review, not the keystrokes. The calculator shows the keystrokes cost honestly, then the long-form section talks about everything you still have to pay for around it."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What human writer rate should I plug in?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For UK and US freelance content writers in 2026, $0.10 to $0.25 per word is the working range. Specialist writers (B2B SaaS, finance, medical) charge $0.30 to $1.00 per word. Cheap content-mill rates ($0.02 to $0.05) buy what they buy. If you pay hourly, $40 to $80/hour at 400 to 600 finished words per hour is the realistic band for a competent writer."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does this include caching, fine-tuning or batch discounts?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. The figures use standard, non-cached, non-batch list prices. Prompt caching can knock 50 to 90 percent off repeated input tokens, which matters if your system prompt is long and shared across every article. Batch APIs cut another 50 percent in exchange for slower turnaround. If you are running this at scale with a stable system prompt, expect your real bill to be lower than the calculator suggests."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "When does a human writer make sense over an LLM?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "When the topic needs original reporting, expert interviews, lived experience, legal accuracy, or a recognisable voice. When the brand is small enough that one bad piece dents trust. When the audience can spot AI prose at fifty paces. When you need an opinion that holds up under scrutiny. The LLM column wins on volume and speed; the human column wins on credibility and original thought. Most serious publishers use both and are honest about which is which."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why is the breakeven sometimes \"human is never cheaper\"?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Because both costs scale linearly with word volume in this calculator: there is no fixed-cost base for either side, just a per-word rate. If the LLM per-word rate is below the human per-word rate, the human side will always cost more, no matter the volume. The calculator surfaces that honestly rather than inventing a fake breakeven number."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does this calculator send my data anywhere?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Everything runs in your browser. Your numbers never leave your device."
+      }
+    }
+  ]
+}
   </script>
   <!-- breadcrumb-jsonld -->
   <script type="application/ld+json">
@@ -429,6 +464,8 @@
             <p>No. Everything runs in your browser. Your numbers never leave your device.</p>
           </details>
         </section>
+        <!-- author-byline -->
+        <p class="author-byline">Last updated 29 April 2026 by <a href="/about/">Andrew Laws</a>.</p>
         <section class="related-calcs" aria-labelledby="related-heading">
           <h2 id="related-heading">Related calculators</h2>
           <ul class="related-calcs__list">

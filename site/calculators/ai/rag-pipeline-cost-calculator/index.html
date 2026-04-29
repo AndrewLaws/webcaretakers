@@ -10,6 +10,10 @@
   <meta property="og:description" content="Estimate the monthly cost of a Retrieval-Augmented Generation pipeline. Embedding, vector database, and LLM query costs broken out.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://webcaretakers.com/calculators/ai/rag-pipeline-cost-calculator/">
+  <!-- twitter-card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="RAG Pipeline Cost Calculator | WebCaretakers">
+  <meta name="twitter:description" content="Estimate the monthly cost of a Retrieval-Augmented Generation pipeline. Embedding, vector database, and LLM query costs broken out.">
   <meta name="robots" content="index, follow">
   <link rel="stylesheet" href="/assets/css/main.css">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -36,53 +40,80 @@
   })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
 
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "RAG Pipeline Cost Calculator",
-    "url": "https://webcaretakers.com/calculators/ai/rag-pipeline-cost-calculator/",
-    "applicationCategory": "DeveloperApplication",
-    "operatingSystem": "Any",
-    "offers": { "@type": "Offer", "price": "0" },
-    "author": {
-      "@type": "Person",
-      "name": "Andrew Laws",
-      "url": "https://yeseo.io/"
-    }
-  }
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "RAG Pipeline Cost Calculator",
+  "url": "https://webcaretakers.com/calculators/ai/rag-pipeline-cost-calculator/",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Andrew Laws",
+    "url": "https://yeseo.io/"
+  },
+  "dateModified": "2026-04-29"
+}
   </script>
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "What is RAG?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Retrieval-Augmented Generation. You take a body of documents, split them into chunks, turn each chunk into a vector with an embedding model, and store the vectors in a database. When a user asks a question you embed the question, pull the most similar chunks back out, and stuff those chunks into the LLM prompt as context. The model answers using your data instead of guessing from training. The cost has three legs: embedding the corpus, paying the vector DB to host it, and paying the LLM each time someone asks a question." }
-      },
-      {
-        "@type": "Question",
-        "name": "Why is the first month more expensive?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Because you only pay to embed the existing corpus once. After that the running cost is just embedding new content as it arrives, the fixed monthly vector DB bill, and the per-query LLM cost. The calculator separates first-month and ongoing-month totals so the corpus build does not skew your sense of what the pipeline costs to run." }
-      },
-      {
-        "@type": "Question",
-        "name": "When does pgvector beat a managed vector DB?",
-        "acceptedAnswer": { "@type": "Answer", "text": "When you already run Postgres, your vector count is in the low millions, and you do not need bleeding-edge ANN performance. pgvector on a small managed Postgres (Supabase, Neon, Render) is roughly a fifth of the price of a Pinecone Starter pod, and it keeps your retrieval data in the same store as your application data, which makes joins and ACL trivial. It stops winning when you cross 10 million vectors or need sub-50ms p99 latency at scale." }
-      },
-      {
-        "@type": "Question",
-        "name": "Does this calculator include caching savings?",
-        "acceptedAnswer": { "@type": "Answer", "text": "No. List prices only. In practice, prompt caching on the LLM side knocks 50 to 90 percent off repeated input tokens, which matters because most RAG workloads inject a near-identical system prompt every time. Anthropic, OpenAI and Google all offer it. Your real bill on production traffic with caching turned on will usually come in 30 to 60 percent below the figure here." }
-      },
-      {
-        "@type": "Question",
-        "name": "Why does context size move the bill so much?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Because every query pays for every retrieved token as input. If you stuff 10,000 tokens of context into each call instead of 3,000, the input cost more than triples. Top-k tuning, chunk size, and reranking are the three biggest levers on RAG cost, well ahead of which LLM you pick." }
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is RAG?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Retrieval-Augmented Generation. You take a body of documents, split them into chunks, turn each chunk into a vector with an embedding model, and store the vectors in a database. When a user asks a question you embed the question, pull the most similar chunks back out, and stuff those chunks into the LLM prompt as context. The model answers using your data instead of guessing from training."
       }
-    ]
-  }
+    },
+    {
+      "@type": "Question",
+      "name": "Why is the first month more expensive?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Because you only pay to embed the existing corpus once. After that, the running cost is just embedding new content as it arrives, the fixed monthly vector DB bill, and the per-query LLM cost. The calculator separates first-month and ongoing-month totals so the corpus build does not skew your sense of what the pipeline costs to run."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "When does pgvector beat a managed vector DB?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "When you already run Postgres, your vector count is in the low millions, and you do not need bleeding-edge ANN performance. pgvector on a small managed Postgres is roughly a fifth of the price of a Pinecone Starter pod, and it keeps your retrieval data in the same store as your application data. It stops winning when you cross ten million vectors or need sub-50ms p99 latency at scale."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does this calculator include caching savings?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. List prices only. In practice, prompt caching on the LLM side knocks 50 to 90 percent off repeated input tokens, which matters because most RAG workloads inject a near-identical system prompt every time. Your real bill on production traffic with caching turned on will usually come in 30 to 60 percent below the figure here."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does context size move the bill so much?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Because every query pays for every retrieved token as input. If you stuff 10,000 tokens of context into each call instead of 3,000, the input cost more than triples. Top-k tuning, chunk size, and reranking are the three biggest levers on RAG cost, well ahead of which LLM you pick."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does this calculator send my numbers anywhere?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Everything runs in your browser. Nothing gets uploaded."
+      }
+    }
+  ]
+}
   </script>
   <!-- breadcrumb-jsonld -->
   <script type="application/ld+json">
@@ -423,6 +454,8 @@
             <p>No. Everything runs in your browser. Nothing gets uploaded.</p>
           </details>
         </section>
+        <!-- author-byline -->
+        <p class="author-byline">Last updated 29 April 2026 by <a href="/about/">Andrew Laws</a>.</p>
         <section class="related-calcs" aria-labelledby="related-heading">
           <h2 id="related-heading">Related calculators</h2>
           <ul class="related-calcs__list">

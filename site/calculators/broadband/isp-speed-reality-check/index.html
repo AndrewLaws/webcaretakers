@@ -10,6 +10,10 @@
   <meta property="og:description" content="Estimate the realistic broadband speed you actually get versus what your ISP sells. Line attenuation, wifi loss and peak hour contention all factored in.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://webcaretakers.com/calculators/broadband/isp-speed-reality-check/">
+  <!-- twitter-card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ISP Speed Reality Check | WebCaretakers">
+  <meta name="twitter:description" content="Estimate the realistic broadband speed you actually get versus what your ISP sells. Line attenuation, wifi loss and peak hour contention all factored in.">
   <meta name="robots" content="index, follow">
   <link rel="stylesheet" href="/assets/css/main.css">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -36,50 +40,73 @@
   })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
 
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "ISP Speed Reality Check",
-    "url": "https://webcaretakers.com/calculators/broadband/isp-speed-reality-check/",
-    "applicationCategory": "UtilitiesApplication",
-    "operatingSystem": "Any",
-    "description": "Estimate what broadband speed you actually get versus what your ISP advertises, based on connection type, distance from cabinet, line quality, router placement, wifi standard and peak hour contention.",
-    "offers": { "@type": "Offer", "price": "0" },
-    "author": { "@type": "Person", "name": "Andrew Laws", "url": "https://yeseo.io/" }
-  }
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "ISP Speed Reality Check",
+  "url": "https://webcaretakers.com/calculators/broadband/isp-speed-reality-check/",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "description": "Estimate what broadband speed you actually get versus what your ISP advertises, based on connection type, distance from cabinet, line quality, router placement, wifi standard and peak hour contention.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Andrew Laws",
+    "url": "https://yeseo.io/"
+  },
+  "dateModified": "2026-04-29"
+}
   </script>
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "Why am I not getting the broadband speed I pay for?",
-        "acceptedAnswer": { "@type": "Answer", "text": "ISPs advertise the maximum theoretical sync speed your line can hit in lab conditions. What you actually get depends on the connection type, how far you sit from the street cabinet on FTTC and ADSL, the quality of the copper between your home and the cabinet, where your router sits in the house, the wifi standard your router supports, and how busy the local network is at the time of day you test. All of those chip away at the headline figure." }
-      },
-      {
-        "@type": "Question",
-        "name": "Does the distance from the cabinet really matter?",
-        "acceptedAnswer": { "@type": "Answer", "text": "On FTTC (fibre to the cabinet) and ADSL2+, yes, a lot. Both technologies still rely on copper from the cabinet to your house, and the signal weakens with distance. A property 200 metres from the cabinet might sync at 80 Mbps. The same line at 1.5 kilometres might be lucky to see 25. On full fibre (FTTP) the fibre runs all the way to the property, so distance is no longer the bottleneck." }
-      },
-      {
-        "@type": "Question",
-        "name": "How much speed do I lose to wifi?",
-        "acceptedAnswer": { "@type": "Answer", "text": "More than most people think. Sat next to the router on wifi 6, you might lose 10 to 20 percent. Two walls away on older wifi 4 or 5, you can lose more than half. The router standard sets a hard ceiling on what wifi can deliver regardless of how fast the line is, which is why a 900 Mbps full fibre line through a wifi 4 router will never push much more than 150 Mbps to the device." }
-      },
-      {
-        "@type": "Question",
-        "name": "What is peak hour contention?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Broadband providers oversubscribe their networks because most users do not all stream at once. During peak hours, typically 7pm to 11pm, more people are online and the shared parts of the network get busier. Speeds at peak can dip 10 to 20 percent below off-peak figures. Ofcom's voluntary code requires UK ISPs to publish realistic peak speeds, which is why ads now quote average speeds at 8pm." }
-      },
-      {
-        "@type": "Question",
-        "name": "Should I switch ISP if I am getting much less than advertised?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Maybe. First check whether the bottleneck is the line, the router or the wifi. If a wired test next to the router still falls well short of the advertised sync speed, talk to the ISP, they may be able to fix a fault. If the wired sync is fine but wifi is poor, a router upgrade is cheaper than switching provider. If the line itself simply cannot deliver and FTTP is available in your area, that is the real upgrade path." }
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Why am I not getting the broadband speed I pay for?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "ISPs advertise the maximum sync speed your line can hit in lab conditions. Distance from the cabinet, copper quality, where the router lives, the wifi standard it supports and peak-hour contention all chip pieces off the headline figure."
       }
-    ]
-  }
+    },
+    {
+      "@type": "Question",
+      "name": "Does distance from the cabinet really matter?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "On FTTC and ADSL, yes, a lot. On FTTP it does not, because the fibre runs all the way to the property."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much speed do I lose to wifi?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "More than most people think. Two walls away on wifi 4 you can lose more than half the line speed. Wifi 6 next to the router barely registers a hit."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is peak-hour contention?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Shared parts of the network get busier in the evening, so speeds dip 10 to 20 percent at peak compared to off-peak. UK ISPs now have to publish a realistic 8pm average alongside any \"up to\" figure."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I switch ISP if I am getting much less than advertised?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Find out what the bottleneck is first. If wired sync is fine and the wifi is poor, a router upgrade is cheaper than switching. If the line itself is the limit and FTTP is available, that is the upgrade conversation."
+      }
+    }
+  ]
+}
   </script>
   <!-- breadcrumb-jsonld -->
   <script type="application/ld+json">
@@ -383,6 +410,8 @@
             <p>Find out what the bottleneck is first. If wired sync is fine and the wifi is poor, a router upgrade is cheaper than switching. If the line itself is the limit and FTTP is available, that is the upgrade conversation.</p>
           </details>
         </section>
+        <!-- author-byline -->
+        <p class="author-byline">Last updated 29 April 2026 by <a href="/about/">Andrew Laws</a>.</p>
         <section class="related-calcs" aria-labelledby="related-heading">
           <h2 id="related-heading">Related calculators</h2>
           <ul class="related-calcs__list">

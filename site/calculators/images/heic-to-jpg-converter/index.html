@@ -10,6 +10,10 @@
   <meta property="og:description" content="Convert iPhone HEIC photos to JPG in your browser. Files never leave your device.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://webcaretakers.com/calculators/images/heic-to-jpg-converter/">
+  <!-- twitter-card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="HEIC to JPG Converter | WebCaretakers">
+  <meta name="twitter:description" content="Convert iPhone HEIC photos to JPG in your browser. Files never leave your device.">
   <meta name="robots" content="index, follow">
   <link rel="stylesheet" href="/assets/css/main.css">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -36,56 +40,91 @@
   })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
 
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "HEIC to JPG Converter",
-    "url": "https://webcaretakers.com/calculators/images/heic-to-jpg-converter/",
-    "description": "Convert iPhone HEIC and HEIF photos to JPG, PNG or WebP in your browser. Drag and drop one photo or a whole album. Files never leave your device.",
-    "applicationCategory": "MultimediaApplication",
-    "operatingSystem": "Any",
-    "inLanguage": "en-GB",
-    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "GBP" },
-    "author": { "@type": "Person", "name": "Andrew Laws", "url": "https://yeseo.io/" }
-  }
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "HEIC to JPG Converter",
+  "url": "https://webcaretakers.com/calculators/images/heic-to-jpg-converter/",
+  "description": "Convert iPhone HEIC and HEIF photos to JPG, PNG or WebP in your browser. Drag and drop one photo or a whole album. Files never leave your device.",
+  "applicationCategory": "MultimediaApplication",
+  "operatingSystem": "Any",
+  "inLanguage": "en-GB",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "GBP"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Andrew Laws",
+    "url": "https://yeseo.io/"
+  },
+  "dateModified": "2026-04-29"
+}
   </script>
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "How do I convert HEIC to JPG?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Drag your HEIC files onto this page, or tap the box and pick them from your phone or laptop. The converter decodes each file in your browser, re-encodes it as JPG, and gives you a download link. There is no upload step. You can convert one photo or a few hundred at a time, depending on your device's memory." }
-      },
-      {
-        "@type": "Question",
-        "name": "Why are my iPhone photos saving as HEIC?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Apple switched the default camera format to HEIC in 2017. HEIC files are roughly half the size of JPGs at similar quality, which is why your iPhone saves them by default. The trade-off is compatibility: most non-Apple software, email clients and chat apps either show a broken thumbnail or refuse to open them. Converting to JPG fixes that." }
-      },
-      {
-        "@type": "Question",
-        "name": "Can I open HEIC files on Windows?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Windows 11 can open HEIC if you install Microsoft's HEIF Image Extensions and HEVC Video Extensions from the Microsoft Store. The HEVC extension costs around £0.79. Most other apps on Windows (Outlook, older Photoshop, plenty of work tools) still cannot read HEIC, so converting to JPG is usually the simpler fix." }
-      },
-      {
-        "@type": "Question",
-        "name": "Does this upload my photos anywhere?",
-        "acceptedAnswer": { "@type": "Answer", "text": "No. Files never leave your browser. Decoding and re-encoding happen on your own device using a JavaScript library and the standard HTML canvas. You could disconnect your Wi-Fi after the page loads and the conversion would still work. Nothing is sent to a server, nothing is logged." }
-      },
-      {
-        "@type": "Question",
-        "name": "What is the difference between HEIC and HEIF?",
-        "acceptedAnswer": { "@type": "Answer", "text": "HEIF is the underlying container format (High Efficiency Image File). HEIC is HEIF with images encoded using HEVC, which is the variant Apple uses on iPhones. In day-to-day use the two are interchangeable. This converter accepts both extensions." }
-      },
-      {
-        "@type": "Question",
-        "name": "How do I stop my iPhone saving photos as HEIC?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Open Settings, tap Camera, then Formats, then choose Most Compatible instead of High Efficiency. From that point on, the camera saves new photos as JPG and new videos as H.264 MP4. You lose roughly half the storage efficiency but gain compatibility everywhere. Existing photos already on your phone stay HEIC." }
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do I convert HEIC to JPG?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Drag your HEIC files onto the box above, or tap it and pick them from your phone or laptop. The converter decodes each file, re-encodes as JPG, and offers a download link per file. There is no upload step."
       }
-    ]
-  }
+    },
+    {
+      "@type": "Question",
+      "name": "Why are my iPhone photos saving as HEIC?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Apple made HEIC the default in iOS 11 because it is roughly half the size of JPG at similar quality. The trade-off is compatibility: most non-Apple software cannot read it without help."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I open HEIC files on Windows directly?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Windows 11 can, after you install the HEIF Image Extensions and HEVC Video Extensions from the Microsoft Store. The HEVC one is a small paid download. Most third-party apps on Windows still cannot read HEIC, so converting to JPG is usually the simpler answer."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does this upload my photos anywhere?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Files never leave your browser. Decoding and re-encoding happen on your device. You can prove it by opening the browser's network tab and watching nothing happen."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between HEIC and HEIF?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "HEIF is the container; HEIC is HEIF with HEVC-encoded images inside it, which is what Apple uses. In practice they are interchangeable, and both extensions are accepted here."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I stop my iPhone saving photos as HEIC?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Settings, then Camera, then Formats, then Most Compatible. From that point on, your iPhone saves JPGs and standard MP4 videos. Existing HEIC photos stay HEIC; only new ones change."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are EXIF orientation and rotation respected?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The converter reads the EXIF orientation flag and applies it before re-encoding, so portraits stay portraits and a photo taken on its side comes out the right way up."
+      }
+    }
+  ]
+}
   </script>
   <!-- breadcrumb-jsonld -->
   <script type="application/ld+json">
@@ -368,6 +407,8 @@
             <p>Yes. The converter reads the EXIF orientation flag and applies it before re-encoding, so portraits stay portraits and a photo taken on its side comes out the right way up.</p>
           </details>
         </section>
+        <!-- author-byline -->
+        <p class="author-byline">Last updated 29 April 2026 by <a href="/about/">Andrew Laws</a>.</p>
         <section class="related-calcs" aria-labelledby="related-heading">
           <h2 id="related-heading">Related calculators</h2>
           <ul class="related-calcs__list">

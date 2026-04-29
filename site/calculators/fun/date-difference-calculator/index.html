@@ -10,6 +10,10 @@
   <meta property="og:description" content="How many days, weeks or months between two dates? Put them in, get the answer.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://webcaretakers.com/calculators/fun/date-difference-calculator/">
+  <!-- twitter-card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Date Difference Calculator | WebCaretakers">
+  <meta name="twitter:description" content="How many days, weeks or months between two dates? Put them in, get the answer.">
   <meta name="robots" content="index, follow">
   <link rel="stylesheet" href="/assets/css/main.css">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -36,54 +40,71 @@
   })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
 
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "Date Difference Calculator",
-    "url": "https://webcaretakers.com/calculators/fun/date-difference-calculator/",
-    "description": "Work out the difference between two dates in years, months, days, weeks, hours and business days.",
-    "applicationCategory": "UtilitiesApplication",
-    "operatingSystem": "Any",
-    "offers": { "@type": "Offer", "price": "0" },
-    "isPartOf": {
-      "@type": "WebSite",
-      "name": "WebCaretakers",
-      "url": "https://webcaretakers.com/"
-    }
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Date Difference Calculator",
+  "url": "https://webcaretakers.com/calculators/fun/date-difference-calculator/",
+  "description": "Work out the difference between two dates in years, months, days, weeks, hours and business days.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0"
+  },
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "WebCaretakers",
+    "url": "https://webcaretakers.com/"
+  },
+  "dateModified": "2026-04-29",
+  "author": {
+    "@type": "Person",
+    "name": "Andrew Laws",
+    "url": "https://andrewlaws.com/"
   }
+}
   </script>
 
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "How do I count the days between two dates?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Subtract the earlier date from the later date. This calculator does it for you and gives the answer in days, weeks, months, years, hours, and Monday-to-Friday business days. It uses UTC internally so daylight saving transitions and timezones don't nudge the count by one."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Does it count the start date, the end date, or both?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "The total-days figure is the number of whole days between the two dates: from Monday to Wednesday is 2 days. The business-days figure is inclusive of both endpoints when they are weekdays: Monday to Friday of the same week counts as 5 business days."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "What if I put the dates in the wrong order?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "The calculator flips them for you and tells you it did. The numbers are always positive. Handy if you're working out how long until a date and how long since one in quick succession."
-        }
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does it count the start date, the end date, or both?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The total-days figure counts the number of whole days between the two dates (Monday to Wednesday is 2). Business days are inclusive on both ends when those days are weekdays (Monday to Friday of the same week is 5)."
       }
-    ]
-  }
+    },
+    {
+      "@type": "Question",
+      "name": "What about bank holidays?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not subtracted. Business days is strictly Mon-Fri. If you need a holiday-aware figure, knock the relevant bank holidays off by hand."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What if the end date is before the start date?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The calculator flips them, gives you a positive answer, and tells you it flipped them. No negative numbers to squint at."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is any of my data sent anywhere?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Everything is worked out in your browser. The dates never leave your device."
+      }
+    }
+  ]
+}
   </script>
   <!-- breadcrumb-jsonld -->
   <script type="application/ld+json">
@@ -309,6 +330,8 @@
             <p>No. Everything is worked out in your browser. The dates never leave your device.</p>
           </details>
         </section>
+        <!-- author-byline -->
+        <p class="author-byline">Last updated 29 April 2026 by <a href="/about/">Andrew Laws</a>.</p>
         <section class="related-calcs" aria-labelledby="related-heading">
           <h2 id="related-heading">Related calculators</h2>
           <ul class="related-calcs__list">

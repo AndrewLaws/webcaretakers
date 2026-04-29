@@ -10,6 +10,10 @@
   <meta property="og:description" content="Realistic VPN throughput estimates across WireGuard, OpenVPN, IPsec/IKEv2 and L2TP/IPsec, with the bottleneck named.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://webcaretakers.com/calculators/broadband/vpn-throughput-calculator/">
+  <!-- twitter-card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="VPN Throughput Calculator | WebCaretakers">
+  <meta name="twitter:description" content="Realistic VPN throughput estimates across WireGuard, OpenVPN, IPsec/IKEv2 and L2TP/IPsec, with the bottleneck named.">
   <meta name="robots" content="index, follow">
   <link rel="stylesheet" href="/assets/css/main.css">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -36,17 +40,25 @@
   })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
 
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "VPN Throughput Calculator",
-    "url": "https://webcaretakers.com/calculators/broadband/vpn-throughput-calculator/",
-    "applicationCategory": "UtilitiesApplication",
-    "operatingSystem": "Any",
-    "description": "Estimate the realistic throughput of a VPN tunnel given link speed, protocol, cipher, CPU class, MTU and server distance. Names the bottleneck: link-bound, encryption-bound or RTT-bound.",
-    "offers": { "@type": "Offer", "price": "0" },
-    "author": { "@type": "Person", "name": "Andrew Laws", "url": "https://yeseo.io/" }
-  }
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "VPN Throughput Calculator",
+  "url": "https://webcaretakers.com/calculators/broadband/vpn-throughput-calculator/",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "description": "Estimate the realistic throughput of a VPN tunnel given link speed, protocol, cipher, CPU class, MTU and server distance. Names the bottleneck: link-bound, encryption-bound or RTT-bound.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Andrew Laws",
+    "url": "https://yeseo.io/"
+  },
+  "dateModified": "2026-04-29"
+}
   </script>
   <script type="application/ld+json">
   {
@@ -370,6 +382,8 @@
             <p>Modestly. With a 1500-byte MTU and a 60-byte WireGuard header, 4% of every packet is framing rather than payload. The default 1500 is right for most home connections. Lower it only if you are hitting fragmentation symptoms.</p>
           </details>
         </section>
+        <!-- author-byline -->
+        <p class="author-byline">Last updated 29 April 2026 by <a href="/about/">Andrew Laws</a>.</p>
         <section class="related-calcs" aria-labelledby="related-heading">
           <h2 id="related-heading">Related calculators</h2>
           <ul class="related-calcs__list">

@@ -10,6 +10,10 @@
   <meta property="og:description" content="Live word, character, sentence and paragraph counts, plus fit-checks for tweet, meta, SMS and title limits.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://webcaretakers.com/calculators/writing/word-count/">
+  <!-- twitter-card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Word Count Tool | WebCaretakers">
+  <meta name="twitter:description" content="Live word, character, sentence and paragraph counts, plus fit-checks for tweet, meta, SMS and title limits.">
   <meta name="robots" content="index, follow">
   <link rel="stylesheet" href="/assets/css/main.css">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -36,54 +40,71 @@
   })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
 
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "Word Count Tool",
-    "url": "https://webcaretakers.com/calculators/writing/word-count/",
-    "description": "Live word, character, sentence and paragraph counts for any pasted text, with fit-checks for tweet, meta description, SMS and SEO title limits.",
-    "applicationCategory": "UtilitiesApplication",
-    "operatingSystem": "Any",
-    "offers": { "@type": "Offer", "price": "0" },
-    "isPartOf": {
-      "@type": "WebSite",
-      "name": "WebCaretakers",
-      "url": "https://webcaretakers.com/"
-    }
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Word Count Tool",
+  "url": "https://webcaretakers.com/calculators/writing/word-count/",
+  "description": "Live word, character, sentence and paragraph counts for any pasted text, with fit-checks for tweet, meta description, SMS and SEO title limits.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0"
+  },
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "WebCaretakers",
+    "url": "https://webcaretakers.com/"
+  },
+  "dateModified": "2026-04-29",
+  "author": {
+    "@type": "Person",
+    "name": "Andrew Laws",
+    "url": "https://andrewlaws.com/"
   }
+}
   </script>
 
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "How does this tool count words?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "It splits your text on whitespace and counts the runs of non-space characters. That matches what Word, Google Docs and most editors return. Hyphenated compounds like 'well-known' count as one word."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "What are the character limits for?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Common platforms cap length: X (Twitter) at 280, SMS at 160, SEO meta descriptions truncate around 160, SEO page titles around 60, Open Graph titles around 70, Instagram captions at 2,200, LinkedIn posts at 3,000, and Facebook posts visibly truncate at roughly 477. Paste your draft and the tool tells you how many characters you have left or how far over you are."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Does my text get uploaded anywhere?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "No. All counting happens in your browser. Nothing is sent to a server, logged, or retained. You can paste confidential drafts in safely."
-        }
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How does the tool count words?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Runs of non-whitespace, same as Word and Google Docs. \"well-known\" is one word, not two."
       }
-    ]
-  }
+    },
+    {
+      "@type": "Question",
+      "name": "Where do the character limits come from?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Platform conventions. Twitter/X 280, SMS 160, meta description truncated around 160, SEO title around 60, Open Graph title 70, Instagram 2,200, LinkedIn 3,000, Facebook visible around 477."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does my text go anywhere?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Everything runs in your browser. Paste confidential drafts safely."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it count Markdown and HTML tags?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Tags and syntax characters are treated as tokens. For most purposes this is close enough. If your text is very heavy on formatting, strip tags first."
+      }
+    }
+  ]
+}
   </script>
   <!-- breadcrumb-jsonld -->
   <script type="application/ld+json">
@@ -314,6 +335,8 @@
             <p>Yes. Tags and syntax characters are treated as tokens. For most purposes this is close enough. If your text is very heavy on formatting, strip tags first.</p>
           </details>
         </section>
+        <!-- author-byline -->
+        <p class="author-byline">Last updated 29 April 2026 by <a href="/about/">Andrew Laws</a>.</p>
         <section class="related-calcs" aria-labelledby="related-heading">
           <h2 id="related-heading">Related calculators</h2>
           <ul class="related-calcs__list">

@@ -10,6 +10,10 @@
   <meta property="og:description" content="The monthly number you need to hit a savings goal by a specific date.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://webcaretakers.com/calculators/finance/savings-goal-calculator/">
+  <!-- twitter-card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Savings Goal Calculator | WebCaretakers">
+  <meta name="twitter:description" content="The monthly number you need to hit a savings goal by a specific date.">
   <meta name="robots" content="index, follow">
   <link rel="stylesheet" href="/assets/css/main.css">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -36,54 +40,72 @@
   })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
 
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "Savings Goal Calculator",
-    "url": "https://webcaretakers.com/calculators/finance/savings-goal-calculator/",
-    "description": "Calculate the monthly contribution needed to reach a savings target by a given date, accounting for starting balance and compound interest.",
-    "applicationCategory": "FinanceApplication",
-    "operatingSystem": "Any",
-    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "GBP" },
-    "isPartOf": {
-      "@type": "WebSite",
-      "name": "WebCaretakers",
-      "url": "https://webcaretakers.com/"
-    }
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Savings Goal Calculator",
+  "url": "https://webcaretakers.com/calculators/finance/savings-goal-calculator/",
+  "description": "Calculate the monthly contribution needed to reach a savings target by a given date, accounting for starting balance and compound interest.",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "GBP"
+  },
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "WebCaretakers",
+    "url": "https://webcaretakers.com/"
+  },
+  "dateModified": "2026-04-29",
+  "author": {
+    "@type": "Person",
+    "name": "Andrew Laws",
+    "url": "https://andrewlaws.com/"
   }
+}
   </script>
 
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "How do I calculate monthly savings needed for a goal?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "With no interest, divide the gap (target minus starting balance) by the number of months. With interest, the formula is PMT = (FV - PV × (1+r)^n) ÷ [((1+r)^n - 1) / r], where r is the monthly interest rate and n is the number of months. This calculator uses end-of-month contributions and monthly compounding, the standard convention for consumer savings products."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Should I include expected interest on my savings?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes if you're saving in a cash account (ISA, high-yield savings, money market) with a reasonably predictable rate. Leave it at zero for short horizons (under a year) or if you're saving into a current account. Don't use this calculator for stock-market investments where returns aren't a fixed rate; use a proper compound-interest tool that shows a range."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "What about inflation?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Not factored in here. If your goal is priced in today's money and your target date is more than a few years out, consider inflating the target by the expected inflation rate first, or use the Compound Interest Calculator which has an inflation toggle."
-        }
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do I calculate monthly savings needed for a goal?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No interest: (target - starting balance) ÷ months. With interest: PMT = (FV - PV × (1+r)^n) ÷ [((1+r)^n - 1) / r] where r is the monthly rate and n is months. This calculator does it for you."
       }
-    ]
-  }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I include expected interest on my savings?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, if you're saving in a cash account with a reasonably predictable rate. No, if the horizon is under a year or if you're saving in a current account paying next to nothing."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What about inflation?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not factored in. For multi-year goals priced in today's money, either bump your target up by expected inflation first, or use the Compound Interest Calculator which handles that toggle directly."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is any of my data sent anywhere?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Everything is worked out in your browser. Nothing is transmitted or stored server-side."
+      }
+    }
+  ]
+}
   </script>
   <!-- breadcrumb-jsonld -->
   <script type="application/ld+json">
@@ -329,6 +351,8 @@
             <p>No. Everything is worked out in your browser. Nothing is transmitted or stored server-side.</p>
           </details>
         </section>
+        <!-- author-byline -->
+        <p class="author-byline">Last updated 29 April 2026 by <a href="/about/">Andrew Laws</a>.</p>
         <section class="related-calcs" aria-labelledby="related-heading">
           <h2 id="related-heading">Related calculators</h2>
           <ul class="related-calcs__list">

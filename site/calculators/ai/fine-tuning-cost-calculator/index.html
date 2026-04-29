@@ -10,6 +10,10 @@
   <meta property="og:description" content="Estimate the cost of fine-tuning an LLM and the per-1000-call cost of running the tuned model.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://webcaretakers.com/calculators/ai/fine-tuning-cost-calculator/">
+  <!-- twitter-card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="AI Fine-Tuning Cost Calculator | WebCaretakers">
+  <meta name="twitter:description" content="Estimate the cost of fine-tuning an LLM and the per-1000-call cost of running the tuned model.">
   <meta name="robots" content="index, follow">
   <link rel="stylesheet" href="/assets/css/main.css">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -36,53 +40,80 @@
   })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
 
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "AI Fine-Tuning Cost Calculator",
-    "url": "https://webcaretakers.com/calculators/ai/fine-tuning-cost-calculator/",
-    "applicationCategory": "BusinessApplication",
-    "operatingSystem": "Any",
-    "offers": { "@type": "Offer", "price": "0" },
-    "author": {
-      "@type": "Person",
-      "name": "Andrew Laws",
-      "url": "https://yeseo.io/"
-    }
-  }
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "AI Fine-Tuning Cost Calculator",
+  "url": "https://webcaretakers.com/calculators/ai/fine-tuning-cost-calculator/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Andrew Laws",
+    "url": "https://yeseo.io/"
+  },
+  "dateModified": "2026-04-29"
+}
   </script>
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "How is training cost worked out?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Total training tokens equals your data tokens multiplied by the number of epochs. The bill is then total training tokens divided by one million, multiplied by the provider's training rate per million tokens. So a 500,000 token dataset trained for 3 epochs is 1.5M training tokens, and at $3 per million you would pay $4.50." }
-      },
-      {
-        "@type": "Question",
-        "name": "Why is hosted inference more expensive on a tuned model?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Tuned models run on dedicated capacity, not the shared base-model fleet, so providers charge a premium. OpenAI's tuned GPT-4o-mini and GPT-4o list at roughly 2x and 1.5x the base inference rates respectively. Together and Mistral keep tuned and base inference closer in price. The calculator uses the live published tuned rates per provider, not a flat multiplier." }
-      },
-      {
-        "@type": "Question",
-        "name": "Should I count words or tokens?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Tokens, if you can. If you only have a word count, the calculator converts at 1.33 tokens per English word, which is the rough heuristic OpenAI publishes. For non-English text the ratio shifts, often higher, so under-budget if you're working in languages with a different script or longer compounds." }
-      },
-      {
-        "@type": "Question",
-        "name": "Why is three epochs the default?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Three is what most fine-tuning guides land on as a sensible starting point for instruction-style datasets. One epoch under-fits, ten over-fits. The right number depends on dataset size and quality, so treat the default as a budget anchor rather than a recommendation." }
-      },
-      {
-        "@type": "Question",
-        "name": "Does the calculator include data prep or evaluation cost?",
-        "acceptedAnswer": { "@type": "Answer", "text": "No. List training and tuned inference rates only. Cleaning the data, writing eval scripts, and the LLM calls behind any LLM-as-judge evaluation harness are all extra. On a real project they often cost more than the training itself, especially for the first iteration." }
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How is training cost worked out?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Total training tokens equals your data tokens multiplied by the number of epochs. The bill is then total training tokens divided by one million, multiplied by the provider's training rate per million tokens. So a 500,000-token dataset trained for 3 epochs is 1.5M training tokens, and at $3 per million you would pay $4.50."
       }
-    ]
-  }
+    },
+    {
+      "@type": "Question",
+      "name": "Why is hosted inference more expensive on a tuned model?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tuned models run on dedicated capacity, not the shared base-model fleet, so providers charge a premium. OpenAI's tuned GPT-4o-mini and GPT-4o list at roughly 2x and 1.5x the base inference rates respectively. Together and Mistral keep tuned and base inference closer in price. The calculator uses the live published tuned rates per provider, not a flat multiplier."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I count words or tokens?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tokens, if you can. If you only have a word count, the calculator converts at 1.33 tokens per English word, which is the rough heuristic OpenAI publishes. For non-English text, code, or JSON, the ratio shifts higher, so under-budget your figure when working with those."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why is three epochs the default?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Three is what most fine-tuning guides land on as a sensible starting point for instruction-style datasets. One epoch under-fits, ten over-fits. The right number depends on dataset size and quality, so treat the default as a budget anchor rather than a recommendation."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does the calculator include data prep or evaluation cost?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. List training and tuned inference rates only. Cleaning the data, writing eval scripts, and the LLM calls behind any LLM-as-judge evaluation harness are all extra. On a real project they often cost more than the training itself, especially for the first iteration."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does this calculator send my numbers anywhere?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Everything runs in your browser. Nothing is uploaded."
+      }
+    }
+  ]
+}
   </script>
   <!-- breadcrumb-jsonld -->
   <script type="application/ld+json">
@@ -379,6 +410,8 @@
             <p>No. Everything runs in your browser. Nothing is uploaded.</p>
           </details>
         </section>
+        <!-- author-byline -->
+        <p class="author-byline">Last updated 29 April 2026 by <a href="/about/">Andrew Laws</a>.</p>
         <section class="related-calcs" aria-labelledby="related-heading">
           <h2 id="related-heading">Related calculators</h2>
           <ul class="related-calcs__list">

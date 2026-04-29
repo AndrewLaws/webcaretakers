@@ -10,6 +10,10 @@
   <meta property="og:description" content="Total Daily Energy Expenditure with three formulas, cut and bulk targets, and a macro starting point.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://webcaretakers.com/calculators/health/tdee-calculator/">
+  <!-- twitter-card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="TDEE Calculator | WebCaretakers">
+  <meta name="twitter:description" content="Total Daily Energy Expenditure with three formulas, cut and bulk targets, and a macro starting point.">
   <meta name="robots" content="index, follow">
   <link rel="stylesheet" href="/assets/css/main.css">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -36,50 +40,73 @@
   })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
 
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "TDEE Calculator",
-    "url": "https://webcaretakers.com/calculators/health/tdee-calculator/",
-    "description": "Total Daily Energy Expenditure and BMR calculator with Mifflin-St Jeor, Harris-Benedict (revised) and Katch-McArdle formulas. Produces calorie targets for cutting, maintenance and bulking, plus a starting macro split.",
-    "applicationCategory": "HealthApplication",
-    "operatingSystem": "Any",
-    "offers": { "@type": "Offer", "price": "0" },
-    "author": { "@type": "Person", "name": "Andrew Laws", "url": "https://yeseo.io/" }
-  }
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "TDEE Calculator",
+  "url": "https://webcaretakers.com/calculators/health/tdee-calculator/",
+  "description": "Total Daily Energy Expenditure and BMR calculator with Mifflin-St Jeor, Harris-Benedict (revised) and Katch-McArdle formulas. Produces calorie targets for cutting, maintenance and bulking, plus a starting macro split.",
+  "applicationCategory": "HealthApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Andrew Laws",
+    "url": "https://yeseo.io/"
+  },
+  "dateModified": "2026-04-29"
+}
   </script>
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "Which TDEE formula is most accurate?",
-        "acceptedAnswer": { "@type": "Answer", "text": "For most adults, Mifflin-St Jeor is the modern default and has performed best in validation studies against measured BMR. Harris-Benedict (revised) tends to overestimate slightly, especially for heavier individuals. Katch-McArdle is the most accurate of the three if you know your body fat percentage reasonably well, because it works from lean body mass rather than total weight. If you have a decent body fat reading from DEXA, a good set of callipers or a smart scale you trust, use Katch-McArdle. Otherwise, stick with Mifflin-St Jeor." }
-      },
-      {
-        "@type": "Question",
-        "name": "Why is my weight not changing at my calculated TDEE?",
-        "acceptedAnswer": { "@type": "Answer", "text": "TDEE calculators give you a starting estimate. Real burn varies by muscle mass, non-exercise movement (fidgeting counts), sleep, hormones and how accurately you judge your activity level. Track your weight and food intake for two to three weeks, then adjust your calories up or down by 100 to 200 kcal based on what actually happened. The calculator gets you in the ballpark. Your scale and the tape measure decide the rest." }
-      },
-      {
-        "@type": "Question",
-        "name": "How do I work out my macros?",
-        "acceptedAnswer": { "@type": "Answer", "text": "A sensible starting point is protein at 1.6 to 2.2 grams per kilo of body weight (higher end if you lift), fat at around 25% of total calories (no lower than 0.6 g/kg for hormonal health), and carbohydrates filling in the rest. The calculator shows one reasonable split. Adjust to taste, performance and how you feel. Hitting your calorie target and your protein target matter far more than the exact carb and fat ratio." }
-      },
-      {
-        "@type": "Question",
-        "name": "Should I eat back exercise calories?",
-        "acceptedAnswer": { "@type": "Answer", "text": "If you picked an activity multiplier that already includes your training (moderate, heavy, athlete), no. Eating back calories your fitness watch logged would be double-counting. If you set yourself to sedentary because you have a desk job and then did a long run, you can eat back a portion of those calories, but treat watch estimates as optimistic by roughly 20 to 30%. The cleaner approach is to pick the multiplier that reflects your typical week and then leave it alone." }
-      },
-      {
-        "@type": "Question",
-        "name": "What do the activity multipliers actually mean?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Sedentary (1.2) is a desk job and light walking, no formal exercise. Lightly active (1.375) is one to three short sessions a week. Moderately active (1.55) is three to five sessions a week of real effort. Heavy (1.725) is six or seven hard sessions, or a physical job plus training. Athlete (1.9) is twice-daily training or a very physical job on top of serious training. Most people overestimate by one tier. When in doubt, go one step down." }
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Which TDEE formula is most accurate?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Mifflin-St Jeor is the best general-purpose default. Katch-McArdle is more accurate if you have a reliable body fat reading. Harris-Benedict tends to overestimate slightly and is kept mostly for comparison."
       }
-    ]
-  }
+    },
+    {
+      "@type": "Question",
+      "name": "Why isn't my weight changing at my calculated TDEE?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Calculators give a starting estimate. Track your weight and intake for two to three weeks, then adjust your calories by 100 to 200 kcal based on what actually happened. Activity multipliers in particular tend to be overestimated."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I work out my macros?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Protein at 1.6 to 2.2 g per kg of body weight. Fat at 25% of calories, and no lower than 0.6 g per kg for hormonal health. Carbs fill in the remainder. Hitting calories and protein matter far more than the exact carb-to-fat split."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I eat back exercise calories?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not if your activity multiplier already includes your training. Eating back watch-estimated calories on top of \"moderately active\" is double-counting. Pick the tier that matches your typical week and leave it."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What do the activity multipliers mean in practice?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "1.2 is a desk job and not much else. 1.375 is light training once or twice a week. 1.55 is three to five real sessions. 1.725 is hard training six or seven days, or a physical job plus training. 1.9 is twice-daily training or serious volume on top of a physical job."
+      }
+    }
+  ]
+}
   </script>
   <!-- breadcrumb-jsonld -->
   <script type="application/ld+json">
@@ -418,6 +445,8 @@
             <p>1.2 is a desk job and not much else. 1.375 is light training once or twice a week. 1.55 is three to five real sessions. 1.725 is hard training six or seven days, or a physical job plus training. 1.9 is twice-daily training or serious volume on top of a physical job.</p>
           </details>
         </section>
+        <!-- author-byline -->
+        <p class="author-byline">Last updated 29 April 2026 by <a href="/about/">Andrew Laws</a>.</p>
         <section class="related-calcs" aria-labelledby="related-heading">
           <h2 id="related-heading">Related calculators</h2>
           <ul class="related-calcs__list">

@@ -10,6 +10,10 @@
   <meta property="og:description" content="Add, subtract, multiply or divide fractions and mixed numbers. Simplified result, mixed-number form, decimal, and the full working.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://webcaretakers.com/calculators/math/fraction-calculator/">
+  <!-- twitter-card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Fraction Calculator | WebCaretakers">
+  <meta name="twitter:description" content="Add, subtract, multiply or divide fractions and mixed numbers. Simplified result, mixed-number form, decimal, and the full working.">
   <meta name="robots" content="index, follow">
   <link rel="stylesheet" href="/assets/css/main.css">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -36,48 +40,73 @@
   })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
 
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "Fraction Calculator",
-    "url": "https://webcaretakers.com/calculators/math/fraction-calculator/",
-    "applicationCategory": "EducationalApplication",
-    "operatingSystem": "Any",
-    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-    "author": {
-      "@type": "Person",
-      "name": "Andrew Laws",
-      "url": "https://yeseo.io/"
-    }
-  }
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Fraction Calculator",
+  "url": "https://webcaretakers.com/calculators/math/fraction-calculator/",
+  "applicationCategory": "EducationalApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Andrew Laws",
+    "url": "https://yeseo.io/"
+  },
+  "dateModified": "2026-04-29"
+}
   </script>
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "How do I add fractions with different denominators?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Multiply each fraction so they share a common denominator, add the numerators, then simplify. For 1/2 + 1/3, the common denominator is 6: 1/2 becomes 3/6, 1/3 becomes 2/6, and the sum is 5/6. The calculator above shows this step explicitly in the Prove it panel." }
-      },
-      {
-        "@type": "Question",
-        "name": "What is a mixed number, and how do I enter one?",
-        "acceptedAnswer": { "@type": "Answer", "text": "A mixed number is a whole number with a fraction next to it, like 1 1/2 (one and a half). Use the whole-number box on the left of each fraction. Leave it at 0 for a plain fraction. The calculator converts mixed numbers into improper fractions before doing the maths, and converts the result back into mixed form for display." }
-      },
-      {
-        "@type": "Question",
-        "name": "Why does the result not match my calculator's decimal?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Fractions like 1/3 do not have a finite decimal: 1/3 is 0.3333... forever. The decimal shown here is rounded to a sensible number of places, while the fraction form is exact. If precision matters, use the fraction or mixed-number output rather than the decimal." }
-      },
-      {
-        "@type": "Question",
-        "name": "How does the calculator simplify the result?",
-        "acceptedAnswer": { "@type": "Answer", "text": "It finds the greatest common divisor (gcd) of the numerator and denominator using the Euclidean algorithm, then divides both by it. So 6/8 reduces to 3/4 because gcd(6, 8) is 2. The Prove it panel shows the gcd value used for each calculation." }
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do I add fractions with different denominators?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Multiply each fraction so they share a common denominator, add the numerators, then simplify. For 1/2 + 1/3, the common denominator is 6: 1/2 becomes 3/6, 1/3 becomes 2/6, and the sum is 5/6. The calculator above shows this step explicitly in the Prove it panel."
       }
-    ]
-  }
+    },
+    {
+      "@type": "Question",
+      "name": "What is a mixed number, and how do I enter one?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A mixed number is a whole number with a fraction next to it, like 1 1/2 (one and a half). Use the whole-number box on the left of each fraction. Leave it at 0 for a plain fraction. The calculator converts mixed numbers into improper fractions before doing the maths, and converts the result back into mixed form for display."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does the result not match my calculator's decimal?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Fractions like 1/3 do not have a finite decimal: 1/3 is 0.3333... forever. The decimal shown here is rounded to a sensible number of places, while the fraction form is exact. If precision matters, use the fraction or mixed-number output rather than the decimal."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does the calculator simplify the result?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It finds the greatest common divisor (gcd) of the numerator and denominator using the Euclidean algorithm, then divides both by it. So 6/8 reduces to 3/4 because gcd(6, 8) is 2. The Prove it panel shows the gcd value used for each calculation."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does this calculator send my numbers anywhere?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Everything runs in your browser. The numbers you type never leave your device."
+      }
+    }
+  ]
+}
   </script>
   <!-- breadcrumb-jsonld -->
   <script type="application/ld+json">
@@ -348,6 +377,8 @@
             <p>No. Everything runs in your browser. The numbers you type never leave your device.</p>
           </details>
         </section>
+        <!-- author-byline -->
+        <p class="author-byline">Last updated 29 April 2026 by <a href="/about/">Andrew Laws</a>.</p>
         <section class="related-calcs" aria-labelledby="related-heading">
           <h2 id="related-heading">Related calculators</h2>
           <ul class="related-calcs__list">

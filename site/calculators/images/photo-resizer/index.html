@@ -10,6 +10,10 @@
   <meta property="og:description" content="Resize and convert photos in your browser. Your image never leaves your device.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://webcaretakers.com/calculators/images/photo-resizer/">
+  <!-- twitter-card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Photo Resizer | WebCaretakers">
+  <meta name="twitter:description" content="Resize and convert photos in your browser. Your image never leaves your device.">
   <meta name="robots" content="index, follow">
   <link rel="stylesheet" href="/assets/css/main.css">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -36,48 +40,73 @@
   })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
 
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "Photo Resizer",
-    "url": "https://webcaretakers.com/calculators/images/photo-resizer/",
-    "applicationCategory": "MultimediaApplication",
-    "operatingSystem": "Any",
-    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-    "author": {
-      "@type": "Person",
-      "name": "Andrew Laws",
-      "url": "https://yeseo.io/"
-    }
-  }
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Photo Resizer",
+  "url": "https://webcaretakers.com/calculators/images/photo-resizer/",
+  "applicationCategory": "MultimediaApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Andrew Laws",
+    "url": "https://yeseo.io/"
+  },
+  "dateModified": "2026-04-29"
+}
   </script>
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "Does the Photo Resizer upload my image anywhere?",
-        "acceptedAnswer": { "@type": "Answer", "text": "No. The image is decoded, resized, and re-encoded entirely in your browser using an HTML canvas. Nothing is uploaded, stored, or logged. You could disconnect from the internet mid-resize and it would still work." }
-      },
-      {
-        "@type": "Question",
-        "name": "Which image formats does it support?",
-        "acceptedAnswer": { "@type": "Answer", "text": "JPEG, PNG, and WebP for both input and output. You can also convert between them: for example, a large PNG screenshot can be saved as a much smaller JPEG or WebP." }
-      },
-      {
-        "@type": "Question",
-        "name": "What does the quality slider do?",
-        "acceptedAnswer": { "@type": "Answer", "text": "For JPEG and WebP, quality controls how aggressively the image is compressed. Higher values produce bigger, sharper files. Lower values produce smaller files with more visible compression artefacts. Quality has no effect on PNG output because PNG is a lossless format." }
-      },
-      {
-        "@type": "Question",
-        "name": "What is the biggest image I can resize?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Whatever your browser and device can hold in memory. For most modern phones and laptops, up to around 100 megapixels is fine. Very large images may slow the browser tab down briefly while the canvas renders." }
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does the Photo Resizer upload my image anywhere?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. The image is decoded, resized, and re-encoded entirely in your browser using an HTML canvas. Nothing is uploaded, stored, or logged. You could disconnect from the internet mid-resize and it would still work."
       }
-    ]
-  }
+    },
+    {
+      "@type": "Question",
+      "name": "Which image formats does it support?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "JPEG, PNG, and WebP for both input and output. You can convert between them: for example, a large PNG screenshot can be saved as a much smaller JPEG or WebP."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does the quality slider do?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For JPEG and WebP, quality controls how aggressively the image is compressed. Higher values produce bigger, sharper files. Lower values produce smaller files with more visible compression artefacts. Quality has no effect on PNG because PNG is a lossless format."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the biggest image I can resize?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Whatever your browser and device can hold in memory. For most modern phones and laptops, up to around 100 megapixels is fine. Very large images may slow the browser tab down briefly while the canvas renders."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does this work on phones?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. All modern mobile browsers (iOS Safari, Chrome, Firefox, Samsung Internet) support the Canvas API used here."
+      }
+    }
+  ]
+}
   </script>
   <!-- breadcrumb-jsonld -->
   <script type="application/ld+json">
@@ -344,6 +373,8 @@
             <p>Yes. All modern mobile browsers (iOS Safari, Chrome, Firefox, Samsung Internet) support the Canvas API used here.</p>
           </details>
         </section>
+        <!-- author-byline -->
+        <p class="author-byline">Last updated 29 April 2026 by <a href="/about/">Andrew Laws</a>.</p>
         <section class="related-calcs" aria-labelledby="related-heading">
           <h2 id="related-heading">Related calculators</h2>
           <ul class="related-calcs__list">

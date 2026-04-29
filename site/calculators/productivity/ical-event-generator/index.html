@@ -10,6 +10,10 @@
   <meta property="og:description" content="Create a .ics calendar file for any event. Download and import into Google Calendar, Apple Calendar, Outlook, or any other calendar app.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://webcaretakers.com/calculators/productivity/ical-event-generator/">
+  <!-- twitter-card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="iCal Event Generator | WebCaretakers">
+  <meta name="twitter:description" content="Create a .ics calendar file for any event. Download and import into Google Calendar, Apple Calendar, Outlook, or any other calendar app.">
   <meta name="robots" content="index, follow">
   <link rel="stylesheet" href="/assets/css/main.css">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -36,53 +40,80 @@
   })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
 
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "iCal Event Generator",
-    "url": "https://webcaretakers.com/calculators/productivity/ical-event-generator/",
-    "applicationCategory": "ProductivityApplication",
-    "operatingSystem": "Any",
-    "offers": { "@type": "Offer", "price": "0" },
-    "author": {
-      "@type": "Person",
-      "name": "Andrew Laws",
-      "url": "https://yeseo.io/"
-    }
-  }
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "iCal Event Generator",
+  "url": "https://webcaretakers.com/calculators/productivity/ical-event-generator/",
+  "applicationCategory": "ProductivityApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Andrew Laws",
+    "url": "https://yeseo.io/"
+  },
+  "dateModified": "2026-04-29"
+}
   </script>
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "What is an iCal file (.ics)?",
-        "acceptedAnswer": { "@type": "Answer", "text": "An iCal file (with the .ics extension) is a standard calendar format defined by RFC 5545. It is used by virtually every calendar application, including Google Calendar, Apple Calendar, Microsoft Outlook, Fastmail, and Proton Calendar. You create one file, and any of those apps can import it to add the event to a calendar." }
-      },
-      {
-        "@type": "Question",
-        "name": "How do I import a .ics file into Google Calendar?",
-        "acceptedAnswer": { "@type": "Answer", "text": "On desktop: open Google Calendar, click the settings gear, select Settings, then go to Import and export. Click Import, choose your .ics file, select which calendar to add it to, then click Import. On mobile you can open the .ics file directly and Google Calendar should offer to import it." }
-      },
-      {
-        "@type": "Question",
-        "name": "How do I import a .ics file into Apple Calendar?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Double-click the .ics file in Finder and Apple Calendar will open and ask which calendar to add the event to. Alternatively, open Calendar, go to File then Import, and select the .ics file." }
-      },
-      {
-        "@type": "Question",
-        "name": "What is the difference between UTC, a named timezone, and floating time?",
-        "acceptedAnswer": { "@type": "Answer", "text": "UTC stores the event at a fixed point in time. If you set a meeting for 10:00 UTC, it is always 10:00 UTC regardless of where the recipient opens their calendar. A named timezone (e.g. Europe/London) stores the local time in that timezone, and the calendar app converts it to the viewer's own timezone. Floating time stores just the clock time with no timezone at all, meaning the event shows at that time wherever the file is opened. Floating time is best for all-day or location-independent events like birthdays." }
-      },
-      {
-        "@type": "Question",
-        "name": "Can I create a recurring event?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Yes. Choose daily, weekly, monthly, or yearly from the Recurrence field. You can optionally set a count to limit how many times the event repeats. Leave count blank for an event that repeats indefinitely." }
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is an iCal file (.ics)?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A standard calendar format understood by virtually every calendar app: Google Calendar, Apple Calendar, Outlook, Fastmail, Proton Calendar, and others. You create one file and any of them can import it."
       }
-    ]
-  }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I import a .ics file into Google Calendar?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "On desktop: settings gear, Settings, Import and export, Import, select the file, choose a calendar, Import. On mobile, open the file from downloads and Google Calendar should offer to import it."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I import a .ics file into Apple Calendar?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Double-click the file in Finder. Calendar will ask which calendar to add it to. Or use File, Import inside the app."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is floating time?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Floating time stores the event with just a clock time and no timezone. The event appears at that time regardless of where the file is opened. Best for all-day or location-independent events where you don't want calendar apps shifting the time."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I create a recurring event?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Pick daily, weekly, monthly, or yearly. Set a repeat count to limit occurrences, or leave it blank to repeat indefinitely."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does anything leave my browser?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. The .ics file is generated entirely in your browser and downloaded directly to your device. Nothing is sent to any server."
+      }
+    }
+  ]
+}
   </script>
   <!-- breadcrumb-jsonld -->
   <script type="application/ld+json">
@@ -413,6 +444,8 @@
             <p>No. The .ics file is generated entirely in your browser and downloaded directly to your device. Nothing is sent to any server.</p>
           </details>
         </section>
+        <!-- author-byline -->
+        <p class="author-byline">Last updated 29 April 2026 by <a href="/about/">Andrew Laws</a>.</p>
         <section class="related-calcs" aria-labelledby="related-heading">
           <h2 id="related-heading">Related calculators</h2>
           <ul class="related-calcs__list">

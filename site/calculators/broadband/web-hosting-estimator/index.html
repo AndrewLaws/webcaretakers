@@ -10,6 +10,10 @@
   <meta property="og:description" content="Enter your monthly visitors, page weight, and file sizes to estimate the storage and bandwidth your hosting plan needs to cover.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://webcaretakers.com/calculators/broadband/web-hosting-estimator/">
+  <!-- twitter-card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Web Hosting Storage &amp; Bandwidth Estimator | WebCaretakers">
+  <meta name="twitter:description" content="Enter your monthly visitors, page weight, and file sizes to estimate the storage and bandwidth your hosting plan needs to cover.">
   <meta name="robots" content="index, follow">
   <link rel="stylesheet" href="/assets/css/main.css">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -36,53 +40,72 @@
   })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
 
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "Web Hosting Storage & Bandwidth Estimator",
-    "url": "https://webcaretakers.com/calculators/broadband/web-hosting-estimator/",
-    "applicationCategory": "UtilitiesApplication",
-    "operatingSystem": "Any",
-    "offers": { "@type": "Offer", "price": "0" },
-    "author": {
-      "@type": "Person",
-      "name": "Andrew Laws",
-      "url": "https://yeseo.io/"
-    }
-  }
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Web Hosting Storage & Bandwidth Estimator",
+  "url": "https://webcaretakers.com/calculators/broadband/web-hosting-estimator/",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Andrew Laws",
+    "url": "https://yeseo.io/"
+  },
+  "dateModified": "2026-04-29"
+}
   </script>
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "How is website bandwidth calculated?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Monthly bandwidth = monthly visitors \u00d7 pages per visit \u00d7 average page weight. If you also serve downloadable files, add monthly downloads \u00d7 file size. Add a buffer of 20\u201350% on top to absorb traffic spikes and crawlers." }
-      },
-      {
-        "@type": "Question",
-        "name": "What is the difference between bandwidth and storage in web hosting?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Storage is how much space your files take up on the server: HTML, CSS, images, videos, PDFs. Bandwidth (also called data transfer) is how much data flows out of the server each month as visitors load your pages and download your files. A small site with lots of downloads can have low storage but high bandwidth. A site with large media libraries has high storage but may have modest bandwidth if traffic is low." }
-      },
-      {
-        "@type": "Question",
-        "name": "What hosting tier do I need?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Shared hosting handles most sites with under 100 GB of monthly bandwidth and under 5 GB of storage. VPS or cloud hosting is appropriate for 100\u20131,000 GB bandwidth or 5\u2013100 GB storage. Dedicated servers or enterprise cloud are needed above those thresholds. These are rough guides; specific hosts define their own limits." }
-      },
-      {
-        "@type": "Question",
-        "name": "What is a bandwidth buffer and why do I need one?",
-        "acceptedAnswer": { "@type": "Answer", "text": "A bandwidth buffer is extra headroom above your calculated average. Traffic is never perfectly flat: a viral link, a news mention, or a seasonal spike can send your monthly bandwidth well above the average. A 20\u201350% buffer means you are buying a plan that can handle your peak, not just your average." }
-      },
-      {
-        "@type": "Question",
-        "name": "How do I find my average page weight?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Open your browser's developer tools (F12 in most browsers), go to the Network tab, reload a page, and look at the total transferred size at the bottom of the requests list. That is the page weight for that URL. The HTTP Archive Web Almanac reports that the median page weight is around 2,000 KB for desktop and 1,900 KB for mobile." }
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How is website bandwidth calculated?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Monthly bandwidth = monthly visitors × pages per visit × average page weight. Add monthly downloads × file size for any downloadable content. Add a buffer of 20–50% on top to absorb traffic spikes and crawlers. This tool does that maths for you."
       }
-    ]
-  }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between bandwidth and storage?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Storage is how much space your files take up on the server. Bandwidth (data transfer) is how much data flows out to visitors each month. You can have high storage with low bandwidth (a large archive with few visitors) or low storage with high bandwidth (a lean site with lots of traffic)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What hosting tier do I need?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Shared hosting suits most sites under 100 GB per month bandwidth and 5 GB storage. VPS or cloud is right for 100–1,000 GB or 5–100 GB storage. Above those figures, dedicated or enterprise cloud is the appropriate tier. These are rough guides; the estimator applies the same thresholds."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why add a buffer?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Your average monthly bandwidth is exactly that: an average. A link from a popular site, a seasonal campaign, or a crawl from a large search engine can send bandwidth well above the average for days at a time. A 20–50% buffer means your plan covers your peak, not just your steady-state figure."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I find my average page weight?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Open browser dev tools (F12), go to the Network tab, reload the page, and look at the total transferred size. Check a few representative pages and average them. The HTTP Archive reports a median of around 2,000 KB for desktop pages."
+      }
+    }
+  ]
+}
   </script>
   <!-- breadcrumb-jsonld -->
   <script type="application/ld+json">
@@ -425,6 +448,8 @@
             <p>Open browser dev tools (F12), go to the Network tab, reload the page, and look at the total transferred size. Check a few representative pages and average them. The HTTP Archive reports a median of around 2,000 KB for desktop pages.</p>
           </details>
         </section>
+        <!-- author-byline -->
+        <p class="author-byline">Last updated 29 April 2026 by <a href="/about/">Andrew Laws</a>.</p>
         <section class="related-calcs" aria-labelledby="related-heading">
           <h2 id="related-heading">Related calculators</h2>
           <ul class="related-calcs__list">

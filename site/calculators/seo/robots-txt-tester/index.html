@@ -10,6 +10,10 @@
   <meta property="og:description" content="Test whether a URL is allowed or blocked by a robots.txt, with the exact winning rule shown.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://webcaretakers.com/calculators/seo/robots-txt-tester/">
+  <!-- twitter-card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Robots.txt Tester | WebCaretakers">
+  <meta name="twitter:description" content="Test whether a URL is allowed or blocked by a robots.txt, with the exact winning rule shown.">
   <meta name="robots" content="index, follow">
   <link rel="stylesheet" href="/assets/css/main.css">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -36,53 +40,80 @@
   })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
 
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "Robots.txt Tester",
-    "url": "https://webcaretakers.com/calculators/seo/robots-txt-tester/",
-    "applicationCategory": "BusinessApplication",
-    "operatingSystem": "Any",
-    "offers": { "@type": "Offer", "price": "0" },
-    "author": {
-      "@type": "Person",
-      "name": "Andrew Laws",
-      "url": "https://yeseo.io/"
-    }
-  }
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Robots.txt Tester",
+  "url": "https://webcaretakers.com/calculators/seo/robots-txt-tester/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Andrew Laws",
+    "url": "https://yeseo.io/"
+  },
+  "dateModified": "2026-04-29"
+}
   </script>
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "Does this tool fetch my live robots.txt?",
-        "acceptedAnswer": { "@type": "Answer", "text": "No. You paste the body of the robots.txt yourself and the matching runs entirely in your browser. There is no network call. That keeps unpublished or staging robots files private, and means you can test changes before you deploy them rather than after." }
-      },
-      {
-        "@type": "Question",
-        "name": "Why does my Disallow not block the URL I expected?",
-        "acceptedAnswer": { "@type": "Answer", "text": "The most common reason is a longer Allow rule overriding it. Google picks the rule with the longest matching pattern, so Disallow: /a/ loses to Allow: /a/b/ on URLs under /a/b/. The other common cause is case: paths are case-sensitive, so Disallow: /Private/ does not block /private/. Open the prove-it panel below the result to see every candidate rule and which length won." }
-      },
-      {
-        "@type": "Question",
-        "name": "How does the user-agent matching work?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Group selection uses the most specific token whose name is a prefix of the requested user-agent, case-insensitively. So Googlebot-Image gets the Googlebot-Image group if one exists, falling back to the Googlebot group, falling back to the * group. If none match, everything is allowed by default." }
-      },
-      {
-        "@type": "Question",
-        "name": "What do * and $ mean in robots.txt patterns?",
-        "acceptedAnswer": { "@type": "Answer", "text": "An asterisk matches any sequence of characters, including empty. A dollar sign at the end of a pattern anchors it to the end of the URL, so Disallow: /*.pdf$ blocks paths ending in .pdf but not /file.pdf.txt. Both are part of the original Google spec and are widely supported." }
-      },
-      {
-        "@type": "Question",
-        "name": "Why is an empty Disallow line treated as allow?",
-        "acceptedAnswer": { "@type": "Answer", "text": "It is the convention from the original 1994 robots.txt note: a line of Disallow with nothing after the colon means there is nothing to disallow, so everything is allowed for that user-agent. Google still treats it that way. An empty Allow line is a no-op and does not contribute a matching rule." }
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does this tool fetch my live robots.txt?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. You paste the body of the robots.txt yourself and the matching runs entirely in your browser. There is no network call. That keeps unpublished or staging robots files private, and means you can test changes before you deploy them rather than after."
       }
-    ]
-  }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does my Disallow not block the URL I expected?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The most common reason is a longer Allow rule overriding it. Google picks the rule with the longest matching pattern, so Disallow: /a/ loses to Allow: /a/b/ on URLs under /a/b/. The other common cause is case: paths are case-sensitive, so Disallow: /Private/ does not block /private/. Open the prove-it panel below the result to see every candidate rule and which length won."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does the user-agent matching work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Group selection uses the most specific token whose name is a prefix of the requested user-agent, case-insensitively. So Googlebot-Image gets the Googlebot-Image group if one exists, falling back to the Googlebot group, falling back to the * group. If none match, everything is allowed by default."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What do * and $ mean in robots.txt patterns?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "An asterisk matches any sequence of characters, including empty. A dollar sign at the end of a pattern anchors it to the end of the URL, so Disallow: /*.pdf$ blocks paths ending in .pdf but not /file.pdf.txt. Both are part of the original Google spec and are widely supported."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why is an empty Disallow line treated as allow?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It is the convention from the original 1994 robots.txt note: a line of Disallow with nothing after the colon means there is nothing to disallow, so everything is allowed for that user-agent. Google still treats it that way. An empty Allow line is a no-op and does not contribute a matching rule."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Will blocking a page in robots.txt remove it from Google?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No, and this is a frequent SEO mistake. Disallow stops the crawler fetching the URL. The URL itself can still appear in the index (without a snippet) based on links pointing at it. To actually de-index a page, leave it crawlable and serve a noindex meta tag or X-Robots-Tag header. Disallowing a page Google has already indexed can leave it in the index for a long time."
+      }
+    }
+  ]
+}
   </script>
   <!-- breadcrumb-jsonld -->
   <script type="application/ld+json">
@@ -389,6 +420,8 @@ Sitemap: https://example.com/sitemap.xml"></textarea>
             <p>No, and this is a frequent SEO mistake. Disallow stops the crawler fetching the URL. The URL itself can still appear in the index (without a snippet) based on links pointing at it. To actually de-index a page, leave it crawlable and serve a <code>noindex</code> meta tag or X-Robots-Tag header. Disallowing a page Google has already indexed can leave it in the index for a long time.</p>
           </details>
         </section>
+        <!-- author-byline -->
+        <p class="author-byline">Last updated 29 April 2026 by <a href="/about/">Andrew Laws</a>.</p>
         <section class="related-calcs" aria-labelledby="related-heading">
           <h2 id="related-heading">Related calculators</h2>
           <ul class="related-calcs__list">

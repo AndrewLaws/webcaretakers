@@ -10,6 +10,10 @@
   <meta property="og:description" content="Convert between numbers and Roman numerals. Range 1 to 3,999, malformed numerals flagged, every step shown.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://webcaretakers.com/calculators/conversions/roman-numeral-converter/">
+  <!-- twitter-card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Roman Numeral Converter | WebCaretakers">
+  <meta name="twitter:description" content="Convert between numbers and Roman numerals. Range 1 to 3,999, malformed numerals flagged, every step shown.">
   <meta name="robots" content="index, follow">
   <link rel="stylesheet" href="/assets/css/main.css">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -36,48 +40,72 @@
   })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
 
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "Roman Numeral Converter",
-    "url": "https://webcaretakers.com/calculators/conversions/roman-numeral-converter/",
-    "applicationCategory": "EducationalApplication",
-    "operatingSystem": "Any",
-    "offers": { "@type": "Offer", "price": "0" },
-    "author": {
-      "@type": "Person",
-      "name": "Andrew Laws",
-      "url": "https://yeseo.io/"
-    }
-  }
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Roman Numeral Converter",
+  "url": "https://webcaretakers.com/calculators/conversions/roman-numeral-converter/",
+  "applicationCategory": "EducationalApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Andrew Laws",
+    "url": "https://yeseo.io/"
+  },
+  "dateModified": "2026-04-29"
+}
   </script>
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "Why does this stop at 3,999?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Standard Roman numerals only have symbols up to M (1,000). The largest value you can write without repeating M four times in a row is MMMCMXCIX, which is 3,999. The Romans extended the system for larger values using a vinculum, an overline that multiplies the symbol by 1,000, so V with a bar over it meant 5,000. Vinculum notation has never settled into a single agreed convention and is rare outside specialist texts, so this converter sticks to the standard 1 to 3,999 range." }
-      },
-      {
-        "@type": "Question",
-        "name": "Why is IIII rejected when clock faces use it?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Standard Roman numerals never repeat the same symbol four times. Four is IV, not IIII. Many traditional clock faces use IIII anyway, partly for visual symmetry against VIII on the opposite side of the dial, and partly because the legend is that Louis XIV preferred it. It is a typographic convention for clocks, not a valid numeral, so the converter flags it as non-standard and offers IV as the canonical form." }
-      },
-      {
-        "@type": "Question",
-        "name": "What about lowercase letters?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Lowercase Roman numerals (i, ii, iv) are common in book front matter and outline numbering. The converter normalises everything to uppercase before parsing, so mcmlxxxiv and MCMLXXXIV both return 1984." }
-      },
-      {
-        "@type": "Question",
-        "name": "Why is IC not 99?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Subtractive pairs in standard Roman numerals are restricted: I can only sit before V or X, X can only sit before L or C, and C can only sit before D or M. So 99 is XCIX (90 + 9), not IC. The converter rejects IC, IL, XM and similar shorthand even though their arithmetic is unambiguous, because they are not part of the agreed system." }
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Why does this stop at 3,999?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Standard Roman numerals only have symbols up to M (1,000), and no symbol is meant to repeat more than three times. That puts the ceiling at MMMCMXCIX, which is 3,999. The Romans extended the system for larger values using a vinculum, an overline that multiplies the symbol by 1,000, so V with a bar over it meant 5,000. Vinculum notation has never settled into a single agreed convention and the bars do not render reliably in modern fonts, so this converter stays inside the standard 1 to 3,999 range."
       }
-    ]
-  }
+    },
+    {
+      "@type": "Question",
+      "name": "Why is IIII rejected when clock faces use it?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Standard Roman numerals never repeat the same symbol four times. Four is IV, not IIII. Many traditional clock faces use IIII anyway, partly for visual symmetry against VIII on the opposite side of the dial, partly because identical numerals were cheaper to cast in bulk, and partly because of an undocumented story that Louis XIV preferred it. It is a typographic convention for clocks, not a valid numeral."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What about lowercase letters?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Lowercase Roman numerals (i, ii, iv) are common in book front matter and in nested outlines. The converter normalises everything to uppercase before parsing, so mcmlxxxiv and MCMLXXXIV both return 1984."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why is IC not 99?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Subtractive pairs in standard Roman numerals are restricted: I can only sit before V or X, X can only sit before L or C, and C can only sit before D or M. So 99 is XCIX (90 + 9), not IC. The converter rejects IC, IL, XM and similar shorthand even though their arithmetic is unambiguous, because they are not part of the agreed system."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I copy the result?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. There is a Copy button next to the result. The text is also selectable in the usual way, and everything happens in your browser. Nothing is sent anywhere."
+      }
+    }
+  ]
+}
   </script>
   <!-- breadcrumb-jsonld -->
   <script type="application/ld+json">
@@ -318,6 +346,8 @@
             <p>Yes. There is a Copy button next to the result. The text is also selectable in the usual way, and everything happens in your browser. Nothing is sent anywhere.</p>
           </details>
         </section>
+        <!-- author-byline -->
+        <p class="author-byline">Last updated 29 April 2026 by <a href="/about/">Andrew Laws</a>.</p>
         <section class="related-calcs" aria-labelledby="related-heading">
           <h2 id="related-heading">Related calculators</h2>
           <ul class="related-calcs__list">

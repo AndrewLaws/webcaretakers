@@ -10,6 +10,10 @@
   <meta property="og:description" content="Estimate the cost of generating AI images across the major providers. Side-by-side comparison, pricing dated for transparency.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://webcaretakers.com/calculators/ai/image-generation-cost-calculator/">
+  <!-- twitter-card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="AI Image Generation Cost Calculator | WebCaretakers">
+  <meta name="twitter:description" content="Estimate the cost of generating AI images across the major providers. Side-by-side comparison, pricing dated for transparency.">
   <meta name="robots" content="index, follow">
   <link rel="stylesheet" href="/assets/css/main.css">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -36,53 +40,80 @@
   })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
 
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "AI Image Generation Cost Calculator",
-    "url": "https://webcaretakers.com/calculators/ai/image-generation-cost-calculator/",
-    "applicationCategory": "DeveloperApplication",
-    "operatingSystem": "Any",
-    "offers": { "@type": "Offer", "price": "0" },
-    "author": {
-      "@type": "Person",
-      "name": "Andrew Laws",
-      "url": "https://yeseo.io/"
-    }
-  }
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "AI Image Generation Cost Calculator",
+  "url": "https://webcaretakers.com/calculators/ai/image-generation-cost-calculator/",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Andrew Laws",
+    "url": "https://yeseo.io/"
+  },
+  "dateModified": "2026-04-29"
+}
   </script>
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "Why does Midjourney show a per-image price when it is sold by subscription?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Because the comparison only works if every model is priced on the same axis. The Midjourney Standard plan is $30 a month for roughly 3,500 fast images, which works out at about $0.0086 per fast image. If you generate fewer than that, your effective per-image cost is higher; if you stay inside the fast-image quota, the figure here is honest. Heavy users will spill into relax-mode or buy more fast hours, which the calculator does not model." }
-      },
-      {
-        "@type": "Question",
-        "name": "Are these the prices I will actually pay?",
-        "acceptedAnswer": { "@type": "Answer", "text": "They are the public list prices on the Last verified date shown on the page. They do not include volume discounts, free credits new accounts get on Replicate or Vertex AI, currency conversion fees if you are billed in a non-USD card, or upscales and variations on Midjourney. Treat the number as a sensible estimate, not an invoice." }
-      },
-      {
-        "@type": "Question",
-        "name": "What size of image are these prices for?",
-        "acceptedAnswer": { "@type": "Answer", "text": "The standard 1024x1024 image, or each provider's nearest equivalent. Larger or more detailed outputs cost more on most platforms (DALL-E 3 1792x1024 is roughly $0.08 standard or $0.12 HD, for example). If you are generating big landscape images at scale, push the per-image price up by 50 to 100 percent before signing off the budget." }
-      },
-      {
-        "@type": "Question",
-        "name": "Why is Stable Diffusion XL so much cheaper?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Two reasons. First, SDXL is open weights, so providers like Replicate compete on margin alone rather than carrying a research bill. Second, SDXL runs in seconds on cheap GPUs. The trade-off is output consistency: SDXL needs a careful prompt, the right sampler and often a few rerolls before it produces what you wanted. Cheap per image is not the same as cheap per usable image." }
-      },
-      {
-        "@type": "Question",
-        "name": "How often is the pricing on this page updated?",
-        "acceptedAnswer": { "@type": "Answer", "text": "The Last verified date on the page is when the prices were last checked against each provider's official pricing page. The figures are baked into the page so it loads fast and works without any API calls, which means they can drift if a provider changes their list price. Always sanity-check against the provider's own pricing page before signing off a meaningful spend." }
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Why does Midjourney show a per-image price when it is sold by subscription?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Because the comparison only works if every model is priced on the same axis. The Midjourney Standard plan is $30 a month for roughly 3,500 fast images, which works out at about $0.0086 per fast image. If you generate fewer than that, your effective per-image cost is higher; if you stay inside the fast-image quota, the figure here is honest. Heavy users will spill into relax-mode or buy more fast hours, which the calculator does not model."
       }
-    ]
-  }
+    },
+    {
+      "@type": "Question",
+      "name": "Are these the prices I will actually pay?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "They are the public list prices on the Last verified date shown on the page. They do not include volume discounts, free credits new accounts get on Replicate or Vertex AI, currency conversion fees if you are billed in a non-USD card, or upscales and variations on Midjourney. Treat the number as a sensible estimate, not an invoice."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What size of image are these prices for?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The standard 1024x1024 image, or each provider's nearest equivalent. Larger or more detailed outputs cost more on most platforms. If you are generating big landscape images at scale, push the per-image price up by 50 to 100 percent before signing off the budget."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why is Stable Diffusion XL so much cheaper?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Two reasons. First, SDXL is open weights, so providers like Replicate compete on margin alone rather than carrying a research bill. Second, SDXL runs in seconds on cheap GPUs. The trade-off is output consistency: SDXL needs a careful prompt, the right sampler and often a few rerolls before it produces what you wanted. Cheap per image is not the same as cheap per usable image."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How often is the pricing on this page updated?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The Last verified date on the page is when the prices were last checked against each provider's official pricing page. The figures are baked in so the page loads fast and works without any API calls, which means they can drift if a provider changes their list price. Sanity-check against the provider's own pricing page before signing off a meaningful spend."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does this calculator send my prompts anywhere?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Everything runs in your browser. Nothing leaves your device, because there is no server to leave to."
+      }
+    }
+  ]
+}
   </script>
   <!-- breadcrumb-jsonld -->
   <script type="application/ld+json">
@@ -365,6 +396,8 @@
             <p>No. Everything runs in your browser. Nothing leaves your device, because there is no server to leave to.</p>
           </details>
         </section>
+        <!-- author-byline -->
+        <p class="author-byline">Last updated 29 April 2026 by <a href="/about/">Andrew Laws</a>.</p>
         <section class="related-calcs" aria-labelledby="related-heading">
           <h2 id="related-heading">Related calculators</h2>
           <ul class="related-calcs__list">

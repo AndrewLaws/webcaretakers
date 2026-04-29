@@ -10,6 +10,10 @@
   <meta property="og:description" content="Work out what it costs to embed a corpus of documents. OpenAI, Cohere, Voyage, or your own price per million tokens.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://webcaretakers.com/calculators/ai/embedding-cost-calculator/">
+  <!-- twitter-card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Embedding Cost Calculator | WebCaretakers">
+  <meta name="twitter:description" content="Work out what it costs to embed a corpus of documents. OpenAI, Cohere, Voyage, or your own price per million tokens.">
   <meta name="robots" content="index, follow">
   <link rel="stylesheet" href="/assets/css/main.css">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -36,53 +40,80 @@
   })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
 
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "Embedding Cost Calculator",
-    "url": "https://webcaretakers.com/calculators/ai/embedding-cost-calculator/",
-    "applicationCategory": "UtilitiesApplication",
-    "operatingSystem": "Any",
-    "offers": { "@type": "Offer", "price": "0" },
-    "author": {
-      "@type": "Person",
-      "name": "Andrew Laws",
-      "url": "https://yeseo.io/"
-    }
-  }
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Embedding Cost Calculator",
+  "url": "https://webcaretakers.com/calculators/ai/embedding-cost-calculator/",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Andrew Laws",
+    "url": "https://yeseo.io/"
+  },
+  "dateModified": "2026-04-29"
+}
   </script>
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "What is an embedding?",
-        "acceptedAnswer": { "@type": "Answer", "text": "An embedding is a list of numbers that captures the meaning of a chunk of text. Two passages about the same topic land near each other in that number-space, which is what makes vector search work. You pay an embedding model to turn each chunk of your corpus into one of these vectors, then keep the vectors in a database so you can find similar ones at query time." }
-      },
-      {
-        "@type": "Question",
-        "name": "Why 1.3 tokens per word?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Roughly the ratio you get on average English prose with the OpenAI tokeniser. Code, JSON, and non-English text run higher, often closer to 1.5 or 2. If your corpus is mostly schemas or French legal prose, bump the multiplier or use a tokeniser to count properly. The default is a useful starting heuristic, not gospel." }
-      },
-      {
-        "@type": "Question",
-        "name": "When does refreshing the embeddings actually matter?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Only when the source documents change. If you're indexing a stable knowledge base, embed once and forget. If you're indexing chat transcripts, news articles, or anything that updates, you need a refresh strategy. The calculator lets you model monthly, weekly or daily reruns of the whole corpus, which is the worst case. In practice you'll usually only re-embed the chunks that changed, which costs a fraction of the figure here." }
-      },
-      {
-        "@type": "Question",
-        "name": "Why is text-embedding-3-large six times the price?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Higher dimension count (3072 vs 1536) and a heavier model produce sharper retrieval, especially on hard queries where the small model gets confused. Worth it if your retrieval quality is the bottleneck. If your bottleneck is somewhere else (chunking, reranking, prompt design), the upgrade is wasted spend." }
-      },
-      {
-        "@type": "Question",
-        "name": "Does this include the storage cost in a vector database?",
-        "acceptedAnswer": { "@type": "Answer", "text": "No. This is just the embedding bill, the cost of turning text into vectors. The monthly bill from Pinecone, Weaviate, Qdrant, or self-hosted pgvector is a separate line. For that, the RAG Pipeline Cost Calculator is the better fit." }
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is an embedding?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "An embedding is a list of numbers that captures the meaning of a chunk of text. Two passages about the same topic land near each other in that number-space, which is what makes vector search work. You pay an embedding model to turn each chunk of your corpus into one of these vectors."
       }
-    ]
-  }
+    },
+    {
+      "@type": "Question",
+      "name": "Why 1.3 tokens per word?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Roughly the ratio you get on average English prose with the OpenAI tokeniser. Code, JSON, and non-English text run higher, often closer to 1.5 or 2. If your corpus is mostly schemas or French legal prose, bump the multiplier or use a tokeniser to count properly."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "When does refreshing the embeddings actually matter?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Only when the source documents change. If you're indexing a stable knowledge base, embed once and forget. If your corpus updates, you need a refresh strategy. In practice, you'll usually only re-embed the chunks that changed, which costs a fraction of the figure here."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why is text-embedding-3-large six times the price?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Higher dimension count (3072 vs 1536) and a heavier model produce sharper retrieval, especially on hard queries where the small model gets confused. Worth it if retrieval quality is the bottleneck."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does this include the storage cost in a vector database?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. This is just the embedding bill. The monthly bill from Pinecone, Weaviate, Qdrant, or self-hosted pgvector is a separate line, covered by the RAG Pipeline Cost Calculator."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does this calculator send my numbers anywhere?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Everything runs in your browser. Nothing is uploaded."
+      }
+    }
+  ]
+}
   </script>
   <!-- breadcrumb-jsonld -->
   <script type="application/ld+json">
@@ -377,6 +408,8 @@
             <p>No. Everything runs in your browser. Nothing is uploaded.</p>
           </details>
         </section>
+        <!-- author-byline -->
+        <p class="author-byline">Last updated 29 April 2026 by <a href="/about/">Andrew Laws</a>.</p>
         <section class="related-calcs" aria-labelledby="related-heading">
           <h2 id="related-heading">Related calculators</h2>
           <ul class="related-calcs__list">

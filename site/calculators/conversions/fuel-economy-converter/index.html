@@ -10,6 +10,10 @@
   <meta property="og:description" content="Convert fuel economy live across MPG (UK), MPG (US), L/100km and km/L. Edit any field, the other three update on the spot.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://webcaretakers.com/calculators/conversions/fuel-economy-converter/">
+  <!-- twitter-card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Fuel Economy Converter | WebCaretakers">
+  <meta name="twitter:description" content="Convert fuel economy live across MPG (UK), MPG (US), L/100km and km/L. Edit any field, the other three update on the spot.">
   <meta name="robots" content="index, follow">
   <link rel="stylesheet" href="/assets/css/main.css">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -36,53 +40,72 @@
   })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
 
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "Fuel Economy Converter",
-    "url": "https://webcaretakers.com/calculators/conversions/fuel-economy-converter/",
-    "applicationCategory": "UtilitiesApplication",
-    "operatingSystem": "Any",
-    "offers": { "@type": "Offer", "price": "0" },
-    "author": {
-      "@type": "Person",
-      "name": "Andrew Laws",
-      "url": "https://yeseo.io/"
-    }
-  }
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Fuel Economy Converter",
+  "url": "https://webcaretakers.com/calculators/conversions/fuel-economy-converter/",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Andrew Laws",
+    "url": "https://yeseo.io/"
+  },
+  "dateModified": "2026-04-29"
+}
   </script>
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "Why is MPG (UK) different from MPG (US)?",
-        "acceptedAnswer": { "@type": "Answer", "text": "The two countries use different gallons. The imperial gallon is 4.54609 litres, the US gallon is 3.785411784 litres, so a US gallon is about 17 percent smaller. A car that does 30 MPG (UK) does roughly 25 MPG (US) for the same fuel use, because the US is dividing the same miles by a smaller gallon. Always check which gallon a published figure is using before comparing two cars." }
-      },
-      {
-        "@type": "Question",
-        "name": "Why is L/100km the opposite way around to MPG?",
-        "acceptedAnswer": { "@type": "Answer", "text": "MPG measures distance per fixed fuel: bigger is better. L/100km measures fuel per fixed distance: smaller is better. The two are reciprocal, which is why a small drop in L/100km at the efficient end is worth less than the same drop at the thirsty end. Going from 10 to 9 L/100km saves more fuel over a year than going from 5 to 4 L/100km, even though both look like a one-unit improvement. The fuel-per-distance framing makes that effect easier to see, which is part of why most of Europe prefers it." }
-      },
-      {
-        "@type": "Question",
-        "name": "Which countries use which unit?",
-        "acceptedAnswer": { "@type": "Answer", "text": "The UK uses MPG with the imperial gallon. The US and Canada use MPG with the US gallon, although Canada also publishes L/100km on official window stickers. Most of mainland Europe and Australia use L/100km. India, Japan and a few South American countries lean on km/L. If you are comparing a car spec sheet against a number you grew up with, you almost certainly need a conversion." }
-      },
-      {
-        "@type": "Question",
-        "name": "Are the constants on this page exact?",
-        "acceptedAnswer": { "@type": "Answer", "text": "The underlying volume and distance constants are exact: 1 imperial gallon is defined as 4.54609 litres, 1 US gallon is defined as 3.785411784 litres, and 1 mile is exactly 1.609344 kilometres. The combined MPG-to-L/100km factors (282.481 for UK, 235.215 for US) are rounded, but the calculator uses the full-precision derivations internally and only rounds for display. The Conversion factors block on the page lists the source values so you can audit the working." }
-      },
-      {
-        "@type": "Question",
-        "name": "Why does the calculator round MPG to one decimal but L/100km to two?",
-        "acceptedAnswer": { "@type": "Answer", "text": "MPG figures published by manufacturers and motoring journalists almost always quote one decimal place, sometimes none. L/100km figures are routinely quoted to two decimals because the unit is smaller in absolute terms and a one-decimal version loses too much resolution at the efficient end (a 4.2 versus 4.3 L/100km difference is real). The rounding mirrors the convention each market actually uses." }
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Why is MPG (UK) different from MPG (US)?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The two countries use different gallons. The imperial gallon is 4.54609 litres, the US gallon is 3.785411784 litres, so a US gallon is about 17 per cent smaller. A car that does 30 MPG (UK) does roughly 25 MPG (US) for the same fuel use, because the US is dividing the same miles by a smaller gallon. Always check which gallon a published figure is using before comparing two cars."
       }
-    ]
-  }
+    },
+    {
+      "@type": "Question",
+      "name": "Why is L/100km the opposite way around to MPG?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "MPG measures distance per fixed fuel: bigger is better. L/100km measures fuel per fixed distance: smaller is better. The two are reciprocal, which is why a small drop in L/100km at the efficient end is worth less than the same drop at the thirsty end. Going from 10 to 9 L/100km saves more fuel over a year than going from 5 to 4 L/100km, even though both look like a one-unit improvement."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which countries use which unit?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The UK uses MPG with the imperial gallon. The US and Canada use MPG with the US gallon, although Canada also publishes L/100km on official window stickers. Most of mainland Europe and Australia use L/100km. India, Japan and a few South American countries lean on km/L. If you are comparing a car spec sheet against a number you grew up with, you almost certainly need a conversion."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are the constants on this page exact?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The underlying volume and distance constants are exact by definition: 1 imperial gallon is 4.54609 litres, 1 US gallon is 3.785411784 litres, and 1 mile is 1.609344 kilometres. The combined MPG-to-L/100km factors (282.481 for UK, 235.215 for US) are rounded for display, but the calculator uses the full-precision derivations internally and only rounds at the end. The Conversion factors block above lists the sources so you can audit the working."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does MPG round to one decimal but L/100km to two?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "MPG figures published by manufacturers and motoring journalists almost always quote one decimal place, sometimes none. L/100km figures are routinely quoted to two decimals because the unit is smaller in absolute terms and a one-decimal version loses resolution at the efficient end (a 4.2 versus 4.3 L/100km difference is real). The rounding mirrors the convention each market actually uses."
+      }
+    }
+  ]
+}
   </script>
   <!-- breadcrumb-jsonld -->
   <script type="application/ld+json">
@@ -347,6 +370,8 @@
             <p>MPG figures published by manufacturers and motoring journalists almost always quote one decimal place, sometimes none. L/100km figures are routinely quoted to two decimals because the unit is smaller in absolute terms and a one-decimal version loses resolution at the efficient end (a 4.2 versus 4.3 L/100km difference is real). The rounding mirrors the convention each market actually uses.</p>
           </details>
         </section>
+        <!-- author-byline -->
+        <p class="author-byline">Last updated 29 April 2026 by <a href="/about/">Andrew Laws</a>.</p>
         <section class="related-calcs" aria-labelledby="related-heading">
           <h2 id="related-heading">Related calculators</h2>
           <ul class="related-calcs__list">

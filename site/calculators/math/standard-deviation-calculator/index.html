@@ -10,6 +10,10 @@
   <meta property="og:description" content="Paste a list of numbers, get the full descriptive-stats summary including sample and population standard deviation, with the maths shown.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://webcaretakers.com/calculators/math/standard-deviation-calculator/">
+  <!-- twitter-card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Standard Deviation Calculator | WebCaretakers">
+  <meta name="twitter:description" content="Paste a list of numbers, get the full descriptive-stats summary including sample and population standard deviation, with the maths shown.">
   <meta name="robots" content="index, follow">
   <link rel="stylesheet" href="/assets/css/main.css">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -36,53 +40,73 @@
   })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
 
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "Standard Deviation Calculator",
-    "url": "https://webcaretakers.com/calculators/math/standard-deviation-calculator/",
-    "applicationCategory": "EducationalApplication",
-    "operatingSystem": "Any",
-    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-    "author": {
-      "@type": "Person",
-      "name": "Andrew Laws",
-      "url": "https://yeseo.io/"
-    }
-  }
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Standard Deviation Calculator",
+  "url": "https://webcaretakers.com/calculators/math/standard-deviation-calculator/",
+  "applicationCategory": "EducationalApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Andrew Laws",
+    "url": "https://yeseo.io/"
+  },
+  "dateModified": "2026-04-29"
+}
   </script>
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "Should I use sample or population standard deviation?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Use sample standard deviation (s, divide by n − 1) when your numbers are a sample drawn from a larger population and you want to estimate the spread of that population. Use population standard deviation (σ, divide by n) only when your numbers are the entire population, every member of it, with nobody left out. In practice, almost every real dataset is a sample, so s is the right default unless you can prove otherwise. The difference between the two shrinks as n grows, but at small sample sizes (n under 30) it matters." }
-      },
-      {
-        "@type": "Question",
-        "name": "What is Bessel's correction and why divide by n − 1?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Bessel's correction is the n − 1 in the denominator of the sample variance formula. The sample mean is itself estimated from the data, which means the deviations from it are slightly smaller, on average, than deviations from the true population mean. Dividing by n instead of n − 1 would underestimate the variance. Subtracting one degree of freedom corrects for the fact that you used the data to estimate the mean before computing the spread." }
-      },
-      {
-        "@type": "Question",
-        "name": "Does this calculator send my numbers anywhere?",
-        "acceptedAnswer": { "@type": "Answer", "text": "No. Everything runs in your browser using vanilla JavaScript. The numbers you paste never leave your device. You can disconnect from the network and the calculator still works." }
-      },
-      {
-        "@type": "Question",
-        "name": "Why does this give a different answer to my old calculator?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Almost always it is because one calculator returned sample SD (s, n − 1 denominator) and the other returned population SD (σ, n denominator). This page shows both side by side so you can match whichever number the source you are checking against used. If the difference is in the last decimal places only, that is normal floating-point variation between implementations." }
-      },
-      {
-        "@type": "Question",
-        "name": "What delimiters can I use to separate numbers?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Commas, spaces, tabs, semicolons, and newlines are all accepted, mixed freely. Paste a column from a spreadsheet, a comma-separated list from a report, or a space-separated row from a paper. Anything that is not a valid number is reported back to you so you can fix the typo without losing your place." }
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Should I use sample or population standard deviation?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Use sample standard deviation (s, divide by n &minus; 1) when your numbers are a sample drawn from a larger population and you want to estimate the spread of that population. Use population standard deviation (&sigma;, divide by n) only when your numbers are the entire population, every member of it, with nobody left out. In practice, almost every real dataset is a sample, so s is the right default unless you can prove otherwise. The difference between the two shrinks as n grows, but at small sample sizes (n under 30) it matters."
       }
-    ]
-  }
+    },
+    {
+      "@type": "Question",
+      "name": "What is Bessel's correction and why divide by n &minus; 1?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Bessel's correction is the n &minus; 1 in the denominator of the sample variance formula. The sample mean is itself estimated from the data, which means the deviations from it are slightly smaller, on average, than deviations from the true population mean. Dividing by n instead of n &minus; 1 would underestimate the variance. Subtracting one degree of freedom corrects for the fact that you used the data to estimate the mean before computing the spread."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does this calculator send my numbers anywhere?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Everything runs in your browser using vanilla JavaScript. The numbers you paste never leave your device. You can disconnect from the network and the calculator still works."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does this give a different answer to my old calculator?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Almost always it is because one calculator returned sample SD (s, n &minus; 1 denominator) and the other returned population SD (&sigma;, n denominator). This page shows both side by side so you can match whichever number the source you are checking against used. If the difference is in the last decimal places only, that is normal floating-point variation between implementations."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What delimiters can I use to separate numbers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Commas, spaces, tabs, semicolons, and newlines are all accepted, mixed freely. Paste a column from a spreadsheet, a comma-separated list from a report, or a space-separated row from a paper. Anything that is not a valid number is reported back to you so you can fix the typo without losing your place."
+      }
+    }
+  ]
+}
   </script>
   <!-- breadcrumb-jsonld -->
   <script type="application/ld+json">
@@ -331,6 +355,8 @@
             <p>Commas, spaces, tabs, semicolons, and newlines are all accepted, mixed freely. Paste a column from a spreadsheet, a comma-separated list from a report, or a space-separated row from a paper. Anything that is not a valid number is reported back to you so you can fix the typo without losing your place.</p>
           </details>
         </section>
+        <!-- author-byline -->
+        <p class="author-byline">Last updated 29 April 2026 by <a href="/about/">Andrew Laws</a>.</p>
         <section class="related-calcs" aria-labelledby="related-heading">
           <h2 id="related-heading">Related calculators</h2>
           <ul class="related-calcs__list">
