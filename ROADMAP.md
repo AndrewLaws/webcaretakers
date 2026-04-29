@@ -145,6 +145,7 @@ Three-tier IA: **Home → Category hub → Calculator**. Primary nav shows categ
 
 These were built in response to keyword research, traffic priorities or user requests rather than from the Tier 1 list. Source of truth for live calculators is `categories.json`; this section is just a quick map of what's been added beyond the original roadmap.
 
+- [x] UK Marathon Course Difficulty Calculator (Health, UK-localised, 2026-04-29) — GPX upload, Strava-style GAP, late-race fatigue weighting, climb detection
 - [x] Pregnancy Due Date Calculator (Health, 2026-04-26)
 - [x] TDEE Calculator (Health, 2026-04-26)
 - [x] UK Rent vs Buy Calculator (Property, UK-localised, 2026-04-26)
