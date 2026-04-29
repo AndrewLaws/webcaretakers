@@ -139,6 +139,7 @@ const ORG_SCHEMA = {
   url: 'https://webcaretakers.com/',
   founder: { '@type': 'Person', name: 'Andrew Laws' },
   sameAs: [
+    'https://andrewlaws.com/',
     'https://yeseo.io/',
     'https://lawsie.com/',
     'https://www.linkedin.com/in/andrewlaws/',
@@ -150,11 +151,12 @@ const PERSON_SCHEMA = {
   '@type': 'Person',
   name: 'Andrew Laws',
   jobTitle: 'SEO consultant and founder, Yeseo',
-  url: 'https://yeseo.io/',
+  url: 'https://andrewlaws.com/',
   sameAs: [
     'https://www.linkedin.com/in/andrewlaws/',
     'https://yeseo.io/',
     'https://lawsie.com/',
+    'https://andrewlaws.com/',
   ],
   knowsAbout: ['SEO', 'search engine optimisation', 'website performance', 'calculator tools'],
 };
