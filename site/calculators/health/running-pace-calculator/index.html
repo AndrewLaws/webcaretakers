@@ -102,6 +102,30 @@
         "@type": "Answer",
         "text": "They assume a constant pace for the full distance. This is realistic for shorter distances. For half marathons and marathons, most runners slow, so treat the prediction as a pace-effort target rather than a guaranteed finish time."
       }
+    },
+    {
+      "@type": "Question",
+      "name": "Does temperature really make that much difference to my race time?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, and more than most runners expect. The rough rule coaches use is 30 to 60 seconds per kilometre added for every 5°C above what you trained in, with a small buffer before the penalty kicks in. A marathon in 25°C when you trained in 10°C can easily cost you 15 to 20 minutes off the pace your fitness would otherwise predict. The calculator caps the heat penalty at 180 seconds per kilometre, because past that point you are not racing, you are just trying to finish without seeing a medic."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does the calculator ask for my weekly training mileage?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Because for marathon prediction it is the strongest single signal there is. Two runners with the same half-marathon time can produce wildly different marathon times depending on whether they are training 30 km/week or 80 km/week. High-mileage runners hold pace deeper into the race; low-mileage runners get to about 30 km and then the wheels come off. The mileage modifier only kicks in for half-marathon and longer targets, because at 5K and 10K it does not really move the needle."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does sex assigned at birth matter for marathon prediction?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The classic Riegel formula uses a single exponent of 1.06 for everyone. Decades of race data show women, on average, fade less from half to full marathon than men do. The exact reason is debated (fat metabolism, pacing patterns, glycogen handling) but the pattern is real. The calculator uses 1.04 for women, 1.06 for men, and 1.05 as a neutral default if you would rather not say. The difference is small for shorter races and meaningful for a marathon."
+      }
     }
   ]
 }
@@ -296,6 +320,65 @@
               </div>
             </div>
 
+            <details class="calc-advanced" data-advanced>
+              <summary>Race conditions &amp; training (optional)</summary>
+              <p class="calc-advanced__intro">Tune the prediction for your sex, weekly mileage, race-day temperature, and how big the race is. Leave the defaults if you want a plain Riegel estimate.</p>
+
+              <div class="calc-row">
+                <label for="targetRace">Target race for adjusted prediction</label>
+                <select id="targetRace" name="targetRace" data-input-target-race>
+                  <option value="5">5K</option>
+                  <option value="10">10K</option>
+                  <option value="21.0975">Half Marathon</option>
+                  <option value="42.195" selected>Marathon</option>
+                </select>
+              </div>
+
+              <div class="calc-row">
+                <label for="raceSize">Race size</label>
+                <select id="raceSize" name="raceSize" data-input-race-size>
+                  <option value="small">Small (under 1,000 runners)</option>
+                  <option value="medium" selected>Medium (1,000 to 10,000)</option>
+                  <option value="large">Large (10,000 to 30,000)</option>
+                  <option value="major">Major (30,000+, e.g. London, Berlin, NYC)</option>
+                </select>
+              </div>
+
+              <div class="calc-row">
+                <label for="sexAtBirth">Sex assigned at birth</label>
+                <select id="sexAtBirth" name="sexAtBirth" data-input-sex>
+                  <option value="prefer-not-to-say" selected>Prefer not to say</option>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                </select>
+              </div>
+
+              <div class="calc-row">
+                <label for="weeklyMileageKm">Weekly training mileage (km/week)</label>
+                <input type="number" id="weeklyMileageKm" name="weeklyMileageKm" data-input-mileage min="0" step="1" value="40">
+              </div>
+
+              <div class="calc-row">
+                <label for="tempUnit">Temperature unit</label>
+                <select id="tempUnit" name="tempUnit" data-input-temp-unit>
+                  <option value="C" selected>°C</option>
+                  <option value="F">°F</option>
+                </select>
+              </div>
+
+              <div class="calc-row">
+                <label for="trainingTempC">Typical training temperature</label>
+                <input type="number" id="trainingTempC" name="trainingTempC" data-input-training-temp step="0.5" value="15">
+                <span data-temp-unit-label>°C</span>
+              </div>
+
+              <div class="calc-row">
+                <label for="raceTempC">Expected race-day temperature</label>
+                <input type="number" id="raceTempC" name="raceTempC" data-input-race-temp step="0.5" value="15">
+                <span data-temp-unit-label>°C</span>
+              </div>
+            </details>
+
             <button type="button" data-calculate>Calculate</button>
             <p class="calc-error" data-error hidden></p>
           </form>
@@ -323,6 +406,26 @@
               </table>
             </div>
 
+            <div data-adjusted-prediction hidden>
+              <h3>Adjusted prediction for your target race</h3>
+              <div class="mort-breakdown">
+                <ul>
+                  <li><span>Target distance</span><strong data-line-target-distance>–</strong></li>
+                  <li><span>Basic Riegel prediction</span><strong data-line-basic>–</strong></li>
+                  <li class="mort-breakdown__total"><span>Adjusted prediction</span><strong data-line-adjusted>–</strong></li>
+                </ul>
+              </div>
+              <h4>What changed it</h4>
+              <div class="table-scroll">
+                <table class="scenarios-table" data-result-breakdown>
+                  <thead>
+                    <tr><th>Factor</th><th>Detail</th><th>Effect on time</th></tr>
+                  </thead>
+                  <tbody data-breakdown-body></tbody>
+                </table>
+              </div>
+            </div>
+
             <details class="prove-it">
               <summary>Show workings</summary>
               <div data-prove-it-body class="prove-it__body"></div>
@@ -338,8 +441,25 @@
           <h2>Pace per km vs pace per mile</h2>
           <p>One mile is 1.60934 km, so pace per mile is always longer than pace per km. A 5:00 /km runner is doing 8:03 /mile. Road races in the UK are measured in kilometres; in the US and some older UK races, miles are used. The calculator shows both so you can compare results regardless of the system used on race day.</p>
 
-          <h2>What race time predictions assume</h2>
-          <p>The predictions in the table assume you maintain exactly the same pace for every kilometre of every race. That is a reasonable assumption for shorter distances but less realistic for a marathon, where most runners slow in the second half. Treat the marathon and half marathon predictions as targets rather than guarantees unless you have race experience to back them up.</p>
+          <h2>Why a flat-pace prediction is rarely the whole story</h2>
+          <p>The basic predictions in the table assume you maintain exactly the same pace for every kilometre. Shorter races, fine. A 10K is short enough that a well-paced effort is genuinely flat. The marathon is a different animal, and the half is somewhere in the middle. The optional "Race conditions and training" section adjusts the prediction for four real-world factors that experienced coaches will tell you matter more than runners realise.</p>
+
+          <h2>Race size and GPS drift</h2>
+          <p>If you have ever run London, Berlin, or New York, you know the feeling: you cross the line, glance at your watch, and it reads 26.7 miles. Not 26.2. The course is not measured wrong. The course is measured along the optimum racing line, which is the shortest legal route a single runner could take. Put 30,000 people on that course and you simply cannot hold that line. You are weaving round slower groups, drifting wide on bends, getting funnelled through narrow points. By the time you finish, your GPS has clocked an extra 500 to 800 metres. At marathon pace that is a chunk of time you did not plan for.</p>
+          <p>Small local races (under a thousand runners) almost never see this. Mid-sized regional races pick up a touch. Big-city majors are the ones that catch first-timers out, which is why the calculator quietly adds 0.3 to 1.5 percent to the target distance depending on how packed the start corral is going to be.</p>
+
+          <h2>The sex difference at marathon distance</h2>
+          <p>Pete Riegel's original formula uses an exponent of 1.06, treated as a universal constant. Decades of race data since then suggest it is not quite that universal. Women, on average, fade less from half-marathon to full-marathon than men do. There are physiological theories about fat metabolism, glycogen stores, and pacing discipline; pick whichever one sounds least handwavy to you. The pattern in the data is real either way. So this calculator uses 1.04 for women, 1.06 for men, and 1.05 if you would rather not say. The difference is small for a 10K, meaningful for a marathon: a 1:30 half-marathoner predicts a different finish time depending on which exponent applies.</p>
+
+          <h2>Heat acclimation</h2>
+          <p>If you trained through a cool British autumn for a marathon in Valencia or Houston in February, congratulations: you are about to find out what 18°C feels like when your body learned the race in 8°C. The rough rule used by coaches is 30 to 60 seconds per kilometre added per 5°C above the temperature you trained in, with a 5°C buffer before the penalty kicks in (because a few degrees warmer is fine and arguably helps). The penalty stacks. By the time race-day temperature is 15°C above what you have been training in, you are looking at well over a minute per km of slowdown, which obliterates a marathon target. The calculator caps the penalty at 180 s/km because past that point you are not racing, you are just trying to finish.</p>
+          <p>Acclimation works the other way too: spend two or three weeks training in heat before a hot race and the penalty shrinks. The calculator does not model that explicitly; the assumption is that the temperature you typed into "training temperature" is the one your body has actually adapted to.</p>
+
+          <h2>Weekly mileage is the single biggest predictor</h2>
+          <p>Of every input variable that goes into a marathon time prediction, weekly training volume is probably the strongest. Two runners with identical 1:30 half-marathons will produce wildly different marathon times if one is training 30 km/week and the other is training 80 km/week. The high-mileage runner has the aerobic base, glycogen storage, and structural durability to hold pace deeper into the race. The low-mileage runner is, as a coach friend puts it, racing on credit.</p>
+          <p>The calculator reflects this by adjusting the Riegel exponent up for low-mileage runners (predicts a slower marathon than the half would suggest) and down for high-mileage runners (predicts faster). It only kicks in for half-marathon and longer distances, because for a 5K or 10K it just does not move the needle in the same way. If you are training 16 km/week and predicting a marathon time, the calculator will be honest with you about what is likely to happen at 35 km.</p>
+
+          <p><em>Thanks to a running coach for the input on race-size GPS drift, heat acclimation, and the sex-based fatigue difference. Running coaches see things in their athletes' data that no algorithm catches.</em></p>
 
           <!-- related-calculators-block -->
           <h2>Related calculators</h2>
@@ -369,6 +489,18 @@
           <details>
             <summary>How accurate are the race time predictions?</summary>
             <p>They assume a constant pace for the full distance. This is realistic for shorter distances. For half marathons and marathons, most runners slow, so treat the prediction as a pace-effort target rather than a guaranteed finish time.</p>
+          </details>
+          <details>
+            <summary>Does temperature really make that much difference to my race time?</summary>
+            <p>Yes, and more than most runners expect. The rough rule coaches use is 30 to 60 seconds per kilometre added for every 5°C above what you trained in, with a small buffer before the penalty kicks in. A marathon in 25°C when you trained in 10°C can easily cost you 15 to 20 minutes off the pace your fitness would otherwise predict. The calculator caps the heat penalty at 180 seconds per kilometre, because past that point you are not racing, you are just trying to finish without seeing a medic.</p>
+          </details>
+          <details>
+            <summary>Why does the calculator ask for my weekly training mileage?</summary>
+            <p>Because for marathon prediction it is the strongest single signal there is. Two runners with the same half-marathon time can produce wildly different marathon times depending on whether they are training 30 km/week or 80 km/week. High-mileage runners hold pace deeper into the race; low-mileage runners get to about 30 km and then the wheels come off. The mileage modifier only kicks in for half-marathon and longer targets, because at 5K and 10K it does not really move the needle.</p>
+          </details>
+          <details>
+            <summary>Why does sex assigned at birth matter for marathon prediction?</summary>
+            <p>The classic Riegel formula uses a single exponent of 1.06 for everyone. Decades of race data show women, on average, fade less from half to full marathon than men do. The exact reason is debated (fat metabolism, pacing patterns, glycogen handling) but the pattern is real. The calculator uses 1.04 for women, 1.06 for men, and 1.05 as a neutral default if you would rather not say. The difference is small for shorter races and meaningful for a marathon.</p>
           </details>
         </section>
         <!-- author-byline -->
@@ -428,6 +560,40 @@
     var groupDistance   = document.querySelector('[data-group-distance]');
     var groupPace       = document.querySelector('[data-group-pace]');
     var groupTime       = document.querySelector('[data-group-time]');
+
+    // Advanced section inputs
+    var advanced        = document.querySelector('[data-advanced]');
+    var targetRaceSel   = document.querySelector('[data-input-target-race]');
+    var raceSizeSel     = document.querySelector('[data-input-race-size]');
+    var sexSel          = document.querySelector('[data-input-sex]');
+    var mileageInput    = document.querySelector('[data-input-mileage]');
+    var tempUnitSel     = document.querySelector('[data-input-temp-unit]');
+    var trainingTempIn  = document.querySelector('[data-input-training-temp]');
+    var raceTempIn      = document.querySelector('[data-input-race-temp]');
+    var tempLabels      = document.querySelectorAll('[data-temp-unit-label]');
+    var adjustedBlock   = document.querySelector('[data-adjusted-prediction]');
+    var adjustedBody    = document.querySelector('[data-breakdown-body]');
+
+    // Track which unit the temperature inputs are currently displayed in.
+    var currentTempUnit = 'C';
+
+    function fToC(f) { return (f - 32) * 5 / 9; }
+    function cToF(c) { return c * 9 / 5 + 32; }
+
+    tempUnitSel.addEventListener('change', function () {
+      var newUnit = tempUnitSel.value;
+      if (newUnit === currentTempUnit) return;
+      // Convert visible values
+      [trainingTempIn, raceTempIn].forEach(function (input) {
+        var v = parseFloat(input.value);
+        if (!isNaN(v)) {
+          var converted = newUnit === 'F' ? cToF(v) : fToC(v);
+          input.value = Math.round(converted * 10) / 10;
+        }
+      });
+      tempLabels.forEach(function (el) { el.textContent = newUnit === 'F' ? '°F' : '°C'; });
+      currentTempUnit = newUnit;
+    });
 
     function getMode() {
       var radios = document.querySelectorAll('[data-mode]');
@@ -518,6 +684,61 @@
           + 'Pace: ' + r.paceSecsPerKm + ' s/km = ' + r.paceFormatted + ' /km\n'
           + 'Pace per mile: ' + r.pacePerMileFormatted + ' /mi\n'
           + 'Speed: 3600 ÷ ' + r.paceSecsPerKm + ' = ' + r.speedKmh + ' km/h';
+
+        // Adjusted prediction using race-conditions and training factors.
+        // We need a known race (distance + time) to feed the Riegel model.
+        // Use the calculated trio: distance r.distanceKm and time r.timeSecs.
+        try {
+          var targetKm   = parseFloat(targetRaceSel.value);
+          var raceSize   = raceSizeSel.value;
+          var sex        = sexSel.value;
+          var weeklyKm   = parseFloat(mileageInput.value);
+          var trainingT  = parseFloat(trainingTempIn.value);
+          var raceT      = parseFloat(raceTempIn.value);
+          // Convert temperatures to °C if user is in °F
+          if (currentTempUnit === 'F') {
+            if (!isNaN(trainingT)) trainingT = fToC(trainingT);
+            if (!isNaN(raceT))     raceT     = fToC(raceT);
+          }
+
+          if (!isNaN(targetKm) && targetKm > 0 && r.distanceKm > 0 && r.timeSecs > 0) {
+            var p = RunningPace.predictRace({
+              knownDistanceKm:  r.distanceKm,
+              knownTimeSecs:    r.timeSecs,
+              targetDistanceKm: targetKm,
+              sex:              sex,
+              weeklyMileageKm:  isNaN(weeklyKm) ? 40 : weeklyKm,
+              trainingTempC:    isNaN(trainingT) ? 15 : trainingT,
+              raceTempC:        isNaN(raceT) ? 15 : raceT,
+              raceSize:         raceSize,
+            });
+
+            document.querySelector('[data-line-target-distance]').textContent = targetKm + ' km';
+            document.querySelector('[data-line-basic]').textContent     = RunningPace.formatTime(p.basicSecs);
+            document.querySelector('[data-line-adjusted]').textContent  = RunningPace.formatTime(p.adjustedSecs);
+
+            adjustedBody.innerHTML = '';
+            function addRow(factor, detail, secs) {
+              var sign = secs > 0 ? '+' : (secs < 0 ? '−' : '');
+              var abs  = Math.abs(secs);
+              var disp = sign + (abs >= 60 ? Math.floor(abs / 60) + 'm ' + (abs % 60) + 's' : abs + 's');
+              var tr = document.createElement('tr');
+              tr.innerHTML = '<td>' + factor + '</td><td>' + detail + '</td><td>' + disp + '</td>';
+              adjustedBody.appendChild(tr);
+            }
+            var sexLabel = sex === 'male' ? 'male' : (sex === 'female' ? 'female' : 'neutral');
+            addRow('Sex-adjusted exponent', 'k_base = ' + p.kBase + ' (' + sexLabel + ')', p.breakdown.sexDeltaSecs);
+            addRow('Weekly mileage', (targetKm >= 21 ? 'k_total = ' + p.kTotal : 'ignored under 21 km'), p.breakdown.mileageDeltaSecs);
+            addRow('Race size', '+' + p.addedMetres + ' m of course (' + raceSize + ')', p.breakdown.sizeDeltaSecs);
+            addRow('Heat', p.heatDeltaC + '°C above the 5°C threshold (' + p.heatPenaltyPerKm + ' s/km)', p.breakdown.heatDeltaSecs);
+
+            adjustedBlock.hidden = false;
+          } else {
+            adjustedBlock.hidden = true;
+          }
+        } catch (e) {
+          adjustedBlock.hidden = true;
+        }
 
         window.dataLayer.push({
           event:            'calculator_result',

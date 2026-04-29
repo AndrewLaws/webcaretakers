@@ -2,7 +2,18 @@
 
 const { test } = require('node:test');
 const assert   = require('node:assert/strict');
-const { calculateRunningPace, parseTime, formatTime, formatPace, RACE_DISTANCES } = require('./running-pace.js');
+const {
+  calculateRunningPace,
+  parseTime,
+  formatTime,
+  formatPace,
+  RACE_DISTANCES,
+  kBaseForSex,
+  mileageModifier,
+  heatPenaltyPerKm,
+  raceSizeMultiplier,
+  predictRace,
+} = require('./running-pace.js');
 
 // --- parseTime ---
 
@@ -153,4 +164,243 @@ test('RACE_DISTANCES has four entries with correct metres', () => {
   assert.equal(RACE_DISTANCES['10k'].metres, 10000);
   assert.equal(RACE_DISTANCES['half'].metres, 21097.5);
   assert.equal(RACE_DISTANCES['marathon'].metres, 42195);
+});
+
+// --- kBaseForSex ---
+
+test('kBaseForSex: male → 1.06', () => {
+  assert.equal(kBaseForSex('male'), 1.06);
+});
+
+test('kBaseForSex: female → 1.04', () => {
+  assert.equal(kBaseForSex('female'), 1.04);
+});
+
+test('kBaseForSex: prefer not to say → 1.05', () => {
+  assert.equal(kBaseForSex('prefer-not-to-say'), 1.05);
+  assert.equal(kBaseForSex(undefined), 1.05);
+});
+
+// --- mileageModifier (boundary values) ---
+
+test('mileageModifier: 10 km/week → +0.06', () => {
+  assert.equal(mileageModifier(10), 0.06);
+});
+
+test('mileageModifier: 16 km/week → +0.06 (upper edge of band 1)', () => {
+  assert.equal(mileageModifier(16), 0.06);
+});
+
+test('mileageModifier: 17 km/week → +0.04', () => {
+  assert.equal(mileageModifier(17), 0.04);
+});
+
+test('mileageModifier: 32 km/week → +0.04', () => {
+  assert.equal(mileageModifier(32), 0.04);
+});
+
+test('mileageModifier: 33 km/week → +0.02', () => {
+  assert.equal(mileageModifier(33), 0.02);
+});
+
+test('mileageModifier: 48 km/week → +0.02', () => {
+  assert.equal(mileageModifier(48), 0.02);
+});
+
+test('mileageModifier: 49 km/week → +0.01', () => {
+  assert.equal(mileageModifier(49), 0.01);
+});
+
+test('mileageModifier: 64 km/week → +0.01', () => {
+  assert.equal(mileageModifier(64), 0.01);
+});
+
+test('mileageModifier: 65 km/week → 0', () => {
+  assert.equal(mileageModifier(65), 0);
+});
+
+test('mileageModifier: 96 km/week → 0', () => {
+  assert.equal(mileageModifier(96), 0);
+});
+
+test('mileageModifier: 97 km/week → -0.005', () => {
+  assert.equal(mileageModifier(97), -0.005);
+});
+
+test('mileageModifier: 128 km/week → -0.005', () => {
+  assert.equal(mileageModifier(128), -0.005);
+});
+
+test('mileageModifier: 129 km/week → -0.01', () => {
+  assert.equal(mileageModifier(129), -0.01);
+});
+
+test('mileageModifier: 200 km/week → -0.01', () => {
+  assert.equal(mileageModifier(200), -0.01);
+});
+
+// --- heatPenaltyPerKm ---
+
+test('heatPenaltyPerKm: training=15, race=15, delta=0 → no penalty', () => {
+  assert.equal(heatPenaltyPerKm(15, 15), 0);
+});
+
+test('heatPenaltyPerKm: race 4°C above training → no penalty (under threshold)', () => {
+  assert.equal(heatPenaltyPerKm(15, 19), 0);
+});
+
+test('heatPenaltyPerKm: race 5°C above training → 0 (delta floor)', () => {
+  assert.equal(heatPenaltyPerKm(15, 20), 0);
+});
+
+test('heatPenaltyPerKm: race 10°C above training → 45 s/km', () => {
+  assert.equal(heatPenaltyPerKm(15, 25), 45);
+});
+
+test('heatPenaltyPerKm: race 15°C above training → 90 s/km', () => {
+  assert.equal(heatPenaltyPerKm(15, 30), 90);
+});
+
+test('heatPenaltyPerKm: race 50°C above training → capped at 180 s/km', () => {
+  assert.equal(heatPenaltyPerKm(15, 65), 180);
+});
+
+// --- raceSizeMultiplier ---
+
+test('raceSizeMultiplier: small → 1.000', () => {
+  assert.equal(raceSizeMultiplier('small'), 1.000);
+});
+
+test('raceSizeMultiplier: medium → 1.003', () => {
+  assert.equal(raceSizeMultiplier('medium'), 1.003);
+});
+
+test('raceSizeMultiplier: large → 1.008', () => {
+  assert.equal(raceSizeMultiplier('large'), 1.008);
+});
+
+test('raceSizeMultiplier: major → 1.015', () => {
+  assert.equal(raceSizeMultiplier('major'), 1.015);
+});
+
+// --- predictRace: Riegel with adjustments ---
+
+test('predictRace: defaults match plain Riegel scaling for half→10k', () => {
+  // 1:30 half (5400s over 21.0975 km) predicting 10 km, no adjustments
+  const out = predictRace({
+    knownDistanceKm: 21.0975,
+    knownTimeSecs: 5400,
+    targetDistanceKm: 10,
+    sex: 'prefer-not-to-say',
+    weeklyMileageKm: 40,
+    trainingTempC: 15,
+    raceTempC: 15,
+    raceSize: 'small',
+  });
+  // basic Riegel uses the canonical k=1.06: T2 = 5400 * (10/21.0975)^1.06
+  const expected = 5400 * Math.pow(10 / 21.0975, 1.06);
+  assert.ok(Math.abs(out.basicSecs - expected) < 1);
+});
+
+test('predictRace: AFAB high-mileage marathoner predicts faster than low-mileage', () => {
+  // 1:30 half = 5400s
+  const high = predictRace({
+    knownDistanceKm: 21.0975,
+    knownTimeSecs: 5400,
+    targetDistanceKm: 42.195,
+    sex: 'female',
+    weeklyMileageKm: 70,
+    trainingTempC: 15,
+    raceTempC: 15,
+    raceSize: 'small',
+  });
+  const low = predictRace({
+    knownDistanceKm: 21.0975,
+    knownTimeSecs: 5400,
+    targetDistanceKm: 42.195,
+    sex: 'female',
+    weeklyMileageKm: 20,
+    trainingTempC: 15,
+    raceTempC: 15,
+    raceSize: 'small',
+  });
+  // Both should be slower than 2x (Riegel pushes >2x), but high mileage should be faster than low
+  assert.ok(high.adjustedSecs < low.adjustedSecs - 60, 'expected ≥60s gap, got ' + (low.adjustedSecs - high.adjustedSecs));
+});
+
+test('predictRace: mileage modifier ignored for sub-half-marathon target', () => {
+  // 5k from 10k known time, vary mileage; should be identical (mileage off for <21 km)
+  const high = predictRace({
+    knownDistanceKm: 10,
+    knownTimeSecs: 50 * 60,
+    targetDistanceKm: 5,
+    sex: 'male',
+    weeklyMileageKm: 100,
+    trainingTempC: 15,
+    raceTempC: 15,
+    raceSize: 'small',
+  });
+  const low = predictRace({
+    knownDistanceKm: 10,
+    knownTimeSecs: 50 * 60,
+    targetDistanceKm: 5,
+    sex: 'male',
+    weeklyMileageKm: 10,
+    trainingTempC: 15,
+    raceTempC: 15,
+    raceSize: 'small',
+  });
+  assert.equal(high.adjustedSecs, low.adjustedSecs);
+  assert.equal(high.kTotal, 1.06);
+  assert.equal(high.mileageMod, 0);
+});
+
+test('predictRace: heat differential of 10°C adds time', () => {
+  const cool = predictRace({
+    knownDistanceKm: 10,
+    knownTimeSecs: 50 * 60,
+    targetDistanceKm: 10,
+    sex: 'male',
+    weeklyMileageKm: 40,
+    trainingTempC: 15,
+    raceTempC: 15,
+    raceSize: 'small',
+  });
+  const hot = predictRace({
+    knownDistanceKm: 10,
+    knownTimeSecs: 50 * 60,
+    targetDistanceKm: 10,
+    sex: 'male',
+    weeklyMileageKm: 40,
+    trainingTempC: 15,
+    raceTempC: 25,
+    raceSize: 'small',
+  });
+  // 45 s/km heat penalty over ~10 km = ~450s
+  assert.ok(hot.adjustedSecs > cool.adjustedSecs + 400);
+});
+
+test('predictRace: race size adds distance', () => {
+  const small = predictRace({
+    knownDistanceKm: 21.0975,
+    knownTimeSecs: 5400,
+    targetDistanceKm: 42.195,
+    sex: 'male',
+    weeklyMileageKm: 40,
+    trainingTempC: 15,
+    raceTempC: 15,
+    raceSize: 'small',
+  });
+  const major = predictRace({
+    knownDistanceKm: 21.0975,
+    knownTimeSecs: 5400,
+    targetDistanceKm: 42.195,
+    sex: 'male',
+    weeklyMileageKm: 40,
+    trainingTempC: 15,
+    raceTempC: 15,
+    raceSize: 'major',
+  });
+  assert.ok(major.effectiveDistanceKm > small.effectiveDistanceKm);
+  assert.ok(Math.abs(major.effectiveDistanceKm - 42.195 * 1.015) < 0.001);
 });

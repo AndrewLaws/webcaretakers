@@ -155,3 +155,78 @@ test('health hub lists this calculator', async ({ page }) => {
   await page.goto('/calculators/health/');
   await expect(page.locator('.category-grid')).toContainText('Running Pace');
 });
+
+// --- Race conditions & training (advanced) ---
+
+test('advanced section is collapsed by default', async ({ page }) => {
+  await page.goto(URL);
+  const adv = page.locator('[data-advanced]');
+  await expect(adv).toBeVisible();
+  // <details> open attribute absent when collapsed
+  expect(await adv.evaluate(el => el.open)).toBe(false);
+});
+
+test('expanding advanced section reveals all five new inputs', async ({ page }) => {
+  await page.goto(URL);
+  await page.locator('[data-advanced] summary').click();
+  await expect(page.locator('[data-input-race-size]')).toBeVisible();
+  await expect(page.locator('[data-input-sex]')).toBeVisible();
+  await expect(page.locator('[data-input-mileage]')).toBeVisible();
+  await expect(page.locator('[data-input-training-temp]')).toBeVisible();
+  await expect(page.locator('[data-input-race-temp]')).toBeVisible();
+});
+
+test('default advanced expand + calculate produces same basic pace as before', async ({ page }) => {
+  await page.goto(URL);
+  await page.locator('[data-advanced] summary').click();
+  await page.fill('[data-input-distance]', '10');
+  await page.fill('[data-input-time]', '50:00');
+  await page.click('[data-calculate]');
+  await expect(page.locator('[data-line-pace]')).toContainText('5:00');
+});
+
+test('breakdown table is visible after calculate', async ({ page }) => {
+  await page.goto(URL);
+  await page.fill('[data-input-distance]', '21.0975');
+  await page.fill('[data-input-time]', '1:30:00');
+  await page.click('[data-calculate]');
+  await expect(page.locator('[data-adjusted-prediction]')).toBeVisible();
+  await expect(page.locator('[data-result-breakdown]')).toBeVisible();
+  const rows = page.locator('[data-breakdown-body] tr');
+  await expect(rows).toHaveCount(4);
+});
+
+test('heat differential of 10°C clearly increases predicted time', async ({ page }) => {
+  await page.goto(URL);
+  await page.locator('[data-advanced] summary').click();
+  await page.fill('[data-input-distance]', '10');
+  await page.fill('[data-input-time]', '50:00');
+  // Cool first
+  await page.selectOption('[data-input-target-race]', '10');
+  await page.fill('[data-input-training-temp]', '15');
+  await page.fill('[data-input-race-temp]', '15');
+  await page.click('[data-calculate]');
+  const cool = await page.locator('[data-line-adjusted]').textContent();
+  // Hot
+  await page.fill('[data-input-race-temp]', '25');
+  await page.click('[data-calculate]');
+  const hot = await page.locator('[data-line-adjusted]').textContent();
+  // Both formatted as M:SS or H:MM:SS — we just need hot > cool in seconds.
+  function toSecs(s) {
+    const parts = s.trim().split(':').map(Number);
+    if (parts.length === 2) return parts[0] * 60 + parts[1];
+    if (parts.length === 3) return parts[0] * 3600 + parts[1] * 60 + parts[2];
+    return NaN;
+  }
+  expect(toSecs(hot)).toBeGreaterThan(toSecs(cool) + 300);
+});
+
+test('calculator_result event still fires with expected calculator_name', async ({ page }) => {
+  await page.goto(URL);
+  await page.fill('[data-input-distance]', '10');
+  await page.fill('[data-input-time]', '50:00');
+  await page.click('[data-calculate]');
+  const evt = await page.evaluate(() => window.dataLayer.find(e => e.event === 'calculator_result'));
+  expect(evt).toBeTruthy();
+  expect(evt.calculator_name).toBe('Running Pace Calculator');
+});
