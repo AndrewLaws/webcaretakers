@@ -140,6 +140,7 @@ const ORG_SCHEMA = {
   founder: { '@type': 'Person', name: 'Andrew Laws' },
   sameAs: [
     'https://yeseo.io/',
+    'https://lawsie.com/',
     'https://www.linkedin.com/in/andrewlaws/',
   ],
 };
@@ -153,6 +154,7 @@ const PERSON_SCHEMA = {
   sameAs: [
     'https://www.linkedin.com/in/andrewlaws/',
     'https://yeseo.io/',
+    'https://lawsie.com/',
   ],
   knowsAbout: ['SEO', 'search engine optimisation', 'website performance', 'calculator tools'],
 };
