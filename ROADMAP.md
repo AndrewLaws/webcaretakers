@@ -207,7 +207,7 @@ Currently most hubs are thin lists. The roadmap promises real pages with intros,
 - Sub-category groupings inside the hub where the calculator count justifies it (Broadband > Home, Broadband > Business, etc.)
 - An FAQ block at the bottom of each hub answering the top three to five GSC queries for the hub URL
 
-**Status:** [ ] Not started
+**Status:** [~] In progress. 2026-04-30: audit revealed the long-form work was already done — every one of the 15 hubs has 593 to 982 words of long-form content, well inside the 600 to 1,200 target. The real gap is hub-level FAQ blocks: zero of 15 hubs had one. Built the pattern on the health hub: five `<details>` questions covering the top first-principles queries (medical-advice disclaimer, why-different-answers, which-to-start-with, units, data-privacy) plus matching FAQPage JSON-LD with five Question/Answer pairs. Placed between the calculator grid and the closing caveats long-form section so the page reads intro → long-form → grid → FAQ → caveat-closer. Validates clean against the schema linter. Note: questions are first-principles guesses, not GSC-derived; once GSC data flows (task #1) we will refine each hub's FAQ to match real queries. Still to do: replicate FAQ block pattern across the 14 remaining hubs, sub-category groupings inside large hubs, refine FAQ content once GSC data is available.
 
 ### 7. ELI5 and Prove-it rollout
 

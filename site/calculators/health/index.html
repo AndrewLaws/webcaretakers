@@ -106,6 +106,54 @@
     }
   }
   </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Are these health calculators medical advice?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. They are population-level rules of thumb wrapped in a form. Useful for getting your bearings before a conversation with a clinician, not for replacing one. If a number on any of these tools worries you, take it to a GP who can look at the rest of the picture."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why do health calculators give different answers from each other?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Different equations. BMR can be calculated with Mifflin-St Jeor, Harris-Benedict or Katch-McArdle, and each one gives a slightly different number for the same inputs. The TDEE Calculator on this site shows all three so you can see the spread, which is usually a few hundred calories. None of them is right. They all carry a margin of error of about five to ten per cent before activity-level guesswork is layered on top."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Which calculator should I start with if I want to lose, maintain or gain weight?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "TDEE. It is the anchor number for everything else. From there, the Macro Split Calculator turns the calorie target into grams of protein, carbs and fat. The BMI Calculator gives a sanity check on where you sit on the height-and-weight chart. The Calorie Calculator combines BMR, TDEE and a goal in one form if you would rather skip straight to a daily target."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do these calculators support metric and imperial units?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Every health tool here accepts either, so kilograms and pounds, centimetres and feet/inches, kilometres and miles all work. Stick to one set of units within a single calculation to avoid sneaky rounding errors."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does any of my data leave the browser?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. All the maths runs in JavaScript on your device. You can disconnect from the network and the numbers still update as you change inputs. Nothing is uploaded, logged or stored."
+        }
+      }
+    ]
+  }
+  </script>
   <!-- breadcrumb-jsonld -->
   <script type="application/ld+json">
 {
@@ -295,6 +343,30 @@
             <p>Turn a daily calorie target into grams of protein, carbs and fat. Goal presets (balanced, high-protein cut, endurance, keto) or a custom three-slider ratio that always sums to 100. Per-meal breakdown included.</p>
           </li>
         </ul>
+
+        <section class="faq" aria-labelledby="hub-faq-heading">
+          <h2 id="hub-faq-heading">Frequently asked questions</h2>
+          <details>
+            <summary>Are these health calculators medical advice?</summary>
+            <p>No. They are population-level rules of thumb wrapped in a form. Useful for getting your bearings before a conversation with a clinician, not for replacing one. If a number on any of these tools worries you, take it to a GP who can look at the rest of the picture.</p>
+          </details>
+          <details>
+            <summary>Why do health calculators give different answers from each other?</summary>
+            <p>Different equations. BMR can be calculated with Mifflin-St Jeor, Harris-Benedict or Katch-McArdle, and each one gives a slightly different number for the same inputs. The <a href="/calculators/health/tdee-calculator/">TDEE Calculator</a> on this site shows all three so you can see the spread, which is usually a few hundred calories. None of them is "right". They all carry a margin of error of about five to ten per cent before activity-level guesswork is layered on top.</p>
+          </details>
+          <details>
+            <summary>Which calculator should I start with if I want to lose, maintain or gain weight?</summary>
+            <p>TDEE. It is the anchor number for everything else. From there, the <a href="/calculators/health/macro-split-calculator/">Macro Split Calculator</a> turns the calorie target into grams of protein, carbs and fat. The <a href="/calculators/health/bmi-calculator/">BMI Calculator</a> gives a sanity check on where you sit on the height-and-weight chart. The <a href="/calculators/health/calorie-calculator/">Calorie Calculator</a> combines BMR, TDEE and a goal in one form if you would rather skip straight to a daily target.</p>
+          </details>
+          <details>
+            <summary>Do these calculators support metric and imperial units?</summary>
+            <p>Yes. Every health tool here accepts either, so kilograms and pounds, centimetres and feet/inches, kilometres and miles all work. Stick to one set of units within a single calculation to avoid sneaky rounding errors.</p>
+          </details>
+          <details>
+            <summary>Does any of my data leave the browser?</summary>
+            <p>No. All the maths runs in JavaScript on your device. You can disconnect from the network and the numbers still update as you change inputs. Nothing is uploaded, logged or stored.</p>
+          </details>
+        </section>
 
         <section class="long-form">
           <h2>Why "health calculators" need caveats</h2>
