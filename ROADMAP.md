@@ -250,7 +250,7 @@ Already in the roadmap (see Cross-cutting features), reproduced here so it lives
 
 - `scripts/post-deploy-index-ping.js` diffs `sitemap.xml`, calls GSC `sitemaps.submit`, POSTs to IndexNow for Bing/Yandex/Seznam, logs every submission
 
-**Status:** [ ] Not started
+**Status:** [~] In progress. 2026-04-30: built `scripts/post-deploy-index-ping.js` (296 lines) with 12 unit tests covering sitemap parsing, URL diff, payload shape and chunking. Walks `site/sitemap.xml` (treated as a sitemapindex pointing at the per-category urlsets), collects all canonical URLs, diffs against `.indexnow-snapshot.json`, and POSTs added URLs (chunked at the 10k IndexNow limit) to `https://api.indexnow.org/IndexNow`. Every run appends to `.indexnow-log.jsonl`. First run writes the baseline snapshot without pinging unless `--initial-publish` is set, so we cannot accidentally spam the entire catalogue. `--dry-run` flag for safe inspection. Exposed via `npm run index:ping` and `npm run index:ping:dry`. INDEXNOW_KEY documented in `.env.example`; key file expected at `site/<key>.txt` and the script verifies its contents match before doing anything. Snapshot and log files are gitignored. GSC submission is intentionally deferred (stub `submitToGsc` documented in the script): it needs a Google service account JSON granted Owner on the GSC property, which depends on task #1. Still to do: provision the IndexNow key, generate the verification file, run `--initial-publish` once after the next deploy, and add the GSC submission once #1 lands.
 
 ### 11. Monitoring and review cadence
 

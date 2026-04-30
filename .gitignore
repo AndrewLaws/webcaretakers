@@ -29,3 +29,9 @@ tmp/
 test-results/
 playwright-report/
 .claude/
+
+# Post-deploy IndexNow state — runtime artefacts, regenerated on each deploy.
+# The snapshot is the local memory of "URLs we knew about last time"; if it is
+# lost, re-run with --initial-publish once to rebuild without spamming.
+.indexnow-snapshot.json
+.indexnow-log.jsonl

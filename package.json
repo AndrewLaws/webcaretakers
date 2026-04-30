@@ -8,6 +8,8 @@
     "test:unit": "node --test scripts/*.test.js site/assets/js/calculators/*.test.js",
     "test:html": "npx htmlhint site/**/*.html",
     "validate:schema": "node scripts/validate-jsonld.js",
+    "index:ping": "node scripts/post-deploy-index-ping.js",
+    "index:ping:dry": "node scripts/post-deploy-index-ping.js --dry-run",
     "generate": "node scripts/generate-site-files.js",
     "research": "node scripts/research.js",
     "prioritise": "node scripts/prioritise.js"
