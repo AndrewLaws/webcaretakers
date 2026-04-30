@@ -106,6 +106,54 @@
     }
   }
   </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What broadband speed do I actually need?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Less than the marketing suggests. For a single person who browses, streams in HD and takes the occasional video call, 25 to 50 Mbps is plenty. A family of four with mixed streaming, gaming and remote work fits comfortably in 100 to 200 Mbps. Anything above that is overkill for most households. Run the Broadband Bandwidth Calculator with your real device count and household activity to get a number that reflects what you actually use, not what you might use one day."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why is my broadband slower than the speed I pay for?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Almost always Wi-Fi, not the line. Plug a laptop directly into the router with an Ethernet cable and run a speed test. If that number is close to your package, the line is fine and the slowdown is happening on the way through your home: a router that is too old, too far away, or saturated with too many devices. If the wired number is also low, that is when you contact the ISP."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the difference between FTTC and FTTP?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "FTTC (fibre to the cabinet) runs fibre to the green street cabinet and copper from there to your house. FTTP (fibre to the premises) runs fibre all the way to the wall. FTTP is faster, more reliable, and crucially has much higher upload speeds: symmetric or close to it on most plans, versus an FTTC upload cap of around 20 Mbps regardless of the download speed. If you take video calls, upload to cloud backup, or run a home server, FTTP makes a real difference."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does a VPN slow down my connection?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, by some amount. The encryption work and the extra hop to the VPN server both add overhead. On a fast modern connection with a nearby server, the loss is typically 10 to 20 per cent. On a slow connection, or with a server on the other side of the world, it can be much higher."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How much speed do I need for 4K streaming or video calls?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Netflix recommends 15 Mbps per simultaneous 4K stream, Disney+ wants 25 Mbps, and most other services land somewhere between. A single 1080p Zoom call needs about 3 Mbps down and 3 Mbps up. The arithmetic is additive: two 4K streams plus a video call needs roughly 35 Mbps down and 5 Mbps up at minimum."
+        }
+      }
+    ]
+  }
+  </script>
   <!-- breadcrumb-jsonld -->
   <script type="application/ld+json">
 {
@@ -296,6 +344,30 @@
           <p>Compare packages from UK providers side by side and find one that fits your speed requirements and budget.</p>
           <a href="https://www.awin1.com/cread.php?awinmid=12213&awinaffid=202051&ued=https%3A%2F%2Fwww.broadband.co.uk%2F" class="cta-link" rel="noopener sponsored" data-cta-link>Compare broadband deals at broadband.co.uk</a>
         </div>
+
+        <section class="faq" aria-labelledby="hub-faq-heading">
+          <h2 id="hub-faq-heading">Frequently asked questions</h2>
+          <details>
+            <summary>What broadband speed do I actually need?</summary>
+            <p>Less than the marketing suggests. For a single person who browses, streams in HD and takes the occasional video call, 25 to 50 Mbps is plenty. A family of four with mixed streaming, gaming and remote work fits comfortably in 100 to 200 Mbps. Anything above that is overkill for most households. Run the <a href="/calculators/broadband/broadband-bandwidth-calculator/">Broadband Bandwidth Calculator</a> with your real device count and household activity to get a number that reflects what you actually use, not what you might use one day.</p>
+          </details>
+          <details>
+            <summary>Why is my broadband slower than the speed I pay for?</summary>
+            <p>Almost always Wi-Fi, not the line. Plug a laptop directly into the router with an Ethernet cable and run a speed test. If that number is close to your package, the line is fine and the slowdown is happening on the way through your home: a router that is too old, too far away, or saturated with too many devices. If the wired number is also low, that is when you contact the ISP. The <a href="/calculators/broadband/isp-speed-reality-check/">ISP Speed Reality Check</a> walks through this distinction in detail.</p>
+          </details>
+          <details>
+            <summary>What is the difference between FTTC and FTTP?</summary>
+            <p>FTTC (fibre to the cabinet) runs fibre to the green street cabinet and copper from there to your house. FTTP (fibre to the premises) runs fibre all the way to the wall. FTTP is faster, more reliable, and crucially has much higher upload speeds: symmetric or close to it on most plans, versus an FTTC upload cap of around 20 Mbps regardless of the download speed. If you take video calls, upload to cloud backup, or run a home server, FTTP makes a real difference.</p>
+          </details>
+          <details>
+            <summary>Does a VPN slow down my connection?</summary>
+            <p>Yes, by some amount. The encryption work and the extra hop to the VPN server both add overhead. On a fast modern connection with a nearby server, the loss is typically 10 to 20 per cent. On a slow connection, or with a server on the other side of the world, it can be much higher. The <a href="/calculators/broadband/vpn-throughput-calculator/">VPN Throughput Calculator</a> estimates the realistic speed you will see for your specific case.</p>
+          </details>
+          <details>
+            <summary>How much speed do I need for 4K streaming or video calls?</summary>
+            <p>Netflix recommends 15 Mbps per simultaneous 4K stream, Disney+ wants 25 Mbps, and most other services land somewhere between. A single 1080p Zoom call needs about 3 Mbps down and 3 Mbps up. The arithmetic is additive: two 4K streams plus a video call needs roughly 35 Mbps down and 5 Mbps up at minimum. The <a href="/calculators/broadband/streaming-quality-calculator/">Streaming Quality Calculator</a> does the maths for your specific household.</p>
+          </details>
+        </section>
 
         <section class="long-form">
           <h2>How to think about broadband speed</h2>

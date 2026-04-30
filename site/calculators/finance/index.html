@@ -112,6 +112,54 @@
     }
   }
   </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Are these UK or US finance calculators?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Both, side by side. Tools prefixed with UK (UK Mortgage, UK Salary Tax, UK Stamp Duty) use HMRC bands, UK conveyancing rules and pound sterling. The generic tools (Compound Interest, Loan, Debt Payoff, Savings Goal, Tip) are currency-agnostic and work for any country: type whatever currency suits, the maths is the same. The mortgage calculators are clearly labelled so you do not pick the wrong one for your situation."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How accurate are these figures versus what my lender or HMRC will actually quote?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Close, but not identical. The UK Mortgage Calculator uses standard repayment maths and the rate you supply, but a real lender will also factor in product fees, early repayment charges, valuation fees and any cashback, none of which a generic tool can know about. The UK Salary Tax Calculator uses the current year's tax bands, National Insurance thresholds and standard personal allowance, but it cannot know about marriage allowance transfers, tax codes from prior years, salary sacrifice arrangements or benefits in kind. Use the numbers here for planning. Use a quote from your lender or HMRC's official tools for decisions that have to be exact."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the difference between APR and the interest rate?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The interest rate is what the lender charges on the borrowed money. The APR (annual percentage rate) is the interest rate plus the fees and charges, expressed as a single annual figure so different products can be compared like for like. APR is always equal to or higher than the headline interest rate. When the gap between the two is large, the product is loaded with fees. When it is small, the rate you see is close to what you actually pay."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Should I overpay my mortgage or invest the difference?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The honest answer is it depends on your mortgage rate versus your expected investment return after tax, both of which are uncertain. As a rough rule, overpaying a fixed-rate mortgage above 5 per cent is a guaranteed return that is hard to beat with most low-risk investments. Below 3 per cent, a stocks-and-shares ISA has historically done better over long periods, but with real risk attached. Run both the Compound Interest Calculator and the UK Mortgage Calculator with realistic numbers and compare."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does my financial information leave the browser?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Every finance calculator on this site runs entirely in JavaScript on your device. Salary, mortgage balances, savings amounts, none of it is sent anywhere. You can disconnect from the network and the tools still work. Nothing is stored, logged or transmitted."
+        }
+      }
+    ]
+  }
+  </script>
   <!-- breadcrumb-jsonld -->
   <script type="application/ld+json">
 {
@@ -305,6 +353,30 @@
             <p>Work out the monthly number you need to hit a savings target by a specific date. Factors in your starting balance and the interest your account pays. Sets a sensible target for a wedding, a deposit, a rainy-day fund or a long holiday.</p>
           </li>
         </ul>
+
+        <section class="faq" aria-labelledby="hub-faq-heading">
+          <h2 id="hub-faq-heading">Frequently asked questions</h2>
+          <details>
+            <summary>Are these UK or US finance calculators?</summary>
+            <p>Both, side by side. Tools prefixed with "UK" (<a href="/calculators/finance/uk-mortgage-calculator/">UK Mortgage</a>, <a href="/calculators/finance/uk-salary-tax-calculator/">UK Salary Tax</a>, <a href="/calculators/finance/uk-stamp-duty-calculator/">UK Stamp Duty</a>) use HMRC bands, UK conveyancing rules and pound sterling. The generic tools (Compound Interest, Loan, Debt Payoff, Savings Goal, Tip) are currency-agnostic and work for any country: type whatever currency suits, the maths is the same. The mortgage calculators are clearly labelled so you do not pick the wrong one for your situation.</p>
+          </details>
+          <details>
+            <summary>How accurate are these figures versus what my lender or HMRC will actually quote?</summary>
+            <p>Close, but not identical. The <a href="/calculators/finance/uk-mortgage-calculator/">UK Mortgage Calculator</a> uses standard repayment maths and the rate you supply, but a real lender will also factor in product fees, early repayment charges, valuation fees and any cashback, none of which a generic tool can know about. The <a href="/calculators/finance/uk-salary-tax-calculator/">UK Salary Tax Calculator</a> uses the current year's tax bands, National Insurance thresholds and standard personal allowance, but it cannot know about marriage allowance transfers, tax codes from prior years, salary sacrifice arrangements or benefits in kind. Use the numbers here for planning. Use a quote from your lender or HMRC's official tools for decisions that have to be exact.</p>
+          </details>
+          <details>
+            <summary>What is the difference between APR and the interest rate?</summary>
+            <p>The interest rate is what the lender charges on the borrowed money. The APR (annual percentage rate) is the interest rate plus the fees and charges, expressed as a single annual figure so different products can be compared like for like. APR is always equal to or higher than the headline interest rate. When the gap between the two is large, the product is loaded with fees. When it is small, the rate you see is close to what you actually pay.</p>
+          </details>
+          <details>
+            <summary>Should I overpay my mortgage or invest the difference?</summary>
+            <p>The honest answer is "it depends on your mortgage rate versus your expected investment return after tax, both of which are uncertain". As a rough rule, overpaying a fixed-rate mortgage above 5 per cent is a guaranteed return that is hard to beat with most low-risk investments. Below 3 per cent, a stocks-and-shares ISA has historically done better over long periods, but with real risk attached. The <a href="/calculators/finance/compound-interest-calculator/">Compound Interest Calculator</a> shows the investing side; the <a href="/calculators/finance/uk-mortgage-calculator/">UK Mortgage Calculator</a> shows the overpayment side. Run both with realistic numbers and compare.</p>
+          </details>
+          <details>
+            <summary>Does my financial information leave the browser?</summary>
+            <p>No. Every finance calculator on this site runs entirely in JavaScript on your device. Salary, mortgage balances, savings amounts, none of it is sent anywhere. You can disconnect from the network and the tools still work. Nothing is stored, logged or transmitted.</p>
+          </details>
+        </section>
 
         <section class="long-form">
           <h2>Why split US and UK into separate tools</h2>
