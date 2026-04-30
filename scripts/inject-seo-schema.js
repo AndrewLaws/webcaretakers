@@ -243,7 +243,13 @@ function processFile(filePath) {
   }
 
   let relatedAdded = false;
-  if (meta.type === 'calc' && !html.includes('class="related-calcs"')) {
+  // Skip auto-injection if the page already carries a Related Calculators block,
+  // whether the auto-generated one (class="related-calcs") or a hand-picked one
+  // (marker comment <!-- related-calculators-block -->). The hand-picked block is
+  // always preferred because it uses intent-driven anchor text.
+  const hasAutoBlock = html.includes('class="related-calcs"');
+  const hasHandPickedBlock = html.includes('<!-- related-calculators-block -->');
+  if (meta.type === 'calc' && !hasAutoBlock && !hasHandPickedBlock) {
     const sectionHtml = buildRelatedCalcs(meta);
     if (sectionHtml) {
       html = injectRelatedSection(html, sectionHtml);

@@ -195,7 +195,7 @@ The site has `scripts/internal-links.js` already. The work is editorial: making 
 - The homepage links to the top calculator in each live category, not to all of them
 - Audit for orphan pages (pages with zero internal links in) using a crawl of the live site
 
-**Status:** [ ] Not started
+**Status:** [~] In progress. 2026-04-30: in-link audit clean — zero orphans across 110 calculators, lowest in-link count is 1, top pages get 12–15 (word-count, unit-converter, read-time-calculator, photo-resizer, compound-interest). Found and fixed a duplication bug: `inject-seo-schema.js` auto-generated a `class="related-calcs"` block on every page but its dedup check missed pages with hand-picked `<!-- related-calculators-block -->` blocks, so 53 pages shipped with two "Related calculators" sections. Widened the dedup check (also looks for the hand-picked marker) and ran a one-off cleanup script (`scripts/strip-duplicate-related-calcs.js`) to strip the duplicate auto blocks. 53 pages cleaned, 0 skipped, all tests pass. Remaining linking debt: 57 pages still carry only the generic auto block and need hand-picked intent-driven Related Calculators blocks. Queue by category: cybersecurity 8, math 6, broadband 6, ai 6, seo 4, property 4, productivity 4, images 4, fun 4, conversions 4, health 3, writing 2, business 2. Still to do: cross-link UK/US sibling pairs at top of page, homepage one-link-per-category review, hand-picked block rollout for the 57.
 
 ### 6. Category hub long-form content
 

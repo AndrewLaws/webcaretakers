@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UK Sportive Difficulty Calculator | WebCaretakers</title>
+  <meta name="description" content="UK sportive difficulty calculator. Drop in a GPX route, set your weight and target flat speed (or power), get a physics-based finish time, the categorised climbs, and your top descent speed.">
+  <link rel="canonical" href="https://webcaretakers.com/calculators/health/uk-sportive-difficulty-calculator/">
+  <link rel="alternate" hreflang="en-GB" href="https://webcaretakers.com/calculators/health/uk-sportive-difficulty-calculator/">
+  <link rel="alternate" hreflang="x-default" href="https://webcaretakers.com/calculators/health/uk-sportive-difficulty-calculator/">
+  <meta property="og:title" content="UK Sportive Difficulty Calculator | WebCaretakers">
+  <meta property="og:description" content="Upload a GPX, set your weight and target flat speed (or power), get a physics-based finish time, categorised climbs, and your top descent speed.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://webcaretakers.com/calculators/health/uk-sportive-difficulty-calculator/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="UK Sportive Difficulty Calculator | WebCaretakers">
+  <meta name="twitter:description" content="Upload a GPX, set your weight and target flat speed (or power), get a physics-based finish time, categorised climbs, and your top descent speed.">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var _stored = null;
+    try { _stored = localStorage.getItem('cookie-consent'); } catch (e) {}
+    var _initial = _stored === 'granted' ? 'granted' : 'denied';
+    gtag('consent', 'default', {
+      ad_storage: _initial, analytics_storage: _initial,
+      ad_user_data: _initial, ad_personalization: _initial,
+      functionality_storage: 'granted', security_storage: 'granted',
+      wait_for_update: 500
+    });
+  </script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PBCD82L6');</script>
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "UK Sportive Difficulty Calculator",
+  "url": "https://webcaretakers.com/calculators/health/uk-sportive-difficulty-calculator/",
+  "description": "Upload a GPX route, set your weight and a target flat-road speed (or sustained power), get a physics-based finish time prediction, the categorised climbs flagged with arrival times, and your top descent speed. Uses the standard cycling-power equation with rider/bike preset values for CdA and rolling resistance.",
+  "applicationCategory": "HealthApplication",
+  "operatingSystem": "Any",
+  "inLanguage": "en-GB",
+  "countriesSupported": "GB",
+  "offers": { "@type": "Offer", "price": "0" },
+  "isPartOf": { "@type": "WebSite", "name": "WebCaretakers", "url": "https://webcaretakers.com/" },
+  "dateModified": "2026-04-29",
+  "author": { "@type": "Person", "name": "Andrew Laws", "url": "https://andrewlaws.com/" }
+}
+  </script>
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What's a sportive?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A sportive is a mass-participation organised road bike ride, typically 50 to 200 km, with timed sections, feed stations, and a fixed route published in advance. Think of it as the cycling equivalent of a marathon: you're not racing for prize money, you're aiming for a personal time on a known course. Famous UK examples include the Fred Whitton Challenge, the Etape Caledonia, the Dragon Ride, and the Tour of the Peak District."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does the calculator predict my finish time?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It uses the standard cycling-power equation: power output equals the work done against rolling resistance, aerodynamic drag, and gravity, plus drivetrain losses. From your inputs (weight, rider type, target flat-road speed or power), it works out the speed you can sustain at every point on the GPX trace and integrates the time. Climbs slow you down dramatically because gravity dominates; descents speed you up until aerodynamic drag catches up."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I enter speed or power?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "If you have a power meter, enter your sustained power (typically 70 to 80% of your FTP for a long sportive). It's the more accurate input. If you don't have a power meter, enter the average speed you can hold on a flat road on a quiet day. The calculator will work backwards to figure out the equivalent power. If you supply both, power wins."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does CdA mean and why does my rider type matter?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "CdA is your drag area: the product of your frontal area and your drag coefficient. It's the single biggest variable above 25 km/h, because aerodynamic drag rises with the cube of speed. A rider sat upright on hoods has a CdA around 0.40 m². A club rider down on the drops occasionally is around 0.32. A racer in the drops on aero kit is around 0.27. The calculator picks sensible defaults from the rider-type dropdown. Crr (rolling resistance) varies less but also matters: better tyres at higher pressures save real watts."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why is the descent speed capped at 80 km/h?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Pure physics says a fit cyclist on a 12% descent can hit 90+ km/h. In real life almost nobody does that on an unfamiliar sportive course, because the descent has corners, traffic, gravel, and consequences. 80 km/h is the calculator's safety ceiling: realistic for a confident descender on a clean road, the upper bound for what a sensible person would actually attempt. The number you see is what you'll plausibly do, not what the equations theoretically allow."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why don't you apply a late-race fatigue penalty like the marathon calculator does?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Cyclists eat and drink on the bike. A sportive isn't a marathon: glycogen depletion is much less of a factor when you can refuel mid-ride at feed stations. There's no \"wall\" at km 80 of a 100km ride the way there is at km 32 of a marathon. For 200km+ audaxes that changes, but the typical UK sportive doesn't need a fatigue weighting and applying one would just make the prediction artificially pessimistic."
+      }
+    }
+  ]
+}
+  </script>
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://webcaretakers.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://webcaretakers.com/calculators/" },
+    { "@type": "ListItem", "position": 3, "name": "Health", "item": "https://webcaretakers.com/calculators/health/" },
+    { "@type": "ListItem", "position": 4, "name": "UK Sportive Difficulty Calculator", "item": "https://webcaretakers.com/calculators/health/uk-sportive-difficulty-calculator/" }
+  ]
+}
+  </script>
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "WebCaretakers",
+  "url": "https://webcaretakers.com/",
+  "founder": { "@type": "Person", "name": "Andrew Laws" },
+  "sameAs": [
+    "https://andrewlaws.com/",
+    "https://yeseo.io/",
+    "https://lawsie.com/",
+    "https://www.linkedin.com/in/andrewlaws/"
+  ]
+}
+  </script>
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Andrew Laws",
+  "jobTitle": "SEO consultant and founder, Yeseo",
+  "url": "https://andrewlaws.com/",
+  "sameAs": [
+    "https://www.linkedin.com/in/andrewlaws/",
+    "https://yeseo.io/",
+    "https://lawsie.com/",
+    "https://andrewlaws.com/"
+  ],
+  "knowsAbout": [
+    "SEO",
+    "search engine optimisation",
+    "website performance",
+    "calculator tools"
+  ]
+}
+  </script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBCD82L6"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="cookie-banner" data-cookie-banner role="dialog" aria-labelledby="cookie-banner-heading" aria-describedby="cookie-banner-text" hidden>
+    <div class="cookie-banner__inner">
+      <h2 id="cookie-banner-heading" class="cookie-banner__heading">A quick word about cookies</h2>
+      <p id="cookie-banner-text" class="cookie-banner__text">
+        We use cookies for analytics, so we can see which calculators people actually use and which ones need work. Nothing creepy, nothing sold on. You can say yes, say no, or read the <a href="/privacy/">privacy policy</a> first. Your choice sticks.
+      </p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-reject>Reject</button>
+        <button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-accept>Accept</button>
+      </div>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">WebCaretakers</a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <ul class="primary-nav__list">
+          <li class="primary-nav__item primary-nav__item--has-menu">
+            <button type="button" class="primary-nav__link" data-menu-toggle aria-haspopup="true" aria-expanded="false">Calculators <span class="primary-nav__caret" aria-hidden="true">▾</span></button>
+            <ul class="primary-nav__submenu">
+              <li><a href="/calculators/ai/">AI</a></li>
+              <li><a href="/calculators/broadband/">Broadband</a></li>
+              <li><a href="/calculators/business/">Business</a></li>
+              <li><a href="/calculators/conversions/">Conversions</a></li>
+              <li><a href="/calculators/cybersecurity/">Cybersecurity</a></li>
+              <li><a href="/calculators/finance/">Finance</a></li>
+              <li><a href="/calculators/fun/">Fun</a></li>
+              <li><a href="/calculators/health/">Health</a></li>
+              <li><a href="/calculators/images/">Images</a></li>
+              <li><a href="/calculators/math/">Math</a></li>
+              <li><a href="/calculators/productivity/">Productivity</a></li>
+              <li><a href="/calculators/property/">Property</a></li>
+              <li><a href="/calculators/seo/">SEO</a></li>
+              <li><a href="/calculators/wedding/">Wedding</a></li>
+              <li><a href="/calculators/writing/">Writing</a></li>
+              <li class="primary-nav__submenu-sep"><a href="/calculators/">See all calculators</a></li>
+            </ul>
+          </li>
+          <li class="primary-nav__item"><a href="/about/" class="primary-nav__link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-layout">
+    <main id="main-content">
+      <div class="container">
+        <nav aria-label="Breadcrumb" class="breadcrumbs">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/calculators/">Calculators</a></li>
+            <li><a href="/calculators/health/">Health</a></li>
+            <li aria-current="page">UK Sportive Difficulty Calculator</li>
+          </ol>
+        </nav>
+
+        <h1>UK Sportive Difficulty Calculator</h1>
+
+        <div class="eli5">
+          <h2>Explain like I'm 5</h2>
+          <p>For cyclists, climbing speed is dictated by physics: power, gravity, and your weight. Drop in a GPX file for your sportive (or any planned route), tell the calculator what you weigh and how quickly you can ride on a flat road, and you'll get a realistic finish time, every categorised climb flagged, and the speed you'll likely hit on the biggest descent. Got a power meter? Enter your sustained ride power instead of speed, the maths is more direct.</p>
+        </div>
+
+        <section data-calculator class="calculator-card">
+          <form class="calc-form" novalidate>
+            <fieldset class="calc-fieldset">
+              <legend>Your route</legend>
+              <div class="calc-row">
+                <label for="gpxFile">Upload a GPX file</label>
+                <input type="file" id="gpxFile" data-input-gpx accept=".gpx,application/gpx+xml,text/xml,application/xml">
+                <p class="calc-help">Get one from the sportive organiser, your Strava activity for the route, or Plotaroute / Komoot. The file is parsed in your browser. Nothing is uploaded.</p>
+              </div>
+            </fieldset>
+
+            <fieldset class="calc-fieldset">
+              <legend>You and the bike</legend>
+
+              <div class="calc-row">
+                <label for="riderKg">Rider weight (kg)</label>
+                <input type="number" id="riderKg" data-input-rider-kg min="30" max="200" step="0.1" value="75">
+              </div>
+
+              <div class="calc-row">
+                <label for="bikeKg">Bike weight (kg)</label>
+                <input type="number" id="bikeKg" data-input-bike-kg min="3" max="25" step="0.1" value="9">
+                <p class="calc-help">Including saddlebag, bottles, tools and anything else you carry.</p>
+              </div>
+
+              <div class="calc-row">
+                <label for="riderType">Rider type</label>
+                <select id="riderType" data-input-rider-type>
+                  <option value="recreational">Recreational (upright on hoods, basic tyres)</option>
+                  <option value="club" selected>Club rider (drops occasionally, decent road tyres)</option>
+                  <option value="racer">Racer (in the drops, racing tyres)</option>
+                </select>
+                <p class="calc-help">Sets the aerodynamic drag (CdA) and rolling resistance (Crr) defaults. Aero is the dominant force above 25 km/h, so this matters a lot.</p>
+              </div>
+            </fieldset>
+
+            <fieldset class="calc-fieldset">
+              <legend>Effort target</legend>
+              <p class="calc-advanced__intro">Pick whichever you have. Power wins if both are filled in.</p>
+
+              <div class="calc-row">
+                <label for="flatSpeed">Average flat-road speed (km/h)</label>
+                <input type="number" id="flatSpeed" data-input-flat-speed min="10" max="55" step="0.1" value="28">
+                <p class="calc-help">The pace you can hold on a quiet flat road for an hour or two. Most club riders sit between 25 and 32 km/h.</p>
+              </div>
+
+              <div class="calc-row">
+                <label for="powerW">Sustained power (watts, optional)</label>
+                <input type="number" id="powerW" data-input-power min="50" max="500" step="1" placeholder="e.g. 200">
+                <p class="calc-help">For a long sportive, typically 70 to 80% of your FTP. Leave blank to use the speed input above.</p>
+              </div>
+            </fieldset>
+
+            <button type="button" data-calculate>Calculate</button>
+            <p class="calc-error" data-error hidden></p>
+          </form>
+
+          <div class="calculator-results" data-results hidden>
+            <h2>Route summary</h2>
+            <div class="mort-breakdown">
+              <ul>
+                <li class="mort-breakdown__total"><span>Predicted finish time</span><strong data-line-time>–</strong></li>
+                <li><span>Average speed</span><strong data-line-avg-speed>–</strong></li>
+                <li><span>Sustained power</span><strong data-line-power>–</strong></li>
+                <li><span>Difficulty rating</span><strong data-line-rating>–</strong></li>
+                <li><span>Total distance</span><strong data-line-distance>–</strong></li>
+                <li><span>Total ascent</span><strong data-line-ascent>–</strong></li>
+                <li><span>Total descent</span><strong data-line-descent>–</strong></li>
+                <li><span>Ascent per km</span><strong data-line-ascent-per-km>–</strong></li>
+                <li><span>Steepest climb gradient</span><strong data-line-max-grade>–</strong></li>
+                <li><span>Top descent speed (capped at 80 km/h)</span><strong data-line-max-descent>–</strong></li>
+              </ul>
+            </div>
+
+            <h3>Categorised climbs</h3>
+            <p data-no-climbs hidden>This route has no climbs that meet the Strava categorisation threshold (length × grade ≥ 8000). Either it's flat, or the climbs are short and punchy rather than long and steady.</p>
+            <div class="table-scroll" data-tough-wrapper>
+              <table class="scenarios-table">
+                <thead>
+                  <tr>
+                    <th>Climb</th>
+                    <th>Length</th>
+                    <th>Average grade</th>
+                    <th>Ascent</th>
+                    <th>Predicted arrival</th>
+                    <th>Category</th>
+                  </tr>
+                </thead>
+                <tbody data-tough-body></tbody>
+              </table>
+            </div>
+
+            <details class="prove-it">
+              <summary>Show workings</summary>
+              <div data-prove-it-body class="prove-it__body"></div>
+            </details>
+          </div>
+        </section>
+
+        <section class="long-form">
+          <h2>Why cycling time prediction is a physics problem, not a fitness one</h2>
+          <p>For runners, terrain adjustment is mostly about metabolic cost: how much harder is it to run uphill at the same effort? For cyclists, it's about Newton's second law: how hard is the bike pushing back, and what speed makes the equation balance? At any given grade, your sustained speed is the speed where your power output exactly matches the work done against rolling resistance, aerodynamic drag, and gravity. That's a different model from the one we used for the marathon calculator, and it produces some genuinely surprising results.</p>
+          <p>The cycling-power equation is well-established physics. Power equals the sum of three forces multiplied by speed: gravity along the slope, rolling resistance from the tyres, and aerodynamic drag from the air you have to push out of the way. The first two scale linearly with speed; the third scales with the cube of speed. Cube. That's why doubling your speed from 20 to 40 km/h costs eight times more aero power, not two times. It's also why a strong cyclist who can go 35 km/h on the flat is suddenly the same speed as a weaker one on a 6% climb: gravity dominates, and at 12 km/h up a hill, aero is irrelevant.</p>
+
+          <h2>The two effort inputs and which to use</h2>
+          <p>If you have a power meter, enter your sustained power and ignore the speed field. The reading is direct: at 200 watts on a flat road in 1.225 kg/m³ air, with your CdA, your Crr, and your total mass, the bike will go a specific speed. Power gives the calculator the cleanest signal.</p>
+          <p>If you don't have a power meter, you do still have a sense of how fast you can keep going on a flat road for an hour. Most club cyclists settle around 25 to 32 km/h. Recreational riders sit lower. Racers go higher, and they're usually in the drops to do it. Tell the calculator your flat-road pace and it inverts the equation: it works out what power you must be producing to hold that speed at zero gradient with the rider-type defaults, and uses that power for the rest of the route.</p>
+
+          <h2>The rider-type dropdown is the aero shortcut</h2>
+          <p>Aerodynamic drag is the single largest variable above 25 km/h, and it's almost entirely a function of body position and equipment, not fitness. A rider sat bolt upright on the hoods has a CdA (drag area) around 0.40 m². A club rider down on the drops occasionally is around 0.32. A racer in the drops on aero kit is around 0.27. The same rider holding the same power produces wildly different speeds across that range.</p>
+          <p>If you don't know your CdA (almost nobody outside competitive racing does), the rider-type dropdown picks a sensible default for each archetype. The same dropdown also adjusts the rolling resistance coefficient: better tyres at higher pressures save real watts, and the gear most racers ride reflects that.</p>
+
+          <h2>What this calculator is honest about</h2>
+          <p>It assumes constant power. Real cyclists ramp power up on climbs and ease off on descents, especially long ones. The calculator's simplification is to apply your target power across all sections except descents steeper than -1.5%, where it switches to coasting (zero pedal power, terminal velocity governed by aero drag). That's broadly what experienced sportive riders do anyway: pedal hard up, pedal hard along, freewheel down, repeat.</p>
+          <p>It assumes still air. Wind direction relative to the course is the single largest unmodelled variable. A 20 km/h headwind on a flat sportive will cost you maybe 25% of your average speed; a tailwind for the same section will give it back. Neither is in a GPX file. If your race day forecast is brutal, treat the prediction as a calm-day baseline and adjust mentally.</p>
+          <p>It assumes you don't stop. Feed station time, route mistakes, mechanicals, and standing around at the start aren't in the model. Add 5 to 15 minutes of stop time per feed station depending on how civilised you are about it.</p>
+
+          <h2>Why the descent speed is capped</h2>
+          <p>Pure physics says a fit cyclist on a 12% descent can hit 90 km/h or more, and a few people do. In real life, on an unfamiliar sportive course with corners, traffic, gravel, and consequences, almost nobody does that and most shouldn't try. The calculator caps at 80 km/h, which is what a confident descender on a clean road might genuinely achieve. The number you see is what's plausible, not what the equations theoretically allow.</p>
+
+          <h2>Where to find a GPX file</h2>
+          <p>UK sportive organisers almost universally publish the official GPX or RouteYou link on the event page. If they don't, you can usually find a recent finisher's Strava activity (filter the segment leaderboard for that year's event, click any rider's activity, export GPX). Plotaroute, Komoot, RideWithGPS and Strava routes all export GPX. Save the file locally, drop it in here, hit calculate.</p>
+
+          <h2>Related calculators</h2>
+          <ul class="related-calculators">
+            <li><a href="/calculators/health/uk-marathon-course-difficulty-calculator/">UK Marathon Course Difficulty Calculator</a> — same idea for runners, with the late-race fatigue weighting that runners do need</li>
+            <li><a href="/calculators/health/running-pace-calculator/">Running Pace Calculator</a></li>
+            <li><a href="/calculators/health/calorie-calculator/">Calorie and BMR for endurance training</a></li>
+            <li><a href="/calculators/health/tdee-calculator/">TDEE during a sportive training block</a></li>
+          </ul>
+        </section>
+
+        <section class="faq">
+          <h2>Common questions</h2>
+          <details>
+            <summary>What's a sportive?</summary>
+            <p>A sportive is a mass-participation organised road bike ride, typically 50 to 200 km, with timed sections, feed stations, and a fixed route published in advance. Think of it as the cycling equivalent of a marathon: you're not racing for prize money, you're aiming for a personal time on a known course. Famous UK examples include the Fred Whitton Challenge, the Etape Caledonia, the Dragon Ride, and the Tour of the Peak District.</p>
+          </details>
+          <details>
+            <summary>How does the calculator predict my finish time?</summary>
+            <p>It uses the standard cycling-power equation: power output equals the work done against rolling resistance, aerodynamic drag, and gravity, plus drivetrain losses. From your inputs (weight, rider type, target flat-road speed or power), it works out the speed you can sustain at every point on the GPX trace and integrates the time. Climbs slow you down dramatically because gravity dominates; descents speed you up until aerodynamic drag catches up.</p>
+          </details>
+          <details>
+            <summary>Should I enter speed or power?</summary>
+            <p>If you have a power meter, enter your sustained power (typically 70 to 80% of your FTP for a long sportive). It's the more accurate input. If you don't have a power meter, enter the average speed you can hold on a flat road on a quiet day. The calculator will work backwards to figure out the equivalent power. If you supply both, power wins.</p>
+          </details>
+          <details>
+            <summary>What does CdA mean and why does my rider type matter?</summary>
+            <p>CdA is your drag area: the product of your frontal area and your drag coefficient. It's the single biggest variable above 25 km/h, because aerodynamic drag rises with the cube of speed. A rider sat upright on hoods has a CdA around 0.40 m². A club rider down on the drops occasionally is around 0.32. A racer in the drops on aero kit is around 0.27. The calculator picks sensible defaults from the rider-type dropdown. Crr (rolling resistance) varies less but also matters: better tyres at higher pressures save real watts.</p>
+          </details>
+          <details>
+            <summary>Why is the descent speed capped at 80 km/h?</summary>
+            <p>Pure physics says a fit cyclist on a 12% descent can hit 90+ km/h. In real life almost nobody does that on an unfamiliar sportive course, because the descent has corners, traffic, gravel, and consequences. 80 km/h is the calculator's safety ceiling: realistic for a confident descender on a clean road, the upper bound for what a sensible person would actually attempt. The number you see is what you'll plausibly do, not what the equations theoretically allow.</p>
+          </details>
+          <details>
+            <summary>Why don't you apply a late-race fatigue penalty like the marathon calculator does?</summary>
+            <p>Cyclists eat and drink on the bike. A sportive isn't a marathon: glycogen depletion is much less of a factor when you can refuel mid-ride at feed stations. There's no "wall" at km 80 of a 100km ride the way there is at km 32 of a marathon. For 200km+ audaxes that changes, but the typical UK sportive doesn't need a fatigue weighting and applying one would just make the prediction artificially pessimistic.</p>
+          </details>
+        </section>
+
+        <p class="author-byline">Last updated 29 April 2026 by <a href="/about/">Andrew Laws</a>.</p>
+
+        <section class="related-calcs" aria-labelledby="related-heading">
+          <h2 id="related-heading">Related calculators</h2>
+          <ul class="related-calcs__list">
+            <li><a href="/calculators/health/uk-marathon-course-difficulty-calculator/">UK Marathon Course Difficulty Calculator</a></li>
+            <li><a href="/calculators/health/running-pace-calculator/">Running Pace Calculator</a></li>
+            <li><a href="/calculators/health/calorie-calculator/">Calorie Calculator</a></li>
+          </ul>
+        </section>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="ad-slot" data-ad-slot="sidebar" aria-hidden="true"></div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="site-footer-nav" aria-label="Footer navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/calculators/">All calculators</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+      <section class="site-disclaimer" data-disclaimer aria-labelledby="disclaimer-heading">
+        <h2 id="disclaimer-heading">A quick, necessary word</h2>
+        <p>Every calculator on this site is built to give you a sensible, well-reasoned estimate. It is, however, exactly that: an estimate, for general information only. Nothing you see here is professional, legal, financial, medical, or tax advice, and it should not be treated as such.</p>
+        <p>Before you make a decision that actually matters, talk to a qualified professional who knows your specific situation: an accountant, a solicitor, a doctor, an IT consultant, whoever fits the question. They can factor in the bits a generic tool can't.</p>
+        <p>We take no liability and accept no responsibility for any loss, damage, or questionable life choice arising from acting on the numbers you see here. Use the results as a starting point for a better conversation, not as the final word.</p>
+        <p><strong>Affiliate disclosure:</strong> some links on this site are affiliate links. If you click through and buy or sign up for something, we may earn a small commission at no extra cost to you. It helps keep the calculators free and ad-light. We only recommend things we'd point a friend towards.</p>
+      </section>
+      <p class="site-copyright">&copy; 2026 WebCaretakers. All rights reserved.</p>
+      <p class="site-legal">WebCaretakers is a trading name of <a href="https://yeseo.io/" rel="noopener">Andrew Laws Associates Ltd</a>, registered in England and Wales (company no. 08602332). ICO registration ZA726704.</p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/calculators/uk-sportive-difficulty.js"></script>
+  <script>
+  (function () {
+    'use strict';
+
+    var fileInput   = document.querySelector('[data-input-gpx]');
+    var riderKg     = document.querySelector('[data-input-rider-kg]');
+    var bikeKg      = document.querySelector('[data-input-bike-kg]');
+    var riderType   = document.querySelector('[data-input-rider-type]');
+    var flatSpeed   = document.querySelector('[data-input-flat-speed]');
+    var powerInput  = document.querySelector('[data-input-power]');
+    var calcBtn     = document.querySelector('[data-calculate]');
+    var errorEl     = document.querySelector('[data-error]');
+    var resultsEl   = document.querySelector('[data-results]');
+    var toughBody   = document.querySelector('[data-tough-body]');
+    var toughWrap   = document.querySelector('[data-tough-wrapper]');
+    var noClimbsEl  = document.querySelector('[data-no-climbs]');
+    var proveBody   = document.querySelector('[data-prove-it-body]');
+
+    var gpxText = null;
+    var gpxFilename = null;
+
+    function showError(msg) {
+      errorEl.textContent = msg;
+      errorEl.hidden = false;
+      resultsEl.hidden = true;
+    }
+    function clearError() { errorEl.hidden = true; errorEl.textContent = ''; }
+
+    fileInput.addEventListener('change', function () {
+      var file = fileInput.files && fileInput.files[0];
+      if (!file) { gpxText = null; gpxFilename = null; return; }
+      gpxFilename = file.name;
+      var reader = new FileReader();
+      reader.onload = function () { gpxText = reader.result; };
+      reader.onerror = function () { showError('Could not read the GPX file. Try saving it again or use a different file.'); };
+      reader.readAsText(file);
+    });
+
+    calcBtn.addEventListener('click', function () {
+      clearError();
+      if (!gpxText) { showError('Pick a GPX file to upload first.'); return; }
+
+      var rk = parseFloat(riderKg.value);
+      var bk = parseFloat(bikeKg.value);
+      if (isNaN(rk) || rk <= 0) { showError('Enter a valid rider weight in kg.'); return; }
+      if (isNaN(bk) || bk <= 0) { showError('Enter a valid bike weight in kg.'); return; }
+      var totalKg = rk + bk;
+
+      var spd = parseFloat(flatSpeed.value);
+      var pwr = parseFloat(powerInput.value);
+      var hasSpeed = !isNaN(spd) && spd > 0;
+      var hasPower = !isNaN(pwr) && pwr > 0;
+      if (!hasSpeed && !hasPower) {
+        showError('Enter a target flat-road speed (or a sustained power output).');
+        return;
+      }
+
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: 'calculator_interaction',
+        calculator_name: 'UK Sportive Difficulty Calculator',
+        gpx_filename: gpxFilename || 'unknown',
+        input_mode: hasPower ? 'power' : 'speed',
+      });
+
+      try {
+        var parsed = SportiveDifficulty.parseGPX(gpxText);
+        var r = SportiveDifficulty.calculateRoute({
+          points: parsed.points,
+          flatSpeedKmh: hasSpeed ? spd : null,
+          powerW:       hasPower ? pwr : null,
+          totalMassKg:  totalKg,
+          riderType:    riderType.value,
+        });
+
+        document.querySelector('[data-line-time]').textContent          = SportiveDifficulty.formatTimeOfDay(r.timeSecs);
+        document.querySelector('[data-line-avg-speed]').textContent     = r.avgSpeedKmh + ' km/h';
+        document.querySelector('[data-line-power]').textContent         = r.powerW + ' W' + (hasPower ? ' (entered)' : ' (inferred from flat speed)');
+        document.querySelector('[data-line-rating]').textContent        = r.difficultyRating.charAt(0).toUpperCase() + r.difficultyRating.slice(1);
+        document.querySelector('[data-line-distance]').textContent      = r.totalDistKm + ' km';
+        document.querySelector('[data-line-ascent]').textContent        = r.totalAscentM + ' m';
+        document.querySelector('[data-line-descent]').textContent       = r.totalDescentM + ' m';
+        document.querySelector('[data-line-ascent-per-km]').textContent = r.ascentPerKm + ' m/km';
+        document.querySelector('[data-line-max-grade]').textContent     = r.maxClimbGradePct + '%';
+        document.querySelector('[data-line-max-descent]').textContent   = r.maxDescentSpeedKmh + ' km/h';
+
+        toughBody.innerHTML = '';
+        if (r.toughClimbs.length === 0) {
+          noClimbsEl.hidden = false;
+          toughWrap.hidden = true;
+        } else {
+          noClimbsEl.hidden = true;
+          toughWrap.hidden = false;
+          r.toughClimbs.forEach(function (c, idx) {
+            var tr = document.createElement('tr');
+            var startKm = (c.startM / 1000).toFixed(1);
+            var endKm   = (c.endM   / 1000).toFixed(1);
+            tr.innerHTML = '<td>Climb ' + (idx + 1) + ' (km ' + startKm + ' to ' + endKm + ')</td>'
+                         + '<td>' + Math.round(c.lengthM) + ' m</td>'
+                         + '<td>' + c.avgGradePct.toFixed(1) + '%</td>'
+                         + '<td>' + Math.round(c.ascentM) + ' m</td>'
+                         + '<td>' + c.predictedArrival + '</td>'
+                         + '<td>' + (c.category ? 'Cat ' + c.category : 'Uncategorised') + '</td>';
+            toughBody.appendChild(tr);
+          });
+        }
+
+        var lines = [
+          'GPX: ' + (gpxFilename || 'uploaded file'),
+          'Trackpoints: ' + parsed.points.length,
+          'Distance: ' + r.totalDistKm + ' km',
+          'Total ascent (smoothed): ' + r.totalAscentM + ' m',
+          'Total descent (smoothed): ' + r.totalDescentM + ' m',
+          '',
+          'Rider + bike: ' + totalKg + ' kg',
+          'Rider type: ' + r.riderType + ' (CdA = ' + r.riderPreset.CdA + ', Crr = ' + r.riderPreset.Crr + ')',
+          'Sustained power: ' + r.powerW + ' W' + (hasPower ? ' (entered directly)' : ' (inferred from ' + spd + ' km/h flat speed)'),
+          '',
+          'Per-segment speed solved from: P × η = (m·g·sinθ + m·g·cosθ·Crr)·v + 0.5·ρ·CdA·v³',
+          'Drivetrain efficiency η = 0.97; air density ρ = 1.225 kg/m³ (sea level, 15°C)',
+          'Descents steeper than -1.5% modelled as coasting (P=0); descent speed capped at 80 km/h',
+          '',
+          'Predicted finish time: ' + SportiveDifficulty.formatTimeOfDay(r.timeSecs),
+          'Average speed: ' + r.avgSpeedKmh + ' km/h',
+          'Top descent speed: ' + r.maxDescentSpeedKmh + ' km/h',
+          'Steepest climb gradient: ' + r.maxClimbGradePct + '%',
+          'Difficulty rating: ' + r.difficultyRating,
+          'Categorised climbs detected: ' + r.toughClimbs.length + ' (Strava cycling thresholds, length × grade ≥ 8000)',
+        ];
+        proveBody.textContent = lines.join('\n');
+
+        resultsEl.hidden = false;
+
+        window.dataLayer.push({
+          event:               'calculator_result',
+          calculator_name:     'UK Sportive Difficulty Calculator',
+          time_secs:           r.timeSecs,
+          avg_speed_kmh:       r.avgSpeedKmh,
+          power_w:             r.powerW,
+          difficulty_rating:   r.difficultyRating,
+          total_dist_km:       r.totalDistKm,
+        });
+      } catch (e) {
+        showError(e.message || 'Could not process that GPX file.');
+      }
+    });
+  })();
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>
