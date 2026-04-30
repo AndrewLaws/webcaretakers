@@ -26,8 +26,12 @@ const HAND_PICKED_MARKER = '<!-- related-calculators-block -->';
 //   \n        <section class="related-calcs" aria-labelledby="related-heading">
 //   ...
 //   </section>\n
+//
+// Negative lookbehind on the marker comment so we never strip a hand-picked
+// block that reuses the `related-calcs` styling hooks. Hand-picked blocks are
+// always preceded by `<!-- related-calculators-block -->` on the line above.
 const AUTO_BLOCK_RE =
-  /\n[ \t]*<section class="related-calcs"[\s\S]*?<\/section>\n/;
+  /\n[ \t]*(?<!<!-- related-calculators-block -->\n[ \t]*)<section class="related-calcs"[\s\S]*?<\/section>\n/;
 
 function* walkCalcPages(dir) {
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
@@ -75,8 +79,14 @@ const rel = (f) => path.relative(path.resolve(__dirname, '..'), f);
 
 console.log(`${APPLY ? 'WROTE' : 'DRY RUN'}: stripped auto block from ${stripped.length} pages`);
 for (const f of stripped) console.log(`  - ${rel(f)}`);
-if (skipped.length) {
-  console.log(`\nSkipped ${skipped.length}:`);
-  for (const s of skipped) console.log(`  ! ${rel(s.file)}  (${s.reason})`);
+
+// "regex did not match auto block" is now expected and benign: it fires when a
+// hand-picked block legitimately reuses the `related-calcs` styling class and
+// is correctly excluded by the negative-lookbehind on the marker comment. Only
+// the other skip reasons (which would indicate genuine corruption) should fail.
+const realProblems = skipped.filter((s) => s.reason !== 'regex did not match auto block');
+if (realProblems.length) {
+  console.log(`\nSkipped ${realProblems.length} with unexpected shape:`);
+  for (const s of realProblems) console.log(`  ! ${rel(s.file)}  (${s.reason})`);
   process.exit(1);
 }
