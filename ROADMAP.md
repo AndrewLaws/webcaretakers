@@ -169,7 +169,7 @@ Already partially in place via `scripts/inject-seo-schema.js` and `scripts/fix-f
 - Validate every page against Google's Rich Results Test as part of the build; fail the build on schema errors
 - Remove any schema that misrepresents the page (Google penalises this and it is a real risk on a hub site)
 
-**Status:** [ ] Not started
+**Status:** [~] In progress. 2026-04-30: audited 132 pages, baseline is healthier than expected — 110/110 calculators carry SoftwareApplication + FAQPage + BreadcrumbList + Organization, all 15 category hubs carry CollectionPage + nested ItemList + BreadcrumbList. Built `scripts/validate-jsonld.js` (with 15 unit tests) wired into `npm test` via `npm run validate:schema`. Validator parses every JSON-LD block, walks nested properties (so `CollectionPage.mainEntity = { @type: ItemList }` is detected correctly), enforces page-type contracts, and rejects empty `FAQPage.mainEntity` so we never ship fabricated FAQs. All 132 pages currently pass. Still to do: Rich Results Test integration, schema-misrepresentation review.
 
 ### 4. Title, meta and heading sweep
 
