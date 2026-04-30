@@ -127,6 +127,153 @@ Three-tier IA: **Home → Category hub → Calculator**. Primary nav shows categ
 
 ---
 
+## Site SEO programme
+
+The shipping pause is the chance to do the SEO work properly rather than feed the catalogue. Goal: get webcaretakers.com ranking on the calculators we already have, on the back of the 25-year domain. Each item below is tracked the same way the calculator pipeline is, with a Status flag.
+
+What already exists (so we don't redo it): per-category sitemaps plus a master `sitemap.xml`, a `robots.txt` pointing at it, an `llms.txt`, an author page, a `/privacy/` directory, and build-time scripts for schema, author meta, FAQ JSON-LD and internal links under `scripts/`. The work below builds on that foundation.
+
+### 1. Search Console and Bing Webmaster baseline
+
+Get clean, monitored data flowing before we change anything else, otherwise we are optimising blind.
+
+- Verify the apex and www in Google Search Console (DNS TXT via Route 53), pick one as canonical property
+- Submit `sitemap.xml` and confirm all per-category sitemaps are discovered
+- Verify the same property in Bing Webmaster Tools and submit the sitemap there
+- Set up weekly export of Performance data (queries, pages, CTR, position) so we have a local record beyond the 16-month GSC window
+- Audit Coverage report for excluded URLs, fix the legitimate ones, ignore the noise
+- Confirm Core Web Vitals report is populating (needs CrUX data, may take 28 days)
+
+**Status:** [ ] Not started
+
+### 2. Privacy page, consent banner and GA4 switch-on
+
+Analytics is the feedback loop for everything else. Currently blocked.
+
+- Audit the existing `/privacy/index.html` against what we actually do (GA4, Consent Mode v2, ad networks, affiliates) and rewrite in the tone.md voice if it is template filler
+- Ship the cookie consent banner described in the Cross-cutting features section
+- Wire GA4 through GTM with consent defaults set to denied
+- Define the four conversion events: `calculator_interaction`, `calculator_result`, `cta_click`, `prove_it_open`
+- Link GA4 to GSC so query-to-page-to-event attribution works in one place
+
+**Status:** [ ] Not started
+
+### 3. Schema audit and consolidation
+
+Already partially in place via `scripts/inject-seo-schema.js` and `scripts/fix-faq-jsonld.js`. Make it consistent and complete across every published calculator.
+
+- Inventory current JSON-LD by calculator: `SoftwareApplication`, `FAQPage`, `BreadcrumbList`, `Organization`, `WebSite` with `SearchAction`
+- Every calculator must have `SoftwareApplication` plus `BreadcrumbList`, and `FAQPage` where the page actually has FAQs (no fabricated FAQs just to add schema)
+- Add `Organization` and `WebSite` once at the site level, not per page
+- Country-targeted calculators: confirm `inLanguage` and `countriesSupported` are set per CLAUDE.md
+- Validate every page against Google's Rich Results Test as part of the build; fail the build on schema errors
+- Remove any schema that misrepresents the page (Google penalises this and it is a real risk on a hub site)
+
+**Status:** [ ] Not started
+
+### 4. Title, meta and heading sweep
+
+Cheap, high-leverage. Do it once GSC has 4 weeks of data so we are rewriting against real queries.
+
+- Export GSC queries per page, identify the dominant query and the long-tail variants
+- Rewrite `<title>` to lead with the dominant query, kept under 60 characters where possible
+- Rewrite meta descriptions to match search intent in the first clause, in the tone.md voice, no marketing fluff
+- Confirm one `<h1>` per page and that it matches the title intent
+- Sub-headings (`<h2>`, `<h3>`) should mirror the question phrasing users actually type (the GSC query export tells us this)
+- Track before/after CTR per URL in a simple spreadsheet so we can prove the lift
+
+**Status:** [ ] Not started
+
+### 5. Internal linking pass
+
+The site has `scripts/internal-links.js` already. The work is editorial: making sure the right calculators link to the right siblings.
+
+- Each calculator gets a "Related calculators" block of three to five hand-chosen siblings, not a generic auto-list
+- Each category hub links to every calculator in the category and to the two or three closest sibling categories
+- Every calculator links back up to its category hub via breadcrumbs (this is also the `BreadcrumbList` schema source)
+- Cross-link UK/US sibling pairs at the top of the page per CLAUDE.md country rules
+- The homepage links to the top calculator in each live category, not to all of them
+- Audit for orphan pages (pages with zero internal links in) using a crawl of the live site
+
+**Status:** [ ] Not started
+
+### 6. Category hub long-form content
+
+Currently most hubs are thin lists. The roadmap promises real pages with intros, grouped listings and long-form SEO content (see Site navigation section above). This is the biggest single ranking lever we have.
+
+- For each live category, write 600 to 1,200 words of genuinely useful intro content above the calculator grid
+- Cover: what the category is, who uses these tools, when to reach for which one, common mistakes
+- Tone.md voice, British English, no marketing fluff, no AI-template phrasing
+- Sub-category groupings inside the hub where the calculator count justifies it (Broadband > Home, Broadband > Business, etc.)
+- An FAQ block at the bottom of each hub answering the top three to five GSC queries for the hub URL
+
+**Status:** [ ] Not started
+
+### 7. ELI5 and Prove-it rollout
+
+Already designed (see Cross-cutting features). The SEO value is twofold: depth-of-content signal for Google, and citation-ready facts for AI Overviews and Perplexity.
+
+- Roll out the ELI5 block to every published calculator
+- Roll out the Prove-it panel with the AI Overview citation pattern (named source per workings step)
+- Track `prove_it_open` as a GA4 event and watch engagement vs control pages for six to eight weeks
+
+**Status:** [ ] Not started (pattern established on broadband bandwidth calculator)
+
+### 8. Core Web Vitals baseline and budget
+
+Static site on Amplify and CloudFront, so we should be fast by default. Confirm it, then hold the line.
+
+- Run Lighthouse and PageSpeed Insights on a sample of 10 calculators (across category templates)
+- Record LCP, INP, CLS for each, set a per-template budget that we will not regress past
+- Add a build-time check (Lighthouse CI or similar) that fails the deploy if a template breaks budget
+- Specific known wins to verify: image lazy-loading, font-display: swap, no render-blocking JS, preloaded LCP image where relevant
+- Re-baseline once GSC's CWV report has 28 days of field data so we are tuning to real users not lab numbers
+
+**Status:** [ ] Not started
+
+### 9. Backlinks and digital PR
+
+The 25-year domain authority is the moat. The job is to earn fresh, topical links to specific calculators so the equity flows down to ranking pages, not just the homepage.
+
+- Identify the five calculators with the highest commercial intent and the best chance of being cited (likely: broadband bandwidth, UK marathon difficulty, UK rent vs buy, TDEE, pregnancy due date)
+- For each, list 10 to 20 sites that already link to similar tools (use SEMrush or Ahrefs free tier)
+- Outreach is opportunity-led: a useful tool, a relevant journalist or blogger, a clear reason to link. Never "building backlinks" language per CLAUDE.md
+- Track all outreach in `links.json` (already in repo) with status: contacted, responded, linked, dead
+- Reactive PR: monitor HARO/Qwoted/Featured for queries that match calculator topics
+- No paid links, no link networks, no PBNs. The domain is too old and too valuable to risk.
+
+**Status:** [ ] Not started
+
+### 10. Post-deploy indexing pushers
+
+Already in the roadmap (see Cross-cutting features), reproduced here so it lives in the SEO programme. Lower priority than 1 to 6 but worth doing once the catalogue update cadence picks back up.
+
+- `scripts/post-deploy-index-ping.js` diffs `sitemap.xml`, calls GSC `sitemaps.submit`, POSTs to IndexNow for Bing/Yandex/Seznam, logs every submission
+
+**Status:** [ ] Not started
+
+### 11. Monitoring and review cadence
+
+SEO without a review loop is just hope. Set the loop now.
+
+- Monthly: GSC Performance review, top movers up and down, queries per page, CTR outliers
+- Monthly: rank tracking on a fixed list of 30 to 50 priority queries (SerpAPI is fine, build-time only per CLAUDE.md)
+- Quarterly: full content audit of every published calculator (still accurate? still on intent? still the right CTA?)
+- Quarterly: backlink delta, flag toxic links via GSC if needed
+- Annual: full technical re-audit (schema, CWV, internal links, sitemap hygiene)
+
+**Status:** [ ] Not started
+
+### Suggested order of work
+
+1, 2, 3 in parallel (data + analytics + schema baseline)
+Then 5, 6, 7 (the on-page work that needs the data from step 1 to be sharp)
+Then 4 (title/meta sweep, after 4 weeks of GSC data)
+Then 8 (CWV with real-user data)
+Then 9, 10, 11 (link building and ongoing loops, by which point we have something worth pointing links at)
+
+---
+
 ## Build priority
 
 - **Tier 1 (first cluster):** Calculators with direct historical authority from the domain's past content
@@ -145,6 +292,7 @@ Three-tier IA: **Home → Category hub → Calculator**. Primary nav shows categ
 
 These were built in response to keyword research, traffic priorities or user requests rather than from the Tier 1 list. Source of truth for live calculators is `categories.json`; this section is just a quick map of what's been added beyond the original roadmap.
 
+- [x] UK Sportive Difficulty Calculator (Health, UK-localised, 2026-04-29) — cycling sibling, GPX upload, physics-based power model, Strava cycling categorisation
 - [x] UK Marathon Course Difficulty Calculator (Health, UK-localised, 2026-04-29) — GPX upload, Strava-style GAP, late-race fatigue weighting, climb detection
 - [x] Pregnancy Due Date Calculator (Health, 2026-04-26)
 - [x] TDEE Calculator (Health, 2026-04-26)
