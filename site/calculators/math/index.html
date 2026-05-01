@@ -106,6 +106,19 @@
     }
   }
   </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "What is the difference between percentage and percentage points?", "acceptedAnswer": { "@type": "Answer", "text": "A percentage is the ratio (interest of 5 per cent on a £100 loan is £5). A percentage point is the difference between two percentages (going from 5 per cent to 7 per cent is a rise of 2 percentage points, or a 40 per cent increase). News headlines mix these up constantly." } },
+      { "@type": "Question", "name": "How do I work out a percentage discount in my head?", "acceptedAnswer": { "@type": "Answer", "text": "For 20 per cent off, knock 10 per cent off twice. For 25 per cent off, divide by four and subtract. For 33 per cent off, divide by three and subtract. The Percentage Calculator handles any value if mental shortcuts run out." } },
+      { "@type": "Question", "name": "What is the order of operations (BIDMAS/PEMDAS)?", "acceptedAnswer": { "@type": "Answer", "text": "Brackets, Indices (powers), Division and Multiplication (left to right), Addition and Subtraction (left to right). Same rule, two acronyms. So 2 + 3 × 4 = 14, not 20, because the multiplication runs first." } },
+      { "@type": "Question", "name": "Why don't fractions add the way numbers do?", "acceptedAnswer": { "@type": "Answer", "text": "Because you can only add fractions with the same denominator. 1/3 + 1/4 is not 2/7. Convert to a common denominator first: 1/3 = 4/12 and 1/4 = 3/12, so 4/12 + 3/12 = 7/12. Multiplying is easier: multiply numerators, multiply denominators." } },
+      { "@type": "Question", "name": "Does any of my data leave the browser?", "acceptedAnswer": { "@type": "Answer", "text": "No. Every maths tool here runs in JavaScript on your device. Numbers you enter are not logged, stored or transmitted." } }
+    ]
+  }
+  </script>
   <!-- breadcrumb-jsonld -->
   <script type="application/ld+json">
 {
@@ -193,6 +206,17 @@
       </div>
     </div>
   </div>
+  <!-- site-search-bar -->
+  <div class="site-search-bar">
+    <div class="container">
+      <form class="site-search" role="search" data-site-search autocomplete="off">
+        <label for="site-search-input" class="site-search__label visually-hidden">Search calculators</label>
+        <input id="site-search-input" type="search" class="site-search__input" placeholder="Search calculators..." autocomplete="off" data-site-search-input aria-autocomplete="list" aria-controls="site-search-results">
+        <ul id="site-search-results" class="site-search__results" data-site-search-results hidden role="listbox"></ul>
+      </form>
+    </div>
+  </div>
+
 
 
   <header class="site-header">
@@ -295,6 +319,30 @@
             <p>Compute log base b of x for any positive base, including base 10, e and 2. Solve for the result, for x, or for the base. Change-of-base working and inverse check shown.</p>
           </li>
         </ul>
+
+        <section class="faq" aria-labelledby="hub-faq-heading">
+          <h2 id="hub-faq-heading">Frequently asked questions</h2>
+          <details>
+            <summary>What is the difference between percentage and percentage points?</summary>
+            <p>A percentage is the ratio (interest of 5 per cent on a £100 loan is £5). A percentage point is the difference between two percentages (going from 5 per cent to 7 per cent is a rise of 2 percentage points, or a 40 per cent increase). News headlines mix these up constantly. The <a href="/calculators/math/percentage-calculator/">Percentage Calculator</a> handles both views.</p>
+          </details>
+          <details>
+            <summary>How do I work out a percentage discount in my head?</summary>
+            <p>For 20 per cent off, knock 10 per cent off twice (so £80 becomes £64 in two steps: £80 - £8 - £8). For 25 per cent off, divide by four and subtract. For 33 per cent off, divide by three and subtract. The <a href="/calculators/math/percentage-calculator/">Percentage Calculator</a> handles any value if mental shortcuts run out.</p>
+          </details>
+          <details>
+            <summary>What is the order of operations (BIDMAS/PEMDAS)?</summary>
+            <p>Brackets, Indices (powers), Division and Multiplication (left to right), Addition and Subtraction (left to right). Same rule, two acronyms. So 2 + 3 × 4 = 14, not 20, because the multiplication runs first. Worth knowing because it changes answers.</p>
+          </details>
+          <details>
+            <summary>Why don't fractions add the way numbers do?</summary>
+            <p>Because you can only <a href="/calculators/math/fraction-calculator/">add fractions</a> with the same denominator. 1/3 + 1/4 is not 2/7. Convert to a common denominator first: 1/3 = 4/12 and 1/4 = 3/12, so 4/12 + 3/12 = 7/12. Multiplying is easier (multiply numerators, multiply denominators).</p>
+          </details>
+          <details>
+            <summary>Does any of my data leave the browser?</summary>
+            <p>No. Every maths tool here runs in JavaScript on your device. Numbers you enter are not logged, stored or transmitted.</p>
+          </details>
+        </section>
 
         <section class="long-form">
           <h2>Why a percentage calculator is the most-used maths tool online</h2>

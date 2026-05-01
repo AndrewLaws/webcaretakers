@@ -106,6 +106,39 @@
     }
   }
   </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What domain renewal price hike should I expect?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Most retail registrars sell the first year as a loss-leader and make the margin on renewals. A £1 first-year domain often renews at £15 to £25, and registrars push add-ons (privacy, SSL, email) at each renewal. Over five years, what looked like a £1 purchase routinely lands closer to £80." }
+      },
+      {
+        "@type": "Question",
+        "name": "When does in-house IT become cheaper than a managed service?",
+        "acceptedAnswer": { "@type": "Answer", "text": "At a typical £45,000 fully-loaded UK IT salary, the break-even against £75 per user per month managed support lands around 65 to 70 users. Below that headcount, managed wins on cost. Above it, in-house does, but rarely on cost alone: managed services usually include extended-hours cover and vendor escalation that one in-house person cannot match." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is a sensible freelance day rate?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Take your target annual income, add 30 per cent for tax and pension, divide by the number of billable days you actually have in a year (usually 180 to 220 after holidays, sickness, admin and business development), and you have your day rate floor. The Freelance Day Rate Calculator walks through the maths and lets you compare it to typical UK rates by discipline." }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I work out my project's break-even point?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Break-even is fixed costs divided by contribution per unit (price minus variable cost per unit). It tells you how many units you need to sell before you stop losing money. For service businesses, units can be billable hours, projects, or subscriptions." }
+      },
+      {
+        "@type": "Question",
+        "name": "What ROI is realistic for SEO or email marketing?",
+        "acceptedAnswer": { "@type": "Answer", "text": "SEO usually shows positive ROI by month 9 to 12 for a small business, with returns of 200 to 400 per cent over a two-year horizon if the basics are done well. Email marketing has the highest ROI of any channel for established lists: 30 to 40 to 1 is typical, but only if your list is engaged and your offer is relevant." }
+      }
+    ]
+  }
+  </script>
   <!-- breadcrumb-jsonld -->
   <script type="application/ld+json">
 {
@@ -193,6 +226,17 @@
       </div>
     </div>
   </div>
+  <!-- site-search-bar -->
+  <div class="site-search-bar">
+    <div class="container">
+      <form class="site-search" role="search" data-site-search autocomplete="off">
+        <label for="site-search-input" class="site-search__label visually-hidden">Search calculators</label>
+        <input id="site-search-input" type="search" class="site-search__input" placeholder="Search calculators..." autocomplete="off" data-site-search-input aria-autocomplete="list" aria-controls="site-search-results">
+        <ul id="site-search-results" class="site-search__results" data-site-search-results hidden role="listbox"></ul>
+      </form>
+    </div>
+  </div>
+
 
 
   <header class="site-header">
@@ -299,6 +343,30 @@
             <p>See the real multi-year cost of a domain once the promo first-year price is gone and add-ons (privacy, email, DNS, SSL) are stacked up. Optional comparison against a cheaper registrar.</p>
           </li>
         </ul>
+
+        <section class="faq" aria-labelledby="hub-faq-heading">
+          <h2 id="hub-faq-heading">Frequently asked questions</h2>
+          <details>
+            <summary>What domain renewal price hike should I expect?</summary>
+            <p>Most retail registrars sell the first year as a loss-leader and make the margin on renewals. A £1 first-year domain often renews at £15 to £25, and registrars push add-ons (privacy, SSL, email) at each renewal. Over five years, what looked like a £1 purchase routinely lands closer to £80. The <a href="/calculators/business/domain-renewal-true-cost-calculator/">Domain Renewal True Cost Calculator</a> shows the multi-year picture before you commit.</p>
+          </details>
+          <details>
+            <summary>When does in-house IT become cheaper than a managed service?</summary>
+            <p>At a typical £45,000 fully-loaded UK IT salary, the break-even against £75 per user per month managed support lands around 65 to 70 users. Below that headcount, managed wins on cost. Above it, in-house does, but rarely on cost alone: managed services usually include extended-hours cover and vendor escalation that one in-house person cannot match. The <a href="/calculators/business/it-support-build-vs-buy-calculator/">IT Support Build vs Buy Calculator</a> works it out for your specific numbers.</p>
+          </details>
+          <details>
+            <summary>What is a sensible freelance day rate?</summary>
+            <p>Take your target annual income, add 30 per cent for tax and pension, divide by the number of billable days you actually have in a year (usually 180 to 220 after holidays, sickness, admin and business development), and you have your day rate floor. The <a href="/calculators/business/freelance-day-rate-calculator/">Freelance Day Rate Calculator</a> walks through the maths and lets you compare it to typical UK rates by discipline.</p>
+          </details>
+          <details>
+            <summary>How do I work out my project's break-even point?</summary>
+            <p>Break-even is fixed costs divided by contribution per unit (price minus variable cost per unit). It tells you how many units you need to sell before you stop losing money. For service businesses, "units" can be billable hours, projects, or subscriptions. The <a href="/calculators/business/break-even-calculator/">Break-Even Calculator</a> handles the maths and lets you see how a price change shifts the answer.</p>
+          </details>
+          <details>
+            <summary>What ROI is realistic for SEO or email marketing?</summary>
+            <p>SEO usually shows positive ROI by month 9 to 12 for a small business, with returns of 200 to 400 per cent over a two-year horizon if the basics are done well. Email marketing has the highest ROI of any channel for established lists: 30 to 40 to 1 is typical, but only if your list is engaged and your offer is relevant. The <a href="/calculators/business/seo-roi-calculator/">SEO ROI Calculator</a> and <a href="/calculators/business/email-marketing-roi-calculator/">Email Marketing ROI Calculator</a> let you model your own numbers.</p>
+          </details>
+        </section>
 
         <section class="long-form">
           <h2>Why business tools need their own space</h2>

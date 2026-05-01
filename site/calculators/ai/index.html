@@ -106,6 +106,39 @@
     }
   }
   </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How are tokens different from words and characters?",
+        "acceptedAnswer": { "@type": "Answer", "text": "A token is roughly three to four characters of English, or about 0.75 of a word. Hello world is two tokens. A long unfamiliar word like Antidisestablishmentarianism is closer to seven, because the tokeniser splits it into chunks. The Prompt Token Estimator gives you a quick count for any prompt across the major model families." }
+      },
+      {
+        "@type": "Question",
+        "name": "Roughly what does a GPT-class API call cost?",
+        "acceptedAnswer": { "@type": "Answer", "text": "For mid-tier models (GPT-4o-mini, Claude Haiku, Gemini Flash) in 2026, a typical 2,000-token input plus 500-token output costs about half a US cent. For top-tier models (GPT-4o, Claude Opus, Gemini Pro) the same call is closer to three to five cents. The LLM Token Usage Calculator works it out per call and per month for your specific usage." }
+      },
+      {
+        "@type": "Question",
+        "name": "When does fine-tuning beat a longer prompt?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Fine-tuning earns its keep when you have at least a few hundred good examples of the input-output pattern you want, when you need shorter prompts at inference time (saving tokens on every call), and when you can amortise the up-front training cost across enough calls. Below a few thousand calls a month, prompting almost always wins." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is RAG and when should I use it?",
+        "acceptedAnswer": { "@type": "Answer", "text": "RAG (Retrieval-Augmented Generation) means looking up relevant chunks from your own documents and stuffing them into the prompt at runtime. Use it when answers must come from a specific corpus (your docs, your knowledge base) rather than the model's training data. The RAG Pipeline Cost Calculator models the embedding and inference costs for a typical setup." }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I budget for an AI feature in my app?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Estimate your per-call token usage (input plus output), multiply by your model's per-token rate, multiply by expected calls per user per month, then multiply by your active user count. Add a 30 to 50 per cent buffer for retries, longer-than-expected prompts, and growth." }
+      }
+    ]
+  }
+  </script>
   <!-- breadcrumb-jsonld -->
   <script type="application/ld+json">
 {
@@ -193,6 +226,17 @@
       </div>
     </div>
   </div>
+  <!-- site-search-bar -->
+  <div class="site-search-bar">
+    <div class="container">
+      <form class="site-search" role="search" data-site-search autocomplete="off">
+        <label for="site-search-input" class="site-search__label visually-hidden">Search calculators</label>
+        <input id="site-search-input" type="search" class="site-search__input" placeholder="Search calculators..." autocomplete="off" data-site-search-input aria-autocomplete="list" aria-controls="site-search-results">
+        <ul id="site-search-results" class="site-search__results" data-site-search-results hidden role="listbox"></ul>
+      </form>
+    </div>
+  </div>
+
 
 
   <header class="site-header">
@@ -289,6 +333,30 @@
             <p>Paste a prompt, pick a model family, see roughly how many tokens it will use across GPT-4o, Claude, Gemini, Llama and Mistral. Optional cost at your $/1K rate.</p>
           </li>
         </ul>
+
+        <section class="faq" aria-labelledby="hub-faq-heading">
+          <h2 id="hub-faq-heading">Frequently asked questions</h2>
+          <details>
+            <summary>How are tokens different from words and characters?</summary>
+            <p>A token is roughly three to four characters of English, or about 0.75 of a word. "Hello world" is two tokens. "Antidisestablishmentarianism" is closer to seven, because the tokeniser splits long unfamiliar words into chunks. The <a href="/calculators/ai/prompt-token-estimator/">Prompt Token Estimator</a> gives you a quick count for any prompt across the major model families.</p>
+          </details>
+          <details>
+            <summary>Roughly what does a GPT-class API call cost?</summary>
+            <p>For mid-tier models (GPT-4o-mini, Claude Haiku, Gemini Flash) in 2026, a typical 2,000-token input plus 500-token output costs about half a US cent. For top-tier models (GPT-4o, Claude Opus, Gemini Pro) the same call is closer to three to five cents. The <a href="/calculators/ai/llm-token-usage-calculator/">LLM Token Usage Calculator</a> works it out per call and per month for your specific usage.</p>
+          </details>
+          <details>
+            <summary>When does fine-tuning beat a longer prompt?</summary>
+            <p>Fine-tuning earns its keep when you have at least a few hundred good examples of the input-output pattern you want, when you need shorter prompts at inference time (saving tokens on every call), and when you can amortise the up-front training cost across enough calls. Below a few thousand calls a month, prompting almost always wins. The <a href="/calculators/ai/fine-tuning-cost-calculator/">Fine-Tuning Cost Calculator</a> shows the break-even point.</p>
+          </details>
+          <details>
+            <summary>What is RAG and when should I use it?</summary>
+            <p>RAG (Retrieval-Augmented Generation) means looking up relevant chunks from your own documents and stuffing them into the prompt at runtime. Use it when answers must come from a specific corpus (your docs, your knowledge base) rather than the model's training data. The <a href="/calculators/ai/rag-pipeline-cost-calculator/">RAG Pipeline Cost Calculator</a> models the embedding and inference costs for a typical setup.</p>
+          </details>
+          <details>
+            <summary>How do I budget for an AI feature in my app?</summary>
+            <p>Estimate your per-call token usage (input + output), multiply by your model's per-token rate, multiply by expected calls per user per month, then multiply by your active user count. Add a 30 to 50 per cent buffer for retries, longer-than-expected prompts, and growth. The tools in this category each handle one slice of that calculation.</p>
+          </details>
+        </section>
       </div>
     </main>
 

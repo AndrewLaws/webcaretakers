@@ -137,6 +137,17 @@
 
   <!-- Header ad slot -->
   <div class="ad-slot" data-ad-slot="header" aria-hidden="true"></div>
+  <!-- site-search-bar -->
+  <div class="site-search-bar">
+    <div class="container">
+      <form class="site-search" role="search" data-site-search autocomplete="off">
+        <label for="site-search-input" class="site-search__label visually-hidden">Search calculators</label>
+        <input id="site-search-input" type="search" class="site-search__input" placeholder="Search calculators..." autocomplete="off" data-site-search-input aria-autocomplete="list" aria-controls="site-search-results">
+        <ul id="site-search-results" class="site-search__results" data-site-search-results hidden role="listbox"></ul>
+      </form>
+    </div>
+  </div>
+
 
   <header class="site-header">
     <div class="container">
@@ -206,26 +217,32 @@
 
         <section class="long-form" aria-labelledby="featured-heading">
           <h2 id="featured-heading">Featured calculators</h2>
+          <p class="section-intro">One pick from each category. Browse the rest from the category links below or the <a href="/calculators/">all-calculators index</a>.</p>
           <ul class="category-grid">
+            <li class="category-card">
+              <h3><a href="/calculators/ai/llm-token-usage-calculator/">LLM Token Usage Calculator</a></h3>
+              <p>Estimate how many tokens a prompt and response will consume across OpenAI, Anthropic and Google models, and what that costs per call and per month.</p>
+              <span class="category-card__count">In <a href="/calculators/ai/">AI</a></span>
+            </li>
             <li class="category-card">
               <h3><a href="/calculators/broadband/broadband-bandwidth-calculator/">Broadband Bandwidth Calculator</a></h3>
               <p>Estimate the download and upload speeds your household needs based on streaming, video calls, gaming, smart devices, and remote work.</p>
               <span class="category-card__count">In <a href="/calculators/broadband/">Broadband</a></span>
             </li>
             <li class="category-card">
-              <h3><a href="/calculators/math/percentage-calculator/">Percentage Calculator</a></h3>
-              <p>Work out a percentage of a number, what percent one number is of another, or the percentage change between two values.</p>
-              <span class="category-card__count">In <a href="/calculators/math/">Math</a></span>
+              <h3><a href="/calculators/business/domain-renewal-true-cost-calculator/">Domain Renewal True Cost Calculator</a></h3>
+              <p>See the real multi-year cost of a domain including the renewal price hike and add-ons like WHOIS privacy, email, DNS and SSL.</p>
+              <span class="category-card__count">In <a href="/calculators/business/">Business</a></span>
             </li>
             <li class="category-card">
-              <h3><a href="/calculators/images/photo-resizer/">Photo Resizer</a></h3>
-              <p>Resize and convert photos in your browser. Pick a width, a height, a format and a quality. Your image never leaves your device.</p>
-              <span class="category-card__count">In <a href="/calculators/images/">Images</a></span>
+              <h3><a href="/calculators/conversions/cooking-measurements-converter/">Cooking Measurements Converter</a></h3>
+              <p>Convert between cups, tablespoons, teaspoons, grams, ounces and millilitres for any common cooking ingredient. Recipe-friendly rounding.</p>
+              <span class="category-card__count">In <a href="/calculators/conversions/">Conversions</a></span>
             </li>
             <li class="category-card">
-              <h3><a href="/calculators/health/bmi-calculator/">BMI Calculator</a></h3>
-              <p>Work out your body mass index in metric or imperial units, with the WHO category and an honest note on what BMI can and cannot tell you.</p>
-              <span class="category-card__count">In <a href="/calculators/health/">Health</a></span>
+              <h3><a href="/calculators/cybersecurity/password-strength-calculator/">Password Strength Calculator</a></h3>
+              <p>Score any password against length, character variety and common-password lists. See estimated time to crack and concrete suggestions to make it stronger.</p>
+              <span class="category-card__count">In <a href="/calculators/cybersecurity/">Cybersecurity</a></span>
             </li>
             <li class="category-card">
               <h3><a href="/calculators/finance/mortgage-calculator/">US Mortgage Calculator</a></h3>
@@ -233,34 +250,24 @@
               <span class="category-card__count">In <a href="/calculators/finance/">Finance</a></span>
             </li>
             <li class="category-card">
-              <h3><a href="/calculators/finance/uk-mortgage-calculator/">UK Mortgage Calculator</a></h3>
-              <p>Work out a UK monthly mortgage payment during the fixed-rate period and after it reverts to the lender's Standard Variable Rate, plus stamp duty and all the cash you need on completion day.</p>
-              <span class="category-card__count">In <a href="/calculators/finance/">Finance</a></span>
+              <h3><a href="/calculators/fun/random-name-picker/">Random Name Picker</a></h3>
+              <p>Paste a list, click pick, get a winner. Useful for raffles, classroom callouts, prize draws and any time you need a fair random choice from a finite set.</p>
+              <span class="category-card__count">In <a href="/calculators/fun/">Fun</a></span>
             </li>
             <li class="category-card">
-              <h3><a href="/calculators/finance/loan-calculator/">Loan Calculator</a></h3>
-              <p>Work out the monthly payment, total interest and total cost of any fixed-rate personal, auto or student loan. See how much you save by paying extra each month. Currency is a toggle.</p>
-              <span class="category-card__count">In <a href="/calculators/finance/">Finance</a></span>
+              <h3><a href="/calculators/health/bmi-calculator/">BMI Calculator</a></h3>
+              <p>Work out your body mass index in metric or imperial units, with the WHO category and an honest note on what BMI can and cannot tell you.</p>
+              <span class="category-card__count">In <a href="/calculators/health/">Health</a></span>
             </li>
             <li class="category-card">
-              <h3><a href="/calculators/finance/compound-interest-calculator/">Compound Interest Calculator</a></h3>
-              <p>See how a starting balance and regular contributions grow with compound interest. Optional inflation adjustment and a year-by-year breakdown. Currency is a toggle.</p>
-              <span class="category-card__count">In <a href="/calculators/finance/">Finance</a></span>
+              <h3><a href="/calculators/images/photo-resizer/">Photo Resizer</a></h3>
+              <p>Resize and convert photos in your browser. Pick a width, a height, a format and a quality. Your image never leaves your device.</p>
+              <span class="category-card__count">In <a href="/calculators/images/">Images</a></span>
             </li>
             <li class="category-card">
-              <h3><a href="/calculators/finance/roi-calculator/">ROI Calculator</a></h3>
-              <p>Work out the return on any investment as a percentage, net profit, multiple of money, and annualised return (CAGR). Works for any investment with a cost and a return.</p>
-              <span class="category-card__count">In <a href="/calculators/finance/">Finance</a></span>
-            </li>
-            <li class="category-card">
-              <h3><a href="/calculators/finance/seo-roi-calculator/">SEO ROI Calculator</a></h3>
-              <p>Enter your monthly SEO cost, current and projected organic traffic, and conversion data to see ROI, monthly profit, and the minimum sessions needed to break even.</p>
-              <span class="category-card__count">In <a href="/calculators/finance/">Finance</a></span>
-            </li>
-            <li class="category-card">
-              <h3><a href="/calculators/finance/email-marketing-roi-calculator/">Email Marketing ROI Calculator</a></h3>
-              <p>Enter your list size, send frequency, open and click rates, and conversion data to see ROI, monthly profit, cost per conversion, and the minimum list size needed to cover your costs.</p>
-              <span class="category-card__count">In <a href="/calculators/finance/">Finance</a></span>
+              <h3><a href="/calculators/math/percentage-calculator/">Percentage Calculator</a></h3>
+              <p>Work out a percentage of a number, what percent one number is of another, or the percentage change between two values.</p>
+              <span class="category-card__count">In <a href="/calculators/math/">Math</a></span>
             </li>
             <li class="category-card">
               <h3><a href="/calculators/productivity/ical-event-generator/">iCal Event Generator</a></h3>
@@ -268,14 +275,14 @@
               <span class="category-card__count">In <a href="/calculators/productivity/">Productivity</a></span>
             </li>
             <li class="category-card">
-              <h3><a href="/calculators/broadband/web-hosting-estimator/">Web Hosting Storage &amp; Bandwidth Estimator</a></h3>
-              <p>Work out how much storage and monthly bandwidth your website needs based on your traffic, page weight, media files, and downloadable content. See which hosting tier fits.</p>
-              <span class="category-card__count">In <a href="/calculators/broadband/">Broadband</a></span>
+              <h3><a href="/calculators/property/uk-rent-vs-buy-calculator/">UK Rent vs Buy Calculator</a></h3>
+              <p>Compare the lifetime cost of renting against buying a UK property, factoring in stamp duty, mortgage interest, maintenance, opportunity cost and rent inflation.</p>
+              <span class="category-card__count">In <a href="/calculators/property/">Property</a></span>
             </li>
             <li class="category-card">
-              <h3><a href="/calculators/wedding/save-the-date-calculator/">Save the Date Calculator</a></h3>
-              <p>Enter your wedding date to get a personalised planning timeline: when to send save-the-dates, book vendors, send formal invitations, set the RSVP deadline, and handle final preparations.</p>
-              <span class="category-card__count">In <a href="/calculators/wedding/">Wedding</a></span>
+              <h3><a href="/calculators/seo/url-slug-generator/">URL Slug Generator</a></h3>
+              <p>Turn any title into a clean, lowercase, hyphen-separated URL slug. Strips accents, punctuation and stop words. Validates against common length and character rules.</p>
+              <span class="category-card__count">In <a href="/calculators/seo/">SEO</a></span>
             </li>
             <li class="category-card">
               <h3><a href="/calculators/wedding/wedding-budget-calculator/">Wedding Budget Calculator</a></h3>
@@ -283,29 +290,9 @@
               <span class="category-card__count">In <a href="/calculators/wedding/">Wedding</a></span>
             </li>
             <li class="category-card">
-              <h3><a href="/calculators/wedding/wedding-day-timeline/">Wedding Day Timeline Generator</a></h3>
-              <p>Enter your ceremony time and reception end time to generate a complete wedding day schedule from bridal preparation through to carriages.</p>
-              <span class="category-card__count">In <a href="/calculators/wedding/">Wedding</a></span>
-            </li>
-            <li class="category-card">
-              <h3><a href="/calculators/wedding/wedding-drinks-calculator/">Wedding Drinks Calculator</a></h3>
-              <p>Enter your guest count and event duration to get bottle and quantity estimates for white wine, red wine, prosecco, beer and cider, spirits, and soft drinks.</p>
-              <span class="category-card__count">In <a href="/calculators/wedding/">Wedding</a></span>
-            </li>
-            <li class="category-card">
-              <h3><a href="/calculators/wedding/wedding-table-planner/">Wedding Table Planner Calculator</a></h3>
-              <p>Enter your guest count and preferred table size to find out how many tables you need, how many seats will be spare, and how alternative sizes compare.</p>
-              <span class="category-card__count">In <a href="/calculators/wedding/">Wedding</a></span>
-            </li>
-            <li class="category-card">
-              <h3><a href="/calculators/wedding/wedding-catering-calculator/">Wedding Catering Calculator</a></h3>
-              <p>Enter your guest count, meal style, and number of courses to get portion counts and food weight estimates for canapés, wedding breakfast, evening food, and tea and coffee.</p>
-              <span class="category-card__count">In <a href="/calculators/wedding/">Wedding</a></span>
-            </li>
-            <li class="category-card">
-              <h3><a href="/calculators/wedding/wedding-anniversary-calculator/">Wedding Anniversary Calculator</a></h3>
-              <p>Enter your wedding date to find out which anniversary you are celebrating, the traditional and modern gift themes, and your upcoming milestone anniversaries.</p>
-              <span class="category-card__count">In <a href="/calculators/wedding/">Wedding</a></span>
+              <h3><a href="/calculators/writing/word-count/">Word Count Tool</a></h3>
+              <p>Live word, character, sentence and paragraph counts for any pasted text, plus fit-checks against tweet, meta description, SMS and SEO title limits.</p>
+              <span class="category-card__count">In <a href="/calculators/writing/">Writing</a></span>
             </li>
           </ul>
           <p><a href="/calculators/">See all calculators →</a></p>

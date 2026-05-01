@@ -106,6 +106,19 @@
     }
   }
   </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "What format should I save my photos in?", "acceptedAnswer": { "@type": "Answer", "text": "JPG for photographs going on the web, PNG for screenshots and images with transparency, WebP if you can be sure the audience uses modern browsers. AVIF is now well supported and gives the smallest files for the same quality, but it is slower to encode. The Photo Resizer exports to whichever you pick." } },
+      { "@type": "Question", "name": "Should I shrink images for the web before uploading?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. A camera or phone shot is typically 4 to 8 MB at full resolution. The largest visible size on most websites is around 1,200 to 1,800 pixels wide. Resizing to the actual display size and re-saving at 80 to 85 per cent quality typically cuts the file by 80 to 95 per cent with no visible loss." } },
+      { "@type": "Question", "name": "Do these tools upload my images anywhere?", "acceptedAnswer": { "@type": "Answer", "text": "No. Every image tool here runs entirely in your browser using the Canvas API. Your photo never touches a server. You can disconnect from the network and the resizing, conversion and compression still work." } },
+      { "@type": "Question", "name": "What dimensions does Instagram, LinkedIn or Twitter want?", "acceptedAnswer": { "@type": "Answer", "text": "Instagram feed: 1,080 x 1,080 (square) or 1,080 x 1,350 (portrait). Stories: 1,080 x 1,920. LinkedIn feed: 1,200 x 627 for link previews, 1,200 x 1,200 for shared images. Twitter/X: 1,200 x 675 for link cards, 1,200 x 1,200 for posts." } },
+      { "@type": "Question", "name": "What is the difference between WebP and AVIF?", "acceptedAnswer": { "@type": "Answer", "text": "WebP (2010, Google) is universally supported and produces files about 25 to 35 per cent smaller than JPG at the same quality. AVIF (2019, AOMedia) goes further: another 20 to 30 per cent smaller again, but encoding is slower and the format is newer. For new web work in 2026, AVIF if you have an encoder; WebP as a safe default." } }
+    ]
+  }
+  </script>
   <!-- breadcrumb-jsonld -->
   <script type="application/ld+json">
 {
@@ -193,6 +206,17 @@
       </div>
     </div>
   </div>
+  <!-- site-search-bar -->
+  <div class="site-search-bar">
+    <div class="container">
+      <form class="site-search" role="search" data-site-search autocomplete="off">
+        <label for="site-search-input" class="site-search__label visually-hidden">Search calculators</label>
+        <input id="site-search-input" type="search" class="site-search__input" placeholder="Search calculators..." autocomplete="off" data-site-search-input aria-autocomplete="list" aria-controls="site-search-results">
+        <ul id="site-search-results" class="site-search__results" data-site-search-results hidden role="listbox"></ul>
+      </form>
+    </div>
+  </div>
+
 
 
   <header class="site-header">
@@ -295,6 +319,30 @@
             <p>Convert between pixels, DPI and print size in either direction. Quality verdict tells you whether the print will look sharp or visibly pixelated.</p>
           </li>
         </ul>
+
+        <section class="faq" aria-labelledby="hub-faq-heading">
+          <h2 id="hub-faq-heading">Frequently asked questions</h2>
+          <details>
+            <summary>What format should I save my photos in?</summary>
+            <p>JPG for photographs going on the web, PNG for screenshots and images with transparency, WebP if you can be sure the audience uses modern browsers (everyone except very old systems). AVIF is now well supported and gives the smallest files for the same quality, but it is slower to encode. The <a href="/calculators/images/photo-resizer/">Photo Resizer</a> exports to whichever you pick.</p>
+          </details>
+          <details>
+            <summary>Should I shrink images for the web before uploading?</summary>
+            <p>Yes. A camera or phone shot is typically 4 to 8 MB at full resolution. The largest visible size on most websites is around 1,200 to 1,800 pixels wide. Resizing to the actual display size (and re-saving at 80 to 85 per cent quality) typically cuts the file by 80 to 95 per cent with no visible loss.</p>
+          </details>
+          <details>
+            <summary>Do these tools upload my images anywhere?</summary>
+            <p>No. Every image tool here runs entirely in your browser using the Canvas API. Your photo never touches a server. You can disconnect from the network and the resizing, conversion and compression still work. That is the entire reason these exist.</p>
+          </details>
+          <details>
+            <summary>What dimensions does Instagram, LinkedIn or Twitter want?</summary>
+            <p>Instagram feed: 1,080 x 1,080 (square) or 1,080 x 1,350 (portrait). Stories: 1,080 x 1,920. LinkedIn feed: 1,200 x 627 for link previews, 1,200 x 1,200 for shared images. Twitter/X: 1,200 x 675 for link cards, 1,200 x 1,200 for posts. The <a href="/calculators/images/photo-resizer/">Photo Resizer</a> lets you crop to any of these.</p>
+          </details>
+          <details>
+            <summary>What is the difference between WebP and AVIF?</summary>
+            <p>WebP (2010, Google) is universally supported and produces files about 25 to 35 per cent smaller than JPG at the same quality. AVIF (2019, AOMedia) goes further: another 20 to 30 per cent smaller again, but encoding is slower and the format is newer. For new web work in 2026, AVIF if you have an encoder; WebP as a safe default.</p>
+          </details>
+        </section>
 
         <section class="long-form">
           <h2>Why in-browser image tools are safer than online ones</h2>

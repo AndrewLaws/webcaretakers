@@ -94,6 +94,19 @@
     }
   }
   </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Are these random pickers actually fair?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Every randomiser uses the browser's crypto.getRandomValues API, which is the same source of randomness used for cryptographic keys. The maths gives every name, number or option an equal chance on every spin. No weighting, no house edge, no quietly favouring the first option in the list." } },
+      { "@type": "Question", "name": "How does the Decision Wheel decide?", "acceptedAnswer": { "@type": "Answer", "text": "You enter the options, the wheel picks one at random with equal probability. The visible spin animation is just for fun: the answer is chosen the moment you click." } },
+      { "@type": "Question", "name": "Can I use these for a real raffle or prize draw?", "acceptedAnswer": { "@type": "Answer", "text": "For low-stakes office, classroom or party draws, yes. For anything with a meaningful prize or legal requirements (UK Society Lottery, paid raffles), use a regulated draw service that publishes audit logs. The Random Name Picker on this site does not log anything, which is great for privacy and useless if you ever need to prove the result was fair." } },
+      { "@type": "Question", "name": "Is the Magic 8-Ball actually random?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, picked uniformly from the standard 20 answers. The classic version weights yes answers more heavily than no or ask later: 10 affirmative, 5 non-committal, 5 negative. The Magic 8-Ball here keeps that distribution." } },
+      { "@type": "Question", "name": "How is age in months different from age in years?", "acceptedAnswer": { "@type": "Answer", "text": "It is the same age, expressed in finer-grained units. Useful for parents tracking developmental milestones (which are quoted in months for the first two years), for music exam grading, and for anyone who wants a more honest number than 37. The Age in Months Calculator also returns days, hours and minutes if you want to feel ancient." } }
+    ]
+  }
+  </script>
   <!-- breadcrumb-jsonld -->
   <script type="application/ld+json">
 {
@@ -181,6 +194,17 @@
       </div>
     </div>
   </div>
+  <!-- site-search-bar -->
+  <div class="site-search-bar">
+    <div class="container">
+      <form class="site-search" role="search" data-site-search autocomplete="off">
+        <label for="site-search-input" class="site-search__label visually-hidden">Search calculators</label>
+        <input id="site-search-input" type="search" class="site-search__input" placeholder="Search calculators..." autocomplete="off" data-site-search-input aria-autocomplete="list" aria-controls="site-search-results">
+        <ul id="site-search-results" class="site-search__results" data-site-search-results hidden role="listbox"></ul>
+      </form>
+    </div>
+  </div>
+
 
 
   <header class="site-header">
@@ -273,6 +297,30 @@
             <p>Ask any yes/no question. The classic 20-answer oracle, with 10 affirmative, 5 non-committal and 5 negative answers, weighted exactly like the original toy. Browser-only, uses Web Crypto for an unbiased draw.</p>
           </li>
         </ul>
+
+        <section class="faq" aria-labelledby="hub-faq-heading">
+          <h2 id="hub-faq-heading">Frequently asked questions</h2>
+          <details>
+            <summary>Are these random pickers actually fair?</summary>
+            <p>Yes. Every randomiser uses the browser's `crypto.getRandomValues()` API, which is the same source of randomness used for cryptographic keys. The maths gives every name, number or option an equal chance on every spin. No weighting, no house edge, no quietly favouring the first option in the list.</p>
+          </details>
+          <details>
+            <summary>How does the <a href="/calculators/fun/decision-wheel/">Decision Wheel</a> decide?</summary>
+            <p>You enter the options, the wheel picks one at random with equal probability. The visible spin animation is just for fun: the answer is chosen the moment you click. The <a href="/calculators/fun/decision-wheel/">Decision Wheel</a> is honest about this in the Show workings panel.</p>
+          </details>
+          <details>
+            <summary>Can I use these for a real raffle or prize draw?</summary>
+            <p>For low-stakes office, classroom or party draws, yes. For anything with a meaningful prize or legal requirements (UK Society Lottery, paid raffles), use a regulated draw service that publishes audit logs. The <a href="/calculators/fun/random-name-picker/">Random Name Picker</a> on this site does not log anything, which is great for privacy and useless if you ever need to prove the result was fair.</p>
+          </details>
+          <details>
+            <summary>Is the Magic 8-Ball actually random?</summary>
+            <p>Yes, picked uniformly from the standard 20 answers. The classic version weights "yes" answers more heavily than "no" or "ask later" (10 affirmative, 5 non-committal, 5 negative). The <a href="/calculators/fun/magic-8-ball/">Magic 8-Ball</a> here keeps that distribution.</p>
+          </details>
+          <details>
+            <summary>How is "age in months" different from age in years?</summary>
+            <p>It is the same age, expressed in finer-grained units. Useful for parents tracking developmental milestones (which are quoted in months for the first two years), for music exam grading, and for anyone who wants a more honest number than "37". The <a href="/calculators/fun/age-in-months-calculator/">Age in Months Calculator</a> also returns days, hours and minutes if you want to feel ancient.</p>
+          </details>
+        </section>
 
         <section class="long-form">
           <h2>Why "fun"?</h2>

@@ -94,6 +94,39 @@
     }
   }
   </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Should I rent or buy in the UK right now?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Depends on how long you plan to stay, the gap between your monthly rent and a comparable mortgage payment, and what you would otherwise do with the deposit. As a rough rule, owning beats renting if you plan to stay seven years or more and the deposit cannot earn a better risk-adjusted return invested elsewhere. The UK Rent vs Buy Calculator models all of that with realistic stamp duty, mortgage interest, maintenance and opportunity-cost numbers." }
+      },
+      {
+        "@type": "Question",
+        "name": "How much stamp duty will I pay on a UK home?",
+        "acceptedAnswer": { "@type": "Answer", "text": "The thresholds change with budgets and depend on whether you are a first-time buyer, a home-mover or buying an additional property. For 2025/26: nothing on the first £125,000 (£300,000 for first-time buyers under £500,000), then 2 per cent to £250k, 5 per cent to £925k, 10 per cent to £1.5m, 12 per cent above. Additional-property buyers pay a 5 per cent surcharge on top." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is a good rental yield for a UK buy-to-let?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Gross yield of 5 to 7 per cent is typical for the UK; below 4 per cent is hard to make work after costs, above 8 per cent usually means a rougher area or a flat with hidden service charges. Net yield after agent fees, void periods, repairs and tax is usually two to three percentage points lower than gross." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does overpaying my mortgage actually save money?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes, often a lot. Every pound overpaid earns a guaranteed return equal to your mortgage rate. On a 25-year £200,000 mortgage at 5 per cent, an extra £200 a month can shave six years and tens of thousands of pounds in interest off the term. The UK Mortgage Overpayment Calculator works it out for your numbers and respects the typical 10 per cent annual overpayment cap on fixed-rate deals." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is Section 24 and how does it affect a UK landlord?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Section 24 of the Finance Act 2015 stopped landlords deducting mortgage interest from rental income before tax, replacing it with a 20 per cent tax credit. For higher-rate taxpayers, this turned profitable lets into loss-makers on paper, even when cash flow is positive. The UK Section 24 Calculator shows the difference between the old and current tax treatment for your specific position." }
+      }
+    ]
+  }
+  </script>
   <!-- breadcrumb-jsonld -->
   <script type="application/ld+json">
 {
@@ -181,6 +214,17 @@
       </div>
     </div>
   </div>
+  <!-- site-search-bar -->
+  <div class="site-search-bar">
+    <div class="container">
+      <form class="site-search" role="search" data-site-search autocomplete="off">
+        <label for="site-search-input" class="site-search__label visually-hidden">Search calculators</label>
+        <input id="site-search-input" type="search" class="site-search__input" placeholder="Search calculators..." autocomplete="off" data-site-search-input aria-autocomplete="list" aria-controls="site-search-results">
+        <ul id="site-search-results" class="site-search__results" data-site-search-results hidden role="listbox"></ul>
+      </form>
+    </div>
+  </div>
+
 
 
   <header class="site-header">
@@ -273,6 +317,30 @@
             <p>Project annual cost over a chosen period for a UK leasehold flat. Models fixed, doubling and RPI-linked ground rent escalation, service charge inflation, and the post-2022 peppercorn rule.</p>
           </li>
         </ul>
+
+        <section class="faq" aria-labelledby="hub-faq-heading">
+          <h2 id="hub-faq-heading">Frequently asked questions</h2>
+          <details>
+            <summary>Should I rent or buy in the UK right now?</summary>
+            <p>Depends on how long you plan to stay, the gap between your monthly rent and a comparable mortgage payment, and what you would otherwise do with the deposit. As a rough rule, owning beats renting if you plan to stay seven years or more and the deposit cannot earn a better risk-adjusted return invested elsewhere. The <a href="/calculators/property/uk-rent-vs-buy-calculator/">UK Rent vs Buy Calculator</a> models all of that with realistic stamp duty, mortgage interest, maintenance and opportunity-cost numbers.</p>
+          </details>
+          <details>
+            <summary>How much stamp duty will I pay on a UK home?</summary>
+            <p>The thresholds change with budgets and depend on whether you are a first-time buyer, a home-mover or buying an additional property. For 2025/26: nothing on the first £125,000 (£300,000 for first-time buyers under £500,000), then 2 per cent to £250k, 5 per cent to £925k, 10 per cent to £1.5m, 12 per cent above. Additional-property buyers pay a 5 per cent surcharge on top. The <a href="/calculators/finance/uk-stamp-duty-calculator/">UK Stamp Duty Calculator</a> handles all the bands.</p>
+          </details>
+          <details>
+            <summary>What is a good rental yield for a UK buy-to-let?</summary>
+            <p>Gross yield of 5 to 7 per cent is typical for the UK; below 4 per cent is hard to make work after costs, above 8 per cent usually means a rougher area or a flat with hidden service charges. Net yield (after agent fees, void periods, repairs and tax) is usually two to three percentage points lower than gross. The <a href="/calculators/property/rental-yield-calculator/">Rental Yield Calculator</a> shows both.</p>
+          </details>
+          <details>
+            <summary>Does overpaying my mortgage actually save money?</summary>
+            <p>Yes, often a lot. Every pound overpaid earns a guaranteed return equal to your mortgage rate. On a 25-year £200,000 mortgage at 5 per cent, an extra £200 a month can shave six years and tens of thousands of pounds in interest off the term. The <a href="/calculators/property/uk-mortgage-overpayment-calculator/">UK Mortgage Overpayment Calculator</a> works it out for your numbers, and respects the typical 10 per cent annual overpayment cap on fixed-rate deals.</p>
+          </details>
+          <details>
+            <summary>What is Section 24 and how does it affect a UK landlord?</summary>
+            <p>Section 24 of the Finance Act 2015 stopped landlords deducting mortgage interest from rental income before tax, replacing it with a 20 per cent tax credit. For higher-rate taxpayers, this turned profitable lets into loss-makers on paper, even when cash flow is positive. The <a href="/calculators/property/uk-section-24-buy-to-let-tax-impact-calculator/">UK Section 24 Calculator</a> shows the difference between the old and current tax treatment for your specific position.</p>
+          </details>
+        </section>
 
         <section class="long-form">
           <h2>Related calculators</h2>

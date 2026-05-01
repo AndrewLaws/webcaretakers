@@ -106,6 +106,39 @@
     }
   }
   </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What makes a password actually strong?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Length first, character variety second. A 16-character random string of mixed-case letters and numbers is significantly stronger than an 8-character one with symbols sprinkled in. The Password Strength Calculator scores your password on length, character set, common-password lists and dictionary words, and shows estimated time to crack at modern GPU speeds." }
+      },
+      {
+        "@type": "Question",
+        "name": "Are passphrases better than passwords?",
+        "acceptedAnswer": { "@type": "Answer", "text": "For human memorability, yes. Four random English words from a Diceware list is roughly as strong as a 12-character random password and far easier to recall. The Diceware Passphrase Generator rolls genuinely random words from the standard 7,776-word list." }
+      },
+      {
+        "@type": "Question",
+        "name": "How long until my password gets cracked in a breach?",
+        "acceptedAnswer": { "@type": "Answer", "text": "If a site stores passwords properly (bcrypt or argon2), even an 8-character random password takes years to brute-force. If they store them poorly (MD5, SHA-1, or plain text), the same password falls in under a second on a modern GPU. Assume the worst, use a unique long password per site, and let a password manager remember them." }
+      },
+      {
+        "@type": "Question",
+        "name": "What does the TOTP window do and why does it matter?",
+        "acceptedAnswer": { "@type": "Answer", "text": "TOTP codes (the six digits in Google Authenticator and similar) change every 30 seconds. A window is how many adjacent codes a server will accept to allow for clock drift. A wider window is more user-friendly but slightly weaker against brute force. The 2FA / TOTP Window Calculator shows the security trade-off for any window size." }
+      },
+      {
+        "@type": "Question",
+        "name": "Is my data being sent anywhere when I use these tools?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. Every cybersecurity tool here runs entirely in JavaScript on your device. Passwords you generate, hashes you compute, passphrases you roll: none of it touches a server. You can disconnect from the network and the tools still work." }
+      }
+    ]
+  }
+  </script>
   <!-- breadcrumb-jsonld -->
   <script type="application/ld+json">
 {
@@ -193,6 +226,17 @@
       </div>
     </div>
   </div>
+  <!-- site-search-bar -->
+  <div class="site-search-bar">
+    <div class="container">
+      <form class="site-search" role="search" data-site-search autocomplete="off">
+        <label for="site-search-input" class="site-search__label visually-hidden">Search calculators</label>
+        <input id="site-search-input" type="search" class="site-search__input" placeholder="Search calculators..." autocomplete="off" data-site-search-input aria-autocomplete="list" aria-controls="site-search-results">
+        <ul id="site-search-results" class="site-search__results" data-site-search-results hidden role="listbox"></ul>
+      </form>
+    </div>
+  </div>
+
 
 
   <header class="site-header">
@@ -290,6 +334,30 @@
             <p>Reason about your TOTP authentication window. Period, digits, drift and clock skew in; effective acceptance window in seconds, per-attempt brute-force odds expressed as 1-in-N, attempts-per-second to a 50% guess inside one period, and a recommended drift setting based on your skew tolerance. Browser-only, RFC 6238.</p>
           </li>
         </ul>
+
+        <section class="faq" aria-labelledby="hub-faq-heading">
+          <h2 id="hub-faq-heading">Frequently asked questions</h2>
+          <details>
+            <summary>What makes a password actually strong?</summary>
+            <p>Length first, character variety second. A 16-character random string of mixed-case letters and numbers is significantly stronger than an 8-character one with symbols sprinkled in. The <a href="/calculators/cybersecurity/password-strength-calculator/">Password Strength Calculator</a> scores your password on length, character set, common-password lists and dictionary words, and shows estimated time to crack at modern GPU speeds.</p>
+          </details>
+          <details>
+            <summary>Are passphrases better than passwords?</summary>
+            <p>For human memorability, yes. Four random English words from a Diceware list (correct-horse-battery-staple) is roughly as strong as a 12-character random password and far easier to recall. The <a href="/calculators/cybersecurity/diceware-passphrase-generator/">Diceware Passphrase Generator</a> rolls genuinely random words from the standard 7,776-word list.</p>
+          </details>
+          <details>
+            <summary>How long until my password gets cracked in a breach?</summary>
+            <p>If a site stores passwords properly (bcrypt or argon2), even an 8-character random password takes years to brute-force. If they store them poorly (MD5, SHA-1, or plain text), the same password falls in under a second on a modern GPU. Assume the worst, use a unique long password per site, and let a password manager remember them.</p>
+          </details>
+          <details>
+            <summary>What does the TOTP window do and why does it matter?</summary>
+            <p>TOTP codes (the six digits in Google Authenticator and similar) change every 30 seconds. A "window" is how many adjacent codes a server will accept to allow for clock drift. A wider window is more user-friendly but slightly weaker against brute force. The <a href="/calculators/cybersecurity/totp-window-calculator/">2FA / TOTP Window Calculator</a> shows the security trade-off for any window size.</p>
+          </details>
+          <details>
+            <summary>Is my data being sent anywhere when I use these tools?</summary>
+            <p>No. Every cybersecurity tool here runs entirely in JavaScript on your device. Passwords you generate, hashes you compute, passphrases you roll: none of it touches a server. You can disconnect from the network and the tools still work. That is the point.</p>
+          </details>
+        </section>
 
         <section class="long-form">
           <h2>Why a browser-only password tool is the only kind worth using</h2>
