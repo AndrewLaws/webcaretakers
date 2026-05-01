@@ -1,0 +1,27 @@
+{
+  "_comment_": "Per-template Core Web Vitals budgets, applied against the worst page in each template (max, not median). Numbers are lab measurements on localhost so real-world adds network latency; tighten once GSC field data flows. Run `npm run measure:cwv -- --check` to enforce. Baseline established 2026-05-01: real numbers are far better than these limits, leaving deliberate headroom so the budget catches genuine regressions rather than firing on noise.",
+  "homepage": {
+    "lcp": 1500,
+    "cls": 0.1,
+    "transferKb": 1200,
+    "requests": 20
+  },
+  "all-index": {
+    "lcp": 1500,
+    "cls": 0.1,
+    "transferKb": 1500,
+    "requests": 20
+  },
+  "hub": {
+    "lcp": 1500,
+    "cls": 0.1,
+    "transferKb": 1200,
+    "requests": 20
+  },
+  "calculator": {
+    "lcp": 1500,
+    "cls": 0.1,
+    "transferKb": 1200,
+    "requests": 25
+  }
+}

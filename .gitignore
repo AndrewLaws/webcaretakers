@@ -38,3 +38,8 @@ playwright-report/
 
 # Meta audit output, regenerated each run
 audit-meta.csv
+
+# CWV baseline output, regenerated each run. Commit specific snapshots
+# manually with `git add -f cwv-baseline.json` if you want to record a moment
+# in time. Budgets in scripts/cwv-budgets.json are committed.
+cwv-baseline.json
