@@ -10,6 +10,7 @@
     "validate:schema": "node scripts/validate-jsonld.js",
     "index:ping": "node scripts/post-deploy-index-ping.js",
     "index:ping:dry": "node scripts/post-deploy-index-ping.js --dry-run",
+    "audit:meta": "node scripts/audit-meta.js",
     "generate": "node scripts/generate-site-files.js",
     "research": "node scripts/research.js",
     "prioritise": "node scripts/prioritise.js"

@@ -182,7 +182,7 @@ Cheap, high-leverage. Do it once GSC has 4 weeks of data so we are rewriting aga
 - Sub-headings (`<h2>`, `<h3>`) should mirror the question phrasing users actually type (the GSC query export tells us this)
 - Track before/after CTR per URL in a simple spreadsheet so we can prove the lift
 
-**Status:** [ ] Not started
+**Status:** [~] In progress (read-only half done; rewrites blocked on GSC data). 2026-04-30: built `scripts/audit-meta.js` (with 20 unit tests) that walks every published page, extracts title, meta description, canonical, h1, robots, OG/Twitter tags, html lang and hreflang stack, and reports violations. Exposed via `npm run audit:meta`. Writes `audit-meta.csv` (gitignored) for human review. Distinguishes HARD errors that fail the run (missing title/description/canonical/h1, multiple h1s, noindex, duplicate canonicals) from soft warnings (length thresholds, missing OG/Twitter, missing hreflang on country-targeted pages). Baseline findings on 132 pages: 0 hard errors, 0 duplicate titles, 0 duplicate descriptions, 0 duplicate canonicals, 0 hreflang gaps on country pages — confirms CLAUDE.md country rules are being followed end to end. 95 soft warnings: 64 descriptions too long, 24 titles too long, 4 descriptions too short, 3 titles too short. The length warnings are the editorial debt to address once GSC data flows: rewrite the long ones with the dominant query lead, rewrite the short ones to fill the SERP space. Still to do: rewrite pass against GSC query data (gated on task #1).
 
 ### 5. Internal linking pass
 

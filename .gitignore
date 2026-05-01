@@ -35,3 +35,6 @@ playwright-report/
 # lost, re-run with --initial-publish once to rebuild without spamming.
 .indexnow-snapshot.json
 .indexnow-log.jsonl
+
+# Meta audit output, regenerated each run
+audit-meta.csv
