@@ -325,14 +325,14 @@
           <p>For very small images (favicons, sprite tiles, anything under 100 by 100), fixed-cost overhead in the file format starts to dominate the size. A 32 by 32 PNG might be 200 bytes; the estimate based on raw pixel count is roughly right but the floor is set by the file header, not the data. For very large images (8K stills, panoramas) the estimate stays linear in pixel count, which matches reality reasonably well: more pixels means proportionally more bytes, give or take entropy.</p>
           <p>Animated formats are out of scope here. APNG, animated WebP and animated AVIF all multiply the per-frame size by the frame count and add a small inter-frame compression saving. If you are working with animation, estimate one frame and multiply by frame count, then knock 20 percent off as a rough inter-frame compression discount.</p>
 
+          <!-- related-calculators-block -->
           <h2>Related calculators</h2>
-          <p>Other browser-only image and bandwidth tools.</p>
+          <p>File size is one number. These act on the file or the pipe it travels down.</p>
           <ul class="related-calculators">
-            <li><a href="/calculators/images/">All image tools</a></li>
-            <li><a href="/calculators/images/photo-resizer/">Photo Resizer, the actual resize-and-encode tool</a></li>
-            <li><a href="/calculators/images/image-compressor/">Image Compressor, target a file size on a real file</a></li>
-            <li><a href="/calculators/images/aspect-ratio-calculator/">Aspect Ratio Calculator</a></li>
-            <li><a href="/calculators/broadband/file-download-time-calculator/">File Download Time Calculator</a></li>
+            <li><a href="/calculators/images/photo-resizer/">Resize and encode the file in the browser</a></li>
+            <li><a href="/calculators/images/image-compressor/">Hit a target file size on a real file</a></li>
+            <li><a href="/calculators/images/aspect-ratio-calculator/">Match the shape of an image to its slot</a></li>
+            <li><a href="/calculators/broadband/file-download-time-calculator/">See how long that file takes on a connection</a></li>
           </ul>
         </section>
 
@@ -361,14 +361,6 @@
         </section>
         <!-- author-byline -->
         <p class="author-byline">Last updated 29 April 2026 by <a href="/about/">Andrew Laws</a>.</p>
-        <section class="related-calcs" aria-labelledby="related-heading">
-          <h2 id="related-heading">Related calculators</h2>
-          <ul class="related-calcs__list">
-      <li><a href="/calculators/images/image-dpi-print-size-calculator/">Image DPI / Print Size Calculator</a></li>
-      <li><a href="/calculators/images/color-depth-calculator/">Color Depth &amp; Storage Calculator</a></li>
-      <li><a href="/calculators/images/photo-resizer/">Photo Resizer</a></li>
-          </ul>
-        </section>
 
       </div>
     </main>
