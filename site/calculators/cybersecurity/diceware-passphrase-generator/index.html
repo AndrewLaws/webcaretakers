@@ -329,12 +329,14 @@
           <h2>How the random draw works</h2>
           <p>Each word is picked by drawing a 32-bit unsigned integer from <code>crypto.getRandomValues</code>, then mapping it to <code>[0, 1296)</code> using rejection sampling. The naive approach (modulo the integer by 1,296) is biased: 2^32 is not a multiple of 1,296, so some words get drawn very slightly more often than others. Rejection sampling discards any draw that lands in the biased tail and redraws, giving a perfectly uniform distribution over the wordlist. The cost is a handful of extra draws on average. The benefit is a passphrase whose entropy is exactly what the maths claims.</p>
 
+          <!-- related-calculators-block -->
           <h2>Related calculators</h2>
-          <p>Other browser-only tools where local-only processing matters.</p>
+          <p>A passphrase is one approach. These cover the rest of the credential toolkit.</p>
           <ul class="related-calculators">
-            <li><a href="/calculators/cybersecurity/password-generator/">Password Generator (random characters)</a></li>
-            <li><a href="/calculators/cybersecurity/password-strength-calculator/">Password Strength Calculator</a></li>
-            <li><a href="/calculators/cybersecurity/">All cybersecurity tools</a></li>
+            <li><a href="/calculators/cybersecurity/password-generator/">Generate a random-character password instead</a></li>
+            <li><a href="/calculators/cybersecurity/password-strength-calculator/">Check whether a password would survive a crack</a></li>
+            <li><a href="/calculators/cybersecurity/totp-window-calculator/">Inspect a TOTP window for one-time codes</a></li>
+            <li><a href="/calculators/cybersecurity/hash-generator/">Hash text or files in the browser</a></li>
           </ul>
         </section>
 
@@ -363,14 +365,6 @@
         </section>
         <!-- author-byline -->
         <p class="author-byline">Last updated 29 April 2026 by <a href="/about/">Andrew Laws</a>.</p>
-        <section class="related-calcs" aria-labelledby="related-heading">
-          <h2 id="related-heading">Related calculators</h2>
-          <ul class="related-calcs__list">
-      <li><a href="/calculators/cybersecurity/ssl-certificate-expiry-calculator/">SSL Certificate Expiry Calculator</a></li>
-      <li><a href="/calculators/cybersecurity/totp-window-calculator/">2FA / TOTP Window Calculator</a></li>
-      <li><a href="/calculators/cybersecurity/password-strength-calculator/">Password Strength Calculator</a></li>
-          </ul>
-        </section>
 
       </div>
     </main>
