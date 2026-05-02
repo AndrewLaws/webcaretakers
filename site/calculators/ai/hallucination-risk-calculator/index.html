@@ -361,12 +361,14 @@
           <h2>How the multipliers were chosen</h2>
           <p>The model class numbers come from public hallucination evaluations on factual tasks. Frontier models score in the 5-15 percent range on hard factual benchmarks. Mid-tier models cluster around 20-30 percent on the same benchmarks, which is roughly 1.4&times; worse, hence the multiplier. Small open-weights models often double that again, hence 2.2. Fine-tuned domain models, when stayed within domain, beat much larger general models, with reductions of 30-50 percent commonly reported, hence 0.7. The grounding multipliers come from RAG evaluations: web search reduces hallucinations by roughly a third, RAG over a curated corpus by half, and a structured knowledge graph or database by two-thirds or more, because the failure mode collapses from generation to lookup. Verification multipliers are based on the operational reality that a qualified human reviewer catches most factual errors (0.4), a programmatic checker catches structured errors but misses semantic ones (0.5), and a second-pass LLM catches the obvious slips but shares the subtle blind spots of the first pass (0.7).</p>
 
+          <!-- related-calculators-block -->
           <h2>Related calculators</h2>
+          <p>Risk is one axis. These cover the cost and the levers for pulling it down.</p>
           <ul class="related-calculators">
-            <li><a href="/calculators/ai/llm-token-usage-calculator/">LLM Token Usage Calculator</a> for the cost side of the same workload.</li>
-            <li><a href="/calculators/ai/rag-pipeline-cost-calculator/">RAG Pipeline Cost Calculator</a> if grounding via RAG is the lever you want to pull.</li>
-            <li><a href="/calculators/ai/fine-tuning-cost-calculator/">AI Fine-Tuning Cost Calculator</a> if you are weighing fine-tuning a small model against running a larger one.</li>
-            <li><a href="/calculators/ai/">All AI calculators</a></li>
+            <li><a href="/calculators/ai/llm-token-usage-calculator/">Cost the same workload across major models</a></li>
+            <li><a href="/calculators/ai/rag-pipeline-cost-calculator/">Cost a RAG build if grounding is the fix</a></li>
+            <li><a href="/calculators/ai/fine-tuning-cost-calculator/">Compare fine-tuning a small model against a larger one</a></li>
+            <li><a href="/calculators/ai/prompt-token-estimator/">Estimate tokens for a single prompt</a></li>
           </ul>
         </section>
 
@@ -395,14 +397,6 @@
         </section>
         <!-- author-byline -->
         <p class="author-byline">Last updated 29 April 2026 by <a href="/about/">Andrew Laws</a>.</p>
-        <section class="related-calcs" aria-labelledby="related-heading">
-          <h2 id="related-heading">Related calculators</h2>
-          <ul class="related-calcs__list">
-      <li><a href="/calculators/ai/embedding-cost-calculator/">Embedding Cost Calculator</a></li>
-      <li><a href="/calculators/ai/prompt-token-estimator/">Prompt Token Estimator</a></li>
-      <li><a href="/calculators/ai/llm-token-usage-calculator/">LLM Token Usage Calculator</a></li>
-          </ul>
-        </section>
 
       </div>
     </main>

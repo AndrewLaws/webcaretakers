@@ -332,12 +332,14 @@
           <h2>How to use this in practice</h2>
           <p>Paste a representative prompt, pick the model you are actually planning to use, and look at the token figure. If it surprises you on the high side, the usual fix is to trim the system prompt: long, hand-crafted prompts with twelve few-shot examples are reassuring to write but expensive to run a million times. If you have the per-1K input price to hand, drop it in for a sanity-check on the per-call cost. Multiply by your call volume and you have the rough monthly figure. For the full daily, monthly and annual breakdown across every major model, the <a href="/calculators/ai/llm-token-usage-calculator/">LLM Token Usage Calculator</a> does the comparison-table version of the same job.</p>
 
+          <!-- related-calculators-block -->
           <h2>Related calculators</h2>
+          <p>Token count is one prompt. These zoom out to the workload around it.</p>
           <ul class="related-calculators">
-            <li><a href="/calculators/ai/llm-token-usage-calculator/">LLM Token Usage Calculator</a> for the full cost projection across every major model.</li>
-            <li><a href="/calculators/ai/hallucination-risk-calculator/">AI Hallucination Risk Calculator</a> for the risk side of the same workload.</li>
-            <li><a href="/calculators/writing/word-count/">Word and character count</a> for the prose-level numbers without the token maths.</li>
-            <li><a href="/calculators/ai/">All AI calculators</a></li>
+            <li><a href="/calculators/ai/llm-token-usage-calculator/">Project the cost across every major model</a></li>
+            <li><a href="/calculators/ai/hallucination-risk-calculator/">Score the risk side of the same workload</a></li>
+            <li><a href="/calculators/writing/word-count/">Count words and characters without the token maths</a></li>
+            <li><a href="/calculators/ai/embedding-cost-calculator/">Cost embedding the same prompts for retrieval</a></li>
           </ul>
         </section>
 
@@ -366,14 +368,6 @@
         </section>
         <!-- author-byline -->
         <p class="author-byline">Last updated 29 April 2026 by <a href="/about/">Andrew Laws</a>.</p>
-        <section class="related-calcs" aria-labelledby="related-heading">
-          <h2 id="related-heading">Related calculators</h2>
-          <ul class="related-calcs__list">
-      <li><a href="/calculators/ai/llm-token-usage-calculator/">LLM Token Usage Calculator</a></li>
-      <li><a href="/calculators/ai/image-generation-cost-calculator/">AI Image Generation Cost Calculator</a></li>
-      <li><a href="/calculators/ai/rag-pipeline-cost-calculator/">RAG Pipeline Cost Calculator</a></li>
-          </ul>
-        </section>
 
       </div>
     </main>

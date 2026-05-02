@@ -385,12 +385,14 @@
           <p>Multi-turn datasets are billed by total token count across the conversation, not per turn. If your training examples include long system prompts repeated across thousands of rows, factor that in. Some providers count the system prompt once per example, others per turn. Check the docs before you assume.</p>
           <p>If you re-train every time the source data changes, the training cost becomes recurring. Decide upfront whether tuning is a one-shot exercise or a monthly job, because the answer changes the cost calculus completely. A weekly retrain on a 500,000-token dataset is fifty-two times the figure shown here, and at that point a static tuned model probably is not the right tool.</p>
 
+          <!-- related-calculators-block -->
           <h2>Related calculators</h2>
+          <p>Tuning is one fix for a model. These cover the alternatives and the case for it.</p>
           <ul class="related-calculators">
-            <li><a href="/calculators/ai/llm-token-usage-calculator/">LLM Token Usage Calculator for the underlying base-model maths</a></li>
-            <li><a href="/calculators/ai/rag-pipeline-cost-calculator/">RAG Pipeline Cost Calculator if your problem is missing context, not behaviour</a></li>
-            <li><a href="/calculators/ai/ai-vs-human-writer-cost-calculator/">AI vs Human Writer Cost Calculator for content workloads</a></li>
-            <li><a href="/calculators/business/roi-calculator/">ROI calculator for the business case behind a tuning project</a></li>
+            <li><a href="/calculators/ai/llm-token-usage-calculator/">Cost the underlying base-model usage</a></li>
+            <li><a href="/calculators/ai/rag-pipeline-cost-calculator/">Cost a RAG pipeline if context is the missing piece</a></li>
+            <li><a href="/calculators/ai/ai-vs-human-writer-cost-calculator/">Compare against a human writer for content workloads</a></li>
+            <li><a href="/calculators/business/roi-calculator/">Build the ROI case behind a tuning project</a></li>
           </ul>
         </section>
 
@@ -423,14 +425,6 @@
         </section>
         <!-- author-byline -->
         <p class="author-byline">Last updated 29 April 2026 by <a href="/about/">Andrew Laws</a>.</p>
-        <section class="related-calcs" aria-labelledby="related-heading">
-          <h2 id="related-heading">Related calculators</h2>
-          <ul class="related-calcs__list">
-      <li><a href="/calculators/ai/hallucination-risk-calculator/">AI Hallucination Risk Calculator</a></li>
-      <li><a href="/calculators/ai/embedding-cost-calculator/">Embedding Cost Calculator</a></li>
-      <li><a href="/calculators/ai/prompt-token-estimator/">Prompt Token Estimator</a></li>
-          </ul>
-        </section>
 
       </div>
     </main>
