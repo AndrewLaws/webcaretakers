@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 ### Changed
+- IndexNow activated and Google indexing scope corrected (2026-05-02): provisioned `INDEXNOW_KEY` and the public ownership verification file at `site/<key>.txt`. Removed the `submitToGsc` stub from `scripts/post-deploy-index-ping.js` after a ToS review confirmed the Google Indexing API is restricted to JobPosting and BroadcastEvent schemas only — submitting calculator pages would be a policy violation. The script header now states the Indexing API is permanently out of scope; Google indexing stays on sitemap + default crawl + manual GSC URL Inspection. ROADMAP #1 updated to specify the future Search Console service account is `webmasters.readonly` scope, reporting only
 - Hand-picked Related Calculators rollout completed across all 14 categories (2026-05-02): 53 calculator pages converted from generic auto-injected sibling lists to four-sibling hand-picked blocks with the `<!-- related-calculators-block -->` marker, intent-driven anchor text and a one-line frame paragraph. Auto-injected duplicates stripped on every converted page. All 110 calculators now carry editorial sibling links, finishing ROADMAP item #5
 - Meta descriptions rewritten on 30 calculators flagged by the title/meta audit (2026-05-01): leads with the calculator name, drops "USD, no sign-up" and "Estimate the cost of..." boilerplate, trims to a length Google is less likely to truncate in SERPs
 

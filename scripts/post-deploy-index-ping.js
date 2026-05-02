@@ -13,15 +13,17 @@
 //   - Logs each submission with a timestamp to .indexnow-log.jsonl
 //   - Updates the snapshot for next run
 //
-// What this script intentionally does NOT do (per ROADMAP):
-//   - Google Indexing API (officially restricted to JobPosting / BroadcastEvent
-//     schemas; using it for calculator pages is grey-area and risks the GSC
-//     property)
-//   - The deprecated google.com/ping?sitemap=... endpoint
-//   - Any runtime browser fetches
-//
-// GSC sitemap submission via the Search Console API (`sitemaps.submit`) is a
-// future addition — see the `submitToGsc` stub at the bottom of this file.
+// What this script intentionally does NOT do, and never will:
+//   - Google Indexing API. Officially restricted to JobPosting and
+//     BroadcastEvent schemas. Calculator pages do not qualify, so submitting
+//     them is a policy violation that risks the GSC property. Manual URL
+//     Inspection in GSC (capped ~10/day, fully sanctioned) is the right path
+//     for Google when a specific page needs faster crawl.
+//   - GSC sitemap submission via API. The one-off submission of sitemap.xml
+//     in the Search Console UI is enough; an automated re-submit adds nothing
+//     because Google re-fetches the index on its own crawl cadence.
+//   - The deprecated google.com/ping?sitemap=... endpoint.
+//   - Any runtime browser fetches.
 //
 // Usage:
 //   INDEXNOW_KEY=... node scripts/post-deploy-index-ping.js [flags]
@@ -163,18 +165,6 @@ async function postChunk(payload) {
   return { status: res.status, ok: res.ok };
 }
 
-// ----- GSC submission stub for future extension -----
-
-async function submitToGsc(/* { sitemapUrl, siteUrl, serviceAccountKeyPath } */) {
-  // Future work, see ROADMAP "Site SEO programme #1": once a Google service
-  // account JSON exists at .env.local-referenced path and the SA email is
-  // granted Owner on the GSC property, call:
-  //   POST https://www.googleapis.com/webmasters/v3/sites/<siteUrl>/sitemaps/<sitemapUrl>
-  // with a Bearer token from the SA. Skipped today because the SA is not yet
-  // provisioned; this stub is the integration point.
-  throw new Error('GSC submission not yet implemented');
-}
-
 // ----- Main -----
 
 async function main() {
@@ -300,6 +290,4 @@ module.exports = {
   diffUrls,
   buildPayload,
   chunkUrls,
-  // Exposed for integration tests / future extension
-  submitToGsc,
 };
