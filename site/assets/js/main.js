@@ -1,31 +1,37 @@
-// Site search: inject search bar above the site header on every page, then
-// load the search widget. Centralised here so individual HTML files don't
-// need to change.
+// Site search: inject the search bar above the site header on pages that
+// don't already include one, then load the search widget on every page that
+// has a search bar (inline or injected). Centralised here so individual HTML
+// files don't need to change.
 (function () {
   'use strict';
-  if (document.querySelector('[data-site-search]')) return; // already on page
   var header = document.querySelector('.site-header');
   if (!header) return;
 
-  var bar = document.createElement('div');
-  bar.className = 'site-search-bar';
-  bar.innerHTML =
-    '<div class="container">' +
-      '<form class="site-search" role="search" data-site-search autocomplete="off">' +
-        '<label for="site-search-input" class="site-search__label visually-hidden">Search calculators</label>' +
-        '<input id="site-search-input" type="search" class="site-search__input" ' +
-               'placeholder="Search calculators..." autocomplete="off" ' +
-               'data-site-search-input aria-autocomplete="list" aria-controls="site-search-results">' +
-        '<ul id="site-search-results" class="site-search__results" data-site-search-results hidden role="listbox"></ul>' +
-      '</form>' +
-    '</div>';
-  header.parentNode.insertBefore(bar, header);
+  if (!document.querySelector('[data-site-search]')) {
+    var bar = document.createElement('div');
+    bar.className = 'site-search-bar';
+    bar.innerHTML =
+      '<div class="container">' +
+        '<form class="site-search" role="search" data-site-search autocomplete="off">' +
+          '<label for="site-search-input" class="site-search__label visually-hidden">Search calculators</label>' +
+          '<input id="site-search-input" type="search" class="site-search__input" ' +
+                 'placeholder="Search calculators..." autocomplete="off" ' +
+                 'data-site-search-input aria-autocomplete="list" aria-controls="site-search-results">' +
+          '<ul id="site-search-results" class="site-search__results" data-site-search-results hidden role="listbox"></ul>' +
+        '</form>' +
+      '</div>';
+    header.parentNode.insertBefore(bar, header);
+  }
 
-  // Load the widget script once the bar is in place.
-  var s = document.createElement('script');
-  s.src = '/assets/js/search.js';
-  s.defer = true;
-  document.head.appendChild(s);
+  // Load the widget script once we know a search bar is on the page. Guard
+  // against double-injection in case main.js runs more than once.
+  if (!document.querySelector('script[data-site-search-script]')) {
+    var s = document.createElement('script');
+    s.src = '/assets/js/search.js';
+    s.defer = true;
+    s.setAttribute('data-site-search-script', '');
+    document.head.appendChild(s);
+  }
 })();
 
 // Mobile primary-nav: inject a hamburger toggle into the site header.
