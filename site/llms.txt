@@ -134,6 +134,6 @@
 - [Suffolk Lorem Ipsum Generator | WebCaretakers](https://webcaretakers.com/calculators/writing/suffolk-lorem-ipsum/): Generate placeholder text in Suffolk dialect. Paragraphs of
 - [Word Count Tool | WebCaretakers](https://webcaretakers.com/calculators/writing/word-count/): Paste any text and see word count, character count, sentences, paragraphs, and whether it fits inside tweet, meta description, SMS or SEO title limits.
 - [Contact | WebCaretakers](https://webcaretakers.com/contact/): How to reach WebCaretakers. Two email addresses, honest expectations, and a signpost to Yeseo for consulting work.
-- [Business Digital Assets Register: Free Handover Checklist | WebCaretakers](https://webcaretakers.com/digital-assets-register/): A free checklist that captures every domain, hosting account, email and social login your business owns, so you can hand over the keys in minutes.
+- [Business Digital Assets Register: Free Handover Checklist | WebCaretakers](https://webcaretakers.com/digital-assets-register/): A free Google Doc and Google Sheet checklist of every domain, host, email and social login your business owns. Hand over the keys in minutes.
 - [Privacy Policy | WebCaretakers](https://webcaretakers.com/privacy/): How WebCaretakers handles cookies, analytics, advertising and affiliate links. Plain-English privacy policy, not a generator template.
 - [Terms of Use | WebCaretakers](https://webcaretakers.com/terms/): The terms on which you can use the free calculators and content on WebCaretakers. Plain English, no surprises.
